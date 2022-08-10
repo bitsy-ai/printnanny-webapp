@@ -12,11 +12,23 @@ export const stepKeys = [
   {
     key: "customize-sd-card",
     title: "Customize SD Card",
+    detail:
+      "Configure your Pi's hostname and wifi with the Raspberry Pi imager.",
   },
-  { key: "raspberry-pi", title: "Connect Raspberry Pi" },
-  { key: "download-zip", title: "Download PrintNanny.zip" },
-  { key: "test-connection", title: "Test PrintNanny Connection" },
-  { key: "done", title: "Finish Setup" },
+  { key: "raspberry-pi", title: "Register My Raspberry Pi", detail: "" },
+  {
+    key: "download-license",
+    title: "Download PrintNanny.zip",
+    detail:
+      "This section will help you copy your PrintNanny license to your SD card.",
+  },
+  {
+    key: "test-connection",
+    title: "Test PrintNanny Setup",
+    detail:
+      "Almost done! This section will double-check your PrintNanny setup.",
+  },
+  { key: "done", title: "Finish Setup", detail: "" },
 ];
 
 export function PiCreateWizardSteps(): WizardStep[] {
@@ -24,6 +36,7 @@ export function PiCreateWizardSteps(): WizardStep[] {
   return [
     {
       key: stepKeys[0].key,
+      detail: stepKeys[0].detail,
       component: SdCardStep,
       title: stepKeys[0].title,
       progress: "0%",
@@ -43,10 +56,11 @@ export function PiCreateWizardSteps(): WizardStep[] {
     },
     {
       key: stepKeys[1].key,
+      detail: stepKeys[1].detail,
       component: PiCreateStep,
-      title: "Add Raspberry Pi",
-      progress: "25%",
-      style: "width: 25%",
+      title: stepKeys[1].title,
+      progress: "33%",
+      style: "width: 33%",
       validationSchema: yup.object({
         hostname: yup.string().required(),
         edition: yup.string().required(),
@@ -86,13 +100,12 @@ export function PiCreateWizardSteps(): WizardStep[] {
     },
     {
       key: stepKeys[2].key,
+      detail: stepKeys[2].detail,
       component: DownloadLicenseStep,
+      progress: "66%",
+      style: "width: 66%",
       title: stepKeys[2].title,
-      progress: "50%",
-      style: "width: 50%",
-      validationSchema: yup.object({
-        tos: yup.boolean(),
-      }),
+      validationSchema: yup.object(),
       nextButton: {
         text: `Next: ${stepKeys[3].title}`,
         link: () => ({
@@ -104,7 +117,7 @@ export function PiCreateWizardSteps(): WizardStep[] {
         text: `Previous: ${stepKeys[1].title}`,
         link: () => ({
           name: "pi-wizard",
-          params: { activeStep: stepKeys[1].key },
+          params: { activeStep: stepKeys[1].key, piId: store.pi?.id },
         }),
       },
       onSubmit: (_formData: any) => {
@@ -113,9 +126,10 @@ export function PiCreateWizardSteps(): WizardStep[] {
     },
     {
       key: stepKeys[3].key,
+      detail: stepKeys[3].detail,
       component: TestConnectionStep,
-      progress: "75%",
-      style: "width: 75%",
+      progress: "66%",
+      style: "width: 66%",
       title: stepKeys[3].title,
       validationSchema: yup.object(),
       nextButton: {
@@ -138,6 +152,7 @@ export function PiCreateWizardSteps(): WizardStep[] {
     },
     {
       key: stepKeys[4].key,
+      detail: stepKeys[4].detail,
       progress: "100%",
       style: "width: 100%",
       title: "Setup is Complete - Nice Work!",

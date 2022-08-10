@@ -43,6 +43,7 @@ google-cloud-storage
 honeycomb-beeline
 imageio
 imageio-ffmpeg
+nats-py[nkeys]
 pandas
 plotly
 posthog

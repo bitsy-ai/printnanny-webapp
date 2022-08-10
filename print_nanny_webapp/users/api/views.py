@@ -10,13 +10,16 @@ from rest_framework import status
 
 from drf_spectacular.utils import extend_schema_view, extend_schema
 from django_nats_nkeys.models import NatsOrganizationUser
-from print_nanny_webapp.nkeys.services import get_or_create_nats_organization_user
+from django_nats_nkeys.services import nsc_push_org
+from print_nanny_webapp.nkeys.services import (
+    get_or_create_nats_organization_user,
+)
 
 from print_nanny_webapp.utils.permissions import IsObjectOwner
 from print_nanny_webapp.utils.views import AuthenticatedHttpRequest
 from print_nanny_webapp.users.api.serializers import (
     EmailWaitlistSerializer,
-    NatsOrganizationUserNkeySerializer,
+    NatsOrganizationUserSerializer,
 )
 from print_nanny_webapp.users.models import EmailWaitlist
 
@@ -36,12 +39,18 @@ class EmailWaitlistViewSet(GenericViewSet, CreateModelMixin):
 
 
 class UserNkeyView(APIView):
+    """
+    Providers user nkey credentials
+    """
+
     permission_classes = (IsObjectOwner, IsAuthenticated)
     lookup_field = "id"
     queryset = NatsOrganizationUser.objects.all()
-    serializer_class = NatsOrganizationUserNkeySerializer
+    serializer_class = NatsOrganizationUserSerializer
 
     def get(self, request: AuthenticatedHttpRequest):
         org_user = get_or_create_nats_organization_user(request.user)
-        serializer = NatsOrganizationUserNkeySerializer(instance=org_user)
+        serializer = NatsOrganizationUserSerializer(instance=org_user)
+        nsc_push_org(org_user.organization)
+
         return Response(serializer.data, status.HTTP_200_OK)

@@ -1,12 +1,21 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
-import { Field } from "vee-validate";
-import { RefreshIcon, FolderDownloadIcon } from "@heroicons/vue/solid";
+import { ref } from "vue";
+import { FolderDownloadIcon } from "@heroicons/vue/solid";
+import {
+  CheckIcon,
+  ClipboardCopyIcon,
+  QuestionMarkCircleIcon,
+  ChipIcon,
+} from "@heroicons/vue/outline";
 import { useWizardStore } from "@/stores/wizard";
 import type { WizardStep } from "@/types";
 import FormStep from "./FormStep.vue";
+import { useRouter } from "vue-router";
+import type { ActionButton } from "@/types";
+import { ManualTestStep } from "@/types";
 
-defineProps({
+const props = defineProps({
   step: {
     type: Object as PropType<WizardStep>,
     required: true,
@@ -14,90 +23,218 @@ defineProps({
 });
 
 const store = useWizardStore();
+const router = useRouter();
+
+if (
+  router.currentRoute.value.params.piId !== undefined &&
+  router.currentRoute.value.params.activeStep === props.step.key
+) {
+  const piId = parseInt(router.currentRoute.value.params.piId as string);
+  await store.loadPi(piId);
+  await store.downloadLicenseZip(piId);
+}
+
+function nextManualStep(currentStep: ManualTestStep, currentitemIdx: number) {
+  // mark current step done
+  currentStep.finish();
+  // start next step
+  if (currentitemIdx < manualSteps.value.length - 1) {
+    manualSteps.value[currentitemIdx + 1].start();
+  }
+}
+
+const manualSteps = ref([
+  new ManualTestStep(
+    "Download PrintNanny.zip (your license key)",
+    "Do not share contents with anyone!",
+    FolderDownloadIcon,
+    [
+      {
+        text: "Download PrintNanny.zip",
+        href: store.downloadUrl,
+        onClick: nextManualStep,
+        bgColor: "bg-amber-500",
+        bgColorHover: "hover:bg-amber-600",
+        bgColorFocus: "focus:ring-amber-500",
+        icon: FolderDownloadIcon,
+      } as ActionButton,
+      {
+        text: "Done",
+        icon: CheckIcon,
+        color: "emerald",
+        bgColor: "bg-emerald-500",
+        bgColorHover: "hover:bg-emerald-600",
+        bgColorFocus: "focus:ring-emerald-500",
+        onClick: nextManualStep,
+      } as ActionButton,
+    ]
+  ),
+  new ManualTestStep(
+    "Copy PrintNanny.zip to SD Card",
+    "Copy your license to the 'boot' partition of SD card.",
+    ClipboardCopyIcon,
+    [
+      {
+        text: "Show me how",
+        bgColor: "bg-sky-500",
+        bgColorHover: "hover:bg-sky-600",
+        bgColorFocus: "focus:ring-sky-500",
+        icon: QuestionMarkCircleIcon,
+        href: "https://docs.printnanny.ai/docs/quick-start/copy-zip-to-sd-card",
+      } as ActionButton,
+      {
+        text: "Done",
+        icon: CheckIcon,
+        bgColor: "bg-emerald-500",
+        bgColorHover: "hover:bg-emerald-600",
+        bgColorFocus: "focus:ring-emerald-500",
+        onClick: nextManualStep,
+      } as ActionButton,
+    ]
+  ),
+  new ManualTestStep(
+    "Eject SD Card & Insert into Raspberry Pi",
+    "Connect Raspberry Pi to power to finish setup.",
+    ChipIcon,
+    [
+      {
+        text: "Show me how",
+        bgColor: "bg-sky-500",
+        bgColorHover: "hover:bg-sky-600",
+        bgColorFocus: "focus:ring-sky-500",
+        icon: QuestionMarkCircleIcon,
+        href: "https://docs.printnanny.ai/docs/quick-start/copy-zip-to-sd-card",
+      } as ActionButton,
+      {
+        text: "Done",
+        icon: CheckIcon,
+        bgColor: "bg-emerald-500",
+        bgColorHover: "hover:bg-emerald-600",
+        bgColorFocus: "focus:ring-emerald-500",
+        onClick: nextManualStep,
+      } as ActionButton,
+    ]
+  ),
+]);
+
+// start first step
+manualSteps.value[0].start();
 </script>
 <template>
   <FormStep :name="step.key">
-    <div
-      class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
+    <h2
+      class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl flex-1 w-full text-center"
     >
-      <h2
-        class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl flex-1 w-full"
-      >
-        Download PrintNanny.zip to SD Card
-      </h2>
-      <a v-show="store.downloadUrl" :href="store.downloadUrl" class="w-full">
-        <button
-          v-show="store.downloadUrl"
-          class="group mt-5 relative w-1/2 justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:red-500 disabled:opacity-75"
-        >
-          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-            <FolderDownloadIcon
-              class="h-5 w-5 text-white group-hover:text-gray-400"
-              :aria-hidden="true"
-            />
-          </span>
-          <span>Click here if download does not start automatically</span>
-        </button>
-      </a>
-      <p class="text-base font-medium text-red-500 mt-5 w-full">
-        Do not share contents with anyone!
-      </p>
-      <p class="text-base font-medium text-gray-900 mt-5 w-full">
-        PrintNanny.zip contains unique credentials for your Raspberry Pi.
-      </p>
-
-      <div class="w-full">
-        <button
-          v-show="!store.downloadUrl"
-          :disabled="true"
-          class="group mt-5 relative w-1/2 justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-amber-600 disabled:opacity-75 cursor-wait"
-        >
-          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-            <RefreshIcon
-              v-show="!store.downloadUrl"
-              class="animate-spin h-5 w-5 text-white"
-              :aria-hidden="true"
-            />
-          </span>
-          <span>Preparing download...</span>
-        </button>
-      </div>
-      <hr class="m-5" />
-
-      <fieldset class="mt-6">
-        <div class="mt-4 space-y-4">
-          <div class="flex items-start">
-            <div class="h-5 flex items-center">
-              <Field
-                id="tos"
-                name="tos"
-                type="checkbox"
-                :value="false"
-                :unchecked-value="false"
-                required
-                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+      {{ step.title }}
+    </h2>
+    <p class="text-base text-center font-medium text-gray-900 mt-5 w-full">
+      {{ step.detail }}
+    </p>
+    <div
+      class="min-h-full min-w-full w-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
+    >
+      <!-- setup steps container -->
+      <div class="flow-root w-3/4">
+        <ul role="list" class="-mb-8">
+          <li v-for="(item, itemIdx) in manualSteps" :key="itemIdx">
+            <div class="relative pb-8">
+              <span
+                v-if="itemIdx !== manualSteps.length - 1"
+                class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200"
+                aria-hidden="true"
               />
-            </div>
-            <div class="ml-3 text-sm">
-              <p class="text-gray-500">
-                I agree to the
-                <router-link
-                  class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                  :to="{ name: 'terms' }"
-                  >Terms & Conditions</router-link
+              <div class="relative flex space-x-3">
+                <div>
+                  <span
+                    :class="[
+                      item.iconBackground(),
+                      'h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white',
+                    ]"
+                  >
+                    <component
+                      :is="item.icon"
+                      v-if="!item.done"
+                      class="h-5 w-5 text-white"
+                      aria-hidden="true"
+                    />
+                    <CheckIcon
+                      v-else
+                      class="h-5 w-5 text-white"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </div>
+                <div
+                  class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-24"
                 >
-                and acknowledge the
-                <router-link
-                  class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                  :to="{ name: 'privacy' }"
-                  >Privacy Policy</router-link
-                >
-              </p>
+                  <div>
+                    <p class="text-sm text-gray-500 text-left">
+                      <strong>{{ item.text }}</strong>
+                      <br />
+                      <i>{{ item.detail }}</i>
+                    </p>
+                  </div>
+                  <div
+                    v-if="item.active == true"
+                    class="text-right text-sm whitespace-nowrap text-gray-500"
+                  >
+                    <span
+                      v-for="(action, actionIdx) in item.actions"
+                      :key="actionIdx"
+                    >
+                      <!-- href used for external documentation and other links -->
+                      <a
+                        v-if="action.href !== undefined"
+                        :href="action.href"
+                        target="_blank"
+                      >
+                        <button
+                          type="button"
+                          :class="[
+                            action.bgColor,
+                            action.bgColorHover,
+                            action.bgColorFocus,
+                            'focus:outline-none focus:ring-2 focus:ring-offset-2 inline-flex items-center group m-2 relative justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white shadow-lg',
+                          ]"
+                          @click="action.onClick(item, itemIdx)"
+                        >
+                          <component
+                            :is="action.icon"
+                            v-if="action.icon"
+                            class="h-5 w-5 mr-2 text-white"
+                            aria-hidden="true"
+                          />
+                          {{ action.text }}
+                        </button>
+                      </a>
+                      <!-- @click event is used for in-app navigation -->
+                      <button
+                        v-else
+                        type="button"
+                        :class="[
+                          action.bgColor,
+                          action.bgColorHover,
+                          action.bgColorFocus,
+                          'focus:outline-none focus:ring-2 focus:ring-offset-2 inline-flex items-center group m-2 relative justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white shadow-lg',
+                        ]"
+                        @click="action.onClick(item, itemIdx)"
+                      >
+                        <component
+                          :is="action.icon"
+                          v-if="action.icon"
+                          class="h-5 w-5 mr-2 text-white"
+                          aria-hidden="true"
+                        />
+                        {{ action.text }}
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </fieldset>
-      <hr class="m-5" />
+          </li>
+        </ul>
+      </div>
     </div>
   </FormStep>
 </template>

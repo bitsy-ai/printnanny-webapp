@@ -517,7 +517,7 @@ export interface NatsApp {
      * @type {string}
      * @memberof NatsApp
      */
-    'name': string;
+    'app_name'?: string;
     /**
      * Output of `nsc describe account`
      * @type {{ [key: string]: any; }}
@@ -548,6 +548,43 @@ export interface NatsApp {
      * @memberof NatsApp
      */
     'nats_uri': string;
+}
+/**
+ * 
+ * @export
+ * @interface NatsOrganizationUser
+ */
+export interface NatsOrganizationUser {
+    /**
+     * 
+     * @type {number}
+     * @memberof NatsOrganizationUser
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof NatsOrganizationUser
+     */
+    'app_name'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof NatsOrganizationUser
+     */
+    'organization': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof NatsOrganizationUser
+     */
+    'creds': string;
+    /**
+     * Output of `nsc describe account`
+     * @type {{ [key: string]: any; }}
+     * @memberof NatsOrganizationUser
+     */
+    'json'?: { [key: string]: any; };
 }
 /**
  * 
@@ -1415,6 +1452,37 @@ export interface PaginatedPiSettingsList {
 /**
  * 
  * @export
+ * @interface PaginatedPolymorphicPiCommandList
+ */
+export interface PaginatedPolymorphicPiCommandList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedPolymorphicPiCommandList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPolymorphicPiCommandList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPolymorphicPiCommandList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<PolymorphicPiCommand>}
+     * @memberof PaginatedPolymorphicPiCommandList
+     */
+    'results'?: Array<PolymorphicPiCommand>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedPolymorphicPiEventList
  */
 export interface PaginatedPolymorphicPiEventList {
@@ -1442,6 +1510,37 @@ export interface PaginatedPolymorphicPiEventList {
      * @memberof PaginatedPolymorphicPiEventList
      */
     'results'?: Array<PolymorphicPiEvent>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedPolymorphicPiStatusList
+ */
+export interface PaginatedPolymorphicPiStatusList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedPolymorphicPiStatusList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPolymorphicPiStatusList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPolymorphicPiStatusList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<PolymorphicPiStatus>}
+     * @memberof PaginatedPolymorphicPiStatusList
+     */
+    'results'?: Array<PolymorphicPiStatus>;
 }
 /**
  * 
@@ -2220,80 +2319,55 @@ export interface Pi {
 /**
  * 
  * @export
- * @interface PiBootEvent
+ * @interface PiBootCommand
  */
-export interface PiBootEvent {
-    /**
-     * 
-     * @type {number}
-     * @memberof PiBootEvent
-     */
-    'id': number;
+export interface PiBootCommand {
     /**
      * 
      * @type {string}
-     * @memberof PiBootEvent
+     * @memberof PiBootCommand
+     */
+    'id': string;
+    /**
+     * 
+     * @type {PiBootCommandModelEnum}
+     * @memberof PiBootCommand
+     */
+    'model': PiBootCommandModelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiBootCommand
      */
     'created_dt': string;
     /**
      * 
      * @type {string}
-     * @memberof PiBootEvent
+     * @memberof PiBootCommand
      */
     'subject': string;
     /**
      * 
      * @type {{ [key: string]: any; }}
-     * @memberof PiBootEvent
+     * @memberof PiBootCommand
      */
     'payload'?: { [key: string]: any; };
     /**
      * 
-     * @type {PiBootEventType}
-     * @memberof PiBootEvent
+     * @type {PiBootCommandType}
+     * @memberof PiBootCommand
      */
-    'event_type': PiBootEventType;
+    'event_type': PiBootCommandType;
     /**
      * 
      * @type {number}
-     * @memberof PiBootEvent
+     * @memberof PiBootCommand
      */
     'polymorphic_ctype': number;
     /**
      * 
      * @type {number}
-     * @memberof PiBootEvent
-     */
-    'pi': number;
-}
-/**
- * 
- * @export
- * @interface PiBootEventRequest
- */
-export interface PiBootEventRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof PiBootEventRequest
-     */
-    'subject': string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PiBootEventRequest
-     */
-    'payload'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {PiBootEventType}
-     * @memberof PiBootEventRequest
-     */
-    'event_type': PiBootEventType;
-    /**
-     * 
-     * @type {number}
-     * @memberof PiBootEventRequest
+     * @memberof PiBootCommand
      */
     'pi': number;
 }
@@ -2303,67 +2377,244 @@ export interface PiBootEventRequest {
  * @enum {string}
  */
 
-export const PiBootEventType = {
-    RebootCommand: 'RebootCommand',
+export const PiBootCommandModelEnum = {
+    PiBootCommand: 'PiBootCommand'
+} as const;
+
+export type PiBootCommandModelEnum = typeof PiBootCommandModelEnum[keyof typeof PiBootCommandModelEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface PiBootCommandRequest
+ */
+export interface PiBootCommandRequest {
+    /**
+     * 
+     * @type {PiBootCommandModelEnum}
+     * @memberof PiBootCommandRequest
+     */
+    'model': PiBootCommandModelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiBootCommandRequest
+     */
+    'subject': string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PiBootCommandRequest
+     */
+    'payload'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {PiBootCommandType}
+     * @memberof PiBootCommandRequest
+     */
+    'event_type': PiBootCommandType;
+    /**
+     * 
+     * @type {number}
+     * @memberof PiBootCommandRequest
+     */
+    'pi': number;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const PiBootCommandType = {
+    Rebooot: 'Rebooot',
+    Shutdown: 'Shutdown',
+    SyncSettings: 'SyncSettings'
+} as const;
+
+export type PiBootCommandType = typeof PiBootCommandType[keyof typeof PiBootCommandType];
+
+
+/**
+ * 
+ * @export
+ * @interface PiBootStatus
+ */
+export interface PiBootStatus {
+    /**
+     * 
+     * @type {string}
+     * @memberof PiBootStatus
+     */
+    'id': string;
+    /**
+     * 
+     * @type {PiBootStatusModelEnum}
+     * @memberof PiBootStatus
+     */
+    'model': PiBootStatusModelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiBootStatus
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiBootStatus
+     */
+    'subject': string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PiBootStatus
+     */
+    'payload'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {PiBootStatusType}
+     * @memberof PiBootStatus
+     */
+    'event_type': PiBootStatusType;
+    /**
+     * 
+     * @type {number}
+     * @memberof PiBootStatus
+     */
+    'polymorphic_ctype': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PiBootStatus
+     */
+    'pi': number;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const PiBootStatusModelEnum = {
+    PiBootStatus: 'PiBootStatus'
+} as const;
+
+export type PiBootStatusModelEnum = typeof PiBootStatusModelEnum[keyof typeof PiBootStatusModelEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface PiBootStatusRequest
+ */
+export interface PiBootStatusRequest {
+    /**
+     * 
+     * @type {PiBootStatusModelEnum}
+     * @memberof PiBootStatusRequest
+     */
+    'model': PiBootStatusModelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiBootStatusRequest
+     */
+    'subject': string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PiBootStatusRequest
+     */
+    'payload'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {PiBootStatusType}
+     * @memberof PiBootStatusRequest
+     */
+    'event_type': PiBootStatusType;
+    /**
+     * 
+     * @type {number}
+     * @memberof PiBootStatusRequest
+     */
+    'pi': number;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const PiBootStatusType = {
     RebootStarted: 'RebootStarted',
     RebootError: 'RebootError',
-    ShutdownCommand: 'ShutdownCommand',
     ShutdownStarted: 'ShutdownStarted',
     ShutdownError: 'ShutdownError',
     BootStarted: 'BootStarted',
     BootSuccess: 'BootSuccess',
-    BootDegraded: 'BootDegraded'
+    BootDegraded: 'BootDegraded',
+    SyncSettingsStarted: 'SyncSettingsStarted',
+    SyncSettingsSuccess: 'SyncSettingsSuccess',
+    SyncSettingsError: 'SyncSettingsError'
 } as const;
 
-export type PiBootEventType = typeof PiBootEventType[keyof typeof PiBootEventType];
+export type PiBootStatusType = typeof PiBootStatusType[keyof typeof PiBootStatusType];
 
 
 /**
  * 
  * @export
- * @interface PiGstreamerEvent
+ * @interface PiCamCommand
  */
-export interface PiGstreamerEvent {
-    /**
-     * 
-     * @type {number}
-     * @memberof PiGstreamerEvent
-     */
-    'id': number;
+export interface PiCamCommand {
     /**
      * 
      * @type {string}
-     * @memberof PiGstreamerEvent
+     * @memberof PiCamCommand
+     */
+    'id': string;
+    /**
+     * 
+     * @type {PiCamCommandModelEnum}
+     * @memberof PiCamCommand
+     */
+    'model': PiCamCommandModelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiCamCommand
      */
     'created_dt': string;
     /**
      * 
      * @type {string}
-     * @memberof PiGstreamerEvent
+     * @memberof PiCamCommand
      */
     'subject': string;
     /**
      * 
      * @type {{ [key: string]: any; }}
-     * @memberof PiGstreamerEvent
+     * @memberof PiCamCommand
      */
     'payload'?: { [key: string]: any; };
     /**
      * 
-     * @type {PiGstreamerEventEventTypeEnum}
-     * @memberof PiGstreamerEvent
+     * @type {PiCamCommandType}
+     * @memberof PiCamCommand
      */
-    'event_type': PiGstreamerEventEventTypeEnum;
+    'event_type': PiCamCommandType;
     /**
      * 
      * @type {number}
-     * @memberof PiGstreamerEvent
+     * @memberof PiCamCommand
      */
     'polymorphic_ctype': number;
     /**
      * 
      * @type {number}
-     * @memberof PiGstreamerEvent
+     * @memberof PiCamCommand
      */
     'pi': number;
 }
@@ -2373,49 +2624,185 @@ export interface PiGstreamerEvent {
  * @enum {string}
  */
 
-export const PiGstreamerEventEventTypeEnum = {
-    StartCommand: 'StartCommand',
-    StartSuccess: 'StartSuccess',
-    StartError: 'StartError',
-    StopCommand: 'StopCommand',
-    StopSuccess: 'StopSuccess',
-    StopError: 'StopError'
+export const PiCamCommandModelEnum = {
+    PiCamCommand: 'PiCamCommand'
 } as const;
 
-export type PiGstreamerEventEventTypeEnum = typeof PiGstreamerEventEventTypeEnum[keyof typeof PiGstreamerEventEventTypeEnum];
+export type PiCamCommandModelEnum = typeof PiCamCommandModelEnum[keyof typeof PiCamCommandModelEnum];
 
 
 /**
  * 
  * @export
- * @interface PiGstreamerEventRequest
+ * @interface PiCamCommandRequest
  */
-export interface PiGstreamerEventRequest {
+export interface PiCamCommandRequest {
+    /**
+     * 
+     * @type {PiCamCommandModelEnum}
+     * @memberof PiCamCommandRequest
+     */
+    'model': PiCamCommandModelEnum;
     /**
      * 
      * @type {string}
-     * @memberof PiGstreamerEventRequest
+     * @memberof PiCamCommandRequest
      */
     'subject': string;
     /**
      * 
      * @type {{ [key: string]: any; }}
-     * @memberof PiGstreamerEventRequest
+     * @memberof PiCamCommandRequest
      */
     'payload'?: { [key: string]: any; };
     /**
      * 
-     * @type {PiGstreamerEventEventTypeEnum}
-     * @memberof PiGstreamerEventRequest
+     * @type {PiCamCommandType}
+     * @memberof PiCamCommandRequest
      */
-    'event_type': PiGstreamerEventEventTypeEnum;
+    'event_type': PiCamCommandType;
     /**
      * 
      * @type {number}
-     * @memberof PiGstreamerEventRequest
+     * @memberof PiCamCommandRequest
      */
     'pi': number;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const PiCamCommandType = {
+    CamStart: 'CamStart',
+    CamStop: 'CamStop'
+} as const;
+
+export type PiCamCommandType = typeof PiCamCommandType[keyof typeof PiCamCommandType];
+
+
+/**
+ * 
+ * @export
+ * @interface PiCamStatus
+ */
+export interface PiCamStatus {
+    /**
+     * 
+     * @type {string}
+     * @memberof PiCamStatus
+     */
+    'id': string;
+    /**
+     * 
+     * @type {PiCamStatusModelEnum}
+     * @memberof PiCamStatus
+     */
+    'model': PiCamStatusModelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiCamStatus
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiCamStatus
+     */
+    'subject': string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PiCamStatus
+     */
+    'payload'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {PiCamStatusType}
+     * @memberof PiCamStatus
+     */
+    'event_type': PiCamStatusType;
+    /**
+     * 
+     * @type {number}
+     * @memberof PiCamStatus
+     */
+    'polymorphic_ctype': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PiCamStatus
+     */
+    'pi': number;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const PiCamStatusModelEnum = {
+    PiCamStatus: 'PiCamStatus'
+} as const;
+
+export type PiCamStatusModelEnum = typeof PiCamStatusModelEnum[keyof typeof PiCamStatusModelEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface PiCamStatusRequest
+ */
+export interface PiCamStatusRequest {
+    /**
+     * 
+     * @type {PiCamStatusModelEnum}
+     * @memberof PiCamStatusRequest
+     */
+    'model': PiCamStatusModelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiCamStatusRequest
+     */
+    'subject': string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PiCamStatusRequest
+     */
+    'payload'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {PiCamStatusType}
+     * @memberof PiCamStatusRequest
+     */
+    'event_type': PiCamStatusType;
+    /**
+     * 
+     * @type {number}
+     * @memberof PiCamStatusRequest
+     */
+    'pi': number;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const PiCamStatusType = {
+    CamStarted: 'CamStarted',
+    CamStartSuccess: 'CamStartSuccess',
+    CamError: 'CamError',
+    CamStopped: 'CamStopped'
+} as const;
+
+export type PiCamStatusType = typeof PiCamStatusType[keyof typeof PiCamStatusType];
+
+
 /**
  * 
  * @export
@@ -2524,92 +2911,61 @@ export interface PiSettingsRequest {
 /**
  * 
  * @export
- * @interface PiSoftwareUpdateEvent
+ * @interface PiSoftwareUpdateCommand
  */
-export interface PiSoftwareUpdateEvent {
-    /**
-     * 
-     * @type {number}
-     * @memberof PiSoftwareUpdateEvent
-     */
-    'id': number;
+export interface PiSoftwareUpdateCommand {
     /**
      * 
      * @type {string}
-     * @memberof PiSoftwareUpdateEvent
+     * @memberof PiSoftwareUpdateCommand
+     */
+    'id': string;
+    /**
+     * 
+     * @type {PiSoftwareUpdateCommandModelEnum}
+     * @memberof PiSoftwareUpdateCommand
+     */
+    'model': PiSoftwareUpdateCommandModelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiSoftwareUpdateCommand
      */
     'created_dt': string;
     /**
      * 
      * @type {string}
-     * @memberof PiSoftwareUpdateEvent
+     * @memberof PiSoftwareUpdateCommand
      */
     'subject': string;
     /**
      * 
      * @type {{ [key: string]: any; }}
-     * @memberof PiSoftwareUpdateEvent
+     * @memberof PiSoftwareUpdateCommand
      */
     'payload'?: { [key: string]: any; };
     /**
      * 
      * @type {string}
-     * @memberof PiSoftwareUpdateEvent
+     * @memberof PiSoftwareUpdateCommand
      */
     'version': string;
     /**
      * 
-     * @type {PiSoftwareUpdateEventType}
-     * @memberof PiSoftwareUpdateEvent
+     * @type {PiSoftwareUpdateCommandType}
+     * @memberof PiSoftwareUpdateCommand
      */
-    'event_type': PiSoftwareUpdateEventType;
+    'event_type': PiSoftwareUpdateCommandType;
     /**
      * 
      * @type {number}
-     * @memberof PiSoftwareUpdateEvent
+     * @memberof PiSoftwareUpdateCommand
      */
     'polymorphic_ctype': number;
     /**
      * 
      * @type {number}
-     * @memberof PiSoftwareUpdateEvent
-     */
-    'pi': number;
-}
-/**
- * 
- * @export
- * @interface PiSoftwareUpdateEventRequest
- */
-export interface PiSoftwareUpdateEventRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof PiSoftwareUpdateEventRequest
-     */
-    'subject': string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PiSoftwareUpdateEventRequest
-     */
-    'payload'?: { [key: string]: any; };
-    /**
-     * 
-     * @type {string}
-     * @memberof PiSoftwareUpdateEventRequest
-     */
-    'version': string;
-    /**
-     * 
-     * @type {PiSoftwareUpdateEventType}
-     * @memberof PiSoftwareUpdateEventRequest
-     */
-    'event_type': PiSoftwareUpdateEventType;
-    /**
-     * 
-     * @type {number}
-     * @memberof PiSoftwareUpdateEventRequest
+     * @memberof PiSoftwareUpdateCommand
      */
     'pi': number;
 }
@@ -2619,13 +2975,200 @@ export interface PiSoftwareUpdateEventRequest {
  * @enum {string}
  */
 
-export const PiSoftwareUpdateEventType = {
-    Started: 'Started',
-    Success: 'Success',
-    Error: 'Error'
+export const PiSoftwareUpdateCommandModelEnum = {
+    PiSoftwareUpdateCommand: 'PiSoftwareUpdateCommand'
 } as const;
 
-export type PiSoftwareUpdateEventType = typeof PiSoftwareUpdateEventType[keyof typeof PiSoftwareUpdateEventType];
+export type PiSoftwareUpdateCommandModelEnum = typeof PiSoftwareUpdateCommandModelEnum[keyof typeof PiSoftwareUpdateCommandModelEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface PiSoftwareUpdateCommandRequest
+ */
+export interface PiSoftwareUpdateCommandRequest {
+    /**
+     * 
+     * @type {PiSoftwareUpdateCommandModelEnum}
+     * @memberof PiSoftwareUpdateCommandRequest
+     */
+    'model': PiSoftwareUpdateCommandModelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiSoftwareUpdateCommandRequest
+     */
+    'subject': string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PiSoftwareUpdateCommandRequest
+     */
+    'payload'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof PiSoftwareUpdateCommandRequest
+     */
+    'version': string;
+    /**
+     * 
+     * @type {PiSoftwareUpdateCommandType}
+     * @memberof PiSoftwareUpdateCommandRequest
+     */
+    'event_type': PiSoftwareUpdateCommandType;
+    /**
+     * 
+     * @type {number}
+     * @memberof PiSoftwareUpdateCommandRequest
+     */
+    'pi': number;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const PiSoftwareUpdateCommandType = {
+    Swupdate: 'Swupdate',
+    SwupdateRollback: 'SwupdateRollback'
+} as const;
+
+export type PiSoftwareUpdateCommandType = typeof PiSoftwareUpdateCommandType[keyof typeof PiSoftwareUpdateCommandType];
+
+
+/**
+ * 
+ * @export
+ * @interface PiSoftwareUpdateStatus
+ */
+export interface PiSoftwareUpdateStatus {
+    /**
+     * 
+     * @type {string}
+     * @memberof PiSoftwareUpdateStatus
+     */
+    'id': string;
+    /**
+     * 
+     * @type {PiSoftwareUpdateStatusModelEnum}
+     * @memberof PiSoftwareUpdateStatus
+     */
+    'model': PiSoftwareUpdateStatusModelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiSoftwareUpdateStatus
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiSoftwareUpdateStatus
+     */
+    'subject': string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PiSoftwareUpdateStatus
+     */
+    'payload'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof PiSoftwareUpdateStatus
+     */
+    'version': string;
+    /**
+     * 
+     * @type {PiSoftwareUpdateStatusType}
+     * @memberof PiSoftwareUpdateStatus
+     */
+    'event_type': PiSoftwareUpdateStatusType;
+    /**
+     * 
+     * @type {number}
+     * @memberof PiSoftwareUpdateStatus
+     */
+    'polymorphic_ctype': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PiSoftwareUpdateStatus
+     */
+    'pi': number;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const PiSoftwareUpdateStatusModelEnum = {
+    PiSoftwareUpdateStatus: 'PiSoftwareUpdateStatus'
+} as const;
+
+export type PiSoftwareUpdateStatusModelEnum = typeof PiSoftwareUpdateStatusModelEnum[keyof typeof PiSoftwareUpdateStatusModelEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface PiSoftwareUpdateStatusRequest
+ */
+export interface PiSoftwareUpdateStatusRequest {
+    /**
+     * 
+     * @type {PiSoftwareUpdateStatusModelEnum}
+     * @memberof PiSoftwareUpdateStatusRequest
+     */
+    'model': PiSoftwareUpdateStatusModelEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiSoftwareUpdateStatusRequest
+     */
+    'subject': string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PiSoftwareUpdateStatusRequest
+     */
+    'payload'?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof PiSoftwareUpdateStatusRequest
+     */
+    'version': string;
+    /**
+     * 
+     * @type {PiSoftwareUpdateStatusType}
+     * @memberof PiSoftwareUpdateStatusRequest
+     */
+    'event_type': PiSoftwareUpdateStatusType;
+    /**
+     * 
+     * @type {number}
+     * @memberof PiSoftwareUpdateStatusRequest
+     */
+    'pi': number;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const PiSoftwareUpdateStatusType = {
+    SwupdateStarted: 'SwupdateStarted',
+    SwupdateSuccess: 'SwupdateSuccess',
+    SwupdateError: 'SwupdateError'
+} as const;
+
+export type PiSoftwareUpdateStatusType = typeof PiSoftwareUpdateStatusType[keyof typeof PiSoftwareUpdateStatusType];
 
 
 /**
@@ -2648,16 +3191,40 @@ export interface PiUrls {
     'octoprint': string;
 }
 /**
+ * @type PolymorphicPiCommand
+ * @export
+ */
+export type PolymorphicPiCommand = PiBootCommand | PiCamCommand | PiSoftwareUpdateCommand;
+
+/**
+ * @type PolymorphicPiCommandRequest
+ * @export
+ */
+export type PolymorphicPiCommandRequest = PiBootCommandRequest | PiCamCommandRequest | PiSoftwareUpdateCommandRequest;
+
+/**
  * @type PolymorphicPiEvent
  * @export
  */
-export type PolymorphicPiEvent = PiBootEvent | PiGstreamerEvent | PiSoftwareUpdateEvent;
+export type PolymorphicPiEvent = PiBootCommand | PiBootStatus | PiCamCommand | PiCamStatus | PiSoftwareUpdateCommand | PiSoftwareUpdateStatus;
 
 /**
  * @type PolymorphicPiEventRequest
  * @export
  */
-export type PolymorphicPiEventRequest = PiBootEventRequest | PiGstreamerEventRequest | PiSoftwareUpdateEventRequest;
+export type PolymorphicPiEventRequest = PiBootCommandRequest | PiBootStatusRequest | PiCamCommandRequest | PiCamStatusRequest | PiSoftwareUpdateCommandRequest | PiSoftwareUpdateStatusRequest;
+
+/**
+ * @type PolymorphicPiStatus
+ * @export
+ */
+export type PolymorphicPiStatus = PiBootStatus | PiCamStatus | PiSoftwareUpdateStatus;
+
+/**
+ * @type PolymorphicPiStatusRequest
+ * @export
+ */
+export type PolymorphicPiStatusRequest = PiBootStatusRequest | PiCamStatusRequest | PiSoftwareUpdateStatusRequest;
 
 /**
  * 
@@ -4726,6 +5293,41 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
+         * Providers user nkey credentials
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsUserNkeyRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/accounts/user/nkey`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
          * @param {PatchedUserRequest} [patchedUserRequest] 
          * @param {*} [options] Override http request option.
@@ -4960,6 +5562,15 @@ export const AccountsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Providers user nkey credentials
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsUserNkeyRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NatsOrganizationUser>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsUserNkeyRetrieve(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
          * @param {PatchedUserRequest} [patchedUserRequest] 
          * @param {*} [options] Override http request option.
@@ -5097,6 +5708,14 @@ export const AccountsApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.accountsRegistrationVerifyEmailCreate(verifyEmailRequest, options).then((request) => request(axios, basePath));
         },
         /**
+         * Providers user nkey credentials
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsUserNkeyRetrieve(options?: any): AxiosPromise<NatsOrganizationUser> {
+            return localVarFp.accountsUserNkeyRetrieve(options).then((request) => request(axios, basePath));
+        },
+        /**
          * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
          * @param {PatchedUserRequest} [patchedUserRequest] 
          * @param {*} [options] Override http request option.
@@ -5228,6 +5847,14 @@ export interface AccountsApiInterface {
      * @memberof AccountsApiInterface
      */
     accountsRegistrationVerifyEmailCreate(verifyEmailRequest: VerifyEmailRequest, options?: AxiosRequestConfig): AxiosPromise<RestAuthDetail>;
+
+    /**
+     * Providers user nkey credentials
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accountsUserNkeyRetrieve(options?: AxiosRequestConfig): AxiosPromise<NatsOrganizationUser>;
 
     /**
      * Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
@@ -5382,6 +6009,16 @@ export class AccountsApi extends BaseAPI implements AccountsApiInterface {
      */
     public accountsRegistrationVerifyEmailCreate(verifyEmailRequest: VerifyEmailRequest, options?: AxiosRequestConfig) {
         return AccountsApiFp(this.configuration).accountsRegistrationVerifyEmailCreate(verifyEmailRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Providers user nkey credentials
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accountsUserNkeyRetrieve(options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accountsUserNkeyRetrieve(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9197,12 +9834,52 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * Interact with all events inheriting from BasePiEvent
-         * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pisEventsCreate: async (polymorphicPiEventRequest?: PolymorphicPiEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/pis/events/`;
+        pisAllEventsList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/pis/events`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Interact with all Raspberry Pi remote commands
+         * @param {PolymorphicPiCommandRequest} [polymorphicPiCommandRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisCommandsCreate: async (polymorphicPiCommandRequest?: PolymorphicPiCommandRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/pis/commands`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9227,7 +9904,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicPiEventRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicPiCommandRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -9235,13 +9912,13 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Interact with all events inheriting from BasePiEvent
+         * Interact with all Raspberry Pi remote commands
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pisEventsList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/pis/events/`;
+        pisCommandsList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/pis/commands`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9281,9 +9958,92 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pisEventsList2: async (piId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        pisEventsCommandsList: async (piId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'piId' is not null or undefined
-            assertParamExists('pisEventsList2', 'piId', piId)
+            assertParamExists('pisEventsCommandsList', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/events/commands/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Interact with all events inheriting from BasePiEvent
+         * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisEventsCreate: async (polymorphicPiEventRequest?: PolymorphicPiEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/pis/events`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicPiEventRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Interact with all events inheriting from BasePiEvent, filtered by a single Pi
+         * @param {number} piId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisEventsList: async (piId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisEventsList', 'piId', piId)
             const localVarPath = `/api/pis/{pi_id}/events/`
                 .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -9320,14 +10080,14 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * Interact with all events inheriting from BasePiEvent
-         * @param {number} id A unique integer value identifying this base pi event.
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         pisEventsRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('pisEventsRetrieve', 'id', id)
-            const localVarPath = `/api/pis/events/{id}/`
+            const localVarPath = `/api/pis/events/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9357,6 +10117,129 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Interact with all status events for Raspberry Pi, filtered by a single Pi
+         * @param {number} piId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisEventsStatusList: async (piId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisEventsStatusList', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/events/status/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Interact with all status events for Raspberry Pi
+         * @param {PolymorphicPiStatusRequest} [polymorphicPiStatusRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisStatusCreate: async (polymorphicPiStatusRequest?: PolymorphicPiStatusRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/pis/status`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicPiStatusRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Interact with all status events for Raspberry Pi
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisStatusList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/pis/status`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -9369,22 +10252,32 @@ export const EventsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Interact with all events inheriting from BasePiEvent
-         * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async pisEventsCreate(polymorphicPiEventRequest?: PolymorphicPiEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicPiEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.pisEventsCreate(polymorphicPiEventRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Interact with all events inheriting from BasePiEvent
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async pisEventsList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicPiEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.pisEventsList(page, options);
+        async pisAllEventsList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicPiEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisAllEventsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Interact with all Raspberry Pi remote commands
+         * @param {PolymorphicPiCommandRequest} [polymorphicPiCommandRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisCommandsCreate(polymorphicPiCommandRequest?: PolymorphicPiCommandRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicPiCommand>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisCommandsCreate(polymorphicPiCommandRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Interact with all Raspberry Pi remote commands
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisCommandsList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicPiCommandList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisCommandsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9394,18 +10287,70 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async pisEventsList2(piId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicPiEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.pisEventsList2(piId, page, options);
+        async pisEventsCommandsList(piId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicPiCommandList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisEventsCommandsList(piId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Interact with all events inheriting from BasePiEvent
-         * @param {number} id A unique integer value identifying this base pi event.
+         * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisEventsCreate(polymorphicPiEventRequest?: PolymorphicPiEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicPiEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisEventsCreate(polymorphicPiEventRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Interact with all events inheriting from BasePiEvent, filtered by a single Pi
+         * @param {number} piId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisEventsList(piId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicPiEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisEventsList(piId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Interact with all events inheriting from BasePiEvent
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async pisEventsRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicPiEvent>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.pisEventsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Interact with all status events for Raspberry Pi, filtered by a single Pi
+         * @param {number} piId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisEventsStatusList(piId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicPiStatusList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisEventsStatusList(piId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Interact with all status events for Raspberry Pi
+         * @param {PolymorphicPiStatusRequest} [polymorphicPiStatusRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisStatusCreate(polymorphicPiStatusRequest?: PolymorphicPiStatusRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicPiStatus>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisStatusCreate(polymorphicPiStatusRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Interact with all status events for Raspberry Pi
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisStatusList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicPiStatusList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisStatusList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -9420,21 +10365,30 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * Interact with all events inheriting from BasePiEvent
-         * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        pisEventsCreate(polymorphicPiEventRequest?: PolymorphicPiEventRequest, options?: any): AxiosPromise<PolymorphicPiEvent> {
-            return localVarFp.pisEventsCreate(polymorphicPiEventRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Interact with all events inheriting from BasePiEvent
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pisEventsList(page?: number, options?: any): AxiosPromise<PaginatedPolymorphicPiEventList> {
-            return localVarFp.pisEventsList(page, options).then((request) => request(axios, basePath));
+        pisAllEventsList(page?: number, options?: any): AxiosPromise<PaginatedPolymorphicPiEventList> {
+            return localVarFp.pisAllEventsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Interact with all Raspberry Pi remote commands
+         * @param {PolymorphicPiCommandRequest} [polymorphicPiCommandRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisCommandsCreate(polymorphicPiCommandRequest?: PolymorphicPiCommandRequest, options?: any): AxiosPromise<PolymorphicPiCommand> {
+            return localVarFp.pisCommandsCreate(polymorphicPiCommandRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Interact with all Raspberry Pi remote commands
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisCommandsList(page?: number, options?: any): AxiosPromise<PaginatedPolymorphicPiCommandList> {
+            return localVarFp.pisCommandsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * Interact with all events inheriting from BasePiEvent
@@ -9443,17 +10397,64 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pisEventsList2(piId: number, page?: number, options?: any): AxiosPromise<PaginatedPolymorphicPiEventList> {
-            return localVarFp.pisEventsList2(piId, page, options).then((request) => request(axios, basePath));
+        pisEventsCommandsList(piId: number, page?: number, options?: any): AxiosPromise<PaginatedPolymorphicPiCommandList> {
+            return localVarFp.pisEventsCommandsList(piId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * Interact with all events inheriting from BasePiEvent
-         * @param {number} id A unique integer value identifying this base pi event.
+         * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisEventsCreate(polymorphicPiEventRequest?: PolymorphicPiEventRequest, options?: any): AxiosPromise<PolymorphicPiEvent> {
+            return localVarFp.pisEventsCreate(polymorphicPiEventRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Interact with all events inheriting from BasePiEvent, filtered by a single Pi
+         * @param {number} piId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisEventsList(piId: number, page?: number, options?: any): AxiosPromise<PaginatedPolymorphicPiEventList> {
+            return localVarFp.pisEventsList(piId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Interact with all events inheriting from BasePiEvent
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         pisEventsRetrieve(id: number, options?: any): AxiosPromise<PolymorphicPiEvent> {
             return localVarFp.pisEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Interact with all status events for Raspberry Pi, filtered by a single Pi
+         * @param {number} piId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisEventsStatusList(piId: number, page?: number, options?: any): AxiosPromise<PaginatedPolymorphicPiStatusList> {
+            return localVarFp.pisEventsStatusList(piId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Interact with all status events for Raspberry Pi
+         * @param {PolymorphicPiStatusRequest} [polymorphicPiStatusRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisStatusCreate(polymorphicPiStatusRequest?: PolymorphicPiStatusRequest, options?: any): AxiosPromise<PolymorphicPiStatus> {
+            return localVarFp.pisStatusCreate(polymorphicPiStatusRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Interact with all status events for Raspberry Pi
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisStatusList(page?: number, options?: any): AxiosPromise<PaginatedPolymorphicPiStatusList> {
+            return localVarFp.pisStatusList(page, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -9466,21 +10467,30 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
 export interface EventsApiInterface {
     /**
      * Interact with all events inheriting from BasePiEvent
-     * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApiInterface
-     */
-    pisEventsCreate(polymorphicPiEventRequest?: PolymorphicPiEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicPiEvent>;
-
-    /**
-     * Interact with all events inheriting from BasePiEvent
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    pisEventsList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicPiEventList>;
+    pisAllEventsList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicPiEventList>;
+
+    /**
+     * Interact with all Raspberry Pi remote commands
+     * @param {PolymorphicPiCommandRequest} [polymorphicPiCommandRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApiInterface
+     */
+    pisCommandsCreate(polymorphicPiCommandRequest?: PolymorphicPiCommandRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicPiCommand>;
+
+    /**
+     * Interact with all Raspberry Pi remote commands
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApiInterface
+     */
+    pisCommandsList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicPiCommandList>;
 
     /**
      * Interact with all events inheriting from BasePiEvent
@@ -9490,16 +10500,63 @@ export interface EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    pisEventsList2(piId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicPiEventList>;
+    pisEventsCommandsList(piId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicPiCommandList>;
 
     /**
      * Interact with all events inheriting from BasePiEvent
-     * @param {number} id A unique integer value identifying this base pi event.
+     * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApiInterface
+     */
+    pisEventsCreate(polymorphicPiEventRequest?: PolymorphicPiEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicPiEvent>;
+
+    /**
+     * Interact with all events inheriting from BasePiEvent, filtered by a single Pi
+     * @param {number} piId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApiInterface
+     */
+    pisEventsList(piId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicPiEventList>;
+
+    /**
+     * Interact with all events inheriting from BasePiEvent
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
     pisEventsRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicPiEvent>;
+
+    /**
+     * Interact with all status events for Raspberry Pi, filtered by a single Pi
+     * @param {number} piId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApiInterface
+     */
+    pisEventsStatusList(piId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicPiStatusList>;
+
+    /**
+     * Interact with all status events for Raspberry Pi
+     * @param {PolymorphicPiStatusRequest} [polymorphicPiStatusRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApiInterface
+     */
+    pisStatusCreate(polymorphicPiStatusRequest?: PolymorphicPiStatusRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicPiStatus>;
+
+    /**
+     * Interact with all status events for Raspberry Pi
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApiInterface
+     */
+    pisStatusList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicPiStatusList>;
 
 }
 
@@ -9512,24 +10569,35 @@ export interface EventsApiInterface {
 export class EventsApi extends BaseAPI implements EventsApiInterface {
     /**
      * Interact with all events inheriting from BasePiEvent
-     * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApi
-     */
-    public pisEventsCreate(polymorphicPiEventRequest?: PolymorphicPiEventRequest, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).pisEventsCreate(polymorphicPiEventRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Interact with all events inheriting from BasePiEvent
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public pisEventsList(page?: number, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).pisEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    public pisAllEventsList(page?: number, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).pisAllEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Interact with all Raspberry Pi remote commands
+     * @param {PolymorphicPiCommandRequest} [polymorphicPiCommandRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public pisCommandsCreate(polymorphicPiCommandRequest?: PolymorphicPiCommandRequest, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).pisCommandsCreate(polymorphicPiCommandRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Interact with all Raspberry Pi remote commands
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public pisCommandsList(page?: number, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).pisCommandsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9540,19 +10608,76 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public pisEventsList2(piId: number, page?: number, options?: AxiosRequestConfig) {
-        return EventsApiFp(this.configuration).pisEventsList2(piId, page, options).then((request) => request(this.axios, this.basePath));
+    public pisEventsCommandsList(piId: number, page?: number, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).pisEventsCommandsList(piId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Interact with all events inheriting from BasePiEvent
-     * @param {number} id A unique integer value identifying this base pi event.
+     * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public pisEventsCreate(polymorphicPiEventRequest?: PolymorphicPiEventRequest, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).pisEventsCreate(polymorphicPiEventRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Interact with all events inheriting from BasePiEvent, filtered by a single Pi
+     * @param {number} piId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public pisEventsList(piId: number, page?: number, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).pisEventsList(piId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Interact with all events inheriting from BasePiEvent
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
     public pisEventsRetrieve(id: number, options?: AxiosRequestConfig) {
         return EventsApiFp(this.configuration).pisEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Interact with all status events for Raspberry Pi, filtered by a single Pi
+     * @param {number} piId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public pisEventsStatusList(piId: number, page?: number, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).pisEventsStatusList(piId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Interact with all status events for Raspberry Pi
+     * @param {PolymorphicPiStatusRequest} [polymorphicPiStatusRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public pisStatusCreate(polymorphicPiStatusRequest?: PolymorphicPiStatusRequest, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).pisStatusCreate(polymorphicPiStatusRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Interact with all status events for Raspberry Pi
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public pisStatusList(page?: number, options?: AxiosRequestConfig) {
+        return EventsApiFp(this.configuration).pisStatusList(page, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -11969,12 +13094,52 @@ export const PisApiAxiosParamCreator = function (configuration?: Configuration) 
     return {
         /**
          * Interact with all events inheriting from BasePiEvent
-         * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pisEventsCreate: async (polymorphicPiEventRequest?: PolymorphicPiEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/pis/events/`;
+        pisAllEventsList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/pis/events`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Interact with all Raspberry Pi remote commands
+         * @param {PolymorphicPiCommandRequest} [polymorphicPiCommandRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisCommandsCreate: async (polymorphicPiCommandRequest?: PolymorphicPiCommandRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/pis/commands`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -11999,7 +13164,7 @@ export const PisApiAxiosParamCreator = function (configuration?: Configuration) 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicPiEventRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicPiCommandRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -12007,13 +13172,13 @@ export const PisApiAxiosParamCreator = function (configuration?: Configuration) 
             };
         },
         /**
-         * Interact with all events inheriting from BasePiEvent
+         * Interact with all Raspberry Pi remote commands
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pisEventsList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/pis/events/`;
+        pisCommandsList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/pis/commands`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -12053,9 +13218,92 @@ export const PisApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pisEventsList2: async (piId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        pisEventsCommandsList: async (piId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'piId' is not null or undefined
-            assertParamExists('pisEventsList2', 'piId', piId)
+            assertParamExists('pisEventsCommandsList', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/events/commands/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Interact with all events inheriting from BasePiEvent
+         * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisEventsCreate: async (polymorphicPiEventRequest?: PolymorphicPiEventRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/pis/events`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicPiEventRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Interact with all events inheriting from BasePiEvent, filtered by a single Pi
+         * @param {number} piId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisEventsList: async (piId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisEventsList', 'piId', piId)
             const localVarPath = `/api/pis/{pi_id}/events/`
                 .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -12092,14 +13340,14 @@ export const PisApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * Interact with all events inheriting from BasePiEvent
-         * @param {number} id A unique integer value identifying this base pi event.
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         pisEventsRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('pisEventsRetrieve', 'id', id)
-            const localVarPath = `/api/pis/events/{id}/`
+            const localVarPath = `/api/pis/events/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -12129,6 +13377,129 @@ export const PisApiAxiosParamCreator = function (configuration?: Configuration) 
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Interact with all status events for Raspberry Pi, filtered by a single Pi
+         * @param {number} piId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisEventsStatusList: async (piId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('pisEventsStatusList', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/events/status/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Interact with all status events for Raspberry Pi
+         * @param {PolymorphicPiStatusRequest} [polymorphicPiStatusRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisStatusCreate: async (polymorphicPiStatusRequest?: PolymorphicPiStatusRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/pis/status`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(polymorphicPiStatusRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Interact with all status events for Raspberry Pi
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisStatusList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/pis/status`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -12141,22 +13512,32 @@ export const PisApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Interact with all events inheriting from BasePiEvent
-         * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async pisEventsCreate(polymorphicPiEventRequest?: PolymorphicPiEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicPiEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.pisEventsCreate(polymorphicPiEventRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Interact with all events inheriting from BasePiEvent
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async pisEventsList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicPiEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.pisEventsList(page, options);
+        async pisAllEventsList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicPiEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisAllEventsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Interact with all Raspberry Pi remote commands
+         * @param {PolymorphicPiCommandRequest} [polymorphicPiCommandRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisCommandsCreate(polymorphicPiCommandRequest?: PolymorphicPiCommandRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicPiCommand>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisCommandsCreate(polymorphicPiCommandRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Interact with all Raspberry Pi remote commands
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisCommandsList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicPiCommandList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisCommandsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -12166,18 +13547,70 @@ export const PisApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async pisEventsList2(piId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicPiEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.pisEventsList2(piId, page, options);
+        async pisEventsCommandsList(piId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicPiCommandList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisEventsCommandsList(piId, page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Interact with all events inheriting from BasePiEvent
-         * @param {number} id A unique integer value identifying this base pi event.
+         * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisEventsCreate(polymorphicPiEventRequest?: PolymorphicPiEventRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicPiEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisEventsCreate(polymorphicPiEventRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Interact with all events inheriting from BasePiEvent, filtered by a single Pi
+         * @param {number} piId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisEventsList(piId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicPiEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisEventsList(piId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Interact with all events inheriting from BasePiEvent
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async pisEventsRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicPiEvent>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.pisEventsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Interact with all status events for Raspberry Pi, filtered by a single Pi
+         * @param {number} piId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisEventsStatusList(piId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicPiStatusList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisEventsStatusList(piId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Interact with all status events for Raspberry Pi
+         * @param {PolymorphicPiStatusRequest} [polymorphicPiStatusRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisStatusCreate(polymorphicPiStatusRequest?: PolymorphicPiStatusRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PolymorphicPiStatus>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisStatusCreate(polymorphicPiStatusRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Interact with all status events for Raspberry Pi
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pisStatusList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPolymorphicPiStatusList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisStatusList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -12192,21 +13625,30 @@ export const PisApiFactory = function (configuration?: Configuration, basePath?:
     return {
         /**
          * Interact with all events inheriting from BasePiEvent
-         * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        pisEventsCreate(polymorphicPiEventRequest?: PolymorphicPiEventRequest, options?: any): AxiosPromise<PolymorphicPiEvent> {
-            return localVarFp.pisEventsCreate(polymorphicPiEventRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Interact with all events inheriting from BasePiEvent
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pisEventsList(page?: number, options?: any): AxiosPromise<PaginatedPolymorphicPiEventList> {
-            return localVarFp.pisEventsList(page, options).then((request) => request(axios, basePath));
+        pisAllEventsList(page?: number, options?: any): AxiosPromise<PaginatedPolymorphicPiEventList> {
+            return localVarFp.pisAllEventsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Interact with all Raspberry Pi remote commands
+         * @param {PolymorphicPiCommandRequest} [polymorphicPiCommandRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisCommandsCreate(polymorphicPiCommandRequest?: PolymorphicPiCommandRequest, options?: any): AxiosPromise<PolymorphicPiCommand> {
+            return localVarFp.pisCommandsCreate(polymorphicPiCommandRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Interact with all Raspberry Pi remote commands
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisCommandsList(page?: number, options?: any): AxiosPromise<PaginatedPolymorphicPiCommandList> {
+            return localVarFp.pisCommandsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * Interact with all events inheriting from BasePiEvent
@@ -12215,17 +13657,64 @@ export const PisApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pisEventsList2(piId: number, page?: number, options?: any): AxiosPromise<PaginatedPolymorphicPiEventList> {
-            return localVarFp.pisEventsList2(piId, page, options).then((request) => request(axios, basePath));
+        pisEventsCommandsList(piId: number, page?: number, options?: any): AxiosPromise<PaginatedPolymorphicPiCommandList> {
+            return localVarFp.pisEventsCommandsList(piId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * Interact with all events inheriting from BasePiEvent
-         * @param {number} id A unique integer value identifying this base pi event.
+         * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisEventsCreate(polymorphicPiEventRequest?: PolymorphicPiEventRequest, options?: any): AxiosPromise<PolymorphicPiEvent> {
+            return localVarFp.pisEventsCreate(polymorphicPiEventRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Interact with all events inheriting from BasePiEvent, filtered by a single Pi
+         * @param {number} piId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisEventsList(piId: number, page?: number, options?: any): AxiosPromise<PaginatedPolymorphicPiEventList> {
+            return localVarFp.pisEventsList(piId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Interact with all events inheriting from BasePiEvent
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         pisEventsRetrieve(id: number, options?: any): AxiosPromise<PolymorphicPiEvent> {
             return localVarFp.pisEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Interact with all status events for Raspberry Pi, filtered by a single Pi
+         * @param {number} piId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisEventsStatusList(piId: number, page?: number, options?: any): AxiosPromise<PaginatedPolymorphicPiStatusList> {
+            return localVarFp.pisEventsStatusList(piId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Interact with all status events for Raspberry Pi
+         * @param {PolymorphicPiStatusRequest} [polymorphicPiStatusRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisStatusCreate(polymorphicPiStatusRequest?: PolymorphicPiStatusRequest, options?: any): AxiosPromise<PolymorphicPiStatus> {
+            return localVarFp.pisStatusCreate(polymorphicPiStatusRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Interact with all status events for Raspberry Pi
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pisStatusList(page?: number, options?: any): AxiosPromise<PaginatedPolymorphicPiStatusList> {
+            return localVarFp.pisStatusList(page, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -12238,21 +13727,30 @@ export const PisApiFactory = function (configuration?: Configuration, basePath?:
 export interface PisApiInterface {
     /**
      * Interact with all events inheriting from BasePiEvent
-     * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PisApiInterface
-     */
-    pisEventsCreate(polymorphicPiEventRequest?: PolymorphicPiEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicPiEvent>;
-
-    /**
-     * Interact with all events inheriting from BasePiEvent
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PisApiInterface
      */
-    pisEventsList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicPiEventList>;
+    pisAllEventsList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicPiEventList>;
+
+    /**
+     * Interact with all Raspberry Pi remote commands
+     * @param {PolymorphicPiCommandRequest} [polymorphicPiCommandRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PisApiInterface
+     */
+    pisCommandsCreate(polymorphicPiCommandRequest?: PolymorphicPiCommandRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicPiCommand>;
+
+    /**
+     * Interact with all Raspberry Pi remote commands
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PisApiInterface
+     */
+    pisCommandsList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicPiCommandList>;
 
     /**
      * Interact with all events inheriting from BasePiEvent
@@ -12262,16 +13760,63 @@ export interface PisApiInterface {
      * @throws {RequiredError}
      * @memberof PisApiInterface
      */
-    pisEventsList2(piId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicPiEventList>;
+    pisEventsCommandsList(piId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicPiCommandList>;
 
     /**
      * Interact with all events inheriting from BasePiEvent
-     * @param {number} id A unique integer value identifying this base pi event.
+     * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PisApiInterface
+     */
+    pisEventsCreate(polymorphicPiEventRequest?: PolymorphicPiEventRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicPiEvent>;
+
+    /**
+     * Interact with all events inheriting from BasePiEvent, filtered by a single Pi
+     * @param {number} piId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PisApiInterface
+     */
+    pisEventsList(piId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicPiEventList>;
+
+    /**
+     * Interact with all events inheriting from BasePiEvent
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PisApiInterface
      */
     pisEventsRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<PolymorphicPiEvent>;
+
+    /**
+     * Interact with all status events for Raspberry Pi, filtered by a single Pi
+     * @param {number} piId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PisApiInterface
+     */
+    pisEventsStatusList(piId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicPiStatusList>;
+
+    /**
+     * Interact with all status events for Raspberry Pi
+     * @param {PolymorphicPiStatusRequest} [polymorphicPiStatusRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PisApiInterface
+     */
+    pisStatusCreate(polymorphicPiStatusRequest?: PolymorphicPiStatusRequest, options?: AxiosRequestConfig): AxiosPromise<PolymorphicPiStatus>;
+
+    /**
+     * Interact with all status events for Raspberry Pi
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PisApiInterface
+     */
+    pisStatusList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPolymorphicPiStatusList>;
 
 }
 
@@ -12284,24 +13829,35 @@ export interface PisApiInterface {
 export class PisApi extends BaseAPI implements PisApiInterface {
     /**
      * Interact with all events inheriting from BasePiEvent
-     * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PisApi
-     */
-    public pisEventsCreate(polymorphicPiEventRequest?: PolymorphicPiEventRequest, options?: AxiosRequestConfig) {
-        return PisApiFp(this.configuration).pisEventsCreate(polymorphicPiEventRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Interact with all events inheriting from BasePiEvent
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PisApi
      */
-    public pisEventsList(page?: number, options?: AxiosRequestConfig) {
-        return PisApiFp(this.configuration).pisEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    public pisAllEventsList(page?: number, options?: AxiosRequestConfig) {
+        return PisApiFp(this.configuration).pisAllEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Interact with all Raspberry Pi remote commands
+     * @param {PolymorphicPiCommandRequest} [polymorphicPiCommandRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PisApi
+     */
+    public pisCommandsCreate(polymorphicPiCommandRequest?: PolymorphicPiCommandRequest, options?: AxiosRequestConfig) {
+        return PisApiFp(this.configuration).pisCommandsCreate(polymorphicPiCommandRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Interact with all Raspberry Pi remote commands
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PisApi
+     */
+    public pisCommandsList(page?: number, options?: AxiosRequestConfig) {
+        return PisApiFp(this.configuration).pisCommandsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -12312,19 +13868,76 @@ export class PisApi extends BaseAPI implements PisApiInterface {
      * @throws {RequiredError}
      * @memberof PisApi
      */
-    public pisEventsList2(piId: number, page?: number, options?: AxiosRequestConfig) {
-        return PisApiFp(this.configuration).pisEventsList2(piId, page, options).then((request) => request(this.axios, this.basePath));
+    public pisEventsCommandsList(piId: number, page?: number, options?: AxiosRequestConfig) {
+        return PisApiFp(this.configuration).pisEventsCommandsList(piId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Interact with all events inheriting from BasePiEvent
-     * @param {number} id A unique integer value identifying this base pi event.
+     * @param {PolymorphicPiEventRequest} [polymorphicPiEventRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PisApi
+     */
+    public pisEventsCreate(polymorphicPiEventRequest?: PolymorphicPiEventRequest, options?: AxiosRequestConfig) {
+        return PisApiFp(this.configuration).pisEventsCreate(polymorphicPiEventRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Interact with all events inheriting from BasePiEvent, filtered by a single Pi
+     * @param {number} piId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PisApi
+     */
+    public pisEventsList(piId: number, page?: number, options?: AxiosRequestConfig) {
+        return PisApiFp(this.configuration).pisEventsList(piId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Interact with all events inheriting from BasePiEvent
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PisApi
      */
     public pisEventsRetrieve(id: number, options?: AxiosRequestConfig) {
         return PisApiFp(this.configuration).pisEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Interact with all status events for Raspberry Pi, filtered by a single Pi
+     * @param {number} piId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PisApi
+     */
+    public pisEventsStatusList(piId: number, page?: number, options?: AxiosRequestConfig) {
+        return PisApiFp(this.configuration).pisEventsStatusList(piId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Interact with all status events for Raspberry Pi
+     * @param {PolymorphicPiStatusRequest} [polymorphicPiStatusRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PisApi
+     */
+    public pisStatusCreate(polymorphicPiStatusRequest?: PolymorphicPiStatusRequest, options?: AxiosRequestConfig) {
+        return PisApiFp(this.configuration).pisStatusCreate(polymorphicPiStatusRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Interact with all status events for Raspberry Pi
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PisApi
+     */
+    public pisStatusList(page?: number, options?: AxiosRequestConfig) {
+        return PisApiFp(this.configuration).pisStatusList(page, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

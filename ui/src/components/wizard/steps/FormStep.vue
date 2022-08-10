@@ -18,7 +18,6 @@ const props = defineProps({
 
 // If this step should be shown
 const shouldShow = computed(() => {
-  console.log(router.currentRoute);
   return props.name === router.currentRoute.value.params.activeStep;
 });
 </script>

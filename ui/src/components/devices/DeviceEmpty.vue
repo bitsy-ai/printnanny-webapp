@@ -1,4 +1,8 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
+<script setup lang="ts">
+import { RouterLink } from "vue-router";
+import { PlusIcon, PrinterIcon } from "@heroicons/vue/solid";
+import { stepKeys } from "@/components/wizard/piCreateWizard";
+</script>
 <template>
   <div class="text-center mx-auto p-6">
     <PrinterIcon class="mx-auto h-12 w-12 text-gray-400" aria-hidden="true" />
@@ -9,7 +13,7 @@
     </p>
     <div class="mt-6">
       <router-link
-        :to="{ name: 'pi-wizard', params: { activeStep: 'customize-sd-card' } }"
+        :to="{ name: 'pi-wizard', params: { activeStep: stepKeys[0].key } }"
       >
         <button
           type="button"
@@ -22,8 +26,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { RouterLink } from "vue-router";
-import { PlusIcon, PrinterIcon } from "@heroicons/vue/solid";
-</script>

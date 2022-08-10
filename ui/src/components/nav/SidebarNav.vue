@@ -98,7 +98,6 @@ import {
   MapIcon,
   CogIcon,
   SparklesIcon,
-  VideoCameraIcon,
   CodeIcon,
   TerminalIcon,
 } from "@heroicons/vue/outline";

@@ -2,6 +2,7 @@ import logging
 from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
 from django.apps import apps
 
+
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import (
     ListModelMixin,
@@ -20,6 +21,7 @@ from print_nanny_webapp.events.models.pi import (
     PiSoftwareUpdateCommand,
     PiSoftwareUpdateStatus,
 )
+from print_nanny_webapp.events.services import nats_publish
 from print_nanny_webapp.utils.api.views import (
     generic_get_errors,
     generic_create_errors,
@@ -140,6 +142,10 @@ class AllPiEventsViewSet(
     # get events related to all pis owned by authenticated user
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(pi__user_id=self.request.user.id)
+
+    def perform_create(self, serializer):
+        model_obj = serializer.save()
+        nats_publish(serializer, model_obj)
 
 
 @extend_schema_view(

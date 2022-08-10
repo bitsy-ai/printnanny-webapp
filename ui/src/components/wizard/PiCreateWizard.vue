@@ -20,19 +20,18 @@ const props = defineProps({
 
 const store = useWizardStore();
 
-async function downloadLicense() {
-  if (props.piId !== "" && props.activeStep === "download-printnanny-zip") {
-    await store.downloadLicenseZip(parseInt(props.piId));
-  }
+// reset Wizard store if this is a new form
+if (props.activeStep == stepKeys[0].key) {
+  store.$reset();
+  console.log("Reset setup Wizard store");
 }
-downloadLicense();
 </script>
 
 <template>
   <div
     class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap"
   >
-    <div class="w-full md:w-2/3 m-auto">
+    <div class="w-full m-auto justify-center flex-1">
       <FormWizard :steps="steps" :active-step="activeStep"> </FormWizard>
     </div>
   </div>

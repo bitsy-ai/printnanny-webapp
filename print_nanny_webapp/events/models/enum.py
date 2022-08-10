@@ -14,30 +14,32 @@ class AlertEventType(models.TextChoices):
 
 
 class PiCamCommandType(models.TextChoices):
-    Start = ("Start", "Start gstreamer pipelines")
-    Stop = ("Stop", "Stop gstreamer pipelines")
+    CamStart = ("CamStart", "Start gstreamer pipelines")
+    CamStop = ("CamStop", "Stop gstreamer pipelines")
 
 
 class PiCamStatusType(models.TextChoices):
-    Started = ("Started", "gstreamer pipeline started successfully")
-    Error = ("Error", "gstreamer pipeline error")
-    Stopped = ("Stopped", "gstreamer pipeline stopped")
+    CamStarted = ("CamStarted", "gstreamer pipeline started")
+    CamStartSuccess = ("CamStartSuccess", "gstreamer pipeline started successfully")
+    CamError = ("CamError", "gstreamer pipeline error")
+    CamStopped = ("CamStopped", "gstreamer pipeline stopped")
 
 
 class PiSoftwareUpdateCommandType(models.TextChoices):
-    Update = ("Update", "Update PrintNanny OS to target version")
-    Rollback = ("Rollback", "Rollback PrintNanny OS to target version")
+    SwupdateUpdate = ("Swupdate", "Update PrintNanny OS to target version")
+    SwupdateRollback = ("SwupdateRollback", "Rollback PrintNanny OS to target version")
 
 
 class PiSoftwareUpdateStatusType(models.TextChoices):
-    Started = ("Started", "Started PrintNanny OS update")
-    Success = ("Success", "PrintNanny OS update succeeded")
-    Error = ("Error", "Error updating Raspberry Pi")
+    SwupdateStarted = ("SwupdateStarted", "Started PrintNanny OS update")
+    SwupdateSuccess = ("SwupdateSuccess", "PrintNanny OS update succeeded")
+    SwupdateError = ("SwupdateError", "Error updating Raspberry Pi")
 
 
 class PiBootCommandType(models.TextChoices):
     Reboot = ("Rebooot", "Reboot Raspberry Pi")
     Shutdown = ("Shutdown", "Shutdown Raspberry Pi")
+    SyncSettings = ("SyncSettings", "Sync Raspberry Pi settings")
 
 
 class PiBootStatusType(models.TextChoices):
@@ -56,6 +58,18 @@ class PiBootStatusType(models.TextChoices):
     BootDegraded = (
         "BootDegraded",
         "At least one systemd service reports degraded state",
+    )
+    SyncSettingsStarted = (
+        "SyncSettingsStarted",
+        "Raspberry Pi started synchronizing settings",
+    )
+    SyncSettingsSuccess = (
+        "SyncSettingsSuccess",
+        "Success synchronizing Raspberry Pi settings",
+    )
+    SyncSettingsError = (
+        "SyncSettingsError",
+        "Error synchronizing Raspberry Pi settings",
     )
 
 

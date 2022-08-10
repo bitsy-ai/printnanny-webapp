@@ -81,10 +81,9 @@ const router = createRouter({
             TopBar: PiCreateWizardProgress,
           },
           props: { default: true, TopBar: true },
-          meta: { title: "Connect New Device" },
         },
         {
-          path: "delete/:id/",
+          path: "delxete/:id/",
           name: "device-delete",
           components: {
             default: DeviceDelete,

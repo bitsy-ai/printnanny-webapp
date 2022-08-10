@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import FormStep from "./FormStep.vue";
+import { useRouter } from "vue-router";
 import type { PropType } from "vue";
 import { useWizardStore } from "@/stores/wizard";
 import type { WizardStep } from "@/types";
-import { ThumbUpIcon, UserIcon, CheckIcon } from "@heroicons/vue/outline";
-defineProps({
+import { ConnectTestStatus } from "@/types";
+
+const props = defineProps({
   step: {
     type: Object as PropType<WizardStep>,
     required: true,
@@ -12,78 +14,44 @@ defineProps({
 });
 
 const store = useWizardStore();
+const router = useRouter();
 
-const timeline = [
-  {
-    id: 1,
-    content: "Applied to",
-    target: "Front End Developer",
-    href: "#",
-    date: "Sep 20",
-    datetime: "2020-09-20",
-    icon: UserIcon,
-    iconBackground: "bg-gray-400",
-  },
-  {
-    id: 2,
-    content: "Advanced to phone screening by",
-    target: "Bethany Blake",
-    href: "#",
-    date: "Sep 22",
-    datetime: "2020-09-22",
-    icon: ThumbUpIcon,
-    iconBackground: "bg-blue-500",
-  },
-  {
-    id: 3,
-    content: "Completed phone screening with",
-    target: "Martha Gardner",
-    href: "#",
-    date: "Sep 28",
-    datetime: "2020-09-28",
-    icon: CheckIcon,
-    iconBackground: "bg-green-500",
-  },
-  {
-    id: 4,
-    content: "Advanced to interview by",
-    target: "Bethany Blake",
-    href: "#",
-    date: "Sep 30",
-    datetime: "2020-09-30",
-    icon: ThumbUpIcon,
-    iconBackground: "bg-blue-500",
-  },
-  {
-    id: 5,
-    content: "Completed interview with",
-    target: "Katherine Snyder",
-    href: "#",
-    date: "Oct 4",
-    datetime: "2020-10-04",
-    icon: CheckIcon,
-    iconBackground: "bg-green-500",
-  },
-];
+if (
+  router.currentRoute.value.params.piId !== undefined &&
+  router.currentRoute.value.params.activeStep === props.step.key
+) {
+  const piId = parseInt(router.currentRoute.value.params.piId as string);
+  await store.loadPi(piId);
+  store.connectNats(piId);
+}
 </script>
 
 <template>
   <FormStep :name="step.key">
-    <div
-      class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
+    <h2
+      class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl flex-1 w-full text-center"
     >
-      <h2
-        class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl flex-1 w-full"
-      >
-        Test Raspberry Pi Connection
-      </h2>
+      {{ step.title }}
+    </h2>
+    <p class="text-base text-center font-medium text-gray-900 mt-5 w-full">
+      {{ step.detail }}
+    </p>
+    <p class="text-base text-center text-gray-900 mt-5 w-full">
+      To begin the test,
+      <strong class="text-amber-500">insert SD card into Raspberry Pi</strong>
+      and <strong class="text-amber-500">connect Pi to power source.</strong>
+    </p>
+    <div
+      class="min-h-full min-w-full w-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
+    >
       <!-- test steps container -->
-      <div class="flow-root">
+      <div class="flow-root w-3/4">
         <ul role="list" class="-mb-8">
-          <li v-for="(event, eventIdx) in timeline" :key="event.id">
+          <!-- event-based connection tests -->
+          <li v-for="(item, itemIdx) in store.connectTestSteps" :key="itemIdx">
             <div class="relative pb-8">
               <span
-                v-if="eventIdx !== timeline.length - 1"
+                v-if="itemIdx !== store.connectTestSteps.length - 1"
                 class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200"
                 aria-hidden="true"
               />
@@ -91,32 +59,51 @@ const timeline = [
                 <div>
                   <span
                     :class="[
-                      event.iconBackground,
+                      item.statusComponent().iconBackground,
                       'h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white',
                     ]"
                   >
                     <component
-                      :is="event.icon"
+                      :is="item.statusComponent().icon"
+                      v-if="!item.active()"
                       class="h-5 w-5 text-white"
+                      aria-hidden="true"
+                    />
+                    <component
+                      :is="item.statusComponent().icon"
+                      v-if="item.active()"
+                      text=""
+                      width="w-8"
+                      height="w-8"
                       aria-hidden="true"
                     />
                   </span>
                 </div>
                 <div
-                  class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4"
+                  class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-24"
                 >
                   <div>
-                    <p class="text-sm text-gray-500">
-                      {{ event.content }}
-                      <a :href="event.href" class="font-medium text-gray-900">{{
-                        event.target
-                      }}</a>
+                    <p class="text-sm text-gray-500 text-left">
+                      <strong>{{ item.content }}</strong>
+                      <br />
+                      <i>{{ item.statusText() }}</i>
                     </p>
                   </div>
                   <div
                     class="text-right text-sm whitespace-nowrap text-gray-500"
                   >
-                    <time :datetime="event.datetime">{{ event.date }}</time>
+                    {{ item.statusComponent().text }}
+                    <br />
+                    <time
+                      v-if="item.status == ConnectTestStatus.Pending"
+                      :datetime="item?.dtStart?.format()"
+                      ><i>Started {{ item?.dtStart?.fromNow() }}</i></time
+                    >
+                    <time
+                      v-if="item.status == ConnectTestStatus.Success"
+                      :datetime="item?.dtEnd?.format()"
+                      ><i>Finished {{ item?.dtEnd?.fromNow() }}</i></time
+                    >
                   </div>
                 </div>
               </div>

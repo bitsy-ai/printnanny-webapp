@@ -20,7 +20,7 @@ class EmailWaitlistSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class NatsOrganizationUserNkeySerializer(serializers.ModelSerializer):
+class NatsOrganizationUserSerializer(serializers.ModelSerializer):
 
     creds = serializers.SerializerMethodField()
 
@@ -29,4 +29,4 @@ class NatsOrganizationUserNkeySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = NatsOrganizationUser
-        fields = ("id", "app_name", "organization", "creds")
+        fields = ("id", "app_name", "organization", "creds", "json")

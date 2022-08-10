@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import { useDeviceStore } from "@/stores/devices";
+import DeviceEmpty from "./DeviceEmpty.vue";
+import DeviceActionMenu from "./DeviceActionMenu.vue";
+import DeviceFavorites from "./DeviceFavorites.vue";
+import { ExclamationIcon } from "@heroicons/vue/outline";
+import { stepKeys } from "@/components/wizard/piCreateWizard";
+
+const deviceStore = useDeviceStore();
+const pis = await deviceStore.fetchDevices();
+</script>
+
 <template>
   <section>
     <!-- Devices list (only on smallest breakpoint) -->
@@ -90,7 +102,7 @@
                     :to="{
                       name: 'pi-wizard',
                       params: {
-                        activeStep: 'download-printnanny-zip',
+                        activeStep: stepKeys[2].key,
                         piId: pi.id,
                       },
                     }"
@@ -100,9 +112,9 @@
                       class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-yellow-100 text-yellow-800 hover:bg-yellow-200"
                     >
                       <ExclamationIcon
-                        class="w-5 h-5 text-yellow-800 text-yellow-800"
+                        class="mr-1 w-5 h-5 text-yellow-800 text-yellow-800"
                       />
-                      Setup Incomplete
+                      Finish Setup
                     </span>
                   </router-link>
                 </div>
@@ -124,13 +136,3 @@
     </div>
   </section>
 </template>
-<script setup lang="ts">
-import { useDeviceStore } from "@/stores/devices";
-import DeviceEmpty from "./DeviceEmpty.vue";
-import DeviceActionMenu from "./DeviceActionMenu.vue";
-import DeviceFavorites from "./DeviceFavorites.vue";
-import { ExclamationIcon } from "@heroicons/vue/outline";
-
-const deviceStore = useDeviceStore();
-const pis = await deviceStore.fetchDevices();
-</script>

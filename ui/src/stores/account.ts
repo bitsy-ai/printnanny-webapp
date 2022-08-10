@@ -8,9 +8,12 @@ const accountsApi = api.AccountsApiFactory(ApiConfig);
 export const useAccountStore = defineStore({
   id: "accounts",
   // persist option provided by: https://github.com/prazdevs/pinia-plugin-persistedstate
-  persist: true,
+  persist: {
+    storage: sessionStorage,
+  },
   state: () => ({
     user: undefined as api.User | undefined,
+    nkey: undefined as api.NatsOrganizationUser | undefined,
   }),
   getters: {
     isAuthenticated: (state) => state.user !== undefined,
@@ -30,6 +33,18 @@ export const useAccountStore = defineStore({
         actions: [],
       };
       alerts.push(alert);
+    },
+    async fetchUserNkey(): Promise<api.NatsOrganizationUser | undefined> {
+      const nkeyData = await accountsApi
+        .accountsUserNkeyRetrieve()
+        .catch(handleApiError);
+      console.log("Loaded NATS identity", nkeyData);
+      if (nkeyData && nkeyData.data) {
+        this.$patch({
+          nkey: nkeyData.data,
+        });
+        return nkeyData.data;
+      }
     },
     async fetchUser() {
       const userData = await accountsApi.accountsUserRetrieve().catch((e) => {

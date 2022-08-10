@@ -191,6 +191,8 @@ drf-spectacular==0.23.1
     # via -r /requirements/local.in
 drfpasswordless==1.5.7
     # via -r /requirements/local.in
+ed25519==1.5
+    # via nkeys
 flatbuffers==2.0
     # via -r /requirements/local.in
 frozenlist==1.3.0
@@ -294,8 +296,12 @@ mypy==0.942
     # via django-stubs
 mypy-extensions==0.4.3
     # via mypy
+nats-py[nkeys]==2.1.4
+    # via -r /requirements/local.in
 networkx==2.7.1
     # via scikit-image
+nkeys==0.1.0
+    # via nats-py
 numpy==1.22.3
     # via
     #   imageio

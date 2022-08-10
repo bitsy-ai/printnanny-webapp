@@ -54,8 +54,8 @@ export const useAlertStore = defineStore({
         return emailAlertSettings;
       }
     },
-    push(alert: UiAlert | UiAlert) {
-      this.alerts.push(alert);
+    push(uialert: UiAlert) {
+      this.alerts.push(uialert);
     },
   },
 });

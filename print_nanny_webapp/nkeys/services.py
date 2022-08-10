@@ -10,5 +10,5 @@ def get_or_create_nats_organization_user(user: User) -> NatsOrganizationUser:
     except NatsOrganizationUser.DoesNotExist:
         # if not, create a new organization and set user as org owner
         org = create_nats_account_org(user)
-        org_user = org.owner.organization_user.user
+        org_user = org.owner.organization_user
     return org_user
