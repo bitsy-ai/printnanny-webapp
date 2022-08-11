@@ -426,7 +426,7 @@ SPECTACULAR_SETTINGS = {
         "PiBootCommandType": "print_nanny_webapp.events.models.enum.PiBootCommandType",
         # end Pi polymorphic event types
         # begin OctoPrint polymorphic event types
-        "OctoPrintPrintJobStatusType": "print_nanny_webapp.octoprint.enum.OctoPrintJobStatusType",
+        "OctoPrintPrintJobStatusType": "print_nanny_webapp.octoprint.enum.OctoPrintPrintJobStatusType",
         "OctoPrintServerStatusType": "print_nanny_webapp.octoprint.enum.OctoPrintServerStatusType",
         "OctoPrintPrinterStatusType": "print_nanny_webapp.octoprint.enum.OctoPrintPrinterStatusType",
         "OctoPrintClientStatusType": "print_nanny_webapp.octoprint.enum.OctoPrintClientStatusType"
