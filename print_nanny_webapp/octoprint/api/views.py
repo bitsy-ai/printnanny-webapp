@@ -1,5 +1,4 @@
 import logging
-from optparse import Option
 from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.decorators import action
@@ -12,6 +11,7 @@ from rest_framework.mixins import (
 )
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 from print_nanny_webapp.octoprint.api.serializers import (
     OctoPrintBackupSerializer,
@@ -19,8 +19,10 @@ from print_nanny_webapp.octoprint.api.serializers import (
     GcodeFileSerializer,
     OctoPrintSettingsSerializer,
     OctoPrintServerSerializer,
+    PolymorphicOctoPrintEventSerializer,
 )
 from print_nanny_webapp.octoprint.models import (
+    BaseOctoPrintEvent,
     GcodeFile,
     OctoPrintBackup,
     OctoPrintSettings,
@@ -33,6 +35,7 @@ from print_nanny_webapp.utils.api.views import (
     generic_update_errors,
     generic_get_errors,
 )
+from print_nanny_webapp.events.services import nats_publish
 
 
 logger = logging.getLogger(__name__)
@@ -329,3 +332,52 @@ class OctoPrinterProfileViewSet(
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+@extend_schema_view(
+    list=extend_schema(
+        tags=["octoprint", "events"],
+        responses={
+            200: PolymorphicOctoPrintEventSerializer(many=True),
+        }
+        | generic_list_errors,
+    ),
+    create=extend_schema(
+        tags=["octoprint", "events"],
+        request=PolymorphicOctoPrintEventSerializer,
+        responses={
+            201: PolymorphicOctoPrintEventSerializer,
+        }
+        | generic_create_errors,
+    ),
+    retrieve=extend_schema(
+        tags=["octoprint", "events"],
+        request=PolymorphicOctoPrintEventSerializer,
+        responses={
+            200: PolymorphicOctoPrintEventSerializer,
+        }
+        | generic_get_errors,
+    ),
+)
+class AllOctoPrintEventsViewSet(
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    CreateModelMixin,
+):
+    """
+    Interact with all events inheriting from BasePiEvent
+    """
+
+    permission_classes = [IsAuthenticated]
+    serializer_class = PolymorphicOctoPrintEventSerializer
+    queryset = BaseOctoPrintEvent.objects.all()
+    lookup_field = "id"
+
+    # get events related to all pis owned by authenticated user
+    def get_queryset(self, *args, **kwargs):
+        return self.queryset.filter(pi__user_id=self.request.user.id)
+
+    def perform_create(self, serializer):
+        model_obj = serializer.save()
+        nats_publish(serializer, model_obj)
