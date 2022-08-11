@@ -1,7 +1,7 @@
-# OctoPrintPrintJobStatusEventTypeEnum
+# OctoPrintPrintJobStatusType
+
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

@@ -39,9 +39,9 @@ docs/OctoPrintClientStatusType.md
 docs/OctoPrintPrintJobPayload.md
 docs/OctoPrintPrintJobPayloadRequest.md
 docs/OctoPrintPrintJobStatus.md
-docs/OctoPrintPrintJobStatusEventTypeEnum.md
 docs/OctoPrintPrintJobStatusRequest.md
 docs/OctoPrintPrintJobStatusSubjectPatternEnum.md
+docs/OctoPrintPrintJobStatusType.md
 docs/OctoPrintPrinterStatus.md
 docs/OctoPrintPrinterStatusRequest.md
 docs/OctoPrintPrinterStatusSubjectPatternEnum.md
@@ -202,9 +202,9 @@ src/models/octo_print_client_status_type.rs
 src/models/octo_print_print_job_payload.rs
 src/models/octo_print_print_job_payload_request.rs
 src/models/octo_print_print_job_status.rs
-src/models/octo_print_print_job_status_event_type_enum.rs
 src/models/octo_print_print_job_status_request.rs
 src/models/octo_print_print_job_status_subject_pattern_enum.rs
+src/models/octo_print_print_job_status_type.rs
 src/models/octo_print_printer_status.rs
 src/models/octo_print_printer_status_request.rs
 src/models/octo_print_printer_status_subject_pattern_enum.rs

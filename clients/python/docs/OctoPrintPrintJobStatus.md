@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **subject_pattern** | [**OctoPrintPrintJobStatusSubjectPatternEnum**](OctoPrintPrintJobStatusSubjectPatternEnum.md) |  | 
 **payload** | [**OctoPrintPrintJobPayload**](OctoPrintPrintJobPayload.md) |  | 
 **created_dt** | **datetime** |  | [readonly] 
-**event_type** | [**OctoPrintPrintJobStatusEventTypeEnum**](OctoPrintPrintJobStatusEventTypeEnum.md) |  | 
+**event_type** | [**OctoPrintPrintJobStatusType**](OctoPrintPrintJobStatusType.md) |  | 
 **octoprint_server** | **int** |  | 
 **pi** | **int** |  | 
 

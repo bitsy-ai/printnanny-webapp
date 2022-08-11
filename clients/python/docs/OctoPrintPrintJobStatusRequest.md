@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **subject_pattern** | [**OctoPrintPrintJobStatusSubjectPatternEnum**](OctoPrintPrintJobStatusSubjectPatternEnum.md) |  | 
 **payload** | [**OctoPrintPrintJobPayloadRequest**](OctoPrintPrintJobPayloadRequest.md) |  | 
-**event_type** | [**OctoPrintPrintJobStatusEventTypeEnum**](OctoPrintPrintJobStatusEventTypeEnum.md) |  | 
+**event_type** | [**OctoPrintPrintJobStatusType**](OctoPrintPrintJobStatusType.md) |  | 
 **octoprint_server** | **int** |  | 
 **pi** | **int** |  | 
 
