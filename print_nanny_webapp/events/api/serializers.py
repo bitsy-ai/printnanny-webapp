@@ -53,7 +53,19 @@ class PiBootStatusSerializer(serializers.ModelSerializer):
         exclude = ("deleted", "polymorphic_ctype")
 
 
+class PiSoftwareUpdatePayloadSerializer(serializers.Serializer):
+    wic_tarball_url = serializers.CharField()
+    wic_bmap_url = serializers.CharField()
+    manifest_url = serializers.CharField()
+    swu_url = serializers.CharField()
+    version_id = serializers.CharField()
+    version = serializers.CharField()
+    version_codename = serializers.CharField()
+
+
 class PiSoftwareUpdateCommandSerializer(serializers.ModelSerializer):
+
+    payload = PiSoftwareUpdatePayloadSerializer()
     subject_pattern = serializers.ChoiceField(
         choices=[PiEventSubjectPattern.PiSoftwareUpdateCommand]
     )
