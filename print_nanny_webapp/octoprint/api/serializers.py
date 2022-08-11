@@ -110,7 +110,7 @@ class OctoPrintPrintJobStatusSerializer(serializers.ModelSerializer):
 
 class OctoPrintClientStatusPayloadSerializer(serializers.Serializer):
     remote_address = serializers.CharField()
-    username = serializers.CharField(required=-False)
+    username = serializers.CharField(required=False)
 
 
 class OctoPrintClientStatusSerializer(serializers.ModelSerializer):
