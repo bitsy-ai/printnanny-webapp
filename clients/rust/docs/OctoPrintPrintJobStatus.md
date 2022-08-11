@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [readonly]
+**subject_pattern** | [**crate::models::OctoPrintPrintJobStatusSubjectPatternEnum**](OctoPrintPrintJobStatusSubjectPatternEnum.md) |  | 
 **payload** | [**crate::models::OctoPrintPrintJobPayload**](OctoPrintPrintJobPayload.md) |  | 
 **created_dt** | **String** |  | [readonly]
 **event_type** | [**crate::models::OctoPrintPrintJobStatusEventTypeEnum**](OctoPrintPrintJobStatusEventTypeEnum.md) |  | 

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [readonly] 
+**subject_pattern** | [**OctoPrintServerStatusSubjectPatternEnum**](OctoPrintServerStatusSubjectPatternEnum.md) |  | 
 **payload** | **dict(str, object)** |  | 
 **created_dt** | **datetime** |  | [readonly] 
 **event_type** | [**OctoPrintServerStatusType**](OctoPrintServerStatusType.md) |  | 

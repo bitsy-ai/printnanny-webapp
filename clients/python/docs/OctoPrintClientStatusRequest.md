@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**subject_pattern** | [**OctoPrintClientStatusSubjectPatternEnum**](OctoPrintClientStatusSubjectPatternEnum.md) |  | 
 **payload** | [**OctoPrintClientStatusPayloadRequest**](OctoPrintClientStatusPayloadRequest.md) |  | 
 **event_type** | [**OctoPrintClientStatusType**](OctoPrintClientStatusType.md) |  | 
 **octoprint_server** | **int** |  | 

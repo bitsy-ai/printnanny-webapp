@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**subject_pattern** | [**crate::models::OctoPrintPrintJobStatusSubjectPatternEnum**](OctoPrintPrintJobStatusSubjectPatternEnum.md) |  | 
 **payload** | [**crate::models::OctoPrintPrintJobPayloadRequest**](OctoPrintPrintJobPayloadRequest.md) |  | 
 **event_type** | [**crate::models::OctoPrintPrintJobStatusEventTypeEnum**](OctoPrintPrintJobStatusEventTypeEnum.md) |  | 
 **octoprint_server** | **i32** |  | 

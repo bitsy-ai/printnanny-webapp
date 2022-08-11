@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [readonly]
+**subject_pattern** | [**crate::models::OctoPrintServerStatusSubjectPatternEnum**](OctoPrintServerStatusSubjectPatternEnum.md) |  | 
 **payload** | [**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) |  | 
 **created_dt** | **String** |  | [readonly]
 **event_type** | [**crate::models::OctoPrintServerStatusType**](OctoPrintServerStatusType.md) |  | 

@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**subject_pattern** | [**OctoPrintServerStatusSubjectPatternEnum**](OctoPrintServerStatusSubjectPatternEnum.md) |  | 
 **payload** | **dict(str, object)** |  | 
 **event_type** | [**OctoPrintServerStatusType**](OctoPrintServerStatusType.md) |  | 
 **octoprint_server** | **int** |  | 

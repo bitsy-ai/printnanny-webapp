@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [readonly] 
+**subject_pattern** | [**OctoPrintPrintJobStatusSubjectPatternEnum**](OctoPrintPrintJobStatusSubjectPatternEnum.md) |  | 
 **payload** | [**OctoPrintPrintJobPayload**](OctoPrintPrintJobPayload.md) |  | 
 **created_dt** | **datetime** |  | [readonly] 
 **event_type** | [**OctoPrintPrintJobStatusEventTypeEnum**](OctoPrintPrintJobStatusEventTypeEnum.md) |  | 

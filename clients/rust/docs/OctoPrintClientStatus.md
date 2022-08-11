@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [readonly]
+**subject_pattern** | [**crate::models::OctoPrintClientStatusSubjectPatternEnum**](OctoPrintClientStatusSubjectPatternEnum.md) |  | 
 **payload** | [**crate::models::OctoPrintClientStatusPayload**](OctoPrintClientStatusPayload.md) |  | 
 **created_dt** | **String** |  | [readonly]
 **event_type** | [**crate::models::OctoPrintClientStatusType**](OctoPrintClientStatusType.md) |  | 
