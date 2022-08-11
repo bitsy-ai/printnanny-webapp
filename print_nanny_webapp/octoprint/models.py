@@ -12,6 +12,7 @@ from print_nanny_webapp.octoprint.enum import (
     OctoPrintPrintJobStatusType,
     OctoPrintPrinterStatusType,
     OctoPrintServerStatusType,
+    OctoprintEventSubjectPattern,
 )
 
 User = get_user_model()
@@ -202,7 +203,7 @@ class OctoPrintServerStatus(BaseOctoPrintEvent):
     class Meta:
         index_together = ()
 
-    subject_pattern = "pi.{pi_id}.octoprint.server"
+    subject_pattern = OctoprintEventSubjectPattern.OctoPrintServerStatus
     event_type = models.CharField(
         max_length=32, choices=OctoPrintServerStatusType.choices, db_index=True
     )
@@ -212,7 +213,7 @@ class OctoPrintPrinterStatus(BaseOctoPrintEvent):
     class Meta:
         index_together = ()
 
-    subject_pattern = "pi.{pi_id}.octoprint.printer"
+    subject_pattern = OctoprintEventSubjectPattern.OctoPrintPrinterStatus
     event_type = models.CharField(
         max_length=32, choices=OctoPrintPrinterStatusType.choices, db_index=True
     )
@@ -222,7 +223,7 @@ class OctoPrintClientStatus(BaseOctoPrintEvent):
     class Meta:
         index_together = ()
 
-    subject_pattern = "pi.{pi_id}.octoprint.client"
+    subject_pattern = OctoprintEventSubjectPattern.OctoPrintClientStatus
     event_type = models.CharField(
         max_length=32, choices=OctoPrintClientStatusType.choices, db_index=True
     )
@@ -232,7 +233,7 @@ class OctoPrintPrintJobStatus(BaseOctoPrintEvent):
     class Meta:
         index_together = ()
 
-    subject_pattern = "pi.{pi_id}.octoprint.print_job"
+    subject_pattern = OctoprintEventSubjectPattern.OctoPrintPrintJobStatus
     event_type = models.CharField(
         max_length=32, choices=OctoPrintPrintJobStatusType.choices, db_index=True
     )
