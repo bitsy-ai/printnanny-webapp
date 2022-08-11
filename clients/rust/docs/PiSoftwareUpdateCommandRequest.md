@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**payload** | [**crate::models::PiSoftwareUpdatePayloadRequest**](PiSoftwareUpdatePayloadRequest.md) |  | 
 **subject_pattern** | [**crate::models::PiSoftwareUpdateCommandSubjectPatternEnum**](PiSoftwareUpdateCommandSubjectPatternEnum.md) |  | 
-**payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **version** | **String** |  | 
 **event_type** | [**crate::models::PiSoftwareUpdateCommandType**](PiSoftwareUpdateCommandType.md) |  | 
 **pi** | **i32** |  | 

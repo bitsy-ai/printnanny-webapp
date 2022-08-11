@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [readonly] 
+**payload** | [**PiSoftwareUpdatePayload**](PiSoftwareUpdatePayload.md) |  | 
 **subject_pattern** | [**PiSoftwareUpdateCommandSubjectPatternEnum**](PiSoftwareUpdateCommandSubjectPatternEnum.md) |  | 
 **created_dt** | **datetime** |  | [readonly] 
-**payload** | **dict(str, object)** |  | [optional] 
 **version** | **str** |  | 
 **event_type** | [**PiSoftwareUpdateCommandType**](PiSoftwareUpdateCommandType.md) |  | 
 **pi** | **int** |  | 

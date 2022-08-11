@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **subject_pattern** | [**PiBootCommandSubjectPatternEnum**](PiBootCommandSubjectPatternEnum.md) |  | 
-**payload** | **dict(str, object)** |  | [optional] 
+**payload** | **dict(str, object)** |  | 
 **event_type** | [**PiBootCommandType**](PiBootCommandType.md) |  | 
 **pi** | **int** |  | 
 **version** | **str** |  | 

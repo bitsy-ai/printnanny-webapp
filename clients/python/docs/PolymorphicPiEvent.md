@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **id** | **str** |  | [readonly] 
 **subject_pattern** | [**PiBootCommandSubjectPatternEnum**](PiBootCommandSubjectPatternEnum.md) |  | 
 **created_dt** | **datetime** |  | [readonly] 
-**payload** | **dict(str, object)** |  | [optional] 
+**payload** | **dict(str, object)** |  | 
 **event_type** | [**PiBootCommandType**](PiBootCommandType.md) |  | 
 **pi** | **int** |  | 
 **version** | **str** |  | 

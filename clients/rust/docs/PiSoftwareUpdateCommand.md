@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [readonly]
+**payload** | [**crate::models::PiSoftwareUpdatePayload**](PiSoftwareUpdatePayload.md) |  | 
 **subject_pattern** | [**crate::models::PiSoftwareUpdateCommandSubjectPatternEnum**](PiSoftwareUpdateCommandSubjectPatternEnum.md) |  | 
 **created_dt** | **String** |  | [readonly]
-**payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **version** | **String** |  | 
 **event_type** | [**crate::models::PiSoftwareUpdateCommandType**](PiSoftwareUpdateCommandType.md) |  | 
 **pi** | **i32** |  | 

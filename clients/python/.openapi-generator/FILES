@@ -92,6 +92,8 @@ docs/PiSoftwareUpdateCommand.md
 docs/PiSoftwareUpdateCommandRequest.md
 docs/PiSoftwareUpdateCommandSubjectPatternEnum.md
 docs/PiSoftwareUpdateCommandType.md
+docs/PiSoftwareUpdatePayload.md
+docs/PiSoftwareUpdatePayloadRequest.md
 docs/PiSoftwareUpdateStatus.md
 docs/PiSoftwareUpdateStatusRequest.md
 docs/PiSoftwareUpdateStatusSubjectPatternEnum.md
@@ -231,6 +233,8 @@ printnanny_api_client/models/pi_software_update_command.py
 printnanny_api_client/models/pi_software_update_command_request.py
 printnanny_api_client/models/pi_software_update_command_subject_pattern_enum.py
 printnanny_api_client/models/pi_software_update_command_type.py
+printnanny_api_client/models/pi_software_update_payload.py
+printnanny_api_client/models/pi_software_update_payload_request.py
 printnanny_api_client/models/pi_software_update_status.py
 printnanny_api_client/models/pi_software_update_status_request.py
 printnanny_api_client/models/pi_software_update_status_subject_pattern_enum.py
@@ -364,6 +368,8 @@ test/test_pi_software_update_command.py
 test/test_pi_software_update_command_request.py
 test/test_pi_software_update_command_subject_pattern_enum.py
 test/test_pi_software_update_command_type.py
+test/test_pi_software_update_payload.py
+test/test_pi_software_update_payload_request.py
 test/test_pi_software_update_status.py
 test/test_pi_software_update_status_request.py
 test/test_pi_software_update_status_subject_pattern_enum.py

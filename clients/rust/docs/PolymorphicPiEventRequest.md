@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **subject_pattern** | [**crate::models::PiBootCommandSubjectPatternEnum**](PiBootCommandSubjectPatternEnum.md) |  | 
-**payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
+**payload** | [**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) |  | 
 **event_type** | [**crate::models::PiBootCommandType**](PiBootCommandType.md) |  | 
 **pi** | **i32** |  | 
 **version** | **String** |  | 
