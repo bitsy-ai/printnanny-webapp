@@ -1,6 +1,9 @@
 import logging
 from typing import Dict, Any, Tuple
 from rest_framework import serializers
+
+from rest_polymorphic.serializers import PolymorphicSerializer
+
 from print_nanny_webapp.octoprint.models import (
     OctoPrintBackup,
     OctoPrintClientStatus,
@@ -12,7 +15,7 @@ from print_nanny_webapp.octoprint.models import (
     OctoPrintServer,
     OctoPrintServerStatus,
 )
-from rest_polymorphic.serializers import PolymorphicSerializer
+from print_nanny_webapp.octoprint.enum import OctoprintEventSubjectPattern
 
 
 logger = logging.getLogger(__name__)
@@ -81,6 +84,10 @@ class OctoPrintBackupSerializer(serializers.ModelSerializer):
 
 
 class OctoPrintPrinterStatusSerializer(serializers.ModelSerializer):
+    subject_pattern = serializers.ChoiceField(
+        choices=[OctoprintEventSubjectPattern.OctoPrintPrinterStatus]
+    )
+
     class Meta:
         model = OctoPrintPrinterStatus
         exclude = ("deleted", "polymorphic_ctype")
@@ -101,6 +108,10 @@ class OctoPrintPrintJobPayloadSerializer(serializers.Serializer):
 
 
 class OctoPrintPrintJobStatusSerializer(serializers.ModelSerializer):
+    subject_pattern = serializers.ChoiceField(
+        choices=[OctoprintEventSubjectPattern.OctoPrintPrintJobStatus]
+    )
+
     payload = OctoPrintPrintJobPayloadSerializer()
 
     class Meta:
@@ -114,6 +125,10 @@ class OctoPrintClientStatusPayloadSerializer(serializers.Serializer):
 
 
 class OctoPrintClientStatusSerializer(serializers.ModelSerializer):
+    subject_pattern = serializers.ChoiceField(
+        choices=[OctoprintEventSubjectPattern.OctoPrintClientStatus]
+    )
+
     payload = OctoPrintClientStatusPayloadSerializer()
 
     class Meta:
@@ -122,6 +137,10 @@ class OctoPrintClientStatusSerializer(serializers.ModelSerializer):
 
 
 class OctoPrintServerStatusSerializer(serializers.ModelSerializer):
+    subject_pattern = serializers.ChoiceField(
+        choices=[OctoprintEventSubjectPattern.OctoPrintServerStatus]
+    )
+
     class Meta:
         model = OctoPrintServerStatus
         exclude = ("deleted", "polymorphic_ctype")
