@@ -416,8 +416,7 @@ SPECTACULAR_SETTINGS = {
         # end device app enums
         # begin alerts app enums
         # end alerts app enums
-        # begin polymorphic event types
-        "OctoPrintEventType": "print_nanny_webapp.events.models.enum.OctoPrintEventType",
+        # begin Pi polymorphic event types
         "PiEventModel": "print_nanny_webapp.events.models.enum.PiEventModel",
         "PiCamStatusType": "print_nanny_webapp.events.models.enum.PiCamStatusType",
         "PiCamCommandType": "print_nanny_webapp.events.models.enum.PiCamCommandType",
@@ -425,7 +424,13 @@ SPECTACULAR_SETTINGS = {
         "PiSoftwareUpdateCommandType": "print_nanny_webapp.events.models.enum.PiSoftwareUpdateCommandType",
         "PiBootStatusType": "print_nanny_webapp.events.models.enum.PiBootStatusType",
         "PiBootCommandType": "print_nanny_webapp.events.models.enum.PiBootCommandType",
-        # end polymorphic event types
+        # end Pi polymorphic event types
+        # begin OctoPrint polymorphic event types
+        "OctoPrintPrintJobStatusType": "print_nanny_webapp.octoprint.enum.OctoPrintJobStatusType",
+        "OctoPrintServerStatusType": "print_nanny_webapp.octoprint.enum.OctoPrintServerStatusType",
+        "OctoPrintPrinterStatusType": "print_nanny_webapp.octoprint.enum.OctoPrintPrinterStatusType",
+        "OctoPrintClientStatusType": "print_nanny_webapp.octoprint.enum.OctoPrintClientStatusType"
+        # end OctoPrint polymorphic event types
     },
     "TITLE": "printnanny-api-client",
     "DESCRIPTION": "Official API client library for printnanny.ai",

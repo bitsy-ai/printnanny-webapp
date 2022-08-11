@@ -32,6 +32,7 @@ from print_nanny_webapp.octoprint.api.views import (
     OctoPrintSettingsViewSet,
     OctoPrinterProfileViewSet,
     OctoPrintServerByDeviceViewSet,
+    AllOctoPrintEventsViewSet,
 )
 from print_nanny_webapp.users.api.views import EmailWaitlistViewSet, UserNkeyView
 
@@ -100,6 +101,12 @@ router.register(
     r"octoprint/settings",
     OctoPrintSettingsViewSet,
     basename="octoprint-settings",
+)
+
+router.register(
+    r"octoprint/events",
+    AllOctoPrintEventsViewSet,
+    basename="octoprint-events",
 )
 
 router.register(
