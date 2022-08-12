@@ -1,5 +1,5 @@
 import posthog
-from .base import *  # noqa
+from config.settings.base import *  # noqa
 
 
 # GENERAL
@@ -53,8 +53,15 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 # https://docs.djangoproject.com/en/3.2/ref/settings/#csrf-cookie-domain
 CSRF_COOKIE_DOMAIN = env("DJANGO_CSRF_COOKIE_DOMAIN", default=".printnanny.ai")
-CSRF_TRUSTED_ORIGINS = ["api.printnanny.ai", "printnanny.ai"]
+CSRF_TRUSTED_ORIGINS = [
+    "api.printnanny.ai",
+    "printnanny.ai",
+    "www.printnanny.ai",
+]
 CSRF_USE_SESSIONS = True
+
+# https://docs.djangoproject.com/en/3.2/ref/middleware/#referrer-policy
+SECURE_REFERRER_POLICY = "origin-when-cross-origin"
 
 # https://docs.djangoproject.com/en/dev/topics/security/#ssl-https
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-hsts-seconds
