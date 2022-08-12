@@ -6,11 +6,11 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0038_auto_20220807_2138'),
+        ("devices", "0038_auto_20220807_2138"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='CloudiotDevice',
+            name="CloudiotDevice",
         ),
     ]
