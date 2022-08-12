@@ -42,9 +42,7 @@ drf-spectacular>=0.23.1
 drf-nested-routers
 flatbuffers
 google-cloud-core
-google-cloud-iot
 google-cloud-monitoring
-google-cloud-pubsub
 google-cloud-storage
 honeycomb-beeline
 imageio

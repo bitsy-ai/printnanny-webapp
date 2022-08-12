@@ -8,7 +8,6 @@ from print_nanny_webapp.devices.models import (
     Pi,
     PiNatsApp,
     PiSettings,
-    CloudiotDevice,
     PiUrls,
     WebrtcStream,
     PublicKey,
@@ -40,32 +39,6 @@ class PiSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = PiSettings
         exclude = ("deleted",)
-
-
-class CloudiotDeviceSerializer(serializers.ModelSerializer):
-    command_topic = serializers.CharField(read_only=True)
-    event_topic = serializers.CharField(read_only=True)
-    config_topic = serializers.CharField(read_only=True)
-    state_topic = serializers.CharField(read_only=True)
-
-    gcp_resource = serializers.CharField(read_only=True)
-    gcp_project_id = serializers.CharField(read_only=True)
-    gcp_region = serializers.CharField(read_only=True)
-    gcp_cloudiot_pi_registry = serializers.CharField(read_only=True)
-    mqtt_bridge_hostname = serializers.CharField(read_only=True)
-    mqtt_bridge_port = serializers.IntegerField(read_only=True)
-    mqtt_client_id = serializers.CharField(read_only=True)
-    num_id = Int64Field(read_only=True)
-
-    class Meta:
-        model = CloudiotDevice
-        exclude = ("deleted",)
-        read_only_fields = (
-            "num_id",
-            "name",
-            "pi",
-            "id",
-        )
 
 
 class PublicKeySerializer(serializers.ModelSerializer):
@@ -147,7 +120,6 @@ class PiSerializer(serializers.ModelSerializer):
     last_boot = serializers.CharField(read_only=True, allow_null=True)
     # alert_settings = AlertSettingsSerializer(read_only=True)
     settings = PiSettingsSerializer(read_only=True)
-    cloudiot_device = CloudiotDeviceSerializer(read_only=True)
     user = UserSerializer(read_only=True)
     system_info = SystemInfoSerializer(read_only=True)
     public_key = PublicKeySerializer(read_only=True)

@@ -1,15 +1,13 @@
 import logging
 from datetime import datetime
-from typing import Callable, Optional, TypedDict
+from typing import Optional, TypedDict
 from django.apps import apps
 from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.db.models import UniqueConstraint
 from django.utils.crypto import get_random_string
-from google.cloud import iot_v1 as cloudiot_v1
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
-from safedelete.signals import pre_softdelete
 
 from django_nats_nkeys.models import (
     AbstractNatsApp,
@@ -30,19 +28,6 @@ logger = logging.getLogger(__name__)
 
 def get_random_string_32():
     return get_random_string(32)
-
-
-# TODO remove cloudiot_device from registry
-def delete_cloudiot_device_from_gcp_registry():
-    pass
-
-
-def pre_softdelete_cloudiot_device(instance=None, **kwargs) -> Callable:
-    fn = getattr(instance, "pre_softdelete", delete_cloudiot_device_from_gcp_registry)
-    return fn()
-
-
-pre_softdelete.connect(pre_softdelete_cloudiot_device)
 
 
 class PiUrls(TypedDict):
@@ -317,132 +302,6 @@ class SystemInfo(SafeDeleteModel):
     os_release_json = models.JSONField(
         default=dict, help_text="Full contents of /etc/os-release in key:value format"
     )
-
-
-class CloudiotDevice(SafeDeleteModel):
-    """
-    Instance of cloudiot.projects.locations.registries.devices#Device
-    https://cloud.google.com/iot/docs/reference/cloudiot/rest/v1/projects.locations.registries.devices#Device
-    """  # Create your models here.
-
-    _safedelete_policy = SOFT_DELETE
-
-    class Meta:
-        constraints = [
-            UniqueConstraint(
-                fields=["pi"],
-                condition=models.Q(deleted=None),
-                name="unique_cloud_iot_device_per_pi",
-            )
-        ]
-        index_together = [["pi", "public_key", "created_dt", "updated_dt"]]
-
-    def pre_softdelete(self):
-        from print_nanny_webapp.devices.services import (
-            delete_cloudiot_device,
-        )
-
-        return delete_cloudiot_device(self.num_id)
-
-    created_dt = models.DateTimeField(auto_now_add=True)
-    updated_dt = models.DateTimeField(auto_now=True)
-    num_id = models.BigIntegerField(primary_key=True)
-    name = models.CharField(max_length=255)
-    id = models.CharField(max_length=255)
-
-    pi = models.ForeignKey(
-        Pi,
-        on_delete=models.CASCADE,
-        related_name="cloudiot_devices",
-    )
-
-    public_key = models.ForeignKey(
-        PublicKey, on_delete=models.CASCADE, related_name="cloudiot_devices"
-    )
-
-    @property
-    def client(self):
-        return cloudiot_v1.DeviceManagerClient()
-
-    @property
-    def gcp_resource(self):
-        return self.client.device_path(
-            settings.GCP_PROJECT_ID,
-            settings.GCP_CLOUDIOT_DEVICE_REGISTRY_REGION,
-            settings.GCP_CLOUDIOT_STANDALONE_DEVICE_REGISTRY,
-            self.num_id,
-        )
-
-    @property
-    def gcp_project_id(self):
-        return settings.GCP_PROJECT_ID
-
-    @property
-    def gcp_region(self):
-        return settings.GCP_CLOUDIOT_DEVICE_REGISTRY_REGION
-
-    @property
-    def gcp_cloudiot_device_registry(self):
-        return settings.GCP_CLOUDIOT_STANDALONE_DEVICE_REGISTRY
-
-    @property
-    def mqtt_bridge_hostname(self):
-        return settings.GCP_MQTT_BRIDGE_HOSTNAME
-
-    @property
-    def mqtt_bridge_port(self):
-        return settings.GCP_MQTT_BRIDGE_PORT
-
-    @property
-    def mqtt_client_id(self):
-        return self.name
-
-    @property
-    def command_topic(self):
-        """
-        Messages sent to device (wildcard topic pattern)
-        """
-        return f"/devices/{self.num_id}/commands/#"
-
-    @property
-    def event_topic(self):
-        """
-        Topic containing device-published messages
-        Additional subfolders may be specified
-        For example /devices/:id/events/alerts
-        """
-        return f"/devices/{self.num_id}/events"
-
-    @property
-    def config_topic(self):
-        """
-        Reference: https://cloud.google.com/iot/docs/how-tos/config/configuring-devices
-        With Cloud IoT Core, you can control a device by sending it a device configuration.
-        A device configuration is an arbitrary user-defined blob of data sent from Cloud IoT Core to a device.
-        The data can be structured or unstructured. It can also be of any format, such as arbitrary binary data, text, JSON, or serialized protocol buffers.
-
-        Device configuration is persisted in storage by Cloud IoT Core.
-        The maximum size for configuration data is 64 KB. For additional limits, see Quotas and Limits.
-        https://cloud.google.com/iot/quotas
-
-        For best results, a device configuration should focus on desired values or results, rather than on a sequence of commands.
-        If you specify commands, intermediate configuration versions may create conflicts,
-        and it won't be possible to restore the state of a device (without executing every sequence of commands since the device was first initialized).
-        If your configurations emphasize values and results, you'll be able to more easily restore the device state.
-        """
-        return f"/devices/{self.num_id}/config"
-
-    @property
-    def state_topic(self):
-        """
-        https://cloud.google.com/iot/docs/concepts/devices#device_state
-        Device state information captures the current status of the device, not the environment.
-        Devices can describe their state with an arbitrary user-defined blob of data sent from the device to the cloud.
-        The data can be structured or unstructured. It can also be of any format, such as binary data, text, JSON, or serialized protocol buffers.
-        Some examples of device state include the health of the device or its firmware version.
-        Typically, device state information is not updated frequently.
-        """
-        return f"/devices/{self.num_id}/state"
 
 
 class WebrtcStream(SafeDeleteModel):

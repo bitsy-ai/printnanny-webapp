@@ -34,7 +34,6 @@ from print_nanny_webapp.utils.api.views import (
 
 from print_nanny_webapp.devices.api.serializers import (
     PublicKeySerializer,
-    CloudiotDeviceSerializer,
     SystemInfoSerializer,
     PiSerializer,
     WebrtcStreamSerializer,
@@ -42,7 +41,6 @@ from print_nanny_webapp.devices.api.serializers import (
     PrintNannyLicenseSerializer,
 )
 from print_nanny_webapp.devices.models import (
-    CloudiotDevice,
     Pi,
     WebrtcStream,
     PublicKey,
@@ -53,7 +51,6 @@ from print_nanny_webapp.devices.models import (
 from print_nanny_webapp.devices.services import (
     build_license_zip,
     get_license_serializer,
-    update_or_create_cloudiot_device,
     create_pi_nats_app,
 )
 
@@ -427,99 +424,6 @@ class SystemInfoViewSet(
             instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
                 serializer.validated_data, device_id
             )
-            response_serializer = self.get_serializer(instance)
-            if not created:
-                return Response(response_serializer.data, status=status.HTTP_200_OK)
-            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-##
-# Cloud IoT Pi
-##
-@extend_schema_view(
-    retrieve=extend_schema(
-        tags=["devices"],
-        parameters=[
-            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH),
-            OpenApiParameter(name="id", type=int, location=OpenApiParameter.PATH),
-        ],
-        responses={
-            200: CloudiotDeviceSerializer(),
-        }
-        | generic_get_errors,
-    ),
-    list=extend_schema(
-        tags=["devices"],
-        parameters=[
-            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        responses={
-            200: CloudiotDeviceSerializer(many=True),
-        }
-        | generic_list_errors,
-    ),
-    create=extend_schema(
-        tags=["devices"],
-        parameters=[
-            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH),
-        ],
-        request=CloudiotDeviceSerializer,
-        responses={
-            201: CloudiotDeviceSerializer,
-        }
-        | generic_create_errors,
-    ),
-    update=extend_schema(
-        tags=["devices"],
-        parameters=[
-            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH),
-        ],
-        request=CloudiotDeviceSerializer,
-        responses={
-            202: CloudiotDeviceSerializer,
-        }
-        | generic_update_errors,
-    ),
-    partial_update=extend_schema(
-        tags=["devices"],
-        parameters=[
-            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH),
-        ],
-        request=CloudiotDeviceSerializer,
-        responses={
-            202: CloudiotDeviceSerializer,
-        }
-        | generic_update_errors,
-    ),
-)
-class CloudiotDeviceViewSet(
-    GenericViewSet,
-    CreateModelMixin,
-    ListModelMixin,
-    RetrieveModelMixin,
-    UpdateModelMixin,
-):
-    serializer_class = CloudiotDeviceSerializer
-    queryset = CloudiotDevice.objects.all()
-    lookup_field = "id"
-
-    @extend_schema(
-        tags=["devices"],
-        operation_id="cloudiot_device_update_or_create",
-        responses={
-            200: CloudiotDeviceSerializer,
-            201: CloudiotDeviceSerializer,
-        },
-    )
-    @action(methods=["post"], detail=False, url_path="update-or-create")
-    def update_or_create(self, request, device_id=None):
-        serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid():
-            public_key = serializer.validated_data["public_key"]
-            # public_key = PublicKey.objects.get(id=public_key_id)
-            instance, created = update_or_create_cloudiot_device(public_key)
             response_serializer = self.get_serializer(instance)
             if not created:
                 return Response(response_serializer.data, status=status.HTTP_200_OK)
