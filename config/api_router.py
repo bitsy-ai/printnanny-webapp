@@ -2,7 +2,6 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedSimpleRouter
 from print_nanny_webapp.devices.api.views import (
-    CloudiotDeviceViewSet,
     PublicKeyViewSet,
     SystemInfoViewSet,
     PiViewSet,
@@ -72,7 +71,6 @@ pi_router.register(r"public-keys", PublicKeyViewSet, basename="public-keys")
 pi_router.register(r"webrtc-streams", WebrtcStreamViewSet, basename="janus-streams")
 
 pi_router.register(r"system-info", SystemInfoViewSet, basename="system-info")
-pi_router.register(r"cloudiot", CloudiotDeviceViewSet, basename="cloudiot")
 pi_router.register(
     r"octoprint",
     OctoPrintServerByDeviceViewSet,
