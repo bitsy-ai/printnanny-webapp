@@ -21,7 +21,7 @@ class AbstractEvent(PolymorphicModel, SafeDeleteModel):
 
     _safedelete_policy = SOFT_DELETE
     created_dt = models.DateTimeField(auto_now_add=True)
-    payload = models.JSONField(default=dict)
+    payload = models.JSONField(null=True)
 
 
 class AbstractUserEvent(AbstractEvent):
