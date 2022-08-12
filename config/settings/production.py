@@ -63,7 +63,7 @@ CSRF_USE_SESSIONS = True
 SESSION_COOKIE_DOMAIN = env("DJANGO_SESSION_COOKIE_DOMAIN", default=".printnanny.ai")
 
 # https://docs.djangoproject.com/en/3.2/ref/middleware/#referrer-policy
-SECURE_REFERRER_POLICY = "origin-when-cross-origin"
+SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
 
 # https://docs.djangoproject.com/en/dev/topics/security/#ssl-https
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-hsts-seconds
