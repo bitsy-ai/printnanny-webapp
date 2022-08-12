@@ -5,7 +5,7 @@ const ApiConfig = new api.Configuration({
   basePath: import.meta.env.VITE_PRINTNANNY_API_URL,
   baseOptions: {
     xsrfCookieName: "csrftoken",
-    xsrfHeaderName: "HTTP-X-CSRFTOKEN",
+    xsrfHeaderName: "X-CSRFTOKEN",
     withCredentials: true,
   },
 });
