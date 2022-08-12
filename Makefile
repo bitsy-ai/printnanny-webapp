@@ -274,7 +274,7 @@ sandbox-email:
 
 sandbox-ci: sandbox-deploy sandbox-email cypress-ci
 
-ns-k8s:
+ns-k8s: clean-dist dist/k8s
 	echo "Using namespace environment .envs/.$(PRINTNANNY_NAMESPACE)/.env"
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
