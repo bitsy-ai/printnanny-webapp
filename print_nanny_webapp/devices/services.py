@@ -1,25 +1,24 @@
-from __future__ import annotations
 import io
 import logging
+import zipfile
 from uuid import uuid4
 from typing import Tuple, Dict, Any
+
 import requests
-import zipfile
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.http import HttpRequest
 from rest_framework.renderers import JSONRenderer
+from django_nats_nkeys.services import (
+    nsc_generate_creds,
+    create_organization,
+)
+from django_nats_nkeys.models import NatsOrganizationUser, _default_name
 from print_nanny_webapp.devices.api.serializers import (
     PrintNannyLicenseSerializer,
 )
 from print_nanny_webapp.devices.enum import JanusConfigType
 from print_nanny_webapp.utils.api.service import get_api_config
-from print_nanny_webapp.nkeys.services import get_or_create_nats_organization_user
-
-from django_nats_nkeys.services import (
-    nsc_generate_creds,
-    create_nats_app,
-)
 
 from print_nanny_webapp.devices.models import (
     Pi,
@@ -86,10 +85,22 @@ def janus_cloud_setup(device: Pi) -> Tuple[WebrtcStream, bool]:
 
 def create_pi_nats_app(pi: Pi) -> PiNatsApp:
     # get or create organization associated with Pi.user
-    org_user = get_or_create_nats_organization_user(pi.user)
+    try:
+        org_user = NatsOrganizationUser.objects.get(user=pi.user)
+    except NatsOrganizationUser.DoesNotExist:
+        create_organization(
+            pi.user,
+            _default_name(),
+            org_user_defaults={"is_admin": True},
+        )
+        org_user = NatsOrganizationUser.objects.get(user=pi.user)
 
     # create nats app associated with org user
-    app = create_nats_app(pi.user, org_user.organization, pi=pi)
+    app = PiNatsApp.objects.create_nsc(
+        app_name=_default_name(),
+        organization_user=org_user,
+        organization=org_user.organization,
+    )
     return app
 
 
