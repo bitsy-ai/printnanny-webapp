@@ -57,6 +57,10 @@ spec:
         envFrom:
           - configMapRef:
               name: webapp
+      volumeMounts:
+      - name: django-operator-nkeys
+        readOnly: true
+        mountPath: "/etc/django-operator-nkeys"
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!
