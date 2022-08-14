@@ -6,6 +6,8 @@ set -o nounset
 
 python /app/manage.py collectstatic --noinput
 
+DJANGO_OPERATOR_JWT="${DJANGO_OPERATOR_JWT:-/etc/django-operator-nkeys/operator.jwt}"
+
 compress_enabled() {
 python << END
 import sys
@@ -23,6 +25,12 @@ END
 
 python manage.py migrate
 
+# import operator.jwt if mount available
+if [ -f "$DJANGO_OPERATOR_JWT"]
+then
+    echo "Loading JWT from $DJANGO_OPERATOR_JWT"
+    python manage.py nsc_operator_jwt --import "$DJANGO_OPERATOR_JWT" || echo "Failed to import $DJANGO_OPERATOR_JWT"
+fi
 
 # if compress_enabled; then
 #   # NOTE this command will fail if django-compressor is disabled
