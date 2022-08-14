@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.apps import apps
 from django.contrib.auth import admin as auth_admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
@@ -31,12 +32,10 @@ class GroupAdmin(admin.ModelAdmin):
 # Register the new Group ModelAdmin.
 admin.site.register(Group, GroupAdmin)
 
-
-def create_token(modeladmin, request, queryset):
-    for user in queryset:
-        Token.objects.get_or_create(user=user)
+MemberBadge = apps.get_model("subscriptions", "MemberBadge")
 
 
+@admin.register(User)
 class UserAdmin(auth_admin.UserAdmin):
     # django-loginas
     change_form_template = "loginas/change_form.html"
@@ -90,7 +89,18 @@ class UserAdmin(auth_admin.UserAdmin):
     search_fields = ("email",)
     ordering = ("email",)
 
-    actions = [create_token]
+    def create_token(self, request, queryset):
+        for user in queryset:
+            Token.objects.get_or_create(user=user)
+
+    def add_free_beta(self, request, queryset):
+
+        for user in queryset:
+            MemberBadge.objects.create(
+                user=user, type=MemberBadge.MemberBadgeType.FREE_BETA
+            )
+
+    actions = [create_token, add_free_beta]
 
 
 def send_beta_invite(modeladmin, request, queryset):

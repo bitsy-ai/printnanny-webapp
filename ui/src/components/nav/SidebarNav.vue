@@ -59,7 +59,7 @@
       </div>
       <!-- milestones/roadmap/other info -->
       <h3
-        id="desktop-teams-headline"
+        id="roadmap-headline"
         class="pt-4 px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider"
       >
         Roadmap
@@ -67,7 +67,7 @@
       <div
         class="mt-1 space-y-1"
         role="group"
-        aria-labelledby="desktop-teams-headline"
+        aria-labelledby="roadmap-headline"
       >
         <a
           v-for="item in misc_nav"
@@ -83,6 +83,21 @@
           />
           {{ item.name }}
         </a>
+      </div>
+
+        <h3
+        id="badges-headline"
+        class="pt-4 px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider"
+      >
+        Achievements
+      </h3>
+      <div
+        class="mt-1 space-y-1"
+        role="group"
+        aria-labelledby="badges-headline"
+      >
+
+          <span v-for="(item) in accountStore.user?.member_badges" :key="item.type" class="mt-2 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800"> {{ item.type }} </span>
       </div>
     </div>
   </nav>
@@ -102,6 +117,9 @@ import {
   TerminalIcon,
 } from "@heroicons/vue/outline";
 
+import { useAccountStore } from "@/stores/account";
+
+const accountStore = useAccountStore();
 const router = useRouter();
 // app-based navigiation links
 const app_nav = [

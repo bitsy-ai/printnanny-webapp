@@ -5,7 +5,7 @@ from django.utils.http import urlencode
 from django.urls import reverse
 from django.contrib.sites.models import Site
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
-from .enum import ReferralCodeType
+from print_nanny_webapp.subscriptions.enum import ReferralCodeType
 
 
 logger = logging.getLogger(__name__)
@@ -16,9 +16,12 @@ class MemberBadge(models.Model):
 
         FREE_BETA = (
             "FreeBeta",
-            "Participated in free beta program between January 2021 - July 2021",
+            "Participated in free beta program",
         )
-        PAID_BETA = "PaidBeta", "Participated in paid beta program starting July 2021"
+        PAID_BETA = (
+            "PaidBeta",
+            "Founding Members supported PrintNanny's development by pre-ordering an annual subscription",
+        )
 
     class Meta:
         unique_together = ("type", "user")
@@ -29,6 +32,10 @@ class MemberBadge(models.Model):
     user = models.ForeignKey(
         "users.User", on_delete=models.CASCADE, related_name="member_badges"
     )
+
+    @property
+    def label(self):
+        return self.MemberBadgeType(self.type).label
 
 
 class ReferralCode(SafeDeleteModel):

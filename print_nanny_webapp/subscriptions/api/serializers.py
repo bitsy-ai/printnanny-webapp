@@ -1,15 +1,12 @@
-from django.db import models
 from rest_framework import serializers
 from djstripe.models.billing import (
     Subscription,
-    UpcomingInvoice,
     Plan,
     SubscriptionSchedule,
 )
 from djstripe.models.core import Event, Customer, Charge
 from djstripe.models.payment_methods import PaymentMethod
 from djstripe import settings as djstripe_settings
-from djstripe.fields import StripeDateTimeField
 from djstripe.utils import convert_tstamp
 import stripe
 
