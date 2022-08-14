@@ -313,6 +313,7 @@ ANYMAIL = {
 # Discord
 # ------------------------------------------------------------------------------
 DISCORD_TOKEN = env("DISCORD_TOKEN", default="")
+DISCORD_NEW_SIGNUP_WEBHOOK = env("DISCORD_NEW_SIGNUP_WEBHOOK", default=None)
 
 
 # ADMIN
