@@ -23,6 +23,11 @@ spec:
         app: django
     spec:
       serviceAccountName: webapp
+      volumes:
+      - name: django-operator-nkeys
+        secret:
+          secretName: django-operator-nkeys
+          defaultMode: 0400
       containers:
       - name: django
         imagePullPolicy: Always
@@ -57,10 +62,10 @@ spec:
         envFrom:
           - configMapRef:
               name: webapp
-      volumeMounts:
-      - name: django-operator-nkeys
-        readOnly: true
-        mountPath: "/etc/django-operator-nkeys"
+        volumeMounts:
+        - name: django-operator-nkeys
+          readOnly: true
+          mountPath: "/etc/django-operator-nkeys"
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!
