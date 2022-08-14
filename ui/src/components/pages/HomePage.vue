@@ -199,7 +199,7 @@
                             type="submit"
                             class="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                           >
-                            Request Access
+                            Join the Waitlist
                           </button>
                         </div>
                       </div>

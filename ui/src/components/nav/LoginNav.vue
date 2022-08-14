@@ -13,7 +13,7 @@
       href="/request-invite"
       class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
     >
-      Request Access
+      Join Waitlist
     </a>
     <a
       v-if="account.isAuthenticated"
