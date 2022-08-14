@@ -8,8 +8,6 @@ docs/AlertsApi.md
 docs/BillingApi.md
 docs/BillingSummary.md
 docs/CallbackTokenAuthRequest.md
-docs/CloudiotDevice.md
-docs/CloudiotDeviceRequest.md
 docs/CollectionMethodEnum.md
 docs/DetailResponse.md
 docs/DevicesApi.md
@@ -58,7 +56,6 @@ docs/OctoPrinterProfile.md
 docs/OctoPrinterProfileRequest.md
 docs/OctoprintApi.md
 docs/OsEdition.md
-docs/PaginatedCloudiotDeviceList.md
 docs/PaginatedEmailAlertSettingsList.md
 docs/PaginatedGcodeFileList.md
 docs/PaginatedOctoPrintBackupList.md
@@ -77,7 +74,6 @@ docs/PaginatedWebrtcStreamList.md
 docs/PasswordChangeRequest.md
 docs/PasswordResetConfirmRequest.md
 docs/PasswordResetRequest.md
-docs/PatchedCloudiotDeviceRequest.md
 docs/PatchedEmailAlertSettingsRequest.md
 docs/PatchedOctoPrintServerRequest.md
 docs/PatchedOctoPrintSettingsRequest.md
@@ -173,8 +169,6 @@ src/apis/settings_api.rs
 src/lib.rs
 src/models/billing_summary.rs
 src/models/callback_token_auth_request.rs
-src/models/cloudiot_device.rs
-src/models/cloudiot_device_request.rs
 src/models/collection_method_enum.rs
 src/models/detail_response.rs
 src/models/email_alert_settings.rs
@@ -220,7 +214,6 @@ src/models/octo_print_settings_request.rs
 src/models/octo_printer_profile.rs
 src/models/octo_printer_profile_request.rs
 src/models/os_edition.rs
-src/models/paginated_cloudiot_device_list.rs
 src/models/paginated_email_alert_settings_list.rs
 src/models/paginated_gcode_file_list.rs
 src/models/paginated_octo_print_backup_list.rs
@@ -239,7 +232,6 @@ src/models/paginated_webrtc_stream_list.rs
 src/models/password_change_request.rs
 src/models/password_reset_confirm_request.rs
 src/models/password_reset_request.rs
-src/models/patched_cloudiot_device_request.rs
 src/models/patched_email_alert_settings_request.rs
 src/models/patched_octo_print_server_request.rs
 src/models/patched_octo_print_settings_request.rs

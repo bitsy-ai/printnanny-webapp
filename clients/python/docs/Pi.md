@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **id** | **int** |  | [readonly] 
 **last_boot** | **str** |  | [readonly] 
 **settings** | [**PiSettings**](PiSettings.md) |  | [readonly] 
-**cloudiot_device** | [**CloudiotDevice**](CloudiotDevice.md) |  | [readonly] 
 **user** | [**User**](User.md) |  | [readonly] 
 **system_info** | [**SystemInfo**](SystemInfo.md) |  | [readonly] 
 **public_key** | [**PublicKey**](PublicKey.md) |  | [readonly] 
