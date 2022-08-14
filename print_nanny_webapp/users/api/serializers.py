@@ -25,7 +25,7 @@ class NatsOrganizationUserSerializer(serializers.ModelSerializer):
     creds = serializers.SerializerMethodField()
 
     def get_creds(self, obj) -> str:
-        return nsc_generate_creds(obj.organization, obj)
+        return nsc_generate_creds(obj.organization.name, app_name=obj.app_name)
 
     class Meta:
         model = NatsOrganizationUser

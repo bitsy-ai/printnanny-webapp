@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 def nats_publish(serializer: PolymorphicPiEventSerializer, obj: BasePiEvent):
     nats_app = PiNatsApp.objects.get(pi=obj.pi)
-    creds = nsc_generate_creds(nats_app.organization, nats_app)
+    creds = nsc_generate_creds(nats_app.organization.name, app_name=nats_app.app_name)
     with tempfile.NamedTemporaryFile() as f:
         f.write(creds.encode("utf-8"))
         f.flush()
