@@ -31,7 +31,7 @@ class MemberBadgeSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    member_badges = MemberBadgeSerializer(many=True)
+    member_badges = MemberBadgeSerializer(many=True, read_only=True)
 
     class Meta:
         model = User

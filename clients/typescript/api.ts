@@ -375,6 +375,62 @@ export interface LoginRequest {
 /**
  * 
  * @export
+ * @interface MemberBadge
+ */
+export interface MemberBadge {
+    /**
+     * 
+     * @type {number}
+     * @memberof MemberBadge
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof MemberBadge
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MemberBadge
+     */
+    'updated_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MemberBadge
+     */
+    'type': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MemberBadge
+     */
+    'label': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof MemberBadge
+     */
+    'user': number;
+}
+/**
+ * 
+ * @export
+ * @interface MemberBadgeRequest
+ */
+export interface MemberBadgeRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof MemberBadgeRequest
+     */
+    'user': number;
+}
+/**
+ * 
+ * @export
  * @interface NatsApp
  */
 export interface NatsApp {
@@ -5085,6 +5141,12 @@ export interface User {
      * @memberof User
      */
     'is_beta_tester': boolean;
+    /**
+     * 
+     * @type {Array<MemberBadge>}
+     * @memberof User
+     */
+    'member_badges': Array<MemberBadge>;
 }
 /**
  * 
