@@ -134,8 +134,10 @@ router.beforeEach(async (to, _from) => {
     !account.isAuthenticated &&
     // ❗️ Avoid an infinite redirect
     to.name !== "login" &&
-    // ❗️ Login is not required for home view
-    to.name !== "home"
+    // ❗️ Login is not required for home view, terms, or privacy policy
+    to.name !== "home" &&
+    to.name !== "terms" &&
+    to.name !== "privacy"
   ) {
     // redirect the user to the login page
     return { name: "login" };
