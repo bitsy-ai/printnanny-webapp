@@ -122,7 +122,7 @@ def build_license_zip(pi: Pi, request: HttpRequest) -> bytes:
 
     license_serializer = get_license_serializer(pi, nats_app, request)
 
-    nats_creds = nsc_generate_creds(nats_app.organization, nats_app)
+    nats_creds = nsc_generate_creds(nats_app.organization.name, app_name=nats_app.name)
 
     creds_bundle = [
         ("license.json", JSONRenderer().render(license_serializer.data)),
