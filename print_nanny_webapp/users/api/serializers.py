@@ -3,6 +3,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.apps import apps
 
+from django_nats_nkeys.services import nsc_generate_creds
 from django_nats_nkeys.models import NatsOrganizationUser
 from print_nanny_webapp.users.models import EmailWaitlist
 
@@ -19,11 +20,6 @@ class MemberBadgeSerializer(serializers.ModelSerializer):
         splits MemberBadge.type on capital leaders
         """
         return " ".join(re.findall("[A-Z][^A-Z]*", obj.type))
-
-    label = serializers.SerializerMethodField()
-
-    def get_label(self, obj) -> str:
-        return obj.label
 
     class Meta:
         model = MemberBadge

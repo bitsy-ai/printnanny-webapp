@@ -1,8 +1,12 @@
+from typing import Any
 from django.contrib import admin
 from django.apps import apps
+from django.db.models import QuerySet
+from django.http import HttpRequest
 from django.contrib.auth import admin as auth_admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
+from invitations.utils import get_invitation_model
 
 from rest_framework.authtoken.models import Token
 from print_nanny_webapp.users.forms import (
@@ -11,7 +15,6 @@ from print_nanny_webapp.users.forms import (
     GroupAdminForm,
 )
 from print_nanny_webapp.users.models import InviteRequest
-from invitations.utils import get_invitation_model
 
 User = get_user_model()
 
@@ -33,6 +36,27 @@ class GroupAdmin(admin.ModelAdmin):
 admin.site.register(Group, GroupAdmin)
 
 MemberBadge = apps.get_model("subscriptions", "MemberBadge")
+
+
+def create_token(
+    _modeladmin,
+    request: HttpRequest,
+    queryset: QuerySet[Any],
+):
+    for user in queryset:
+        Token.objects.get_or_create(user=user)
+
+
+def add_free_beta(
+    _modeladmin,
+    request: HttpRequest,
+    queryset: QuerySet[Any],
+):
+
+    for user in queryset:
+        MemberBadge.objects.create(
+            user=user, type=MemberBadge.MemberBadgeType.FREE_BETA
+        )
 
 
 @admin.register(User)
@@ -89,21 +113,14 @@ class UserAdmin(auth_admin.UserAdmin):
     search_fields = ("email",)
     ordering = ("email",)
 
-    def create_token(self, request, queryset):
-        for user in queryset:
-            Token.objects.get_or_create(user=user)
-
-    def add_free_beta(self, request, queryset):
-
-        for user in queryset:
-            MemberBadge.objects.create(
-                user=user, type=MemberBadge.MemberBadgeType.FREE_BETA
-            )
-
     actions = [create_token, add_free_beta]
 
 
-def send_beta_invite(modeladmin, request, queryset):
+def send_beta_invite(
+    _modeladmin: admin.ModelAdmin,
+    request: HttpRequest,
+    queryset: QuerySet[Any],
+):
     for invite_request in queryset:
         invite = Invitation.create(invite_request.email)
         invite.send_invitation(request)
