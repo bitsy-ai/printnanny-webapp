@@ -26,7 +26,7 @@ END
 python manage.py migrate
 
 # import operator.jwt if mount available
-if [ -f "$DJANGO_OPERATOR_JWT"]
+if [ -f "$DJANGO_OPERATOR_JWT" ]
 then
     echo "Loading JWT from $DJANGO_OPERATOR_JWT"
     python manage.py nsc_operator_jwt --import "$DJANGO_OPERATOR_JWT" || echo "Failed to import $DJANGO_OPERATOR_JWT"
@@ -41,7 +41,7 @@ if [ "$DJANGO_SUPERUSER_EMAIL" ]
 then
     python manage.py createsuperuser \
         --noinput \
-        --email $DJANGO_SUPERUSER_EMAIL || \
+        --email "$DJANGO_SUPERUSER_EMAIL" || \
     echo "User already exists: $DJANGO_SUPERUSER_EMAIL"
 fi
 set -u
