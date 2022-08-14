@@ -25,6 +25,8 @@ docs/IntervalEnum.md
 docs/JanusApi.md
 docs/JanusConfigType.md
 docs/LoginRequest.md
+docs/MemberBadge.md
+docs/MemberBadgeRequest.md
 docs/NatsApp.md
 docs/NatsOrganizationUser.md
 docs/OctoPrintBackup.md
@@ -183,6 +185,8 @@ src/models/gcode_file.rs
 src/models/interval_enum.rs
 src/models/janus_config_type.rs
 src/models/login_request.rs
+src/models/member_badge.rs
+src/models/member_badge_request.rs
 src/models/mod.rs
 src/models/nats_app.rs
 src/models/nats_organization_user.rs
