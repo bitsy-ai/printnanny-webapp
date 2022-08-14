@@ -7,12 +7,13 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.db.models import UniqueConstraint
 from django.utils.crypto import get_random_string
-from safedelete.models import SafeDeleteModel, SOFT_DELETE
+from safedelete.models import SafeDeleteModel, SOFT_DELETE, SafeDeleteManager
 
 from django_nats_nkeys.models import (
     AbstractNatsApp,
     NatsOrganization,
     NatsOrganizationUser,
+    NatsOrganizationAppManager,
 )
 
 from print_nanny_webapp.devices.utils import get_available_rtp_port
@@ -163,8 +164,13 @@ class Pi(SafeDeleteModel):
         return self.cloudiot_device
 
 
+class PiNatsAppManager(SafeDeleteManager, NatsOrganizationAppManager):
+    pass
+
+
 # add Pi foreign key reference to NatsApp
 class PiNatsApp(AbstractNatsApp, SafeDeleteModel):
+    objects = PiNatsAppManager()
     pi = models.ForeignKey(Pi, on_delete=models.CASCADE)
     organization_user = models.ForeignKey(
         NatsOrganizationUser, on_delete=models.CASCADE, related_name="nats_pi_apps"
