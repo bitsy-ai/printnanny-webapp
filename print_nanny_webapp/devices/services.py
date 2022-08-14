@@ -100,6 +100,7 @@ def create_pi_nats_app(pi: Pi) -> PiNatsApp:
         app_name=_default_name(),
         organization_user=org_user,
         organization=org_user.organization,
+        pi=pi,
     )
     return app
 
