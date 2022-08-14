@@ -55,6 +55,7 @@ jobs:
       CLOUD_SQL_POSTGRES_INSTANCE: ${{ secrets.CLOUD_SQL_POSTGRES_INSTANCE }}
       CLUSTER: www-spot
       DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+      DISCORD_NEW_SIGNUP_WEBHOOK: ${{ secrets.DISCORD_NEW_SIGNUP_WEBHOOK }}
       DJANGO_ADMIN_URL: ${{ secrets.DJANGO_ADMIN_URL }}
       DJANGO_ALLOWED_HOSTS: .live.printnanny.ai,.printnanny.ai,.print-nanny.com
       DJANGO_BASE_URL: ${{ secrets.DJANGO_BASE_URL }}
