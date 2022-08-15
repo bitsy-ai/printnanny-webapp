@@ -495,28 +495,10 @@ INSTALLED_APPS += [
 
 APPEND_SLASH = True
 
-# pubsub and cloud iot
+# gcp
 # ------------------------------------------------------------------------------
-GCP_MQTT_BRIDGE_HOSTNAME = "mqtt.2030.ltsapis.goog"
-GCP_MQTT_BRIDGE_PORT = 443
-GCP_LTS_CA_PRIMARY = "https://pki.goog/gtsltsr/gtsltsr.crt"
-GCP_LTS_CA_BACKUP = "https://pki.goog/gsr4/GSR4.crt"
-
-GCP_PUBSUB_UNDELIVERED_HEALTH_THRESHOLD_MINUTES = 10
-
 GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="printnanny-sandbox")
 
-GCP_CLOUDIOT_DEVICE_REGISTRY_REGION = "us-central1"
-GCP_CLOUDIOT_STANDALONE_DEVICE_REGISTRY = env(
-    "GCP_CLOUDIOT_DEVICE_REGISTRY", default="printnanny-os--sandbox"
-)
-
-GCP_PUBSUB_TELEMETRY_DEFAULT_TOPIC = env(
-    "GCP_PUBSUB_TELEMETRY_DEFAULT",
-    default=os.path.join("projects", GCP_PROJECT_ID, "topics/default-telemetry"),
-)
-
-MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 # honeycomb
 # ------------------------------------------------------------------------------
@@ -590,11 +572,7 @@ MESSAGE_TAGS = {
     messages.WARNING: "alert-warning",
     messages.ERROR: "alert-danger",
 }
-
-# messages
-# ------------------------------------------------------------------------------
-GCP_RENDER_VIDEO_TOPIC = "VideoRenderRequest"
-
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 # links
 # ------------------------------------------------------------------------------
@@ -756,3 +734,6 @@ INSTALLED_APPS += ["organizations", "django_nats_nkeys"]
 NATS_APP_MODEL = "devices.PiNatsApp"
 NATS_SERVER_URI = env("NATS_SERVER_URI", default="nats://nats:4222")
 NATS_WS_URI = env("NATS_WS_URI", default="ws://localhost:8443")
+NATS_NKEYS_OPERATOR_NAME = env(
+    "NATS_NKEYS_OPERATOR_NAME", default="PrintNannyDjangoOperator"
+)

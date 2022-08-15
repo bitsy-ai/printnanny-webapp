@@ -7,6 +7,9 @@ set -o nounset
 python /app/manage.py collectstatic --noinput
 
 DJANGO_OPERATOR_JWT="${DJANGO_OPERATOR_JWT:-/etc/django-operator-nkeys/operator.jwt}"
+SYSTEM_ACCOUNT_JWT="${SYSTEM_ACCOUNT_JWT:-/etc/django-operator-nkeys/SYS.jwt}"
+SYSTEM_USER_JWT="${SYSTEM_USER_JWT:-/etc/django-operator-nkeys/sys.jwt}"
+
 
 compress_enabled() {
 python << END
@@ -25,12 +28,28 @@ END
 
 python manage.py migrate
 
-# import operator.jwt if mount available
+# import operator.jwt if /etc/django-operator-nkeys/ mount available
 if [ -f "$DJANGO_OPERATOR_JWT" ]
 then
-    echo "Loading JWT from $DJANGO_OPERATOR_JWT"
+    echo "Loading Operator JWT from $DJANGO_OPERATOR_JWT"
     python manage.py nsc_operator_jwt --import "$DJANGO_OPERATOR_JWT" || echo "Failed to import $DJANGO_OPERATOR_JWT"
 fi
+
+# import account.jwt if /etc/django-operator-nkeys/ mount available
+if [ -f "$SYSTEM_ACCOUNT_JWT" ]
+then
+    echo "Loading SYS account JWT from $SYSTEM_ACCOUNT_JWT"
+    python manage.py nsc_account_jwt --import "$SYSTEM_ACCOUNT_JWT" || echo "Failed to import $SYSTEM_ACCOUNT_JWT"
+fi
+
+# import user.jwt if /etc/django-operator-nkeys/ mount available
+if [ -f "$SYSTEM_USER_JWT" ]
+then
+    echo "Loading sys user JWT from $SYSTEM_USER_JWT"
+    python manage.py nsc_user_jwt --import "$SYSTEM_USER_JWT" || echo "Failed to import $SYSTEM_USER_JWT"
+fi
+
+python manage.py nsc_pull
 
 # if compress_enabled; then
 #   # NOTE this command will fail if django-compressor is disabled
