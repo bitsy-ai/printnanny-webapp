@@ -7,6 +7,7 @@ set -o nounset
 python /app/manage.py collectstatic --noinput
 
 NATS_SERVER_URI="${NATS_SERVER_URI:-nats://nats:4222}"
+NKEYS_IMPORT_DIR="${NKEYS_IMPORT_DIR:-/etc/django-operator-nkeys}"
 DJANGO_OPERATOR_JWT="${DJANGO_OPERATOR_JWT:-/etc/django-operator-nkeys/operator.jwt}"
 SYSTEM_ACCOUNT_JWT="${SYSTEM_ACCOUNT_JWT:-/etc/django-operator-nkeys/SYS.jwt}"
 SYSTEM_USER_JWT="${SYSTEM_USER_JWT:-/etc/django-operator-nkeys/sys.jwt}"
@@ -35,7 +36,7 @@ then
     echo "Loading Operator JWT from $DJANGO_OPERATOR_JWT"
     python manage.py nsc_operator_jwt --import "$DJANGO_OPERATOR_JWT"
     nsc edit operator --account-jwt-server-url "$NATS_SERVER_URI" --keystore-dir=/var/lib/nats/nsc/keys --config-dir=/var/lib/nats/nsc/config --data-dir=/var/lib/nats/nsc/stores
-    nsc import keys --keystore-dir=/var/lib/nats/nsc/keys --config-dir=/var/lib/nats/nsc/config --data-dir=/var/lib/nats/nsc/stores
+    nsc import keys --dir "$NKEYS_IMPORT_DIR" --keystore-dir=/var/lib/nats/nsc/keys --config-dir=/var/lib/nats/nsc/config --data-dir=/var/lib/nats/nsc/stores
     python manage.py nsc_account_jwt --import "$SYSTEM_ACCOUNT_JWT"
     python manage.py nsc_user_jwt --import "$SYSTEM_USER_JWT"
 fi
