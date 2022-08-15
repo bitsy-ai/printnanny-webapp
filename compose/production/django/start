@@ -6,6 +6,7 @@ set -o nounset
 
 python /app/manage.py collectstatic --noinput
 
+NATS_SERVER_URI="${NATS_SERVER_URI:-nats://nats:4222}"
 DJANGO_OPERATOR_JWT="${DJANGO_OPERATOR_JWT:-/etc/django-operator-nkeys/operator.jwt}"
 SYSTEM_ACCOUNT_JWT="${SYSTEM_ACCOUNT_JWT:-/etc/django-operator-nkeys/SYS.jwt}"
 SYSTEM_USER_JWT="${SYSTEM_USER_JWT:-/etc/django-operator-nkeys/sys.jwt}"
@@ -33,6 +34,7 @@ if [ -f "$DJANGO_OPERATOR_JWT" ]
 then
     echo "Loading Operator JWT from $DJANGO_OPERATOR_JWT"
     python manage.py nsc_operator_jwt --import "$DJANGO_OPERATOR_JWT" || echo "Failed to import $DJANGO_OPERATOR_JWT"
+    nsc edit operator --account-jwt-server-url "$NATS_SERVER_URI" --keystore-dir=/var/lib/nats/nsc/keys --config-dir=/var/lib/nats/nsc/config --data-dir=/var/lib/nats/nsc/stores
 fi
 
 # import account.jwt if /etc/django-operator-nkeys/ mount available
