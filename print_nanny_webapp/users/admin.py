@@ -10,8 +10,6 @@ from invitations.utils import get_invitation_model
 
 from rest_framework.authtoken.models import Token
 from print_nanny_webapp.users.forms import (
-    UserChangeForm,
-    UserCreationForm,
     GroupAdminForm,
 )
 from print_nanny_webapp.users.models import InviteRequest
@@ -64,8 +62,8 @@ class UserAdmin(auth_admin.UserAdmin):
     # django-loginas
     change_form_template = "loginas/change_form.html"
 
-    add_form = UserCreationForm
-    form = UserChangeForm
+    # add_form = UserCreationForm
+    # form = UserChangeForm
     model = User
     list_display = (
         "email",
