@@ -244,8 +244,6 @@ CORS_ALLOWED_ORIGINS = [
 posthog.project_api_key = env("POSTHOG_API_KEY")
 posthog.debug = False
 
-# cloudiot registry
-# ------------------------------------------------------------------------------
-GCP_CLOUDIOT_STANDALONE_DEVICE_REGISTRY = env(
-    "GCP_CLOUDIOT_DEVICE_REGISTRY", default="printnanny-os--live"
-)
+# django-nats-nkeys
+NATS_SERVER_URI = env("NATS_SERVER_URI", default="nats://nats.live.printnanny.ai:4222")
+NATS_WS_URI = env("NATS_WS_URI", "wss://nats.live.printnanny.ai:8443")
