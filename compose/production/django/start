@@ -49,6 +49,7 @@ then
     python manage.py nsc_user_jwt --import "$SYSTEM_USER_JWT" || echo "Failed to import $SYSTEM_USER_JWT"
 fi
 
+python manage.py nsc_pull
 
 # if compress_enabled; then
 #   # NOTE this command will fail if django-compressor is disabled

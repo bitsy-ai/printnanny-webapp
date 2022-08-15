@@ -66,6 +66,10 @@ spec:
         - name: django-operator-nkeys
           readOnly: true
           mountPath: "/etc/django-operator-nkeys"
+        # push nsc to remote
+        preStop:
+          exec:
+            command: ["python", "manage.py", "nsc_push"]
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!
