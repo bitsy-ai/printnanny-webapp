@@ -4,7 +4,7 @@ from rest_framework.mixins import (
 )
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -12,7 +12,6 @@ from drf_spectacular.utils import extend_schema_view, extend_schema
 from django_nats_nkeys.models import NatsOrganizationUser, _default_name
 from django_nats_nkeys.services import create_organization
 
-from print_nanny_webapp.utils.permissions import IsObjectOwner
 from print_nanny_webapp.utils.views import AuthenticatedHttpRequest
 from print_nanny_webapp.users.api.serializers import (
     EmailWaitlistSerializer,
@@ -40,7 +39,6 @@ class UserNkeyView(APIView):
     Providers user nkey credentials
     """
 
-    permission_classes = (IsObjectOwner, IsAuthenticated)
     lookup_field = "id"
     queryset = NatsOrganizationUser.objects.all()
     serializer_class = NatsOrganizationUserSerializer

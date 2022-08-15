@@ -28,7 +28,6 @@ from print_nanny_webapp.utils.api.views import (
     generic_list_errors,
     generic_update_errors,
 )
-from print_nanny_webapp.utils.permissions import IsObjectOwner
 from print_nanny_webapp.events.api.serializers import (
     PolymorphicPiEventSerializer,
     PolymorphicPiCommandSerializer,
@@ -81,7 +80,6 @@ class EmailAlertSettingsViewSet(
     CreateModelMixin,
     UpdateModelMixin,
 ):
-    permission_classes = [IsObjectOwner, IsAuthenticated]
     serializer_class = EmailAlertSettingsSerializer
     queryset = EmailAlertSettings.objects.all()
     lookup_field = "id"
@@ -260,7 +258,6 @@ class SinglePiEventsViewSet(
     Interact with all events inheriting from BasePiEvent, filtered by a single Pi
     """
 
-    permission_classes = [IsObjectOwner, IsAuthenticated]
     serializer_class = PolymorphicPiEventSerializer
     queryset = BasePiEvent.objects.all()
     lookup_field = "id"
@@ -292,7 +289,6 @@ class SinglePiStatusViewSet(
     Interact with all status events for Raspberry Pi, filtered by a single Pi
     """
 
-    permission_classes = [IsObjectOwner, IsAuthenticated]
     serializer_class = PolymorphicPiStatusSerializer
     queryset = BasePiEvent.objects.all()
 
@@ -335,7 +331,6 @@ class SinglePiCommandsViewSet(
     Interact with all events inheriting from BasePiEvent
     """
 
-    permission_classes = [IsObjectOwner, IsAuthenticated]
     serializer_class = PolymorphicPiCommandSerializer
     queryset = BasePiEvent.objects.all()
 

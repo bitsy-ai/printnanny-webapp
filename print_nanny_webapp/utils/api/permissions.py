@@ -18,12 +18,3 @@ class HasActiveSubscription(permissions.BasePermission):
             request.user.is_beta_tester
             or request.user.groups.filter(name=settings.DEMO_GROUP).exists()
         )
-
-
-class IsPrivateAllowed(permissions.BasePermission):
-    """
-    Allow access to request owner
-    """
-
-    def has_permission(self, request, view):
-        return view.kwargs.get("id", "") == request.user.id
