@@ -392,7 +392,10 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.IsAuthenticated",
         "print_nanny_webapp.utils.api.permissions.IsObjectOwner",
     ),
-    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+        "print_nanny_webapp.utils.api.filters.OwnerOrUserFilterBackend",
+    ],
     "DEFAULT_PAGINATION_CLASS": "print_nanny_webapp.utils.pagination.PageNumberPagination",
     "PAGE_SIZE": PAGE_SIZE,
     "EXCEPTION_HANDLER": "print_nanny_webapp.utils.api.exceptions.custom_exception_handler"
