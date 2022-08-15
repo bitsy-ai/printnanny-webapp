@@ -246,4 +246,4 @@ posthog.debug = False
 
 # django-nats-nkeys
 NATS_SERVER_URI = env("NATS_SERVER_URI", default="nats://nats.live.printnanny.ai:4222")
-NATS_WS_URI = env("NATS_WS_URI", "wss://nats.live.printnanny.ai:8443")
+NATS_WS_URI = env("NATS_WS_URI", default="wss://nats.live.printnanny.ai:8443")
