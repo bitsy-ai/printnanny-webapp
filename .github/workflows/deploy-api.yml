@@ -49,6 +49,8 @@ jobs:
   deploy:
     environment: live
     env:
+      NATS_SERVER_URI: nats://nats.live.printnanny.ai:4222
+      NATS_WS_URI: wss://nats.live.printnanny.ai:8443
       COTURN_DATABASE_URL: ${{ secrets.COTURN_DATABASE_URL }}
       COTURN_SECRET_KEY: ${{ secrets.COTURN_SECRET_KEY }}
       COTURN_REALM: ${{ secrets.COTURN_REALM }}
