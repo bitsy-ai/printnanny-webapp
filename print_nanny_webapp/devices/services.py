@@ -83,7 +83,7 @@ def janus_cloud_setup(device: Pi) -> Tuple[WebrtcStream, bool]:
     return stream, created
 
 
-def create_pi_nats_app(pi: Pi) -> PiNatsApp:
+def get_or_create_pi_nats_app(pi: Pi) -> PiNatsApp:
     # get or create organization associated with Pi.user
     try:
         org_user = NatsOrganizationUser.objects.get(user=pi.user)
@@ -95,13 +95,21 @@ def create_pi_nats_app(pi: Pi) -> PiNatsApp:
         )
         org_user = NatsOrganizationUser.objects.get(user=pi.user)
 
+    # is there a NATS app already associated with this Pi?
+    try:
+        app = PiNatsApp.objects.get(pi=pi)
+        # handle app in potentially half-created state
+        validator = app.validate()
+        if validator.ok() is False:
+            raise Exception(f"PiNatsApp validation failed {validator.result.stdout}")
     # create nats app associated with org user
-    app = PiNatsApp.objects.create_nsc(
-        app_name=_default_name(),
-        organization_user=org_user,
-        organization=org_user.organization,
-        pi=pi,
-    )
+    except PiNatsApp.DoesNotExist:
+        app = PiNatsApp.objects.create_nsc(
+            app_name=_default_name(),
+            organization_user=org_user,
+            organization=org_user.organization,
+            pi=pi,
+        )
     return app
 
 
@@ -119,7 +127,7 @@ def build_license_zip(pi: Pi, request: HttpRequest) -> bytes:
         nats_app = PiNatsApp.objects.get(pi=pi)
     # no app, step through NATS account + app creation process
     except PiNatsApp.DoesNotExist:
-        nats_app = create_pi_nats_app(pi)
+        nats_app = get_or_create_pi_nats_app(pi)
 
     license_serializer = get_license_serializer(pi, nats_app, request)
 

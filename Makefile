@@ -541,8 +541,15 @@ dev-config: $(TMPDIR)
 		--out=$(PRINTNANNY_CONFIG_DEV) \
 		--port=8000
 nats-install:
-	helm install --create-namespace --namespace nats -f values.yaml \
+	helm install --create-namespace --namespace nats -f k8s/nats/values.yaml \
 		printnanny-nats nats/nats \
 		--set auth.resolver.operator=${NATS_OPERATOR_NKEY} \
 		--set auth.resolver.systemAccount=${NATS_SYSTEM_ACCOUNT} \
-		--set auth.resolver.resolverPreload.ADMQS3NT7TADCFNZ7TV54FULQN2YI4OPQNWSEJ27AC2KDZ7VBW772YVF=${NATS_RESOLVER_PRELOAD}
+		--set auth.resolver.resolverPreload.${NATS_SYSTEM_ACCOUNT}=${NATS_RESOLVER_PRELOAD}
+
+nats-upgrade:
+	helm upgrade --namespace nats -f k8s/nats/values.yaml \
+		printnanny-nats nats/nats \
+		--set auth.resolver.operator=${NATS_OPERATOR_NKEY} \
+		--set auth.resolver.systemAccount=${NATS_SYSTEM_ACCOUNT} \
+		--set auth.resolver.resolverPreload.${NATS_SYSTEM_ACCOUNT}=${NATS_RESOLVER_PRELOAD}

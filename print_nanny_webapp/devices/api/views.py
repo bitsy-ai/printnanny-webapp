@@ -51,7 +51,7 @@ from print_nanny_webapp.devices.models import (
 from print_nanny_webapp.devices.services import (
     build_license_zip,
     get_license_serializer,
-    create_pi_nats_app,
+    get_or_create_pi_nats_app,
 )
 
 User = get_user_model()
@@ -489,7 +489,7 @@ class PiLicenseJsonViewSet(GenericViewSet):
             nats_app = PiNatsApp.objects.get(pi=pi)
         # no app, step through NATS account + app creation process
         except PiNatsApp.DoesNotExist:
-            nats_app = create_pi_nats_app(pi)
+            nats_app = get_or_create_pi_nats_app(pi)
         serializer = get_license_serializer(pi, nats_app, request)
 
         return Response(serializer.data)
