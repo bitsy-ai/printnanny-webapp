@@ -1,10 +1,7 @@
 from typing import TypedDict, Optional
 import logging
-import urllib.parse
 
 from django.contrib.auth import get_user_model
-from django.conf import settings
-from django.urls import reverse
 
 from rest_framework.authtoken.models import Token
 

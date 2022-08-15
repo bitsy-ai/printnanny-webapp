@@ -1,8 +1,4 @@
-import copy
-from collections import OrderedDict
-
 from rest_framework import serializers
-from rest_framework.utils import model_meta
 
 
 class ErrorDetailSerializer(serializers.Serializer):

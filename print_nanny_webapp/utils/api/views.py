@@ -1,12 +1,4 @@
-from typing import List, Any
-from drf_spectacular.utils import extend_schema
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
-
-from print_nanny_webapp.utils.api.service import get_api_config
 from print_nanny_webapp.utils.api.serializers import (
-    PrintNannyApiConfigSerializer,
     ErrorDetailSerializer,
 )
 
