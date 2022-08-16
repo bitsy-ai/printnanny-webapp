@@ -41,11 +41,11 @@ then
     python manage.py nsc_operator_jwt --import "$DJANGO_OPERATOR_JWT"
     echo "Setting operator --account-jwt-server-url $NATS_SERVER_URI"
     nsc edit operator --account-jwt-server-url "$NATS_SERVER_URI" --keystore-dir=/var/lib/nats/nsc/keys --config-dir=/var/lib/nats/nsc/config --data-dir=/var/lib/nats/nsc/stores
-    nsc pull --all --overwrite-newer --keystore-dir=/var/lib/nats/nsc/keys --config-dir=/var/lib/nats/nsc/config --data-dir=/var/lib/nats/nsc/stores --system-account "$SYSTEM_ACCOUNT" --system-user "$SYSTEM_ACCOUNT_USER"
     echo "Loading account JWT from $SYSTEM_ACCOUNT_JWT"
     python manage.py nsc_account_jwt --import "$SYSTEM_ACCOUNT_JWT"
     echo "Loading user JWT from $SYSTEM_USER_JWT"
     python manage.py nsc_user_jwt --import "$SYSTEM_USER_JWT"
+    nsc pull --all --overwrite-newer --keystore-dir=/var/lib/nats/nsc/keys --config-dir=/var/lib/nats/nsc/config --data-dir=/var/lib/nats/nsc/stores --system-account "$SYSTEM_ACCOUNT" --system-user "$SYSTEM_ACCOUNT_USER"
 fi
 
 # if compress_enabled; then
