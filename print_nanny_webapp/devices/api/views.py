@@ -196,11 +196,11 @@ class PublicKeyViewSet(
         | generic_update_errors,
     )
     @action(methods=["post"], detail=False, url_path="update-or-create")
-    def update_or_create(self, request, device_id=None):
+    def update_or_create(self, request, pi_id=None):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
-                serializer.validated_data, device_id
+                serializer.validated_data, pi_id
             )
             response_serializer = self.get_serializer(instance)
             if not created:
@@ -418,11 +418,11 @@ class SystemInfoViewSet(
         },
     )
     @action(methods=["post"], detail=False, url_path="update-or-create")
-    def update_or_create(self, request, device_id=None):
+    def update_or_create(self, request, pi_id=None):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
-                serializer.validated_data, device_id
+                serializer.validated_data, pi_id
             )
             response_serializer = self.get_serializer(instance)
             if not created:
