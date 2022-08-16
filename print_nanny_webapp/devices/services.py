@@ -13,7 +13,13 @@ from django_nats_nkeys.services import (
     nsc_generate_creds,
     create_organization,
 )
-from django_nats_nkeys.models import NatsOrganizationUser, _default_name
+from django_nats_nkeys.models import (
+    NatsOrganizationUser,
+    _default_name,
+    NatsMessageExport,
+    NatsMessageExportType,
+    NatsRobotAccount,
+)
 from print_nanny_webapp.devices.api.serializers import (
     PrintNannyLicenseSerializer,
 )
@@ -83,6 +89,31 @@ def janus_cloud_setup(device: Pi) -> Tuple[WebrtcStream, bool]:
     return stream, created
 
 
+def get_or_create_import_export_streams(app: PiNatsApp):
+    """
+    By default, NATS messages are scoped to an account (represented by a Django organization by django-nats-nkeys)
+
+    To allow our alerts/database services to subscribe to messages, we must export a stream that is imported by a NatsRobotAccount
+    """
+    # try getting NatsMessageExport app subject pattern
+    try:
+        nats_export = NatsMessageExport.objects.get(
+            name=app.app_name,
+            subject_pattern=app.nats_subject_pattern,
+        )
+    except NatsMessageExport.DoesNotExist:
+        # create export for this app
+        nats_export = NatsMessageExport.objects.create(
+            name=app.app_name,
+            subject_pattern=app.nats_subject_pattern,
+            type=NatsMessageExportType.STREAM,
+            public=False,
+        )
+    for robot_account in NatsRobotAccount.objects.all():
+        robot_account.imports.add(nats_export)
+        robot_account.save()
+
+
 def get_or_create_pi_nats_app(pi: Pi) -> PiNatsApp:
     # get or create organization associated with Pi.user
     try:
@@ -102,6 +133,8 @@ def get_or_create_pi_nats_app(pi: Pi) -> PiNatsApp:
         validator = app.validate()
         if validator.ok() is False:
             raise Exception(f"PiNatsApp validation failed {validator.result.stdout}")
+
+        get_or_create_import_export_streams(app)
     # create nats app associated with org user
     except PiNatsApp.DoesNotExist:
         app = PiNatsApp.objects.create_nsc(

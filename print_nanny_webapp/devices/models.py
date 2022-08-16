@@ -194,6 +194,14 @@ class PiNatsApp(AbstractNatsApp, SafeDeleteModel):
         ]
 
     @property
+    def nats_subject_pattern_template(self) -> str:
+        return "pi.{pi_id}.>"
+
+    @property
+    def nats_subject_pattern(self) -> str:
+        return self.nats_subject_pattern_template.format(pi_id=self.id)
+
+    @property
     def nats_server_uri(self) -> str:
         if settings.DEBUG is False:
             return settings.NATS_SERVER_URI

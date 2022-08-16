@@ -151,6 +151,8 @@ class NatsAppSerializer(serializers.ModelSerializer):
             "organization_user",
             "nats_server_uri",
             "nats_ws_uri",
+            "nats_subject_pattern",
+            "nats_subject_pattern_template",
         )
 
 
