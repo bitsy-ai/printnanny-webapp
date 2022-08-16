@@ -198,16 +198,26 @@ class PiNatsApp(AbstractNatsApp, SafeDeleteModel):
         if settings.DEBUG is False:
             return settings.NATS_SERVER_URI
         # replace nats://nats:4222 with dev machine hostname in debug mode
-        return settings.NATS_SERVER_URI.replace(
-            "nats:", f"{settings.DEV_SERVER_HOSTNAME}:"
-        )
+        dev_hostname = getattr(settings, "DEV_SERVER_HOSTNAME", None)
+        if dev_hostname is None:
+            logger.warning(
+                "settings.DEV_SERVER_HOSTNAME is not set! PrintNanny licenses will contain Docker network hosts instead of LAN hosts. Raspberry Pis will be unable to connect with provided NATS server URI."
+            )
+            return settings.NATS_SERVER_URI
+        return settings.NATS_SERVER_URI.replace("nats:4", f"{dev_hostname}:4")
 
     @property
     def nats_ws_uri(self) -> str:
         if settings.DEBUG is False:
             return settings.NATS_WS_URI
-        # replace ws://nats:8443 with dev machine hostname in debug mode
-        return settings.NATS_WS.replace("nats:", f"{settings.DEV_SERVER_HOSTNAME}:")
+        # replace nats://nats:4222 with dev machine hostname in debug mode
+        dev_hostname = getattr(settings, "DEV_SERVER_HOSTNAME", None)
+        if dev_hostname is None:
+            logger.warning(
+                "settings.DEV_SERVER_HOSTNAME is not set! PrintNanny licenses will contain Docker network hosts instead of LAN hosts. Raspberry Pis will be unable to connect with provided NATS server URI."
+            )
+            return settings.NATS_WS_URI
+        return settings.NATS_WS_URI.replace("nats:", f"{dev_hostname}:")
 
 
 class PiSettings(SafeDeleteModel):

@@ -3,7 +3,6 @@ from rest_framework import serializers
 from drf_spectacular.utils import extend_schema_field
 from drf_spectacular.types import OpenApiTypes
 from django.contrib.auth import get_user_model
-from django.conf import settings
 from print_nanny_webapp.devices.models import (
     Pi,
     PiNatsApp,
@@ -141,11 +140,6 @@ class PiSerializer(serializers.ModelSerializer):
 
 
 class NatsAppSerializer(serializers.ModelSerializer):
-    nats_uri = serializers.SerializerMethodField()
-
-    def get_nats_uri(self, _obj) -> str:
-        return settings.NATS_SERVER_URI
-
     class Meta:
         model = PiNatsApp
         fields = (
