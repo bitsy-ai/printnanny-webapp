@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -u
+set -ueo pipefail
 
 pip install j2cli[yaml]
 

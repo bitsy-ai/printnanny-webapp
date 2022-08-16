@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -u
+set -ueo pipefail
 
 kubectl apply -f dist/k8s/ns.yml
 kubectl apply -f dist/k8s/cluster-issuer.yml
