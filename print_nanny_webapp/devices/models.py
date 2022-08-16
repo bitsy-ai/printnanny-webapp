@@ -193,6 +193,22 @@ class PiNatsApp(AbstractNatsApp, SafeDeleteModel):
             ),
         ]
 
+    @property
+    def nats_server_uri(self) -> str:
+        if settings.DEBUG is False:
+            return settings.NATS_SERVER_URI
+        # replace nats://nats:4222 with dev machine hostname in debug mode
+        return settings.NATS_SERVER_URI.replace(
+            "nats:", f"{settings.DEV_SERVER_HOSTNAME}:"
+        )
+
+    @property
+    def nats_ws_uri(self) -> str:
+        if settings.DEBUG is False:
+            return settings.NATS_WS_URI
+        # replace ws://nats:8443 with dev machine hostname in debug mode
+        return settings.NATS_WS.replace("nats:", f"{settings.DEV_SERVER_HOSTNAME}:")
+
 
 class PiSettings(SafeDeleteModel):
     """

@@ -155,7 +155,8 @@ class NatsAppSerializer(serializers.ModelSerializer):
             "pi",
             "organization",
             "organization_user",
-            "nats_uri",
+            "nats_server_uri",
+            "nats_ws_uri",
         )
 
 
