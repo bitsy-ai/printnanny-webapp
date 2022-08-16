@@ -1,30 +1,17 @@
-import io
 import logging
-import zipfile
 from uuid import uuid4
 from typing import Tuple, Dict, Any
 
 import requests
 from django.conf import settings
 from django.template.loader import render_to_string
-from django.http import HttpRequest
-from rest_framework.renderers import JSONRenderer
-from django_nats_nkeys.services import (
-    nsc_generate_creds,
-    create_organization,
-)
 from django_nats_nkeys.models import (
-    NatsOrganizationUser,
-    _default_name,
     NatsMessageExport,
     NatsMessageExportType,
     NatsRobotAccount,
-)
-from print_nanny_webapp.devices.api.serializers import (
-    PrintNannyLicenseSerializer,
+    NatsRobotApp,
 )
 from print_nanny_webapp.devices.enum import JanusConfigType
-from print_nanny_webapp.utils.api.service import get_api_config
 
 from print_nanny_webapp.devices.models import (
     Pi,
@@ -33,6 +20,28 @@ from print_nanny_webapp.devices.models import (
 )
 
 logger = logging.getLogger(__name__)
+
+
+NATS_ROBOT_ACCOUNT_DB_WRITER_NAME = "db-writer"
+
+try:
+    NATS_ROBOT_DB_WRITER_ACCOUNT = NatsRobotAccount.objects.get(
+        name=NATS_ROBOT_ACCOUNT_DB_WRITER_NAME
+    )
+except NatsRobotAccount.DoesNotExist:
+    NATS_ROBOT_DB_WRITER_ACCOUNT = NatsRobotAccount.objects.create_nsc(
+        name=NATS_ROBOT_ACCOUNT_DB_WRITER_NAME
+    )
+
+try:
+    NATS_ROBOT_APP_DB_WRITER = NatsRobotApp.objects.get(
+        app_name=NATS_ROBOT_ACCOUNT_DB_WRITER_NAME, account=NATS_ROBOT_DB_WRITER_ACCOUNT
+    )
+
+except NatsRobotApp.DoesNotExist:
+    NATS_ROBOT_APP_DB_WRITER = NatsRobotApp.objects.create_nsc(
+        app_name=NATS_ROBOT_ACCOUNT_DB_WRITER_NAME, account=NATS_ROBOT_DB_WRITER_ACCOUNT
+    )
 
 
 def janus_admin_add_token(stream: WebrtcStream) -> Dict[str, Any]:
@@ -89,7 +98,7 @@ def janus_cloud_setup(device: Pi) -> Tuple[WebrtcStream, bool]:
     return stream, created
 
 
-def get_or_create_import_export_streams(app: PiNatsApp):
+def get_or_create_import_export_streams(app: PiNatsApp) -> None:
     """
     By default, NATS messages are scoped to an account (represented by a Django organization by django-nats-nkeys)
 
@@ -109,9 +118,23 @@ def get_or_create_import_export_streams(app: PiNatsApp):
             type=NatsMessageExportType.STREAM,
             public=False,
         )
+    # first, create an interested importer entry
     for robot_account in NatsRobotAccount.objects.all():
         robot_account.imports.add(nats_export)
         robot_account.save()
+        logger.info(
+            "Added NatsMessageExport %s to NatsRobotAccount.exports %s",
+            nats_export,
+            robot_account,
+        )
+    # after importers have been configred, add exporter relationship. nsc commands are handled in django_nats_nkeys.signals.add_nats_organization_export
+    app.organization.exports.add(nats_export)
+    app.organization.save()
+    logger.info(
+        "Added NatsMessageExport %s to NatsOrganization.imports %s",
+        nats_export,
+        app.organization,
+    )
 
 
 def get_or_create_pi_nats_app(pi: Pi) -> PiNatsApp:
