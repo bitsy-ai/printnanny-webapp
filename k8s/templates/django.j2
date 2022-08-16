@@ -32,6 +32,10 @@ spec:
       - name: django
         imagePullPolicy: Always
         image: {{ PRINTNANNY_DJANGO_IMAGE }}
+        lifecycle:
+          preStop:
+            exec:
+              command: ["python", "manage.py", "nsc_push"]
         livenessProbe:
           httpGet:
             path: /health/
@@ -66,11 +70,6 @@ spec:
         - name: django-operator-nkeys
           readOnly: true
           mountPath: "/etc/django-operator-nkeys"
-        # push nsc to remote
-        lifecycle:
-          preStop:
-            exec:
-              command: ["python", "manage.py", "nsc_push"]
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!
