@@ -10,7 +10,8 @@ Name | Type | Description | Notes
 **pi** | **int** |  | 
 **organization** | **int** |  | 
 **organization_user** | **int** |  | 
-**nats_uri** | **str** |  | [readonly] 
+**nats_server_uri** | **str** |  | [readonly] 
+**nats_ws_uri** | **str** |  | [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
