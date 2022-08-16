@@ -35,7 +35,10 @@ spec:
         lifecycle:
           preStop:
             exec:
-              command: ["python", "manage.py", "nsc_push"]
+              command:
+                - python
+                - manage.py
+                - nsc_push
         livenessProbe:
           httpGet:
             path: /health/
