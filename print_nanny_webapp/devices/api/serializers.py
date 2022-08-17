@@ -155,7 +155,7 @@ class PiSerializer(serializers.ModelSerializer):
 
     urls = serializers.SerializerMethodField()
 
-    nats_app = PiNatsAppSerializer()
+    nats_app = PiNatsAppSerializer(read_only=True)
 
     def get_urls(self, obj) -> PiUrls:
         return obj.urls
