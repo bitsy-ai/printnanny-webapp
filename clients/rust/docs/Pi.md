@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **webrtc_cloud** | Option<[**crate::models::WebrtcStream**](WebrtcStream.md)> |  | [readonly]
 **octoprint_server** | Option<[**crate::models::OctoPrintServer**](OctoPrintServer.md)> |  | [readonly]
 **urls** | [**crate::models::PiUrls**](Pi_urls.md) |  | 
-**nats_app** | [**crate::models::PiNatsApp**](PiNatsApp.md) |  | 
+**nats_app** | Option<[**crate::models::PiNatsApp**](PiNatsApp.md)> |  | [readonly]
 **sbc** | Option<[**crate::models::SbcEnum**](SbcEnum.md)> |  | [optional]
 **edition** | Option<[**crate::models::OsEdition**](OsEdition.md)> |  | [optional]
 **created_dt** | **String** |  | [readonly]

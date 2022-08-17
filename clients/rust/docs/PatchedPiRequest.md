@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**nats_app** | Option<[**crate::models::PiNatsAppRequest**](PiNatsAppRequest.md)> |  | [optional]
 **sbc** | Option<[**crate::models::SbcEnum**](SbcEnum.md)> |  | [optional]
 **edition** | Option<[**crate::models::OsEdition**](OsEdition.md)> |  | [optional]
 **hostname** | Option<**String**> | Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension) | [optional]

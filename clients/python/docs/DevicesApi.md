@@ -37,7 +37,7 @@ Method | HTTP request | Description
 
 
 # **pis_create**
-> Pi pis_create(pi_request)
+> Pi pis_create(pi_request=pi_request)
 
 
 
@@ -78,10 +78,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    pi_request = printnanny_api_client.PiRequest() # PiRequest | 
+    pi_request = printnanny_api_client.PiRequest() # PiRequest |  (optional)
 
     try:
-        api_response = api_instance.pis_create(pi_request)
+        api_response = api_instance.pis_create(pi_request=pi_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->pis_create: %s\n" % e)
@@ -120,10 +120,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
-    pi_request = printnanny_api_client.PiRequest() # PiRequest | 
+    pi_request = printnanny_api_client.PiRequest() # PiRequest |  (optional)
 
     try:
-        api_response = api_instance.pis_create(pi_request)
+        api_response = api_instance.pis_create(pi_request=pi_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->pis_create: %s\n" % e)
@@ -133,7 +133,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pi_request** | [**PiRequest**](PiRequest.md)|  | 
+ **pi_request** | [**PiRequest**](PiRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -2761,7 +2761,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pis_update**
-> Pi pis_update(id, pi_request)
+> Pi pis_update(id, pi_request=pi_request)
 
 
 
@@ -2803,10 +2803,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     id = 56 # int | A unique integer value identifying this pi.
-pi_request = printnanny_api_client.PiRequest() # PiRequest | 
+pi_request = printnanny_api_client.PiRequest() # PiRequest |  (optional)
 
     try:
-        api_response = api_instance.pis_update(id, pi_request)
+        api_response = api_instance.pis_update(id, pi_request=pi_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->pis_update: %s\n" % e)
@@ -2846,10 +2846,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     id = 56 # int | A unique integer value identifying this pi.
-pi_request = printnanny_api_client.PiRequest() # PiRequest | 
+pi_request = printnanny_api_client.PiRequest() # PiRequest |  (optional)
 
     try:
-        api_response = api_instance.pis_update(id, pi_request)
+        api_response = api_instance.pis_update(id, pi_request=pi_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->pis_update: %s\n" % e)
@@ -2860,7 +2860,7 @@ pi_request = printnanny_api_client.PiRequest() # PiRequest |
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this pi. | 
- **pi_request** | [**PiRequest**](PiRequest.md)|  | 
+ **pi_request** | [**PiRequest**](PiRequest.md)|  | [optional] 
 
 ### Return type
 
