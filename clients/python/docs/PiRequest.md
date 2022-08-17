@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**nats_app** | [**PiNatsAppRequest**](PiNatsAppRequest.md) |  | 
 **sbc** | [**SbcEnum**](SbcEnum.md) |  | [optional] 
 **edition** | [**OsEdition**](OsEdition.md) |  | [optional] 
 **hostname** | **str** | Please enter the hostname you set in the Raspberry Pi Imager&#39;s Advanced Options menu (without .local extension) | [optional] 

@@ -27,7 +27,8 @@ docs/JanusConfigType.md
 docs/LoginRequest.md
 docs/MemberBadge.md
 docs/MemberBadgeRequest.md
-docs/NatsApp.md
+docs/NatsOrganization.md
+docs/NatsOrganizationRequest.md
 docs/NatsOrganizationUser.md
 docs/OctoPrintBackup.md
 docs/OctoPrintClientStatus.md
@@ -103,6 +104,8 @@ docs/PiCamStatus.md
 docs/PiCamStatusRequest.md
 docs/PiCamStatusSubjectPatternEnum.md
 docs/PiCamStatusType.md
+docs/PiNatsApp.md
+docs/PiNatsAppRequest.md
 docs/PiRequest.md
 docs/PiSettings.md
 docs/PiSettingsRequest.md
@@ -188,7 +191,8 @@ src/models/login_request.rs
 src/models/member_badge.rs
 src/models/member_badge_request.rs
 src/models/mod.rs
-src/models/nats_app.rs
+src/models/nats_organization.rs
+src/models/nats_organization_request.rs
 src/models/nats_organization_user.rs
 src/models/octo_print_backup.rs
 src/models/octo_print_client_status.rs
@@ -263,6 +267,8 @@ src/models/pi_cam_status.rs
 src/models/pi_cam_status_request.rs
 src/models/pi_cam_status_subject_pattern_enum.rs
 src/models/pi_cam_status_type.rs
+src/models/pi_nats_app.rs
+src/models/pi_nats_app_request.rs
 src/models/pi_request.rs
 src/models/pi_settings.rs
 src/models/pi_settings_request.rs

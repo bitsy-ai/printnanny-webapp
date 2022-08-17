@@ -1,17 +1,15 @@
-# NatsApp
+# NatsOrganizationRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **i32** |  | [readonly]
-**app_name** | Option<**String**> |  | [optional]
+**name** | **String** | The name of the organization | 
+**is_active** | Option<**bool**> |  | [optional]
+**slug** | **String** | The name in all lowercase, suitable for URL identification | 
 **json** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Output of `nsc describe account` | [optional]
-**pi** | **i32** |  | 
-**organization** | **i32** |  | 
-**organization_user** | **i32** |  | 
-**nats_server_uri** | **String** |  | [readonly]
-**nats_ws_uri** | **String** |  | [readonly]
+**imports** | **Vec<i32>** |  | 
+**exports** | **Vec<i32>** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -49,7 +49,7 @@ A device (Raspberry Pi) running Print Nanny OS
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**pi_request** | Option<[**PiRequest**](PiRequest.md)> |  |  |
+**pi_request** | [**PiRequest**](PiRequest.md) |  | [required] |
 
 ### Return type
 
@@ -698,7 +698,7 @@ A device (Raspberry Pi) running Print Nanny OS
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **i32** | A unique integer value identifying this pi. | [required] |
-**pi_request** | Option<[**PiRequest**](PiRequest.md)> |  |  |
+**pi_request** | [**PiRequest**](PiRequest.md) |  | [required] |
 
 ### Return type
 

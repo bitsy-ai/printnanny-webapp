@@ -28,7 +28,8 @@ docs/JanusConfigType.md
 docs/LoginRequest.md
 docs/MemberBadge.md
 docs/MemberBadgeRequest.md
-docs/NatsApp.md
+docs/NatsOrganization.md
+docs/NatsOrganizationRequest.md
 docs/NatsOrganizationUser.md
 docs/OctoPrintBackup.md
 docs/OctoPrintClientStatus.md
@@ -104,6 +105,8 @@ docs/PiCamStatus.md
 docs/PiCamStatusRequest.md
 docs/PiCamStatusSubjectPatternEnum.md
 docs/PiCamStatusType.md
+docs/PiNatsApp.md
+docs/PiNatsAppRequest.md
 docs/PiRequest.md
 docs/PiSettings.md
 docs/PiSettingsRequest.md
@@ -191,7 +194,8 @@ printnanny_api_client/models/janus_config_type.py
 printnanny_api_client/models/login_request.py
 printnanny_api_client/models/member_badge.py
 printnanny_api_client/models/member_badge_request.py
-printnanny_api_client/models/nats_app.py
+printnanny_api_client/models/nats_organization.py
+printnanny_api_client/models/nats_organization_request.py
 printnanny_api_client/models/nats_organization_user.py
 printnanny_api_client/models/octo_print_backup.py
 printnanny_api_client/models/octo_print_client_status.py
@@ -266,6 +270,8 @@ printnanny_api_client/models/pi_cam_status.py
 printnanny_api_client/models/pi_cam_status_request.py
 printnanny_api_client/models/pi_cam_status_subject_pattern_enum.py
 printnanny_api_client/models/pi_cam_status_type.py
+printnanny_api_client/models/pi_nats_app.py
+printnanny_api_client/models/pi_nats_app_request.py
 printnanny_api_client/models/pi_request.py
 printnanny_api_client/models/pi_settings.py
 printnanny_api_client/models/pi_settings_request.py
@@ -346,7 +352,8 @@ test/test_janus_config_type.py
 test/test_login_request.py
 test/test_member_badge.py
 test/test_member_badge_request.py
-test/test_nats_app.py
+test/test_nats_organization.py
+test/test_nats_organization_request.py
 test/test_nats_organization_user.py
 test/test_octo_print_backup.py
 test/test_octo_print_client_status.py
@@ -422,6 +429,8 @@ test/test_pi_cam_status.py
 test/test_pi_cam_status_request.py
 test/test_pi_cam_status_subject_pattern_enum.py
 test/test_pi_cam_status_type.py
+test/test_pi_nats_app.py
+test/test_pi_nats_app_request.py
 test/test_pi_request.py
 test/test_pi_settings.py
 test/test_pi_settings_request.py
