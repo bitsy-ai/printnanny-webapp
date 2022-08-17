@@ -4,7 +4,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**nats_app** | [**PiNatsApp**](PiNatsApp.md) |  | [readonly] 
 **api** | [**PrintNannyApiConfig**](PrintNannyApiConfig.md) |  | [readonly] 
 **pi** | [**Pi**](Pi.md) |  | [readonly] 
 

@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**nats_app** | Option<[**crate::models::PiNatsApp**](PiNatsApp.md)> |  | [readonly]
 **api** | Option<[**crate::models::PrintNannyApiConfig**](PrintNannyApiConfig.md)> |  | [readonly]
 **pi** | Option<[**crate::models::Pi**](Pi.md)> |  | [readonly]
 
