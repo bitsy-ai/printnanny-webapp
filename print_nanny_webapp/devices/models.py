@@ -128,6 +128,10 @@ class Pi(SafeDeleteModel):
         return obj
 
     @property
+    def nats_app(self):
+        return self.nats_apps.first()
+
+    @property
     def system_info(self):
         return self.system_infos.first()
 
@@ -171,7 +175,7 @@ class PiNatsAppManager(SafeDeleteManager, NatsOrganizationAppManager):
 # add Pi foreign key reference to NatsApp
 class PiNatsApp(AbstractNatsApp, SafeDeleteModel):
     objects = PiNatsAppManager()
-    pi = models.ForeignKey(Pi, on_delete=models.CASCADE)
+    pi = models.ForeignKey(Pi, on_delete=models.CASCADE, related_name="nats_apps")
     organization_user = models.ForeignKey(
         NatsOrganizationUser, on_delete=models.CASCADE, related_name="nats_pi_apps"
     )
@@ -192,6 +196,14 @@ class PiNatsApp(AbstractNatsApp, SafeDeleteModel):
                 name="unique_nats_app_per_pi",
             ),
         ]
+
+    @property
+    def nats_subject_pattern_template(self) -> str:
+        return "pi.{pi_id}.>"
+
+    @property
+    def nats_subject_pattern(self) -> str:
+        return self.nats_subject_pattern_template.format(pi_id=self.id)
 
     @property
     def nats_server_uri(self) -> str:
@@ -218,6 +230,11 @@ class PiNatsApp(AbstractNatsApp, SafeDeleteModel):
             )
             return settings.NATS_WS_URI
         return settings.NATS_WS_URI.replace("nats:", f"{dev_hostname}:")
+
+    def nsc_validate(self):
+        from django_nats_nkeys.services import nsc_validate
+
+        return nsc_validate(account_name=self.organization.name)
 
 
 class PiSettings(SafeDeleteModel):

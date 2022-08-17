@@ -3,6 +3,11 @@ from rest_framework import serializers
 from drf_spectacular.utils import extend_schema_field
 from drf_spectacular.types import OpenApiTypes
 from django.contrib.auth import get_user_model
+from django_nats_nkeys.api.serializers import (
+    NatsOrganizationSerializer,
+)
+
+
 from print_nanny_webapp.devices.models import (
     Pi,
     PiNatsApp,
@@ -115,6 +120,26 @@ class SystemInfoSerializer(serializers.ModelSerializer):
         )
 
 
+class PiNatsAppSerializer(serializers.ModelSerializer):
+
+    organization = NatsOrganizationSerializer()
+
+    class Meta:
+        model = PiNatsApp
+        fields = (
+            "id",
+            "app_name",
+            "json",
+            "pi",
+            "organization",
+            "organization_user",
+            "nats_server_uri",
+            "nats_ws_uri",
+            "nats_subject_pattern",
+            "nats_subject_pattern_template",
+        )
+
+
 class PiSerializer(serializers.ModelSerializer):
     last_boot = serializers.CharField(read_only=True, allow_null=True)
     # alert_settings = AlertSettingsSerializer(read_only=True)
@@ -130,6 +155,8 @@ class PiSerializer(serializers.ModelSerializer):
 
     urls = serializers.SerializerMethodField()
 
+    nats_app = PiNatsAppSerializer()
+
     def get_urls(self, obj) -> PiUrls:
         return obj.urls
 
@@ -139,23 +166,8 @@ class PiSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
 
 
-class NatsAppSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PiNatsApp
-        fields = (
-            "id",
-            "app_name",
-            "json",
-            "pi",
-            "organization",
-            "organization_user",
-            "nats_server_uri",
-            "nats_ws_uri",
-        )
-
-
 class PrintNannyLicenseSerializer(serializers.Serializer):
-    nats_app = NatsAppSerializer(read_only=True)
+    nats_app = PiNatsAppSerializer(read_only=True)
     api = PrintNannyApiConfigSerializer(read_only=True)
     pi = PiSerializer(read_only=True)
 
