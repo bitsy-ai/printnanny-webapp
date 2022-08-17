@@ -3,6 +3,11 @@ from rest_framework import serializers
 from drf_spectacular.utils import extend_schema_field
 from drf_spectacular.types import OpenApiTypes
 from django.contrib.auth import get_user_model
+from django_nats_nkeys.api.serializers import (
+    NatsOrganizationSerializer,
+)
+
+
 from print_nanny_webapp.devices.models import (
     Pi,
     PiNatsApp,
@@ -115,31 +120,10 @@ class SystemInfoSerializer(serializers.ModelSerializer):
         )
 
 
-class PiSerializer(serializers.ModelSerializer):
-    last_boot = serializers.CharField(read_only=True, allow_null=True)
-    # alert_settings = AlertSettingsSerializer(read_only=True)
-    settings = PiSettingsSerializer(read_only=True)
-    user = UserSerializer(read_only=True)
-    system_info = SystemInfoSerializer(read_only=True)
-    public_key = PublicKeySerializer(read_only=True)
+class PiNatsAppSerializer(serializers.ModelSerializer):
 
-    webrtc_edge = WebrtcStreamSerializer(read_only=True)
-    webrtc_cloud = WebrtcStreamSerializer(read_only=True)
+    organization = NatsOrganizationSerializer()
 
-    octoprint_server = OctoPrintServerSerializer(read_only=True)
-
-    urls = serializers.SerializerMethodField()
-
-    def get_urls(self, obj) -> PiUrls:
-        return obj.urls
-
-    class Meta:
-        model = Pi
-        depth = 1
-        exclude = ("deleted",)
-
-
-class NatsAppSerializer(serializers.ModelSerializer):
     class Meta:
         model = PiNatsApp
         fields = (
@@ -156,8 +140,34 @@ class NatsAppSerializer(serializers.ModelSerializer):
         )
 
 
+class PiSerializer(serializers.ModelSerializer):
+    last_boot = serializers.CharField(read_only=True, allow_null=True)
+    # alert_settings = AlertSettingsSerializer(read_only=True)
+    settings = PiSettingsSerializer(read_only=True)
+    user = UserSerializer(read_only=True)
+    system_info = SystemInfoSerializer(read_only=True)
+    public_key = PublicKeySerializer(read_only=True)
+
+    webrtc_edge = WebrtcStreamSerializer(read_only=True)
+    webrtc_cloud = WebrtcStreamSerializer(read_only=True)
+
+    octoprint_server = OctoPrintServerSerializer(read_only=True)
+
+    urls = serializers.SerializerMethodField()
+
+    nats_app = PiNatsAppSerializer()
+
+    def get_urls(self, obj) -> PiUrls:
+        return obj.urls
+
+    class Meta:
+        model = Pi
+        depth = 1
+        exclude = ("deleted",)
+
+
 class PrintNannyLicenseSerializer(serializers.Serializer):
-    nats_app = NatsAppSerializer(read_only=True)
+    nats_app = PiNatsAppSerializer(read_only=True)
     api = PrintNannyApiConfigSerializer(read_only=True)
     pi = PiSerializer(read_only=True)
 

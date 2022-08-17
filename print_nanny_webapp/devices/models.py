@@ -128,6 +128,10 @@ class Pi(SafeDeleteModel):
         return obj
 
     @property
+    def nats_app(self):
+        return self.nats_apps.first()
+
+    @property
     def system_info(self):
         return self.system_infos.first()
 
@@ -171,7 +175,7 @@ class PiNatsAppManager(SafeDeleteManager, NatsOrganizationAppManager):
 # add Pi foreign key reference to NatsApp
 class PiNatsApp(AbstractNatsApp, SafeDeleteModel):
     objects = PiNatsAppManager()
-    pi = models.ForeignKey(Pi, on_delete=models.CASCADE)
+    pi = models.ForeignKey(Pi, on_delete=models.CASCADE, related_name="nats_apps")
     organization_user = models.ForeignKey(
         NatsOrganizationUser, on_delete=models.CASCADE, related_name="nats_pi_apps"
     )
