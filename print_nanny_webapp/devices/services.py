@@ -1,8 +1,11 @@
 import logging
+import io
+import zipfile
 from uuid import uuid4
 from typing import Tuple, Dict, Any
 
 import requests
+from django.http import HttpRequest
 from django.conf import settings
 from django.template.loader import render_to_string
 from django_nats_nkeys.models import (
@@ -10,9 +13,14 @@ from django_nats_nkeys.models import (
     NatsMessageExportType,
     NatsRobotAccount,
     NatsRobotApp,
+    NatsOrganizationUser,
+    _default_name,
 )
+from django_nats_nkeys.services import create_organization, nsc_generate_creds
+from rest_framework.renderers import JSONRenderer
+from print_nanny_webapp.utils.api.service import get_api_config
 from print_nanny_webapp.devices.enum import JanusConfigType
-
+from print_nanny_webapp.devices.api.serializers import PrintNannyLicenseSerializer
 from print_nanny_webapp.devices.models import (
     Pi,
     PiNatsApp,
@@ -22,26 +30,29 @@ from print_nanny_webapp.devices.models import (
 logger = logging.getLogger(__name__)
 
 
-NATS_ROBOT_ACCOUNT_DB_WRITER_NAME = "db-writer"
+def init_robots():
+    NATS_ROBOT_ACCOUNT_DB_WRITER_NAME = "firehose"
 
-try:
-    NATS_ROBOT_DB_WRITER_ACCOUNT = NatsRobotAccount.objects.get(
-        name=NATS_ROBOT_ACCOUNT_DB_WRITER_NAME
-    )
-except NatsRobotAccount.DoesNotExist:
-    NATS_ROBOT_DB_WRITER_ACCOUNT = NatsRobotAccount.objects.create_nsc(
-        name=NATS_ROBOT_ACCOUNT_DB_WRITER_NAME
-    )
+    try:
+        NATS_ROBOT_DB_WRITER_ACCOUNT = NatsRobotAccount.objects.get(
+            name=NATS_ROBOT_ACCOUNT_DB_WRITER_NAME
+        )
+    except NatsRobotAccount.DoesNotExist:
+        NATS_ROBOT_DB_WRITER_ACCOUNT = NatsRobotAccount.objects.create_nsc(
+            name=NATS_ROBOT_ACCOUNT_DB_WRITER_NAME
+        )
 
-try:
-    NATS_ROBOT_APP_DB_WRITER = NatsRobotApp.objects.get(
-        app_name=NATS_ROBOT_ACCOUNT_DB_WRITER_NAME, account=NATS_ROBOT_DB_WRITER_ACCOUNT
-    )
+    try:
+        NatsRobotApp.objects.get(
+            app_name=NATS_ROBOT_ACCOUNT_DB_WRITER_NAME,
+            account=NATS_ROBOT_DB_WRITER_ACCOUNT,
+        )
 
-except NatsRobotApp.DoesNotExist:
-    NATS_ROBOT_APP_DB_WRITER = NatsRobotApp.objects.create_nsc(
-        app_name=NATS_ROBOT_ACCOUNT_DB_WRITER_NAME, account=NATS_ROBOT_DB_WRITER_ACCOUNT
-    )
+    except NatsRobotApp.DoesNotExist:
+        NATS_ROBOT_APP_DB_WRITER = NatsRobotApp.objects.create_nsc(
+            app_name=NATS_ROBOT_ACCOUNT_DB_WRITER_NAME,
+            account=NATS_ROBOT_DB_WRITER_ACCOUNT,
+        )
 
 
 def janus_admin_add_token(stream: WebrtcStream) -> Dict[str, Any]:
@@ -110,14 +121,16 @@ def get_or_create_import_export_streams(app: PiNatsApp) -> None:
             name=app.app_name,
             subject_pattern=app.nats_subject_pattern,
         )
+        logger.info("Found NatsMessageExport %s", nats_export)
     except NatsMessageExport.DoesNotExist:
         # create export for this app
         nats_export = NatsMessageExport.objects.create(
             name=app.app_name,
             subject_pattern=app.nats_subject_pattern,
-            type=NatsMessageExportType.STREAM,
+            export_type=NatsMessageExportType.STREAM,
             public=False,
         )
+        logger.info("Created NatsMessageExport %s", nats_export)
     # first, create an interested importer entry
     for robot_account in NatsRobotAccount.objects.all():
         robot_account.imports.add(nats_export)
@@ -153,11 +166,10 @@ def get_or_create_pi_nats_app(pi: Pi) -> PiNatsApp:
     try:
         app = PiNatsApp.objects.get(pi=pi)
         # handle app in potentially half-created state
-        validator = app.validate()
+        validator = app.nsc_validate()
         if validator.ok() is False:
             raise Exception(f"PiNatsApp validation failed {validator.result.stdout}")
 
-        get_or_create_import_export_streams(app)
     # create nats app associated with org user
     except PiNatsApp.DoesNotExist:
         app = PiNatsApp.objects.create_nsc(
@@ -166,6 +178,8 @@ def get_or_create_pi_nats_app(pi: Pi) -> PiNatsApp:
             organization=org_user.organization,
             pi=pi,
         )
+    get_or_create_import_export_streams(app)
+
     return app
 
 
@@ -178,12 +192,7 @@ def get_license_serializer(
 
 def build_license_zip(pi: Pi, request: HttpRequest) -> bytes:
 
-    # is there already a NatsApp associated with Pi?
-    try:
-        nats_app = PiNatsApp.objects.get(pi=pi)
-    # no app, step through NATS account + app creation process
-    except PiNatsApp.DoesNotExist:
-        nats_app = get_or_create_pi_nats_app(pi)
+    nats_app = get_or_create_pi_nats_app(pi)
 
     license_serializer = get_license_serializer(pi, nats_app, request)
 

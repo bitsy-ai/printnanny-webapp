@@ -190,8 +190,13 @@ local-build: local-image-build local-vue-build
 down:
 	docker-compose -f local.yml down
 
+
+robots-init:
+	docker-compose -f local.yml exec django python manage.py init_natsrobots
+
 nsc-init:
 	docker-compose -f local.yml exec django python manage.py nsc_init || echo "DjangoOperator already created" && docker-compose -f local.yml restart nats
+	docker-compose -f local.yml exec django python manage.py init_natsrobots
 
 local-up: local-image-build local-creds
 	. .envs/.sandbox/.env && PROJECT=$(GCP_PROJECT) \

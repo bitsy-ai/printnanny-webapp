@@ -227,6 +227,11 @@ class PiNatsApp(AbstractNatsApp, SafeDeleteModel):
             return settings.NATS_WS_URI
         return settings.NATS_WS_URI.replace("nats:", f"{dev_hostname}:")
 
+    def nsc_validate(self):
+        from django_nats_nkeys.services import nsc_validate
+
+        return nsc_validate(account_name=self.organization.name)
+
 
 class PiSettings(SafeDeleteModel):
     """
