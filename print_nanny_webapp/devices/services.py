@@ -183,18 +183,16 @@ def get_or_create_pi_nats_app(pi: Pi) -> PiNatsApp:
     return app
 
 
-def get_license_serializer(
-    pi: Pi, nats_app: PiNatsApp, request: HttpRequest
-) -> PrintNannyLicenseSerializer:
+def get_license_serializer(pi: Pi, request: HttpRequest) -> PrintNannyLicenseSerializer:
     api = get_api_config(request, user=pi.user)
-    return PrintNannyLicenseSerializer(dict(api=api, nats_app=nats_app, pi=pi))
+    return PrintNannyLicenseSerializer(dict(api=api, pi=pi))
 
 
 def build_license_zip(pi: Pi, request: HttpRequest) -> bytes:
 
     nats_app = get_or_create_pi_nats_app(pi)
 
-    license_serializer = get_license_serializer(pi, nats_app, request)
+    license_serializer = get_license_serializer(pi, request)
 
     nats_creds = nsc_generate_creds(
         nats_app.organization.name, app_name=nats_app.app_name

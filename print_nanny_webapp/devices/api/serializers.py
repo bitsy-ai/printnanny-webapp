@@ -167,12 +167,11 @@ class PiSerializer(serializers.ModelSerializer):
 
 
 class PrintNannyLicenseSerializer(serializers.Serializer):
-    nats_app = PiNatsAppSerializer(read_only=True)
     api = PrintNannyApiConfigSerializer(read_only=True)
     pi = PiSerializer(read_only=True)
 
     class Meta:
-        fields = ("pi", "api", "nats_app")
+        fields = ("pi", "api")
 
     def update(self, _instance, _validated_data):
         pass
