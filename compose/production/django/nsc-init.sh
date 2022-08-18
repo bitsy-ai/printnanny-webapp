@@ -4,8 +4,6 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-python manage.py collectstatic --noinput
-
 NATS_SERVER_URI="${NATS_SERVER_URI:-nats://nats:4222}"
 NKEYS_IMPORT_DIR="${NKEYS_IMPORT_DIR:-/etc/django-operator-nkeys}"
 DJANGO_OPERATOR_JWT="${DJANGO_OPERATOR_JWT:-/etc/django-operator-nkeys/operator.jwt}"
@@ -14,23 +12,13 @@ SYSTEM_ACCOUNT_USER="${NATS_SYSTEM_ACCOUNT_USER:-sys}"
 SYSTEM_ACCOUNT_JWT="${SYSTEM_ACCOUNT_JWT:-/etc/django-operator-nkeys/SYS.jwt}"
 SYSTEM_USER_JWT="${SYSTEM_USER_JWT:-/etc/django-operator-nkeys/sys.jwt}"
 
-
-compress_enabled() {
-python << END
-import sys
-
-from environ import Env
-
-env = Env(COMPRESS_ENABLED=(bool, True))
-if env('COMPRESS_ENABLED'):
-    sys.exit(0)
-else:
-    sys.exit(1)
-
-END
-}
-
-python manage.py migrate
+# set the nsc store directory
+if [ -z "${NSC_STORE}" ]; then
+    echo "WARNING: NSC_STORE variable is not set! The default nsc store location will be used"
+else
+    mkdir -p "$NSC_STORE"
+    nsc env --store "$NSC_STORE"
+fi
 
 # import operator.jwt if /etc/django-operator-nkeys/ mount available
 if [ -f "$DJANGO_OPERATOR_JWT" ] && [ -f "$SYSTEM_ACCOUNT_JWT" ] && [ -f "$SYSTEM_USER_JWT"  ]
@@ -47,19 +35,3 @@ then
     python manage.py nsc_user_jwt --import "$SYSTEM_USER_JWT"
     nsc pull --all --overwrite-newer --keystore-dir=/var/lib/nats/nsc/keys --config-dir=/var/lib/nats/nsc/config --data-dir=/var/lib/nats/nsc/stores --system-account "$SYSTEM_ACCOUNT" --system-user "$SYSTEM_ACCOUNT_USER"
 fi
-
-# if compress_enabled; then
-#   # NOTE this command will fail if django-compressor is disabled
-#   python /app/manage.py compress
-# fi
-set +u
-if [ "$DJANGO_SUPERUSER_EMAIL" ]
-then
-    python manage.py createsuperuser \
-        --noinput \
-        --email "$DJANGO_SUPERUSER_EMAIL" || \
-    echo "User already exists: $DJANGO_SUPERUSER_EMAIL"
-fi
-set -u
-
-uvicorn config.asgi:application --host 0.0.0.0 

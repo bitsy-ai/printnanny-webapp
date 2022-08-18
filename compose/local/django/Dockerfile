@@ -38,13 +38,9 @@ COPY ./compose/production/django/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
 RUN chmod +x /entrypoint
 
-COPY ./compose/local/django/start /start
+COPY ./compose/local/django/start.sh /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
-
-COPY ./compose/local/django/notebook /start-notebook
-RUN sed -i 's/\r$//g' /start-notebook
-RUN chmod +x /start-notebook
 
 RUN mkdir /data
 RUN mkdir -p /tmp/print_nanny_webapp
