@@ -13,19 +13,27 @@ NatsRobotApp = apps.get_model("django_nats_nkeys.NatsRobotApp")
 
 def get_robot_acccount(name):
     try:
-        return NatsRobotAccount.objects.get(name=name)
+        result = NatsRobotAccount.objects.get(name=name)
+        logger.info("Found existing NatsRobotAccount %s", result.__dict__)
     except NatsRobotAccount.DoesNotExist:
-        return NatsRobotAccount.objects.create_nsc(name=name)
+        result = NatsRobotAccount.objects.create_nsc(name=name)
+        logger.info("Created new NatsRobotAccount %s", result.__dict__)
+    return result
 
 
 def get_robot_app(account, app_name):
     try:
-        return NatsRobotApp.objects.get(
+        result = NatsRobotApp.objects.get(
             app_name=app_name,
             account=account,
         )
+        logger.info("Found existing NatsRobotApp %s", result.__dict__)
+
     except NatsRobotApp.DoesNotExist:
-        return NatsRobotApp.objects.create_nsc(app_name=app_name, account=account)
+        result = NatsRobotApp.objects.create_nsc(app_name=app_name, account=account)
+        logger.info("Created new NatsRobotApp %s", result.__dict__)
+
+    return result
 
 
 class Command(BaseCommand):
