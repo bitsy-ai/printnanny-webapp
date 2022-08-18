@@ -490,6 +490,6 @@ class PiLicenseJsonViewSet(GenericViewSet):
         # no app, step through NATS account + app creation process
         except PiNatsApp.DoesNotExist:
             nats_app = get_or_create_pi_nats_app(pi)
-        serializer = get_license_serializer(pi, nats_app, request)
+        serializer = get_license_serializer(pi, request)
 
         return Response(serializer.data)

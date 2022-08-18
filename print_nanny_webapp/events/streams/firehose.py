@@ -51,14 +51,10 @@ async def init_robot_app():
 
 @database_sync_to_async
 def handle_pi_event(msg):
-    subject = msg.subject
-    reply = msg.reply
     data = json.loads(msg.data.decode("utf-8"))
     logger.debug(
-        "Received NATS msg subject=%s reply=%s: data=%s",
-        subject=subject,
-        reply=reply,
-        data=data,
+        "Received NATS msg %s",
+        msg,
     )
     from print_nanny_webapp.events.api.serializers import PolymorphicPiEventSerializer
 
