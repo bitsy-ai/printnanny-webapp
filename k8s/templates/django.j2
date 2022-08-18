@@ -28,9 +28,32 @@ spec:
         secret:
           secretName: django-operator-nkeys
           defaultMode: 0400
+      - name: nsc
+        emptyDir: {}
+
+      initContainers:
+      - name: django-migrate
+        image: {{ PRINTNANNY_DJANGO_IMAGE }}
+        command:
+          - python
+          - manage.py
+          - migrate
+        envFrom:
+          - configMapRef:
+              name: webapp
+
+      - name: nsc-init
+        image: {{ PRINTNANNY_DJANGO_IMAGE }}
+        command:
+          - nsc-init
+        volumeMounts:
+        - name: django-operator-nkeys
+          readOnly: true
+          mountPath: "/etc/django-operator-nkeys"
+        - name: nsc
+          mountPath: "/var/lib/nats/nsc"
       containers:
       - name: django
-        imagePullPolicy: Always
         image: {{ PRINTNANNY_DJANGO_IMAGE }}
         lifecycle:
           preStop:
@@ -73,6 +96,21 @@ spec:
         - name: django-operator-nkeys
           readOnly: true
           mountPath: "/etc/django-operator-nkeys"
+        - name: nsc
+          mountPath: "/var/lib/nats/nsc"
+      - name: firehose
+        imagePullPolicy: Always
+        image: {{ PRINTNANNY_DJANGO_IMAGE }}
+        envFrom:
+          - configMapRef:
+              name: webapp
+        volumeMounts:
+        - name: django-operator-nkeys
+          readOnly: true
+          mountPath: "/etc/django-operator-nkeys"
+        - name: nsc
+          readOnly: true
+          mountPath: "/var/lib/nats/nsc"
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!

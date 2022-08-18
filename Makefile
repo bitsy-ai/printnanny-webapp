@@ -558,3 +558,6 @@ nats-upgrade:
 		--set auth.resolver.operator=${NATS_OPERATOR_NKEY} \
 		--set auth.resolver.systemAccount=${NATS_SYSTEM_ACCOUNT} \
 		--set auth.resolver.resolverPreload.${NATS_SYSTEM_ACCOUNT}=${NATS_RESOLVER_PRELOAD}
+
+shellcheck:
+	find -name '*.sh' -not -path './.venv/*' -not -path './clients/*' | xargs shellcheck

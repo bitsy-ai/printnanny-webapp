@@ -56,9 +56,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run ShellCheck
-        uses: ludeeus/action-shellcheck@master
-        with:
-          scandir: "./k8s"
+        run: |
+          sudo apt install shellcheck
+          make shellcheck
   eslint:
     runs-on: ubuntu-latest
     steps:

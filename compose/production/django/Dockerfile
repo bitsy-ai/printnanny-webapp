@@ -40,7 +40,7 @@ RUN sed -i 's/\r$//g' /entrypoint
 RUN chmod +x /entrypoint
 
 
-COPY ./compose/production/django/start /start
+COPY ./compose/production/django/start.sh /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 

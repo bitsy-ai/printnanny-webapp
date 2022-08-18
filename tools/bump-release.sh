@@ -2,7 +2,7 @@
 
 set -eu
 
-bump2version --current-version $(cat version.txt) --new-version "$1" patch
+bump2version --current-version "$(cat version.txt)" --new-version "$1" patch
 
 make ts-client
 make python-client

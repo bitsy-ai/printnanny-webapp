@@ -4,14 +4,6 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-# set the nsc store directory
-if [ -z "${NSC_STORE}" ]; then
-    echo "WARNING: NSC_STORE variable is not set! The default nsc store location will be used"
-else
-    mkdir -p "$NSC_STORE"
-    nsc env --store "$NSC_STORE"
-fi
-
 if [ -z "${POSTGRES_USER}" ]; then
     base_postgres_image_default_user='postgres'
     export POSTGRES_USER="${base_postgres_image_default_user}"
