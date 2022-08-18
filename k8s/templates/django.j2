@@ -32,18 +32,14 @@ spec:
         emptyDir: {}
 
       initContainers:
-      - name: django-migrate
+
+      - name: nsc-init
         image: {{ PRINTNANNY_DJANGO_IMAGE }}
-        command:
-          - python
-          - manage.py
-          - migrate
+
         envFrom:
           - configMapRef:
               name: webapp
 
-      - name: nsc-init
-        image: {{ PRINTNANNY_DJANGO_IMAGE }}
         command:
           - nsc-init
         volumeMounts:
