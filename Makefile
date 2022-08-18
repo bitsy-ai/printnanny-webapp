@@ -45,8 +45,8 @@ CDN_BUCKET ?= print-nanny-cdn
 CDN_DEPLOY_PATH ?= $(CDN_BUCKET)/ui/
 CDN_CACHE_INVALIDATE_PATH ?= /ui/index.html
 
-DEV_MACHINE ?= pn-dev
-DEV_CONFIG ?= $(TMPDIR)/PrintNanny-$(DEV_MACHINE).zip
+DEV_MACHINE ?= pn-debug
+DEV_CONFIG ?= $(TMPDIR)/printnanny-$(DEV_MACHINE).zip
 HOSTNAME ?= $(shell cat /etc/hostname)
 
 

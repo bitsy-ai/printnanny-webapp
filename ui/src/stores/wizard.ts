@@ -62,6 +62,8 @@ export const useWizardStore = defineStore({
       (async (sub: Subscription) => {
         console.log(`Subscribed to ${sub.getSubject()} events...`);
         for await (const msg of sub) {
+          console.log("Received msg", msg)
+
           const event: api.PolymorphicPiEventRequest = jsonCodec.decode(
             msg.data
           );
