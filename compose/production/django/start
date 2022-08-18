@@ -4,7 +4,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-python /app/manage.py collectstatic --noinput
+python manage.py collectstatic --noinput
 
 NATS_SERVER_URI="${NATS_SERVER_URI:-nats://nats:4222}"
 NKEYS_IMPORT_DIR="${NKEYS_IMPORT_DIR:-/etc/django-operator-nkeys}"
@@ -62,4 +62,4 @@ then
 fi
 set -u
 
-uvicorn config.asgi:application --host 0.0.0.0
+exec "$@"

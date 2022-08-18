@@ -58,6 +58,7 @@ services:
     depends_on:
       - postgres
       - prometheus
+      - nats
     volumes:
       - .:/app:z
       - local_file_data:/tmp:z
@@ -80,8 +81,38 @@ services:
     ports:
       - "8000:8000"
       - "8001:8001"
-    command: /start
+    command:
+      - /start
 
+  firehose: &firehose
+    hostname: firehose
+    depends_on:
+      - postgres
+      - nats
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    image: printnanny_webapp_local_django
+    container_name: printnanny_webapp_firehose
+    environment:
+      DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
+      DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
+      NKEYS_PATH: /var/lib/nats/nsc/keys
+      NSC_HOME: /var/lib/nats/nsc
+      NSC_STORE: /var/lib/nats/nsc/stores
+      DJANGO_SETTINGS_MODULE: config.settings.local
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
+      - ./.envs/.local/.secrets
+    volumes:
+      - .:/app:z
+      - local_nsc_data:/var/lib/nats/nsc:z
+
+    command:
+      - python
+      - -m
+      - print_nanny_webapp.events.streams.firehose
   postgres:
     hostname: postgres
     # network_mode: "host"
