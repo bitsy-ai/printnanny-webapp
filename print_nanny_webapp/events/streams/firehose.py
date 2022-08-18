@@ -82,8 +82,10 @@ def get_creds(app):
 
 
 async def main():
+    from django_nats_nkeys.services import nsc_pull
 
     app = await init_robot_app()
+    nsc_pull(force=True)
     logger.info(
         "Initializing worker subscribed to %s using app identity %s",
         NATS_ROBOT_ACCOUNT_NAME,
