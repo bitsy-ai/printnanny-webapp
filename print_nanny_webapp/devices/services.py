@@ -12,7 +12,6 @@ from django_nats_nkeys.models import (
     NatsMessageExport,
     NatsMessageExportType,
     NatsRobotAccount,
-    NatsRobotApp,
     NatsOrganizationUser,
     _default_name,
 )
@@ -28,31 +27,6 @@ from print_nanny_webapp.devices.models import (
 )
 
 logger = logging.getLogger(__name__)
-
-
-def init_robots():
-    NATS_ROBOT_ACCOUNT_DB_WRITER_NAME = "firehose"
-
-    try:
-        NATS_ROBOT_DB_WRITER_ACCOUNT = NatsRobotAccount.objects.get(
-            name=NATS_ROBOT_ACCOUNT_DB_WRITER_NAME
-        )
-    except NatsRobotAccount.DoesNotExist:
-        NATS_ROBOT_DB_WRITER_ACCOUNT = NatsRobotAccount.objects.create_nsc(
-            name=NATS_ROBOT_ACCOUNT_DB_WRITER_NAME
-        )
-
-    try:
-        NatsRobotApp.objects.get(
-            app_name=NATS_ROBOT_ACCOUNT_DB_WRITER_NAME,
-            account=NATS_ROBOT_DB_WRITER_ACCOUNT,
-        )
-
-    except NatsRobotApp.DoesNotExist:
-        NATS_ROBOT_APP_DB_WRITER = NatsRobotApp.objects.create_nsc(
-            app_name=NATS_ROBOT_ACCOUNT_DB_WRITER_NAME,
-            account=NATS_ROBOT_DB_WRITER_ACCOUNT,
-        )
 
 
 def janus_admin_add_token(stream: WebrtcStream) -> Dict[str, Any]:
