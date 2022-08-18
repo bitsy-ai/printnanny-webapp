@@ -2,7 +2,6 @@ import logging
 import tempfile
 import json
 import asyncio
-from time import sleep
 
 import nats
 from channels.db import database_sync_to_async
@@ -23,41 +22,38 @@ NatsRobotApp = apps.get_model("django_nats_nkeys.NatsRobotApp")
 
 @database_sync_to_async
 def get_robot_acccount(wait=10):
-    try:
-        return NatsRobotAccount.objects.get(name=NATS_ROBOT_ACCOUNT_NAME)
-    except NatsRobotAccount.DoesNotExist:
-        logger.warning(
-            "NatsRobotAccount.DoesNotExist %s - retrying in %s seconds",
-            NATS_ROBOT_ACCOUNT_NAME,
-            wait,
-        )
-        sleep(wait)
-        return get_robot_acccount()
+    return NatsRobotAccount.objects.get(name=NATS_ROBOT_ACCOUNT_NAME)
 
 
 @database_sync_to_async
 def get_robot_app(account, wait=10):
-    try:
-        return NatsRobotApp.objects.get(
-            app_name=NATS_ROBOT_ACCOUNT_NAME,
-            account=account,
-        )
-
-    except NatsRobotApp.DoesNotExist:
-        logger.warning(
-            "NatsRobotApp.DoesNotExist %s - retrying in %s seconds",
-            NATS_ROBOT_ACCOUNT_NAME,
-            wait,
-        )
-        sleep(wait)
-        return get_robot_app(account)
+    return NatsRobotApp.objects.get(
+        app_name=NATS_ROBOT_ACCOUNT_NAME,
+        account=account,
+    )
 
 
 async def init_robot_app():
-    account = await get_robot_acccount()
-    app = await get_robot_app(account)
-
-    return app
+    try:
+        account = await get_robot_acccount()
+        app = await get_robot_app(account)
+        return app
+    except NatsRobotAccount.DoesNotExist:
+        logger.warning(
+            "NatsRobotAccount.DoesNotExist %s - retrying in %i seconds",
+            NATS_ROBOT_ACCOUNT_NAME,
+            10,
+        )
+        await asyncio.sleep(10)
+        return await init_robot_app()
+    except NatsRobotApp.DoesNotExist:
+        logger.warning(
+            "NatsRobotApp.DoesNotExist %s - retrying in %i seconds",
+            NATS_ROBOT_ACCOUNT_NAME,
+            10,
+        )
+        await asyncio.sleep(10)
+        return await init_robot_app()
 
 
 @database_sync_to_async
@@ -79,10 +75,9 @@ def handle_pi_event(msg):
 
 @database_sync_to_async
 def get_creds(app):
-    from django_nats_nkeys.services import nsc_generate_creds, nsc_push
+    from django_nats_nkeys.services import nsc_generate_creds
 
     creds = nsc_generate_creds(app.account.name, app_name=app.app_name)
-    nsc_push()
     return creds
 
 

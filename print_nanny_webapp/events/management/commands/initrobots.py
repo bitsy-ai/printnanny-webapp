@@ -2,7 +2,7 @@ import logging
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 from django.apps import apps
-
+from django_nats_nkeys.services import nsc_push
 
 logger = logging.getLogger(__name__)
 User = get_user_model()
@@ -38,4 +38,6 @@ class Command(BaseCommand):
         name = kwargs.get("name")
         account = get_robot_acccount(name)
         app = get_robot_app(account, name)
+        nsc_push()
+
         logger.info("NatsRobotApp initialized %s", app.json)
