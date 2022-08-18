@@ -22,7 +22,6 @@ END
 }
 
 python manage.py migrate
-python manage.py initrobots
 
 # if compress_enabled; then
 #   # NOTE this command will fail if django-compressor is disabled
