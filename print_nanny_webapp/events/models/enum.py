@@ -40,6 +40,7 @@ class PiBootCommandType(models.TextChoices):
     Reboot = ("Reboot", "Reboot Raspberry Pi")
     Shutdown = ("Shutdown", "Shutdown Raspberry Pi")
     SyncSettings = ("SyncSettings", "Sync Raspberry Pi settings")
+    SystemtStatus = ("SystemStatus", "Get output from systemctl status")
 
 
 class PiBootStatusType(models.TextChoices):
