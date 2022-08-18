@@ -40,7 +40,7 @@ class Command(BaseCommand):
     help = "Initializes a robot account/app (indempotent)"
 
     def add_arguments(self, parser):
-        parser.add_argument("--name", type=str, default="firehose")
+        parser.add_argument("--name", type=str, required=True)
 
     def handle(self, *args, **kwargs):
         name = kwargs.get("name")
