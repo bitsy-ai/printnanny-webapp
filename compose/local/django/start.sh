@@ -6,6 +6,7 @@ set -o nounset
 
 python manage.py collectstatic --noinput
 python manage.py migrate
+python manage.py initrobots
 
 
 # set the nsc store directory

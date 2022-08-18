@@ -2,6 +2,7 @@ import logging
 import tempfile
 import json
 import asyncio
+from time import sleep
 
 import nats
 from channels.db import database_sync_to_async
@@ -21,15 +22,21 @@ NatsRobotApp = apps.get_model("django_nats_nkeys.NatsRobotApp")
 
 
 @database_sync_to_async
-def get_robot_acccount():
+def get_robot_acccount(wait=10):
     try:
         return NatsRobotAccount.objects.get(name=NATS_ROBOT_ACCOUNT_NAME)
     except NatsRobotAccount.DoesNotExist:
-        return NatsRobotAccount.objects.create_nsc(name=NATS_ROBOT_ACCOUNT_NAME)
+        logger.warning(
+            "NatsRobotAccount.DoesNotExist %s - retrying in %s seconds",
+            NATS_ROBOT_ACCOUNT_NAME,
+            wait,
+        )
+        sleep(wait)
+        return get_robot_acccount()
 
 
 @database_sync_to_async
-def get_robot_app(account):
+def get_robot_app(account, wait=10):
     try:
         return NatsRobotApp.objects.get(
             app_name=NATS_ROBOT_ACCOUNT_NAME,
@@ -37,9 +44,13 @@ def get_robot_app(account):
         )
 
     except NatsRobotApp.DoesNotExist:
-        return NatsRobotApp.objects.create_nsc(
-            app_name=NATS_ROBOT_ACCOUNT_NAME, account=account
+        logger.warning(
+            "NatsRobotApp.DoesNotExist %s - retrying in %s seconds",
+            NATS_ROBOT_ACCOUNT_NAME,
+            wait,
         )
+        sleep(wait)
+        return get_robot_app(account)
 
 
 async def init_robot_app():
