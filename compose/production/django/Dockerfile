@@ -44,6 +44,9 @@ COPY ./compose/production/django/start.sh /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 
+COPY ./compose/production/django/nsc-init.sh /nsc-init
+RUN chmod +x /nsc-init
+
 COPY . /app
 RUN echo "/app" > /usr/local/lib/python3.9/site-packages/print_nanny_webapp.pth
 
