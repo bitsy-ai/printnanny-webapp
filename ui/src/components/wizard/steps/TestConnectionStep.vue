@@ -5,6 +5,7 @@ import type { PropType } from "vue";
 import { useWizardStore } from "@/stores/wizard";
 import type { WizardStep } from "@/types";
 import { ConnectTestStatus } from "@/types";
+import moment from "moment";
 
 const props = defineProps({
   step: {
@@ -96,14 +97,9 @@ if (
                     {{ item.statusComponent().text }}
                     <br />
                     <time
-                      v-if="item.status == ConnectTestStatus.Pending"
-                      :datetime="item?.dtStart?.format()"
-                      ><i>Started {{ item?.dtStart?.fromNow() }}</i></time
-                    >
-                    <time
-                      v-if="item.status == ConnectTestStatus.Success"
-                      :datetime="item?.dtEnd?.format()"
-                      ><i>Finished {{ item?.dtEnd?.fromNow() }}</i></time
+                      v-if="item.events.length > 0"
+                      :datetime="moment(item.events[item.events.length -1].created_dt).format()"
+                      ><i>Finished {{moment(item.events[item.events.length -1].created_dt).fromNow() }}</i></time
                     >
                   </div>
                 </div>

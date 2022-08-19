@@ -6,13 +6,13 @@ import type { FunctionalComponent, HTMLAttributes, VNodeProps } from "vue";
 import type { AnyObjectSchema } from "yup";
 import { useRouter, type RouteLocationRaw } from "vue-router";
 import type { Moment } from "moment";
-import type * as api from "api";
+import * as api from "printnanny-api-client";
 import { CheckIcon, MoonIcon } from "@heroicons/vue/outline";
 import { ExclamationCircleIcon } from "@heroicons/vue/solid";
 import CustomSpinner from "@/components/util/CustomSpinner.vue";
 import moment from "moment";
 import type { Subscription, NatsConnection } from "nats.ws";
-import { JSONCodec } from "nats.ws";
+import { JSONCodec, ErrorCode as NatsErrorCode } from "nats.ws";
 import type { Pi } from "printnanny-api-client";
 import { useAlertStore } from "@/stores/alerts";
 import type { AlertAction, UiAlert } from "./alerts";
@@ -168,8 +168,14 @@ export class ConnectTestStep {
     return 'notimplemented'
   }
 
-  public error(): void {
+  public error(description: string): void {
     this.status = ConnectTestStatus.Error;
+    this.description = description;
+  }
+
+  public pending(description: string): void {
+    this.status = ConnectTestStatus.Pending;
+    this.description = description;
   }
 
   public success(): void {
@@ -184,15 +190,41 @@ export class ConnectTestStep {
     return this.icons[this.status];
   }
 
+  public handleEvent(event: api.PolymorphicPiEventRequest) {
+    console.log("handling event", event)
+    this.events.push(event)
+    switch (event.event_type) {
+      case api.PiBootStatusType.SystemctlShow:
+        // get SystemState from payload
+        const systemState = event.payload?.SystemState || "unknown"
+        switch (systemState) {
+          case "degraded":
+            this.error("Raspberry Pi is running in a degraded state. Some services may not work. Reboot your Raspberry Pi and refresh this page.");
+            break;
+          case "starting":
+            this.pending("Waiting for Raspberry Pi to finish startup");
+            break;
+          case "running":
+            this.success()
+          case "unknown":
+            this.error("Raspberry Pi is in an unknown state. Some services may not work as expected. Reboot your Raspberry Pi and refresh this page.")
+            break;
+          default:
+        }
+        break;
+    }
+  }
+
   public async run(): Promise<void> {
     this.status = ConnectTestStatus.Pending;
     const subject = this.command.subject_pattern.replace("{pi_id}", this.piId);
     const jsonCodec = JSONCodec<api.PolymorphicPiCommandRequest>();
     console.log(this.command)
 
-    await this.natsClient.request(subject, jsonCodec.encode(this.command), { timeout: 30 })
+    await this.natsClient.request(subject, jsonCodec.encode(this.command), { timeout: 6000 })
       .then((msg) => {
-        console.log("Received response: ", msg)
+        const reply = jsonCodec.decode(msg.data) as api.PolymorphicPiEventRequest;
+        this.handleEvent(reply);
       })
       .catch((e) => {
         const alertStore = useAlertStore();
