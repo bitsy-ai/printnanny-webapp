@@ -4,7 +4,7 @@
 // import type * as apiTypes from "printnanny-api-client";
 import type { FunctionalComponent, HTMLAttributes, VNodeProps } from "vue";
 import type { AnyObjectSchema } from "yup";
-import type { RouteLocationRaw } from "vue-router";
+import { useRouter, type RouteLocationRaw } from "vue-router";
 import type { Moment } from "moment";
 import type * as api from "api";
 import { CheckIcon, MoonIcon } from "@heroicons/vue/outline";
@@ -15,21 +15,8 @@ import type { Subscription, NatsConnection } from "nats.ws";
 import { JSONCodec } from "nats.ws";
 import type { Pi } from "printnanny-api-client";
 import { useAlertStore } from "@/stores/alerts";
-
-
-export interface AlertAction {
-  color: string;
-  text: string;
-}
-
-export interface UiAlert {
-  message: string;
-  header: string;
-  icon?: FunctionalComponent<HTMLAttributes & VNodeProps>;
-  actions: Array<AlertAction>;
-  error: Error | undefined;
-}
-
+import type { AlertAction, UiAlert } from "./alerts";
+import router from "@/router";
 // TODO union of | apiTypes.Alert
 // export type Alert = UiAlert | UiAlert;
 
@@ -201,6 +188,7 @@ export class ConnectTestStep {
     this.status = ConnectTestStatus.Pending;
     const subject = this.command.subject_pattern.replace("{pi_id}", this.piId);
     const jsonCodec = JSONCodec<api.PolymorphicPiCommandRequest>();
+    console.log(this.command)
 
     await this.natsClient.request(subject, jsonCodec.encode(this.command), { timeout: 30 })
       .then((msg) => {
@@ -208,10 +196,15 @@ export class ConnectTestStep {
       })
       .catch((e) => {
         const alertStore = useAlertStore();
-
         if (e.name == "NatsError") {
-          const message = e.code == "TIMEOUT" ? "No response from Raspberry Pi. Check that Pi is powered on and connected to Wifi." : `Error connecting to NATS service: (${e.code})`
-          const alert = { error: e, header: "Connection Error (NATS Service)", message } as UiAlert
+          const message = "No response from Raspberry Pi. Check that Pi is powered on and connected to Wifi."
+          const header = `Connection Error (NATS Service ${e.code})`
+          const actions = [{
+            color: "red", text: "Refresh", onClick: () => {
+              window.location.reload()
+            }
+          }] as Array<AlertAction>;
+          const alert = { error: e, header, message, actions } as UiAlert
           alertStore.push(alert)
         }
         this.status = ConnectTestStatus.Error;

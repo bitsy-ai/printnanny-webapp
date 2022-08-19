@@ -3,6 +3,7 @@
   <div class="mt-3 flex space-x-7">
     <button
       v-for="(action, index) in actions"
+      @click="action.onClick"
       :key="index"
       type="button"
       :class="colorClassNames(action.color)"
@@ -13,10 +14,11 @@
   </div>
 </template>
 <script setup lang="ts">
-import type { AlertAction } from "@/types";
+import type { PropType } from "vue";
+import type { AlertAction } from "@/types/alerts";
 defineProps({
   actions: {
-    type: Array<AlertAction>,
+    type: Object as PropType<Array<AlertAction>>,
     default: [],
   },
 });

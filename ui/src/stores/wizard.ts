@@ -108,7 +108,7 @@ export const useWizardStore = defineStore({
         id: uuid4(),
         created_dt: moment.utc().toISOString(),
         subject_pattern: api.PiBootCommandSubjectPatternEnum.PiPiIdCommandBoot,
-        event_type: api.PiBootCommandType.SystemStatus,
+        event_type: api.PiBootCommandType.SystemctlShow,
         pi: pi.id
       } as api.PiBootCommandRequest;
 
