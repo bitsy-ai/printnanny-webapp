@@ -7,6 +7,19 @@ metadata:
   annotations:
     iam.gke.io/gcp-service-account: webapp--{{ PRINTNANNY_NAMESPACE }}@{{ GCP_PROJECT }}.iam.gserviceaccount.com
 ---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: "django-nats-nkey-nfs"
+  namespace: {{ PRINTNANNY_NAMESPACE }}
+spec:
+  storageClassName: nfs
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 512Mi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -29,17 +42,14 @@ spec:
           secretName: django-operator-nkeys
           defaultMode: 0400
       - name: nsc
-        emptyDir: {}
-
+        persistentVolumeClaim:
+          claimName: "django-nats-nkey-nfs"
       initContainers:
-
       - name: nsc-init
         image: {{ PRINTNANNY_DJANGO_IMAGE }}
-
         envFrom:
           - configMapRef:
               name: webapp
-
         command:
           - /nsc-init
         volumeMounts:
