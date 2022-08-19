@@ -6,7 +6,7 @@ set -o nounset
 
 python manage.py collectstatic --noinput
 python manage.py migrate
-python manage.py initrobots
+python manage.py initrobots --name=firehose || echo "Firehose robot already exists"
 
 
 # set the nsc store directory

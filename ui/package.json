@@ -24,6 +24,7 @@
     "pinia": "^2.0.14",
     "pinia-plugin-persistedstate": "^1.6.3",
     "printnanny-api-client": "file:../clients/typescript",
+    "uuid4": "^2.0.3",
     "vee-validate": "^4.6.1",
     "vue": "^3.2.37",
     "vue-3d-model": "^2.0.0-alpha.2",

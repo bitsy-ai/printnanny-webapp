@@ -21,8 +21,9 @@ if (
   router.currentRoute.value.params.activeStep === props.step.key
 ) {
   const piId = parseInt(router.currentRoute.value.params.piId as string);
-  await store.loadPi(piId);
-  store.connectNats(piId);
+  const pi = await store.loadPi(piId);
+  await store.initConnectTestSteps(pi);
+  await store.connectTestSteps[0].run();
 }
 </script>
 
@@ -84,9 +85,9 @@ if (
                 >
                   <div>
                     <p class="text-sm text-gray-500 text-left">
-                      <strong>{{ item.content }}</strong>
+                      <strong>{{ item.title }}</strong>
                       <br />
-                      <i>{{ item.statusText() }}</i>
+                      <i>{{ item.description }}</i>
                     </p>
                   </div>
                   <div

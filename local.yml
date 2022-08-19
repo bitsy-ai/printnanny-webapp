@@ -115,11 +115,7 @@ services:
       - print_nanny_webapp.events.streams.firehose
   postgres:
     hostname: postgres
-    # network_mode: "host"
-    build:
-      context: .
-      dockerfile: ./compose/production/postgres/Dockerfile
-    image: printnanny_webapp_production_postgres
+    image: postgres:12.3
     container_name: printnanny_webapp_postgres
     volumes:
       - local_postgres_data:/var/lib/postgresql/data:z

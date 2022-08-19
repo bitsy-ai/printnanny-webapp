@@ -6,10 +6,16 @@ import type { FunctionalComponent, HTMLAttributes, VNodeProps } from "vue";
 import type { AnyObjectSchema } from "yup";
 import type { RouteLocationRaw } from "vue-router";
 import type { Moment } from "moment";
+import type * as api from "api";
 import { CheckIcon, MoonIcon } from "@heroicons/vue/outline";
 import { ExclamationCircleIcon } from "@heroicons/vue/solid";
 import CustomSpinner from "@/components/util/CustomSpinner.vue";
 import moment from "moment";
+import type { Subscription, NatsConnection } from "nats.ws";
+import { JSONCodec } from "nats.ws";
+import type { Pi } from "printnanny-api-client";
+import { useAlertStore } from "@/stores/alerts";
+
 
 export interface AlertAction {
   color: string;
@@ -111,15 +117,13 @@ export class ManualTestStep {
 }
 
 export class ConnectTestStep {
-  content: string;
+  title: string;
+  description: string;
+  piId: number;
   status: ConnectTestStatus;
-  successEventType: string;
-  errrorEventType: string;
-  pendingEventType: string;
-  notStartedMessage: string;
-
-  dtStart?: undefined | Moment;
-  dtEnd?: undefined | Moment;
+  command: api.PolymorphicPiCommandRequest;
+  events: Array<api.PolymorphicPiEventRequest>;
+  natsClient: NatsConnection;
 
   icons = {
     [ConnectTestStatus.NotStarted]: {
@@ -144,43 +148,45 @@ export class ConnectTestStep {
     } as ConnectTestStatusItem,
   };
   constructor(
-    content: string,
-    pendingEventType: string,
-    pendingMessage: string,
-    successEventType: string,
-    errorEventType: string
+    title: string,
+    description: string,
+    piId: number,
+    command: api.PolymorphicPiCommandRequest,
+    natsClient: NatsConnection,
   ) {
-    this.content = content;
-    this.notStartedMessage = pendingMessage;
-    this.pendingEventType = pendingEventType;
-    this.successEventType = successEventType;
-    this.errrorEventType = errorEventType;
+    this.title = title;
+    this.description = description;
+    this.piId = piId;
+
+    this.command = command;
+
+    this.events = [];
+    this.natsClient = natsClient;
     this.status = ConnectTestStatus.NotStarted;
-    this.dtStart = undefined;
-    this.dtEnd = undefined;
+
   }
 
   public statusText(): string {
-    switch (this.status) {
-      case ConnectTestStatus.Pending:
-        return `Waiting for Raspberry Pi`;
-      case ConnectTestStatus.Success:
-        return this.successEventType;
-      case ConnectTestStatus.Error:
-        return this.errrorEventType;
-      case ConnectTestStatus.NotStarted:
-        return this.notStartedMessage || "Waiting to begin test";
-    }
+    // switch (this.status) {
+    //   case ConnectTestStatus.Pending:
+    //     return `Waiting for Raspberry Pi`;
+    //   case ConnectTestStatus.Success:
+    //     return this.successEventType;
+    //   case ConnectTestStatus.Error:
+    //     return this.errrorEventType;
+    //   case ConnectTestStatus.NotStarted:
+    //     return this.notStartedMessage || "Waiting to begin test";
+    // }
+
+    return 'notimplemented'
   }
 
   public error(): void {
     this.status = ConnectTestStatus.Error;
-    this.dtEnd = moment();
   }
 
   public success(): void {
     this.status = ConnectTestStatus.Success;
-    this.dtEnd = moment();
   }
 
   public active(): boolean {
@@ -191,8 +197,26 @@ export class ConnectTestStep {
     return this.icons[this.status];
   }
 
-  public start(): void {
-    this.dtStart = moment();
+  public async run(): Promise<void> {
     this.status = ConnectTestStatus.Pending;
+    const subject = this.command.subject_pattern.replace("{pi_id}", this.piId);
+    const jsonCodec = JSONCodec<api.PolymorphicPiCommandRequest>();
+
+    await this.natsClient.request(subject, jsonCodec.encode(this.command), { timeout: 30 })
+      .then((msg) => {
+        console.log("Received response: ", msg)
+      })
+      .catch((e) => {
+        const alertStore = useAlertStore();
+
+        if (e.name == "NatsError") {
+          const message = e.code == "TIMEOUT" ? "No response from Raspberry Pi. Check that Pi is powered on and connected to Wifi." : `Error connecting to NATS service: (${e.code})`
+          const alert = { error: e, header: "Connection Error (NATS Service)", message } as UiAlert
+          alertStore.push(alert)
+        }
+        this.status = ConnectTestStatus.Error;
+        console.error("Error", e)
+      });
+
   }
 }
