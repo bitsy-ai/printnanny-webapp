@@ -1,7 +1,7 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import { ApiConfig, handleApiError } from "@/utils/api";
-import { useEventStore } from "./nats";
+import { useEventStore } from "./events";
 import { JSONCodec } from "nats.ws";
 import type { Subscription } from "nats.ws";
 import { ConnectTestStep } from "@/types";
