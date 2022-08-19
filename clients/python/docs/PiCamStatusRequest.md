@@ -4,6 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **str** |  | [optional] 
+**created_dt** | **datetime** |  | [optional] 
 **subject_pattern** | [**PiCamStatusSubjectPatternEnum**](PiCamStatusSubjectPatternEnum.md) |  | 
 **payload** | **dict(str, object)** |  | [optional] 
 **event_type** | [**PiCamStatusType**](PiCamStatusType.md) |  | 

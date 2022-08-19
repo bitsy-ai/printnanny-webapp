@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | Option<**String**> |  | [optional]
+**created_dt** | Option<**String**> |  | [optional]
 **payload** | [**crate::models::PiSoftwareUpdatePayloadRequest**](PiSoftwareUpdatePayloadRequest.md) |  | 
 **subject_pattern** | [**crate::models::PiSoftwareUpdateCommandSubjectPatternEnum**](PiSoftwareUpdateCommandSubjectPatternEnum.md) |  | 
 **version** | **String** |  | 

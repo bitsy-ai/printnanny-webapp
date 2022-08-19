@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | [readonly]
+**id** | Option<**String**> |  | [optional]
+**created_dt** | Option<**String**> |  | [optional]
 **subject_pattern** | [**crate::models::PiCamStatusSubjectPatternEnum**](PiCamStatusSubjectPatternEnum.md) |  | 
-**created_dt** | **String** |  | [readonly]
 **payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **event_type** | [**crate::models::PiCamStatusType**](PiCamStatusType.md) |  | 
 **pi** | **i32** |  | 

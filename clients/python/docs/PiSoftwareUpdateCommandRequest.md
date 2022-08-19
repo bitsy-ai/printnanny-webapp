@@ -4,6 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **str** |  | [optional] 
+**created_dt** | **datetime** |  | [optional] 
 **payload** | [**PiSoftwareUpdatePayloadRequest**](PiSoftwareUpdatePayloadRequest.md) |  | 
 **subject_pattern** | [**PiSoftwareUpdateCommandSubjectPatternEnum**](PiSoftwareUpdateCommandSubjectPatternEnum.md) |  | 
 **version** | **str** |  | 

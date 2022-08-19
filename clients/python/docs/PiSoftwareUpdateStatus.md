@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [readonly] 
+**id** | **str** |  | [optional] 
+**created_dt** | **datetime** |  | [optional] 
 **subject_pattern** | [**PiSoftwareUpdateStatusSubjectPatternEnum**](PiSoftwareUpdateStatusSubjectPatternEnum.md) |  | 
-**created_dt** | **datetime** |  | [readonly] 
 **payload** | **dict(str, object)** |  | [optional] 
 **version** | **str** |  | 
 **event_type** | [**PiSoftwareUpdateStatusType**](PiSoftwareUpdateStatusType.md) |  | 

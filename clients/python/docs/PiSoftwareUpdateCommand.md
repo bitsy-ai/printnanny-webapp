@@ -4,10 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [readonly] 
+**id** | **str** |  | [optional] 
+**created_dt** | **datetime** |  | [optional] 
 **payload** | [**PiSoftwareUpdatePayload**](PiSoftwareUpdatePayload.md) |  | 
 **subject_pattern** | [**PiSoftwareUpdateCommandSubjectPatternEnum**](PiSoftwareUpdateCommandSubjectPatternEnum.md) |  | 
-**created_dt** | **datetime** |  | [readonly] 
 **version** | **str** |  | 
 **event_type** | [**PiSoftwareUpdateCommandType**](PiSoftwareUpdateCommandType.md) |  | 
 **pi** | **int** |  | 

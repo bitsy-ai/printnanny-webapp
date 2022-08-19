@@ -4,6 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **str** |  | [optional] 
+**created_dt** | **datetime** |  | [optional] 
 **subject_pattern** | [**PiBootCommandSubjectPatternEnum**](PiBootCommandSubjectPatternEnum.md) |  | 
 **payload** | **dict(str, object)** |  | [optional] 
 **event_type** | [**PiBootCommandType**](PiBootCommandType.md) |  | 

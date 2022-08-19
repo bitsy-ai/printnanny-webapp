@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | [readonly]
+**id** | Option<**String**> |  | [optional]
+**created_dt** | Option<**String**> |  | [optional]
 **payload** | [**crate::models::PiSoftwareUpdatePayload**](PiSoftwareUpdatePayload.md) |  | 
 **subject_pattern** | [**crate::models::PiSoftwareUpdateCommandSubjectPatternEnum**](PiSoftwareUpdateCommandSubjectPatternEnum.md) |  | 
-**created_dt** | **String** |  | [readonly]
 **version** | **String** |  | 
 **event_type** | [**crate::models::PiSoftwareUpdateCommandType**](PiSoftwareUpdateCommandType.md) |  | 
 **pi** | **i32** |  | 
