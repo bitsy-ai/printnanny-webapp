@@ -44,20 +44,6 @@ spec:
       - name: nsc
         persistentVolumeClaim:
           claimName: "django-nats-nkey-nfs"
-      initContainers:
-      - name: nsc-init
-        image: {{ PRINTNANNY_DJANGO_IMAGE }}
-        envFrom:
-          - configMapRef:
-              name: webapp
-        command:
-          - /nsc-init
-        volumeMounts:
-        - name: django-operator-nkeys
-          readOnly: true
-          mountPath: "/etc/django-operator-nkeys"
-        - name: nsc
-          mountPath: "/var/lib/nats/nsc"
       containers:
       - name: django
         image: {{ PRINTNANNY_DJANGO_IMAGE }}
