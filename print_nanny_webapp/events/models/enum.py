@@ -40,10 +40,11 @@ class PiBootCommandType(models.TextChoices):
     Reboot = ("Reboot", "Reboot Raspberry Pi")
     Shutdown = ("Shutdown", "Shutdown Raspberry Pi")
     SyncSettings = ("SyncSettings", "Sync Raspberry Pi settings")
-    SystemtStatus = ("SystemStatus", "Get output from systemctl status")
+    SystemctlShow = ("SystemctlShow", "Get output from `systemctl show`")
 
 
 class PiBootStatusType(models.TextChoices):
+    SystemctlShow = ("SystemctlShow", "Get output from `systemctl show`")
     RebootStarted = ("RebootStarted", "Raspberry Pi will reboot soon")
     RebootError = ("RebootError", "Unexpected error during reboot")
     ShutdownStarted = ("ShutdownStarted", "Raspberry Pi will shutdown soon")
