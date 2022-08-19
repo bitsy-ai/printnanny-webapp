@@ -24,7 +24,7 @@ if (
   const piId = parseInt(router.currentRoute.value.params.piId as string);
   const pi = await store.loadPi(piId);
   await store.initConnectTestSteps(pi);
-  await store.connectTestSteps[0].run();
+  await store.connectTestSteps.map(s => s.run());
 }
 </script>
 
