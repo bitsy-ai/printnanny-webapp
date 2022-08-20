@@ -9,7 +9,7 @@ import type { Subscription, NatsConnection } from "nats.ws";
 import * as api from "printnanny-api-client";
 
 import CustomSpinner from "@/components/util/CustomSpinner.vue";
-import type { UiAlert } from "./alerts";
+import type { UiAlert, AlertAction } from "./alerts";
 import { useAlertStore } from "@/stores/alerts";
 
 
@@ -147,21 +147,6 @@ export class ConnectTestStep {
     this.natsClient = natsClient;
     this.status = ConnectTestStatus.NotStarted;
 
-  }
-
-  public statusText(): string {
-    // switch (this.status) {
-    //   case ConnectTestStatus.Pending:
-    //     return `Waiting for Raspberry Pi`;
-    //   case ConnectTestStatus.Success:
-    //     return this.successEventType;
-    //   case ConnectTestStatus.Error:
-    //     return this.errrorEventType;
-    //   case ConnectTestStatus.NotStarted:
-    //     return this.notStartedMessage || "Waiting to begin test";
-    // }
-
-    return 'notimplemented'
   }
 
   public error(description: string): void {
