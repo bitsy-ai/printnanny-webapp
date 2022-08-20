@@ -92,7 +92,26 @@ class WebrtcStreamSerializer(serializers.ModelSerializer):
             "ws_port",
             "ws_url",
         )
-        read_only_fields = ("pi", "config_type", "updated_dt", "created_dt")
+        read_only_fields = (
+            "pi",
+            "updated_dt",
+            "created_dt",
+            "stream_secret",
+            "stream_pin",
+            "api_token",
+            "admin_secret",
+            "rtp_port",
+            "rtp_domain",
+            "pt",
+            "rtpmap",
+            "api_port",
+            "api_url",
+            "admin_port",
+            "admin_url",
+            "is_admin",
+            "ws_port",
+            "ws_url",
+        )
 
     def update_or_create(self, validated_data, pi_id):
         return WebrtcStream.objects.filter(pi=pi_id).update_or_create(

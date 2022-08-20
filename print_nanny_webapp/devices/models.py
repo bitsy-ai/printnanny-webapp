@@ -401,6 +401,11 @@ class WebrtcStream(SafeDeleteModel):
     rtp_port = models.PositiveSmallIntegerField(default=get_available_rtp_port)
 
     @property
+    def is_admin(self) -> bool:
+        # api clients should receive janus admin api credentials for edge deployments belonging to authenticated user
+        return self.config_type == JanusConfigType.EDGE
+
+    @property
     def pt(self) -> int:
         return 96
 

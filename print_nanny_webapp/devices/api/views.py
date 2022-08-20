@@ -341,6 +341,33 @@ class WebrtcStreamViewSet(
     queryset = WebrtcStream.objects.all()
     lookup_field = "id"
 
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        tags=["devices"],
+        operation_id="webrtc_stream_update_or_create",
+        responses={
+            # 400: PrinterProfileSerializer,
+            200: WebrtcStreamSerializer,
+            201: WebrtcStreamSerializer,
+            202: WebrtcStreamSerializer,
+        },
+    )
+    @action(methods=["post"], detail=False, url_path="update-or-create")
+    def update_or_create(self, request, pi_id=None):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
+                serializer.validated_data, pi_id
+            )
+            response_serializer = self.get_serializer(instance)
+            if not created:
+                return Response(response_serializer.data, status=status.HTTP_200_OK)
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 ###
 # SystemInfo views
