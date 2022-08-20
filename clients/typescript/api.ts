@@ -2741,34 +2741,16 @@ export interface PatchedUserRequest {
 export interface PatchedWebrtcStreamRequest {
     /**
      * 
+     * @type {JanusConfigType}
+     * @memberof PatchedWebrtcStreamRequest
+     */
+    'config_type'?: JanusConfigType;
+    /**
+     * 
      * @type {boolean}
      * @memberof PatchedWebrtcStreamRequest
      */
     'active'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedWebrtcStreamRequest
-     */
-    'stream_secret'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedWebrtcStreamRequest
-     */
-    'stream_pin'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedWebrtcStreamRequest
-     */
-    'api_token'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedWebrtcStreamRequest
-     */
-    'rtp_port'?: number;
 }
 /**
  * 
@@ -5448,7 +5430,7 @@ export interface WebrtcStream {
      * @type {JanusConfigType}
      * @memberof WebrtcStream
      */
-    'config_type': JanusConfigType;
+    'config_type'?: JanusConfigType;
     /**
      * 
      * @type {boolean}
@@ -5466,19 +5448,19 @@ export interface WebrtcStream {
      * @type {string}
      * @memberof WebrtcStream
      */
-    'stream_secret'?: string;
+    'stream_secret': string;
     /**
      * 
      * @type {string}
      * @memberof WebrtcStream
      */
-    'stream_pin'?: string;
+    'stream_pin': string;
     /**
      * 
      * @type {string}
      * @memberof WebrtcStream
      */
-    'api_token'?: string;
+    'api_token': string;
     /**
      * 
      * @type {string}
@@ -5490,7 +5472,7 @@ export interface WebrtcStream {
      * @type {number}
      * @memberof WebrtcStream
      */
-    'rtp_port'?: number;
+    'rtp_port': number;
     /**
      * 
      * @type {string}
@@ -5560,34 +5542,16 @@ export interface WebrtcStream {
 export interface WebrtcStreamRequest {
     /**
      * 
+     * @type {JanusConfigType}
+     * @memberof WebrtcStreamRequest
+     */
+    'config_type'?: JanusConfigType;
+    /**
+     * 
      * @type {boolean}
      * @memberof WebrtcStreamRequest
      */
     'active'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebrtcStreamRequest
-     */
-    'stream_secret'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebrtcStreamRequest
-     */
-    'stream_pin'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebrtcStreamRequest
-     */
-    'api_token'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebrtcStreamRequest
-     */
-    'rtp_port'?: number;
 }
 
 /**
@@ -8698,6 +8662,49 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {number} piId 
+         * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        webrtcStreamUpdateOrCreate: async (piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('webrtcStreamUpdateOrCreate', 'piId', piId)
+            const localVarPath = `/api/pis/{pi_id}/webrtc-streams/update-or-create/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(webrtcStreamRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -9040,6 +9047,17 @@ export const DevicesApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.systemInfoUpdateOrCreate(piId, systemInfoRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * 
+         * @param {number} piId 
+         * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async webrtcStreamUpdateOrCreate(piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebrtcStream>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.webrtcStreamUpdateOrCreate(piId, webrtcStreamRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -9352,6 +9370,16 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         systemInfoUpdateOrCreate(piId: number, systemInfoRequest: SystemInfoRequest, options?: any): AxiosPromise<SystemInfo> {
             return localVarFp.systemInfoUpdateOrCreate(piId, systemInfoRequest, options).then((request) => request(axios, basePath));
         },
+        /**
+         * 
+         * @param {number} piId 
+         * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        webrtcStreamUpdateOrCreate(piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: any): AxiosPromise<WebrtcStream> {
+            return localVarFp.webrtcStreamUpdateOrCreate(piId, webrtcStreamRequest, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -9662,6 +9690,16 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     systemInfoUpdateOrCreate(piId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig): AxiosPromise<SystemInfo>;
+
+    /**
+     * 
+     * @param {number} piId 
+     * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    webrtcStreamUpdateOrCreate(piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig): AxiosPromise<WebrtcStream>;
 
 }
 
@@ -10032,6 +10070,18 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public systemInfoUpdateOrCreate(piId: number, systemInfoRequest: SystemInfoRequest, options?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).systemInfoUpdateOrCreate(piId, systemInfoRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} piId 
+     * @param {WebrtcStreamRequest} [webrtcStreamRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public webrtcStreamUpdateOrCreate(piId: number, webrtcStreamRequest?: WebrtcStreamRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).webrtcStreamUpdateOrCreate(piId, webrtcStreamRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
