@@ -3,6 +3,7 @@
  */
 // import type * as apiTypes from "printnanny-api-client";
 import type { FunctionalComponent, HTMLAttributes, VNodeProps } from "vue";
+import { shallowRef } from "vue";
 import type { AnyObjectSchema } from "yup";
 import { useRouter, type RouteLocationRaw } from "vue-router";
 import type { Moment } from "moment";
@@ -119,7 +120,7 @@ export class ConnectTestStep {
       text: ConnectTestStatus.NotStarted.valueOf(),
     } as ConnectTestStatusItem,
     [ConnectTestStatus.Pending]: {
-      icon: CustomSpinner,
+      icon: shallowRef(CustomSpinner),
       iconBackground: "bg-amber-400",
       text: ConnectTestStatus.Pending.valueOf(),
     } as ConnectTestStatusItem,
@@ -194,6 +195,7 @@ export class ConnectTestStep {
     console.log("handling event", event)
     this.events.push(event)
     switch (event.event_type) {
+      // PiBootStatusType.SystemctlShow:
       case api.PiBootStatusType.SystemctlShow:
         // get SystemState from payload
         const systemState = event.payload?.SystemState || "unknown"
@@ -205,12 +207,19 @@ export class ConnectTestStep {
             this.pending("Waiting for Raspberry Pi to finish startup");
             break;
           case "running":
-            this.success()
+            this.success();
+            break
           case "unknown":
             this.error("Raspberry Pi is in an unknown state. Some services may not work as expected. Reboot your Raspberry Pi and refresh this page.")
             break;
           default:
         }
+        break;
+      case api.PiBootStatusType.SyncSettingsStarted:
+        this.pending("Synchronizing with PrintNanny Cloud");
+        break;
+      case api.PiBootStatusType.SyncSettingsSuccess:
+        this.success();
         break;
     }
   }
@@ -219,9 +228,8 @@ export class ConnectTestStep {
     this.status = ConnectTestStatus.Pending;
     const subject = this.command.subject_pattern.replace("{pi_id}", this.piId);
     const jsonCodec = JSONCodec<api.PolymorphicPiCommandRequest>();
-    console.log(this.command)
 
-    await this.natsClient.request(subject, jsonCodec.encode(this.command), { timeout: 6000 })
+    await this.natsClient.request(subject, jsonCodec.encode(this.command), { timeout: 30000, noMux: true })
       .then((msg) => {
         const reply = jsonCodec.decode(msg.data) as api.PolymorphicPiEventRequest;
         this.handleEvent(reply);

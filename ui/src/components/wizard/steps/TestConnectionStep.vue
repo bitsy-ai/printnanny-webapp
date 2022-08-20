@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import FormStep from "./FormStep.vue";
 import { useRouter } from "vue-router";
+import { markRaw } from "vue";
 import type { PropType } from "vue";
 import { useWizardStore } from "@/stores/wizard";
 import type { WizardStep } from "@/types";
@@ -72,7 +73,7 @@ if (
                       aria-hidden="true"
                     />
                     <component
-                      :is="item.statusComponent().icon"
+                      :is="markRaw(item.statusComponent().icon)"
                       v-if="item.active()"
                       text=""
                       width="w-8"
@@ -99,7 +100,7 @@ if (
                     <time
                       v-if="item.events.length > 0"
                       :datetime="moment(item.events[item.events.length -1].created_dt).format()"
-                      ><i>Finished {{moment(item.events[item.events.length -1].created_dt).fromNow() }}</i></time
+                      ><i>{{moment(item.events[item.events.length -1].created_dt).fromNow() }}</i></time
                     >
                   </div>
                 </div>
