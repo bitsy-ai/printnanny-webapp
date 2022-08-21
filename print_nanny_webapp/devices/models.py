@@ -15,7 +15,6 @@ from django_nats_nkeys.models import (
     NatsOrganizationUser,
     NatsOrganizationAppManager,
 )
-
 from print_nanny_webapp.devices.utils import get_available_rtp_port
 from print_nanny_webapp.devices.enum import (
     JanusConfigType,
@@ -399,6 +398,22 @@ class WebrtcStream(SafeDeleteModel):
         help_text="Janus Gateway Admin API secret. Will be null if config_type=CLOUD",
     )
     rtp_port = models.PositiveSmallIntegerField(default=get_available_rtp_port)
+
+    info = models.JSONField(default=dict)
+
+    def create_mountpoint(self):
+        from print_nanny_webapp.devices.services import (
+            janus_streaming_create_mountpoint,
+        )
+
+        return janus_streaming_create_mountpoint(self)
+
+    def plugin_handle_endpoint(self, session, handle) -> str:
+        return f"{self.session_endpoint(session)}/{handle}"
+
+    def session_endpoint(self, session) -> str:
+        if session:
+            return f"{self.api_url}/{session}"
 
     @property
     def is_admin(self) -> bool:

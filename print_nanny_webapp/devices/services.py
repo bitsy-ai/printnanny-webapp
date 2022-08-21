@@ -48,6 +48,98 @@ def janus_admin_add_token(stream: WebrtcStream) -> Dict[str, Any]:
         )
 
 
+def janus_get_session(stream: WebrtcStream) -> Dict[str, Any]:
+    req = dict(
+        transaction=str(uuid4()),
+        janus="create",
+        token=stream.api_token,
+    )
+    res = requests.post(stream.api_url, json=req)
+    res.raise_for_status()
+    data = res.json()
+    logger.info("Created Janus session %s", data)
+    return data["data"]["id"]
+
+
+def janus_get_plugin_handle(stream: WebrtcStream, session: str) -> Dict[str, Any]:
+    req = dict(
+        transaction=str(uuid4()),
+        janus="attach",
+        token=stream.api_token,
+        plugin="janus.plugin.streaming",
+    )
+    endpoint = stream.session_endpoint(session=session)
+    res = requests.post(endpoint, json=req)
+    res.raise_for_status()
+    data = res.json()
+    logger.info("Attached plugin handle %s", data)
+    return data["data"]["id"]
+
+
+def janus_streaming_create_mountpoint(stream: WebrtcStream):
+    janus_admin_add_token(stream)
+    session = janus_get_session(stream)
+    plugin_handle = janus_get_plugin_handle(stream, session)
+    handle_endpoint = stream.plugin_handle_endpoint(session, plugin_handle)
+    admin_key = (
+        settings.JANUS_CLOUD_STREAMING_PLUGIN_ADMIN_KEY
+        if stream.config_type == JanusConfigType.CLOUD
+        else stream.admin_secret
+    )
+    media = [
+        dict(
+            type="video",
+            mid="video0",
+            label="H264-encoded camera stream",
+            pt=stream.pt,
+            rtpmap=stream.rtpmap,
+            port=stream.rtp_port,
+        )
+    ]
+    data = dict(
+        transaction=str(uuid4()),
+        janus="message",
+        token=stream.api_token,
+        body=dict(
+            request="create",
+            admin_key=admin_key,
+            type="rtp",
+            id=stream.id,
+            description=f"WebRTC stream config_type={stream.config_type} pi={stream.pi.id}",
+            secret=stream.stream_secret,
+            pin=stream.stream_pin,
+            is_private=True,
+            permanent=False,
+            media=media,
+        ),
+    )
+    res = requests.post(handle_endpoint, json=data)
+    res.raise_for_status()
+    res_data = res.json()
+    logger.info(
+        "%s response to 'create' streaming mountpoint: %s ", handle_endpoint, res_data
+    )
+    data = dict(
+        transaction=str(uuid4()),
+        janus="message",
+        token=stream.api_token,
+        body=dict(
+            request="info",
+            id=stream.id,
+            secret=stream.stream_secret,
+        ),
+    )
+    res = requests.post(handle_endpoint, json=data)
+    res.raise_for_status()
+    res_data = res.json()
+    logger.info(
+        "%s response to 'info' streaming mountpoint: %s ", stream.api_url, res_data
+    )
+    stream.info = res_data
+    stream.save()
+    return stream
+
+
 def render_janus_env(device: Pi) -> str:
     context = dict(
         janus_admin_secret=device.active_license.janus_admin_secret,
