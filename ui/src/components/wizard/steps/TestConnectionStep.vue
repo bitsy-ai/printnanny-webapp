@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import FormStep from "./FormStep.vue";
 import { useRouter } from "vue-router";
 import { markRaw } from "vue";
 import type { PropType } from "vue";
@@ -113,7 +112,9 @@ await store.connectTestSteps.map(s => s.run());
         </ul>
 
         <!-- webrtc component -->
-        <WebrtcVideo :piId="props.piId"/>
+        <div class="w-full m-auto justify-center flex-1">
+          <WebrtcVideo :piId="props.piId"/>
+        </div>
       </div>
     </div>
 

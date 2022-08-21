@@ -9,9 +9,10 @@ const props = defineProps({
 })
 
 const store = useWebrtcStore();
-await store.init(props.piId);
+const stream = await store.getStream(props.piId);
+store.initWebrtcStream(stream);
 </script>
 
 <template>
-    
+    <video id="janus-video" autoplay muted class="w-full aspect-video p-6"></video>
 </template>

@@ -5475,6 +5475,18 @@ export interface WebrtcStream {
     'created_dt': string;
     /**
      * 
+     * @type {number}
+     * @memberof WebrtcStream
+     */
+    'id': number;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof WebrtcStream
+     */
+    'info': { [key: string]: any; };
+    /**
+     * 
      * @type {boolean}
      * @memberof WebrtcStream
      */

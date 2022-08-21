@@ -10,7 +10,6 @@ import {
 } from "@heroicons/vue/outline";
 import { useWizardStore } from "@/stores/wizard";
 import type { WizardStep } from "@/types";
-import FormStep from "./FormStep.vue";
 import { useRouter } from "vue-router";
 import type { ActionButton } from "@/types";
 import { ManualTestStep } from "@/types";
