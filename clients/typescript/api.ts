@@ -2741,16 +2741,16 @@ export interface PatchedUserRequest {
 export interface PatchedWebrtcStreamRequest {
     /**
      * 
-     * @type {JanusConfigType}
-     * @memberof PatchedWebrtcStreamRequest
-     */
-    'config_type'?: JanusConfigType;
-    /**
-     * 
      * @type {boolean}
      * @memberof PatchedWebrtcStreamRequest
      */
     'active'?: boolean;
+    /**
+     * 
+     * @type {JanusConfigType}
+     * @memberof PatchedWebrtcStreamRequest
+     */
+    'config_type'?: JanusConfigType;
 }
 /**
  * 
@@ -5415,82 +5415,10 @@ export interface VerifyEmailRequest {
 export interface WebrtcStream {
     /**
      * 
-     * @type {string}
-     * @memberof WebrtcStream
-     */
-    'created_dt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebrtcStream
-     */
-    'updated_dt': string;
-    /**
-     * 
-     * @type {JanusConfigType}
-     * @memberof WebrtcStream
-     */
-    'config_type'?: JanusConfigType;
-    /**
-     * 
      * @type {boolean}
      * @memberof WebrtcStream
      */
     'active'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebrtcStream
-     */
-    'pi': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebrtcStream
-     */
-    'stream_secret': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebrtcStream
-     */
-    'stream_pin': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebrtcStream
-     */
-    'api_token': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebrtcStream
-     */
-    'admin_secret': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebrtcStream
-     */
-    'rtp_port': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebrtcStream
-     */
-    'rtp_domain': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebrtcStream
-     */
-    'pt': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof WebrtcStream
-     */
-    'rtpmap': string;
     /**
      * 
      * @type {number}
@@ -5502,7 +5430,19 @@ export interface WebrtcStream {
      * @type {string}
      * @memberof WebrtcStream
      */
+    'admin_secret': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebrtcStream
+     */
     'admin_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebrtcStream
+     */
+    'api_domain': string;
     /**
      * 
      * @type {number}
@@ -5514,13 +5454,79 @@ export interface WebrtcStream {
      * @type {string}
      * @memberof WebrtcStream
      */
-    'api_url': string;
+    'api_token': string;
     /**
      * 
      * @type {string}
      * @memberof WebrtcStream
      */
-    'api_domain': string;
+    'api_url': string;
+    /**
+     * 
+     * @type {JanusConfigType}
+     * @memberof WebrtcStream
+     */
+    'config_type'?: JanusConfigType;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebrtcStream
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WebrtcStream
+     */
+    'is_admin': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebrtcStream
+     */
+    'pi': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebrtcStream
+     */
+    'pt': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebrtcStream
+     */
+    'rtp_domain': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebrtcStream
+     */
+    'rtp_port': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebrtcStream
+     */
+    'rtpmap': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebrtcStream
+     */
+    'stream_pin': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebrtcStream
+     */
+    'stream_secret': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebrtcStream
+     */
+    'updated_dt': string;
     /**
      * 
      * @type {number}
@@ -5542,16 +5548,16 @@ export interface WebrtcStream {
 export interface WebrtcStreamRequest {
     /**
      * 
-     * @type {JanusConfigType}
-     * @memberof WebrtcStreamRequest
-     */
-    'config_type'?: JanusConfigType;
-    /**
-     * 
      * @type {boolean}
      * @memberof WebrtcStreamRequest
      */
     'active'?: boolean;
+    /**
+     * 
+     * @type {JanusConfigType}
+     * @memberof WebrtcStreamRequest
+     */
+    'config_type'?: JanusConfigType;
 }
 
 /**

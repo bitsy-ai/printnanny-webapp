@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0041_alter_pinatsapp_pi'),
+        ("devices", "0041_alter_pinatsapp_pi"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='webrtcstream',
-            name='info',
+            model_name="webrtcstream",
+            name="info",
             field=models.JSONField(default=dict),
         ),
     ]

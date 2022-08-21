@@ -48,9 +48,8 @@
                 'group flex items-center px-4 py-2 text-sm',
               ]"
               :to="{
-                name: 'pi-wizard',
+                name: wizardSteps[2].routeName,
                 params: {
-                  activeStep: 'download-printnanny-zip',
                   piId: pi.id,
                 },
               }"
@@ -126,7 +125,9 @@ import {
   ExternalLinkIcon,
 } from "@heroicons/vue/solid";
 import { ExclamationIcon } from "@heroicons/vue/outline";
+import { PiCreateWizardSteps } from "@/components/wizard/piCreateWizard";
 
+const wizardSteps = PiCreateWizardSteps();
 import { useDeviceStore } from "@/stores/devices";
 
 const props = defineProps({

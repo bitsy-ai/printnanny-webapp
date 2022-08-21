@@ -15,11 +15,14 @@ import { useAlertStore } from "@/stores/alerts";
 
 export type WizardButton = {
   text: string;
-  link: () => RouteLocationRaw;
+  link: undefined | Function;
+  onSubmit: undefined | Function;
 };
 
 export type WizardStep = {
   key: string;
+  routeName: string;
+  path: string;
   title: string;
   detail: string;
   progress: string;
@@ -28,7 +31,6 @@ export type WizardStep = {
   validationSchema: AnyObjectSchema;
   nextButton: WizardButton | undefined;
   prevButton: WizardButton | undefined;
-  onSubmit: (formData: any) => void;
 };
 
 

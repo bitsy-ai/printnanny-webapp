@@ -31,7 +31,7 @@ export const useWebrtcStore = defineStore({
       const res = await devicesApi.webrtcStreamUpdateOrCreate(piId, req).catch(handleApiError);
       if (res) {
         this.$patch((state: StateTree) => {
-          state.push(res.data)
+          state.streams.push(res.data)
           state.hasChanged = true;
         })
         return res.data

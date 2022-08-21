@@ -102,7 +102,9 @@ export const useWizardStore = defineStore({
       return this.pi;
     },
 
-    async initConnectTestSteps(pi: api.Pi) {
+    async initConnectTestSteps() {
+      if (this.pi === undefined) { return }
+      const pi = this.pi
       const natsClient = await this.connectNats(pi.id);
       const statusCommand = {
         id: uuid4(),

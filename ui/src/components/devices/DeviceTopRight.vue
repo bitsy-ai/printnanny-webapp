@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { stepKeys } from "@/components/wizard/piCreateWizard";
+import { PiCreateWizardSteps } from "@/components/wizard/piCreateWizard";
 
 const router = useRouter();
+
+const wizardSteps = PiCreateWizardSteps();
 
 async function refresh() {
   console.log("refreshing page");
@@ -21,7 +23,7 @@ async function refresh() {
     </button>
     <router-link
       v-slot="{ navigate }"
-      :to="{ name: 'pi-wizard', params: { activeStep: stepKeys[0].key } }"
+      :to="{ name:  wizardSteps[0].routeName }"
       custom
     >
       <button

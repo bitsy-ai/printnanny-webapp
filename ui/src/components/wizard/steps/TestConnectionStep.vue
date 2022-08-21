@@ -8,30 +8,32 @@ import type { WizardStep } from "@/types";
 import { ConnectTestStatus } from "@/types";
 import moment from "moment";
 import WebrtcVideo from "../../video/WebrtcVideo.vue";
+import  WizardButtons  from "@/components/wizard/steps/WizardButtons.vue"
+import { PiCreateWizardSteps } from "../piCreateWizard"
 
 const props = defineProps({
-  step: {
-    type: Object as PropType<WizardStep>,
-    required: true,
-  },
+  piId: {
+    type: String,
+    required: true
+  }
 });
+const step = PiCreateWizardSteps()[3]
 
 const store = useWizardStore();
 const router = useRouter();
 
-if (
-  router.currentRoute.value.params.piId !== undefined &&
-  router.currentRoute.value.params.activeStep === props.step.key
-) {
-  const piId = parseInt(router.currentRoute.value.params.piId as string);
-  const pi = await store.loadPi(piId);
-  await store.initConnectTestSteps(pi);
-  await store.connectTestSteps.map(s => s.run());
+if (store.pi == undefined || store.pi.id !== parseInt(props.piId)){
+  await store.loadPi(parseInt(props.piId));
 }
+await store.initConnectTestSteps();
+await store.connectTestSteps.map(s => s.run());
+
 </script>
 
 <template>
-  <FormStep :name="step.key">
+<div
+    class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap"
+  >
     <h2
       class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl flex-1 w-full text-center"
     >
@@ -111,8 +113,13 @@ if (
         </ul>
 
         <!-- webrtc component -->
-        <WebrtcVideo />
+        <WebrtcVideo :piId="props.piId"/>
       </div>
     </div>
-  </FormStep>
+
+    <!-- footer buttons -->
+    <div class="w-full m-auto justify-center flex-1">
+      <WizardButtons :currentStep="step"/>
+    </div>
+</div>
 </template>

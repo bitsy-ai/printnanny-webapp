@@ -1,17 +1,14 @@
 <script setup lang="ts">
-import type { PropType } from "vue";
-import type { WizardStep } from "@/types";
-import FormStep from "./FormStep.vue";
+import  WizardButtons  from "@/components/wizard/steps/WizardButtons.vue"
+import { PiCreateWizardSteps } from "../piCreateWizard"
 
-defineProps({
-  step: {
-    type: Object as PropType<WizardStep>,
-    required: true,
-  },
-});
+const step = PiCreateWizardSteps()[0]
 </script>
 <template>
-  <FormStep :name="step.key">
+  <div
+    class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap"
+  >
+    <!-- main component -->
     <div
       class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-left"
     >
@@ -34,5 +31,9 @@ defineProps({
         <span class="text-red-500">Do not eject your SD card yet! </span>
       </p>
     </div>
-  </FormStep>
+    <!-- footer buttons -->
+    <div class="w-full m-auto justify-center flex-1">
+      <WizardButtons :currentStep="step"/>
+    </div>
+</div>
 </template>
