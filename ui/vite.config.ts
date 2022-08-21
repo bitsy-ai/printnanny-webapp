@@ -5,6 +5,7 @@ import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import { execSync } from "child_process";
+import rollupNodePolyFill from 'rollup-plugin-node-polyfills';
 
 // reference: https://stackoverflow.com/questions/71162040/how-to-insert-git-info-in-environment-variables-using-vite
 // embed git information in vite build
@@ -51,6 +52,7 @@ export default defineConfig(({ _command, mode }) => {
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
+        "janode": "@bitsy-ai/janode"
       },
     },
   };

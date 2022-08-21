@@ -7,6 +7,7 @@ import { useWizardStore } from "@/stores/wizard";
 import type { WizardStep } from "@/types";
 import { ConnectTestStatus } from "@/types";
 import moment from "moment";
+import WebrtcVideo from "../../video/WebrtcVideo.vue";
 
 const props = defineProps({
   step: {
@@ -108,6 +109,9 @@ if (
             </div>
           </li>
         </ul>
+
+        <!-- webrtc component -->
+        <WebrtcVideo />
       </div>
     </div>
   </FormStep>
