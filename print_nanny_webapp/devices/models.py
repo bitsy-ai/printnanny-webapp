@@ -401,12 +401,12 @@ class WebrtcStream(SafeDeleteModel):
 
     info = models.JSONField(default=dict)
 
-    def create_mountpoint(self):
+    def get_or_create_mountpoint(self):
         from print_nanny_webapp.devices.services import (
-            janus_streaming_create_mountpoint,
+            janus_streaming_get_or_create_mountpoint,
         )
 
-        return janus_streaming_create_mountpoint(self)
+        return janus_streaming_get_or_create_mountpoint(self)
 
     def plugin_handle_endpoint(self, session, handle) -> str:
         return f"{self.session_endpoint(session)}/{handle}"

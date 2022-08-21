@@ -29,6 +29,10 @@ from print_nanny_webapp.devices.models import (
 logger = logging.getLogger(__name__)
 
 
+class StreamingMountpointNotFound(Exception):
+    pass
+
+
 def janus_admin_add_token(stream: WebrtcStream) -> Dict[str, Any]:
     if stream.config_type == JanusConfigType.CLOUD:
         req = dict(
@@ -76,11 +80,33 @@ def janus_get_plugin_handle(stream: WebrtcStream, session: str) -> Dict[str, Any
     return data["data"]["id"]
 
 
-def janus_streaming_create_mountpoint(stream: WebrtcStream):
-    janus_admin_add_token(stream)
-    session = janus_get_session(stream)
-    plugin_handle = janus_get_plugin_handle(stream, session)
-    handle_endpoint = stream.plugin_handle_endpoint(session, plugin_handle)
+def janus_get_streaming_info(
+    stream: WebrtcStream, handle_endpoint: str
+) -> Dict[str, Any]:
+    data = dict(
+        transaction=str(uuid4()),
+        janus="message",
+        token=stream.api_token,
+        body=dict(
+            request="info",
+            id=stream.id,
+            secret=stream.stream_secret,
+        ),
+    )
+    res = requests.post(handle_endpoint, json=data)
+    res.raise_for_status()
+    res_data = res.json()
+    logger.info("Got streaming info %s", res_data)
+    error_code = res_data.get("plugindata", {}).get("data", {}).get("error_code")
+    if error_code == 455:
+        error = res_data.get("plugindata", {}).get("data", {}).get("error")
+        raise StreamingMountpointNotFound(error)
+    return res_data.get("plugindata", res_data)
+
+
+def janus_create_streaming_mountpoint(
+    stream: WebrtcStream, handle_endpoint: str
+) -> Dict[str, Any]:
     admin_key = (
         settings.JANUS_CLOUD_STREAMING_PLUGIN_ADMIN_KEY
         if stream.config_type == JanusConfigType.CLOUD
@@ -119,23 +145,21 @@ def janus_streaming_create_mountpoint(stream: WebrtcStream):
     logger.info(
         "%s response to 'create' streaming mountpoint: %s ", handle_endpoint, res_data
     )
-    data = dict(
-        transaction=str(uuid4()),
-        janus="message",
-        token=stream.api_token,
-        body=dict(
-            request="info",
-            id=stream.id,
-            secret=stream.stream_secret,
-        ),
-    )
-    res = requests.post(handle_endpoint, json=data)
-    res.raise_for_status()
-    res_data = res.json()
-    logger.info(
-        "%s response to 'info' streaming mountpoint: %s ", stream.api_url, res_data
-    )
-    stream.info = res_data
+    return janus_get_streaming_info(stream, handle_endpoint)
+
+
+def janus_streaming_get_or_create_mountpoint(stream: WebrtcStream):
+    janus_admin_add_token(stream)
+    session = janus_get_session(stream)
+    plugin_handle = janus_get_plugin_handle(stream, session)
+    handle_endpoint = stream.plugin_handle_endpoint(session, plugin_handle)
+
+    try:
+        streaming_info = janus_get_streaming_info(stream, handle_endpoint)
+    except StreamingMountpointNotFound:
+        streaming_info = janus_create_streaming_mountpoint(stream, handle_endpoint)
+
+    stream.info = streaming_info
     stream.save()
     return stream
 
