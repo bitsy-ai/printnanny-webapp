@@ -1,3 +1,0 @@
-[submodule "ui/vendor/janode"]
-	path = ui/vendor/janode
-	url = git@github.com:meetecho/janode.git
