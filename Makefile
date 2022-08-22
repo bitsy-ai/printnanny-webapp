@@ -485,10 +485,6 @@ upgrade-ghost:
 	kubectl set image statefulset/print-nanny-blog ghost=us.gcr.io/print-nanny/ghost:$(GHOST_VERSION) --record
 	kubectl set image statefulset/print-nanny-help ghost=us.gcr.io/print-nanny/ghost:$(GHOST_VERSION) --record
 
-##
-# Janus
-##
-JANUS_NAMESPACE ?= default
 clean-dist:
 	rm -rf dist
 dist/k8s:
@@ -498,7 +494,7 @@ dist/k8s/janus.yml: dist/k8s
 	j2 k8s/templates/janus.j2 -o dist/k8s/janus.yml
 
 janus-deploy: clean-dist dist/k8s/janus.yml cluster-config
-	kubectl -n $(JANUS_NAMESPACE) apply -f dist/k8s/janus.yml
+	kubectl apply -f dist/k8s/janus.yml
 
 janus-image:
 	docker build --tag us.gcr.io/$(GCP_PROJECT)/janus:$(JANUS_VERSION) \
