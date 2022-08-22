@@ -70,33 +70,58 @@ class WebrtcStreamSerializer(serializers.ModelSerializer):
     class Meta:
         model = WebrtcStream
         fields = (
-            "created_dt",
-            "updated_dt",
-            "config_type",
             "active",
-            "pi",
-            "stream_secret",
-            "stream_pin",
-            "api_token",
-            "admin_secret",
-            "rtp_port",
-            "rtp_domain",
-            "pt",
-            "rtpmap",
             "admin_port",
+            "admin_secret",
             "admin_url",
-            "api_port",
-            "api_url",
             "api_domain",
+            "api_port",
+            "api_token",
+            "api_url",
+            "config_type",
+            "created_dt",
+            "id",
+            "info",
+            "is_admin",
+            "pi",
+            "pt",
             "rtp_domain",
+            "rtp_domain",
+            "rtp_port",
+            "rtpmap",
+            "stream_pin",
+            "stream_secret",
+            "updated_dt",
             "ws_port",
             "ws_url",
         )
-        read_only_fields = ("pi", "config_type", "updated_dt", "created_dt")
+        read_only_fields = (
+            "admin_port",
+            "admin_secret",
+            "admin_url",
+            "api_port",
+            "api_token",
+            "api_url",
+            "created_dt",
+            "id",
+            "info",
+            "is_admin",
+            "is_admin",
+            "pi",
+            "pt",
+            "rtp_domain",
+            "rtp_port",
+            "rtpmap",
+            "stream_pin",
+            "stream_secret",
+            "updated_dt",
+            "ws_port",
+            "ws_url",
+        )
 
     def update_or_create(self, validated_data, pi_id):
-        return WebrtcStream.objects.filter(pi=pi_id).update_or_create(
-            pi=pi_id, defaults=validated_data
+        return WebrtcStream.objects.filter(pi_id=pi_id).update_or_create(
+            pi_id=pi_id, defaults=validated_data
         )
 
     def get_or_create(self, validated_data, pi_id):
@@ -105,7 +130,7 @@ class WebrtcStreamSerializer(serializers.ModelSerializer):
             validated_data,
         )
         # get_or_create method requires fkey relationship be 1) instance or 2) use __id field syntax
-        pi = Pi.objects.get(id=pi_id)
+        pi = Pi.objects.get(pi_id=pi_id)
         return WebrtcStream.objects.get_or_create(pi=pi, defaults=validated_data)
 
 

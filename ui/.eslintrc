@@ -25,7 +25,8 @@
   },
   "ignorePatterns": [
     "PrivacyPolicy.vue",
-    "TermsOfService.vue"
+    "TermsOfService.vue",
+    "vendor/**/*.js"
   ],
   "overrides": [
     {

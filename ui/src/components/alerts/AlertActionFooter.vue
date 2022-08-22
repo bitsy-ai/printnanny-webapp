@@ -7,17 +7,19 @@
       type="button"
       :class="colorClassNames(action.color)"
       class="bg-white rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2"
+      @click="action.onClick"
     >
       {{ action.text }}
     </button>
   </div>
 </template>
 <script setup lang="ts">
-import type { AlertAction } from "@/types";
+import type { PropType } from "vue";
+import type { AlertAction } from "@/types/alerts";
 defineProps({
   actions: {
-    type: Array<AlertAction>,
-    default: [],
+    type: Array as PropType<Array<AlertAction>>,
+    default: () => [],
   },
 });
 function colorClassNames(color: string) {

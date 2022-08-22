@@ -1,33 +1,32 @@
 <script setup lang="ts">
-import FormStep from "./FormStep.vue";
-import { useRouter } from "vue-router";
-import type { PropType } from "vue";
+import { markRaw } from "vue";
 import { useWizardStore } from "@/stores/wizard";
-import type { WizardStep } from "@/types";
-import { ConnectTestStatus } from "@/types";
+import moment from "moment";
+import WebrtcVideo from "../../video/WebrtcVideo.vue";
+import WizardButtons from "@/components/wizard/steps/WizardButtons.vue";
+import { PiCreateWizardSteps } from "../piCreateWizard";
 
 const props = defineProps({
-  step: {
-    type: Object as PropType<WizardStep>,
+  piId: {
+    type: String,
     required: true,
   },
 });
+const step = PiCreateWizardSteps()[3];
 
 const store = useWizardStore();
-const router = useRouter();
 
-if (
-  router.currentRoute.value.params.piId !== undefined &&
-  router.currentRoute.value.params.activeStep === props.step.key
-) {
-  const piId = parseInt(router.currentRoute.value.params.piId as string);
-  await store.loadPi(piId);
-  store.connectNats(piId);
+if (store.pi == undefined || store.pi.id !== parseInt(props.piId)) {
+  await store.loadPi(parseInt(props.piId));
 }
+await store.initConnectTestSteps();
+await store.connectTestSteps.map((s) => s.run());
 </script>
 
 <template>
-  <FormStep :name="step.key">
+  <div
+    class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap"
+  >
     <h2
       class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl flex-1 w-full text-center"
     >
@@ -70,7 +69,7 @@ if (
                       aria-hidden="true"
                     />
                     <component
-                      :is="item.statusComponent().icon"
+                      :is="markRaw(item.statusComponent().icon)"
                       v-if="item.active()"
                       text=""
                       width="w-8"
@@ -84,9 +83,9 @@ if (
                 >
                   <div>
                     <p class="text-sm text-gray-500 text-left">
-                      <strong>{{ item.content }}</strong>
+                      <strong>{{ item.title }}</strong>
                       <br />
-                      <i>{{ item.statusText() }}</i>
+                      <i>{{ item.description }}</i>
                     </p>
                   </div>
                   <div
@@ -95,14 +94,17 @@ if (
                     {{ item.statusComponent().text }}
                     <br />
                     <time
-                      v-if="item.status == ConnectTestStatus.Pending"
-                      :datetime="item?.dtStart?.format()"
-                      ><i>Started {{ item?.dtStart?.fromNow() }}</i></time
-                    >
-                    <time
-                      v-if="item.status == ConnectTestStatus.Success"
-                      :datetime="item?.dtEnd?.format()"
-                      ><i>Finished {{ item?.dtEnd?.fromNow() }}</i></time
+                      v-if="item.events.length > 0"
+                      :datetime="
+                        moment(
+                          item.events[item.events.length - 1].created_dt
+                        ).format()
+                      "
+                      ><i>{{
+                        moment(
+                          item.events[item.events.length - 1].created_dt
+                        ).fromNow()
+                      }}</i></time
                     >
                   </div>
                 </div>
@@ -110,7 +112,17 @@ if (
             </div>
           </li>
         </ul>
+
+        <!-- webrtc component -->
+        <div class="w-full m-auto justify-center flex-1">
+          <WebrtcVideo :pi-id="parseInt(props.piId)" />
+        </div>
       </div>
     </div>
-  </FormStep>
+
+    <!-- footer buttons -->
+    <div class="w-full m-auto justify-center flex-1">
+      <WizardButtons :current-step="step" />
+    </div>
+  </div>
 </template>

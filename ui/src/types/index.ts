@@ -2,197 +2,25 @@
  * Alert or error message produced by front-end ui code
  */
 // import type * as apiTypes from "printnanny-api-client";
-import type { FunctionalComponent, HTMLAttributes, VNodeProps } from "vue";
-import type { AnyObjectSchema } from "yup";
-import type { RouteLocationRaw } from "vue-router";
-import type { Moment } from "moment";
-import { CheckIcon, MoonIcon } from "@heroicons/vue/outline";
-import { ExclamationCircleIcon } from "@heroicons/vue/solid";
-import CustomSpinner from "@/components/util/CustomSpinner.vue";
-import moment from "moment";
+// import type { FunctionalComponent, HTMLAttributes, VNodeProps } from "vue";
+// import { shallowRef } from "vue";
+// import type { AnyObjectSchema } from "yup";
+// import { useRouter, type RouteLocationRaw } from "vue-router";
+// import type { Moment } from "moment";
+// import * as api from "printnanny-api-client";
+// import { CheckIcon, MoonIcon } from "@heroicons/vue/outline";
+// import { ExclamationCircleIcon } from "@heroicons/vue/solid";
+// import CustomSpinner from "@/components/util/CustomSpinner.vue";
+// import moment from "moment";
+// import type { Subscription, NatsConnection } from "nats.ws";
+// import { JSONCodec, ErrorCode as NatsErrorCode } from "nats.ws";
+// import type { Pi } from "printnanny-api-client";
+// import { useAlertStore } from "@/stores/alerts";
+// import type { AlertAction, UiAlert } from "./alerts";
+// import router from "@/router";
+// // TODO union of | apiTypes.Alert
+// // export type Alert = UiAlert | UiAlert;
 
-export interface AlertAction {
-  color: string;
-  text: string;
-}
-
-export interface UiAlert {
-  message: string;
-  header: string;
-  icon?: FunctionalComponent<HTMLAttributes & VNodeProps>;
-  actions: Array<AlertAction>;
-  error: Error | undefined;
-}
-
-// TODO union of | apiTypes.Alert
-// export type Alert = UiAlert | UiAlert;
-
-export type WizardButton = {
-  text: string;
-  link: () => RouteLocationRaw;
-};
-
-export type WizardStep = {
-  key: string;
-  title: string;
-  detail: string;
-  progress: string;
-  style: string;
-  component: any;
-  validationSchema: AnyObjectSchema;
-  nextButton: WizardButton | undefined;
-  prevButton: WizardButton | undefined;
-  onSubmit: (formData: any) => void;
-};
-
-export type ConnectTestStatusItem = {
-  icon: any;
-  iconBackground: string;
-  text: string;
-};
-
-export enum ConnectTestStatus {
-  NotStarted = "Not Started",
-  Pending = "Pending",
-  Success = "Success",
-  Error = "Error",
-}
-
-export type ActionButton = {
-  bgColor: string;
-  bgColorHover: string;
-  bgColorFocus: string;
-  text: string;
-  onClick: (step: ManualTestStep, stepIdx: number) => void;
-  href?: string;
-  icon?: FunctionalComponent<HTMLAttributes & VNodeProps>;
-};
-
-export class ManualTestStep {
-  text: string;
-  detail: string;
-  icon: FunctionalComponent<HTMLAttributes & VNodeProps>;
-  active: boolean;
-  done: boolean;
-  actions: Array<ActionButton>;
-
-  constructor(
-    text: string,
-    detail: string,
-    icon: FunctionalComponent<HTMLAttributes & VNodeProps>,
-    actions: Array<ActionButton>
-  ) {
-    this.actions = actions;
-    this.detail = detail;
-    this.text = text;
-    this.icon = icon;
-    this.done = false;
-    this.active = false;
-  }
-
-  public iconBackground(): string {
-    if (this.done == true) {
-      return "bg-emerald-500";
-    } else if (this.active == false) {
-      return "bg-gray-400";
-    } else {
-      return "bg-amber-500";
-    }
-  }
-
-  public start() {
-    this.active = true;
-  }
-
-  public finish() {
-    this.active = false;
-    this.done = true;
-  }
-}
-
-export class ConnectTestStep {
-  content: string;
-  status: ConnectTestStatus;
-  successEventType: string;
-  errrorEventType: string;
-  pendingEventType: string;
-  notStartedMessage: string;
-
-  dtStart?: undefined | Moment;
-  dtEnd?: undefined | Moment;
-
-  icons = {
-    [ConnectTestStatus.NotStarted]: {
-      icon: MoonIcon,
-      iconBackground: "bg-gray-400",
-      text: ConnectTestStatus.NotStarted.valueOf(),
-    } as ConnectTestStatusItem,
-    [ConnectTestStatus.Pending]: {
-      icon: CustomSpinner,
-      iconBackground: "bg-amber-400",
-      text: ConnectTestStatus.Pending.valueOf(),
-    } as ConnectTestStatusItem,
-    [ConnectTestStatus.Success]: {
-      icon: CheckIcon,
-      iconBackground: "bg-green-500",
-      text: ConnectTestStatus.Success.valueOf(),
-    } as ConnectTestStatusItem,
-    [ConnectTestStatus.Error]: {
-      icon: ExclamationCircleIcon,
-      iconBackground: "bg-red-500",
-      text: ConnectTestStatus.Error.valueOf(),
-    } as ConnectTestStatusItem,
-  };
-  constructor(
-    content: string,
-    pendingEventType: string,
-    pendingMessage: string,
-    successEventType: string,
-    errorEventType: string
-  ) {
-    this.content = content;
-    this.notStartedMessage = pendingMessage;
-    this.pendingEventType = pendingEventType;
-    this.successEventType = successEventType;
-    this.errrorEventType = errorEventType;
-    this.status = ConnectTestStatus.NotStarted;
-    this.dtStart = undefined;
-    this.dtEnd = undefined;
-  }
-
-  public statusText(): string {
-    switch (this.status) {
-      case ConnectTestStatus.Pending:
-        return `Waiting for Raspberry Pi`;
-      case ConnectTestStatus.Success:
-        return this.successEventType;
-      case ConnectTestStatus.Error:
-        return this.errrorEventType;
-      case ConnectTestStatus.NotStarted:
-        return this.notStartedMessage || "Waiting to begin test";
-    }
-  }
-
-  public error(): void {
-    this.status = ConnectTestStatus.Error;
-    this.dtEnd = moment();
-  }
-
-  public success(): void {
-    this.status = ConnectTestStatus.Success;
-    this.dtEnd = moment();
-  }
-
-  public active(): boolean {
-    return this.status === ConnectTestStatus.Pending;
-  }
-
-  public statusComponent(): ConnectTestStatusItem {
-    return this.icons[this.status];
-  }
-
-  public start(): void {
-    this.dtStart = moment();
-    this.status = ConnectTestStatus.Pending;
-  }
-}
+export * from "./wizard";
+export * from "./alerts";
+export * from "./pinia";

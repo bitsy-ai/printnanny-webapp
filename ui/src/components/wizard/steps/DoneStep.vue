@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
 import type { WizardStep } from "@/types";
-import FormStep from "./FormStep.vue";
 
 defineProps({
   step: {

@@ -4,10 +4,12 @@ import DeviceEmpty from "./DeviceEmpty.vue";
 import DeviceActionMenu from "./DeviceActionMenu.vue";
 import DeviceFavorites from "./DeviceFavorites.vue";
 import { ExclamationIcon } from "@heroicons/vue/outline";
-import { stepKeys } from "@/components/wizard/piCreateWizard";
+
+import { PiCreateWizardSteps } from "@/components/wizard/piCreateWizard";
 
 const deviceStore = useDeviceStore();
 const pis = await deviceStore.fetchDevices();
+const wizardSteps = PiCreateWizardSteps();
 </script>
 
 <template>
@@ -100,9 +102,8 @@ const pis = await deviceStore.fetchDevices();
                   <!-- setup incomplete badge / link -->
                   <router-link
                     :to="{
-                      name: 'pi-wizard',
+                      name: wizardSteps[3].routeName,
                       params: {
-                        activeStep: stepKeys[2].key,
                         piId: pi.id,
                       },
                     }"

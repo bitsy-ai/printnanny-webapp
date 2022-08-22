@@ -32,10 +32,11 @@ export const stepKeys = [
 ];
 
 export function PiCreateWizardSteps(): WizardStep[] {
-  const store = useWizardStore();
   return [
     {
       key: stepKeys[0].key,
+      path: `/connect/${stepKeys[0].key}`,
+      routeName: `pi-wizard-${stepKeys[0].key}`,
       detail: stepKeys[0].detail,
       component: SdCardStep,
       title: stepKeys[0].title,
@@ -44,18 +45,17 @@ export function PiCreateWizardSteps(): WizardStep[] {
       validationSchema: yup.object(),
       prevButton: undefined,
       nextButton: {
+        onSubmit: undefined,
         text: `Next: ${stepKeys[1].title}`,
         link: () => ({
-          name: "pi-wizard",
-          params: { activeStep: stepKeys[1].key },
+          name: `pi-wizard-${stepKeys[1].key}`,
         }),
-      },
-      onSubmit: (_formData: any) => {
-        console.debug("create-sd-card onSubmit");
       },
     },
     {
       key: stepKeys[1].key,
+      path: `/connect/${stepKeys[1].key}`,
+      routeName: `pi-wizard-${stepKeys[1].key}`,
       detail: stepKeys[1].detail,
       component: PiCreateStep,
       title: stepKeys[1].title,
@@ -68,38 +68,40 @@ export function PiCreateWizardSteps(): WizardStep[] {
       }),
       nextButton: {
         text: `Next: ${stepKeys[2].title}`,
-        link: () => ({
-          name: "pi-wizard",
-          params: { activeStep: stepKeys[2].key, piId: store.pi?.id },
-        }),
+        onSubmit: async (formData: any) => {
+          const store = useWizardStore();
+          console.log("add-pi onSubmit", formData);
+          // WIREGUARD TODO: allow user to specify fqdn
+          const { hostname, edition, sbc } = formData;
+          const req: api.PiRequest = {
+            fqdn: `${hostname}.local`,
+            favorite: false,
+            hostname,
+            edition,
+            sbc,
+          };
+          await store.createPi(req);
+        },
+        link: () => {
+          const store = useWizardStore();
+          return {
+            name: `pi-wizard-${stepKeys[2].key}`,
+            params: { piId: store.pi?.id },
+          };
+        },
       },
       prevButton: {
+        onSubmit: undefined,
         text: `Previous: ${stepKeys[0].title}`,
         link: () => ({
-          name: "pi-wizard",
-          params: { activeStep: stepKeys[0].key },
+          name: `pi-wizard-${stepKeys[1].key}`,
         }),
-      },
-      onSubmit: async (formData: any) => {
-        const store = useWizardStore();
-        console.log("add-pi onSubmit", formData);
-        // WIREGUARD TODO: allow user to specify fqdn
-        const { hostname, edition, sbc } = formData;
-        const req: api.PiRequest = {
-          fqdn: `${hostname}.local`,
-          favorite: false,
-          hostname,
-          edition,
-          sbc,
-        };
-        const pi = await store.createPi(req);
-        if (pi) {
-          store.downloadLicenseZip(pi.id);
-        }
       },
     },
     {
       key: stepKeys[2].key,
+      path: `/connect/${stepKeys[2].key}/:piId`,
+      routeName: `pi-wizard-${stepKeys[2].key}`,
       detail: stepKeys[2].detail,
       component: DownloadLicenseStep,
       progress: "66%",
@@ -108,24 +110,29 @@ export function PiCreateWizardSteps(): WizardStep[] {
       validationSchema: yup.object(),
       nextButton: {
         text: `Next: ${stepKeys[3].title}`,
-        link: () => ({
-          name: "pi-wizard",
-          params: { activeStep: stepKeys[3].key, piId: store.pi?.id },
-        }),
+        onSubmit: undefined,
+        link: () => {
+          const store = useWizardStore();
+          return {
+            name: `pi-wizard-${stepKeys[3].key}`,
+            params: { piId: store.pi?.id },
+          };
+        },
       },
       prevButton: {
         text: `Previous: ${stepKeys[1].title}`,
-        link: () => ({
-          name: "pi-wizard",
-          params: { activeStep: stepKeys[1].key, piId: store.pi?.id },
-        }),
-      },
-      onSubmit: (_formData: any) => {
-        // handle form data
+        onSubmit: undefined,
+        link: () => {
+          return {
+            name: `pi-wizard-${stepKeys[1].key}`,
+          };
+        },
       },
     },
     {
       key: stepKeys[3].key,
+      path: `/connect/${stepKeys[3].key}/:piId`,
+      routeName: `pi-wizard-${stepKeys[3].key}`,
       detail: stepKeys[3].detail,
       component: TestConnectionStep,
       progress: "66%",
@@ -134,24 +141,32 @@ export function PiCreateWizardSteps(): WizardStep[] {
       validationSchema: yup.object(),
       nextButton: {
         text: `Next: ${stepKeys[4].title}`,
-        link: () => ({
-          name: "pi-wizard",
-          params: { activeStep: stepKeys[4].key, piId: store.pi?.id },
-        }),
+        onSubmit: undefined,
+        link: () => {
+          const store = useWizardStore();
+
+          return {
+            name: `pi-wizard-${stepKeys[4].key}`,
+            params: { activeStep: stepKeys[4].key, piId: store.pi?.id },
+          };
+        },
       },
       prevButton: {
         text: `Previous: ${stepKeys[2].title}`,
-        link: () => ({
-          name: "pi-wizard",
-          params: { activeStep: stepKeys[2].key, piId: store.pi?.id },
-        }),
-      },
-      onSubmit: (_formData: any) => {
-        // handle form data
+        onSubmit: undefined,
+        link: () => {
+          const store = useWizardStore();
+          return {
+            name: `pi-wizard-${stepKeys[2].key}`,
+            params: { piId: store.pi?.id },
+          };
+        },
       },
     },
     {
       key: stepKeys[4].key,
+      path: `/connect/${stepKeys[4].key}/:piId`,
+      routeName: `pi-wizard-${stepKeys[4].key}`,
       detail: stepKeys[4].detail,
       progress: "100%",
       style: "width: 100%",
@@ -161,13 +176,15 @@ export function PiCreateWizardSteps(): WizardStep[] {
       component: DoneStep,
       prevButton: {
         text: `Previous: ${stepKeys[3].title}`,
-        link: () => ({
-          name: "pi-wizard",
-          params: { activeStep: stepKeys[3].key, piId: store.pi?.id },
-        }),
-      },
-      onSubmit: (_formData: any) => {
-        // handle form data
+        onSubmit: undefined,
+        link: () => {
+          const store = useWizardStore();
+
+          return {
+            name: `pi-wizard-${stepKeys[3].key}`,
+            params: { piId: store.pi?.id },
+          };
+        },
       },
     },
   ];

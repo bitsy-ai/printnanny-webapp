@@ -1,8 +1,13 @@
 {
   "files": [],
   "compilerOptions": {
-    "isolatedModules": true
+    "isolatedModules": true,
+    "checkJs": false,
+    "allowJs": true,
   },
+  "exclude": [
+    "vendor/**/*.js"
+  ],
   "references": [
     {
       "path": "./tsconfig.config.json"

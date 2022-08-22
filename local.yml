@@ -8,24 +8,21 @@ volumes:
   local_octoprint_data: {}
   local_nsc_data: {}
 services:
-  # janus:
-  #   hostname: janus
-  #   image: bitsyai/janus:0.11.8
-  #   container_name: printnanny_janus
-  #   # network_mode: "host"
-  #   ports:
-  #     - "8188:8188"
-  #     - "7188:7188"
-  #     - "7088:7088"
-  #     - "8088:8088"
-  #     - "5000:5000/udp"
-  #     - "5001:5001/udp"
-  #     - "5002:5002/udp"
-  #     - "10000-10200:10000-10200/udp"
-  #   env_file:
-  #     - ./.envs/.local/.janus
-  #   volumes:
-  #     - ./compose/local/janus/etc:/etc/janus
+  janus:
+    hostname: janus
+    image: bitsyai/janus:1.0.4
+    container_name: printnanny_janus
+    # network_mode: "host"
+    ports:
+      - "8188:8188"
+      - "7188:7188"
+      - "7088:7088"
+      - "8088:8088"
+      - "5000-5100:5000-5100/udp"
+    env_file:
+      - ./.envs/.local/.janus
+    volumes:
+      - ./compose/local/janus/etc:/etc/janus
 
   # octoprint:
   #   hostname: octoprint
@@ -115,11 +112,7 @@ services:
       - print_nanny_webapp.events.streams.firehose
   postgres:
     hostname: postgres
-    # network_mode: "host"
-    build:
-      context: .
-      dockerfile: ./compose/production/postgres/Dockerfile
-    image: printnanny_webapp_production_postgres
+    image: postgres:12.3
     container_name: printnanny_webapp_postgres
     volumes:
       - local_postgres_data:/var/lib/postgresql/data:z

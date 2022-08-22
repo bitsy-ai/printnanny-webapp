@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { PropType } from "vue";
 import { ref } from "vue";
 import { FolderDownloadIcon } from "@heroicons/vue/solid";
 import {
@@ -9,30 +8,23 @@ import {
   ChipIcon,
 } from "@heroicons/vue/outline";
 import { useWizardStore } from "@/stores/wizard";
-import type { WizardStep } from "@/types";
-import FormStep from "./FormStep.vue";
-import { useRouter } from "vue-router";
-import type { ActionButton } from "@/types";
+import type { ManualActionButton } from "@/types/wizard";
 import { ManualTestStep } from "@/types";
+import { PiCreateWizardSteps } from "../piCreateWizard";
 
 const props = defineProps({
-  step: {
-    type: Object as PropType<WizardStep>,
+  piId: {
+    type: String,
     required: true,
   },
 });
 
 const store = useWizardStore();
-const router = useRouter();
 
-if (
-  router.currentRoute.value.params.piId !== undefined &&
-  router.currentRoute.value.params.activeStep === props.step.key
-) {
-  const piId = parseInt(router.currentRoute.value.params.piId as string);
-  await store.loadPi(piId);
-  await store.downloadLicenseZip(piId);
-}
+const step = PiCreateWizardSteps()[2];
+
+await store.loadPi(parseInt(props.piId));
+await store.downloadLicenseZip(parseInt(props.piId));
 
 function nextManualStep(currentStep: ManualTestStep, currentitemIdx: number) {
   // mark current step done
@@ -57,7 +49,7 @@ const manualSteps = ref([
         bgColorHover: "hover:bg-amber-600",
         bgColorFocus: "focus:ring-amber-500",
         icon: FolderDownloadIcon,
-      } as ActionButton,
+      } as ManualActionButton,
       {
         text: "Done",
         icon: CheckIcon,
@@ -66,7 +58,7 @@ const manualSteps = ref([
         bgColorHover: "hover:bg-emerald-600",
         bgColorFocus: "focus:ring-emerald-500",
         onClick: nextManualStep,
-      } as ActionButton,
+      } as ManualActionButton,
     ]
   ),
   new ManualTestStep(
@@ -81,7 +73,7 @@ const manualSteps = ref([
         bgColorFocus: "focus:ring-sky-500",
         icon: QuestionMarkCircleIcon,
         href: "https://docs.printnanny.ai/docs/quick-start/copy-zip-to-sd-card",
-      } as ActionButton,
+      } as ManualActionButton,
       {
         text: "Done",
         icon: CheckIcon,
@@ -89,7 +81,7 @@ const manualSteps = ref([
         bgColorHover: "hover:bg-emerald-600",
         bgColorFocus: "focus:ring-emerald-500",
         onClick: nextManualStep,
-      } as ActionButton,
+      } as ManualActionButton,
     ]
   ),
   new ManualTestStep(
@@ -104,7 +96,7 @@ const manualSteps = ref([
         bgColorFocus: "focus:ring-sky-500",
         icon: QuestionMarkCircleIcon,
         href: "https://docs.printnanny.ai/docs/quick-start/copy-zip-to-sd-card",
-      } as ActionButton,
+      } as ManualActionButton,
       {
         text: "Done",
         icon: CheckIcon,
@@ -112,7 +104,7 @@ const manualSteps = ref([
         bgColorHover: "hover:bg-emerald-600",
         bgColorFocus: "focus:ring-emerald-500",
         onClick: nextManualStep,
-      } as ActionButton,
+      } as ManualActionButton,
     ]
   ),
 ]);
@@ -121,7 +113,9 @@ const manualSteps = ref([
 manualSteps.value[0].start();
 </script>
 <template>
-  <FormStep :name="step.key">
+  <div
+    class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap"
+  >
     <h2
       class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl flex-1 w-full text-center"
     >
@@ -236,5 +230,9 @@ manualSteps.value[0].start();
         </ul>
       </div>
     </div>
-  </FormStep>
+    <!-- footer buttons -->
+    <div class="w-full m-auto justify-center flex-1">
+      <WizardButtons :current-step="step" />
+    </div>
+  </div>
 </template>

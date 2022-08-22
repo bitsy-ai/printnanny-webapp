@@ -85,7 +85,7 @@
         </a>
       </div>
 
-        <h3
+      <h3
         id="badges-headline"
         class="pt-4 px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider"
       >
@@ -96,8 +96,13 @@
         role="group"
         aria-labelledby="badges-headline"
       >
-
-          <span v-for="(item) in accountStore.user?.member_badges" :key="item.type" class="mt-2 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800"> {{ item.type }} </span>
+        <span
+          v-for="item in accountStore.user?.member_badges"
+          :key="item.type"
+          class="mt-2 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800"
+        >
+          {{ item.type }}
+        </span>
       </div>
     </div>
   </nav>
