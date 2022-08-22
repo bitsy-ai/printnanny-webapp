@@ -27,11 +27,13 @@ import { computed } from "vue";
 import { useRouter } from "vue-router";
 import { PiCreateWizardSteps } from "./piCreateWizard";
 
-const router = useRouter()
+const router = useRouter();
 const steps = PiCreateWizardSteps();
 
 const currentStep = computed(() => {
-  const idx = steps.findIndex((step) => step.routeName === router.currentRoute.value.name);
+  const idx = steps.findIndex(
+    (step) => step.routeName === router.currentRoute.value.name
+  );
   if (idx === -1) {
     return steps[0];
   }

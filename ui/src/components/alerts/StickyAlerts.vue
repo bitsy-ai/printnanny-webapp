@@ -26,7 +26,6 @@
 import { useAlertStore } from "@/stores/alerts";
 import { ExclamationIcon } from "@heroicons/vue/outline";
 import SimpleAlert from "./SimpleAlert.vue";
-import BuildInfoFooter from "@/components/footer/BuildInfoFooter.vue";
 
 const alertStore = useAlertStore();
 </script>

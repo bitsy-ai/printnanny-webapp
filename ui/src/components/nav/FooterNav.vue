@@ -192,7 +192,6 @@ const footerNavigation = {
         <p class="text-sm font-medium text-gray-400 flex">
           <span>&copy; 2022 Bitsy AI Labs, LLC. All rights reserved.</span>
           <BuildInfoFooter />
-
         </p>
       </div>
     </div>
