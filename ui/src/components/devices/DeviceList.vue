@@ -7,12 +7,9 @@ import { ExclamationIcon } from "@heroicons/vue/outline";
 
 import { PiCreateWizardSteps } from "@/components/wizard/piCreateWizard";
 
-
 const deviceStore = useDeviceStore();
 const pis = await deviceStore.fetchDevices();
 const wizardSteps = PiCreateWizardSteps();
-
-
 </script>
 
 <template>

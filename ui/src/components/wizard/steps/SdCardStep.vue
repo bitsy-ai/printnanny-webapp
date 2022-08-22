@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import  WizardButtons  from "@/components/wizard/steps/WizardButtons.vue"
-import { PiCreateWizardSteps } from "../piCreateWizard"
+import WizardButtons from "@/components/wizard/steps/WizardButtons.vue";
+import { PiCreateWizardSteps } from "../piCreateWizard";
 
-const step = PiCreateWizardSteps()[0]
+const step = PiCreateWizardSteps()[0];
 </script>
 <template>
   <div
@@ -33,7 +33,7 @@ const step = PiCreateWizardSteps()[0]
     </div>
     <!-- footer buttons -->
     <div class="w-full m-auto justify-center flex-1">
-      <WizardButtons :currentStep="step"/>
+      <WizardButtons :current-step="step" />
     </div>
-</div>
+  </div>
 </template>

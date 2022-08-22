@@ -7,7 +7,6 @@ import DownloadLicenseStep from "./steps/DownloadLicenseStep.vue";
 import TestConnectionStep from "./steps/TestConnectionStep.vue";
 import DoneStep from "./steps/DoneStep.vue";
 import type { WizardStep } from "@/types";
-import { useRouter } from "vue-router";
 
 export const stepKeys = [
   {
@@ -85,8 +84,11 @@ export function PiCreateWizardSteps(): WizardStep[] {
         },
         link: () => {
           const store = useWizardStore();
-          return { name: `pi-wizard-${stepKeys[2].key}`, params: { piId: store.pi?.id } }
-        }
+          return {
+            name: `pi-wizard-${stepKeys[2].key}`,
+            params: { piId: store.pi?.id },
+          };
+        },
       },
       prevButton: {
         onSubmit: undefined,
@@ -114,17 +116,16 @@ export function PiCreateWizardSteps(): WizardStep[] {
           return {
             name: `pi-wizard-${stepKeys[3].key}`,
             params: { piId: store.pi?.id },
-          }
+          };
         },
       },
       prevButton: {
         text: `Previous: ${stepKeys[1].title}`,
         onSubmit: undefined,
         link: () => {
-          const store = useWizardStore();
           return {
             name: `pi-wizard-${stepKeys[1].key}`,
-          }
+          };
         },
       },
     },
@@ -147,7 +148,7 @@ export function PiCreateWizardSteps(): WizardStep[] {
           return {
             name: `pi-wizard-${stepKeys[4].key}`,
             params: { activeStep: stepKeys[4].key, piId: store.pi?.id },
-          }
+          };
         },
       },
       prevButton: {
@@ -158,7 +159,7 @@ export function PiCreateWizardSteps(): WizardStep[] {
           return {
             name: `pi-wizard-${stepKeys[2].key}`,
             params: { piId: store.pi?.id },
-          }
+          };
         },
       },
     },
@@ -182,7 +183,7 @@ export function PiCreateWizardSteps(): WizardStep[] {
           return {
             name: `pi-wizard-${stepKeys[3].key}`,
             params: { piId: store.pi?.id },
-          }
+          };
         },
       },
     },

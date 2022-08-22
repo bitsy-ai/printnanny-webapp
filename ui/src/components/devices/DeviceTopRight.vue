@@ -23,7 +23,7 @@ async function refresh() {
     </button>
     <router-link
       v-slot="{ navigate }"
-      :to="{ name:  wizardSteps[0].routeName }"
+      :to="{ name: wizardSteps[0].routeName }"
       custom
     >
       <button

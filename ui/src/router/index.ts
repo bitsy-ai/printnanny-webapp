@@ -8,12 +8,7 @@ import homeRoutes from "./home";
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: [
-    ...homeRoutes,
-    ...deviceRoutes,
-    ...swagRoutes,
-    ...settingsRoutes,
-  ],
+  routes: [...homeRoutes, ...deviceRoutes, ...swagRoutes, ...settingsRoutes],
 });
 
 router.beforeEach(async (to, _from) => {

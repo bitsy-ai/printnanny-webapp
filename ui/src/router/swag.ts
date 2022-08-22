@@ -1,6 +1,7 @@
+import type { RouteRecordRaw } from "vue-router";
+
 import DashboardLayout from "@/layouts/DashboardLayout.vue";
 import SwagView from "@/views/SwagView.vue";
-
 
 export default [
   {
@@ -15,4 +16,4 @@ export default [
       },
     ],
   },
-]
+] as Array<RouteRecordRaw>;

@@ -1,3 +1,5 @@
+import type { RouteRecordRaw } from "vue-router";
+
 import DashboardLayout from "@/layouts/DashboardLayout.vue";
 import PageTitle from "@/components/nav/PageTitle.vue";
 import DeviceDelete from "@/components/devices/DeviceDelete.vue";
@@ -36,7 +38,7 @@ export default [
         props: { default: true },
         meta: { title: "Delete Connection" },
       },
-      ...wizardRoutes
+      ...wizardRoutes,
     ],
   },
-]
+] as Array<RouteRecordRaw>;

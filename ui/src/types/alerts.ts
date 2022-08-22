@@ -1,11 +1,9 @@
-
 import type { FunctionalComponent, HTMLAttributes, VNodeProps } from "vue";
-
 
 export interface AlertAction {
   color: string;
   text: string;
-  onClick: Function;
+  onClick: () => void;
 }
 
 export interface UiAlert {

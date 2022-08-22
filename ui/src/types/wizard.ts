@@ -1,22 +1,21 @@
 import type { FunctionalComponent, HTMLAttributes, VNodeProps } from "vue";
 import { shallowRef } from "vue";
-
+import type { AnyObjectSchema } from "yup";
 import type { RouteLocationRaw } from "vue-router";
 import { CheckIcon, MoonIcon } from "@heroicons/vue/outline";
 import { ExclamationCircleIcon } from "@heroicons/vue/solid";
-import { JSONCodec, ErrorCode as NatsErrorCode } from "nats.ws";
-import type { Subscription, NatsConnection } from "nats.ws";
+import type { NatsConnection } from "nats.ws";
+import { JSONCodec } from "nats.ws";
 import * as api from "printnanny-api-client";
 
 import CustomSpinner from "@/components/util/CustomSpinner.vue";
 import type { UiAlert, AlertAction } from "./alerts";
 import { useAlertStore } from "@/stores/alerts";
 
-
 export type WizardButton = {
   text: string;
-  link: undefined | Function;
-  onSubmit: undefined | Function;
+  link: () => RouteLocationRaw;
+  onSubmit: undefined | ((formData: any) => void);
 };
 
 export type WizardStep = {
@@ -33,7 +32,6 @@ export type WizardStep = {
   prevButton: WizardButton | undefined;
 };
 
-
 export type ManualActionButton = {
   bgColor: string;
   bgColorHover: string;
@@ -43,7 +41,6 @@ export type ManualActionButton = {
   href?: string;
   icon?: FunctionalComponent<HTMLAttributes & VNodeProps>;
 };
-
 
 export class ManualTestStep {
   text: string;
@@ -86,7 +83,6 @@ export class ManualTestStep {
     this.done = true;
   }
 }
-
 
 export type ConnectTestStatusItem = {
   icon: any;
@@ -137,7 +133,7 @@ export class ConnectTestStep {
     description: string,
     piId: number,
     command: api.PolymorphicPiCommandRequest,
-    natsClient: NatsConnection,
+    natsClient: NatsConnection
   ) {
     this.title = title;
     this.description = description;
@@ -148,7 +144,6 @@ export class ConnectTestStep {
     this.events = [];
     this.natsClient = natsClient;
     this.status = ConnectTestStatus.NotStarted;
-
   }
 
   public error(description: string): void {
@@ -173,29 +168,40 @@ export class ConnectTestStep {
     return this.icons[this.status];
   }
 
+  public handleSystemctlShow(event: api.PolymorphicPiEventRequest) {
+    // get SystemState from payload
+    const systemState =
+      event.payload && "SystemState" in event.payload
+        ? event.payload["SystemState"]
+        : "unknown";
+    switch (systemState) {
+      case "degraded":
+        this.error(
+          "Raspberry Pi is running in a degraded state. Some services may not work. Reboot your Raspberry Pi and refresh this page."
+        );
+        break;
+      case "starting":
+        this.pending("Waiting for Raspberry Pi to finish startup");
+        break;
+      case "running":
+        this.success();
+        break;
+      case "unknown":
+        this.error(
+          "Raspberry Pi is in an unknown state. Some services may not work as expected. Reboot your Raspberry Pi and refresh this page."
+        );
+        break;
+      default:
+    }
+  }
+
   public handleEvent(event: api.PolymorphicPiEventRequest) {
-    console.log("handling event", event)
-    this.events.push(event)
+    console.log("handling event", event);
+    this.events.push(event);
     switch (event.event_type) {
       // PiBootStatusType.SystemctlShow:
       case api.PiBootStatusType.SystemctlShow:
-        // get SystemState from payload
-        const systemState = event.payload?.SystemState || "unknown"
-        switch (systemState) {
-          case "degraded":
-            this.error("Raspberry Pi is running in a degraded state. Some services may not work. Reboot your Raspberry Pi and refresh this page.");
-            break;
-          case "starting":
-            this.pending("Waiting for Raspberry Pi to finish startup");
-            break;
-          case "running":
-            this.success();
-            break
-          case "unknown":
-            this.error("Raspberry Pi is in an unknown state. Some services may not work as expected. Reboot your Raspberry Pi and refresh this page.")
-            break;
-          default:
-        }
+        this.handleSystemctlShow(event);
         break;
       case api.PiBootStatusType.SyncSettingsStarted:
         this.pending("Synchronizing with PrintNanny Cloud");
@@ -208,30 +214,43 @@ export class ConnectTestStep {
 
   public async run(): Promise<void> {
     this.status = ConnectTestStatus.Pending;
-    const subject = this.command.subject_pattern.replace("{pi_id}", this.piId);
+    const subject = this.command.subject_pattern.replace(
+      "{pi_id}",
+      this.piId.toString()
+    );
     const jsonCodec = JSONCodec<api.PolymorphicPiCommandRequest>();
 
-    await this.natsClient.request(subject, jsonCodec.encode(this.command), { timeout: 30000, noMux: true })
-      .then((msg) => {
-        const reply = jsonCodec.decode(msg.data) as api.PolymorphicPiEventRequest;
+    await this.natsClient
+      .request(subject, jsonCodec.encode(this.command), {
+        timeout: 30000,
+        noMux: true,
+      })
+      .then((msg: any) => {
+        const reply = jsonCodec.decode(
+          msg.data
+        ) as api.PolymorphicPiEventRequest;
         this.handleEvent(reply);
       })
-      .catch((e) => {
+      .catch((e: any) => {
         const alertStore = useAlertStore();
         if (e.name == "NatsError") {
-          const message = "No response from Raspberry Pi. Check that Pi is powered on and connected to Wifi."
-          const header = `Connection Error (NATS Service ${e.code})`
-          const actions = [{
-            color: "red", text: "Refresh", onClick: () => {
-              window.location.reload()
-            }
-          }] as Array<AlertAction>;
-          const alert = { error: e, header, message, actions } as UiAlert
-          alertStore.push(alert)
+          const message =
+            "No response from Raspberry Pi. Check that Pi is powered on and connected to Wifi.";
+          const header = `Connection Error (NATS Service ${e.code})`;
+          const actions = [
+            {
+              color: "red",
+              text: "Refresh",
+              onClick: () => {
+                window.location.reload();
+              },
+            },
+          ] as Array<AlertAction>;
+          const alert = { error: e, header, message, actions } as UiAlert;
+          alertStore.push(alert);
         }
         this.status = ConnectTestStatus.Error;
-        console.error("Error", e)
+        console.error("Error", e);
       });
-
   }
 }

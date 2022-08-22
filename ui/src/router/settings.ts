@@ -1,3 +1,5 @@
+import type { RouteRecordRaw } from "vue-router";
+
 import DashboardLayout from "@/layouts/DashboardLayout.vue";
 import SettingsView from "@/views/SettingsView.vue";
 
@@ -20,5 +22,4 @@ export default [
       },
     ],
   },
-
-]
+] as Array<RouteRecordRaw>;

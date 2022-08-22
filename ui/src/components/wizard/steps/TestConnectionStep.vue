@@ -1,36 +1,30 @@
 <script setup lang="ts">
-import { useRouter } from "vue-router";
 import { markRaw } from "vue";
-import type { PropType } from "vue";
 import { useWizardStore } from "@/stores/wizard";
-import type { WizardStep } from "@/types";
-import { ConnectTestStatus } from "@/types";
 import moment from "moment";
 import WebrtcVideo from "../../video/WebrtcVideo.vue";
-import  WizardButtons  from "@/components/wizard/steps/WizardButtons.vue"
-import { PiCreateWizardSteps } from "../piCreateWizard"
+import WizardButtons from "@/components/wizard/steps/WizardButtons.vue";
+import { PiCreateWizardSteps } from "../piCreateWizard";
 
 const props = defineProps({
   piId: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
-const step = PiCreateWizardSteps()[3]
+const step = PiCreateWizardSteps()[3];
 
 const store = useWizardStore();
-const router = useRouter();
 
-if (store.pi == undefined || store.pi.id !== parseInt(props.piId)){
+if (store.pi == undefined || store.pi.id !== parseInt(props.piId)) {
   await store.loadPi(parseInt(props.piId));
 }
 await store.initConnectTestSteps();
-await store.connectTestSteps.map(s => s.run());
-
+await store.connectTestSteps.map((s) => s.run());
 </script>
 
 <template>
-<div
+  <div
     class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap"
   >
     <h2
@@ -101,8 +95,16 @@ await store.connectTestSteps.map(s => s.run());
                     <br />
                     <time
                       v-if="item.events.length > 0"
-                      :datetime="moment(item.events[item.events.length -1].created_dt).format()"
-                      ><i>{{moment(item.events[item.events.length -1].created_dt).fromNow() }}</i></time
+                      :datetime="
+                        moment(
+                          item.events[item.events.length - 1].created_dt
+                        ).format()
+                      "
+                      ><i>{{
+                        moment(
+                          item.events[item.events.length - 1].created_dt
+                        ).fromNow()
+                      }}</i></time
                     >
                   </div>
                 </div>
@@ -113,14 +115,14 @@ await store.connectTestSteps.map(s => s.run());
 
         <!-- webrtc component -->
         <div class="w-full m-auto justify-center flex-1">
-          <WebrtcVideo :piId="props.piId"/>
+          <WebrtcVideo :pi-id="parseInt(props.piId)" />
         </div>
       </div>
     </div>
 
     <!-- footer buttons -->
     <div class="w-full m-auto justify-center flex-1">
-      <WizardButtons :currentStep="step"/>
+      <WizardButtons :current-step="step" />
     </div>
-</div>
+  </div>
 </template>

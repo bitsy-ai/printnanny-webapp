@@ -126,9 +126,9 @@ import {
 } from "@heroicons/vue/solid";
 import { ExclamationIcon } from "@heroicons/vue/outline";
 import { PiCreateWizardSteps } from "@/components/wizard/piCreateWizard";
+import { useDeviceStore } from "@/stores/devices";
 
 const wizardSteps = PiCreateWizardSteps();
-import { useDeviceStore } from "@/stores/devices";
 
 const props = defineProps({
   pi: {

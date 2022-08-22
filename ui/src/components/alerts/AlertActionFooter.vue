@@ -3,11 +3,11 @@
   <div class="mt-3 flex space-x-7">
     <button
       v-for="(action, index) in actions"
-      @click="action.onClick"
       :key="index"
       type="button"
       :class="colorClassNames(action.color)"
       class="bg-white rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2"
+      @click="action.onClick"
     >
       {{ action.text }}
     </button>
@@ -18,8 +18,8 @@ import type { PropType } from "vue";
 import type { AlertAction } from "@/types/alerts";
 defineProps({
   actions: {
-    type: Object as PropType<Array<AlertAction>>,
-    default: [],
+    type: Array as PropType<Array<AlertAction>>,
+    default: () => [],
   },
 });
 function colorClassNames(color: string) {

@@ -1,4 +1,5 @@
 import HomeView from "@/views/HomeView.vue";
+import type { RouteRecordRaw } from "vue-router";
 import { useAccountStore } from "@/stores/account";
 
 export default [
@@ -27,7 +28,7 @@ export default [
     path: "/logout/",
     name: "logout",
     redirect: { name: "home" },
-    beforeEnter: async (_to, _from) => {
+    beforeEnter: async (_to: any, _from: any) => {
       const account = useAccountStore();
       await account.logout();
     },
@@ -40,4 +41,4 @@ export default [
     // which is lazy-loaded when the route is visited.
     component: () => import("@/views/AboutView.vue"),
   },
-]
+] as Array<RouteRecordRaw>;
