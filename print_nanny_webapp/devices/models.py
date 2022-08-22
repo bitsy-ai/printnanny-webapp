@@ -412,8 +412,7 @@ class WebrtcStream(SafeDeleteModel):
         return f"{self.session_endpoint(session)}/{handle}"
 
     def session_endpoint(self, session) -> str:
-        if session:
-            return f"{self.api_url}/{session}"
+        return f"{self.api_url}/{session}"
 
     @property
     def is_admin(self) -> bool:

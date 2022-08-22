@@ -52,7 +52,7 @@ def janus_admin_add_token(stream: WebrtcStream) -> Dict[str, Any]:
         )
 
 
-def janus_get_session(stream: WebrtcStream) -> Dict[str, Any]:
+def janus_get_session(stream: WebrtcStream) -> str:
     req = dict(
         transaction=str(uuid4()),
         janus="create",
@@ -65,7 +65,7 @@ def janus_get_session(stream: WebrtcStream) -> Dict[str, Any]:
     return data["data"]["id"]
 
 
-def janus_get_plugin_handle(stream: WebrtcStream, session: str) -> Dict[str, Any]:
+def janus_get_plugin_handle(stream: WebrtcStream, session: str) -> str:
     req = dict(
         transaction=str(uuid4()),
         janus="attach",
