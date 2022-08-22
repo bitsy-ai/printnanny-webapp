@@ -48,6 +48,7 @@ jobs:
       JANUS_ADMIN_SECRET: ${{ secrets.JANUS_ADMIN_SECRET }}
       JANUS_IMAGE_REPO: us.gcr.io/print-nanny/janus:1.0.4
       JANUS_CLOUD_RTP_STATIC_IP: 34.98.101.19
+      PRINTNANNY_NAMESPACE: live
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
