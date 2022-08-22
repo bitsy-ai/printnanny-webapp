@@ -11,6 +11,7 @@ import { useWizardStore } from "@/stores/wizard";
 import type { ManualActionButton } from "@/types/wizard";
 import { ManualTestStep } from "@/types";
 import { PiCreateWizardSteps } from "../piCreateWizard";
+import WizardButtons from "@/components/wizard/steps/WizardButtons.vue";
 
 const props = defineProps({
   piId: {
