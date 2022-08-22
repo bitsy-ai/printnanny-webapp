@@ -742,3 +742,4 @@ NATS_WS_URI = env("NATS_WS_URI", default="ws://nats:8443")
 NATS_NKEYS_OPERATOR_NAME = env(
     "NATS_NKEYS_OPERATOR_NAME", default="PrintNannyDjangoOperator"
 )
+NATS_NSC_RETRY_MODE = "IDEMPOTENT"
