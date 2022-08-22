@@ -24,19 +24,14 @@
 </template>
 <script setup lang="ts">
 import { computed } from "vue";
+import { useRouter } from "vue-router";
 import { PiCreateWizardSteps } from "./piCreateWizard";
 
-const props = defineProps({
-  activeStep: {
-    type: String,
-    required: true,
-  },
-});
-
+const router = useRouter()
 const steps = PiCreateWizardSteps();
 
 const currentStep = computed(() => {
-  const idx = steps.findIndex((step) => step.key === props.activeStep);
+  const idx = steps.findIndex((step) => step.routeName === router.currentRoute.value.name);
   if (idx === -1) {
     return steps[0];
   }
