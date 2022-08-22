@@ -67,7 +67,7 @@
         </div>
         <div class="py-1">
           <MenuItem v-slot="{ active }">
-            <router-link to="logout" replace>
+            <router-link :to="{name: 'logout'}" replace>
               <a
                 href="#"
                 :class="[
@@ -100,12 +100,6 @@ const router = useRouter();
 
 // app routes
 const menuItems = [
-  {
-    name: "Settings",
-    link: { name: "settings" },
-    icon: CogIcon,
-    active: router.currentRoute.value.name == "settings",
-  },
   {
     name: "Subscription & Billing",
     link: { name: "billing" },

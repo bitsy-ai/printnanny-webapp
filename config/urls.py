@@ -5,7 +5,6 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path, re_path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
-from django.views.generic.base import RedirectView
 from drf_spectacular.views import (
     SpectacularJSONAPIView,
     SpectacularRedocView,
@@ -37,7 +36,6 @@ if settings.DEBUG:
 
 # https://drf-spectacular.readthedocs.io/en/latest/blueprints.html
 # do not remove the following line!
-import print_nanny_webapp.drfpasswordless.schema
 
 urlpatterns += [
     # API base urls

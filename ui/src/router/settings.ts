@@ -7,6 +7,7 @@ export default [
   {
     path: "/settings/",
     component: DashboardLayout,
+    name: "settings",
     children: [
       {
         path: "billing/",
