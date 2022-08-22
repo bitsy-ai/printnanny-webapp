@@ -12,7 +12,9 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, _from) => {
-  if (to.name == "logout") { return; }
+  if (to.name == "logout") {
+    return;
+  }
   const account = useAccountStore();
   await account.fetchUser();
   if (

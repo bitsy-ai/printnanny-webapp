@@ -67,7 +67,7 @@
         </div>
         <div class="py-1">
           <MenuItem v-slot="{ active }">
-            <router-link :to="{name: 'logout'}" replace>
+            <router-link :to="{ name: 'logout' }" replace>
               <a
                 href="#"
                 :class="[
@@ -86,29 +86,24 @@
 <script setup lang="ts">
 import { RouterLink, useRouter } from "vue-router";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
-import {
-  SelectorIcon,
-  CogIcon,
-  CreditCardIcon,
-  BellIcon,
-} from "@heroicons/vue/solid";
+import { CreditCardIcon, BellIcon } from "@heroicons/vue/solid";
 
 import { useAccountStore } from "@/stores/account";
 const account = useAccountStore();
-
 const router = useRouter();
-
 // app routes
 const menuItems = [
   {
     name: "Subscription & Billing",
     link: { name: "billing" },
     icon: CreditCardIcon,
+    active: router.currentRoute.value.name == "billing",
   },
   {
     name: "Notification Settings",
     link: { name: "alertSettings" },
     icon: BellIcon,
+    active: router.currentRoute.value.name == "alertSettings",
   },
 ];
 

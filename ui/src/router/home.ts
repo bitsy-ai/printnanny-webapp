@@ -30,7 +30,7 @@ export default [
     beforeEnter: async (_to: any, _from: any, next) => {
       const account = useAccountStore();
       await account.logout();
-      next('/');
+      next("/");
     },
   },
   {
