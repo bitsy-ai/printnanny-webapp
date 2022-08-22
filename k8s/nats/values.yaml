@@ -643,8 +643,7 @@ websocket:
   noTLS: false
   tls:
     secret:
-      name: nats-server-tls
-    ca: "ca.crt"
+      name: nats-ws-tls
     cert: "tls.crt"
     key: "tls.key"
   # This will optionally specify what host:port for websocket
