@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineComponent, h } from "vue";
+import BuildInfoFooter from "@/components/footer/BuildInfoFooter.vue";
 
 const footerNavigation = {
   printnannyos: [
@@ -188,8 +189,10 @@ const footerNavigation = {
         </div>
       </div>
       <div class="mt-12 border-t border-gray-200 py-8">
-        <p class="text-base text-gray-400 xl:text-center">
-          &copy; 2022 Bitsy AI Labs, LLC. All rights reserved.
+        <p class="text-sm font-medium text-gray-400 flex">
+          <span>&copy; 2022 Bitsy AI Labs, LLC. All rights reserved.</span>
+          <BuildInfoFooter />
+
         </p>
       </div>
     </div>
