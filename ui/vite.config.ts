@@ -37,7 +37,6 @@ export default defineConfig(({ _command, mode }) => {
           "../clients/typescript",
           "src",
           "node_modules/nats/lib",
-          "vendor/janode",
         ],
       },
       host: "0.0.0.0",

@@ -1,11 +1,9 @@
 import * as api from "printnanny-api-client";
 import { defineStore, acceptHMRUpdate } from "pinia";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import Janode from "../../vendor/janode/src/janode";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import StreamingPlugin from "../../vendor/janode/src/plugins/streaming-plugin";
+
+import Janode from "janode";
+import StreamingPlugin from "janode/plugins/streaming";
+
 import { ApiConfig, handleApiError } from "@/utils/api";
 import type { WebrtcStream } from "printnanny-api-client";
 
@@ -15,9 +13,9 @@ export const useWebrtcStore = defineStore({
   id: "webrtc",
   state: () => ({
     stream: undefined as undefined | api.WebrtcStream,
-    connection: undefined as undefined | Janode.Connection,
-    session: undefined as undefined | Janode.Session,
-    streamingHandle: undefined as undefined | Janode.Handle,
+    connection: undefined as undefined | any,
+    session: undefined as undefined | any,
+    streamingHandle: undefined as undefined | any,
     pc: undefined as undefined | RTCPeerConnection,
   }),
 
@@ -150,7 +148,7 @@ export const useWebrtcStore = defineStore({
       console.log(`start ${id} response sent with status ${status}`);
     },
 
-    async watchStream(stream: WebrtcStream, streamingHandle: Janode.Handle) {
+    async watchStream(stream: WebrtcStream, streamingHandle: any) {
       const watchdata = {
         id: stream.id,
         pin: stream.stream_pin,
