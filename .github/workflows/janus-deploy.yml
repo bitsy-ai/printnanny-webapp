@@ -41,7 +41,7 @@ jobs:
       GCP_PROJECT: print-nanny
       GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT_KEY }} # TODO replace repo-level secrets with stable env-level secrets
       GCP_SERVICE_ACCOUNT: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT }} # TODO replace repo-level secrets with stable env-level secrets
-      CLUSTER: www-beta
+      CLUSTER: www-spot
       ZONE: us-central1-c
       JANUS_CLOUD_ADMIN_PORT: 7088
       JANUS_CLOUD_ADMIN_SECRET: ${{ secrets.JANUS_CLOUD_ADMIN_SECRET }}
