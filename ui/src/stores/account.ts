@@ -83,7 +83,7 @@ export const useAccountStore = defineStore({
       }
       await accountsApi.accountsLogoutCreate().catch(handleApiError);
       this.$reset();
-      console.debug("Successfully logged out");
+      console.info("Successfully logged out");
     },
   },
 });

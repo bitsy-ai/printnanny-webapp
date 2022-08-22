@@ -228,7 +228,8 @@ export const useWebrtcStore = defineStore({
         StreamingPlugin.EVENT.STREAMING_STATUS,
         (evtdata: any) => {
           console.log(
-            `${streamingHandle.name
+            `${
+              streamingHandle.name
             } streaming handle event status ${JSON.stringify(evtdata)}`
           );
         }

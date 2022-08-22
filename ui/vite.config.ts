@@ -33,11 +33,7 @@ export default defineConfig(({ _command, mode }) => {
     server: {
       fs: {
         // Allow serving files from one level up to the project root
-        allow: [
-          "../clients/typescript",
-          "src",
-          "node_modules/nats/lib",
-        ],
+        allow: ["../clients/typescript", "src", "node_modules/nats/lib"],
       },
       host: "0.0.0.0",
       // cors: false,

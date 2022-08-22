@@ -27,10 +27,10 @@ export default [
   {
     path: "/logout/",
     name: "logout",
-    redirect: { name: "home" },
-    beforeEnter: async (_to: any, _from: any) => {
+    beforeEnter: async (_to: any, _from: any, next) => {
       const account = useAccountStore();
       await account.logout();
+      next("/");
     },
   },
   {
