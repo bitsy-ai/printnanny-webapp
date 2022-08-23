@@ -109,7 +109,7 @@ class Pi(SafeDeleteModel):
         return obj
 
     @property
-    def janus_edge(self):
+    def webrtc_edge(self):
         obj, _ = WebrtcStream.objects.get_or_create(
             pi=self,
             rtp_port=settings.JANUS_EDGE_VIDEO_RTP_PORT,
@@ -118,7 +118,7 @@ class Pi(SafeDeleteModel):
         return obj
 
     @property
-    def janus_cloud(self):
+    def webrtc_cloud(self):
         # RTP port is automatically assigned from available open ports
         # admin_secret intentionally set to Null to avoid leaking cloud gateway secret via API responses
         obj, _ = WebrtcStream.objects.get_or_create(
