@@ -4,6 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**base_path** | **str** |  | 
+**venv_path** | **str** |  | 
+**pip_path** | **str** |  | 
+**python_path** | **str** |  | 
 **octoprint_version** | **str** |  | [optional] 
 **pip_version** | **str** |  | [optional] 
 **python_version** | **str** |  | [optional] 

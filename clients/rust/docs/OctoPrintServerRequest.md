@@ -4,6 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**base_path** | **String** |  | 
+**venv_path** | **String** |  | 
+**pip_path** | **String** |  | 
+**python_path** | **String** |  | 
 **octoprint_version** | Option<**String**> |  | [optional]
 **pip_version** | Option<**String**> |  | [optional]
 **python_version** | Option<**String**> |  | [optional]

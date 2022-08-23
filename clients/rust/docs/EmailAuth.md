@@ -1,14 +1,10 @@
-# PatchedPublicKeyRequest
+# EmailAuth
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pem** | Option<**String**> |  | [optional]
-**cipher** | Option<**String**> |  | [optional]
-**length** | Option<**i32**> |  | [optional]
-**fingerprint** | Option<**String**> |  | [optional]
-**pi** | Option<**i32**> |  | [optional]
+**email** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -8,12 +8,13 @@ docs/AccountsApi.md
 docs/AlertsApi.md
 docs/BillingApi.md
 docs/BillingSummary.md
+docs/CallbackTokenAuth.md
 docs/CallbackTokenAuthRequest.md
 docs/CollectionMethodEnum.md
-docs/DetailResponse.md
 docs/DevicesApi.md
 docs/EmailAlertSettings.md
 docs/EmailAlertSettingsRequest.md
+docs/EmailAuth.md
 docs/EmailAuthRequest.md
 docs/EmailWaitlist.md
 docs/EmailWaitlistRequest.md
@@ -72,7 +73,6 @@ docs/PaginatedPolymorphicOctoPrintEventList.md
 docs/PaginatedPolymorphicPiCommandList.md
 docs/PaginatedPolymorphicPiEventList.md
 docs/PaginatedPolymorphicPiStatusList.md
-docs/PaginatedPublicKeyList.md
 docs/PaginatedSystemInfoList.md
 docs/PaginatedWebrtcStreamList.md
 docs/PasswordChangeRequest.md
@@ -84,7 +84,6 @@ docs/PatchedOctoPrintSettingsRequest.md
 docs/PatchedOctoPrinterProfileRequest.md
 docs/PatchedPiRequest.md
 docs/PatchedPiSettingsRequest.md
-docs/PatchedPublicKeyRequest.md
 docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
 docs/PatchedWebrtcStreamRequest.md
@@ -132,8 +131,6 @@ docs/PolymorphicPiStatus.md
 docs/PolymorphicPiStatusRequest.md
 docs/PrintNannyApiConfig.md
 docs/PrintNannyLicense.md
-docs/PublicKey.md
-docs/PublicKeyRequest.md
 docs/RegisterRequest.md
 docs/ResendEmailVerificationRequest.md
 docs/RestAuthDetail.md
@@ -151,7 +148,6 @@ docs/SystemInfo.md
 docs/SystemInfoRequest.md
 docs/TaxExemptEnum.md
 docs/Token.md
-docs/TokenResponse.md
 docs/TypeEnum.md
 docs/UsageTypeEnum.md
 docs/User.md
@@ -177,11 +173,12 @@ printnanny_api_client/configuration.py
 printnanny_api_client/exceptions.py
 printnanny_api_client/models/__init__.py
 printnanny_api_client/models/billing_summary.py
+printnanny_api_client/models/callback_token_auth.py
 printnanny_api_client/models/callback_token_auth_request.py
 printnanny_api_client/models/collection_method_enum.py
-printnanny_api_client/models/detail_response.py
 printnanny_api_client/models/email_alert_settings.py
 printnanny_api_client/models/email_alert_settings_request.py
+printnanny_api_client/models/email_auth.py
 printnanny_api_client/models/email_auth_request.py
 printnanny_api_client/models/email_waitlist.py
 printnanny_api_client/models/email_waitlist_request.py
@@ -237,7 +234,6 @@ printnanny_api_client/models/paginated_polymorphic_octo_print_event_list.py
 printnanny_api_client/models/paginated_polymorphic_pi_command_list.py
 printnanny_api_client/models/paginated_polymorphic_pi_event_list.py
 printnanny_api_client/models/paginated_polymorphic_pi_status_list.py
-printnanny_api_client/models/paginated_public_key_list.py
 printnanny_api_client/models/paginated_system_info_list.py
 printnanny_api_client/models/paginated_webrtc_stream_list.py
 printnanny_api_client/models/password_change_request.py
@@ -249,7 +245,6 @@ printnanny_api_client/models/patched_octo_print_settings_request.py
 printnanny_api_client/models/patched_octo_printer_profile_request.py
 printnanny_api_client/models/patched_pi_request.py
 printnanny_api_client/models/patched_pi_settings_request.py
-printnanny_api_client/models/patched_public_key_request.py
 printnanny_api_client/models/patched_system_info_request.py
 printnanny_api_client/models/patched_user_request.py
 printnanny_api_client/models/patched_webrtc_stream_request.py
@@ -296,8 +291,6 @@ printnanny_api_client/models/polymorphic_pi_status.py
 printnanny_api_client/models/polymorphic_pi_status_request.py
 printnanny_api_client/models/print_nanny_api_config.py
 printnanny_api_client/models/print_nanny_license.py
-printnanny_api_client/models/public_key.py
-printnanny_api_client/models/public_key_request.py
 printnanny_api_client/models/register_request.py
 printnanny_api_client/models/resend_email_verification_request.py
 printnanny_api_client/models/rest_auth_detail.py
@@ -313,7 +306,6 @@ printnanny_api_client/models/system_info.py
 printnanny_api_client/models/system_info_request.py
 printnanny_api_client/models/tax_exempt_enum.py
 printnanny_api_client/models/token.py
-printnanny_api_client/models/token_response.py
 printnanny_api_client/models/type_enum.py
 printnanny_api_client/models/usage_type_enum.py
 printnanny_api_client/models/user.py
@@ -332,12 +324,13 @@ test/test_accounts_api.py
 test/test_alerts_api.py
 test/test_billing_api.py
 test/test_billing_summary.py
+test/test_callback_token_auth.py
 test/test_callback_token_auth_request.py
 test/test_collection_method_enum.py
-test/test_detail_response.py
 test/test_devices_api.py
 test/test_email_alert_settings.py
 test/test_email_alert_settings_request.py
+test/test_email_auth.py
 test/test_email_auth_request.py
 test/test_email_waitlist.py
 test/test_email_waitlist_request.py
@@ -396,7 +389,6 @@ test/test_paginated_polymorphic_octo_print_event_list.py
 test/test_paginated_polymorphic_pi_command_list.py
 test/test_paginated_polymorphic_pi_event_list.py
 test/test_paginated_polymorphic_pi_status_list.py
-test/test_paginated_public_key_list.py
 test/test_paginated_system_info_list.py
 test/test_paginated_webrtc_stream_list.py
 test/test_password_change_request.py
@@ -408,7 +400,6 @@ test/test_patched_octo_print_settings_request.py
 test/test_patched_octo_printer_profile_request.py
 test/test_patched_pi_request.py
 test/test_patched_pi_settings_request.py
-test/test_patched_public_key_request.py
 test/test_patched_system_info_request.py
 test/test_patched_user_request.py
 test/test_patched_webrtc_stream_request.py
@@ -456,8 +447,6 @@ test/test_polymorphic_pi_status.py
 test/test_polymorphic_pi_status_request.py
 test/test_print_nanny_api_config.py
 test/test_print_nanny_license.py
-test/test_public_key.py
-test/test_public_key_request.py
 test/test_register_request.py
 test/test_resend_email_verification_request.py
 test/test_rest_auth_detail.py
@@ -475,7 +464,6 @@ test/test_system_info.py
 test/test_system_info_request.py
 test/test_tax_exempt_enum.py
 test/test_token.py
-test/test_token_response.py
 test/test_type_enum.py
 test/test_usage_type_enum.py
 test/test_user.py

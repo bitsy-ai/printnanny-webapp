@@ -7,12 +7,13 @@ docs/AccountsApi.md
 docs/AlertsApi.md
 docs/BillingApi.md
 docs/BillingSummary.md
+docs/CallbackTokenAuth.md
 docs/CallbackTokenAuthRequest.md
 docs/CollectionMethodEnum.md
-docs/DetailResponse.md
 docs/DevicesApi.md
 docs/EmailAlertSettings.md
 docs/EmailAlertSettingsRequest.md
+docs/EmailAuth.md
 docs/EmailAuthRequest.md
 docs/EmailWaitlist.md
 docs/EmailWaitlistRequest.md
@@ -71,7 +72,6 @@ docs/PaginatedPolymorphicOctoPrintEventList.md
 docs/PaginatedPolymorphicPiCommandList.md
 docs/PaginatedPolymorphicPiEventList.md
 docs/PaginatedPolymorphicPiStatusList.md
-docs/PaginatedPublicKeyList.md
 docs/PaginatedSystemInfoList.md
 docs/PaginatedWebrtcStreamList.md
 docs/PasswordChangeRequest.md
@@ -83,7 +83,6 @@ docs/PatchedOctoPrintSettingsRequest.md
 docs/PatchedOctoPrinterProfileRequest.md
 docs/PatchedPiRequest.md
 docs/PatchedPiSettingsRequest.md
-docs/PatchedPublicKeyRequest.md
 docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
 docs/PatchedWebrtcStreamRequest.md
@@ -131,8 +130,6 @@ docs/PolymorphicPiStatus.md
 docs/PolymorphicPiStatusRequest.md
 docs/PrintNannyApiConfig.md
 docs/PrintNannyLicense.md
-docs/PublicKey.md
-docs/PublicKeyRequest.md
 docs/RegisterRequest.md
 docs/ResendEmailVerificationRequest.md
 docs/RestAuthDetail.md
@@ -150,7 +147,6 @@ docs/SystemInfo.md
 docs/SystemInfoRequest.md
 docs/TaxExemptEnum.md
 docs/Token.md
-docs/TokenResponse.md
 docs/TypeEnum.md
 docs/UsageTypeEnum.md
 docs/User.md
@@ -173,11 +169,12 @@ src/apis/schema_api.rs
 src/apis/settings_api.rs
 src/lib.rs
 src/models/billing_summary.rs
+src/models/callback_token_auth.rs
 src/models/callback_token_auth_request.rs
 src/models/collection_method_enum.rs
-src/models/detail_response.rs
 src/models/email_alert_settings.rs
 src/models/email_alert_settings_request.rs
+src/models/email_auth.rs
 src/models/email_auth_request.rs
 src/models/email_waitlist.rs
 src/models/email_waitlist_request.rs
@@ -234,7 +231,6 @@ src/models/paginated_polymorphic_octo_print_event_list.rs
 src/models/paginated_polymorphic_pi_command_list.rs
 src/models/paginated_polymorphic_pi_event_list.rs
 src/models/paginated_polymorphic_pi_status_list.rs
-src/models/paginated_public_key_list.rs
 src/models/paginated_system_info_list.rs
 src/models/paginated_webrtc_stream_list.rs
 src/models/password_change_request.rs
@@ -246,7 +242,6 @@ src/models/patched_octo_print_settings_request.rs
 src/models/patched_octo_printer_profile_request.rs
 src/models/patched_pi_request.rs
 src/models/patched_pi_settings_request.rs
-src/models/patched_public_key_request.rs
 src/models/patched_system_info_request.rs
 src/models/patched_user_request.rs
 src/models/patched_webrtc_stream_request.rs
@@ -293,8 +288,6 @@ src/models/polymorphic_pi_status.rs
 src/models/polymorphic_pi_status_request.rs
 src/models/print_nanny_api_config.rs
 src/models/print_nanny_license.rs
-src/models/public_key.rs
-src/models/public_key_request.rs
 src/models/register_request.rs
 src/models/resend_email_verification_request.rs
 src/models/rest_auth_detail.rs
@@ -310,7 +303,6 @@ src/models/system_info.rs
 src/models/system_info_request.rs
 src/models/tax_exempt_enum.rs
 src/models/token.rs
-src/models/token_response.rs
 src/models/type_enum.rs
 src/models/usage_type_enum.rs
 src/models/user.rs

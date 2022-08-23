@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 ## accounts2fa_auth_email_create
 
-> crate::models::DetailResponse accounts2fa_auth_email_create(email_auth_request)
+> crate::models::EmailAuth accounts2fa_auth_email_create(email_auth_request)
 
 
 This returns a 6-digit callback token we can trade for a user's Auth Token.
@@ -38,7 +38,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::DetailResponse**](DetailResponse.md)
+[**crate::models::EmailAuth**](EmailAuth.md)
 
 ### Authorization
 
@@ -54,7 +54,7 @@ Name | Type | Description  | Required | Notes
 
 ## accounts2fa_auth_token_create
 
-> crate::models::TokenResponse accounts2fa_auth_token_create(callback_token_auth_request)
+> crate::models::CallbackTokenAuth accounts2fa_auth_token_create(callback_token_auth_request)
 
 
 This is a duplicate of rest_framework's own ObtainAuthToken method. Instead, this returns an Auth Token based on our callback token and source.
@@ -68,7 +68,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::TokenResponse**](TokenResponse.md)
+[**crate::models::CallbackTokenAuth**](CallbackTokenAuth.md)
 
 ### Authorization
 

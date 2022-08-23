@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 
 # **accounts2fa_auth_email_create**
-> DetailResponse accounts2fa_auth_email_create(email_auth_request)
+> EmailAuth accounts2fa_auth_email_create(email_auth_request)
 
 
 
@@ -122,7 +122,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DetailResponse**](DetailResponse.md)
+[**EmailAuth**](EmailAuth.md)
 
 ### Authorization
 
@@ -141,7 +141,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **accounts2fa_auth_token_create**
-> TokenResponse accounts2fa_auth_token_create(callback_token_auth_request)
+> CallbackTokenAuth accounts2fa_auth_token_create(callback_token_auth_request)
 
 
 
@@ -241,7 +241,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TokenResponse**](TokenResponse.md)
+[**CallbackTokenAuth**](CallbackTokenAuth.md)
 
 ### Authorization
 

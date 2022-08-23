@@ -10,11 +10,6 @@ Method | HTTP request | Description
 [**pis_license_zip_retrieve**](DevicesApi.md#pis_license_zip_retrieve) | **GET** /api/pis/{pi_id}/license/zip/ | 
 [**pis_list**](DevicesApi.md#pis_list) | **GET** /api/pis/ | 
 [**pis_partial_update**](DevicesApi.md#pis_partial_update) | **PATCH** /api/pis/{id}/ | 
-[**pis_public_keys_create**](DevicesApi.md#pis_public_keys_create) | **POST** /api/pis/{pi_id}/public-keys/ | 
-[**pis_public_keys_list**](DevicesApi.md#pis_public_keys_list) | **GET** /api/pis/{pi_id}/public-keys/ | 
-[**pis_public_keys_partial_update**](DevicesApi.md#pis_public_keys_partial_update) | **PATCH** /api/pis/{pi_id}/public-keys/{id}/ | 
-[**pis_public_keys_retrieve**](DevicesApi.md#pis_public_keys_retrieve) | **GET** /api/pis/{pi_id}/public-keys/{id}/ | 
-[**pis_public_keys_update**](DevicesApi.md#pis_public_keys_update) | **PUT** /api/pis/{pi_id}/public-keys/{id}/ | 
 [**pis_retrieve**](DevicesApi.md#pis_retrieve) | **GET** /api/pis/{id}/ | 
 [**pis_settings_create**](DevicesApi.md#pis_settings_create) | **POST** /api/pis/{pi_id}/settings/ | 
 [**pis_settings_list**](DevicesApi.md#pis_settings_list) | **GET** /api/pis/{pi_id}/settings/ | 
@@ -32,7 +27,6 @@ Method | HTTP request | Description
 [**pis_webrtc_streams_partial_update**](DevicesApi.md#pis_webrtc_streams_partial_update) | **PATCH** /api/pis/{pi_id}/webrtc-streams/{id}/ | 
 [**pis_webrtc_streams_retrieve**](DevicesApi.md#pis_webrtc_streams_retrieve) | **GET** /api/pis/{pi_id}/webrtc-streams/{id}/ | 
 [**pis_webrtc_streams_update**](DevicesApi.md#pis_webrtc_streams_update) | **PUT** /api/pis/{pi_id}/webrtc-streams/{id}/ | 
-[**public_key_update_or_create**](DevicesApi.md#public_key_update_or_create) | **POST** /api/pis/{pi_id}/public-keys/update-or-create/ | 
 [**system_info_update_or_create**](DevicesApi.md#system_info_update_or_create) | **POST** /api/pis/{pi_id}/system-info/update-or-create/ | 
 [**webrtc_stream_update_or_create**](DevicesApi.md#webrtc_stream_update_or_create) | **POST** /api/pis/{pi_id}/webrtc-streams/update-or-create/ | 
 
@@ -202,153 +196,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Pi**](Pi.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## pis_public_keys_create
-
-> crate::models::PublicKey pis_public_keys_create(pi_id, public_key_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**pi_id** | **i32** |  | [required] |
-**public_key_request** | [**PublicKeyRequest**](PublicKeyRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::PublicKey**](PublicKey.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## pis_public_keys_list
-
-> crate::models::PaginatedPublicKeyList pis_public_keys_list(pi_id, page)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**pi_id** | **i32** |  | [required] |
-**page** | Option<**i32**> | A page number within the paginated result set. |  |
-
-### Return type
-
-[**crate::models::PaginatedPublicKeyList**](PaginatedPublicKeyList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## pis_public_keys_partial_update
-
-> crate::models::PublicKey pis_public_keys_partial_update(id, pi_id, patched_public_key_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this public key. | [required] |
-**pi_id** | **i32** |  | [required] |
-**patched_public_key_request** | Option<[**PatchedPublicKeyRequest**](PatchedPublicKeyRequest.md)> |  |  |
-
-### Return type
-
-[**crate::models::PublicKey**](PublicKey.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## pis_public_keys_retrieve
-
-> crate::models::PublicKey pis_public_keys_retrieve(id, pi_id)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this public key. | [required] |
-**pi_id** | **i32** |  | [required] |
-
-### Return type
-
-[**crate::models::PublicKey**](PublicKey.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## pis_public_keys_update
-
-> crate::models::PublicKey pis_public_keys_update(id, pi_id, public_key_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this public key. | [required] |
-**pi_id** | **i32** |  | [required] |
-**public_key_request** | [**PublicKeyRequest**](PublicKeyRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::PublicKey**](PublicKey.md)
 
 ### Authorization
 
@@ -851,35 +698,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::WebrtcStream**](WebrtcStream.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## public_key_update_or_create
-
-> crate::models::PublicKey public_key_update_or_create(pi_id, public_key_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**pi_id** | **i32** |  | [required] |
-**public_key_request** | [**PublicKeyRequest**](PublicKeyRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::PublicKey**](PublicKey.md)
 
 ### Authorization
 

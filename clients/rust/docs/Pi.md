@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **settings** | Option<[**crate::models::PiSettings**](PiSettings.md)> |  | [readonly]
 **user** | Option<[**crate::models::User**](User.md)> |  | [readonly]
 **system_info** | Option<[**crate::models::SystemInfo**](SystemInfo.md)> |  | [readonly]
-**public_key** | Option<[**crate::models::PublicKey**](PublicKey.md)> |  | [readonly]
 **webrtc_edge** | Option<[**crate::models::WebrtcStream**](WebrtcStream.md)> |  | [readonly]
 **webrtc_cloud** | Option<[**crate::models::WebrtcStream**](WebrtcStream.md)> |  | [readonly]
 **octoprint_server** | Option<[**crate::models::OctoPrintServer**](OctoPrintServer.md)> |  | [readonly]

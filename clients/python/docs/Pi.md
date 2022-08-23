@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **settings** | [**PiSettings**](PiSettings.md) |  | [readonly] 
 **user** | [**User**](User.md) |  | [readonly] 
 **system_info** | [**SystemInfo**](SystemInfo.md) |  | [readonly] 
-**public_key** | [**PublicKey**](PublicKey.md) |  | [readonly] 
 **webrtc_edge** | [**WebrtcStream**](WebrtcStream.md) |  | [readonly] 
 **webrtc_cloud** | [**WebrtcStream**](WebrtcStream.md) |  | [readonly] 
 **octoprint_server** | [**OctoPrintServer**](OctoPrintServer.md) |  | [readonly] 
