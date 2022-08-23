@@ -166,9 +166,11 @@ class PiSerializer(serializers.ModelSerializer):
     webrtc_edge = WebrtcStreamSerializer(read_only=True)
     webrtc_cloud = WebrtcStreamSerializer(read_only=True)
 
-    octoprint_server = OctoPrintServerSerializer(read_only=True)
+    octoprint_server = OctoPrintServerSerializer(
+        read_only=True, required=False, allow_null=True
+    )
 
-    urls = serializers.SerializerMethodField()
+    urls = serializers.SerializerMethodField(read_only=True)
 
     nats_app = PiNatsAppSerializer(read_only=True)
 
