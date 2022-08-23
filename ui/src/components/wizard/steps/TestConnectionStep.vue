@@ -34,8 +34,8 @@ await store.connectTestSteps.map((s) => s.run());
     </h2>
     <p class="text-base text-center font-medium text-gray-900 mt-5 w-full">
       {{ step.detail }}
-      <br>
-        To begin the test,
+      <br />
+      To begin the test,
       <strong class="text-amber-500">insert SD card into Raspberry Pi</strong>
       and <strong class="text-amber-500">connect Pi to power source.</strong>
     </p>
