@@ -2,7 +2,6 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedSimpleRouter
 from print_nanny_webapp.devices.api.views import (
-    PublicKeyViewSet,
     SystemInfoViewSet,
     PiViewSet,
     WebrtcStreamViewSet,
@@ -67,7 +66,6 @@ pi_router.register("license", PiLicenseZipViewset, basename="license-zip")
 pi_router.register("license", PiLicenseJsonViewSet, basename="license-api-json")
 
 pi_router.register("settings", PiSettingsViewSet, basename="settings")
-pi_router.register(r"public-keys", PublicKeyViewSet, basename="public-keys")
 pi_router.register(r"webrtc-streams", WebrtcStreamViewSet, basename="janus-streams")
 
 pi_router.register(r"system-info", SystemInfoViewSet, basename="system-info")

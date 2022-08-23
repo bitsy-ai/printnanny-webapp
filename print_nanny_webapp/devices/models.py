@@ -266,32 +266,6 @@ class PiSettings(SafeDeleteModel):
         return self.pi.user
 
 
-class PublicKey(SafeDeleteModel):
-    _safedelete_policy = SOFT_DELETE
-
-    class Meta:
-        index_together = ("pi", "created_dt", "updated_dt")
-        constraints = [
-            UniqueConstraint(
-                fields=["pi"],
-                condition=models.Q(deleted=None),
-                name="unique_public_key_per_pi",
-            )
-        ]
-
-    pem = models.TextField()
-    cipher = models.CharField(max_length=32)
-    length = models.IntegerField()
-    fingerprint = models.CharField(max_length=255)
-    pi = models.ForeignKey(Pi, on_delete=models.CASCADE, related_name="public_keys")
-    created_dt = models.DateTimeField(auto_now_add=True)
-    updated_dt = models.DateTimeField(auto_now=True)
-
-    @property
-    def user(self):
-        return self.pi.user
-
-
 class SystemInfo(SafeDeleteModel):
     """
     Raspberry Pi device info & metadata
