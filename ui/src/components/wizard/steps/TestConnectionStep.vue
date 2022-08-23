@@ -34,14 +34,13 @@ await store.connectTestSteps.map((s) => s.run());
     </h2>
     <p class="text-base text-center font-medium text-gray-900 mt-5 w-full">
       {{ step.detail }}
-    </p>
-    <p class="text-base text-center text-gray-900 mt-5 w-full">
-      To begin the test,
+      <br>
+        To begin the test,
       <strong class="text-amber-500">insert SD card into Raspberry Pi</strong>
       and <strong class="text-amber-500">connect Pi to power source.</strong>
     </p>
     <div
-      class="min-h-full min-w-full w-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
+      class="grow min-w-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
     >
       <!-- test steps container -->
       <div class="flow-root w-3/4">
