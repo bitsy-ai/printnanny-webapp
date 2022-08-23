@@ -55,7 +55,13 @@ export const useAlertStore = defineStore({
       }
     },
     push(uialert: UiAlert) {
-      this.alerts.push(uialert);
+      // show at most 1 alert message with the same header
+      const alreadyShown = this.alerts.filter(
+        (a) => a.header == uialert.header
+      );
+      if (alreadyShown.length === 0) {
+        this.alerts.push(uialert);
+      }
     },
   },
 });
