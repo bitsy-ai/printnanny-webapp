@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import moment from "moment";
 import { useDeviceStore } from "@/stores/devices";
 import DeviceEmpty from "./DeviceEmpty.vue";
 import DeviceActionMenu from "./DeviceActionMenu.vue";
@@ -59,7 +60,7 @@ const wizardSteps = PiCreateWizardSteps();
                 class="hidden md:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
                 scope="col"
               >
-                Status
+                Last Sync
               </th>
               <th
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -123,7 +124,7 @@ const wizardSteps = PiCreateWizardSteps();
               <td
                 class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right"
               >
-                {{ pi.last_boot || "Waiting for first boot" }}
+                {{ pi.last_boot ? moment(pi.last_boot).fromNow() : "Waiting for first boot" }}
               </td>
               <td
                 class="px-6 py-3 whitespace-nowrap text-sm font-medium text-right"
