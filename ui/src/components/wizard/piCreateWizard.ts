@@ -28,7 +28,11 @@ export const stepKeys = [
     detail:
       "Almost done! This section will double-check your PrintNanny setup.",
   },
-  { key: "done", title: "Finish Setup", detail: "" },
+  {
+    key: "done",
+    title: "Nice work! Setup is complete.",
+    detail: "Your PrintNanny device is ready to use.",
+  },
 ];
 
 export function PiCreateWizardSteps(): WizardStep[] {
@@ -170,7 +174,7 @@ export function PiCreateWizardSteps(): WizardStep[] {
       detail: stepKeys[4].detail,
       progress: "100%",
       style: "width: 100%",
-      title: "Setup is Complete - Nice Work!",
+      title: stepKeys[4].title,
       validationSchema: yup.object(),
       nextButton: undefined,
       component: DoneStep,

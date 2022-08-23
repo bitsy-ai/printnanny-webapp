@@ -6,15 +6,12 @@ import { useEventStore } from "./events";
 import type { NatsConnection } from "nats.ws";
 import { ConnectTestStep } from "@/types";
 import moment from "moment";
+import type { Pi } from "printnanny-api-client";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
 
 export const useWizardStore = defineStore({
   id: "wizard",
-  // persist option provided by: https://github.com/prazdevs/pinia-plugin-persistedstate
-  // persist: {
-  //   storage: sessionStorage,
-  // },
   state: () => ({
     pi: undefined as api.Pi | undefined,
     loading: false,
@@ -131,6 +128,16 @@ export const useWizardStore = defineStore({
       if (res) {
         this.$patch({ loading: false, pi: res.data });
         return res.data;
+      }
+    },
+
+    async finishSetup(piId: number) {
+      const req = { setup_finished: true } as api.PatchedPiRequest;
+      const res = await devicesApi
+        .pisPartialUpdate(piId, req)
+        .catch(handleApiError);
+      if (res) {
+        this.$patch({ pi: res.data });
       }
     },
   },
