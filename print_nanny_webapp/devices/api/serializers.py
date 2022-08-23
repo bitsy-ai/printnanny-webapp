@@ -119,19 +119,23 @@ class WebrtcStreamSerializer(serializers.ModelSerializer):
             "ws_url",
         )
 
-    def update_or_create(self, validated_data, pi_id):
-        return WebrtcStream.objects.filter(pi_id=pi_id).update_or_create(
-            pi_id=pi_id, defaults=validated_data
+    def update_or_create(self, validated_data, pi_id, config_type):
+        return WebrtcStream.objects.filter(
+            pi_id=pi_id, config_type=config_type
+        ).update_or_create(
+            pi_id=pi_id, config_type=config_type, defaults=validated_data
         )
 
-    def get_or_create(self, validated_data, pi_id):
+    def get_or_create(self, validated_data, pi_id, config_type):
         logger.info(
             "Attempting WebrtcStream.objects.get_or_create with validated_data=%s",
             validated_data,
         )
         # get_or_create method requires fkey relationship be 1) instance or 2) use __id field syntax
-        pi = Pi.objects.get(pi_id=pi_id)
-        return WebrtcStream.objects.get_or_create(pi=pi, defaults=validated_data)
+        pi = Pi.objects.get(pi_id=pi_id, config_type=config_type)
+        return WebrtcStream.objects.get_or_create(
+            pi=pi, config_type=config_type, defaults=validated_data
+        )
 
 
 class SystemInfoSerializer(serializers.ModelSerializer):

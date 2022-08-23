@@ -133,4 +133,4 @@ LOGGING = {
 # ------------------------------------------------------------------------------
 CORS_ALLOW_ALL_ORIGINS = True
 
-DEV_SERVER_HOSTNAME = "aurora.local"
+DEV_SERVER_HOSTNAME = "aurora"
