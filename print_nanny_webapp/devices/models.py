@@ -21,6 +21,7 @@ from print_nanny_webapp.devices.enum import (
     OsEdition,
     SingleBoardComputerType,
 )
+from print_nanny_webapp.octoprint.models import OctoPrintSettings, OctoPrintServer
 
 UserModel = get_user_model()
 logger = logging.getLogger(__name__)
@@ -85,17 +86,21 @@ class Pi(SafeDeleteModel):
         )
 
     @property
-    def octoprint_server(self):
-        OctoPrintServer = apps.get_model("octoprint", "OctoPrintServer")
-        obj, _ = OctoPrintServer.objects.get_or_create(user=self.user, pi=self)
-        return obj
+    def octoprint_server(self) -> Optional[OctoPrintServer]:
+        if self.edition == OsEdition.OCTOPRINT_LITE:
+            obj, _ = OctoPrintServer.objects.get_or_create(user=self.user, pi=self)
+            return obj
+        else:
+            return None
 
     @property
-    def octoprint_settings(self):
-        server = self.octoprint_server
-        OctoPrintSettings = apps.get_model("octoprint", "OctoPrintSettings")
-        obj, _ = OctoPrintSettings.objects.get_or_create(octoprint_server=server)
-        return obj
+    def octoprint_settings(self) -> Optional[OctoPrintSettings]:
+        if self.edition == OsEdition.OCTOPRINT_LITE:
+            server = self.octoprint_server
+            obj, _ = OctoPrintSettings.objects.get_or_create(octoprint_server=server)
+            return obj
+        else:
+            return None
 
     @property
     def alert_settings(self):
