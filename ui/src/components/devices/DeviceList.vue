@@ -124,7 +124,11 @@ const wizardSteps = PiCreateWizardSteps();
               <td
                 class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right"
               >
-                {{ pi.last_boot ? moment(pi.last_boot).fromNow() : "Waiting for first boot" }}
+                {{
+                  pi.last_boot
+                    ? moment(pi.last_boot).fromNow()
+                    : "Waiting for first boot"
+                }}
               </td>
               <td
                 class="px-6 py-3 whitespace-nowrap text-sm font-medium text-right"
