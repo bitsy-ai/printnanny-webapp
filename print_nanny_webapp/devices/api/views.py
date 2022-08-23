@@ -358,8 +358,9 @@ class WebrtcStreamViewSet(
     def update_or_create(self, request, pi_id=None):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
+            config_type = serializer.validated_data.pop("config_type")
             instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
-                serializer.validated_data, pi_id
+                serializer.validated_data, pi_id, config_type
             )
             instance.get_or_create_mountpoint()
             response_serializer = self.get_serializer(instance)
