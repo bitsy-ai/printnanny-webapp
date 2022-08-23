@@ -47,7 +47,7 @@ await store.finishSetup(parseInt(props.piId));
         </RouterLink>
 
         <!-- octoprint button -->
-        <a :href="store.pi.urls.octoprint" target="_blank">
+        <a :href="store.pi?.urls.octoprint" target="_blank">
           <button
             class="inline-flex items-center group m-2 relative w-1/4 justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 disabled:cursor-not-allowed disabled: disabled:opacity-75"
           >
