@@ -5,6 +5,7 @@ import DeviceEmpty from "./DeviceEmpty.vue";
 import DeviceActionMenu from "./DeviceActionMenu.vue";
 import DeviceFavorites from "./DeviceFavorites.vue";
 import { ExclamationIcon } from "@heroicons/vue/outline";
+import { ExternalLinkIcon } from "@heroicons/vue/solid";
 
 import { PiCreateWizardSteps } from "@/components/wizard/piCreateWizard";
 
@@ -102,6 +103,7 @@ const wizardSteps = PiCreateWizardSteps();
                   </a>
                   <!-- setup incomplete badge / link -->
                   <router-link
+                    v-if="!pi.setup_finished"
                     :to="{
                       name: wizardSteps[3].routeName,
                       params: {
@@ -110,7 +112,6 @@ const wizardSteps = PiCreateWizardSteps();
                     }"
                   >
                     <span
-                      v-if="!pi.setup_finished"
                       class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-yellow-100 text-yellow-800 hover:bg-yellow-200"
                     >
                       <ExclamationIcon
@@ -119,6 +120,16 @@ const wizardSteps = PiCreateWizardSteps();
                       Finish Setup
                     </span>
                   </router-link>
+                  <a v-else :href="pi.urls.octoprint" target="_blank">
+                    <span
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-emerald-100 text-emerald-800 hover:bg-emerald-200"
+                    >
+                      <ExternalLinkIcon
+                        class="mr-1 w-5 h-5 text-emerald-800 text-emerald-800"
+                      />
+                      OctoPrint
+                    </span>
+                  </a>
                 </div>
               </td>
               <td
