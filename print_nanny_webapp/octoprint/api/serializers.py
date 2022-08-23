@@ -55,6 +55,11 @@ class OctoPrintSettingsSerializer(serializers.ModelSerializer):
 class OctoPrintServerSerializer(serializers.ModelSerializer):
     settings = OctoPrintSettingsSerializer(read_only=True)
 
+    base_path = serializers.CharField()
+    venv_path = serializers.CharField()
+    pip_path = serializers.CharField()
+    python_path = serializers.CharField()
+
     class Meta:
         model = OctoPrintServer
         exclude = ("deleted",)

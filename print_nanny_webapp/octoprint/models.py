@@ -1,3 +1,4 @@
+import os
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.db import models
@@ -52,8 +53,25 @@ class OctoPrintServer(SafeDeleteModel):
     pip_version = models.CharField(max_length=32, default="")
     python_version = models.CharField(max_length=32, default="")
     printnanny_plugin_version = models.CharField(max_length=64, default="")
+
     created_dt = models.DateTimeField(auto_now_add=True)
     updated_dt = models.DateTimeField(auto_now=True)
+
+    @property
+    def base_path(self) -> str:
+        return "/home/printnanny/.octoprint/"
+
+    @property
+    def venv_path(self) -> str:
+        return os.path.join(self.base_path, ".venv")
+
+    @property
+    def python_path(self) -> str:
+        return os.path.join(self.venv_path, "bin/python")
+
+    @property
+    def pip_path(self) -> str:
+        return os.path.join(self.venv_path, "bin/pip")
 
     # @property
     # def settings(self):
