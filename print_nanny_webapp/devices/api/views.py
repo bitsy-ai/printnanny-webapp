@@ -33,7 +33,6 @@ from print_nanny_webapp.utils.api.views import (
 )
 
 from print_nanny_webapp.devices.api.serializers import (
-    PublicKeySerializer,
     SystemInfoSerializer,
     PiSerializer,
     WebrtcStreamSerializer,
@@ -43,7 +42,6 @@ from print_nanny_webapp.devices.api.serializers import (
 from print_nanny_webapp.devices.models import (
     Pi,
     WebrtcStream,
-    PublicKey,
     SystemInfo,
     PiSettings,
     PiNatsApp,
@@ -122,92 +120,6 @@ class PiViewSet(
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-
-
-##
-# PublicKey views
-##
-@extend_schema_view(
-    retrieve=extend_schema(tags=["devices"]),
-    list=extend_schema(
-        tags=["devices"],
-        parameters=[
-            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        responses={
-            200: PublicKeySerializer(many=True),
-        }
-        | generic_list_errors,
-    ),
-    create=extend_schema(
-        tags=["devices"],
-        parameters=[
-            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        request=PublicKeySerializer,
-        responses={
-            201: PublicKeySerializer,
-        }
-        | generic_create_errors,
-    ),
-    update=extend_schema(
-        tags=["devices"],
-        parameters=[
-            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        request=PublicKeySerializer,
-        responses={
-            202: PublicKeySerializer,
-        }
-        | generic_create_errors,
-    ),
-    partial_update=extend_schema(
-        tags=["devices"],
-        parameters=[
-            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        request=PublicKeySerializer,
-        responses={
-            202: PublicKeySerializer,
-        }
-        | generic_create_errors,
-    ),
-)
-class PublicKeyViewSet(
-    GenericViewSet,
-    ListModelMixin,
-    RetrieveModelMixin,
-    UpdateModelMixin,
-    CreateModelMixin,
-):
-    serializer_class = PublicKeySerializer
-    queryset = PublicKey.objects.all()
-    lookup_field = "id"
-
-    @extend_schema(
-        tags=["devices"],
-        operation_id="public_key_update_or_create",
-        responses={
-            # 400: PrinterProfileSerializer,
-            200: PublicKeySerializer,
-            201: PublicKeySerializer,
-        }
-        | generic_create_errors
-        | generic_update_errors,
-    )
-    @action(methods=["post"], detail=False, url_path="update-or-create")
-    def update_or_create(self, request, pi_id=None):
-        serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid():
-            instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
-                serializer.validated_data, pi_id
-            )
-            response_serializer = self.get_serializer(instance)
-            if not created:
-                return Response(response_serializer.data, status=status.HTTP_200_OK)
-            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 ###

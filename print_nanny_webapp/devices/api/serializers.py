@@ -14,7 +14,6 @@ from print_nanny_webapp.devices.models import (
     PiSettings,
     PiUrls,
     WebrtcStream,
-    PublicKey,
     SystemInfo,
 )
 from print_nanny_webapp.devices.enum import (
@@ -43,17 +42,6 @@ class PiSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = PiSettings
         exclude = ("deleted",)
-
-
-class PublicKeySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PublicKey
-        exclude = ("deleted",)
-
-    def update_or_create(self, validated_data, pi):
-        return PublicKey.objects.filter(pi=pi).update_or_create(
-            pi=pi, defaults=validated_data
-        )
 
 
 class WebrtcStreamSerializer(serializers.ModelSerializer):
@@ -175,8 +163,6 @@ class PiSerializer(serializers.ModelSerializer):
     settings = PiSettingsSerializer(read_only=True)
     user = UserSerializer(read_only=True)
     system_info = SystemInfoSerializer(read_only=True)
-    public_key = PublicKeySerializer(read_only=True)
-
     webrtc_edge = WebrtcStreamSerializer(read_only=True)
     webrtc_cloud = WebrtcStreamSerializer(read_only=True)
 
