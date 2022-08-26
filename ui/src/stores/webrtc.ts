@@ -9,9 +9,7 @@ import type { WebrtcStream } from "printnanny-api-client";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
 const RTCPeerConnection = (
-  window.RTCPeerConnection ||
-  window.webkitRTCPeerConnection ||
-  window.mozRTCPeerConnection
+  window.RTCPeerConnection
 ).bind(window);
 
 export const useWebrtcStore = defineStore({
@@ -238,8 +236,7 @@ export const useWebrtcStore = defineStore({
         StreamingPlugin.EVENT.STREAMING_STATUS,
         (evtdata: any) => {
           console.log(
-            `${
-              streamingHandle.name
+            `${streamingHandle.name
             } streaming handle event status ${JSON.stringify(evtdata)}`
           );
         }
