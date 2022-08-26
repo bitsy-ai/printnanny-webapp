@@ -12,7 +12,6 @@ services:
     hostname: janus
     image: bitsyai/janus:1.0.4
     container_name: printnanny_janus
-    # network_mode: "host"
     ports:
       - "8188:8188"
       - "7188:7188"
@@ -56,6 +55,7 @@ services:
       - postgres
       - prometheus
       - nats
+      - janus
     volumes:
       - .:/app:z
       - local_file_data:/tmp:z
@@ -78,6 +78,7 @@ services:
     ports:
       - "8000:8000"
       - "8001:8001"
+
     command:
       - /start
 

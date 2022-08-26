@@ -18,7 +18,6 @@ if (stream !== undefined) {
 <template>
   <video
     id="janus-video"
-    autoplay
     muted
     class="w-full aspect-video p-6 h-24"
   ></video>

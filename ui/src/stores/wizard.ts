@@ -89,8 +89,8 @@ export const useWizardStore = defineStore({
           natsClient
         ),
         new ConnectTestStep(
-          "Test Camera",
-          "Test web camera connection",
+          "Turn on Camera",
+          "Test web camera connection.",
           pi.id,
           camCommand,
           natsClient
