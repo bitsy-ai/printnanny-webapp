@@ -119,8 +119,16 @@ def janus_create_streaming_mountpoint(
             label="H264-encoded camera stream",
             pt=stream.pt,
             rtpmap=stream.rtpmap,
-            port=stream.rtp_port,
-        )
+            port=stream.video_rtp_port,
+            bufferkf=True,
+        ),
+        dict(
+            type="data",
+            mid="tensor0",
+            label="Bytestream of tensor data",
+            buffermsg=True,
+            port=stream.data_rtp_port,
+        ),
     ]
     data = dict(
         transaction=str(uuid4()),
