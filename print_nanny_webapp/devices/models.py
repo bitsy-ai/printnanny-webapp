@@ -120,16 +120,10 @@ class Pi(SafeDeleteModel):
     def webrtc_edge(self):
         obj, _ = WebrtcStream.objects.get_or_create(
             pi=self,
-            rtp_port=settings.JANUS_EDGE_VIDEO_RTP_PORT,
+            video_rtp_port=settings.JANUS_EDGE_VIDEO_RTP_PORT,
+            data_rtp_port=settings.JANUS_EDGE_DATA_RTP_PORT,
             config_type=JanusConfigType.EDGE,
         )
-        if obj.video_rtp_port is None:
-            video_video_port, _ = settings.JANUS_CLOUD_VIDEO_RTP_PORT_RANGE
-            obj.video_rtp_port = video_video_port
-        if obj.data_rtp_port is None:
-            data_rtp_port, _ = settings.JANUS_CLOUD_DATA_RTP_PORT_RANGE
-            obj.data_rtp_port = data_rtp_port
-            obj.save()
         return obj
 
     @property
