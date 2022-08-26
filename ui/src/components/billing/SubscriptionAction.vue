@@ -18,7 +18,10 @@
     </a>
     <!-- show billing portal url -->
     <a
-      v-if="billingStore.summary?.subscription.is_valid"
+      v-if="
+        billingStore.summary?.subscription == undefined ||
+        billingStore.summary?.subscription?.is_valid
+      "
       :href="billingStore.summary?.billing_portal_url"
       target="_blank"
     >
