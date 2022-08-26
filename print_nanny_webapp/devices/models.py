@@ -15,7 +15,10 @@ from django_nats_nkeys.models import (
     NatsOrganizationUser,
     NatsOrganizationAppManager,
 )
-from print_nanny_webapp.devices.utils import get_available_rtp_port
+from print_nanny_webapp.devices.utils import (
+    get_available_data_rtp_port,
+    get_available_video_rtp_port,
+)
 from print_nanny_webapp.devices.enum import (
     JanusConfigType,
     OsEdition,
@@ -120,6 +123,13 @@ class Pi(SafeDeleteModel):
             rtp_port=settings.JANUS_EDGE_VIDEO_RTP_PORT,
             config_type=JanusConfigType.EDGE,
         )
+        if obj.video_rtp_port is None:
+            video_video_port, _ = settings.JANUS_CLOUD_VIDEO_RTP_PORT_RANGE
+            obj.video_rtp_port = video_video_port
+        if obj.data_rtp_port is None:
+            data_rtp_port, _ = settings.JANUS_CLOUD_DATA_RTP_PORT_RANGE
+            obj.data_rtp_port = data_rtp_port
+            obj.save()
         return obj
 
     @property
@@ -129,6 +139,12 @@ class Pi(SafeDeleteModel):
         obj, _ = WebrtcStream.objects.get_or_create(
             pi=self, config_type=JanusConfigType.CLOUD
         )
+        if obj.video_rtp_port is None:
+            obj.video_rtp_port = get_available_video_rtp_port()
+            obj.save()
+        if obj.data_rtp_port is None:
+            obj.data_rtp_port = get_available_data_rtp_port()
+            obj.save()
         return obj
 
     @property
@@ -343,7 +359,7 @@ class WebrtcStream(SafeDeleteModel):
     class Meta:
         index_together = (
             ("pi", "created_dt", "updated_dt"),
-            ("pi", "config_type"),
+            ("pi", "config_type", "video_rtp_port", "data_rtp_port"),
         )
 
         constraints = [
@@ -353,9 +369,14 @@ class WebrtcStream(SafeDeleteModel):
                 name="unique_janus_stream_per_pi",
             ),
             UniqueConstraint(
-                fields=["rtp_port"],
+                fields=["video_rtp_port"],
                 condition=models.Q(deleted=None, config_type=JanusConfigType.CLOUD),
-                name="unique_port",
+                name="unique_video_rtp_port",
+            ),
+            UniqueConstraint(
+                fields=["data_rtp_port"],
+                condition=models.Q(deleted=None, config_type=JanusConfigType.CLOUD),
+                name="unique_data_rtp_port",
             ),
         ]
 
@@ -376,7 +397,8 @@ class WebrtcStream(SafeDeleteModel):
         null=True,
         help_text="Janus Gateway Admin API secret. Will be null if config_type=CLOUD",
     )
-    rtp_port = models.PositiveSmallIntegerField(default=get_available_rtp_port)
+    video_rtp_port = models.PositiveSmallIntegerField(null=True)
+    data_rtp_port = models.PositiveSmallIntegerField(null=True)
 
     info = models.JSONField(default=dict)
 
