@@ -1,9 +1,6 @@
-from pyrsistent import m
-from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiParameter
-from djstripe.models.billing import Subscription
+from drf_spectacular.utils import extend_schema_view, extend_schema
 from djstripe.enums import SubscriptionStatus
 
 from print_nanny_webapp.subscriptions.api.serializers import BillingSummarySerializer
@@ -29,7 +26,10 @@ class BillingSummaryView(APIView):
         subscription = get_stripe_subscription(stripe_customer)
         charges = get_stripe_charges(stripe_customer)
         events = get_stripe_subscription_events(stripe_customer)
-        if subscription.status != SubscriptionStatus.canceled:
+        if (
+            subscription is not None
+            and subscription.status != SubscriptionStatus.canceled
+        ):
             next_invoice = get_stripe_next_invoice(stripe_customer, subscription)
         else:
             next_invoice = None

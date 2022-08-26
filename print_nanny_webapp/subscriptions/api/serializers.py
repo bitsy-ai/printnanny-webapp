@@ -81,7 +81,7 @@ class StripeCustomerSerializer(serializers.ModelSerializer):
 
 
 class BillingSummarySerializer(serializers.Serializer):
-    subscription = StripeSubscriptionSerializer()
+    subscription = StripeSubscriptionSerializer(required=False)
     customer = StripeCustomerSerializer()
     user = UserSerializer(allow_null=True, required=False)
 
