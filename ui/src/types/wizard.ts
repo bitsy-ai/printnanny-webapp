@@ -214,11 +214,10 @@ export class ConnectTestStep {
         break;
       case api.PiCamStatusType.CamError:
         if (event.payload) {
-          this.error(JSON.stringify(event.payload))
+          this.error(JSON.stringify(event.payload));
         } else {
-          this.error("Error starting printnanny-cam.service")
+          this.error("Error starting printnanny-cam.service");
         }
-
     }
   }
 

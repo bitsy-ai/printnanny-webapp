@@ -8,7 +8,11 @@ import { ApiConfig, handleApiError } from "@/utils/api";
 import type { WebrtcStream } from "printnanny-api-client";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
-const RTCPeerConnection = (window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection).bind(window);
+const RTCPeerConnection = (
+  window.RTCPeerConnection ||
+  window.webkitRTCPeerConnection ||
+  window.mozRTCPeerConnection
+).bind(window);
 
 export const useWebrtcStore = defineStore({
   id: "webrtc",
@@ -85,12 +89,14 @@ export const useWebrtcStore = defineStore({
     },
 
     async setVideoElement(mediaStream: any) {
-      if (!mediaStream) { return; }
+      if (!mediaStream) {
+        return;
+      }
       const videoEl = document.getElementById(
         "janus-video"
       ) as HTMLVideoElement;
       videoEl.srcObject = mediaStream;
-      console.log("Setting videoEl mediastream", videoEl, mediaStream)
+      console.log("Setting videoEl mediastream", videoEl, mediaStream);
       videoEl?.play();
     },
 
@@ -114,7 +120,7 @@ export const useWebrtcStore = defineStore({
           pc.iceConnectionState === "failed" ||
           pc.iceConnectionState === "closed"
         ) {
-          console.warn("Stopping all streams and closing peer connection")
+          console.warn("Stopping all streams and closing peer connection");
           this.stopAllStreams();
           this.closePC();
         }
@@ -232,7 +238,8 @@ export const useWebrtcStore = defineStore({
         StreamingPlugin.EVENT.STREAMING_STATUS,
         (evtdata: any) => {
           console.log(
-            `${streamingHandle.name
+            `${
+              streamingHandle.name
             } streaming handle event status ${JSON.stringify(evtdata)}`
           );
         }
