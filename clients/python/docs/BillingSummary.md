@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**subscription** | [**StripeSubscription**](StripeSubscription.md) |  | 
+**subscription** | [**StripeSubscription**](StripeSubscription.md) |  | [optional] 
 **customer** | [**StripeCustomer**](StripeCustomer.md) |  | 
 **user** | [**User**](User.md) |  | [optional] 
 **billing_portal_url** | **str** |  | [readonly] 
