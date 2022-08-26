@@ -8,6 +8,9 @@ import { ApiConfig, handleApiError } from "@/utils/api";
 import type { WebrtcStream } from "printnanny-api-client";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
+const RTCPeerConnection = (
+  window.RTCPeerConnection
+).bind(window);
 
 export const useWebrtcStore = defineStore({
   id: "webrtc",
@@ -84,10 +87,14 @@ export const useWebrtcStore = defineStore({
     },
 
     async setVideoElement(mediaStream: any) {
+      if (!mediaStream) {
+        return;
+      }
       const videoEl = document.getElementById(
         "janus-video"
       ) as HTMLVideoElement;
       videoEl.srcObject = mediaStream;
+      console.log("Setting videoEl mediastream", videoEl, mediaStream);
       videoEl?.play();
     },
 
@@ -111,6 +118,7 @@ export const useWebrtcStore = defineStore({
           pc.iceConnectionState === "failed" ||
           pc.iceConnectionState === "closed"
         ) {
+          console.warn("Stopping all streams and closing peer connection");
           this.stopAllStreams();
           this.closePC();
         }
@@ -156,7 +164,7 @@ export const useWebrtcStore = defineStore({
       };
       console.log("Sending watchdata", watchdata);
       const { jsep, _restart = false } = await streamingHandle.watch(watchdata);
-      console.log(`Received offer ${jsep}`);
+      console.log(`Received offer`, jsep);
 
       const answer = await this.doAnswer(jsep);
       await this.startStream(answer);
@@ -166,7 +174,7 @@ export const useWebrtcStore = defineStore({
       const connectOpts = {
         is_admin: false,
         address: {
-          url: stream.ws_url,
+          url: import.meta.env.VITE_PRINTNANNY_JANUS_CLOUD_WS_URL,
           token: stream.api_token,
         },
       };
@@ -186,7 +194,7 @@ export const useWebrtcStore = defineStore({
 
       const streamingHandle = await session.attach(StreamingPlugin);
       this.$patch({ streamingHandle });
-      console.log(`Attached StreamingPlugin handle ${streamingHandle}`);
+      console.log(`Attached StreamingPlugin handle`, streamingHandle);
       streamingHandle.once(Janode.EVENT.HANDLE_DETACHED, () => {
         console.log(`${streamingHandle} manager handle detached`);
       });
@@ -228,8 +236,7 @@ export const useWebrtcStore = defineStore({
         StreamingPlugin.EVENT.STREAMING_STATUS,
         (evtdata: any) => {
           console.log(
-            `${
-              streamingHandle.name
+            `${streamingHandle.name
             } streaming handle event status ${JSON.stringify(evtdata)}`
           );
         }

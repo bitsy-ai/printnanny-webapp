@@ -632,7 +632,7 @@ CORS_ALLOWED_ORIGINS = [
 # Janus Cloud defaults
 # in production, Janus Gateway is deployed to Cloud as an SFU and adressible over internet
 # ------------------------------------------------------------------------------
-JANUS_CLOUD_DOMAIN = env("JANUS_CLOUD_DOMAIN", default="aurora.local")
+JANUS_CLOUD_DOMAIN = env("JANUS_CLOUD_DOMAIN", default="janus")
 JANUS_CLOUD_ADMIN_SECRET = env("JANUS_CLOUD_ADMIN_SECRET", default="debug")
 JANUS_CLOUD_ADMIN_URL = env(
     "JANUS_CLOUD_ADMIN_URL", default=f"http://{JANUS_CLOUD_DOMAIN}:7088/admin"

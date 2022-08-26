@@ -253,7 +253,7 @@ media: {
 nat: {
     stun_server = "stun.l.google.com"
     stun_port = 19302
-    nice_debug = true
+    nice_debug = false
     #full_trickle = true
     #ice_nomination = "regular"
     ice_keepalive_conncheck = true
