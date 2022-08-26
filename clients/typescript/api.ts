@@ -32,7 +32,7 @@ export interface BillingSummary {
      * @type {StripeSubscription}
      * @memberof BillingSummary
      */
-    'subscription': StripeSubscription;
+    'subscription'?: StripeSubscription;
     /**
      * 
      * @type {StripeCustomer}
@@ -2834,7 +2834,7 @@ export interface Pi {
      * @type {OctoPrintServer}
      * @memberof Pi
      */
-    'octoprint_server': OctoPrintServer;
+    'octoprint_server': OctoPrintServer | null;
     /**
      * 
      * @type {PiUrls}
