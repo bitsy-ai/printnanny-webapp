@@ -22,6 +22,7 @@ export const useWebrtcStore = defineStore({
     session: undefined as undefined | any,
     streamingHandle: undefined as undefined | any,
     pc: undefined as undefined | RTCPeerConnection,
+    loading: true,
   }),
 
   actions: {
@@ -110,6 +111,7 @@ export const useWebrtcStore = defineStore({
       videoEl.srcObject = mediaStream;
       console.log("Setting videoEl mediastream", videoEl, mediaStream);
       videoEl?.play();
+      this.$patch({ loading: false });
     },
 
     async doAnswer(offer: any) {
@@ -250,7 +252,8 @@ export const useWebrtcStore = defineStore({
         StreamingPlugin.EVENT.STREAMING_STATUS,
         (evtdata: any) => {
           console.log(
-            `${streamingHandle.name
+            `${
+              streamingHandle.name
             } streaming handle event status ${JSON.stringify(evtdata)}`
           );
         }
