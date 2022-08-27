@@ -75,7 +75,7 @@ export const useWebrtcStore = defineStore({
           pi: this.stream.pi,
         } as api.PiCamCommandRequest;
 
-        await eventsStore.publish(req);
+        await eventsStore.publish_command(req);
       }
     },
 
@@ -250,8 +250,7 @@ export const useWebrtcStore = defineStore({
         StreamingPlugin.EVENT.STREAMING_STATUS,
         (evtdata: any) => {
           console.log(
-            `${
-              streamingHandle.name
+            `${streamingHandle.name
             } streaming handle event status ${JSON.stringify(evtdata)}`
           );
         }
