@@ -17,7 +17,7 @@ if (stream !== undefined) {
 
 <template>
   <div>
-    <video id="janus-video" muted class="aspect-video h-80 m-auto" aria-placeholder="PrintNanny Cam is paused" poster="@/assets/video/video-paused.svg"></video>
+    <video id="janus-video" muted class="aspect-video h-80 mx-auto my-4 border-double border-4 border-grey-200" aria-placeholder="PrintNanny Cam is paused" poster="@/assets/video/video-paused.svg"></video>
     <p class="text-sm text-gray-500 text-center" v-if="store.loading">
       Raspberry Pi camera is loading.
     </p>
