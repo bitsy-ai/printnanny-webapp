@@ -126,7 +126,7 @@ onBeforeRouteLeave(async (to, from) => {
         </ul>
 
         <!-- webrtc component -->
-        <div class="w-full m-auto justify-center flex-1">
+        <div class="w-full m-auto justify-center">
           <WebrtcVideo :pi-id="parseInt(props.piId)" />
         </div>
       </div>

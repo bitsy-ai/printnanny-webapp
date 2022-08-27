@@ -17,9 +17,12 @@ if (stream !== undefined) {
 
 <template>
   <div>
-    <video id="janus-video" muted class="w-full aspect-video p-6"></video>
-    <p class="text-sm text-gray-500 text-center">
-      Raspberry Pi Camera will turn off when you leave this page.
+    <video id="janus-video" muted class="aspect-video h-80 m-auto" aria-placeholder="PrintNanny Cam is paused" poster="@/assets/video/video-paused.svg"></video>
+    <p class="text-sm text-gray-500 text-center" v-if="store.loading">
+      Raspberry Pi camera is loading.
+    </p>
+    <p class="text-sm text-gray-500 text-center" v-if="!store.loading">
+      Raspberry Pi camera will turn off automatically when you finish the setup wizard.
     </p>
   </div>
 </template>
