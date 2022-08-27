@@ -23,18 +23,7 @@ function handleApiError(e: Error | AxiosError) {
   const header = "Oops, unexpected error";
 
   if (axios.isAxiosError(e)) {
-    if (
-      e.response?.data.non_field_errors &&
-      e.response?.data.non_field_errors.length > 0
-    ) {
-      message = e.response.data.non_field_errors.join("\n");
-    } else if (e.response?.data.detail) {
-      message = e.response.data.detail;
-    } else if (e.response?.data.error) {
-      message = e.response.data.error;
-    } else {
-      message = e.response?.data;
-    }
+    message = JSON.stringify(e)
   }
   const alert: UiAlert = {
     header,
