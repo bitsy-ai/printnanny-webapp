@@ -36,7 +36,7 @@ jobs:
   #       make janus-deploy
   stable:
     # needs: ["sandbox"]
-    environment: stable
+    environment: live
     env:
       GCP_PROJECT: print-nanny
       GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT_KEY }} # TODO replace repo-level secrets with stable env-level secrets
