@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { onBeforeRouteLeave, onBeforeRouteUpdate } from "vue-router";
+
 import { markRaw } from "vue";
 import { useWizardStore } from "@/stores/wizard";
+import { useWebrtcStore } from "@/stores/webrtc";
 import moment from "moment";
 import WebrtcVideo from "../../video/WebrtcVideo.vue";
 import WizardButtons from "@/components/wizard/steps/WizardButtons.vue";
@@ -15,12 +18,22 @@ const props = defineProps({
 const step = PiCreateWizardSteps()[3];
 
 const store = useWizardStore();
+const webrtcStore = useWebrtcStore();
 
 if (store.pi == undefined || store.pi.id !== parseInt(props.piId)) {
   await store.loadPi(parseInt(props.piId));
 }
 await store.initConnectTestSteps();
 await store.connectTestSteps.map((s) => s.run());
+
+// turn off camera on route leave
+onBeforeRouteUpdate(async (to, from) => {
+  console.log("onBeforeRouteUpdate hook", to, from);
+});
+onBeforeRouteLeave(async (to, from) => {
+  console.log("onBeforeRouteLeave hook", to, from);
+  await webrtcStore.stopAllStreams();
+});
 </script>
 
 <template>
