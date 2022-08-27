@@ -45,9 +45,7 @@ export const useEventStore = defineStore({
       }
     },
 
-    async publish_command(
-      req: api.PolymorphicPiCommandRequest
-    ) {
+    async publish_command(req: api.PolymorphicPiCommandRequest) {
       const natsClient = await this.connect();
       const jsonCodec = JSONCodec<api.PolymorphicPiCommandRequest>();
       const subject = req.subject_pattern.replace("{pi_id}", req.pi.toString());

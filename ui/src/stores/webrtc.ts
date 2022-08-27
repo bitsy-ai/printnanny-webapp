@@ -22,7 +22,7 @@ export const useWebrtcStore = defineStore({
     session: undefined as undefined | any,
     streamingHandle: undefined as undefined | any,
     pc: undefined as undefined | RTCPeerConnection,
-    loading: true
+    loading: true,
   }),
 
   actions: {
@@ -252,7 +252,8 @@ export const useWebrtcStore = defineStore({
         StreamingPlugin.EVENT.STREAMING_STATUS,
         (evtdata: any) => {
           console.log(
-            `${streamingHandle.name
+            `${
+              streamingHandle.name
             } streaming handle event status ${JSON.stringify(evtdata)}`
           );
         }

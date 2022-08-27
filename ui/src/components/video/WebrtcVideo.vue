@@ -17,12 +17,19 @@ if (stream !== undefined) {
 
 <template>
   <div>
-    <video id="janus-video" muted class="aspect-video h-80 mx-auto my-4 border-double border-4 border-grey-200" aria-placeholder="PrintNanny Cam is paused" poster="@/assets/video/video-paused.svg"></video>
-    <p class="text-sm text-gray-500 text-center" v-if="store.loading">
+    <video
+      id="janus-video"
+      muted
+      class="aspect-video h-80 mx-auto my-4 border-double border-4 border-grey-200"
+      aria-placeholder="PrintNanny Cam is paused"
+      poster="@/assets/video/video-paused.svg"
+    ></video>
+    <p v-if="store.loading" class="text-sm text-gray-500 text-center">
       Raspberry Pi camera is loading.
     </p>
-    <p class="text-sm text-gray-500 text-center" v-if="!store.loading">
-      Raspberry Pi camera will turn off automatically when you finish the setup wizard.
+    <p v-if="!store.loading" class="text-sm text-gray-500 text-center">
+      Raspberry Pi camera will turn off automatically when you finish the setup
+      wizard.
     </p>
   </div>
 </template>
