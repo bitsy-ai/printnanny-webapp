@@ -86,6 +86,8 @@ RUN make install
 WORKDIR /build/libusrsctp
 RUN ./bootstrap
 RUN ./configure --prefix=${LIB_PREFIX} --disable-programs --disable-inet --disable-inet6
+RUN make && make install
+
 
 # build + install janus
 WORKDIR /build/janus

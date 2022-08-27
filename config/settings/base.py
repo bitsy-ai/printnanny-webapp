@@ -665,6 +665,7 @@ JANUS_CLOUD_STREAMING_PLUGIN_ADMIN_KEY = env(
 # ------------------------------------------------------------------------------
 JANUS_EDGE_ADMIN_PORT: int = int(env("JANUS_EDGE_ADMIN_PORT", default=7088))
 JANUS_EDGE_VIDEO_RTP_PORT: int = int(env("JANUS_EDGE_VIDEO_RTP_PORT", default=5105))
+JANUS_EDGE_CLOUD_RTP_PORT: int = int(env("JANUS_EDGE_VIDEO_RTP_PORT", default=6105))
 JANUS_EDGE_API_PORT: int = int(env("JANUS_EDGE_API_PORT", default=8088))
 JANUS_EDGE_WS_PORT: int = int(env("JANUS_EDGE_WS_PORT", default=8188))
 
