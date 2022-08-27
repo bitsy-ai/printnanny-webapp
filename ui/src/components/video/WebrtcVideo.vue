@@ -16,5 +16,10 @@ if (stream !== undefined) {
 </script>
 
 <template>
-  <video id="janus-video" muted class="w-full aspect-video p-6"></video>
+  <div>
+    <video id="janus-video" muted class="w-full aspect-video p-6"></video>
+    <p class="text-sm text-gray-500 text-center">
+      Raspberry Pi Camera will turn off when you leave this page.
+    </p>
+  </div>
 </template>

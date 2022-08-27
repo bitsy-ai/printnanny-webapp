@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onBeforeRouteLeave } from "vue-router";
 import { RouterLink } from "vue-router";
 import { PiCreateWizardSteps } from "../piCreateWizard";
 import { useWizardStore } from "@/stores/wizard";
@@ -17,6 +18,11 @@ const props = defineProps({
 
 await store.loadPi(parseInt(props.piId));
 await store.finishSetup(parseInt(props.piId));
+
+onBeforeRouteLeave((to, from) => {
+  console.log("onBeforeRouteLeave hook", to, from);
+  store.$reset();
+});
 </script>
 <template>
   <div

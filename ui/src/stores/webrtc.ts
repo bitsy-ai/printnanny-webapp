@@ -1,3 +1,6 @@
+import uuid4 from "uuid4";
+import moment from "moment";
+
 import * as api from "printnanny-api-client";
 import { defineStore, acceptHMRUpdate } from "pinia";
 
@@ -6,11 +9,10 @@ import StreamingPlugin from "janode/plugins/streaming";
 
 import { ApiConfig, handleApiError } from "@/utils/api";
 import type { WebrtcStream } from "printnanny-api-client";
+import { useEventStore } from "./events";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
-const RTCPeerConnection = (
-  window.RTCPeerConnection
-).bind(window);
+const RTCPeerConnection = window.RTCPeerConnection.bind(window);
 
 export const useWebrtcStore = defineStore({
   id: "webrtc",
@@ -62,6 +64,18 @@ export const useWebrtcStore = defineStore({
           .getTracks()
           .forEach((stream) => stream.stop());
         videoEl.srcObject = null;
+      }
+      if (this.stream !== undefined) {
+        const eventsStore = useEventStore();
+        const req = {
+          id: uuid4(),
+          created_dt: moment.utc().toISOString(),
+          subject_pattern: api.PiCamCommandSubjectPatternEnum.PiPiIdCommandCam,
+          event_type: api.PiCamCommandType.CamStop,
+          pi: this.stream.pi,
+        } as api.PiCamCommandRequest;
+
+        await eventsStore.publish(req);
       }
     },
 
@@ -236,7 +250,8 @@ export const useWebrtcStore = defineStore({
         StreamingPlugin.EVENT.STREAMING_STATUS,
         (evtdata: any) => {
           console.log(
-            `${streamingHandle.name
+            `${
+              streamingHandle.name
             } streaming handle event status ${JSON.stringify(evtdata)}`
           );
         }

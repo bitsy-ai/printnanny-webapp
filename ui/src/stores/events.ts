@@ -44,6 +44,16 @@ export const useEventStore = defineStore({
         return this.natsClient;
       }
     },
+
+    async publish(
+      req: api.PolymorphicPiEventRequest | api.PolymorphicPiCommandRequest
+    ) {
+      const natsClient = await this.connect();
+      const jsonCodec = JSONCodec<api.PolymorphicPiCommandRequest>();
+      const subject = req.subject_pattern.replace("{pi_id}", req.pi.toString());
+      await natsClient?.publish(subject, jsonCodec.encode(req));
+      console.log(`Published to ${subject}`, req);
+    },
     async subscribeAllPis() {
       const natsClient = await this.connect();
       if (natsClient == undefined) {
