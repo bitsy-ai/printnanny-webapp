@@ -3,13 +3,15 @@ import moment from "moment";
 
 import * as api from "printnanny-api-client";
 import { defineStore, acceptHMRUpdate } from "pinia";
-
+import { ExclamationIcon } from "@heroicons/vue/outline";
 import Janode from "janode";
 import StreamingPlugin from "janode/plugins/streaming";
 
+import type { UiAlert, AlertAction } from "@/types";
 import { ApiConfig, handleApiError } from "@/utils/api";
 import type { WebrtcStream } from "printnanny-api-client";
 import { useEventStore } from "./events";
+import { useAlertStore } from "./alerts";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
 const RTCPeerConnection = window.RTCPeerConnection.bind(window);
@@ -187,6 +189,7 @@ export const useWebrtcStore = defineStore({
     },
 
     async initWebrtcStream(stream: api.WebrtcStream) {
+      const alertStore = useAlertStore();
       const connectOpts = {
         is_admin: false,
         address: {
@@ -222,9 +225,24 @@ export const useWebrtcStore = defineStore({
       streamingHandle.on(Janode.EVENT.HANDLE_MEDIA, (evtdata: any) =>
         console.log("media event", evtdata)
       );
-      streamingHandle.on(Janode.EVENT.HANDLE_SLOWLINK, (evtdata: any) =>
-        console.log("slowlink event", evtdata)
-      );
+      streamingHandle.on(Janode.EVENT.HANDLE_SLOWLINK, (evtdata: any) => {
+        console.log("slowlink event", evtdata);
+        const actions = [
+          {
+            color: "amber",
+            text: "Refresh Page",
+            onClick: () => {
+              window.location.reload();
+            },
+          },
+        ] as Array<AlertAction>;
+        const alert = {
+          message:
+            "Connection to PrintNanny Cloud is slow. Video may appear choppy.",
+          header: "Slow connection detected",
+          icon: ExclamationIcon,
+        } as UiAlert;
+      });
       streamingHandle.on(Janode.EVENT.HANDLE_HANGUP, (evtdata: any) =>
         console.log("hangup event", evtdata)
       );
@@ -252,7 +270,8 @@ export const useWebrtcStore = defineStore({
         StreamingPlugin.EVENT.STREAMING_STATUS,
         (evtdata: any) => {
           console.log(
-            `${streamingHandle.name
+            `${
+              streamingHandle.name
             } streaming handle event status ${JSON.stringify(evtdata)}`
           );
         }
