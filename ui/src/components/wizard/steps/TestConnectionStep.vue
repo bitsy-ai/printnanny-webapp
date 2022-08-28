@@ -38,7 +38,7 @@ onBeforeRouteLeave(async (to, from) => {
 
 <template>
   <div
-    class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap"
+    class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap"
   >
     <h2
       class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl flex-1 w-full text-center"

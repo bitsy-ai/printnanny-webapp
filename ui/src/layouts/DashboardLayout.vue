@@ -91,7 +91,7 @@
             </div>
           </div>
           <!-- Main column -->
-          <div class="lg:pl-64 flex flex-col h-screen justify-between">
+          <div class="lg:pl-64 flex flex-col justify-between">
             <!-- Search header -->
             <div
               class="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white border-b border-gray-200 lg:hidden"
@@ -114,7 +114,7 @@
                 </div>
               </div>
             </div>
-            <main class="flex-auto mb-20">
+            <main class="mb-20 min-h-full">
               <!-- Page title & actions -->
               <div
                 class="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8"
