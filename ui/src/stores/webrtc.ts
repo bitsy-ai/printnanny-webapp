@@ -111,7 +111,7 @@ export const useWebrtcStore = defineStore({
         "janus-video"
       ) as HTMLVideoElement;
       if (videoEl == null) {
-        await this.setVideoElement(mediaStream)
+        await this.setVideoElement(mediaStream);
       }
       videoEl.srcObject = mediaStream;
       console.log("Setting videoEl mediastream", videoEl, mediaStream);
@@ -273,7 +273,8 @@ export const useWebrtcStore = defineStore({
         StreamingPlugin.EVENT.STREAMING_STATUS,
         (evtdata: any) => {
           console.log(
-            `${streamingHandle.name
+            `${
+              streamingHandle.name
             } streaming handle event status ${JSON.stringify(evtdata)}`
           );
         }
