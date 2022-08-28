@@ -271,7 +271,7 @@ def janus_create_streaming_mountpoint(
             secret=stream.stream_secret,
             pin=stream.stream_pin,
             is_private=False,  # stream is still private (pin and token protected) - this setting controls whether or not steam is visible in LIST view
-            permanent=True,
+            permanent=False,
             media=media,
         ),
     )
