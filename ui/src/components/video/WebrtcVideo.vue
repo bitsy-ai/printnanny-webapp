@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useWebrtcStore } from "@/stores/webrtc";
+import { onMounted } from "vue";
 
 const props = defineProps({
   piId: {
@@ -10,9 +11,12 @@ const props = defineProps({
 
 const store = useWebrtcStore();
 const stream = await store.getStream(props.piId);
-if (stream !== undefined) {
-  store.initWebrtcStream(stream);
-}
+
+onMounted(() => {
+  if (stream !== undefined) {
+    store.initWebrtcStream(stream);
+  }
+});
 </script>
 
 <template>
