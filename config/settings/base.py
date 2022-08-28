@@ -647,10 +647,10 @@ JANUS_CLOUD_WS_URL = env(
 JANUS_CLOUD_ADMIN_PORT: int = int(env("JANUS_CLOUD_ADMIN_PORT", default=7088))
 JANUS_CLOUD_WS_PORT: int = int(env("JANUS_CLOUD_WS_PORT", default=8188))
 JANUS_CLOUD_VIDEO_RTP_PORT_RANGE: List[int] = list(
-    map(int, env.tuple("JANUS_CLOUD_VIDEO_RTP_PORT_RANGE", default=(5000, 5999)))
+    map(int, env.tuple("JANUS_CLOUD_VIDEO_RTP_PORT_RANGE", default=(20000, 20999)))
 )
 JANUS_CLOUD_DATA_RTP_PORT_RANGE: List[int] = list(
-    map(int, env.tuple("JANUS_CLOUD_DATA_RTP_PORT_RANGE", default=(6000, 6999)))
+    map(int, env.tuple("JANUS_CLOUD_DATA_RTP_PORT_RANGE", default=(21000, 21999)))
 )
 JANUS_CLOUD_RTP_DOMAIN = env("JANUS_CLOUD_RTP_DOMAIN", default="aurora")
 
