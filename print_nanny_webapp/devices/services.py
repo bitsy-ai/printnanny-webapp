@@ -33,48 +33,43 @@ class StreamingMountpointNotFound(Exception):
     pass
 
 
-def janus_admin_add_token(stream: WebrtcStream) -> Dict[str, Any]:
-    if stream.config_type == JanusConfigType.CLOUD:
-        req = dict(
-            janus="add_token",
-            token=stream.api_token,
-            admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
-            plugins=["janus.plugin.streaming"],
-            transaction=uuid4().hex,
-        )
-        res = requests.post(stream.admin_url, json=req)
-        logger.info("Got response to POST %s: %s", stream.admin_url, res)
-        res.raise_for_status()
-        return res.json()
-    else:
-        raise NotImplementedError(
-            f"janus_admin_add_token not implemented in events.services for JanusConfigType={JanusConfigType.EDGE}"
-        )
+def janus_cloud_admin_add_token(token: str) -> Dict[str, Any]:
+    req = dict(
+        janus="add_token",
+        token=token,
+        admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
+        plugins=["janus.plugin.streaming"],
+        transaction=uuid4().hex,
+    )
+    res = requests.post(settings.JANUS_CLOUD_ADMIN_URL, json=req)
+    logger.info("Got response to POST %s: %s", settings.JANUS_CLOUD_ADMIN_URL, res)
+    res.raise_for_status()
+    return res.json()
 
 
-def janus_get_session(stream: WebrtcStream) -> str:
+def janus_get_session(api_url: str, token: str) -> str:
     req = dict(
         transaction=str(uuid4()),
         janus="create",
-        token=stream.api_token,
         admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
+        token=token,
     )
-    res = requests.post(stream.api_url, json=req)
+    res = requests.post(api_url, json=req)
     res.raise_for_status()
     data = res.json()
     logger.info("Created Janus session %s", data)
     return data["data"]["id"]
 
 
-def janus_get_plugin_handle(stream: WebrtcStream, session: str) -> str:
+def janus_get_plugin_handle(api_url: str, session: str, token) -> str:
     req = dict(
         transaction=str(uuid4()),
         janus="attach",
-        token=stream.api_token,
         plugin="janus.plugin.streaming",
         admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
+        token=token,
     )
-    endpoint = stream.session_endpoint(session=session)
+    endpoint = f"{api_url}/{session}"
     res = requests.post(endpoint, json=req)
     res.raise_for_status()
     data = res.json()
@@ -146,8 +141,8 @@ def janus_create_streaming_mountpoint(
             description=f"WebRTC stream config_type={stream.config_type} pi={stream.pi.id}",
             secret=stream.stream_secret,
             pin=stream.stream_pin,
-            is_private=True,
-            permanent=False,
+            is_private=False,  # stream is still private (pin and token protected) - this setting controls whether or not steam is visible in LIST view
+            permanent=True,
             media=media,
         ),
     )
@@ -161,9 +156,9 @@ def janus_create_streaming_mountpoint(
 
 
 def janus_streaming_get_or_create_mountpoint(stream: WebrtcStream):
-    janus_admin_add_token(stream)
-    session = janus_get_session(stream)
-    plugin_handle = janus_get_plugin_handle(stream, session)
+    janus_cloud_admin_add_token(stream.api_token)
+    session = janus_get_session(stream.api_url, stream.api_token)
+    plugin_handle = janus_get_plugin_handle(stream.api_url, session, stream.api_token)
     handle_endpoint = stream.plugin_handle_endpoint(session, plugin_handle)
 
     try:
@@ -206,7 +201,6 @@ def janus_cloud_setup(device: Pi) -> Tuple[WebrtcStream, bool]:
 
     # 2) ensure token added to Janus Gateway
     # Janus stores tokens in memory, so added tokens are flushed on restart
-    # janus_admin_add_token(janus_auth)
     logger.info("Retrieved WebrtcStream %s created=%s", stream, created)
     return stream, created
 
