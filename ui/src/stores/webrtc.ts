@@ -202,10 +202,10 @@ export const useWebrtcStore = defineStore({
       this.$patch({ connection });
       const session = await connection.create();
       this.$patch({ session });
-      console.log(`Session established ${session}`);
+      console.log("Janus session established", session);
 
       session.once(Janode.EVENT.SESSION_DESTROYED, () => {
-        console.log(`${session} session destryed`);
+        console.log(`Janus session destroyed`, session);
       });
 
       const streamingHandle = await session.attach(StreamingPlugin);
@@ -252,8 +252,7 @@ export const useWebrtcStore = defineStore({
         StreamingPlugin.EVENT.STREAMING_STATUS,
         (evtdata: any) => {
           console.log(
-            `${
-              streamingHandle.name
+            `${streamingHandle.name
             } streaming handle event status ${JSON.stringify(evtdata)}`
           );
         }
