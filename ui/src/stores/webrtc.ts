@@ -34,9 +34,6 @@ export const useWebrtcStore = defineStore({
         console.warn("Failed to initialize Webrtc stream");
         return;
       }
-      const videoEl = document.getElementById(
-        "janus-video"
-      ) as HTMLVideoElement;
       this.$patch({ stream: stream });
       return stream;
     },
@@ -61,6 +58,9 @@ export const useWebrtcStore = defineStore({
       const videoEl = document.getElementById(
         "janus-video"
       ) as HTMLVideoElement;
+      if (videoEl == null) {
+        console.warn("Failed to get #janus-video element");
+      }
       if (videoEl?.srcObject) {
         console.log("Stopping stream");
         (<MediaStream>videoEl.srcObject)
@@ -111,7 +111,7 @@ export const useWebrtcStore = defineStore({
         "janus-video"
       ) as HTMLVideoElement;
       if (videoEl == null) {
-        await this.setVideoElement(mediaStream);
+        console.warn("Failed to get #janus-video element");
       }
       videoEl.srcObject = mediaStream;
       console.log("Setting videoEl mediastream", videoEl, mediaStream);
