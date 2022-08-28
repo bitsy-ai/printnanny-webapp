@@ -593,8 +593,9 @@ metadata:
   namespace: {{ PRINTNANNY_NAMESPACE }}
 spec:
   timeoutSec: 300
-  connectionDraining: 30
-  
+  connectionDraining
+    drainingTimeoutSec: 30
+
   healthCheck:
     checkIntervalSec: 120
     port: 7088
