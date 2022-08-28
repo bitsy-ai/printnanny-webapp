@@ -111,7 +111,7 @@ export const useWebrtcStore = defineStore({
         "janus-video"
       ) as HTMLVideoElement;
       if (videoEl == null) {
-        return this.setVideoElement(mediaStream)
+        await this.setVideoElement(mediaStream)
       }
       videoEl.srcObject = mediaStream;
       console.log("Setting videoEl mediastream", videoEl, mediaStream);
