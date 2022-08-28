@@ -57,6 +57,7 @@ def janus_get_session(stream: WebrtcStream) -> str:
         transaction=str(uuid4()),
         janus="create",
         token=stream.api_token,
+        admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
     )
     res = requests.post(stream.api_url, json=req)
     res.raise_for_status()
@@ -71,6 +72,7 @@ def janus_get_plugin_handle(stream: WebrtcStream, session: str) -> str:
         janus="attach",
         token=stream.api_token,
         plugin="janus.plugin.streaming",
+        admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
     )
     endpoint = stream.session_endpoint(session=session)
     res = requests.post(endpoint, json=req)
@@ -87,6 +89,7 @@ def janus_get_streaming_info(
         transaction=str(uuid4()),
         janus="message",
         token=stream.api_token,
+        admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
         body=dict(
             request="info",
             id=stream.id,
@@ -134,6 +137,7 @@ def janus_create_streaming_mountpoint(
         transaction=str(uuid4()),
         janus="message",
         token=stream.api_token,
+        admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
         body=dict(
             request="create",
             admin_key=admin_key,
