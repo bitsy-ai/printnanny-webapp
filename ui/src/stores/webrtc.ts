@@ -110,6 +110,9 @@ export const useWebrtcStore = defineStore({
       const videoEl = document.getElementById(
         "janus-video"
       ) as HTMLVideoElement;
+      if (videoEl == null) {
+        await this.setVideoElement(mediaStream);
+      }
       videoEl.srcObject = mediaStream;
       console.log("Setting videoEl mediastream", videoEl, mediaStream);
       videoEl?.play();
