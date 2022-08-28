@@ -39,9 +39,9 @@ function handleApiError(e: Error | AxiosError) {
     }
 
     if (e.response?.data?.error_uuid) {
-      container["error_uuid"] = e.response?.data?.error_uuid
+      container["error_uuid"] = e.response?.data?.error_uuid;
     }
-    message = JSON.stringify(container, null, 2)
+    message = JSON.stringify(container, null, 2);
   }
   const alert: UiAlert = {
     header,
