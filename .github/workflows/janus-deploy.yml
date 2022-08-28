@@ -3,37 +3,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  # sandbox:
-  #   environment: sandbox
-  #   env:
-  #     GCP_PROJECT: printnanny-sandbox
-  #     GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT_KEY }}  # TODO replace repo-level secrets with sandbox env-level secrets
-  #     GCP_SERVICE_ACCOUNT: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT }}  # TODO replace repo-level secrets with sandbox env-level secrets
-  #     CLUSTER: www-sandbox
-  #     ZONE: us-central1-c
-  #     JANUS_HOSTNAME: janus.sandbox.print-nanny.com
-  #     JANUS_VERSION: 0.11.8
-  #     JANUS_ADMIN_SECRET: ${{ secrets.JANUS_ADMIN_SECRET }}
-  #     JANUS_IMAGE_REPO: us.gcr.io/printnanny-sandbox/janus
-  #     JANUS_CLOUD_RTP_STATIC_IP: 34.117.233.175
-
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Checkout branch
-  #     uses: actions/checkout@v2
-  #   - name: Install system dependencies
-  #     run: |
-  #       pip3 install j2cli[yaml]
-  #   - name: Write deploy key
-  #     run: echo $GCP_SERVICE_ACCOUNT_KEY > key.json
-  #   - name: Active Service Account
-  #     run: gcloud auth activate-service-account $GCP_SERVICE_ACCOUNT --key-file=key.json
-  #   - name: Configure docker registry credentials
-  #     run: gcloud auth configure-docker
-  #   - name: Deploy to sandbox cluster
-  #     id: deploy
-  #     run: |
-  #       make janus-deploy
   stable:
     # needs: ["sandbox"]
     environment: live
