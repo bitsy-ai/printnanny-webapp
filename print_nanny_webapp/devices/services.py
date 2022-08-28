@@ -3,10 +3,13 @@ import io
 import zipfile
 from uuid import uuid4
 from typing import Tuple, Dict, Any
-
+from datetime import timedelta
 import requests
+
+from django.utils import timezone
 from django.http import HttpRequest
 from django.conf import settings
+from django.db.models import Q
 from django.template.loader import render_to_string
 from django_nats_nkeys.models import (
     NatsMessageExport,
@@ -33,48 +36,169 @@ class StreamingMountpointNotFound(Exception):
     pass
 
 
-def janus_admin_add_token(stream: WebrtcStream) -> Dict[str, Any]:
-    if stream.config_type == JanusConfigType.CLOUD:
+def janus_stream_clean(max_age_seconds: int = 3600):
+    active_cloud_webrtc_streams = WebrtcStream.objects.filter(
+        ~Q(video_rtp_port=None, data_rtp_port=None),
+        config_type=JanusConfigType,
+    ).all()
+
+    logger.warning(
+        "Found %s cloud WebrtcStreams with port allocations, scanning for inactive streams",
+        active_cloud_webrtc_streams.count(),
+    )
+    token = str(uuid4())
+    janus_cloud_admin_add_token(token)
+
+    session = janus_get_session(settings.JANUS_CLOUD_API_URL, token)
+
+    plugin_handle = janus_get_plugin_handle(
+        settings.JANUS_CLOUD_API_URL, session, token
+    )
+
+    handle_endpoint = f"{settings.JANUS_CLOUD_API_URL}/{session}/{plugin_handle}"
+    logger.warning("Initialized plugin handle %s", handle_endpoint)
+    # for stream in active_cloud_webrtc_streams:
+
+    # list janus streaming mountpoints
+    req = dict(
+        transaction=str(uuid4()),
+        janus="message",
+        admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
+        token=token,
+        body=dict(request="list"),
+    )
+    res = requests.post(handle_endpoint, json=req)
+
+    # janus returns a 200 response with error code in the body (ugh), so handle that
+    if res.json().get("error") is not None:
+        logger.error(
+            "Janus Gateway responded with error to streaming list request %s", res
+        )
+        return
+
+    streaming_list = res.json().get("plugindata", {}).get("data", {}).get("list", [])
+
+    logger.warning(
+        "Analyzing %s Janus Gateway streaming mountpoints for active viewers",
+        streaming_list,
+    )
+
+    for stream in streaming_list:
+        # number of viewers requires a separate info request
+        stream_id = stream.get("id")
+        if stream_id is None:
+            logger.warning("Failed to parse stream id from %s", stream)
+            continue
+        webrtc_stream_model = WebrtcStream.objects.get(
+            config_type=JanusConfigType.CLOUD, id=stream_id
+        )
         req = dict(
-            janus="add_token",
-            token=stream.api_token,
+            transaction=str(uuid4()),
+            janus="message",
             admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
-            plugins=["janus.plugin.streaming"],
-            transaction=uuid4().hex,
-        )
-        res = requests.post(stream.admin_url, json=req)
-        logger.info("Got response to POST %s: %s", stream.admin_url, res)
-        res.raise_for_status()
-        return res.json()
-    else:
-        raise NotImplementedError(
-            f"janus_admin_add_token not implemented in events.services for JanusConfigType={JanusConfigType.EDGE}"
+            token=token,
+            body=dict(
+                request="info",
+                id=stream_id,
+                secret=webrtc_stream_model.stream_secret,
+            ),
         )
 
+        res = requests.post(handle_endpoint, json=req)
+        # janus returns a 200 response with error code in the body (ugh), so handle that
+        if res.json().get("error") is not None:
+            logger.error(
+                "Janus Gateway responded with error to streaming info request %s",
+                res,
+            )
+            continue
 
-def janus_get_session(stream: WebrtcStream) -> str:
+        # if the stream has 0 viewers and hasn't been updated within the last hour, reclaim ports
+        logger.info("Stream info %s", res.json())
+        viewers = (
+            res.json()
+            .get("plugindata", {})
+            .get("data", {})
+            .get("info", {})
+            .get("viewers", 0)
+        )  # .get("info", {})
+        logger.info("Stream %s has %s viewers", stream_id, viewers)
+        if viewers == 0:
+            webrtc_stream_model = WebrtcStream.objects.get(
+                config_type=JanusConfigType.CLOUD, id=stream_id
+            )
+            now = timezone.now()
+            td: timedelta = now - webrtc_stream_model.updated_dt
+            logger.info("Stream last updated %s ( %s seconds ago)", td, td.seconds)
+            if td.seconds > max_age_seconds:  # 1 hour
+                logger.warning(
+                    "Stream %s has no viewers and was lasted updated %s ago. Destroying mountpoint.",
+                    stream_id,
+                    td,
+                )
+                # destroy the stream mountpoint
+                req = dict(
+                    transaction=str(uuid4()),
+                    janus="message",
+                    admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
+                    token=token,
+                    body=dict(request="destroy", id=stream_id),
+                )
+                res = requests.post(handle_endpoint, json=req)
+                # janus returns a 200 response with error code in the body (ugh), so handle that
+                if res.json().get("error") is not None:
+                    logger.error(
+                        "Janus Gateway responded with error to streaming info request %s",
+                        res,
+                    )
+
+                # unset video/data rtp ports
+                webrtc_stream_model.video_rtp_port = None
+                webrtc_stream_model.data_rtp_port = None
+                webrtc_stream_model.save()
+                logger.warning(
+                    "Finished reclaiming ports from WebRtc stream %s",
+                    webrtc_stream_model,
+                )
+
+
+def janus_cloud_admin_add_token(token: str) -> Dict[str, Any]:
+    req = dict(
+        janus="add_token",
+        token=token,
+        admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
+        plugins=["janus.plugin.streaming"],
+        transaction=uuid4().hex,
+    )
+    res = requests.post(settings.JANUS_CLOUD_ADMIN_URL, json=req)
+    logger.info("Got response to POST %s: %s", settings.JANUS_CLOUD_ADMIN_URL, res)
+    res.raise_for_status()
+    return res.json()
+
+
+def janus_get_session(api_url: str, token: str) -> str:
     req = dict(
         transaction=str(uuid4()),
         janus="create",
-        token=stream.api_token,
         admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
+        token=token,
     )
-    res = requests.post(stream.api_url, json=req)
+    res = requests.post(api_url, json=req)
     res.raise_for_status()
     data = res.json()
     logger.info("Created Janus session %s", data)
     return data["data"]["id"]
 
 
-def janus_get_plugin_handle(stream: WebrtcStream, session: str) -> str:
+def janus_get_plugin_handle(api_url: str, session: str, token) -> str:
     req = dict(
         transaction=str(uuid4()),
         janus="attach",
-        token=stream.api_token,
         plugin="janus.plugin.streaming",
         admin_secret=settings.JANUS_CLOUD_ADMIN_SECRET,
+        token=token,
     )
-    endpoint = stream.session_endpoint(session=session)
+    endpoint = f"{api_url}/{session}"
     res = requests.post(endpoint, json=req)
     res.raise_for_status()
     data = res.json()
@@ -146,8 +270,8 @@ def janus_create_streaming_mountpoint(
             description=f"WebRTC stream config_type={stream.config_type} pi={stream.pi.id}",
             secret=stream.stream_secret,
             pin=stream.stream_pin,
-            is_private=True,
-            permanent=False,
+            is_private=False,  # stream is still private (pin and token protected) - this setting controls whether or not steam is visible in LIST view
+            permanent=True,
             media=media,
         ),
     )
@@ -161,9 +285,9 @@ def janus_create_streaming_mountpoint(
 
 
 def janus_streaming_get_or_create_mountpoint(stream: WebrtcStream):
-    janus_admin_add_token(stream)
-    session = janus_get_session(stream)
-    plugin_handle = janus_get_plugin_handle(stream, session)
+    janus_cloud_admin_add_token(stream.api_token)
+    session = janus_get_session(stream.api_url, stream.api_token)
+    plugin_handle = janus_get_plugin_handle(stream.api_url, session, stream.api_token)
     handle_endpoint = stream.plugin_handle_endpoint(session, plugin_handle)
 
     try:
@@ -206,7 +330,6 @@ def janus_cloud_setup(device: Pi) -> Tuple[WebrtcStream, bool]:
 
     # 2) ensure token added to Janus Gateway
     # Janus stores tokens in memory, so added tokens are flushed on restart
-    # janus_admin_add_token(janus_auth)
     logger.info("Retrieved WebrtcStream %s created=%s", stream, created)
     return stream, created
 

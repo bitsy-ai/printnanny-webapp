@@ -557,3 +557,6 @@ nats-upgrade:
 
 shellcheck:
 	find -name '*.sh' -not -path './.venv/*' -not -path './clients/*' | xargs shellcheck
+
+janus_stream_clean:
+	docker-compose -f local.yml run --rm django python manage.py janus_stream_clean
