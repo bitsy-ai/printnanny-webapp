@@ -1,5 +1,6 @@
 <template>
-  <span class="text-right flex-1">
+  <div class="hidden md:inline-block">
+    <span class="text-right flex-1">
     <span class="text-sm font-medium text-gray-400">API Version: </span>
     <span class="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">
       {{ apiVersion }} |
@@ -9,6 +10,8 @@
       {{ commitBranch }}/{{ commitHash }}
     </span>
   </span>
+  </div>
+
 </template>
 <script setup lang="ts">
 // const commitDate = new Date(import.meta.env.VITE_GIT_COMMIT_DATE);
