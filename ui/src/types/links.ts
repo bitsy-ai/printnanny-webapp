@@ -5,5 +5,5 @@ export type FlyoutMenuLink = {
   description: string;
   blank?: boolean;
   href?: string;
-  routerLocation?: RouteLocationRaw;
+  routerLink?: RouteLocationRaw;
 };

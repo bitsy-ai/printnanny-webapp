@@ -52,8 +52,8 @@
                 <p class="mt-1 text-sm text-gray-500">{{ item.description }}</p>
               </a>
               <router-link
-                v-else-if="item.routerLocation"
-                :to="item.routerLocation"
+                v-else-if="item.routerLink"
+                :to="item.routerLink"
               >
                 <p class="text-base font-medium text-white">{{ item.name }}</p>
                 <p class="mt-1 text-sm text-gray-500">{{ item.description }}</p>

@@ -32,15 +32,10 @@
                   :links="communityLinks"
                   menu-text="Join the Community"
                 />
-                <router-link
-                  v-for="item in cta"
-                  :key="item.name"
-                  :to="item.link"
-                  :target="item.external ? '_blank' : ''"
-                  class="text-base font-medium text-white hover:text-indigo-300"
-                >
-                  {{ item.name }}
-                </router-link>
+                <FlyoutMenu
+                  :links="shopLinks"
+                  menu-text="Shop"
+                />
               </div>
             </div>
             <LoginNav />
@@ -94,6 +89,10 @@
                   :links="communityLinks"
                   menu-text="Join the Community"
                 />
+                <FlyoutMenu
+                  :links="shopLinks"
+                  menu-text="Shop"
+                />
                 <MobileLoginNav />
               </div>
             </div>
@@ -140,7 +139,11 @@ import MobileLoginNav from "@/components/nav/MobileLoginNav.vue";
 
 import type { FlyoutMenuLink } from "@/types/links";
 
-const cta = [{ name: "Get Access Now", link: { name: 'founding-membership' } }];
+const shopLinks = [
+  { name: "Founding Membership", routerLink: { name: 'founding-membership' }, description: "Get early access to PrintNanny"} as FlyoutMenuLink,
+  { name: "PrintNanny SDWire", routerLink: { name: 'sdwire' }, description: "Compatible with OctoPrint-SDWire plugin."} as FlyoutMenuLink,
+
+]
 
 const communityLinks = [
   {
