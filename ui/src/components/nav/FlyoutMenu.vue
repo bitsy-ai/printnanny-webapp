@@ -1,10 +1,10 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <Popover v-slot="{ open }" class="relative">
+  <Popover v-slot="{ open }" class="py-4 md:py-0 text-center">
     <PopoverButton
       :class="[
         open ? 'text-white' : 'text-white',
-        'group inline-flex items-center rounded-md bg-gray-900 text-base font-medium hover:text-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
+        'group inline-flex items-center rounded-md bg-gray-900 text-base font-medium hover:text-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 p-2 md:p-0',
       ]"
     >
       <span>{{ menuText }}</span>
@@ -80,35 +80,4 @@ defineProps({
     required: true,
   },
 });
-
-const solutions = [
-  {
-    name: "Blog",
-    description: "Learn about tips, product updates and company culture.",
-    href: "#",
-  },
-  {
-    name: "Help Center",
-    description:
-      "Get all of your questions answered in our forums of contact support.",
-    href: "#",
-  },
-  {
-    name: "Guides",
-    description:
-      "Learn how to maximize our platform to get the most out of it.",
-    href: "#",
-  },
-  {
-    name: "Events",
-    description:
-      "Check out webinars with experts and learn about our annual conference.",
-    href: "#",
-  },
-  {
-    name: "Security",
-    description: "Understand how we take your privacy seriously.",
-    href: "#",
-  },
-];
 </script>

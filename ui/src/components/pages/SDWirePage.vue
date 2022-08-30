@@ -1,20 +1,3 @@
-<!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/typography'),
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
--->
 <template>
   <div class="bg-white">
     <div class="mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -211,7 +194,6 @@
 </template>
 
 <script setup lang="ts">
-import { StarIcon } from "@heroicons/vue/solid";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/vue";
 
 const product = {

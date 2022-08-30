@@ -38,60 +38,11 @@
             <LoginNav />
           </nav>
         </div>
-
-        <transition
-          enter-active-class="duration-150 ease-out"
-          enter-from-class="opacity-0 scale-95"
-          enter-to-class="opacity-100 scale-100"
-          leave-active-class="duration-100 ease-in"
-          leave-from-class="opacity-100 scale-100"
-          leave-to-class="opacity-0 scale-95"
-        >
-          <PopoverPanel
-            focus
-            class="absolute top-0 inset-x-0 p-2 transition transform origin-top md:hidden"
-          >
-            <div
-              class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden"
-            >
-              <div class="px-5 pt-4 flex items-center justify-between">
-                <div>
-                  <img
-                    class="h-8 w-auto"
-                    src="@/assets/logo/logo-text-rect-white.svg"
-                    alt="PrintNanny"
-                  />
-                </div>
-                <div class="-mr-2">
-                  <PopoverButton
-                    class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-600"
-                  >
-                    <span class="sr-only">Close menu</span>
-                    <XIcon class="h-6 w-6" aria-hidden="true" />
-                  </PopoverButton>
-                </div>
-              </div>
-              <div class="pt-5 pb-6">
-                <div class="px-2 space-y-1">
-                  <a
-                    v-for="item in navigation"
-                    :key="item.name"
-                    :href="item.href"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
-                    >{{ item.name }}</a
-                  >
-                </div>
-                <FlyoutMenu :links="learnMoreLinks" menu-text="Learn More" />
-                <FlyoutMenu
-                  :links="communityLinks"
-                  menu-text="Join the Community"
-                />
-                <FlyoutMenu :links="shopLinks" menu-text="Shop" />
-                <MobileLoginNav />
-              </div>
-            </div>
-          </PopoverPanel>
-        </transition>
+        <MobileLoginNav
+          :shop-links="shopLinks"
+          :community-links="communityLinks"
+          :learn-more-links="learnMoreLinks"
+        />
       </Popover>
 
       <StickyAlerts />
@@ -119,16 +70,12 @@
   </div>
 </template>
 <script setup lang="ts">
-import { MenuIcon, XIcon } from "@heroicons/vue/outline";
+import { MenuIcon } from "@heroicons/vue/outline";
 import LoginNav from "@/components/nav/LoginNav.vue";
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
+import { Popover, PopoverButton } from "@headlessui/vue";
 import FlyoutMenu from "@/components/nav/FlyoutMenu.vue";
 import StickyAlerts from "../components/alerts/StickyAlerts.vue";
 import FooterNav from "@/components/nav/FooterNav.vue";
-import ProfileMenu from "@/components/nav/ProfileMenu.vue";
-import SidebarNav from "@/components/nav/SidebarNav.vue";
-import MobileProfileMenu from "@/components/nav/MobileProfileMenu.vue";
-import MobileSidebarNav from "@/components/nav/MobileSidebarNav.vue";
 import MobileLoginNav from "@/components/nav/MobileLoginNav.vue";
 
 import type { FlyoutMenuLink } from "@/types/links";

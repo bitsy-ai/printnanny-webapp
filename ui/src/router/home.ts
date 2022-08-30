@@ -1,4 +1,3 @@
-import HomeView from "@/views/HomeView.vue";
 import type { RouteRecordRaw } from "vue-router";
 import { useAccountStore } from "@/stores/account";
 import LandingLayout from "@/layouts/LandingLayout.vue";

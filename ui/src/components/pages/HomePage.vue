@@ -8,7 +8,7 @@
           >
             <div class="lg:py-12">
               <h1
-                class="text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl"
+                class="text-4xl tracking-tight font-extrabold text-white sm:text-6xl xl:text-6xl"
               >
                 <span
                   class="block pb-3 block bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-violet-500 sm:pb-5"
@@ -325,47 +325,20 @@
   </main>
 </template>
 <script setup lang="ts">
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
-import * as yup from "yup";
-
 import {
   CogIcon,
-  MenuIcon,
   RefreshIcon,
-  XIcon,
   FolderOpenIcon,
   GlobeIcon,
   VideoCameraIcon,
   DesktopComputerIcon,
 } from "@heroicons/vue/outline";
-import LoginNav from "@/components/nav/LoginNav.vue";
-import MobileLoginNav from "@/components/nav/MobileLoginNav.vue";
 import DemoQualityAlert from "@/components/demo/DemoQualityAlert.vue";
-import StickyAlerts from "@/components/alerts/StickyAlerts.vue";
 
 import googleIoImg from "@/assets/press/google-io.png";
 import tfEverywhereImg from "@/assets/press/tensorflow-everywhere-na.png";
 import WaitlistForm from "@/components/forms/WaitlistForm.vue";
 
-const navigation = [
-  { name: "Quality Control", href: "#quality-control" },
-  { name: "PrintNanny OS", href: "#printnanny-os" },
-  {
-    name: "Join Discord",
-    href: "https://discord.gg/sf23bk2hPr",
-    external: true,
-  },
-  {
-    name: "Quick Start",
-    href: "https://docs.printnanny.ai/docs/category/quick-start/",
-    external: true,
-  },
-  {
-    name: "API Docs",
-    href: import.meta.env.VITE_PRINTNANNY_API_REDOCS_URL,
-    external: true,
-  },
-];
 const features = [
   {
     name: "One Install to Rule them All",
