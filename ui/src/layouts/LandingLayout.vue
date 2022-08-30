@@ -36,7 +36,9 @@
                 >
                   {{ item.name }}
                 </a>
-                <FlyoutMenu :links="learnMoreLinks"/>
+                <FlyoutMenu :links="learnMoreLinks" menuText="Learn More"/>
+                <FlyoutMenu :links="communityLinks" menuText="Join the Community"/>
+
               </div>
             </div>
             <LoginNav />
@@ -139,20 +141,20 @@ import type { FlyoutMenuLink } from "@/types/links";
 const navigation = [
   { name: "Quality Control", href: "#quality-control" },
   { name: "PrintNanny OS", href: "#printnanny-os" },
-  {
-    name: "Join Discord",
-    href: "https://discord.gg/sf23bk2hPr",
-    external: true,
-  },
 ];
+
+const communityLinks = [
+    { name: "Discord", description: "Share your latest project. Hang out with friendly makers from around the world.", href: "https://discord.gg/sf23bk2hPr", blank: true} as FlyoutMenuLink,
+    { name: "Star the Github project", description: "Show your support. 🌟", href: "https://github.com/bitsy-ai/printnanny-os", blank: true},
+    { name: "Follow the Founder", description: "@grepLeigh is an indie hacker building PrintNanny in public.", href: "https://twitter.com/grepLeigh", blank: true}
+]
 
 const learnMoreLinks = [
   { name: "Quick Start", description: "Setup PrintNanny OS in 15 minutes.", href: "https://docs.printnanny.ai/docs/category/quick-start/", blank: true} as FlyoutMenuLink,
   { name: "What's inside PrintNanny?", description: "Designed to let you focus on the fun parts of 3D printing.", href: "https://docs.printnanny.ai/docs/category/whats-inside-printnanny/", blank: true} as FlyoutMenuLink,
   { name: "How do I update PrintNanny?", description: "No-hassle updates with a web UI. Automated backup & recovery mode.", href: "https://docs.printnanny.ai/docs/update-printnanny-os/", blank: true} as FlyoutMenuLink,
+  { name: "Roadmap & Milestones", description: "See what's in store for upcoming PrintNanny OS releases", href: "https://github.com/bitsy-ai/printnanny-os/milestones", blank: true} as FlyoutMenuLink,
 
   { name: "API Documentation", description: "Customize your workflow. Clients available in Typescript, Python, and Rust.", href: "/api/schema/redoc/" } as FlyoutMenuLink,
-
-
 ]
 </script>
