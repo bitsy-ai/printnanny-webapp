@@ -27,20 +27,20 @@
                 </div>
               </div>
               <div class="hidden space-x-8 md:flex md:ml-10">
-                <a
-                  v-for="item in navigation"
-                  :key="item.name"
-                  :href="item.href"
-                  :target="item.external ? '_blank' : ''"
-                  class="text-base font-medium text-white hover:text-gray-300"
-                >
-                  {{ item.name }}
-                </a>
                 <FlyoutMenu :links="learnMoreLinks" menu-text="Learn More" />
                 <FlyoutMenu
                   :links="communityLinks"
                   menu-text="Join the Community"
                 />
+                <a
+                  v-for="item in cta"
+                  :key="item.name"
+                  :href="item.href"
+                  :target="item.external ? '_blank' : ''"
+                  class="text-base font-medium text-white hover:text-indigo-300"
+                >
+                  {{ item.name }}
+                </a>
               </div>
             </div>
             <LoginNav />
@@ -89,6 +89,11 @@
                     >{{ item.name }}</a
                   >
                 </div>
+                <FlyoutMenu :links="learnMoreLinks" menu-text="Learn More" />
+                <FlyoutMenu
+                  :links="communityLinks"
+                  menu-text="Join the Community"
+                />
                 <MobileLoginNav />
               </div>
             </div>
@@ -135,10 +140,7 @@ import MobileLoginNav from "@/components/nav/MobileLoginNav.vue";
 
 import type { FlyoutMenuLink } from "@/types/links";
 
-const navigation = [
-  { name: "Quality Control", href: "#quality-control" },
-  { name: "PrintNanny OS", href: "#printnanny-os" },
-];
+const cta = [{ name: "Get Access Now", href: "#founding-membership" }];
 
 const communityLinks = [
   {

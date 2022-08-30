@@ -117,7 +117,8 @@
     <!-- Feature section with quality control demo -->
     <div
       id="quality-control"
-      class="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32">
+      class="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32"
+    >
       <div
         class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl"
       >
@@ -136,7 +137,7 @@
           >
             Closed-loop monitoring system. Works with no/low bandwidth. Built
             with privacy in mind.
-          </p>        
+          </p>
         </div>
         <div class="mt-12">
           <DemoQualityAlert></DemoQualityAlert>
@@ -150,12 +151,12 @@
         class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
       >
         <a href="#founding-membership">
-            <button
-              class="mb-3 inline-flex justify-center rounded-lg font-semibold py-3 px-4 bg-slate-900 text-white hover:bg-slate-700 sm:text-xl  bg-gradient-to-r from-red-500 to-violet-600 rounded-md shadow-lg"
-            >
-              Become a Founding Member
-            </button>
-          </a>  
+          <button
+            class="mb-3 inline-flex justify-center rounded-lg font-semibold py-3 px-4 bg-slate-900 text-white hover:bg-slate-700 sm:text-xl bg-gradient-to-r from-red-500 to-violet-600 rounded-md shadow-lg"
+          >
+            Become a Founding Member
+          </button>
+        </a>
         <p
           class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
         >
@@ -240,23 +241,50 @@
     </div>
 
     <!-- founding member offer section -->
-    <section id="founding-membership" aria-labelledby="sale-heading" class="relative mx-auto flex max-w-7xl flex-col items-center px-4 sm:py-24 lg:py-32 text-center sm:px-6 lg:px-8 rounded-md shadow bg-gradient-to-r from-red-500 to-indigo-600">
+    <section
+      id="founding-membership"
+      aria-labelledby="sale-heading"
+      class="relative mx-auto flex max-w-7xl flex-col items-center px-4 sm:py-24 lg:py-32 text-center sm:px-6 lg:px-8 rounded-md shadow bg-gradient-to-r from-red-500 to-indigo-600"
+    >
       <div class="mx-auto max-w-2xl lg:max-w-none">
-        <h2 id="sale-heading" class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">Become a <span class="text-white">Founding Member</span> to</h2>
-        <h2 id="sale-heading" class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">Get Early Access</h2>
+        <h2
+          id="sale-heading"
+          class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
+        >
+          Become a <span class="text-white">Founding Member</span> to
+        </h2>
+        <h2
+          id="sale-heading"
+          class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
+        >
+          Get Early Access
+        </h2>
         <p class="mx-auto mt-4 max-w-xl text-xl text-white">
-          <strong>No metered usage. No monthly addons.</strong> <br><span class=" text-gray-900">24/7 printer monitoring with no hidden costs.</span>
+          <strong>No metered usage. No monthly addons.</strong> <br /><span
+            class="text-gray-900"
+            >24/7 printer monitoring with no hidden costs.</span
+          >
         </p>
         <p class="mx-auto mt-4 max-w-xl text-xl text-white">
-          <strong>Get access to #members-only Discord channel.</strong> <br><span class=" text-gray-900">Drive PrintNanny's roadmap.</span>
+          <strong>Get access to #members-only Discord channel.</strong>
+          <br /><span class="text-gray-900">Drive PrintNanny's roadmap.</span>
         </p>
         <p class="mx-auto mt-4 max-w-xl text-xl text-white">
-          <strong>$149 / year early access price.</strong><br>
-          <strike class=" text-gray-900">$199 / year public launch price</strike><br>
+          <strong>$149 / year early access price.</strong><br />
+          <strike class="text-gray-900">$199 / year public launch price</strike
+          ><br />
         </p>
-        <a href="#" class="mt-6 sm:text-3xl inline-block w-full rounded-md border border-transparent bg-gray-900 py-3 px-8 font-medium text-white hover:bg-gray-800 sm:w-auto">Get Early Access Now</a>
+        <a
+          href="#"
+          class="mt-6 sm:text-3xl inline-block w-full rounded-md border border-transparent bg-gray-900 py-3 px-8 font-medium text-white hover:bg-gray-800 sm:w-auto"
+          >Get Early Access Now</a
+        >
         <p class="mx-auto mt-4 max-w-xl text-xl text-white">
-          <strong>Money-back Guarantee.</strong> <br><span class="text-gray-900">If you're not 100% satisfied with PrintNanny, email leigh@printnanny.ai for a full refund.</span>
+          <strong>Money-back Guarantee.</strong> <br /><span
+            class="text-gray-900"
+            >If you're not 100% satisfied with PrintNanny, email
+            leigh@printnanny.ai for a full refund.</span
+          >
         </p>
       </div>
     </section>
