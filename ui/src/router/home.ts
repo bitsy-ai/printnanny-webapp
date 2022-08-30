@@ -1,12 +1,24 @@
-import HomeView from "@/views/HomeView.vue";
 import type { RouteRecordRaw } from "vue-router";
 import { useAccountStore } from "@/stores/account";
+import LandingLayout from "@/layouts/LandingLayout.vue";
+import HomePage from "@/components/pages/HomePage.vue";
 
 export default [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    components: {
+      default: LandingLayout,
+    },
+    children: [
+      {
+        path: "",
+        name: "home",
+        components: {
+          default: HomePage,
+        },
+        meta: { title: "Stop Babysitting Your 3D Printer" },
+      },
+    ],
   },
   {
     path: "/login/",

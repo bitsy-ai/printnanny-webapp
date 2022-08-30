@@ -94,7 +94,7 @@ const footerNavigation = {
             alt="Company name"
           />
           <p class="text-gray-500 text-base">
-            Your personal 3D printing assistant.
+            Get a personal assistant for your 3D printer.
           </p>
           <div class="flex space-x-6">
             <a

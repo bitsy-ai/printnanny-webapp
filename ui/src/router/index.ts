@@ -5,10 +5,17 @@ import deviceRoutes from "./devices";
 import swagRoutes from "./swag";
 import settingsRoutes from "./settings";
 import homeRoutes from "./home";
+import shopRoutes from "./shop";
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: [...homeRoutes, ...deviceRoutes, ...swagRoutes, ...settingsRoutes],
+  routes: [
+    ...homeRoutes,
+    ...deviceRoutes,
+    ...swagRoutes,
+    ...settingsRoutes,
+    ...shopRoutes,
+  ],
 });
 
 router.beforeEach(async (to, _from) => {
@@ -22,10 +29,12 @@ router.beforeEach(async (to, _from) => {
     !account.isAuthenticated &&
     // ❗️ Avoid an infinite redirect
     to.name !== "login" &&
-    // ❗️ Login is not required for home view, terms, or privacy policy
+    // ❗️ Login is not required for home view, terms, privacy policy, shop
     to.name !== "home" &&
     to.name !== "terms" &&
-    to.name !== "privacy"
+    to.name !== "privacy" &&
+    to.name !== "founding-membership" &&
+    to.name !== "sdwire"
   ) {
     // redirect the user to the login page
     return { name: "login" };

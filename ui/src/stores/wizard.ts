@@ -6,7 +6,6 @@ import { useEventStore } from "./events";
 import type { NatsConnection } from "nats.ws";
 import { ConnectTestStep } from "@/types";
 import moment from "moment";
-import type { Pi } from "printnanny-api-client";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
 

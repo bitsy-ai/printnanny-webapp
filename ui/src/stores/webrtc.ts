@@ -244,7 +244,9 @@ export const useWebrtcStore = defineStore({
             "Connection to PrintNanny Cloud is slow. Video may appear choppy.",
           header: "Slow connection detected",
           icon: ExclamationIcon,
+          actions: actions,
         } as UiAlert;
+        alertStore.push(alert);
       });
       streamingHandle.on(Janode.EVENT.HANDLE_HANGUP, (evtdata: any) =>
         console.log("hangup event", evtdata)
