@@ -2,7 +2,7 @@
   <div class="bg-white">
     <div class="relative overflow-hidden">
       <Popover as="header" class="relative">
-        <div class="bg-gray-900 pt-6">
+        <div class="bg-gray-900 py-6">
           <nav
             class="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6"
             aria-label="Global"
@@ -32,15 +32,15 @@
                   :links="communityLinks"
                   menu-text="Join the Community"
                 />
-                <a
+                <router-link
                   v-for="item in cta"
                   :key="item.name"
-                  :href="item.href"
+                  :to="item.link"
                   :target="item.external ? '_blank' : ''"
                   class="text-base font-medium text-white hover:text-indigo-300"
                 >
                   {{ item.name }}
-                </a>
+                </router-link>
               </div>
             </div>
             <LoginNav />
@@ -140,7 +140,7 @@ import MobileLoginNav from "@/components/nav/MobileLoginNav.vue";
 
 import type { FlyoutMenuLink } from "@/types/links";
 
-const cta = [{ name: "Get Access Now", href: "#founding-membership" }];
+const cta = [{ name: "Get Access Now", link: { name: 'founding-membership' } }];
 
 const communityLinks = [
   {

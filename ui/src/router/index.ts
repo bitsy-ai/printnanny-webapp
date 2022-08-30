@@ -5,10 +5,11 @@ import deviceRoutes from "./devices";
 import swagRoutes from "./swag";
 import settingsRoutes from "./settings";
 import homeRoutes from "./home";
+import shopRoutes from "./shop";
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: [...homeRoutes, ...deviceRoutes, ...swagRoutes, ...settingsRoutes],
+  routes: [...homeRoutes, ...deviceRoutes, ...swagRoutes, ...settingsRoutes, ...shopRoutes],
 });
 
 router.beforeEach(async (to, _from) => {

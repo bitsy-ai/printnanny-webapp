@@ -1,8 +1,6 @@
 <template>
   <main>
-    <div class="pt-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">
-      <StickyAlerts />
-
+    <div class="bg-gray-900 lg:overflow-hidden">
       <div class="mx-auto">
         <div class="lg:grid lg:grid-cols-2 lg:gap-8">
           <div
@@ -81,14 +79,14 @@
                   </p>
                 </Form>
               </div>
-              <a href="#founding-membership">
+              <router-link :to="{name: 'founding-membership'}">
                 <button
                   class="mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                 >
                   Skip the waitlist!<br />
                   Founding Members get early access
                 </button>
-              </a>
+              </router-link>
             </div>
           </div>
 
@@ -275,7 +273,7 @@
           ><br />
         </p>
         <a
-          href="#"
+          href="/shop/founding-membership"
           class="mt-6 sm:text-3xl inline-block w-full rounded-md border border-transparent bg-gray-900 py-3 px-8 font-medium text-white hover:bg-gray-800 sm:w-auto"
           >Get Early Access Now</a
         >
