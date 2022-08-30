@@ -10,7 +10,7 @@
           <div
             class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center"
           >
-            <div class="lg:py-24">
+            <div class="lg:py-2">
               <!-- <a
                 href="#"
                 class="
@@ -50,7 +50,7 @@
                 />
               </a> -->
               <h1
-                class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl"
+                class=" self-start mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl"
               >
                 <span
                   class="block pb-3 block bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-violet-500 sm:pb-5"
@@ -62,24 +62,24 @@
                 >
                 👀
               </h1>
+              <h2 class="sm:text-xl md:text-3xl text-white mt-4">
+                PrintNanny is your personal 3D printer assistant.
+              </h2>
               <p
-                class="mt-4 text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl"
+                class="mt-4 text-base text-white sm:text-md lg:text-lg xl:text-lg"
               >
-                Quality control alerts and live progress updates.
+                Quality control alerts. Live print progress.
               </p>
               <p
-                class="mt-4 text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl"
+                class="mt-4 text-base text-white sm:text-md lg:text-lg xl:text-lg"
               >
-                Control your 3D printer from anywhere in the world.
+                Keep files and 3D model revisions in sync.
               </p>
               <p
-                class="mt-4 text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl"
+                class="mt-4 text-base text-white sm:text-md lg:text-lg xl:text-lg"
               >
-                Settings and files synced across your devices.
+                15 minute install. Works with OctoPrint, Mainsail + Moonraker + Klipper.
               </p>
-
-
-              <h3 class="mt-4 text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl">Do you want to skip the waitlist?</h3>
               <div class="mt-10 sm:mt-12">
                 <Form
                   class="sm:max-w-xl sm:mx-auto lg:mx-0"
@@ -122,6 +122,14 @@
                   </p>
                 </Form>
               </div>
+              <a href="#founding-membership">
+              <button
+                class="mt-6 sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+              >
+                Skip the waitlist!<br>
+              Founding Members get early access
+              </button>
+              </a>
             </div>
           </div>
           <div class="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
@@ -156,18 +164,18 @@
       >
         <div>
           <h2
-            class="text-base font-semibold tracking-wider text-indigo-600 uppercase"
-          >
-            PrintNanny QC
-          </h2>
-          <p
             class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
           >
             🔮 Quality Control that Never Sleeps
-          </p>
+          </h2>
           <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
             Get notified or automatically pause if print doesn't pass
             quality standards.
+          </p>
+          <p
+            class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
+          >
+            Closed-loop monitoring system. Works with no/low bandwidth. Built with privacy in mind.
           </p>
         </div>
         <div class="mt-12">

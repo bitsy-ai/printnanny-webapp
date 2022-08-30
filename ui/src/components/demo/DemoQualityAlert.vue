@@ -13,7 +13,7 @@ const show = ref(true);
         <div class="w-0 flex-1 flex items-center p-4">
           <div class="w-full">
             <p class="text-sm font-medium text-gray-900">
-              Quality Alert - Mendel
+              Quality Alert!
             </p>
             <p class="mt-1 text-sm text-gray-500">
               Detected <strong>collapsed overhangs</strong> and
@@ -66,7 +66,7 @@ const show = ref(true);
         <div class="w-0 flex-1 flex items-center p-4">
           <div class="w-full">
             <p class="text-sm font-medium text-gray-900">
-              Quality Alert - Mendel
+              Quality Alert!
             </p>
             <p class="mt-1 text-sm text-gray-500">
               Detected <strong>layer warping</strong>. Should I pause the active
