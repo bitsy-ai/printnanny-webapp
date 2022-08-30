@@ -8,7 +8,7 @@
           >
             <div class="lg:py-12">
               <h1
-                class="self-start mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl"
+                class="text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl"
               >
                 <span
                   class="block pb-3 block bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-violet-500 sm:pb-5"
@@ -20,8 +20,8 @@
                 >
                 👀
               </h1>
-              <h2 class="sm:text-xl md:text-3xl text-white mt-4">
-                PrintNanny is your personal 3D printer assistant.
+              <h2 class="sm:text-xl md:text-3xl text-white mt-4 mb-4">
+                Get a personal assistant for your 3D printer.
               </h2>
               <p
                 class="mt-4 text-base text-white sm:text-md lg:text-lg xl:text-lg"
@@ -40,46 +40,9 @@
                 Klipper.
               </p>
               <div class="mt-10 sm:mt-12">
-                <Form
-                  class="sm:max-w-xl sm:mx-auto lg:mx-0"
-                  :validation-schema="schema"
-                  @submit="onSubmit"
-                >
-                  <div class="sm:flex">
-                    <div class="min-w-0 flex-1">
-                      <label for="email" class="sr-only">Email address</label>
-                      <Field
-                        id="email"
-                        name="email"
-                        type="email"
-                        autocomplete="email"
-                        class="block w-full px-4 py-3 rounded-md border-0 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-                        placeholder="Email address"
-                        rules="required"
-                      />
-                      <error-message
-                        class="text-red-500"
-                        name="email"
-                      ></error-message>
-                    </div>
-                    <div class="mt-3 sm:mt-0 sm:ml-3">
-                      <button
-                        type="submit"
-                        class="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-                      >
-                        Join the Waitlist
-                      </button>
-                    </div>
-                  </div>
-                  <p class="mt-3 text-sm text-gray-300 sm:mt-4">
-                    By providing your email, you agree to our
-                    <a href="/terms" class="font-medium text-white"
-                      >Terms of Service.</a
-                    >
-                  </p>
-                </Form>
+                <WaitlistForm />
               </div>
-              <router-link :to="{name: 'founding-membership'}">
+              <router-link :to="{ name: 'founding-membership' }">
                 <button
                   class="mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                 >
@@ -90,7 +53,7 @@
             </div>
           </div>
 
-          <div class="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
+          <div class="mt-12 lg:m-0 lg:relative">
             <div
               class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0"
             >
@@ -113,10 +76,7 @@
     </div>
 
     <!-- Feature section with quality control demo -->
-    <div
-      id="quality-control"
-      class="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32"
-    >
+    <div id="quality-control" class="relative bg-gray-50 pt-6 lg:pt-12">
       <div
         class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl"
       >
@@ -126,15 +86,19 @@
           >
             Quality Control that Never Sleeps
           </h2>
-          <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+          <p class="py-6 max-w-prose mx-auto text-xl text-gray-500">
             Get notified or automatically pause if print doesn't pass quality
             standards.
           </p>
           <p
             class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
           >
-            Closed-loop monitoring system. Works with no/low bandwidth. Built
-            with privacy in mind.
+            Works with no/low bandwidth
+          </p>
+          <p
+            class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
+          >
+            Designed with privacy in mind
           </p>
         </div>
         <div class="mt-12">
@@ -231,7 +195,7 @@
               Apply updates with web ui
             </p>
           </div>
-          <div class="flex-1">
+          <div class="flex-1 hidden md:show">
             <img src="@/assets/images/swupdate-messages.png" />
           </div>
         </div>
@@ -242,35 +206,36 @@
     <section
       id="founding-membership"
       aria-labelledby="sale-heading"
-      class="relative mx-auto flex max-w-7xl flex-col items-center px-4 sm:py-24 lg:py-32 text-center sm:px-6 lg:px-8 rounded-md shadow bg-gradient-to-r from-red-500 to-indigo-600"
+      class="relative mx-auto flex max-w-7xl flex-col items-center px-4 sm:py-24 lg:py-32 text-center sm:px-6 lg:px-8 rounded-md shadow bg-gradient-to-r from-red-500 to-indigo-600 py-16 sm:py-24 lg:py-32"
     >
       <div class="mx-auto max-w-2xl lg:max-w-none">
         <h2
           id="sale-heading"
           class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
         >
-          Become a <span class="text-white">Founding Member</span> to
-        </h2>
-        <h2
-          id="sale-heading"
-          class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
-        >
-          Get Early Access
+          <span class="text-white">Founding Members</span> enjoy early access
         </h2>
         <p class="mx-auto mt-4 max-w-xl text-xl text-white">
-          <strong>No metered usage. No monthly addons.</strong> <br /><span
-            class="text-gray-900"
-            >24/7 printer monitoring with no hidden costs.</span
-          >
+          <strong
+            >No metered usage. <br />No monthly addons. <br /><span
+              class="text-gray-900 text-sm"
+              >24/7 printer monitoring with no hidden costs.</span
+            >
+          </strong>
         </p>
         <p class="mx-auto mt-4 max-w-xl text-xl text-white">
-          <strong>Get access to #members-only Discord channel.</strong>
-          <br /><span class="text-gray-900">Drive PrintNanny's roadmap.</span>
+          <strong
+            >#members-only Discord channel. <br /><span
+              class="text-gray-900 text-sm"
+              >Drive PrintNanny's roadmap.</span
+            >
+          </strong>
         </p>
         <p class="mx-auto mt-4 max-w-xl text-xl text-white">
-          <strong>$149 / year early access price.</strong><br />
-          <strike class="text-gray-900">$199 / year public launch price</strike
-          ><br />
+          <strong
+            >$99 / year early access price<br />
+            <s class="text-gray-900 text-sm">$199 / year public launch price</s>
+          </strong>
         </p>
         <a
           href="/shop/founding-membership"
@@ -278,10 +243,11 @@
           >Get Early Access Now</a
         >
         <p class="mx-auto mt-4 max-w-xl text-xl text-white">
-          <strong>Money-back Guarantee.</strong> <br /><span
-            class="text-gray-900"
-            >If you're not 100% satisfied with PrintNanny, email
-            leigh@printnanny.ai for a full refund.</span
+          <strong
+            >Money-back Guarantee.<br /><span class="text-gray-900 text-sm"
+              >If you're not 100% satisfied with PrintNanny, email
+              leigh@printnanny.ai for a full refund.</span
+            ></strong
           >
         </p>
       </div>
@@ -359,8 +325,6 @@
   </main>
 </template>
 <script setup lang="ts">
-import { ref, reactive } from "vue";
-import { Field, ErrorMessage, Form } from "vee-validate";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import * as yup from "yup";
 
@@ -381,23 +345,7 @@ import StickyAlerts from "@/components/alerts/StickyAlerts.vue";
 
 import googleIoImg from "@/assets/press/google-io.png";
 import tfEverywhereImg from "@/assets/press/tensorflow-everywhere-na.png";
-import { useAccountStore } from "@/stores/account";
-
-const accountStore = useAccountStore();
-const loading = ref(false);
-const state = reactive({
-  loading,
-});
-// define a validation schema
-const schema = yup.object({
-  email: yup.string().required().email(),
-});
-
-async function onSubmit(values: any) {
-  state.loading = true;
-  await accountStore.submitEmailWaitlist(values.email);
-  state.loading = false;
-}
+import WaitlistForm from "@/components/forms/WaitlistForm.vue";
 
 const navigation = [
   { name: "Quality Control", href: "#quality-control" },

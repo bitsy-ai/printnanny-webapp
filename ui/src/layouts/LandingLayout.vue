@@ -32,10 +32,7 @@
                   :links="communityLinks"
                   menu-text="Join the Community"
                 />
-                <FlyoutMenu
-                  :links="shopLinks"
-                  menu-text="Shop"
-                />
+                <FlyoutMenu :links="shopLinks" menu-text="Shop" />
               </div>
             </div>
             <LoginNav />
@@ -89,10 +86,7 @@
                   :links="communityLinks"
                   menu-text="Join the Community"
                 />
-                <FlyoutMenu
-                  :links="shopLinks"
-                  menu-text="Shop"
-                />
+                <FlyoutMenu :links="shopLinks" menu-text="Shop" />
                 <MobileLoginNav />
               </div>
             </div>
@@ -140,10 +134,17 @@ import MobileLoginNav from "@/components/nav/MobileLoginNav.vue";
 import type { FlyoutMenuLink } from "@/types/links";
 
 const shopLinks = [
-  { name: "Founding Membership", routerLink: { name: 'founding-membership' }, description: "Get early access to PrintNanny"} as FlyoutMenuLink,
-  { name: "PrintNanny SDWire", routerLink: { name: 'sdwire' }, description: "Compatible with OctoPrint-SDWire plugin."} as FlyoutMenuLink,
-
-]
+  {
+    name: "Founding Membership",
+    routerLink: { name: "founding-membership" },
+    description: "Get early access to PrintNanny",
+  } as FlyoutMenuLink,
+  {
+    name: "PrintNanny SDWire",
+    routerLink: { name: "sdwire" },
+    description: "Compatible with OctoPrint-SDWire plugin.",
+  } as FlyoutMenuLink,
+];
 
 const communityLinks = [
   {

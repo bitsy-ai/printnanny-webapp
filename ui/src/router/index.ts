@@ -9,7 +9,13 @@ import shopRoutes from "./shop";
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: [...homeRoutes, ...deviceRoutes, ...swagRoutes, ...settingsRoutes, ...shopRoutes],
+  routes: [
+    ...homeRoutes,
+    ...deviceRoutes,
+    ...swagRoutes,
+    ...settingsRoutes,
+    ...shopRoutes,
+  ],
 });
 
 router.beforeEach(async (to, _from) => {
