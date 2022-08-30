@@ -12,7 +12,6 @@ from rest_framework.authtoken.models import Token
 from print_nanny_webapp.users.forms import (
     GroupAdminForm,
 )
-from print_nanny_webapp.users.models import InviteRequest
 
 User = get_user_model()
 
@@ -34,6 +33,7 @@ class GroupAdmin(admin.ModelAdmin):
 admin.site.register(Group, GroupAdmin)
 
 MemberBadge = apps.get_model("subscriptions", "MemberBadge")
+EmailWaitlist = apps.get_model("users", "EmailWaitlist")
 
 
 def create_token(
@@ -126,16 +126,12 @@ def send_beta_invite(
         invite_request.save()
 
 
-@admin.register(InviteRequest)
-class InviteRequestAdmin(admin.ModelAdmin):
+@admin.register(EmailWaitlist)
+class EmailWaitlistAdmin(admin.ModelAdmin):
 
     list_filter = ("email",)
 
-    list_filters = ("invited", "email")
     list_display = (
-        "first_name",
-        "invited",
-        "last_name",
         "email",
         "created_dt",
     )
