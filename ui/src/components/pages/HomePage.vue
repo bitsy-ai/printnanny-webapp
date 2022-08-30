@@ -1,8 +1,6 @@
 <template>
   <main>
-    <div
-      class="pt-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden"
-    >
+    <div class="pt-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">
       <StickyAlerts />
 
       <div class="mx-auto">
@@ -10,7 +8,7 @@
           <div
             class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center"
           >
-            <div class="lg:py-2">
+            <div class="lg:py-12">
               <!-- <a
                 href="#"
                 class="
@@ -50,7 +48,7 @@
                 />
               </a> -->
               <h1
-                class=" self-start mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl"
+                class="self-start mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl"
               >
                 <span
                   class="block pb-3 block bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-violet-500 sm:pb-5"
@@ -78,7 +76,8 @@
               <p
                 class="mt-4 text-base text-white sm:text-md lg:text-lg xl:text-lg"
               >
-                15 minute install. Works with OctoPrint, Mainsail + Moonraker + Klipper.
+                15 minute install. Works with OctoPrint, Mainsail + Moonraker +
+                Klipper.
               </p>
               <div class="mt-10 sm:mt-12">
                 <Form
@@ -88,9 +87,7 @@
                 >
                   <div class="sm:flex">
                     <div class="min-w-0 flex-1">
-                      <label for="email" class="sr-only"
-                        >Email address</label
-                      >
+                      <label for="email" class="sr-only">Email address</label>
                       <Field
                         id="email"
                         name="email"
@@ -123,12 +120,12 @@
                 </Form>
               </div>
               <a href="#founding-membership">
-              <button
-                class="mt-6 sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-              >
-                Skip the waitlist!<br>
-              Founding Members get early access
-              </button>
+                <button
+                  class="mt-6 sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                >
+                  Skip the waitlist!<br />
+                  Founding Members get early access
+                </button>
               </a>
             </div>
           </div>
@@ -169,13 +166,14 @@
             🔮 Quality Control that Never Sleeps
           </h2>
           <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-            Get notified or automatically pause if print doesn't pass
-            quality standards.
+            Get notified or automatically pause if print doesn't pass quality
+            standards.
           </p>
           <p
             class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
           >
-            Closed-loop monitoring system. Works with no/low bandwidth. Built with privacy in mind.
+            Closed-loop monitoring system. Works with no/low bandwidth. Built
+            with privacy in mind.
           </p>
         </div>
         <div class="mt-12">
@@ -185,34 +183,27 @@
     </div>
 
     <!-- Feature section with grid -->
-    <div
-      id="printnanny-os"
-      class="relative bg-white py-16 sm:py-24 lg:py-32"
-    >
+    <div id="printnanny-os" class="relative bg-white py-16 sm:py-24 lg:py-32">
       <div
         class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
       >
-        <h2
-          class="text-base font-semibold tracking-wider text-indigo-600 uppercase"
-        >
-          PrintNanny OS
-        </h2>
         <p
           class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
         >
-          Tame your menagerie of devices
+          The Operating System for your 3D Printer Farm
         </p>
         <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-          Tired of re-imaging your printer controllers? <br />Mix and match
-          OctoPrint, Repetier, and Mainsail with PrintNanny OS.
+          PrintNanny OS lets you mix/match OctoPrint + Moonraker + Mainsail +
+          Klipper.
         </p>
+        <h2
+          class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
+        >
+          PrintNanny OS
+        </h2>
         <div class="mt-12">
           <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <div
-              v-for="feature in features"
-              :key="feature.name"
-              class="pt-6"
-            >
+            <div v-for="feature in features" :key="feature.name" class="pt-6">
               <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8">
                 <div class="-mt-6">
                   <div>
@@ -237,6 +228,43 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="mt-12 flex grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex-1">
+            <p
+              class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
+            >
+              Easy Configuration
+              <br />+ <br />Over-the-Air Updates
+            </p>
+            <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+              Tired of burning SD cards? <br />
+              Are you still manually configuring your Raspberry Pis?
+            </p>
+            <p
+              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
+            >
+              Install once
+            </p>
+            <p
+              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
+            >
+              Easy customization Powered by cloud-init
+            </p>
+            <p
+              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
+            >
+              Configure hostname, wifi, locale, ssh
+            </p>
+            <p
+              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
+            >
+              Apply updates with web ui
+            </p>
+          </div>
+          <div class="flex-1">
+            <img src="@/assets/images/swupdate-messages.png" />
           </div>
         </div>
       </div>
@@ -313,7 +341,6 @@
 
     <!-- CTA Section -->
   </main>
-
 </template>
 <script setup lang="ts">
 import { ref, reactive } from "vue";
@@ -383,9 +410,9 @@ const features = [
     icon: DesktopComputerIcon,
   },
   {
-    name: "Sync & Backup Files",
+    name: "Cloud File Sync",
     description:
-      "Tame your model revisions and gcode with SyncThing, built with privacy in mind.",
+      "Like DropBox, but focused on taming model revisions, slicer settings, and gcode macros. Powered by SyncThing.",
     icon: FolderOpenIcon,
   },
   {

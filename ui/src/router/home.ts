@@ -9,18 +9,17 @@ export default [
     path: "/",
     components: {
       default: LandingLayout,
-
     },
     children: [
       {
         path: "",
         name: "home",
         components: {
-          default: HomePage
+          default: HomePage,
         },
-        meta: { title: "Stop Babysitting Your 3D Printer" }
-      }
-    ]
+        meta: { title: "Stop Babysitting Your 3D Printer" },
+      },
+    ],
   },
   {
     path: "/login/",

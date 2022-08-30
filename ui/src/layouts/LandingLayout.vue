@@ -36,9 +36,11 @@
                 >
                   {{ item.name }}
                 </a>
-                <FlyoutMenu :links="learnMoreLinks" menuText="Learn More"/>
-                <FlyoutMenu :links="communityLinks" menuText="Join the Community"/>
-
+                <FlyoutMenu :links="learnMoreLinks" menu-text="Learn More" />
+                <FlyoutMenu
+                  :links="communityLinks"
+                  menu-text="Join the Community"
+                />
               </div>
             </div>
             <LoginNav />
@@ -94,39 +96,34 @@
         </transition>
       </Popover>
 
-
       <StickyAlerts />
 
-        <!-- Main content area -->
-        <RouterView v-slot="{ Component }">
-            <template v-if="Component">
-            <Transition mode="out-in" name="fade">
-                <KeepAlive>
-                <Suspense>
-                    <!-- main content -->
-                    <component :is="Component"></component>
+      <!-- Main content area -->
+      <RouterView v-slot="{ Component }">
+        <template v-if="Component">
+          <Transition mode="out-in" name="fade">
+            <KeepAlive>
+              <Suspense>
+                <!-- main content -->
+                <component :is="Component"></component>
 
-                    <!-- loading state -->
-                    <template #fallback>
-                    <p>Loading ...</p>
-                    </template>
-                </Suspense>
-                </KeepAlive>
-            </Transition>
-            </template>
-        </RouterView>
+                <!-- loading state -->
+                <template #fallback>
+                  <p>Loading ...</p>
+                </template>
+              </Suspense>
+            </KeepAlive>
+          </Transition>
+        </template>
+      </RouterView>
       <FooterNav />
-
     </div>
-</div>
+  </div>
 </template>
 <script setup lang="ts">
-import {
-  MenuIcon,
-  XIcon,
-} from "@heroicons/vue/outline";
+import { MenuIcon, XIcon } from "@heroicons/vue/outline";
 import LoginNav from "@/components/nav/LoginNav.vue";
-import { Popover, PopoverButton, PopoverPanel} from "@headlessui/vue";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import FlyoutMenu from "@/components/nav/FlyoutMenu.vue";
 import StickyAlerts from "../components/alerts/StickyAlerts.vue";
 import FooterNav from "@/components/nav/FooterNav.vue";
@@ -144,17 +141,59 @@ const navigation = [
 ];
 
 const communityLinks = [
-    { name: "Discord", description: "Share your latest project. Hang out with friendly makers from around the world.", href: "https://discord.gg/sf23bk2hPr", blank: true} as FlyoutMenuLink,
-    { name: "Star the Github project", description: "Show your support. 🌟", href: "https://github.com/bitsy-ai/printnanny-os", blank: true},
-    { name: "Follow the Founder", description: "@grepLeigh is an indie hacker building PrintNanny in public.", href: "https://twitter.com/grepLeigh", blank: true}
-]
+  {
+    name: "Discord",
+    description:
+      "Share your latest project. Hang out with friendly makers from around the world.",
+    href: "https://discord.gg/sf23bk2hPr",
+    blank: true,
+  } as FlyoutMenuLink,
+  {
+    name: "Star the Github project",
+    description: "Show your support. 🌟",
+    href: "https://github.com/bitsy-ai/printnanny-os",
+    blank: true,
+  },
+  {
+    name: "Follow the Founder",
+    description: "@grepLeigh is an indie hacker building PrintNanny in public.",
+    href: "https://twitter.com/grepLeigh",
+    blank: true,
+  },
+];
 
 const learnMoreLinks = [
-  { name: "Quick Start", description: "Setup PrintNanny OS in 15 minutes.", href: "https://docs.printnanny.ai/docs/category/quick-start/", blank: true} as FlyoutMenuLink,
-  { name: "What's inside PrintNanny?", description: "Designed to let you focus on the fun parts of 3D printing.", href: "https://docs.printnanny.ai/docs/category/whats-inside-printnanny/", blank: true} as FlyoutMenuLink,
-  { name: "How do I update PrintNanny?", description: "No-hassle updates with a web UI. Automated backup & recovery mode.", href: "https://docs.printnanny.ai/docs/update-printnanny-os/", blank: true} as FlyoutMenuLink,
-  { name: "Roadmap & Milestones", description: "See what's in store for upcoming PrintNanny OS releases", href: "https://github.com/bitsy-ai/printnanny-os/milestones", blank: true} as FlyoutMenuLink,
+  {
+    name: "Quick Start",
+    description: "Setup PrintNanny OS in 15 minutes.",
+    href: "https://docs.printnanny.ai/docs/category/quick-start/",
+    blank: true,
+  } as FlyoutMenuLink,
+  {
+    name: "What's inside PrintNanny?",
+    description: "Designed to let you focus on the fun parts of 3D printing.",
+    href: "https://docs.printnanny.ai/docs/category/whats-inside-printnanny/",
+    blank: true,
+  } as FlyoutMenuLink,
+  {
+    name: "How do I update PrintNanny?",
+    description:
+      "No-hassle updates with a web UI. Automated backup & recovery mode.",
+    href: "https://docs.printnanny.ai/docs/update-printnanny-os/",
+    blank: true,
+  } as FlyoutMenuLink,
+  {
+    name: "Roadmap & Milestones",
+    description: "See what's in store for upcoming PrintNanny OS releases",
+    href: "https://github.com/bitsy-ai/printnanny-os/milestones",
+    blank: true,
+  } as FlyoutMenuLink,
 
-  { name: "API Documentation", description: "Customize your workflow. Clients available in Typescript, Python, and Rust.", href: "/api/schema/redoc/" } as FlyoutMenuLink,
-]
+  {
+    name: "API Documentation",
+    description:
+      "Customize your workflow. Clients available in Typescript, Python, and Rust.",
+    href: "/api/schema/redoc/",
+  } as FlyoutMenuLink,
+];
 </script>
