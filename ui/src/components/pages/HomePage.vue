@@ -9,44 +9,6 @@
             class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center"
           >
             <div class="lg:py-12">
-              <!-- <a
-                href="#"
-                class="
-                  inline-flex
-                  items-center
-                  text-white
-                  bg-black
-                  rounded-full
-                  p-1
-                  pr-2
-                  sm:text-base
-                  lg:text-sm
-                  xl:text-base
-                  hover:text-gray-200
-                "
-              >
-                <span
-                  class="
-                    px-3
-                    py-0.5
-                    text-white text-xs
-                    font-semibold
-                    leading-5
-                    uppercase
-                    tracking-wide
-                    bg-gradient-to-r
-                    from-teal-500
-                    to-cyan-600
-                    rounded-full
-                  "
-                  >New Docs</span
-                >
-                <span class="ml-4 text-sm">Visit our careers page</span>
-                <ChevronRightIcon
-                  class="ml-2 w-5 h-5 text-gray-500"
-                  aria-hidden="true"
-                />
-              </a> -->
               <h1
                 class="self-start mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl"
               >
@@ -121,7 +83,7 @@
               </div>
               <a href="#founding-membership">
                 <button
-                  class="mt-6 sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                  class="mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                 >
                   Skip the waitlist!<br />
                   Founding Members get early access
@@ -129,6 +91,7 @@
               </a>
             </div>
           </div>
+
           <div class="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
             <div
               class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0"
@@ -154,8 +117,7 @@
     <!-- Feature section with quality control demo -->
     <div
       id="quality-control"
-      class="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32"
-    >
+      class="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32">
       <div
         class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl"
       >
@@ -163,7 +125,7 @@
           <h2
             class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
           >
-            🔮 Quality Control that Never Sleeps
+            Quality Control that Never Sleeps
           </h2>
           <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
             Get notified or automatically pause if print doesn't pass quality
@@ -174,7 +136,7 @@
           >
             Closed-loop monitoring system. Works with no/low bandwidth. Built
             with privacy in mind.
-          </p>
+          </p>        
         </div>
         <div class="mt-12">
           <DemoQualityAlert></DemoQualityAlert>
@@ -187,6 +149,13 @@
       <div
         class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
       >
+        <a href="#founding-membership">
+            <button
+              class="mb-3 inline-flex justify-center rounded-lg font-semibold py-3 px-4 bg-slate-900 text-white hover:bg-slate-700 sm:text-xl  bg-gradient-to-r from-red-500 to-violet-600 rounded-md shadow-lg"
+            >
+              Become a Founding Member
+            </button>
+          </a>  
         <p
           class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
         >
@@ -270,7 +239,28 @@
       </div>
     </div>
 
-    <!-- Testimonial section -->
+    <!-- founding member offer section -->
+    <section id="founding-membership" aria-labelledby="sale-heading" class="relative mx-auto flex max-w-7xl flex-col items-center px-4 sm:py-24 lg:py-32 text-center sm:px-6 lg:px-8 rounded-md shadow bg-gradient-to-r from-red-500 to-indigo-600">
+      <div class="mx-auto max-w-2xl lg:max-w-none">
+        <h2 id="sale-heading" class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">Become a <span class="text-white">Founding Member</span> to</h2>
+        <h2 id="sale-heading" class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">Get Early Access</h2>
+        <p class="mx-auto mt-4 max-w-xl text-xl text-white">
+          <strong>No metered usage. No monthly addons.</strong> <br><span class=" text-gray-900">24/7 printer monitoring with no hidden costs.</span>
+        </p>
+        <p class="mx-auto mt-4 max-w-xl text-xl text-white">
+          <strong>Get access to #members-only Discord channel.</strong> <br><span class=" text-gray-900">Drive PrintNanny's roadmap.</span>
+        </p>
+        <p class="mx-auto mt-4 max-w-xl text-xl text-white">
+          <strong>$149 / year early access price.</strong><br>
+          <strike class=" text-gray-900">$199 / year public launch price</strike><br>
+        </p>
+        <a href="#" class="mt-6 sm:text-3xl inline-block w-full rounded-md border border-transparent bg-gray-900 py-3 px-8 font-medium text-white hover:bg-gray-800 sm:w-auto">Get Early Access Now</a>
+        <p class="mx-auto mt-4 max-w-xl text-xl text-white">
+          <strong>Money-back Guarantee.</strong> <br><span class="text-gray-900">If you're not 100% satisfied with PrintNanny, email leigh@printnanny.ai for a full refund.</span>
+        </p>
+      </div>
+    </section>
+    <!-- end founding member offer section -->
 
     <!-- Blog section -->
     <div class="relative bg-gray-50 py-16 sm:py-24 lg:py-32">
