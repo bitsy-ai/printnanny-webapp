@@ -6,7 +6,7 @@ const props = defineProps({
   },
   text: {
     type: String,
-    default: "Loading...",
+    default: "",
   },
   width: {
     type: String,

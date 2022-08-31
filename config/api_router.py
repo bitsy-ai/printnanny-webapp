@@ -22,6 +22,8 @@ from print_nanny_webapp.events.api.views import (
 
 from print_nanny_webapp.subscriptions.api.views import (
     BillingSummaryView,
+    BillingProductsViewSet,
+    BillingCheckoutView,
 )
 from print_nanny_webapp.octoprint.api.views import (
     GcodeFileViewSet,
@@ -45,6 +47,16 @@ router.register("pis", PiViewSet)
 # enables /api/devices/:hostname lookup (no nested routing)
 other_urls = [
     path("billing/summary", BillingSummaryView.as_view(), name="billing-summary"),
+    path(
+        "billing/products",
+        BillingProductsViewSet.as_view({"get": "list"}),
+        name="billing-products",
+    ),
+    path(
+        "billing/checkout",
+        BillingCheckoutView.as_view(),
+        name="billing-checkout",
+    ),
     path("pis/events", AllPiEventsViewSet.as_view({"get": "list", "post": "create"})),
     path("pis/events/<int:id>", AllPiEventsViewSet.as_view({"get": "retrieve"})),
     path("pis/status", AllPiStatusViewSet.as_view({"get": "list", "post": "create"})),

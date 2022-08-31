@@ -89,7 +89,7 @@ const shopLinks = [
   {
     name: "PrintNanny SDWire",
     routerLink: { name: "sdwire" },
-    description: "Compatible with OctoPrint-SDWire plugin.",
+    description: "Compatible with OctoPrint-SDWire",
   } as FlyoutMenuLink,
 ];
 

@@ -24,6 +24,358 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
+ * @interface BillingCheckoutSession
+ */
+export interface BillingCheckoutSession {
+    /**
+     * 
+     * @type {string}
+     * @memberof BillingCheckoutSession
+     */
+    'stripe_price_lookup_key': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BillingCheckoutSession
+     */
+    'url': string;
+}
+/**
+ * 
+ * @export
+ * @interface BillingCheckoutSessionRequest
+ */
+export interface BillingCheckoutSessionRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof BillingCheckoutSessionRequest
+     */
+    'stripe_price_lookup_key': string;
+}
+/**
+ * 
+ * @export
+ * @interface BillingPrice
+ */
+export interface BillingPrice {
+    /**
+     * 
+     * @type {number}
+     * @memberof BillingPrice
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof BillingPrice
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BillingPrice
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BillingPrice
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof BillingPrice
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof BillingPrice
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof BillingPrice
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof BillingPrice
+     */
+    'description'?: string | null;
+    /**
+     * Whether the price can be used for new purchases.
+     * @type {boolean}
+     * @memberof BillingPrice
+     */
+    'active': boolean;
+    /**
+     * Three-letter ISO currency code
+     * @type {string}
+     * @memberof BillingPrice
+     */
+    'currency': string;
+    /**
+     * A brief description of the plan, hidden from customers.
+     * @type {string}
+     * @memberof BillingPrice
+     */
+    'nickname'?: string;
+    /**
+     * The recurring components of a price such as `interval` and `usage_type`.
+     * @type {{ [key: string]: any; }}
+     * @memberof BillingPrice
+     */
+    'recurring'?: { [key: string]: any; } | null;
+    /**
+     * Whether the price is for a one-time purchase or a recurring (subscription) purchase.
+     * @type {BillingPriceTypeEnum}
+     * @memberof BillingPrice
+     */
+    'type': BillingPriceTypeEnum;
+    /**
+     * The unit amount in cents to be charged, represented as a whole integer if possible. Null if a sub-cent precision is required.
+     * @type {number}
+     * @memberof BillingPrice
+     */
+    'unit_amount'?: number | null;
+    /**
+     * The unit amount in cents to be charged, represented as a decimal string with at most 12 decimal places.
+     * @type {string}
+     * @memberof BillingPrice
+     */
+    'unit_amount_decimal'?: string | null;
+    /**
+     * Describes how to compute the price per period. Either `per_unit` or `tiered`. `per_unit` indicates that the fixed amount (specified in `unit_amount` or `unit_amount_decimal`) will be charged per unit in `quantity` (for prices with `usage_type=licensed`), or per unit of total usage (for prices with `usage_type=metered`). `tiered` indicates that the unit pricing will be computed using a tiering strategy as defined using the `tiers` and `tiers_mode` attributes.
+     * @type {BillingSchemeEnum | BlankEnum}
+     * @memberof BillingPrice
+     */
+    'billing_scheme'?: BillingSchemeEnum | BlankEnum;
+    /**
+     * A lookup key used to retrieve prices dynamically from a static string.
+     * @type {string}
+     * @memberof BillingPrice
+     */
+    'lookup_key'?: string | null;
+    /**
+     * Each element represents a pricing tier. This parameter requires `billing_scheme` to be set to `tiered`.
+     * @type {{ [key: string]: any; }}
+     * @memberof BillingPrice
+     */
+    'tiers'?: { [key: string]: any; } | null;
+    /**
+     * Defines if the tiering price should be `graduated` or `volume` based. In `volume`-based tiering, the maximum quantity within a period determines the per unit price, in `graduated` tiering pricing can successively change as the quantity grows.
+     * @type {TiersModeEnum | BlankEnum | NullEnum}
+     * @memberof BillingPrice
+     */
+    'tiers_mode'?: TiersModeEnum | BlankEnum | NullEnum | null;
+    /**
+     * Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with `tiers`.
+     * @type {{ [key: string]: any; }}
+     * @memberof BillingPrice
+     */
+    'transform_quantity'?: { [key: string]: any; } | null;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof BillingPrice
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * The product this price is associated with.
+     * @type {string}
+     * @memberof BillingPrice
+     */
+    'product': string;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const BillingPriceTypeEnum = {
+    OneTime: 'one_time',
+    Recurring: 'recurring'
+} as const;
+
+export type BillingPriceTypeEnum = typeof BillingPriceTypeEnum[keyof typeof BillingPriceTypeEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface BillingProduct
+ */
+export interface BillingProduct {
+    /**
+     * 
+     * @type {number}
+     * @memberof BillingProduct
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {Array<BillingPrice>}
+     * @memberof BillingProduct
+     */
+    'prices': Array<BillingPrice>;
+    /**
+     * 
+     * @type {string}
+     * @memberof BillingProduct
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BillingProduct
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BillingProduct
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof BillingProduct
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof BillingProduct
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof BillingProduct
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof BillingProduct
+     */
+    'description'?: string | null;
+    /**
+     * The product\'s name, meant to be displayable to the customer. Applicable to both `service` and `good` types.
+     * @type {string}
+     * @memberof BillingProduct
+     */
+    'name': string;
+    /**
+     * The type of the product. The product is either of type `good`, which is eligible for use with Orders and SKUs, or `service`, which is eligible for use with Subscriptions and Plans.
+     * @type {BillingProductTypeEnum}
+     * @memberof BillingProduct
+     */
+    'type': BillingProductTypeEnum;
+    /**
+     * Whether the product is currently available for purchase. Only applicable to products of `type=good`.
+     * @type {boolean}
+     * @memberof BillingProduct
+     */
+    'active'?: boolean | null;
+    /**
+     * A list of up to 5 attributes that each SKU can provide values for (e.g., `[\"color\", \"size\"]`). Only applicable to products of `type=good`.
+     * @type {{ [key: string]: any; }}
+     * @memberof BillingProduct
+     */
+    'attributes'?: { [key: string]: any; } | null;
+    /**
+     * A short one-line description of the product, meant to be displayableto the customer. Only applicable to products of `type=good`.
+     * @type {string}
+     * @memberof BillingProduct
+     */
+    'caption'?: string;
+    /**
+     * An array of connect application identifiers that cannot purchase this product. Only applicable to products of `type=good`.
+     * @type {{ [key: string]: any; }}
+     * @memberof BillingProduct
+     */
+    'deactivate_on'?: { [key: string]: any; } | null;
+    /**
+     * A list of up to 8 URLs of images for this product, meant to be displayable to the customer. Only applicable to products of `type=good`.
+     * @type {{ [key: string]: any; }}
+     * @memberof BillingProduct
+     */
+    'images'?: { [key: string]: any; } | null;
+    /**
+     * The dimensions of this product for shipping purposes. A SKU associated with this product can override this value by having its own `package_dimensions`. Only applicable to products of `type=good`.
+     * @type {{ [key: string]: any; }}
+     * @memberof BillingProduct
+     */
+    'package_dimensions'?: { [key: string]: any; } | null;
+    /**
+     * Whether this product is a shipped good. Only applicable to products of `type=good`.
+     * @type {boolean}
+     * @memberof BillingProduct
+     */
+    'shippable'?: boolean | null;
+    /**
+     * A URL of a publicly-accessible webpage for this product. Only applicable to products of `type=good`.
+     * @type {string}
+     * @memberof BillingProduct
+     */
+    'url'?: string | null;
+    /**
+     * Extra information about a product which will appear on your customer\'s credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only available on products of type=`service`.
+     * @type {string}
+     * @memberof BillingProduct
+     */
+    'statement_descriptor'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BillingProduct
+     */
+    'unit_label'?: string;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof BillingProduct
+     */
+    'djstripe_owner_account'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const BillingProductTypeEnum = {
+    Good: 'good',
+    Service: 'service'
+} as const;
+
+export type BillingProductTypeEnum = typeof BillingProductTypeEnum[keyof typeof BillingProductTypeEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const BillingSchemeEnum = {
+    PerUnit: 'per_unit',
+    Tiered: 'tiered'
+} as const;
+
+export type BillingSchemeEnum = typeof BillingSchemeEnum[keyof typeof BillingSchemeEnum];
+
+
+/**
+ * 
+ * @export
  * @interface BillingSummary
  */
 export interface BillingSummary {
@@ -52,6 +404,19 @@ export interface BillingSummary {
      */
     'billing_portal_url': string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const BlankEnum = {
+    Empty: ''
+} as const;
+
+export type BlankEnum = typeof BlankEnum[keyof typeof BlankEnum];
+
+
 /**
  * Abstract class inspired by DRF\'s own token serializer. Returns a user if valid, None or a message if not.
  * @export
@@ -600,6 +965,19 @@ export interface NatsOrganizationUser {
      */
     'json'?: { [key: string]: any; };
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const NullEnum = {
+    Null: 'null'
+} as const;
+
+export type NullEnum = typeof NullEnum[keyof typeof NullEnum];
+
+
 /**
  * 
  * @export
@@ -1825,6 +2203,37 @@ export const OsEdition = {
 export type OsEdition = typeof OsEdition[keyof typeof OsEdition];
 
 
+/**
+ * 
+ * @export
+ * @interface PaginatedBillingProductList
+ */
+export interface PaginatedBillingProductList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedBillingProductList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedBillingProductList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedBillingProductList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<BillingProduct>}
+     * @memberof PaginatedBillingProductList
+     */
+    'results'?: Array<BillingProduct>;
+}
 /**
  * 
  * @export
@@ -4319,10 +4728,10 @@ export interface StripePaymentMethod {
     'billing_details': { [key: string]: any; };
     /**
      * The type of the PaymentMethod.
-     * @type {TypeEnum}
+     * @type {StripePaymentMethodTypeEnum}
      * @memberof StripePaymentMethod
      */
-    'type': TypeEnum;
+    'type': StripePaymentMethodTypeEnum;
     /**
      * Additional information for payment methods of type `acss_debit`
      * @type {{ [key: string]: any; }}
@@ -4456,6 +4865,39 @@ export interface StripePaymentMethod {
      */
     'customer'?: string | null;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const StripePaymentMethodTypeEnum = {
+    AcssDebit: 'acss_debit',
+    AfterpayClearpay: 'afterpay_clearpay',
+    Alipay: 'alipay',
+    AuBecsDebit: 'au_becs_debit',
+    BacsDebit: 'bacs_debit',
+    Bancontact: 'bancontact',
+    Boleto: 'boleto',
+    Card: 'card',
+    CardPresent: 'card_present',
+    Eps: 'eps',
+    Fpx: 'fpx',
+    Giropay: 'giropay',
+    Grabpay: 'grabpay',
+    Ideal: 'ideal',
+    InteracPresent: 'interac_present',
+    Klarna: 'klarna',
+    Oxxo: 'oxxo',
+    P24: 'p24',
+    SepaDebit: 'sepa_debit',
+    Sofort: 'sofort',
+    WechatPay: 'wechat_pay'
+} as const;
+
+export type StripePaymentMethodTypeEnum = typeof StripePaymentMethodTypeEnum[keyof typeof StripePaymentMethodTypeEnum];
+
+
 /**
  * 
  * @export
@@ -5185,6 +5627,20 @@ export type TaxExemptEnum = typeof TaxExemptEnum[keyof typeof TaxExemptEnum];
 
 
 /**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const TiersModeEnum = {
+    Graduated: 'graduated',
+    Volume: 'volume'
+} as const;
+
+export type TiersModeEnum = typeof TiersModeEnum[keyof typeof TiersModeEnum];
+
+
+/**
  * Serializer for Token model.
  * @export
  * @interface Token
@@ -5197,39 +5653,6 @@ export interface Token {
      */
     'key': string;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export const TypeEnum = {
-    AcssDebit: 'acss_debit',
-    AfterpayClearpay: 'afterpay_clearpay',
-    Alipay: 'alipay',
-    AuBecsDebit: 'au_becs_debit',
-    BacsDebit: 'bacs_debit',
-    Bancontact: 'bancontact',
-    Boleto: 'boleto',
-    Card: 'card',
-    CardPresent: 'card_present',
-    Eps: 'eps',
-    Fpx: 'fpx',
-    Giropay: 'giropay',
-    Grabpay: 'grabpay',
-    Ideal: 'ideal',
-    InteracPresent: 'interac_present',
-    Klarna: 'klarna',
-    Oxxo: 'oxxo',
-    P24: 'p24',
-    SepaDebit: 'sepa_debit',
-    Sofort: 'sofort',
-    WechatPay: 'wechat_pay'
-} as const;
-
-export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
-
-
 /**
  * 
  * @export
@@ -7171,6 +7594,87 @@ export const BillingApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
+         * @param {BillingCheckoutSessionRequest} billingCheckoutSessionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingCheckoutCreate: async (billingCheckoutSessionRequest: BillingCheckoutSessionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'billingCheckoutSessionRequest' is not null or undefined
+            assertParamExists('billingCheckoutCreate', 'billingCheckoutSessionRequest', billingCheckoutSessionRequest)
+            const localVarPath = `/api/billing/checkout`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(billingCheckoutSessionRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingProductsList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/billing/products`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7216,6 +7720,26 @@ export const BillingApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {BillingCheckoutSessionRequest} billingCheckoutSessionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async billingCheckoutCreate(billingCheckoutSessionRequest: BillingCheckoutSessionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BillingCheckoutSession>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.billingCheckoutCreate(billingCheckoutSessionRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async billingProductsList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedBillingProductList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.billingProductsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7235,6 +7759,24 @@ export const BillingApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
+         * @param {BillingCheckoutSessionRequest} billingCheckoutSessionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingCheckoutCreate(billingCheckoutSessionRequest: BillingCheckoutSessionRequest, options?: any): AxiosPromise<BillingCheckoutSession> {
+            return localVarFp.billingCheckoutCreate(billingCheckoutSessionRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingProductsList(page?: number, options?: any): AxiosPromise<PaginatedBillingProductList> {
+            return localVarFp.billingProductsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7252,6 +7794,24 @@ export const BillingApiFactory = function (configuration?: Configuration, basePa
 export interface BillingApiInterface {
     /**
      * 
+     * @param {BillingCheckoutSessionRequest} billingCheckoutSessionRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApiInterface
+     */
+    billingCheckoutCreate(billingCheckoutSessionRequest: BillingCheckoutSessionRequest, options?: AxiosRequestConfig): AxiosPromise<BillingCheckoutSession>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApiInterface
+     */
+    billingProductsList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedBillingProductList>;
+
+    /**
+     * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BillingApiInterface
@@ -7267,6 +7827,28 @@ export interface BillingApiInterface {
  * @extends {BaseAPI}
  */
 export class BillingApi extends BaseAPI implements BillingApiInterface {
+    /**
+     * 
+     * @param {BillingCheckoutSessionRequest} billingCheckoutSessionRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApi
+     */
+    public billingCheckoutCreate(billingCheckoutSessionRequest: BillingCheckoutSessionRequest, options?: AxiosRequestConfig) {
+        return BillingApiFp(this.configuration).billingCheckoutCreate(billingCheckoutSessionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApi
+     */
+    public billingProductsList(page?: number, options?: AxiosRequestConfig) {
+        return BillingApiFp(this.configuration).billingProductsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {*} [options] Override http request option.

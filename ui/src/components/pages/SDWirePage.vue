@@ -29,7 +29,9 @@
               >
                 {{ product.name }}
               </h1>
-
+              <h2 class="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
+              {{ product.price }} <span class="font-medium text-sm">plus shipping & handling</span>
+              </h2>
               <h2 id="information-heading" class="sr-only">
                 Product information
               </h2>
@@ -54,15 +56,26 @@
 
           <p class="mt-6 text-gray-500">{{ product.description }}</p>
 
-          <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
+          <div class="mt-10">
             <button
               type="button"
-              class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+              @click="onClick"
+              class="flex w-full items-center block justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
             >
-              Pre-order for {{ product.price }}
+              <CustomSpinner
+                v-if="billingStore.loading"
+                color="indigo"
+                class="mr-2"
+              ></CustomSpinner>
+              <span v-if="!billingStore.loading">
+              Pre-order with Stripe
+              </span>
+              <span v-if="billingStore.loading">
+              Redirecting to Stripe Checkout
+              </span>
             </button>
-            <i>Shipping & handling calculated at checkout</i>
           </div>
+          <p class="text-sm pt-2">Shipping is currently limited to US/Canada.</p>
 
           <div class="mt-10 border-t border-gray-200 pt-10">
             <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
@@ -194,7 +207,16 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+import CustomSpinner from "@/components/util/CustomSpinner.vue";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/vue";
+import { CheckoutProduct } from "@/types/checkout";
+import { useBillingStore } from "@/stores/billing";
+
+const billingStore = useBillingStore();
+
+// TODO: load products via API instead of hard-coding
+const stripeLookupKey = "sdwire_preorder";
 
 const product = {
   name: "PrintNanny SDWire",
@@ -219,6 +241,9 @@ const product = {
   imageAlt: "3D rendering of PrintNanny SDWire board (front view)",
 };
 
+async function onClick(){
+  const checkoutSession = billingStore.fetchCheckoutSession(stripeLookupKey)
+}
 // TODO prompt for review on delivery
 // const reviews = {
 //   average: 4,

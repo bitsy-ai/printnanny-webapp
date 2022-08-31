@@ -1,13 +1,96 @@
 import logging
 from typing import Optional
-from django.db.models import Q
+from django.contrib.auth import get_user_model
 from djstripe.settings import djstripe_settings
-from djstripe.models import Customer, Subscription, Charge, Event, Invoice, InvoiceItem
+from djstripe.models import Customer, Subscription, Invoice, Charge, Event
 import stripe
 
-from print_nanny_webapp.users.models import User
 
 logger = logging.getLogger(__name__)
+
+User = get_user_model()
+
+
+def create_stripe_checkout_session(
+    stripe_lookup_key: str, django_session_key: str, user: Optional[User] = None
+):
+    """
+    Attempt to create a Stripe checkout session for product_name
+
+    """
+    stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
+    prices = stripe.Price.list(lookup_keys=[stripe_lookup_key])
+
+    # try to get Stripe customer from user
+    customer = None
+    extra_kwargs = dict(metadata=dict(django_session_key=django_session_key))
+    if user is not None:
+        # provides djstripe_subscriber_user reverse relationship
+        extra_kwargs["metadata"][
+            djstripe_settings.djstripe_settings.SUBSCRIBER_CUSTOMER_KEY
+        ] = user.id
+        # an extra reference id
+        extra_kwargs["client_reference_id"] = user.id
+        try:
+            customer = Customer.objects.get(subscriber=user)
+            extra_kwargs["customer"] = customer.id
+            extra_kwargs["customer_email"] = customer.email
+
+        # customer not found
+        except Customer.DoesNotExist:
+            pass
+
+    if stripe_lookup_key == "sdwire_preorder":
+        if len(prices.data) > 1:
+            raise ValueError(
+                f"stripe.Price.list returned {len(prices)} prices for lookup_key {stripe_lookup_key} (expected 1): {prices.data}"
+            )
+        price_id = prices.data[0].id
+        return stripe.checkout.Session.create(
+            payment_method_types=["card"],
+            payment_intent_data={
+                # off_session indicates
+                "setup_future_usage": "off_session",
+                "metadata": extra_kwargs["metadata"],
+            },
+            line_items=[
+                {
+                    "price": price_id,
+                    "adjustable_quantity": {
+                        "enabled": True,
+                        "minimum": 1,
+                        "maximum": 10,
+                    },
+                    "quantity": 1,
+                }
+            ],
+            mode="payment",
+            success_url="https://printnanny.ai/shop/checkout/success",
+            cancel_url="https://printnanny.ai/shop/sdwire",
+            billing_address_collection="required",
+            shipping_address_collection=dict(
+                allowed_countries=[
+                    "US",
+                    "CA",
+                ]
+            ),
+            shipping_options=[
+                {
+                    "shipping_rate_data": {
+                        "type": "fixed_amount",
+                        "fixed_amount": {
+                            "amount": 999,
+                            "currency": "usd",
+                        },
+                        "display_name": "USPS Ground",
+                    }
+                },
+            ],
+            **extra_kwargs,
+        )
+    raise NotImplementedError(
+        f"create_stripe_checkout_session not implemented for stripe_lookup_key={stripe_lookup_key}"
+    )
 
 
 def link_customer_by_email(user) -> Customer:
