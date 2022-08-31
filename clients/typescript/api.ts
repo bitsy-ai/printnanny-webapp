@@ -24,6 +24,20 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const BillingAddressCollectionEnum = {
+    Auto: 'auto',
+    Required: 'required'
+} as const;
+
+export type BillingAddressCollectionEnum = typeof BillingAddressCollectionEnum[keyof typeof BillingAddressCollectionEnum];
+
+
+/**
+ * 
+ * @export
  * @interface BillingCheckoutSession
  */
 export interface BillingCheckoutSession {
@@ -818,6 +832,21 @@ export interface MemberBadgeRequest {
      */
     'user': number;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const ModeEnum = {
+    Payment: 'payment',
+    Setup: 'setup',
+    Subscription: 'subscription'
+} as const;
+
+export type ModeEnum = typeof ModeEnum[keyof typeof ModeEnum];
+
+
 /**
  * 
  * @export
@@ -4494,6 +4523,170 @@ export type SbcEnum = typeof SbcEnum[keyof typeof SbcEnum];
 /**
  * 
  * @export
+ * @interface StripeCheckoutSession
+ */
+export interface StripeCheckoutSession {
+    /**
+     * 
+     * @type {number}
+     * @memberof StripeCheckoutSession
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCheckoutSession
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCheckoutSession
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCheckoutSession
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof StripeCheckoutSession
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof StripeCheckoutSession
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCheckoutSession
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof StripeCheckoutSession
+     */
+    'description'?: string | null;
+    /**
+     * The value (auto or required) for whether Checkoutcollected the customer\'s billing address.
+     * @type {BillingAddressCollectionEnum | BlankEnum}
+     * @memberof StripeCheckoutSession
+     */
+    'billing_address_collection'?: BillingAddressCollectionEnum | BlankEnum;
+    /**
+     * The URL the customer will be directed to if theydecide to cancel payment and return to your website.
+     * @type {string}
+     * @memberof StripeCheckoutSession
+     */
+    'cancel_url'?: string;
+    /**
+     * A unique string to reference the Checkout Session.This can be a customer ID, a cart ID, or similar, andcan be used to reconcile the session with your internal systems.
+     * @type {string}
+     * @memberof StripeCheckoutSession
+     */
+    'client_reference_id'?: string;
+    /**
+     * If provided, this value will be used when the Customer object is created.
+     * @type {string}
+     * @memberof StripeCheckoutSession
+     */
+    'customer_email'?: string;
+    /**
+     * The line items, plans, or SKUs purchased by the customer.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCheckoutSession
+     */
+    'display_items'?: { [key: string]: any; } | null;
+    /**
+     * The IETF language tag of the locale Checkout is displayed in.If blank or auto, the browser\'s locale is used.
+     * @type {string}
+     * @memberof StripeCheckoutSession
+     */
+    'locale'?: string;
+    /**
+     * The mode of the Checkout Session, one of payment, setup, or subscription.
+     * @type {ModeEnum | BlankEnum}
+     * @memberof StripeCheckoutSession
+     */
+    'mode'?: ModeEnum | BlankEnum;
+    /**
+     * The list of payment method types (e.g. card) that this Checkout Session is allowed to accept.
+     * @type {{ [key: string]: any; }}
+     * @memberof StripeCheckoutSession
+     */
+    'payment_method_types': { [key: string]: any; };
+    /**
+     * Describes the type of transaction being performed by Checkoutin order to customize relevant text on the page, such as the submit button.
+     * @type {SubmitTypeEnum | BlankEnum}
+     * @memberof StripeCheckoutSession
+     */
+    'submit_type'?: SubmitTypeEnum | BlankEnum;
+    /**
+     * The URL the customer will be directed to after the payment or subscriptioncreation is successful.
+     * @type {string}
+     * @memberof StripeCheckoutSession
+     */
+    'success_url'?: string;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof StripeCheckoutSession
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * Customer this Checkout is for if one exists.
+     * @type {string}
+     * @memberof StripeCheckoutSession
+     */
+    'customer'?: string | null;
+    /**
+     * PaymentIntent created if SKUs or line items were provided.
+     * @type {string}
+     * @memberof StripeCheckoutSession
+     */
+    'payment_intent'?: string | null;
+    /**
+     * Subscription created if one or more plans were provided.
+     * @type {string}
+     * @memberof StripeCheckoutSession
+     */
+    'subscription'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface StripeCheckoutSuccess
+ */
+export interface StripeCheckoutSuccess {
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeCheckoutSuccess
+     */
+    'stripe_checkout_session_id': string;
+    /**
+     * 
+     * @type {StripeCheckoutSession}
+     * @memberof StripeCheckoutSuccess
+     */
+    'stripe_session': StripeCheckoutSession;
+    /**
+     * 
+     * @type {StripeCustomer}
+     * @memberof StripeCheckoutSuccess
+     */
+    'stripe_customer': StripeCustomer;
+}
+/**
+ * 
+ * @export
  * @interface StripeCustomer
  */
 export interface StripeCustomer {
@@ -5445,6 +5638,22 @@ export const StripeSubscriptionStatusEnum = {
 } as const;
 
 export type StripeSubscriptionStatusEnum = typeof StripeSubscriptionStatusEnum[keyof typeof StripeSubscriptionStatusEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const SubmitTypeEnum = {
+    Auto: 'auto',
+    Book: 'book',
+    Donate: 'donate',
+    Pay: 'pay'
+} as const;
+
+export type SubmitTypeEnum = typeof SubmitTypeEnum[keyof typeof SubmitTypeEnum];
 
 
 /**
@@ -7635,6 +7844,45 @@ export const BillingApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {string} stripeCheckoutSessionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingCheckoutSuccessRetrieve: async (stripeCheckoutSessionId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'stripeCheckoutSessionId' is not null or undefined
+            assertParamExists('billingCheckoutSuccessRetrieve', 'stripeCheckoutSessionId', stripeCheckoutSessionId)
+            const localVarPath = `/api/billing/checkout/success/{stripe_checkout_session_id}`
+                .replace(`{${"stripe_checkout_session_id"}}`, encodeURIComponent(String(stripeCheckoutSessionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7730,6 +7978,16 @@ export const BillingApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} stripeCheckoutSessionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async billingCheckoutSuccessRetrieve(stripeCheckoutSessionId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StripeCheckoutSuccess>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.billingCheckoutSuccessRetrieve(stripeCheckoutSessionId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7768,6 +8026,15 @@ export const BillingApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @param {string} stripeCheckoutSessionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        billingCheckoutSuccessRetrieve(stripeCheckoutSessionId: string, options?: any): AxiosPromise<StripeCheckoutSuccess> {
+            return localVarFp.billingCheckoutSuccessRetrieve(stripeCheckoutSessionId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7800,6 +8067,15 @@ export interface BillingApiInterface {
      * @memberof BillingApiInterface
      */
     billingCheckoutCreate(billingCheckoutSessionRequest: BillingCheckoutSessionRequest, options?: AxiosRequestConfig): AxiosPromise<BillingCheckoutSession>;
+
+    /**
+     * 
+     * @param {string} stripeCheckoutSessionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApiInterface
+     */
+    billingCheckoutSuccessRetrieve(stripeCheckoutSessionId: string, options?: AxiosRequestConfig): AxiosPromise<StripeCheckoutSuccess>;
 
     /**
      * 
@@ -7836,6 +8112,17 @@ export class BillingApi extends BaseAPI implements BillingApiInterface {
      */
     public billingCheckoutCreate(billingCheckoutSessionRequest: BillingCheckoutSessionRequest, options?: AxiosRequestConfig) {
         return BillingApiFp(this.configuration).billingCheckoutCreate(billingCheckoutSessionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} stripeCheckoutSessionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BillingApi
+     */
+    public billingCheckoutSuccessRetrieve(stripeCheckoutSessionId: string, options?: AxiosRequestConfig) {
+        return BillingApiFp(this.configuration).billingCheckoutSuccessRetrieve(stripeCheckoutSessionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

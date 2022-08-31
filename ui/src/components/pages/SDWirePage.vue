@@ -29,8 +29,13 @@
               >
                 {{ product.name }}
               </h1>
-              <h2 class="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
-              {{ product.price }} <span class="font-medium text-sm">plus shipping & handling</span>
+              <h2
+                class="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl"
+              >
+                {{ product.price }}
+                <span class="font-medium text-sm"
+                  >plus shipping & handling</span
+                >
               </h2>
               <h2 id="information-heading" class="sr-only">
                 Product information
@@ -59,23 +64,23 @@
           <div class="mt-10">
             <button
               type="button"
-              @click="onClick"
               class="flex w-full items-center block justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+              @click="onClick"
             >
               <CustomSpinner
                 v-if="billingStore.loading"
                 color="indigo"
                 class="mr-2"
               ></CustomSpinner>
-              <span v-if="!billingStore.loading">
-              Pre-order with Stripe
-              </span>
+              <span v-if="!billingStore.loading"> Pre-order with Stripe </span>
               <span v-if="billingStore.loading">
-              Redirecting to Stripe Checkout
+                Redirecting to Stripe Checkout
               </span>
             </button>
           </div>
-          <p class="text-sm pt-2">Shipping is currently limited to US/Canada.</p>
+          <p class="text-sm pt-2">
+            Shipping is currently limited to US/Canada.
+          </p>
 
           <div class="mt-10 border-t border-gray-200 pt-10">
             <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
@@ -241,8 +246,8 @@ const product = {
   imageAlt: "3D rendering of PrintNanny SDWire board (front view)",
 };
 
-async function onClick(){
-  const checkoutSession = billingStore.fetchCheckoutSession(stripeLookupKey)
+async function onClick() {
+  const checkoutSession = billingStore.fetchCheckoutSession(stripeLookupKey);
 }
 // TODO prompt for review on delivery
 // const reviews = {

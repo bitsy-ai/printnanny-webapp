@@ -13,7 +13,7 @@ from djstripe.models import Product
 from djstripe.enums import SubscriptionStatus
 
 from print_nanny_webapp.subscriptions.api.serializers import (
-    BillingCheckoutSuccessSerializer,
+    StripeCheckoutSuccessSerializer,
     BillingSummarySerializer,
     BillingCheckoutSessionSerializer,
     BillingProductSerializer,
@@ -107,9 +107,9 @@ class BillingCheckoutView(APIView):
 
 
 @extend_schema_view(
-    post=extend_schema(
+    get=extend_schema(
         tags=["billing"],
-        responses={200: BillingCheckoutSuccessSerializer(many=False)}
+        responses={200: StripeCheckoutSuccessSerializer(many=False)}
         | generic_get_errors,
     ),
 )
@@ -117,17 +117,20 @@ class BillingCheckoutSuccessView(APIView):
     filter_backends = [DjangoFilterBackend]
     permission_classes = (AllowAny,)
 
-    def get(self, request):
+    def get(self, request, stripe_checkout_session_id=None):
 
-        serializer = BillingCheckoutSuccessSerializer(data=request.data)
+        if stripe_checkout_session_id is not None:
+            session = get_stripe_checkout_session(stripe_checkout_session_id)
+            customer = get_stripe_customer_by_id(session.customer.id)
 
-        if serializer.is_valid():
-            session_id = serializer.validated_data["session_id"]
-            session = get_stripe_checkout_session(session_id)
-            customer = get_stripe_customer_by_id(session.customer)
-
-            response_serializer = BillingCheckoutSessionSerializer(
-                instance=dict(session_id=session_id, session=session, customer=customer)
+            response_serializer = StripeCheckoutSuccessSerializer(
+                instance=dict(
+                    stripe_checkout_session_id=stripe_checkout_session_id,
+                    stripe_session=session,
+                    stripe_customer=customer,
+                )
             )
             return Response(response_serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            "stripe_checkout_session_id is required", status=status.HTTP_400_BAD_REQUEST
+        )

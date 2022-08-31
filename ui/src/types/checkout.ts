@@ -1,4 +1,4 @@
 export enum CheckoutProduct {
-    Sdwire = "sdwire",
-    FoundingMembership = "foundingmembership",
+  Sdwire = "sdwire",
+  FoundingMembership = "foundingmembership",
 }

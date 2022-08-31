@@ -28,7 +28,7 @@ export default [
         meta: { title: "Pre-order SDWire" },
       },
       {
-        path: "sdwire/success",
+        path: "sdwire/success/:sessionId",
         name: "sdwire-checkout-success",
         components: {
           default: SDWireSuccessPage,

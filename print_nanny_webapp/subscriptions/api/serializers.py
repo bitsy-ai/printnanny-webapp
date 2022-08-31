@@ -123,7 +123,7 @@ class StripeCheckoutSessionSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class BillingCheckoutSuccessSerializer(serializers.Serializer):
-    session_id = serializers.CharField()
+class StripeCheckoutSuccessSerializer(serializers.Serializer):
+    stripe_checkout_session_id = serializers.CharField()
     stripe_session = StripeCheckoutSessionSerializer(read_only=True)
     stripe_customer = StripeCustomerSerializer(read_only=True)

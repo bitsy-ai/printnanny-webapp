@@ -9,35 +9,35 @@ export const useBillingStore = defineStore({
     summary: undefined as api.BillingSummary | undefined,
     products: [] as Array<api.BillingProduct>,
     loading: false,
-    stripeCheckoutSessionUrl: undefined as undefined | string
-
+    stripeCheckoutSessionUrl: undefined as undefined | string,
   }),
   getters: {
     billingFormReady: (state) => state.summary !== undefined,
     getProductByName: (state) => {
-      return (name: string) => state.products.find((product) => product.name == name)
+      return (name: string) =>
+        state.products.find((product) => product.name == name);
     },
   },
   actions: {
     async fetchCheckoutSession(stripePriceLookupKey) {
       this.$patch({ loading: true });
       const req = {
-        stripe_price_lookup_key: stripePriceLookupKey
-      } as api.BillingCheckoutSession
-      const res = await billingApi.billingCheckoutCreate(req).catch(handleApiError);
+        stripe_price_lookup_key: stripePriceLookupKey,
+      } as api.BillingCheckoutSession;
+      const res = await billingApi
+        .billingCheckoutCreate(req)
+        .catch(handleApiError);
       if (res) {
         this.$patch({ loading: false, stripeCheckoutSessionUrl: res.data.url });
         console.log(`Redirecting to ${res.data.url}`);
         window.location = res.data.url;
-
       }
-
     },
     async fetchProducts() {
       const res = billingApi.billingProductsList();
-      console.log("Fetched products", res.data)
+      console.log("Fetched products", res.data);
       if (res.data) {
-        this.$patch({ products: res.data })
+        this.$patch({ products: res.data });
       }
     },
     async fetchSummary() {

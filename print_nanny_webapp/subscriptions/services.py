@@ -18,13 +18,16 @@ User = get_user_model()
 def get_stripe_checkout_session(session_id: str) -> Session:
     stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
 
-    return stripe.checkout.Session.retrieve(session_id)
+    stripe_res = stripe.checkout.Session.retrieve(session_id)
+    # sync djstripe model from response, then return djstripe model to be serialized
+    return Session.sync_from_stripe_data(stripe_res)
 
 
 def get_stripe_customer_by_id(stripe_customer_id: str) -> Customer:
     stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
 
-    return stripe.Customer.retrieve(stripe_customer_id)
+    stripe_res = stripe.Customer.retrieve(stripe_customer_id)
+    return Customer.sync_from_stripe_data(stripe_res)
 
 
 def create_stripe_checkout_session(
@@ -72,7 +75,7 @@ def create_stripe_checkout_session(
 
         # set success / cancel urls
         extra_kwargs["success_url"] = request.build_absolute_uri(
-            "/shop/sdwire/success?session_id="
+            "/shop/sdwire/success/"
         )
         # add "{CHECKOUT_SESSION_ID}" template string to url. this gets uri-encoded to %7B if passed to build_absolute_uri fn
         extra_kwargs["success_url"] += "{CHECKOUT_SESSION_ID}"
