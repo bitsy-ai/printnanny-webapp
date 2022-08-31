@@ -1,6 +1,7 @@
 import LandingLayout from "@/layouts/LandingLayout.vue";
 import FoundingMembershipPage from "@/components/pages/FoundingMembershipPage.vue";
 import SDWirePage from "@/components/pages/SDWirePage.vue";
+import SDWireSuccessPage from "@/components/pages/SDWireSuccessPage.vue";
 import CheckoutPage from "@/components/pages/CheckoutPage.vue";
 
 export default [
@@ -25,6 +26,14 @@ export default [
           default: SDWirePage,
         },
         meta: { title: "Pre-order SDWire" },
+      },
+      {
+        path: "sdwire/success",
+        name: "sdwire-checkout-success",
+        components: {
+          default: SDWireSuccessPage,
+        },
+        meta: { title: "Pre-order accepted" },
       },
       {
         path: "checkout",

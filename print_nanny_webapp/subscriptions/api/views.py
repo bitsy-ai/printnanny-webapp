@@ -13,12 +13,15 @@ from djstripe.models import Product
 from djstripe.enums import SubscriptionStatus
 
 from print_nanny_webapp.subscriptions.api.serializers import (
+    BillingCheckoutSuccessSerializer,
     BillingSummarySerializer,
     BillingCheckoutSessionSerializer,
     BillingProductSerializer,
 )
 from print_nanny_webapp.utils.api.views import generic_get_errors, generic_update_errors
 from print_nanny_webapp.subscriptions.services import (
+    get_stripe_checkout_session,
+    get_stripe_customer_by_id,
     get_stripe_subscription,
     get_stripe_charges,
     get_stripe_customer,
@@ -84,7 +87,6 @@ class BillingProductsViewSet(GenericViewSet, ListModelMixin):
     ),
 )
 class BillingCheckoutView(APIView):
-    lookup_field = "id"
     # omit OwnerOrUserFilterBackend, which is a DEFAULT_FILTER_BACKENDS
     filter_backends = [DjangoFilterBackend]
     permission_classes = (AllowAny,)
@@ -94,19 +96,38 @@ class BillingCheckoutView(APIView):
         if serializer.is_valid():
             stripe_lookup_key = serializer.validated_data["stripe_price_lookup_key"]
             django_session = request.session._get_or_create_session_key()
-            if request.user.is_authenticated:
-                checkout_session = create_stripe_checkout_session(
-                    stripe_lookup_key, django_session, user=request.user
-                )
-            else:
-                checkout_session = create_stripe_checkout_session(
-                    stripe_lookup_key, django_session, user=None
-                )
-            # response_serializer = BillingCheckoutSessionSerializer(
-            #     instance=dict(url=checkout_session.url)
-            # )
+            checkout_session = create_stripe_checkout_session(
+                request, stripe_lookup_key, django_session
+            )
             return Response(
                 {"url": checkout_session.url}, status=status.HTTP_201_CREATED
             )
 
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@extend_schema_view(
+    post=extend_schema(
+        tags=["billing"],
+        responses={200: BillingCheckoutSuccessSerializer(many=False)}
+        | generic_get_errors,
+    ),
+)
+class BillingCheckoutSuccessView(APIView):
+    filter_backends = [DjangoFilterBackend]
+    permission_classes = (AllowAny,)
+
+    def get(self, request):
+
+        serializer = BillingCheckoutSuccessSerializer(data=request.data)
+
+        if serializer.is_valid():
+            session_id = serializer.validated_data["session_id"]
+            session = get_stripe_checkout_session(session_id)
+            customer = get_stripe_customer_by_id(session.customer)
+
+            response_serializer = BillingCheckoutSessionSerializer(
+                instance=dict(session_id=session_id, session=session, customer=customer)
+            )
+            return Response(response_serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

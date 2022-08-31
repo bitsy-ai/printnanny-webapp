@@ -35,7 +35,8 @@ router.beforeEach(async (to, _from) => {
     to.name !== "privacy" &&
     to.name !== "founding-membership" &&
     to.name !== "sdwire" &&
-    to.name !== "checkout"
+    to.name !== "checkout" &&
+    to.name !== "sdwire-checkout-success"
   ) {
     // redirect the user to the login page
     return { name: "login" };

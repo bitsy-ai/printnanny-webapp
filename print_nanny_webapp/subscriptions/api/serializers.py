@@ -4,8 +4,8 @@ from djstripe.models.billing import (
     Plan,
     SubscriptionSchedule,
 )
-from djstripe.models.core import Product, Price
-from djstripe.models.core import Event, Customer, Charge
+from djstripe.models.core import Product, Price, Event, Customer, Charge
+from djstripe.models.checkout import Session
 from djstripe.models.payment_methods import PaymentMethod
 from djstripe import settings as djstripe_settings
 from djstripe.utils import convert_tstamp
@@ -115,3 +115,15 @@ class BillingProductSerializer(serializers.ModelSerializer):
 class BillingCheckoutSessionSerializer(serializers.Serializer):
     stripe_price_lookup_key = serializers.CharField()
     url = serializers.URLField(read_only=True)
+
+
+class StripeCheckoutSessionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Session
+        fields = "__all__"
+
+
+class BillingCheckoutSuccessSerializer(serializers.Serializer):
+    session_id = serializers.CharField()
+    stripe_session = StripeCheckoutSessionSerializer(read_only=True)
+    stripe_customer = StripeCustomerSerializer(read_only=True)
