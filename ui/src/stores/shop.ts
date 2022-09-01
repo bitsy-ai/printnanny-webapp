@@ -31,8 +31,8 @@ export const useShopStore = defineStore({
                 .catch(handleApiError);
             if (res) {
                 this.$patch({ loading: false });
-                console.log(`Redirecting to ${res.data.url}`);
-                window.location = res.data.url;
+                console.log(`Redirecting to ${res.data.stripe_checkout_redirect_url}`);
+                window.location = res.data.stripe_checkout_redirect_url
             }
         },
     }

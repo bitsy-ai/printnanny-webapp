@@ -16,7 +16,6 @@ from print_nanny_webapp.shop.api.serializers import (
     OrderCheckoutSerializer,
 )
 from print_nanny_webapp.shop.models import Product
-from print_nanny_webapp.shop.services import create_stripe_checkout_session
 from print_nanny_webapp.utils.api.views import generic_get_errors, generic_create_errors
 
 
@@ -47,16 +46,13 @@ class OrderCheckoutView(APIView):
     permission_classes = (AllowAny,)
 
     def post(self, request):
-        serializer = OrderSerializer(data=request.data, context={"request": request})
+        serializer = OrderCheckoutSerializer(
+            data=request.data, context={"request": request}
+        )
         if serializer.is_valid():
-            stripe_lookup_key = serializer.validated_data["stripe_price_lookup_key"]
-            django_session = request.session._get_or_create_session_key()
-            checkout_session = create_stripe_checkout_session(
-                request, stripe_lookup_key, django_session
-            )
-            return Response(
-                {"url": checkout_session.url}, status=status.HTTP_201_CREATED
-            )
+            instance = serializer.create(serializer.validated_data)
+            res_serializer = OrderSerializer(instance=instance)
+            return Response(res_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

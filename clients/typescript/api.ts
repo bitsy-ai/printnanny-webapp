@@ -160,6 +160,12 @@ export interface DjStripePrice {
      * @type {string}
      * @memberof DjStripePrice
      */
+    'human_readable_price': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripePrice
+     */
     'djstripe_created': string;
     /**
      * 
@@ -4486,6 +4492,12 @@ export interface Product {
      * @type {string}
      * @memberof Product
      */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Product
+     */
     'unit_label': string;
     /**
      * 
@@ -4505,6 +4517,12 @@ export interface Product {
      * @memberof Product
      */
     'statement_descriptor': string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Product
+     */
+    'images'?: Array<string>;
     /**
      * 
      * @type {boolean}

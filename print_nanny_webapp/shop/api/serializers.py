@@ -8,7 +8,7 @@ from djstripe.models.core import (
 from djstripe.models.checkout import Session as DjStripeCheckoutSession
 
 from print_nanny_webapp.shop.models import Order, Product
-from print_nanny_webapp.shop.services import create_stripe_checkout_session
+from print_nanny_webapp.shop.services import create_order
 
 
 class DjStripeProductSerializer(serializers.ModelSerializer):
@@ -67,12 +67,16 @@ class OrderCheckoutSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         request = self.context["request"]
         email = validated_data["email"]
-        product_ids = validated_data["products"]
-        django_session = request.session._get_or_create_session_key()
-        products = Product.objects.get(id__in=product_ids)
-        checkout_session = create_stripe_checkout_session(
-            request, django_session, products
-        )
+        products = validated_data["products"]
+        if len(products) == 0:
+            raise ValueError("Expected at least 1 product")
+        if len(products) > 1:
+            raise NotImplementedError(
+                f"Checkout for more than 1 product is not implemented (received {len(product_ids)})"
+            )
+
+        product = products[0]
+        return create_order(request, product, email)
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -81,6 +85,8 @@ class OrderSerializer(serializers.ModelSerializer):
     djstripe_payment_intent = DjStripePaymentIntentSerializer(read_only=True)
     products = ProductSerializer(read_only=True, many=True)
     id = serializers.UUIDField(read_only=True)
+
+    stripe_checkout_redirect_url = serializers.CharField(read_only=True, required=False)
 
     class Meta:
         model = Order
@@ -93,21 +99,5 @@ class OrderSerializer(serializers.ModelSerializer):
             "djstripe_payment_intent",
             "last_status",
             "email",
+            "stripe_checkout_redirect_url",
         )
-
-
-# class BillingCheckoutSessionSerializer(serializers.Serializer):
-
-#     url = serializers.URLField(read_only=True)
-
-
-# class StripeCheckoutSessionSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Session
-#         fields = "__all__"
-
-
-# class StripeCheckoutSuccessSerializer(serializers.Serializer):
-#     stripe_checkout_session_id = serializers.CharField()
-#     stripe_session = StripeCheckoutSessionSerializer(read_only=True)
-#     stripe_customer = StripeCustomerSerializer(read_only=True)

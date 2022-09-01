@@ -91,12 +91,12 @@
                     class="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                   >
                                 <CustomSpinner
-                v-if="billingStore.loading"
+                v-if="shopStore.loading"
                 color="indigo"
                 class="mr-2"
               ></CustomSpinner>
-                  <span v-if="!billingStore.loading"> Pre-order with Stripe </span>
-                  <span v-if="billingStore.loading">
+                  <span v-if="!shopStore.loading"> Pre-order with Stripe </span>
+                  <span v-if="shopStore.loading">
                     Redirecting to Stripe Checkout
                   </span>
                   </button>
@@ -112,12 +112,12 @@
               @click="onClick"
             >
               <CustomSpinner
-                v-if="billingStore.loading"
+                v-if="shopStore.loading"
                 color="indigo"
                 class="mr-2"
               ></CustomSpinner>
-              <span v-if="!billingStore.loading"> Pre-order with Stripe </span>
-              <span v-if="billingStore.loading">
+              <span v-if="!shopStore.loading"> Pre-order with Stripe </span>
+              <span v-if="shopStore.loading">
                 Redirecting to Stripe Checkout
               </span>
             </button>
@@ -263,11 +263,14 @@ import { Field, ErrorMessage, Form } from "vee-validate";
 import CustomSpinner from "@/components/util/CustomSpinner.vue";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/vue";
 import { CheckoutProduct } from "@/types/checkout";
-import { useBillingStore } from "@/stores/billing";
+import { useShopStore } from "@/stores/shop";
 import { useAccountStore } from "@/stores/account";
 
-const billingStore = useBillingStore();
 const accountStore = useAccountStore();
+const shopStore = useShopStore();
+
+const products = await shopStore.fetchProducts();
+const productId = products.filter(p => p.slug == "sdwire").map(p => p.id);
 
 // define a validation schema
 const schema = yup.object({
@@ -275,7 +278,7 @@ const schema = yup.object({
 });
 
 // TODO: load products via API instead of hard-coding
-const stripeLookupKey = "sdwire_preorder";
+
 
 const product = {
   name: "PrintNanny SDWire",
@@ -302,9 +305,9 @@ const product = {
 
 async function onClick(values: any) {
   if (values && values.email !== undefined){
-    const checkoutSession = await billingStore.createCheckoutSession(stripeLookupKey, values.email);
+    const checkoutSession = await shopStore.createCheckoutSession(values.email, productId);
   } else if (accountStore.isAuthenticated){
-    const checkoutSession = await billingStore.createCheckoutSession(stripeLookupKey, accountStore.user.email);
+    const checkoutSession = await shopStore.createCheckoutSession(accountStore.user.email, productIds);
   }
 }
 // TODO prompt for review on delivery
