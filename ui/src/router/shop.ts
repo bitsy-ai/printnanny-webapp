@@ -33,6 +33,7 @@ export default [
         components: {
           default: SDWireSuccessPage,
         },
+        props: { default: true },
         meta: { title: "Pre-order accepted" },
       },
       {

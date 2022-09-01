@@ -114,6 +114,7 @@ class BillingProductSerializer(serializers.ModelSerializer):
 
 class BillingCheckoutSessionSerializer(serializers.Serializer):
     stripe_price_lookup_key = serializers.CharField()
+    email = serializers.EmailField()
     url = serializers.URLField(read_only=True)
 
 

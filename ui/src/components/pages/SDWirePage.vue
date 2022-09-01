@@ -61,7 +61,51 @@
 
           <p class="mt-6 text-gray-500">{{ product.description }}</p>
 
-          <div class="mt-10">
+          <!-- prompt for email address if user is not logged in -->
+          <div class="mt-10" v-if="!accountStore.isAuthenticated">
+            <p class="text-sm my-2">
+            Enter your email address or <a href="/login" class="text-indigo-500 hover:text-indigo-600">log in to an existing account.</a>
+            </p>
+            <Form
+              class="sm:max-w-xl sm:mx-auto lg:mx-0"
+              :validation-schema="schema"
+              @submit="onClick"
+            >
+              <div class="sm:flex">
+                <div class="min-w-0 flex-1">
+                  <label for="email" class="sr-only">Email address</label>
+                  <Field
+                    id="email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    class="border block w-full px-4 py-3 rounded-md text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                    placeholder="Email address"
+                    rules="required"
+                  />
+                  <error-message class="text-red-500" name="email"></error-message>
+                </div>
+                <div class="mt-3 sm:mt-0 sm:ml-3">
+                  <button
+                    type="submit"
+                    class="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                  >
+                                <CustomSpinner
+                v-if="billingStore.loading"
+                color="indigo"
+                class="mr-2"
+              ></CustomSpinner>
+                  <span v-if="!billingStore.loading"> Pre-order with Stripe </span>
+                  <span v-if="billingStore.loading">
+                    Redirecting to Stripe Checkout
+                  </span>
+                  </button>
+                </div>
+              </div>
+            </Form>
+          </div>
+
+          <div class="mt-10" v-else>
             <button
               type="button"
               class="flex w-full items-center block justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
@@ -78,7 +122,7 @@
               </span>
             </button>
           </div>
-          <p class="text-sm pt-2">
+          <p class="text-sm mt-4">
             Shipping is currently limited to US/Canada.
           </p>
 
@@ -213,12 +257,22 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import * as yup from "yup";
+import { Field, ErrorMessage, Form } from "vee-validate";
+
 import CustomSpinner from "@/components/util/CustomSpinner.vue";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/vue";
 import { CheckoutProduct } from "@/types/checkout";
 import { useBillingStore } from "@/stores/billing";
+import { useAccountStore } from "@/stores/account";
 
 const billingStore = useBillingStore();
+const accountStore = useAccountStore();
+
+// define a validation schema
+const schema = yup.object({
+  email: yup.string().required().email(),
+});
 
 // TODO: load products via API instead of hard-coding
 const stripeLookupKey = "sdwire_preorder";
@@ -246,8 +300,12 @@ const product = {
   imageAlt: "3D rendering of PrintNanny SDWire board (front view)",
 };
 
-async function onClick() {
-  const checkoutSession = billingStore.fetchCheckoutSession(stripeLookupKey);
+async function onClick(values: any) {
+  if (values && values.email !== undefined){
+    const checkoutSession = await billingStore.createCheckoutSession(stripeLookupKey, values.email);
+  } else if (accountStore.isAuthenticated){
+    const checkoutSession = await billingStore.createCheckoutSession(stripeLookupKey, accountStore.user.email);
+  }
 }
 // TODO prompt for review on delivery
 // const reviews = {

@@ -52,6 +52,12 @@ export interface BillingCheckoutSession {
      * @type {string}
      * @memberof BillingCheckoutSession
      */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BillingCheckoutSession
+     */
     'url': string;
 }
 /**
@@ -66,6 +72,12 @@ export interface BillingCheckoutSessionRequest {
      * @memberof BillingCheckoutSessionRequest
      */
     'stripe_price_lookup_key': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BillingCheckoutSessionRequest
+     */
+    'email': string;
 }
 /**
  * 

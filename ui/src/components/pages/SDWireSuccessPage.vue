@@ -8,8 +8,8 @@
         <p class="mt-2 text-base text-gray-500">Your order #14034056 has shipped and will be with you soon.</p>
 
         <dl class="mt-12 text-sm font-medium">
-        <dt class="text-gray-900">Tracking number</dt>
-        <dd class="mt-2 text-indigo-600">51547878755545848512</dd>
+        <dt class="text-gray-900">Order Number</dt>
+        <dd class="mt-2 text-indigo-600">{{ billingStore.stripeCheckoutSuccess?.stripe_session }}</dd>
         </dl>
     </div>
 
@@ -128,7 +128,7 @@ const props = defineProps({
     }
 })
 
-
+billingStore.fetchCheckoutSessionSuccess(props.sessionId);
 
 const products = [
 {

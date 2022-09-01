@@ -10,6 +10,7 @@ export const useBillingStore = defineStore({
     products: [] as Array<api.BillingProduct>,
     loading: false,
     stripeCheckoutSessionUrl: undefined as undefined | string,
+    stripeCheckoutSuccess: undefined as undefined | api.StripeCheckoutSuccess
   }),
   getters: {
     billingFormReady: (state) => state.summary !== undefined,
@@ -19,10 +20,19 @@ export const useBillingStore = defineStore({
     },
   },
   actions: {
-    async fetchCheckoutSession(stripePriceLookupKey) {
+    async fetchCheckoutSessionSuccess(sessionId: string) {
+      this.$patch({ loading: true });
+      const res = await billingApi.billingCheckoutSuccessRetrieve(sessionId).catch(handleApiError);
+      if (res) {
+        this.$patch({ loading: false, stripeCheckoutSuccess: res.data });
+
+      }
+    },
+    async createCheckoutSession(stripePriceLookupKey: string, email: string) {
       this.$patch({ loading: true });
       const req = {
         stripe_price_lookup_key: stripePriceLookupKey,
+        email: email
       } as api.BillingCheckoutSession;
       const res = await billingApi
         .billingCheckoutCreate(req)
