@@ -20,36 +20,36 @@ export const useBillingStore = defineStore({
     },
   },
   actions: {
-    async fetchCheckoutSessionSuccess(sessionId: string) {
-      this.$patch({ loading: true });
-      const res = await billingApi.billingCheckoutSuccessRetrieve(sessionId).catch(handleApiError);
-      if (res) {
-        this.$patch({ loading: false, stripeCheckoutSuccess: res.data });
+    // async fetchCheckoutSessionSuccess(sessionId: string) {
+    //   this.$patch({ loading: true });
+    //   const res = await billingApi.billingCheckoutSuccessRetrieve(sessionId).catch(handleApiError);
+    //   if (res) {
+    //     this.$patch({ loading: false, stripeCheckoutSuccess: res.data });
 
-      }
-    },
-    async createCheckoutSession(stripePriceLookupKey: string, email: string) {
-      this.$patch({ loading: true });
-      const req = {
-        stripe_price_lookup_key: stripePriceLookupKey,
-        email: email
-      } as api.BillingCheckoutSession;
-      const res = await billingApi
-        .billingCheckoutCreate(req)
-        .catch(handleApiError);
-      if (res) {
-        this.$patch({ loading: false, stripeCheckoutSessionUrl: res.data.url });
-        console.log(`Redirecting to ${res.data.url}`);
-        window.location = res.data.url;
-      }
-    },
-    async fetchProducts() {
-      const res = billingApi.billingProductsList();
-      console.log("Fetched products", res.data);
-      if (res.data) {
-        this.$patch({ products: res.data });
-      }
-    },
+    //   }
+    // },
+    // async createCheckoutSession(stripePriceLookupKey: string, email: string) {
+    //   this.$patch({ loading: true });
+    //   const req = {
+    //     stripe_price_lookup_key: stripePriceLookupKey,
+    //     email: email
+    //   } as api.BillingCheckoutSession;
+    //   const res = await billingApi
+    //     .billingCheckoutCreate(req)
+    //     .catch(handleApiError);
+    //   if (res) {
+    //     this.$patch({ loading: false, stripeCheckoutSessionUrl: res.data.url });
+    //     console.log(`Redirecting to ${res.data.url}`);
+    //     window.location = res.data.url;
+    //   }
+    // },
+    // async fetchProducts() {
+    //   const res = billingApi.billingProductsList();
+    //   console.log("Fetched products", res.data);
+    //   if (res.data) {
+    //     this.$patch({ products: res.data });
+    //   }
+    // },
     async fetchSummary() {
       const res = await billingApi
         .billingSummaryRetrieve()

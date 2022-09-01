@@ -3,7 +3,7 @@ import FoundingMembershipPage from "@/components/pages/FoundingMembershipPage.vu
 import SDWirePage from "@/components/pages/SDWirePage.vue";
 import SDWireSuccessPage from "@/components/pages/SDWireSuccessPage.vue";
 import CheckoutPage from "@/components/pages/CheckoutPage.vue";
-
+import ShopProductsListPage from "@/components/pages/ShopProductsListPage.vue";
 export default [
   {
     path: "/shop/",
@@ -12,8 +12,16 @@ export default [
     },
     children: [
       {
+        path: "",
+        name: "shop-products-list",
+        components: {
+          default: ShopProductsListPage,
+        },
+        meta: { title: "Shop" },
+      },
+      {
         path: "founding-membership",
-        name: "founding-membership",
+        name: "shop-founding-membership",
         components: {
           default: FoundingMembershipPage,
         },
@@ -21,7 +29,7 @@ export default [
       },
       {
         path: "sdwire",
-        name: "sdwire",
+        name: "shop-sdwire",
         components: {
           default: SDWirePage,
         },

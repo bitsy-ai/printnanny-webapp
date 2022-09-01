@@ -83,12 +83,12 @@ import type { FlyoutMenuLink } from "@/types/links";
 const shopLinks = [
   {
     name: "Founding Membership",
-    routerLink: { name: "founding-membership" },
+    routerLink: { name: "shop-founding-membership" },
     description: "Get early access to PrintNanny",
   } as FlyoutMenuLink,
   {
     name: "PrintNanny SDWire",
-    routerLink: { name: "sdwire" },
+    routerLink: { name: "shop-sdwire" },
     description: "Compatible with OctoPrint-SDWire",
   } as FlyoutMenuLink,
 ];

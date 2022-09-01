@@ -3,6 +3,8 @@ from uuid import uuid4
 from typing import Optional
 
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
+
 from safedelete.models import SafeDeleteModel
 from print_nanny_webapp.shop.enum import OrderStatusType
 
@@ -38,11 +40,13 @@ class Product(SafeDeleteModel):
     updated_dt = models.DateTimeField(auto_now=True)
 
     sku = models.CharField(max_length=255)
+    slug = models.CharField(max_length=64)
     unit_label = models.CharField(max_length=255)
 
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     statement_descriptor = models.CharField(max_length=255)
+    images = ArrayField(models.CharField(max_length=255), default=list)
 
     # is the product visible in shop list view?
     is_active = models.BooleanField(default=False)

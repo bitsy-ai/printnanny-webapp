@@ -11,7 +11,7 @@
             class="aspect-w-4 aspect-h-3 overflow-hidden rounded-lg bg-gray-100"
           >
             <img
-              src="@/assets/images/sdwire/SDWire-3D-front-v1.4-r1.jpg"
+              src="/images/sdwire/SDWire-3D-front-v1.4-r1.jpg"
               :alt="product.imageAlt"
               class="object-cover object-center"
             />

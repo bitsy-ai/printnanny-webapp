@@ -36,6 +36,8 @@ class DjStripePaymentIntentSerializer(serializers.ModelSerializer):
 
 
 class DjStripePriceSerializer(serializers.ModelSerializer):
+    human_readable_price = serializers.CharField()
+
     class Meta:
         model = DjStripePrice
         fields = "__all__"
