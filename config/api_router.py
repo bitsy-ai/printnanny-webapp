@@ -18,6 +18,7 @@ from print_nanny_webapp.events.api.views import (
     SinglePiStatusViewSet,
     SinglePiCommandsViewSet,
 )
+from print_nanny_webapp.shop.api.views import ProductsViewSet
 
 
 from print_nanny_webapp.subscriptions.api.views import (
@@ -88,6 +89,12 @@ pi_router.register(
     r"octoprint",
     OctoPrintServerByDeviceViewSet,
     basename="octoprints",
+)
+
+router.register(
+    r"shop/products",
+    ProductsViewSet,
+    basename="products",
 )
 
 router.register(

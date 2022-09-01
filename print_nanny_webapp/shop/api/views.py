@@ -1,16 +1,29 @@
-# @extend_schema_view(
-#     get=extend_schema(
-#         tags=["billing"],
-#         responses={200: BillingProductSerializer(many=True)} | generic_get_errors,
-#     ),
-# )
-# class BillingProductsViewSet(GenericViewSet, ListModelMixin):
-#     serializer_class = BillingProductSerializer
-#     queryset = Product.objects.all()
-#     lookup_field = "id"
-#     # omit OwnerOrUserFilterBackend, which is a DEFAULT_FILTER_BACKENDS
-#     filter_backends = [DjangoFilterBackend]
-#     permission_classes = (AllowAny,)
+from django_filters.rest_framework import DjangoFilterBackend
+from drf_spectacular.utils import extend_schema_view, extend_schema
+from rest_framework.permissions import AllowAny
+from rest_framework.viewsets import GenericViewSet
+from rest_framework.mixins import (
+    ListModelMixin,
+)
+
+from print_nanny_webapp.shop.api.serializers import ProductSerializer
+from print_nanny_webapp.shop.models import Product
+from print_nanny_webapp.utils.api.views import generic_get_errors
+
+
+@extend_schema_view(
+    get=extend_schema(
+        tags=["shop"],
+        responses={200: ProductSerializer(many=True)} | generic_get_errors,
+    ),
+)
+class ProductsViewSet(GenericViewSet, ListModelMixin):
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()
+    lookup_field = "id"
+    # omit OwnerOrUserFilterBackend, which is a DEFAULT_FILTER_BACKENDS
+    filter_backends = [DjangoFilterBackend]
+    permission_classes = (AllowAny,)
 
 
 # @extend_schema_view(

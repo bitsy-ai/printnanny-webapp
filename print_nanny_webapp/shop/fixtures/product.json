@@ -1,0 +1,20 @@
+{
+	"model": "shop.product",
+	"pk": "656c6cdf-46b1-4d0e-a2b4-64675455c8af",
+	"fields": {
+		"deleted": null,
+		"created_dt": "2022-09-01T01:44:33.203Z",
+		"updated_dt": "2022-09-01T01:44:33.203Z",
+		"sku": "sdwire-1-4-rev1",
+		"unit_label": "board",
+		"name": "PrintNanny SDWire",
+		"description": "SDWire connects a device-under-test to a host computer, enabling flashing/re-imaging an SD card with no moving parts.",
+		"statement_descriptor": "PrintNanny SDWire",
+		"is_active": true,
+		"is_shippable": true,
+		"is_preorder": true,
+		"is_subscription": false,
+		"stripe_price_lookup_key": "sdwire_preorder",
+		"djstripe_product": 2
+	}
+}
