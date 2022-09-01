@@ -18,7 +18,7 @@ from print_nanny_webapp.events.api.views import (
     SinglePiStatusViewSet,
     SinglePiCommandsViewSet,
 )
-from print_nanny_webapp.shop.api.views import ProductsViewSet
+from print_nanny_webapp.shop.api.views import ProductsViewSet, OrderCheckoutView
 
 
 from print_nanny_webapp.subscriptions.api.views import (
@@ -61,6 +61,7 @@ other_urls = [
     #     BillingCheckoutSuccessView.as_view(),
     #     name="billing-checkout-success",
     # ),
+    path("shop/orders", OrderCheckoutView.as_view()),
     path("pis/events", AllPiEventsViewSet.as_view({"get": "list", "post": "create"})),
     path("pis/events/<int:id>", AllPiEventsViewSet.as_view({"get": "retrieve"})),
     path("pis/status", AllPiStatusViewSet.as_view({"get": "list", "post": "create"})),

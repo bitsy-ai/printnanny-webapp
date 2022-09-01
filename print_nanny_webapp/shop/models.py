@@ -56,6 +56,10 @@ class Product(SafeDeleteModel):
     stripe_price_lookup_key = models.CharField(null=True, max_length=255)
     djstripe_product = models.ForeignKey("djstripe.Product", on_delete=models.CASCADE)
 
+    @property
+    def prices(self):
+        return self.djstripe_product.prices
+
 
 class OrderStatus(SafeDeleteModel):
     class Meta:
@@ -89,6 +93,7 @@ class Order(SafeDeleteModel):
 
     # The contents of this order according to our shop Product data model
     products = models.ManyToManyField(Product)
+
     djstripe_customer = models.ForeignKey("djstripe.Customer", on_delete=models.CASCADE)
 
     # Session.display_items will contain the contents of this order with ref to Stripe's data model
