@@ -1,11 +1,15 @@
 from django.apps import apps
 from django.forms import ModelForm
 from django.contrib import admin
+
 from print_nanny_webapp.subscriptions.forms import (
     ReferralInviteCreateForm,
     ReferralCodeCreateForm,
 )
-from print_nanny_webapp.subscriptions.models import ReferralCode, ReferralInvite
+from print_nanny_webapp.subscriptions.models import (
+    ReferralCode,
+    ReferralInvite,
+)
 
 # Register your models here.
 MemberBadge = apps.get_model("subscriptions", "MemberBadge")
