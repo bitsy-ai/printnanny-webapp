@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **created** | **datetime** | The datetime this object was created in stripe. | [optional] 
 **metadata** | **dict(str, object)** | A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format. | [optional] 
 **billing_details** | **dict(str, object)** | Billing information associated with the PaymentMethod that may be used or required by particular types of payment methods. | 
-**type** | [**StripePaymentMethodTypeEnum**](StripePaymentMethodTypeEnum.md) | The type of the PaymentMethod. | 
+**type** | [**StripePaymentMethodType**](StripePaymentMethodType.md) | The type of the PaymentMethod. | 
 **acss_debit** | **dict(str, object)** | Additional information for payment methods of type &#x60;acss_debit&#x60; | [optional] 
 **afterpay_clearpay** | **dict(str, object)** | Additional information for payment methods of type &#x60;afterpay_clearpay&#x60; | [optional] 
 **alipay** | **dict(str, object)** | Additional information for payment methods of type &#x60;alipay&#x60; | [optional] 

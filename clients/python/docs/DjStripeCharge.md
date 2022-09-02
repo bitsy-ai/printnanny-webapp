@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **djstripe_id** | **int** |  | [readonly] 
+**failure_code** | [**StripeApiErrorCode**](StripeApiErrorCode.md) |  | 
 **djstripe_created** | **datetime** |  | [readonly] 
 **djstripe_updated** | **datetime** |  | [readonly] 
 **id** | **str** |  | 
@@ -22,7 +23,6 @@ Name | Type | Description | Notes
 **captured** | **bool** | If the charge was created without capturing, this boolean represents whether or not it is still uncaptured or has since been captured. | [optional] 
 **currency** | **str** | The currency in which the charge was made. | 
 **disputed** | **bool** | Whether the charge has been disputed. | [optional] 
-**failure_code** | [**OneOfFailureCodeEnumBlankEnum**](OneOfFailureCodeEnumBlankEnum.md) | Error code explaining reason for charge failure if available. | [optional] 
 **failure_message** | **str** | Message to user further explaining reason for charge failure if available. | [optional] 
 **fraud_details** | **dict(str, object)** | Hash with information on fraud assessments for the charge. | [optional] 
 **outcome** | **dict(str, object)** | Details about whether or not the payment was accepted, and why. | [optional] 
@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 **shipping** | **dict(str, object)** | Shipping information for the charge | [optional] 
 **statement_descriptor** | **str** | For card charges, use statement_descriptor_suffix instead. Otherwise, you can use this value as the complete description of a charge on your customers&#39; statements. Must contain at least one letter, maximum 22 characters. | [optional] 
 **statement_descriptor_suffix** | **str** | Provides information about the charge that customers see on their statements. Concatenated with the prefix (shortened descriptor) or statement descriptor that&#39;s set on the account to form the complete statement descriptor. Maximum 22 characters for the concatenated descriptor. | [optional] 
-**status** | [**DjStripeChargeStatusEnum**](DjStripeChargeStatusEnum.md) | The status of the payment. | 
+**status** | [**StripeSourceCodeVerificationStatus**](StripeSourceCodeVerificationStatus.md) | The status of the payment. | 
 **transfer_data** | **dict(str, object)** | An optional dictionary including the account to automatically transfer to as part of a destination charge. | [optional] 
 **transfer_group** | **str** | A string that identifies this transaction as part of a group. | [optional] 
 **djstripe_owner_account** | **str** | The Stripe Account this object belongs to. | [optional] 

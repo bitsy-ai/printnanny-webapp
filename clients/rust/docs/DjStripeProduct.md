@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **metadata** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format. | [optional]
 **description** | Option<**String**> | A description of this object. | [optional]
 **name** | **String** | The product's name, meant to be displayable to the customer. Applicable to both `service` and `good` types. | 
-**_type** | Option<[**crate::models::DjStripeProductTypeEnum**](DjStripeProductTypeEnum.md)> | The type of the product. The product is either of type `good`, which is eligible for use with Orders and SKUs, or `service`, which is eligible for use with Subscriptions and Plans. | 
+**_type** | Option<[**crate::models::StripeProductType**](StripeProductType.md)> | The type of the product. The product is either of type `good`, which is eligible for use with Orders and SKUs, or `service`, which is eligible for use with Subscriptions and Plans. | 
 **active** | Option<**bool**> | Whether the product is currently available for purchase. Only applicable to products of `type=good`. | [optional]
 **attributes** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | A list of up to 5 attributes that each SKU can provide values for (e.g., `[\"color\", \"size\"]`). Only applicable to products of `type=good`. | [optional]
 **caption** | Option<**String**> | A short one-line description of the product, meant to be displayableto the customer. Only applicable to products of `type=good`. | [optional]

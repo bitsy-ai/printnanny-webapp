@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **phone** | Option<**String**> | The customer's phone number. | [optional]
 **preferred_locales** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | The customer's preferred locales (languages), ordered by preference. | [optional]
 **shipping** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Shipping information associated with the customer. | [optional]
-**tax_exempt** | Option<[**crate::models::TaxExemptEnum**](TaxExemptEnum.md)> | Describes the customer's tax exemption status. When set to reverse, invoice and receipt PDFs include the text \"Reverse charge\". | [optional]
+**tax_exempt** | Option<[**crate::models::StripeCustomerTaxExempt**](StripeCustomerTaxExempt.md)> | Describes the customer's tax exemption status. When set to reverse, invoice and receipt PDFs include the text \"Reverse charge\". | [optional]
 **date_purged** | **String** |  | [readonly]
 **djstripe_owner_account** | Option<**String**> | The Stripe Account this object belongs to. | 
 **default_source** | Option<**String**> |  | [optional]

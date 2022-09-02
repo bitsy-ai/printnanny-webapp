@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **phone** | **str** | The customer&#39;s phone number. | [optional] 
 **preferred_locales** | **dict(str, object)** | The customer&#39;s preferred locales (languages), ordered by preference. | [optional] 
 **shipping** | **dict(str, object)** | Shipping information associated with the customer. | [optional] 
-**tax_exempt** | [**TaxExemptEnum**](TaxExemptEnum.md) | Describes the customer&#39;s tax exemption status. When set to reverse, invoice and receipt PDFs include the text \&quot;Reverse charge\&quot;. | [optional] 
+**tax_exempt** | [**StripeCustomerTaxExempt**](StripeCustomerTaxExempt.md) | Describes the customer&#39;s tax exemption status. When set to reverse, invoice and receipt PDFs include the text \&quot;Reverse charge\&quot;. | [optional] 
 **date_purged** | **datetime** |  | [readonly] 
 **djstripe_owner_account** | **str** | The Stripe Account this object belongs to. | 
 **default_source** | **str** |  | [optional] 

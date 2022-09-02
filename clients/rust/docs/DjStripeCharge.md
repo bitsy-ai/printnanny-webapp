@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **djstripe_id** | **i32** |  | [readonly]
+**failure_code** | [**crate::models::StripeApiErrorCode**](StripeApiErrorCode.md) |  | 
 **djstripe_created** | **String** |  | [readonly]
 **djstripe_updated** | **String** |  | [readonly]
 **id** | **String** |  | 
@@ -22,7 +23,6 @@ Name | Type | Description | Notes
 **captured** | Option<**bool**> | If the charge was created without capturing, this boolean represents whether or not it is still uncaptured or has since been captured. | [optional]
 **currency** | **String** | The currency in which the charge was made. | 
 **disputed** | Option<**bool**> | Whether the charge has been disputed. | [optional]
-**failure_code** | Option<[**crate::models::OneOfFailureCodeEnumBlankEnum**](oneOf<FailureCodeEnum,BlankEnum>.md)> | Error code explaining reason for charge failure if available. | [optional]
 **failure_message** | Option<**String**> | Message to user further explaining reason for charge failure if available. | [optional]
 **fraud_details** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Hash with information on fraud assessments for the charge. | [optional]
 **outcome** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Details about whether or not the payment was accepted, and why. | [optional]
@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 **shipping** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Shipping information for the charge | [optional]
 **statement_descriptor** | Option<**String**> | For card charges, use statement_descriptor_suffix instead. Otherwise, you can use this value as the complete description of a charge on your customers' statements. Must contain at least one letter, maximum 22 characters. | [optional]
 **statement_descriptor_suffix** | Option<**String**> | Provides information about the charge that customers see on their statements. Concatenated with the prefix (shortened descriptor) or statement descriptor that's set on the account to form the complete statement descriptor. Maximum 22 characters for the concatenated descriptor. | [optional]
-**status** | Option<[**crate::models::DjStripeChargeStatusEnum**](DjStripeChargeStatusEnum.md)> | The status of the payment. | 
+**status** | Option<[**crate::models::StripeSourceCodeVerificationStatus**](StripeSourceCodeVerificationStatus.md)> | The status of the payment. | 
 **transfer_data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | An optional dictionary including the account to automatically transfer to as part of a destination charge. | [optional]
 **transfer_group** | Option<**String**> | A string that identifies this transaction as part of a group. | [optional]
 **djstripe_owner_account** | Option<**String**> | The Stripe Account this object belongs to. | [optional]

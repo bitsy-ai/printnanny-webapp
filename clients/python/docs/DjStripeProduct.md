@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **metadata** | **dict(str, object)** | A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format. | [optional] 
 **description** | **str** | A description of this object. | [optional] 
 **name** | **str** | The product&#39;s name, meant to be displayable to the customer. Applicable to both &#x60;service&#x60; and &#x60;good&#x60; types. | 
-**type** | [**DjStripeProductTypeEnum**](DjStripeProductTypeEnum.md) | The type of the product. The product is either of type &#x60;good&#x60;, which is eligible for use with Orders and SKUs, or &#x60;service&#x60;, which is eligible for use with Subscriptions and Plans. | 
+**type** | [**StripeProductType**](StripeProductType.md) | The type of the product. The product is either of type &#x60;good&#x60;, which is eligible for use with Orders and SKUs, or &#x60;service&#x60;, which is eligible for use with Subscriptions and Plans. | 
 **active** | **bool** | Whether the product is currently available for purchase. Only applicable to products of &#x60;type&#x3D;good&#x60;. | [optional] 
 **attributes** | **dict(str, object)** | A list of up to 5 attributes that each SKU can provide values for (e.g., &#x60;[\&quot;color\&quot;, \&quot;size\&quot;]&#x60;). Only applicable to products of &#x60;type&#x3D;good&#x60;. | [optional] 
 **caption** | **str** | A short one-line description of the product, meant to be displayableto the customer. Only applicable to products of &#x60;type&#x3D;good&#x60;. | [optional] 
