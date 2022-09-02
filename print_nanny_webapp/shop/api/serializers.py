@@ -1,5 +1,7 @@
 from typing import Any, Dict
 from rest_framework import serializers
+
+import djstripe.enums
 from djstripe.models.core import (
     Product as DjstripeProduct,
     Customer as DjStripeCustomer,
@@ -28,19 +30,35 @@ class DjStripeCustomerSerializer(serializers.ModelSerializer):
 
 
 class DjStripeCheckoutSessionSerializer(serializers.ModelSerializer):
+    billing_address_collection = serializers.ChoiceField(
+        choices=djstripe.enums.SessionBillingAddressCollection.choices
+    )
+    mode = serializers.ChoiceField(choices=djstripe.enums.SessionMode.choices)
+    submit_type = serializers.ChoiceField(
+        choices=djstripe.enums.SubmitTypeStatus.choices
+    )
+
     class Meta:
         model = DjStripeCheckoutSession
         fields = "__all__"
 
 
 class DjStripeChargeSerializer(serializers.ModelSerializer):
+    failure_code = serializers.ChoiceField(choices=djstripe.enums.ApiErrorCode.choices)
+
     class Meta:
         model = DjStripeCharge
         fields = "__all__"
 
 
 class DjStripePaymentIntentSerializer(serializers.ModelSerializer):
+    cancellation_reason = serializers.ChoiceField(
+        choices=djstripe.enums.PaymentIntentCancellationReason.choices
+    )
     charges = DjStripeChargeSerializer(many=True, read_only=True)
+    setup_future_usage = serializers.ChoiceField(
+        choices=djstripe.enums.IntentUsage.choices
+    )
 
     class Meta:
         model = DjStripePaymentIntent
@@ -48,7 +66,12 @@ class DjStripePaymentIntentSerializer(serializers.ModelSerializer):
 
 
 class DjStripePriceSerializer(serializers.ModelSerializer):
+    billing_scheme = serializers.ChoiceField(
+        choices=djstripe.enums.BillingScheme.choices
+    )
     human_readable_price = serializers.CharField()
+
+    tiers_mode = serializers.ChoiceField(choices=djstripe.enums.PriceTiersMode.choices)
 
     class Meta:
         model = DjStripePrice
