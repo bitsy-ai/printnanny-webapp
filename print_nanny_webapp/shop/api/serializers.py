@@ -112,7 +112,13 @@ class OrderSerializer(serializers.ModelSerializer):
         stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
         return stripe.checkout.Session.retrieve(
             obj.djstripe_checkout_session.id,
-            expand=["customer", "payment_intent", "line_items"],
+            expand=[
+                "customer",
+                "payment_intent",
+                "line_items",
+                "subscription",
+                "subscription.default_payment_method",
+            ],
         )
 
     class Meta:

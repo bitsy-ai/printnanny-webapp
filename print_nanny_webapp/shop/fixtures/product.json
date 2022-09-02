@@ -23,5 +23,27 @@
 			"stripe_price_lookup_key": "sdwire_preorder",
 			"djstripe_product": 2
 		}
+	},
+	{
+		"model": "shop.product",
+		"pk": "25cd8cff-7da7-416f-a6a3-89aff5d1ea3e",
+		"fields": {
+			"deleted": null,
+			"created_dt": "2022-09-02T16:29:14.616Z",
+			"updated_dt": "2022-09-02T16:29:14.616Z",
+			"sku": "founding-membership",
+			"slug": "founding-membership",
+			"unit_label": "membership",
+			"name": "Founding Membership",
+			"description": "Founding Members get unlimited access to Print Nanny. No metered usage. No additional cost per printer. Money-back guarantee. If you're not 100% satisfied, email support@printnanny.ai for a full refund.",
+			"statement_descriptor": "PrintNanny Founding Membership",
+			"images": "[\"placeholder\"]",
+			"is_active": true,
+			"is_shippable": false,
+			"is_preorder": false,
+			"is_subscription": true,
+			"stripe_price_lookup_key": "founding-membership",
+			"djstripe_product": 1
+		}
 	}
 ]
