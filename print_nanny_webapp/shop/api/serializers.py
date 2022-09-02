@@ -70,11 +70,11 @@ class OrderCheckoutSerializer(serializers.ModelSerializer):
     products = serializers.PrimaryKeyRelatedField(
         many=True, queryset=Product.objects.all()
     )
-    stripe_checkout_session_url = serializers.CharField(read_only=True)
+    stripe_checkout_redirect_url = serializers.CharField(read_only=True)
 
     class Meta:
         model = Order
-        fields = ("products", "email", "stripe_checkout_session_url")
+        fields = ("products", "email", "stripe_checkout_redirect_url")
 
     def create(self, validated_data):
         request = self.context["request"]

@@ -3259,7 +3259,7 @@ export interface OrderCheckout {
      * @type {string}
      * @memberof OrderCheckout
      */
-    'stripe_checkout_session_url': string;
+    'stripe_checkout_redirect_url': string;
 }
 /**
  * 

@@ -33,7 +33,7 @@ export const useShopStore = defineStore({
         console.debug(
           `Redirecting to ${res.data.stripe_checkout_redirect_url}`
         );
-        window.location = res.data.stripe_checkout_redirect_url;
+        window.location.href = res.data.stripe_checkout_redirect_url;
       }
     },
     async fetchCheckoutSession(sessionId: string) {
