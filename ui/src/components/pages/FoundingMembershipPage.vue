@@ -6,7 +6,6 @@
       <div class="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
         <!-- Image gallery -->
         <div>
-
           <TabGroup as="div" class="flex flex-col-reverse">
             <!-- Image selector -->
             <div
@@ -48,67 +47,66 @@
               </TabPanel>
             </TabPanels>
           </TabGroup>
-  
-         <div
-          class="mx-auto mt-16 w-full max-w-2xl lg:col-span-4 lg:mt-0 lg:max-w-none">
-          <TabGroup as="div">
-            <div class="border-b border-gray-200">
-              <TabList class="-mb-px flex space-x-8">
-                <Tab v-slot="{ selected }" as="template">
-                  <button
-                    :class="[
-                      selected
-                        ? 'border-indigo-600 text-indigo-600'
-                        : 'border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300',
-                      'whitespace-nowrap border-b-2 py-6 text-sm font-medium focus:outline-none',
-                    ]"
-                  >
-                    FAQ
-                  </button>
-                </Tab>
-                <Tab v-slot="{ selected }" as="template">
-                  <button
-                    :class="[
-                      selected
-                        ? 'border-indigo-600 text-indigo-600'
-                        : 'border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300',
-                      'whitespace-nowrap border-b-2 py-6 text-sm font-medium focus:outline-none',
-                    ]"
-                  >
-                    Release History
-                  </button>
-                </Tab>
-              </TabList>
-            </div>
-            <TabPanels as="template">
 
-              <TabPanel class="text-sm text-gray-500">
-                <h3 class="sr-only">Frequently Asked Questions</h3>
+          <div
+            class="mx-auto mt-16 w-full max-w-2xl lg:col-span-4 lg:mt-0 lg:max-w-none"
+          >
+            <TabGroup as="div">
+              <div class="border-b border-gray-200">
+                <TabList class="-mb-px flex space-x-8">
+                  <Tab v-slot="{ selected }" as="template">
+                    <button
+                      :class="[
+                        selected
+                          ? 'border-indigo-600 text-indigo-600'
+                          : 'border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300',
+                        'whitespace-nowrap border-b-2 py-6 text-sm font-medium focus:outline-none',
+                      ]"
+                    >
+                      FAQ
+                    </button>
+                  </Tab>
+                  <Tab v-slot="{ selected }" as="template">
+                    <button
+                      :class="[
+                        selected
+                          ? 'border-indigo-600 text-indigo-600'
+                          : 'border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300',
+                        'whitespace-nowrap border-b-2 py-6 text-sm font-medium focus:outline-none',
+                      ]"
+                    >
+                      Release History
+                    </button>
+                  </Tab>
+                </TabList>
+              </div>
+              <TabPanels as="template">
+                <TabPanel class="text-sm text-gray-500">
+                  <h3 class="sr-only">Frequently Asked Questions</h3>
 
-                <dl>
-                  <template v-for="faq in faqs" :key="faq.question">
-                    <dt class="mt-10 font-medium text-gray-900">
-                      {{ faq.question }}
-                    </dt>
-                    <dd class="prose prose-sm mt-2 max-w-none text-gray-500">
-                      <div v-html="faq.answer"></div>
-                    </dd>
-                  </template>
-                </dl>
-              </TabPanel>
+                  <dl>
+                    <template v-for="faq in faqs" :key="faq.question">
+                      <dt class="mt-10 font-medium text-gray-900">
+                        {{ faq.question }}
+                      </dt>
+                      <dd class="prose prose-sm mt-2 max-w-none text-gray-500">
+                        <div v-html="faq.answer"></div>
+                      </dd>
+                    </template>
+                  </dl>
+                </TabPanel>
 
-              <TabPanel class="pt-10">
-                <h3 class="sr-only">Timeline</h3>
+                <TabPanel class="pt-10">
+                  <h3 class="sr-only">Timeline</h3>
 
-                <div
-                  class="prose prose-sm max-w-none text-gray-500"
-                  v-html="timeline.content"
-                />
-              </TabPanel>
-            </TabPanels>
-          </TabGroup>
-        </div>
-
+                  <div
+                    class="prose prose-sm max-w-none text-gray-500"
+                    v-html="timeline.content"
+                  />
+                </TabPanel>
+              </TabPanels>
+            </TabGroup>
+          </div>
         </div>
 
         <!-- Product info -->
@@ -238,7 +236,6 @@
               </Disclosure>
             </div>
           </section>
-          
         </div>
       </div>
     </div>
@@ -282,19 +279,23 @@ const productData = products?.find((p) => p.slug == "founding-membership");
 
 async function onClick(values: any) {
   if (values && values.email !== undefined && productData !== undefined) {
-    await shopStore.createCheckoutSession(values.email, [productData.id] as Array<string>);
+    await shopStore.createCheckoutSession(values.email, [
+      productData.id,
+    ] as Array<string>);
   } else if (
     accountStore.isAuthenticated &&
     accountStore.user !== undefined &&
     productData !== undefined
   ) {
-    await shopStore.createCheckoutSession(accountStore.user?.email, [productData.id] as Array<string>);
+    await shopStore.createCheckoutSession(accountStore.user?.email, [
+      productData.id,
+    ] as Array<string>);
   }
 }
 
 const timeline = {
-  content: ``
-}
+  content: ``,
+};
 
 const faqs = [
   {
@@ -324,8 +325,8 @@ const faqs = [
   },
   {
     question: "How to I update PrintNanny OS?",
-    answer: `Follow the steps in <a href="https://docs.printnanny.ai/docs/update-printnanny-os/"  class="text-indigo-500 hover:text-indigo-600" target="_blank">Update PrintNanny OS</a>.`
-  }
+    answer: `Follow the steps in <a href="https://docs.printnanny.ai/docs/update-printnanny-os/"  class="text-indigo-500 hover:text-indigo-600" target="_blank">Update PrintNanny OS</a>.`,
+  },
 ];
 
 const product = ref({
@@ -372,8 +373,7 @@ const product = ref({
     },
     {
       name: "Hardware Requirements",
-      extra:
-        "",
+      extra: "",
       open: true,
       items: [
         `<a href="https://docs.printnanny.ai/docs/quick-start/hardware/" class="text-indigo-500 hover:text-indigo-600" target="_blank">Read more about required hardware</a>`,

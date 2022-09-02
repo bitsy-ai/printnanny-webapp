@@ -170,7 +170,8 @@
         </div>
 
         <div
-          class="mx-auto mt-16 w-full max-w-2xl lg:col-span-4 lg:mt-0 lg:max-w-none">
+          class="mx-auto mt-16 w-full max-w-2xl lg:col-span-4 lg:mt-0 lg:max-w-none"
+        >
           <TabGroup as="div">
             <div class="border-b border-gray-200">
               <TabList class="-mb-px flex space-x-8">
@@ -309,13 +310,17 @@ const product = {
 
 async function onClick(values: any) {
   if (values && values.email !== undefined && productData !== undefined) {
-    await shopStore.createCheckoutSession(values.email, [productData.id] as Array<string>);
+    await shopStore.createCheckoutSession(values.email, [
+      productData.id,
+    ] as Array<string>);
   } else if (
     accountStore.isAuthenticated &&
     accountStore.user !== undefined &&
     productData !== undefined
   ) {
-    await shopStore.createCheckoutSession(accountStore.user?.email, [productData.id] as Array<string>);
+    await shopStore.createCheckoutSession(accountStore.user?.email, [
+      productData.id,
+    ] as Array<string>);
   }
 }
 // TODO prompt for review on delivery
@@ -365,29 +370,34 @@ const faqs = [
   },
   {
     question: "Can you ship to my country?",
-    answer: "If you do not see a shipping option available for your country, email support@printnanny.ai with your country, postal code, and order quantity. Please keep in mind that shipping outside of the US/Canada may be prohibitely expensive for small orders. If you would like to place a bulk order and re-distribute PrintNanny SDWire, get in touch for a quote.",
+    answer:
+      "If you do not see a shipping option available for your country, email support@printnanny.ai with your country, postal code, and order quantity. Please keep in mind that shipping outside of the US/Canada may be prohibitely expensive for small orders. If you would like to place a bulk order and re-distribute PrintNanny SDWire, get in touch for a quote.",
   },
   {
     question: "When will I receive my order?",
-    answer: "The first batch of units will ship in October 2022. We assemble and ship pre-orders in they order they're received. You'll receive an email confirmation when your order is ready to ship, to make sure we have the correct address on file.",
+    answer:
+      "The first batch of units will ship in October 2022. We assemble and ship pre-orders in they order they're received. You'll receive an email confirmation when your order is ready to ship, to make sure we have the correct address on file.",
   },
   {
     question: "When does my payment method get charged?",
-    answer: "Your payment will be charged when you place your pre-order. If you cancel your pre-order, your payment method will be refunded."
+    answer:
+      "Your payment will be charged when you place your pre-order. If you cancel your pre-order, your payment method will be refunded.",
   },
   {
     question: "Can I cancel my pre-order?",
-    answer: "Yes, as long as your order hasn't shipped. Please send an email to support@printnanny.ai to cancel your pre-order and receive a refund."
+    answer:
+      "Yes, as long as your order hasn't shipped. Please send an email to support@printnanny.ai to cancel your pre-order and receive a refund.",
   },
   {
     question: "What is your return policy?",
     answer: `If you receive a board that doesn't work, get in touch immediately! 
       We happily accept returns within 30 days of delivery. Please send an email support@printanny.ai to start the return process.
-    `
+    `,
   },
   {
     question: "Do you offer a bulk discount?",
-    answer: "For orders of 5+ boards, email support@printnanny.ai with your country, zip code, and desired quantity.",
+    answer:
+      "For orders of 5+ boards, email support@printnanny.ai with your country, zip code, and desired quantity.",
   },
   {
     question: "Is PrintNanny SDWire open source?",
