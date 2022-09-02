@@ -13,16 +13,16 @@
             >
               <TabList class="grid grid-cols-4 gap-6">
                 <Tab
-                  v-for="image in product.images"
-                  :key="image.id"
+                  v-for="(image, index) in product.images"
+                  :key="index"
                   v-slot="{ selected }"
                   class="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
                 >
-                  <span class="sr-only"> {{ image.name }} </span>
+                  <span class="sr-only"> {{ image.alt }} </span>
                   <span class="absolute inset-0 overflow-hidden rounded-md">
                     <img
                       :src="image.src"
-                      alt=""
+                      :alt="image.alt"
                       class="h-full w-full object-cover object-center"
                     />
                   </span>
@@ -38,7 +38,7 @@
             </div>
 
             <TabPanels class="aspect-w-1 aspect-h-1 w-full">
-              <TabPanel v-for="image in product.images" :key="image.id">
+              <TabPanel v-for="(image, index) in product.images" :key="index">
                 <img
                   :src="image.src"
                   :alt="image.alt"

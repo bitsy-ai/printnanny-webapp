@@ -43,7 +43,11 @@
         </a>
       </div>
 
-      <order-item-summary :order="order"></order-item-summary>
+      <order-item-summary v-if="order" :order="order"></order-item-summary>
+      <p v-else>
+        Error processing your order. Please email support@printnanny.ai for
+        assistance.
+      </p>
     </div>
   </div>
 </template>
