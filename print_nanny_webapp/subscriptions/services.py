@@ -1,13 +1,31 @@
 import logging
 from typing import Optional
+from django.contrib.auth import get_user_model
 from django.db.models import Q
 from djstripe.settings import djstripe_settings
-from djstripe.models import Customer, Subscription, Charge, Event, Invoice, InvoiceItem
+from djstripe.models import Customer, Subscription, Invoice, Charge, Event
+from djstripe.models.checkout import Session
 import stripe
 
-from print_nanny_webapp.users.models import User
 
 logger = logging.getLogger(__name__)
+
+User = get_user_model()
+
+
+def get_stripe_checkout_session(session_id: str) -> Session:
+    stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
+
+    stripe_res = stripe.checkout.Session.retrieve(session_id)
+    # sync djstripe model from response, then return djstripe model to be serialized
+    return Session.sync_from_stripe_data(stripe_res)
+
+
+def get_stripe_customer_by_id(stripe_customer_id: str) -> Customer:
+    stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
+
+    stripe_res = stripe.Customer.retrieve(stripe_customer_id)
+    return Customer.sync_from_stripe_data(stripe_res)
 
 
 def link_customer_by_email(user) -> Customer:
@@ -30,7 +48,7 @@ def get_stripe_subscription(customer: Customer) -> Subscription:
     return subscriptions.first()
 
 
-def get_stripe_customer(user: User) -> Customer:
+def get_stripe_customer(user) -> Customer:
     """
     Retrieve djstripe.model.Customer where Customer <-> User relationship may not be set
     Sets Customer.subscriber relationship if unset

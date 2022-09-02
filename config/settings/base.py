@@ -97,6 +97,8 @@ LOCAL_APPS = [
     "print_nanny_webapp.users.apps.UsersConfig",
     "print_nanny_webapp.surveys.apps.SurveysConfig",
     "print_nanny_webapp.octoprint.apps.OctoprintConfig",
+    "print_nanny_webapp.subscriptions.apps.SubscriptionsConfig",
+    "print_nanny_webapp.shop.apps.ShopConfig",
     "print_nanny_webapp.events.apps.EventsConfig",  # Gated at the bottom
     # Your stuff: custom apps go here
 ]
@@ -526,8 +528,6 @@ DOCS_SITE__QUICKSTART = DOCS_SITE_URL
 # dj-stripe
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ["djstripe"]
-INSTALLED_APPS += ["print_nanny_webapp.subscriptions.apps.SubscriptionsConfig"]
-
 DJSTRIPE_USE_NATIVE_JSONFIELD = True
 STRIPE_LIVE_MODE = env("STRIPE_LIVE_MODE", default=False)
 # https://github.com/dj-stripe/dj-stripe/issues/1360

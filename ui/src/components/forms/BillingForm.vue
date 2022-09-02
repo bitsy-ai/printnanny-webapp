@@ -109,7 +109,7 @@ import moment from "moment";
 import { useBillingStore } from "@/stores/billing";
 import SubscriptionAction from "@/components/billing/SubscriptionAction.vue";
 const billingStore = useBillingStore();
-billingStore.fetch();
+billingStore.fetchSummary();
 
 function formattedDate(date: string | undefined) {
   if (date === undefined) {

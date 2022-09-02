@@ -4,7 +4,7 @@ from djstripe.models.billing import (
     Plan,
     SubscriptionSchedule,
 )
-from djstripe.models.core import Event, Customer, Charge
+from djstripe.models.core import Product, Price, Event, Customer, Charge
 from djstripe.models.payment_methods import PaymentMethod
 from djstripe import settings as djstripe_settings
 from djstripe.utils import convert_tstamp
@@ -94,3 +94,18 @@ class BillingSummarySerializer(serializers.Serializer):
             return_url="https://printnanny.ai/billing",
         )
         return session.url
+
+
+class BillingPriceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Price
+        fields = "__all__"
+
+
+class BillingProductSerializer(serializers.ModelSerializer):
+
+    prices = BillingPriceSerializer(many=True)
+
+    class Meta:
+        model = Product
+        fields = "__all__"

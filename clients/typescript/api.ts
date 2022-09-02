@@ -24,6 +24,34 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const BillingAddressCollectionEnum = {
+    Auto: 'auto',
+    Required: 'required'
+} as const;
+
+export type BillingAddressCollectionEnum = typeof BillingAddressCollectionEnum[keyof typeof BillingAddressCollectionEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const BillingSchemeEnum = {
+    PerUnit: 'per_unit',
+    Tiered: 'tiered'
+} as const;
+
+export type BillingSchemeEnum = typeof BillingSchemeEnum[keyof typeof BillingSchemeEnum];
+
+
+/**
+ * 
+ * @export
  * @interface BillingSummary
  */
 export interface BillingSummary {
@@ -52,6 +80,19 @@ export interface BillingSummary {
      */
     'billing_portal_url': string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const BlankEnum = {
+    Empty: ''
+} as const;
+
+export type BlankEnum = typeof BlankEnum[keyof typeof BlankEnum];
+
+
 /**
  * Abstract class inspired by DRF\'s own token serializer. Returns a user if valid, None or a message if not.
  * @export
@@ -108,12 +149,1201 @@ export interface CallbackTokenAuthRequest {
  * @enum {string}
  */
 
+export const CancellationReasonEnum = {
+    Abandoned: 'abandoned',
+    Automatic: 'automatic',
+    Duplicate: 'duplicate',
+    FailedInvoice: 'failed_invoice',
+    Fraudulent: 'fraudulent',
+    RequestedByCustomer: 'requested_by_customer',
+    VoidInvoice: 'void_invoice'
+} as const;
+
+export type CancellationReasonEnum = typeof CancellationReasonEnum[keyof typeof CancellationReasonEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const CaptureMethodEnum = {
+    Automatic: 'automatic',
+    Manual: 'manual'
+} as const;
+
+export type CaptureMethodEnum = typeof CaptureMethodEnum[keyof typeof CaptureMethodEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
 export const CollectionMethodEnum = {
     ChargeAutomatically: 'charge_automatically',
     SendInvoice: 'send_invoice'
 } as const;
 
 export type CollectionMethodEnum = typeof CollectionMethodEnum[keyof typeof CollectionMethodEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const ConfirmationMethodEnum = {
+    Automatic: 'automatic',
+    Manual: 'manual'
+} as const;
+
+export type ConfirmationMethodEnum = typeof ConfirmationMethodEnum[keyof typeof ConfirmationMethodEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface DjStripeCharge
+ */
+export interface DjStripeCharge {
+    /**
+     * 
+     * @type {number}
+     * @memberof DjStripeCharge
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof DjStripeCharge
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCharge
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'description'?: string | null;
+    /**
+     * Amount charged (as decimal).
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'amount': string;
+    /**
+     * Amount (as decimal) captured (can be less than the amount attribute on the charge if a partial capture was issued).
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'amount_captured'?: string | null;
+    /**
+     * Amount (as decimal) refunded (can be less than the amount attribute on the charge if a partial refund was issued).
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'amount_refunded': string;
+    /**
+     * ID of the Connect application that created the charge.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'application'?: string;
+    /**
+     * The amount (as decimal) of the application fee (if any) requested for the charge.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'application_fee_amount'?: string | null;
+    /**
+     * Billing information associated with the PaymentMethod at the time of the transaction.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCharge
+     */
+    'billing_details'?: { [key: string]: any; } | null;
+    /**
+     * The full statement descriptor that is passed to card networks, and that is displayed on your customers\' credit card and bank statements. Allows you to see what the statement descriptor looks like after the static and dynamic portions are combined.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'calculated_statement_descriptor'?: string;
+    /**
+     * If the charge was created without capturing, this boolean represents whether or not it is still uncaptured or has since been captured.
+     * @type {boolean}
+     * @memberof DjStripeCharge
+     */
+    'captured'?: boolean;
+    /**
+     * The currency in which the charge was made.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'currency': string;
+    /**
+     * Whether the charge has been disputed.
+     * @type {boolean}
+     * @memberof DjStripeCharge
+     */
+    'disputed'?: boolean;
+    /**
+     * Error code explaining reason for charge failure if available.
+     * @type {FailureCodeEnum | BlankEnum}
+     * @memberof DjStripeCharge
+     */
+    'failure_code'?: FailureCodeEnum | BlankEnum;
+    /**
+     * Message to user further explaining reason for charge failure if available.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'failure_message'?: string;
+    /**
+     * Hash with information on fraud assessments for the charge.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCharge
+     */
+    'fraud_details'?: { [key: string]: any; } | null;
+    /**
+     * Details about whether or not the payment was accepted, and why.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCharge
+     */
+    'outcome'?: { [key: string]: any; } | null;
+    /**
+     * True if the charge succeeded, or was successfully authorized for later capture, False otherwise.
+     * @type {boolean}
+     * @memberof DjStripeCharge
+     */
+    'paid'?: boolean;
+    /**
+     * Details about the payment method at the time of the transaction.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCharge
+     */
+    'payment_method_details'?: { [key: string]: any; } | null;
+    /**
+     * The email address that the receipt for this charge was sent to.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'receipt_email'?: string;
+    /**
+     * The transaction number that appears on email receipts sent for this charge.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'receipt_number'?: string;
+    /**
+     * This is the URL to view the receipt for this charge. The receipt is kept up-to-date to the latest state of the charge, including any refunds. If the charge is for an Invoice, the receipt will be stylized as an Invoice receipt.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'receipt_url'?: string;
+    /**
+     * Whether or not the charge has been fully refunded. If the charge is only partially refunded, this attribute will still be false.
+     * @type {boolean}
+     * @memberof DjStripeCharge
+     */
+    'refunded'?: boolean;
+    /**
+     * Shipping information for the charge
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCharge
+     */
+    'shipping'?: { [key: string]: any; } | null;
+    /**
+     * For card charges, use statement_descriptor_suffix instead. Otherwise, you can use this value as the complete description of a charge on your customers\' statements. Must contain at least one letter, maximum 22 characters.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'statement_descriptor'?: string | null;
+    /**
+     * Provides information about the charge that customers see on their statements. Concatenated with the prefix (shortened descriptor) or statement descriptor that\'s set on the account to form the complete statement descriptor. Maximum 22 characters for the concatenated descriptor.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'statement_descriptor_suffix'?: string | null;
+    /**
+     * The status of the payment.
+     * @type {DjStripeChargeStatusEnum}
+     * @memberof DjStripeCharge
+     */
+    'status': DjStripeChargeStatusEnum;
+    /**
+     * An optional dictionary including the account to automatically transfer to as part of a destination charge.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCharge
+     */
+    'transfer_data'?: { [key: string]: any; } | null;
+    /**
+     * A string that identifies this transaction as part of a group.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'transfer_group'?: string | null;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * The application fee (if any) for the charge.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'application_fee'?: string | null;
+    /**
+     * The balance transaction that describes the impact of this charge on your account balance (not including refunds or disputes).
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'balance_transaction'?: string | null;
+    /**
+     * The customer associated with this charge.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'customer'?: string | null;
+    /**
+     * Details about the dispute if the charge has been disputed.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'dispute'?: string | null;
+    /**
+     * The invoice this charge is for if one exists.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'invoice'?: string | null;
+    /**
+     * The account (if any) the charge was made on behalf of without triggering an automatic transfer.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'on_behalf_of'?: string | null;
+    /**
+     * PaymentIntent associated with this charge, if one exists.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'payment_intent'?: string | null;
+    /**
+     * PaymentMethod used in this charge.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'payment_method'?: string | null;
+    /**
+     * The source used for this charge.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'source'?: string | null;
+    /**
+     * The transfer which created this charge. Only present if the charge came from another Stripe account.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'source_transfer'?: string | null;
+    /**
+     * The transfer to the `destination` account (only applicable if the charge was created using the `destination` parameter).
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'transfer'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const DjStripeChargeStatusEnum = {
+    Failed: 'failed',
+    Pending: 'pending',
+    Succeeded: 'succeeded'
+} as const;
+
+export type DjStripeChargeStatusEnum = typeof DjStripeChargeStatusEnum[keyof typeof DjStripeChargeStatusEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface DjStripeCheckoutSession
+ */
+export interface DjStripeCheckoutSession {
+    /**
+     * 
+     * @type {number}
+     * @memberof DjStripeCheckoutSession
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeCheckoutSession
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeCheckoutSession
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeCheckoutSession
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof DjStripeCheckoutSession
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof DjStripeCheckoutSession
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCheckoutSession
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof DjStripeCheckoutSession
+     */
+    'description'?: string | null;
+    /**
+     * The value (auto or required) for whether Checkoutcollected the customer\'s billing address.
+     * @type {BillingAddressCollectionEnum | BlankEnum}
+     * @memberof DjStripeCheckoutSession
+     */
+    'billing_address_collection'?: BillingAddressCollectionEnum | BlankEnum;
+    /**
+     * The URL the customer will be directed to if theydecide to cancel payment and return to your website.
+     * @type {string}
+     * @memberof DjStripeCheckoutSession
+     */
+    'cancel_url'?: string;
+    /**
+     * A unique string to reference the Checkout Session.This can be a customer ID, a cart ID, or similar, andcan be used to reconcile the session with your internal systems.
+     * @type {string}
+     * @memberof DjStripeCheckoutSession
+     */
+    'client_reference_id'?: string;
+    /**
+     * If provided, this value will be used when the Customer object is created.
+     * @type {string}
+     * @memberof DjStripeCheckoutSession
+     */
+    'customer_email'?: string;
+    /**
+     * The line items, plans, or SKUs purchased by the customer.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCheckoutSession
+     */
+    'display_items'?: { [key: string]: any; } | null;
+    /**
+     * The IETF language tag of the locale Checkout is displayed in.If blank or auto, the browser\'s locale is used.
+     * @type {string}
+     * @memberof DjStripeCheckoutSession
+     */
+    'locale'?: string;
+    /**
+     * The mode of the Checkout Session, one of payment, setup, or subscription.
+     * @type {ModeEnum | BlankEnum}
+     * @memberof DjStripeCheckoutSession
+     */
+    'mode'?: ModeEnum | BlankEnum;
+    /**
+     * The list of payment method types (e.g. card) that this Checkout Session is allowed to accept.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCheckoutSession
+     */
+    'payment_method_types': { [key: string]: any; };
+    /**
+     * Describes the type of transaction being performed by Checkoutin order to customize relevant text on the page, such as the submit button.
+     * @type {SubmitTypeEnum | BlankEnum}
+     * @memberof DjStripeCheckoutSession
+     */
+    'submit_type'?: SubmitTypeEnum | BlankEnum;
+    /**
+     * The URL the customer will be directed to after the payment or subscriptioncreation is successful.
+     * @type {string}
+     * @memberof DjStripeCheckoutSession
+     */
+    'success_url'?: string;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof DjStripeCheckoutSession
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * Customer this Checkout is for if one exists.
+     * @type {string}
+     * @memberof DjStripeCheckoutSession
+     */
+    'customer'?: string | null;
+    /**
+     * PaymentIntent created if SKUs or line items were provided.
+     * @type {string}
+     * @memberof DjStripeCheckoutSession
+     */
+    'payment_intent'?: string | null;
+    /**
+     * Subscription created if one or more plans were provided.
+     * @type {string}
+     * @memberof DjStripeCheckoutSession
+     */
+    'subscription'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface DjStripeCustomer
+ */
+export interface DjStripeCustomer {
+    /**
+     * 
+     * @type {number}
+     * @memberof DjStripeCustomer
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeCustomer
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeCustomer
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeCustomer
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof DjStripeCustomer
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof DjStripeCustomer
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCustomer
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof DjStripeCustomer
+     */
+    'description'?: string | null;
+    /**
+     * The customer\'s address.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCustomer
+     */
+    'address'?: { [key: string]: any; } | null;
+    /**
+     * Current balance (in cents), if any, being stored on the customer\'s account. If negative, the customer has credit to apply to the next invoice. If positive, the customer has an amount owed that will be added to the next invoice. The balance does not refer to any unpaid invoices; it solely takes into account amounts that have yet to be successfully applied to any invoice. This balance is only taken into account for recurring billing purposes (i.e., subscriptions, invoices, invoice items).
+     * @type {number}
+     * @memberof DjStripeCustomer
+     */
+    'balance'?: number | null;
+    /**
+     * The currency the customer can be charged in for recurring billing purposes
+     * @type {string}
+     * @memberof DjStripeCustomer
+     */
+    'currency'?: string;
+    /**
+     * Whether or not the latest charge for the customer\'s latest invoice has failed.
+     * @type {boolean}
+     * @memberof DjStripeCustomer
+     */
+    'delinquent'?: boolean | null;
+    /**
+     * Whether the Customer instance has been deleted upstream in Stripe or not.
+     * @type {boolean}
+     * @memberof DjStripeCustomer
+     */
+    'deleted'?: boolean | null;
+    /**
+     * If a coupon is present, the date at which it was applied.
+     * @type {string}
+     * @memberof DjStripeCustomer
+     */
+    'coupon_start': string;
+    /**
+     * If a coupon is present and has a limited duration, the date that the discount will end.
+     * @type {string}
+     * @memberof DjStripeCustomer
+     */
+    'coupon_end': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeCustomer
+     */
+    'email'?: string;
+    /**
+     * The prefix for the customer used to generate unique invoice numbers.
+     * @type {string}
+     * @memberof DjStripeCustomer
+     */
+    'invoice_prefix'?: string;
+    /**
+     * The customer\'s default invoice settings.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCustomer
+     */
+    'invoice_settings'?: { [key: string]: any; } | null;
+    /**
+     * The customer\'s full name or business name.
+     * @type {string}
+     * @memberof DjStripeCustomer
+     */
+    'name'?: string;
+    /**
+     * The customer\'s phone number.
+     * @type {string}
+     * @memberof DjStripeCustomer
+     */
+    'phone'?: string;
+    /**
+     * The customer\'s preferred locales (languages), ordered by preference.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCustomer
+     */
+    'preferred_locales'?: { [key: string]: any; } | null;
+    /**
+     * Shipping information associated with the customer.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCustomer
+     */
+    'shipping'?: { [key: string]: any; } | null;
+    /**
+     * Describes the customer\'s tax exemption status. When set to reverse, invoice and receipt PDFs include the text \"Reverse charge\".
+     * @type {TaxExemptEnum}
+     * @memberof DjStripeCustomer
+     */
+    'tax_exempt'?: TaxExemptEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeCustomer
+     */
+    'date_purged': string;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof DjStripeCustomer
+     */
+    'djstripe_owner_account': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeCustomer
+     */
+    'default_source'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof DjStripeCustomer
+     */
+    'coupon'?: number | null;
+    /**
+     * default payment method used for subscriptions and invoices for the customer.
+     * @type {string}
+     * @memberof DjStripeCustomer
+     */
+    'default_payment_method'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof DjStripeCustomer
+     */
+    'subscriber': number | null;
+}
+/**
+ * 
+ * @export
+ * @interface DjStripePaymentIntent
+ */
+export interface DjStripePaymentIntent {
+    /**
+     * 
+     * @type {number}
+     * @memberof DjStripePaymentIntent
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {Array<DjStripeCharge>}
+     * @memberof DjStripePaymentIntent
+     */
+    'charges': Array<DjStripeCharge>;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripePaymentIntent
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripePaymentIntent
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripePaymentIntent
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof DjStripePaymentIntent
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof DjStripePaymentIntent
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripePaymentIntent
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * Amount (in cents) intended to be collected by this PaymentIntent.
+     * @type {number}
+     * @memberof DjStripePaymentIntent
+     */
+    'amount': number;
+    /**
+     * Amount (in cents) that can be captured from this PaymentIntent.
+     * @type {number}
+     * @memberof DjStripePaymentIntent
+     */
+    'amount_capturable': number;
+    /**
+     * Amount (in cents) that was collected by this PaymentIntent.
+     * @type {number}
+     * @memberof DjStripePaymentIntent
+     */
+    'amount_received': number;
+    /**
+     * Populated when status is canceled, this is the time at which the PaymentIntent was canceled. Measured in seconds since the Unix epoch.
+     * @type {string}
+     * @memberof DjStripePaymentIntent
+     */
+    'canceled_at'?: string | null;
+    /**
+     * Reason for cancellation of this PaymentIntent, either user-provided (duplicate, fraudulent, requested_by_customer, or abandoned) or generated by Stripe internally (failed_invoice, void_invoice, or automatic).
+     * @type {CancellationReasonEnum | BlankEnum}
+     * @memberof DjStripePaymentIntent
+     */
+    'cancellation_reason'?: CancellationReasonEnum | BlankEnum;
+    /**
+     * Capture method of this PaymentIntent, one of automatic or manual.
+     * @type {CaptureMethodEnum}
+     * @memberof DjStripePaymentIntent
+     */
+    'capture_method': CaptureMethodEnum;
+    /**
+     * The client secret of this PaymentIntent. Used for client-side retrieval using a publishable key.
+     * @type {string}
+     * @memberof DjStripePaymentIntent
+     */
+    'client_secret': string;
+    /**
+     * Confirmation method of this PaymentIntent, one of manual or automatic.
+     * @type {ConfirmationMethodEnum}
+     * @memberof DjStripePaymentIntent
+     */
+    'confirmation_method': ConfirmationMethodEnum;
+    /**
+     * Three-letter ISO currency code
+     * @type {string}
+     * @memberof DjStripePaymentIntent
+     */
+    'currency': string;
+    /**
+     * An arbitrary string attached to the object. Often useful for displaying to users.
+     * @type {string}
+     * @memberof DjStripePaymentIntent
+     */
+    'description'?: string;
+    /**
+     * The payment error encountered in the previous PaymentIntent confirmation.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripePaymentIntent
+     */
+    'last_payment_error'?: { [key: string]: any; } | null;
+    /**
+     * If present, this property tells you what actions you need to take in order for your customer to fulfill a payment using the provided source.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripePaymentIntent
+     */
+    'next_action'?: { [key: string]: any; } | null;
+    /**
+     * The list of payment method types (e.g. card) that this PaymentIntent is allowed to use.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripePaymentIntent
+     */
+    'payment_method_types': { [key: string]: any; };
+    /**
+     * Email address that the receipt for the resulting payment will be sent to.
+     * @type {string}
+     * @memberof DjStripePaymentIntent
+     */
+    'receipt_email'?: string;
+    /**
+     * Indicates that you intend to make future payments with this PaymentIntent\'s payment method. If present, the payment method used with this PaymentIntent can be attached to a Customer, even after the transaction completes. Use `on_session` if you intend to only reuse the payment method when your customer is present in your checkout flow. Use `off_session` if your customer may or may not be in your checkout flow. Stripe uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules. For example, if your customer is impacted by SCA, using `off_session` will ensure that they are authenticated while processing this PaymentIntent. You will then be able to make later off-session payments for this customer.
+     * @type {SetupFutureUsageEnum | BlankEnum | NullEnum}
+     * @memberof DjStripePaymentIntent
+     */
+    'setup_future_usage'?: SetupFutureUsageEnum | BlankEnum | NullEnum | null;
+    /**
+     * Shipping information for this PaymentIntent.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripePaymentIntent
+     */
+    'shipping'?: { [key: string]: any; } | null;
+    /**
+     * For non-card charges, you can use this value as the complete description that appears on your customers\' statements. Must contain at least one letter, maximum 22 characters.
+     * @type {string}
+     * @memberof DjStripePaymentIntent
+     */
+    'statement_descriptor'?: string;
+    /**
+     * Status of this PaymentIntent, one of requires_payment_method, requires_confirmation, requires_action, processing, requires_capture, canceled, or succeeded. You can read more about PaymentIntent statuses here.
+     * @type {DjStripePaymentIntentStatusEnum}
+     * @memberof DjStripePaymentIntent
+     */
+    'status': DjStripePaymentIntentStatusEnum;
+    /**
+     * The data with which to automatically create a Transfer when the payment is finalized. See the PaymentIntents Connect usage guide for details.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripePaymentIntent
+     */
+    'transfer_data'?: { [key: string]: any; } | null;
+    /**
+     * A string that identifies the resulting payment as part of a group. See the PaymentIntents Connect usage guide for details.
+     * @type {string}
+     * @memberof DjStripePaymentIntent
+     */
+    'transfer_group'?: string;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof DjStripePaymentIntent
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * Customer this PaymentIntent is for if one exists.
+     * @type {string}
+     * @memberof DjStripePaymentIntent
+     */
+    'customer'?: string | null;
+    /**
+     * The account (if any) for which the funds of the PaymentIntent are intended.
+     * @type {string}
+     * @memberof DjStripePaymentIntent
+     */
+    'on_behalf_of'?: string | null;
+    /**
+     * Payment method used in this PaymentIntent.
+     * @type {string}
+     * @memberof DjStripePaymentIntent
+     */
+    'payment_method'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const DjStripePaymentIntentStatusEnum = {
+    Canceled: 'canceled',
+    Processing: 'processing',
+    RequiresAction: 'requires_action',
+    RequiresCapture: 'requires_capture',
+    RequiresConfirmation: 'requires_confirmation',
+    RequiresPaymentMethod: 'requires_payment_method',
+    Succeeded: 'succeeded'
+} as const;
+
+export type DjStripePaymentIntentStatusEnum = typeof DjStripePaymentIntentStatusEnum[keyof typeof DjStripePaymentIntentStatusEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface DjStripePrice
+ */
+export interface DjStripePrice {
+    /**
+     * 
+     * @type {number}
+     * @memberof DjStripePrice
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripePrice
+     */
+    'human_readable_price': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripePrice
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripePrice
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripePrice
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof DjStripePrice
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof DjStripePrice
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripePrice
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof DjStripePrice
+     */
+    'description'?: string | null;
+    /**
+     * Whether the price can be used for new purchases.
+     * @type {boolean}
+     * @memberof DjStripePrice
+     */
+    'active': boolean;
+    /**
+     * Three-letter ISO currency code
+     * @type {string}
+     * @memberof DjStripePrice
+     */
+    'currency': string;
+    /**
+     * A brief description of the plan, hidden from customers.
+     * @type {string}
+     * @memberof DjStripePrice
+     */
+    'nickname'?: string;
+    /**
+     * The recurring components of a price such as `interval` and `usage_type`.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripePrice
+     */
+    'recurring'?: { [key: string]: any; } | null;
+    /**
+     * Whether the price is for a one-time purchase or a recurring (subscription) purchase.
+     * @type {DjStripePriceTypeEnum}
+     * @memberof DjStripePrice
+     */
+    'type': DjStripePriceTypeEnum;
+    /**
+     * The unit amount in cents to be charged, represented as a whole integer if possible. Null if a sub-cent precision is required.
+     * @type {number}
+     * @memberof DjStripePrice
+     */
+    'unit_amount'?: number | null;
+    /**
+     * The unit amount in cents to be charged, represented as a decimal string with at most 12 decimal places.
+     * @type {string}
+     * @memberof DjStripePrice
+     */
+    'unit_amount_decimal'?: string | null;
+    /**
+     * Describes how to compute the price per period. Either `per_unit` or `tiered`. `per_unit` indicates that the fixed amount (specified in `unit_amount` or `unit_amount_decimal`) will be charged per unit in `quantity` (for prices with `usage_type=licensed`), or per unit of total usage (for prices with `usage_type=metered`). `tiered` indicates that the unit pricing will be computed using a tiering strategy as defined using the `tiers` and `tiers_mode` attributes.
+     * @type {BillingSchemeEnum | BlankEnum}
+     * @memberof DjStripePrice
+     */
+    'billing_scheme'?: BillingSchemeEnum | BlankEnum;
+    /**
+     * A lookup key used to retrieve prices dynamically from a static string.
+     * @type {string}
+     * @memberof DjStripePrice
+     */
+    'lookup_key'?: string | null;
+    /**
+     * Each element represents a pricing tier. This parameter requires `billing_scheme` to be set to `tiered`.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripePrice
+     */
+    'tiers'?: { [key: string]: any; } | null;
+    /**
+     * Defines if the tiering price should be `graduated` or `volume` based. In `volume`-based tiering, the maximum quantity within a period determines the per unit price, in `graduated` tiering pricing can successively change as the quantity grows.
+     * @type {TiersModeEnum | BlankEnum | NullEnum}
+     * @memberof DjStripePrice
+     */
+    'tiers_mode'?: TiersModeEnum | BlankEnum | NullEnum | null;
+    /**
+     * Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with `tiers`.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripePrice
+     */
+    'transform_quantity'?: { [key: string]: any; } | null;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof DjStripePrice
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * The product this price is associated with.
+     * @type {string}
+     * @memberof DjStripePrice
+     */
+    'product': string;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const DjStripePriceTypeEnum = {
+    OneTime: 'one_time',
+    Recurring: 'recurring'
+} as const;
+
+export type DjStripePriceTypeEnum = typeof DjStripePriceTypeEnum[keyof typeof DjStripePriceTypeEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface DjStripeProduct
+ */
+export interface DjStripeProduct {
+    /**
+     * 
+     * @type {number}
+     * @memberof DjStripeProduct
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeProduct
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeProduct
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeProduct
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof DjStripeProduct
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof DjStripeProduct
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeProduct
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof DjStripeProduct
+     */
+    'description'?: string | null;
+    /**
+     * The product\'s name, meant to be displayable to the customer. Applicable to both `service` and `good` types.
+     * @type {string}
+     * @memberof DjStripeProduct
+     */
+    'name': string;
+    /**
+     * The type of the product. The product is either of type `good`, which is eligible for use with Orders and SKUs, or `service`, which is eligible for use with Subscriptions and Plans.
+     * @type {DjStripeProductTypeEnum}
+     * @memberof DjStripeProduct
+     */
+    'type': DjStripeProductTypeEnum;
+    /**
+     * Whether the product is currently available for purchase. Only applicable to products of `type=good`.
+     * @type {boolean}
+     * @memberof DjStripeProduct
+     */
+    'active'?: boolean | null;
+    /**
+     * A list of up to 5 attributes that each SKU can provide values for (e.g., `[\"color\", \"size\"]`). Only applicable to products of `type=good`.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeProduct
+     */
+    'attributes'?: { [key: string]: any; } | null;
+    /**
+     * A short one-line description of the product, meant to be displayableto the customer. Only applicable to products of `type=good`.
+     * @type {string}
+     * @memberof DjStripeProduct
+     */
+    'caption'?: string;
+    /**
+     * An array of connect application identifiers that cannot purchase this product. Only applicable to products of `type=good`.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeProduct
+     */
+    'deactivate_on'?: { [key: string]: any; } | null;
+    /**
+     * A list of up to 8 URLs of images for this product, meant to be displayable to the customer. Only applicable to products of `type=good`.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeProduct
+     */
+    'images'?: { [key: string]: any; } | null;
+    /**
+     * The dimensions of this product for shipping purposes. A SKU associated with this product can override this value by having its own `package_dimensions`. Only applicable to products of `type=good`.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeProduct
+     */
+    'package_dimensions'?: { [key: string]: any; } | null;
+    /**
+     * Whether this product is a shipped good. Only applicable to products of `type=good`.
+     * @type {boolean}
+     * @memberof DjStripeProduct
+     */
+    'shippable'?: boolean | null;
+    /**
+     * A URL of a publicly-accessible webpage for this product. Only applicable to products of `type=good`.
+     * @type {string}
+     * @memberof DjStripeProduct
+     */
+    'url'?: string | null;
+    /**
+     * Extra information about a product which will appear on your customer\'s credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only available on products of type=`service`.
+     * @type {string}
+     * @memberof DjStripeProduct
+     */
+    'statement_descriptor'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeProduct
+     */
+    'unit_label'?: string;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof DjStripeProduct
+     */
+    'djstripe_owner_account'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const DjStripeProductTypeEnum = {
+    Good: 'good',
+    Service: 'service'
+} as const;
+
+export type DjStripeProductTypeEnum = typeof DjStripeProductTypeEnum[keyof typeof DjStripeProductTypeEnum];
 
 
 /**
@@ -308,6 +1538,105 @@ export type EventTypesEnum = typeof EventTypesEnum[keyof typeof EventTypesEnum];
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const FailureCodeEnum = {
+    AccountAlreadyExists: 'account_already_exists',
+    AccountCountryInvalidAddress: 'account_country_invalid_address',
+    AccountInvalid: 'account_invalid',
+    AccountNumberInvalid: 'account_number_invalid',
+    AlipayUpgradeRequired: 'alipay_upgrade_required',
+    AmountTooLarge: 'amount_too_large',
+    AmountTooSmall: 'amount_too_small',
+    ApiKeyExpired: 'api_key_expired',
+    BalanceInsufficient: 'balance_insufficient',
+    BankAccountExists: 'bank_account_exists',
+    BankAccountUnusable: 'bank_account_unusable',
+    BankAccountUnverified: 'bank_account_unverified',
+    BitcoinUpgradeRequired: 'bitcoin_upgrade_required',
+    CardDeclined: 'card_declined',
+    ChargeAlreadyCaptured: 'charge_already_captured',
+    ChargeAlreadyRefunded: 'charge_already_refunded',
+    ChargeDisputed: 'charge_disputed',
+    ChargeExceedsSourceLimit: 'charge_exceeds_source_limit',
+    ChargeExpiredForCapture: 'charge_expired_for_capture',
+    CountryUnsupported: 'country_unsupported',
+    CouponExpired: 'coupon_expired',
+    CustomerMaxSubscriptions: 'customer_max_subscriptions',
+    EmailInvalid: 'email_invalid',
+    ExpiredCard: 'expired_card',
+    IdempotencyKeyInUse: 'idempotency_key_in_use',
+    IncorrectAddress: 'incorrect_address',
+    IncorrectCvc: 'incorrect_cvc',
+    IncorrectNumber: 'incorrect_number',
+    IncorrectZip: 'incorrect_zip',
+    InstantPayoutsUnsupported: 'instant_payouts_unsupported',
+    InvalidCardType: 'invalid_card_type',
+    InvalidChargeAmount: 'invalid_charge_amount',
+    InvalidCvc: 'invalid_cvc',
+    InvalidExpiryMonth: 'invalid_expiry_month',
+    InvalidExpiryYear: 'invalid_expiry_year',
+    InvalidNumber: 'invalid_number',
+    InvalidSourceUsage: 'invalid_source_usage',
+    InvalidSwipeData: 'invalid_swipe_data',
+    InvoiceNoCustomerLineItems: 'invoice_no_customer_line_items',
+    InvoiceNoSubscriptionLineItems: 'invoice_no_subscription_line_items',
+    InvoiceNotEditable: 'invoice_not_editable',
+    InvoiceUpcomingNone: 'invoice_upcoming_none',
+    LivemodeMismatch: 'livemode_mismatch',
+    Missing: 'missing',
+    NotAllowedOnStandardAccount: 'not_allowed_on_standard_account',
+    OrderCreationFailed: 'order_creation_failed',
+    OrderRequiredSettings: 'order_required_settings',
+    OrderStatusInvalid: 'order_status_invalid',
+    OrderUpstreamTimeout: 'order_upstream_timeout',
+    OutOfInventory: 'out_of_inventory',
+    ParameterInvalidEmpty: 'parameter_invalid_empty',
+    ParameterInvalidInteger: 'parameter_invalid_integer',
+    ParameterInvalidStringBlank: 'parameter_invalid_string_blank',
+    ParameterInvalidStringEmpty: 'parameter_invalid_string_empty',
+    ParameterMissing: 'parameter_missing',
+    ParameterUnknown: 'parameter_unknown',
+    ParametersExclusive: 'parameters_exclusive',
+    PaymentIntentAuthenticationFailure: 'payment_intent_authentication_failure',
+    PaymentIntentIncompatiblePaymentMethod: 'payment_intent_incompatible_payment_method',
+    PaymentIntentInvalidParameter: 'payment_intent_invalid_parameter',
+    PaymentIntentPaymentAttemptFailed: 'payment_intent_payment_attempt_failed',
+    PaymentIntentUnexpectedState: 'payment_intent_unexpected_state',
+    PaymentMethodUnactivated: 'payment_method_unactivated',
+    PaymentMethodUnexpectedState: 'payment_method_unexpected_state',
+    PayoutsNotAllowed: 'payouts_not_allowed',
+    PlatformApiKeyExpired: 'platform_api_key_expired',
+    PostalCodeInvalid: 'postal_code_invalid',
+    ProcessingError: 'processing_error',
+    ProductInactive: 'product_inactive',
+    RateLimit: 'rate_limit',
+    ResourceAlreadyExists: 'resource_already_exists',
+    ResourceMissing: 'resource_missing',
+    RoutingNumberInvalid: 'routing_number_invalid',
+    SecretKeyRequired: 'secret_key_required',
+    SepaUnsupportedAccount: 'sepa_unsupported_account',
+    ShippingCalculationFailed: 'shipping_calculation_failed',
+    SkuInactive: 'sku_inactive',
+    StateUnsupported: 'state_unsupported',
+    TaxIdInvalid: 'tax_id_invalid',
+    TaxesCalculationFailed: 'taxes_calculation_failed',
+    TestmodeChargesOnly: 'testmode_charges_only',
+    TlsVersionUnsupported: 'tls_version_unsupported',
+    TokenAlreadyUsed: 'token_already_used',
+    TokenInUse: 'token_in_use',
+    TransfersNotAllowed: 'transfers_not_allowed',
+    UpstreamOrderCreationFailed: 'upstream_order_creation_failed',
+    UrlInvalid: 'url_invalid'
+} as const;
+
+export type FailureCodeEnum = typeof FailureCodeEnum[keyof typeof FailureCodeEnum];
+
+
+/**
+ * 
+ * @export
  * @interface GcodeFile
  */
 export interface GcodeFile {
@@ -456,6 +1785,21 @@ export interface MemberBadgeRequest {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const ModeEnum = {
+    Payment: 'payment',
+    Setup: 'setup',
+    Subscription: 'subscription'
+} as const;
+
+export type ModeEnum = typeof ModeEnum[keyof typeof ModeEnum];
+
+
+/**
+ * 
+ * @export
  * @interface NatsOrganization
  */
 export interface NatsOrganization {
@@ -600,6 +1944,19 @@ export interface NatsOrganizationUser {
      */
     'json'?: { [key: string]: any; };
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const NullEnum = {
+    Null: 'null'
+} as const;
+
+export type NullEnum = typeof NullEnum[keyof typeof NullEnum];
+
+
 /**
  * 
  * @export
@@ -1813,6 +3170,117 @@ export interface OctoPrinterProfileRequest {
     'volume_width'?: number | null;
 }
 /**
+ * Djstripe\'s representation of Stripe Checkout model is missing a number of fields, like subtotal amount and shipping/tax charges  stripe_checkout_session_data is the raw JSON returned by stripe.checkout.Session.retrieve
+ * @export
+ * @interface Order
+ */
+export interface Order {
+    /**
+     * 
+     * @type {string}
+     * @memberof Order
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Order
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {Array<Product>}
+     * @memberof Order
+     */
+    'products': Array<Product>;
+    /**
+     * 
+     * @type {DjStripeCustomer}
+     * @memberof Order
+     */
+    'djstripe_customer': DjStripeCustomer;
+    /**
+     * 
+     * @type {DjStripeCheckoutSession}
+     * @memberof Order
+     */
+    'djstripe_checkout_session': DjStripeCheckoutSession;
+    /**
+     * 
+     * @type {DjStripePaymentIntent}
+     * @memberof Order
+     */
+    'djstripe_payment_intent': DjStripePaymentIntent;
+    /**
+     * 
+     * @type {string}
+     * @memberof Order
+     */
+    'last_status': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Order
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Order
+     */
+    'stripe_checkout_redirect_url': string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof Order
+     */
+    'stripe_checkout_session_data': { [key: string]: any; };
+}
+/**
+ * 
+ * @export
+ * @interface OrderCheckout
+ */
+export interface OrderCheckout {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof OrderCheckout
+     */
+    'products': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderCheckout
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderCheckout
+     */
+    'stripe_checkout_redirect_url': string;
+}
+/**
+ * 
+ * @export
+ * @interface OrderCheckoutRequest
+ */
+export interface OrderCheckoutRequest {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof OrderCheckoutRequest
+     */
+    'products': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderCheckoutRequest
+     */
+    'email': string;
+}
+/**
  * 
  * @export
  * @enum {string}
@@ -2196,6 +3664,37 @@ export interface PaginatedPolymorphicPiStatusList {
      * @memberof PaginatedPolymorphicPiStatusList
      */
     'results'?: Array<PolymorphicPiStatus>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedProductList
+ */
+export interface PaginatedProductList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedProductList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedProductList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedProductList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<Product>}
+     * @memberof PaginatedProductList
+     */
+    'results'?: Array<Product>;
 }
 /**
  * 
@@ -4021,6 +5520,121 @@ export interface PrintNannyLicense {
 /**
  * 
  * @export
+ * @interface Product
+ */
+export interface Product {
+    /**
+     * 
+     * @type {string}
+     * @memberof Product
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {DjStripeProduct}
+     * @memberof Product
+     */
+    'djstripe_product': DjStripeProduct;
+    /**
+     * 
+     * @type {Array<DjStripePrice>}
+     * @memberof Product
+     */
+    'prices': Array<DjStripePrice>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Product
+     */
+    'deleted': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Product
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Product
+     */
+    'updated_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Product
+     */
+    'sku': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Product
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Product
+     */
+    'unit_label': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Product
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Product
+     */
+    'description': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Product
+     */
+    'statement_descriptor': string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Product
+     */
+    'images'?: Array<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Product
+     */
+    'is_active'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Product
+     */
+    'is_shippable': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Product
+     */
+    'is_preorder': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Product
+     */
+    'is_subscription': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Product
+     */
+    'stripe_price_lookup_key'?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface RegisterRequest
  */
 export interface RegisterRequest {
@@ -4080,6 +5694,20 @@ export const SbcEnum = {
 } as const;
 
 export type SbcEnum = typeof SbcEnum[keyof typeof SbcEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const SetupFutureUsageEnum = {
+    OffSession: 'off_session',
+    OnSession: 'on_session'
+} as const;
+
+export type SetupFutureUsageEnum = typeof SetupFutureUsageEnum[keyof typeof SetupFutureUsageEnum];
 
 
 /**
@@ -4319,10 +5947,10 @@ export interface StripePaymentMethod {
     'billing_details': { [key: string]: any; };
     /**
      * The type of the PaymentMethod.
-     * @type {TypeEnum}
+     * @type {StripePaymentMethodTypeEnum}
      * @memberof StripePaymentMethod
      */
-    'type': TypeEnum;
+    'type': StripePaymentMethodTypeEnum;
     /**
      * Additional information for payment methods of type `acss_debit`
      * @type {{ [key: string]: any; }}
@@ -4456,6 +6084,39 @@ export interface StripePaymentMethod {
      */
     'customer'?: string | null;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const StripePaymentMethodTypeEnum = {
+    AcssDebit: 'acss_debit',
+    AfterpayClearpay: 'afterpay_clearpay',
+    Alipay: 'alipay',
+    AuBecsDebit: 'au_becs_debit',
+    BacsDebit: 'bacs_debit',
+    Bancontact: 'bancontact',
+    Boleto: 'boleto',
+    Card: 'card',
+    CardPresent: 'card_present',
+    Eps: 'eps',
+    Fpx: 'fpx',
+    Giropay: 'giropay',
+    Grabpay: 'grabpay',
+    Ideal: 'ideal',
+    InteracPresent: 'interac_present',
+    Klarna: 'klarna',
+    Oxxo: 'oxxo',
+    P24: 'p24',
+    SepaDebit: 'sepa_debit',
+    Sofort: 'sofort',
+    WechatPay: 'wechat_pay'
+} as const;
+
+export type StripePaymentMethodTypeEnum = typeof StripePaymentMethodTypeEnum[keyof typeof StripePaymentMethodTypeEnum];
+
+
 /**
  * 
  * @export
@@ -5008,6 +6669,22 @@ export type StripeSubscriptionStatusEnum = typeof StripeSubscriptionStatusEnum[k
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const SubmitTypeEnum = {
+    Auto: 'auto',
+    Book: 'book',
+    Donate: 'donate',
+    Pay: 'pay'
+} as const;
+
+export type SubmitTypeEnum = typeof SubmitTypeEnum[keyof typeof SubmitTypeEnum];
+
+
+/**
+ * 
+ * @export
  * @interface SystemInfo
  */
 export interface SystemInfo {
@@ -5185,6 +6862,20 @@ export type TaxExemptEnum = typeof TaxExemptEnum[keyof typeof TaxExemptEnum];
 
 
 /**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const TiersModeEnum = {
+    Graduated: 'graduated',
+    Volume: 'volume'
+} as const;
+
+export type TiersModeEnum = typeof TiersModeEnum[keyof typeof TiersModeEnum];
+
+
+/**
  * Serializer for Token model.
  * @export
  * @interface Token
@@ -5197,39 +6888,6 @@ export interface Token {
      */
     'key': string;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export const TypeEnum = {
-    AcssDebit: 'acss_debit',
-    AfterpayClearpay: 'afterpay_clearpay',
-    Alipay: 'alipay',
-    AuBecsDebit: 'au_becs_debit',
-    BacsDebit: 'bacs_debit',
-    Bancontact: 'bancontact',
-    Boleto: 'boleto',
-    Card: 'card',
-    CardPresent: 'card_present',
-    Eps: 'eps',
-    Fpx: 'fpx',
-    Giropay: 'giropay',
-    Grabpay: 'grabpay',
-    Ideal: 'ideal',
-    InteracPresent: 'interac_present',
-    Klarna: 'klarna',
-    Oxxo: 'oxxo',
-    P24: 'p24',
-    SepaDebit: 'sepa_debit',
-    Sofort: 'sofort',
-    WechatPay: 'wechat_pay'
-} as const;
-
-export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
-
-
 /**
  * 
  * @export
@@ -14649,6 +16307,289 @@ export class SettingsApi extends BaseAPI implements SettingsApiInterface {
      */
     public alertSettingsEmailUpdate(id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options?: AxiosRequestConfig) {
         return SettingsApiFp(this.configuration).alertSettingsEmailUpdate(id, emailAlertSettingsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * ShopApi - axios parameter creator
+ * @export
+ */
+export const ShopApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} stripeCheckoutSessionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        shopCheckoutSuccessRetrieve: async (stripeCheckoutSessionId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'stripeCheckoutSessionId' is not null or undefined
+            assertParamExists('shopCheckoutSuccessRetrieve', 'stripeCheckoutSessionId', stripeCheckoutSessionId)
+            const localVarPath = `/api/shop/checkout/success/{stripe_checkout_session_id}`
+                .replace(`{${"stripe_checkout_session_id"}}`, encodeURIComponent(String(stripeCheckoutSessionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {OrderCheckoutRequest} orderCheckoutRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        shopOrdersCreate: async (orderCheckoutRequest: OrderCheckoutRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'orderCheckoutRequest' is not null or undefined
+            assertParamExists('shopOrdersCreate', 'orderCheckoutRequest', orderCheckoutRequest)
+            const localVarPath = `/api/shop/orders`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(orderCheckoutRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        shopProductsList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/shop/products/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ShopApi - functional programming interface
+ * @export
+ */
+export const ShopApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ShopApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {string} stripeCheckoutSessionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async shopCheckoutSuccessRetrieve(stripeCheckoutSessionId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.shopCheckoutSuccessRetrieve(stripeCheckoutSessionId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {OrderCheckoutRequest} orderCheckoutRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async shopOrdersCreate(orderCheckoutRequest: OrderCheckoutRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderCheckout>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.shopOrdersCreate(orderCheckoutRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async shopProductsList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedProductList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.shopProductsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * ShopApi - factory interface
+ * @export
+ */
+export const ShopApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ShopApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {string} stripeCheckoutSessionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        shopCheckoutSuccessRetrieve(stripeCheckoutSessionId: string, options?: any): AxiosPromise<Order> {
+            return localVarFp.shopCheckoutSuccessRetrieve(stripeCheckoutSessionId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {OrderCheckoutRequest} orderCheckoutRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        shopOrdersCreate(orderCheckoutRequest: OrderCheckoutRequest, options?: any): AxiosPromise<OrderCheckout> {
+            return localVarFp.shopOrdersCreate(orderCheckoutRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        shopProductsList(page?: number, options?: any): AxiosPromise<PaginatedProductList> {
+            return localVarFp.shopProductsList(page, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ShopApi - interface
+ * @export
+ * @interface ShopApi
+ */
+export interface ShopApiInterface {
+    /**
+     * 
+     * @param {string} stripeCheckoutSessionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ShopApiInterface
+     */
+    shopCheckoutSuccessRetrieve(stripeCheckoutSessionId: string, options?: AxiosRequestConfig): AxiosPromise<Order>;
+
+    /**
+     * 
+     * @param {OrderCheckoutRequest} orderCheckoutRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ShopApiInterface
+     */
+    shopOrdersCreate(orderCheckoutRequest: OrderCheckoutRequest, options?: AxiosRequestConfig): AxiosPromise<OrderCheckout>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ShopApiInterface
+     */
+    shopProductsList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedProductList>;
+
+}
+
+/**
+ * ShopApi - object-oriented interface
+ * @export
+ * @class ShopApi
+ * @extends {BaseAPI}
+ */
+export class ShopApi extends BaseAPI implements ShopApiInterface {
+    /**
+     * 
+     * @param {string} stripeCheckoutSessionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ShopApi
+     */
+    public shopCheckoutSuccessRetrieve(stripeCheckoutSessionId: string, options?: AxiosRequestConfig) {
+        return ShopApiFp(this.configuration).shopCheckoutSuccessRetrieve(stripeCheckoutSessionId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {OrderCheckoutRequest} orderCheckoutRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ShopApi
+     */
+    public shopOrdersCreate(orderCheckoutRequest: OrderCheckoutRequest, options?: AxiosRequestConfig) {
+        return ShopApiFp(this.configuration).shopOrdersCreate(orderCheckoutRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ShopApi
+     */
+    public shopProductsList(page?: number, options?: AxiosRequestConfig) {
+        return ShopApiFp(this.configuration).shopProductsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

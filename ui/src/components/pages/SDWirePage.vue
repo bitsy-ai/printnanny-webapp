@@ -11,7 +11,7 @@
             class="aspect-w-4 aspect-h-3 overflow-hidden rounded-lg bg-gray-100"
           >
             <img
-              src="@/assets/images/sdwire/SDWire-3D-front-v1.4-r1.jpg"
+              src="/images/sdwire/SDWire-3D-front-v1.4-r1.jpg"
               :alt="product.imageAlt"
               class="object-cover object-center"
             />
@@ -29,7 +29,14 @@
               >
                 {{ product.name }}
               </h1>
-
+              <h2
+                class="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl"
+              >
+                {{ product.price }}
+                <span class="font-medium text-sm"
+                  >plus shipping & handling</span
+                >
+              </h2>
               <h2 id="information-heading" class="sr-only">
                 Product information
               </h2>
@@ -54,15 +61,78 @@
 
           <p class="mt-6 text-gray-500">{{ product.description }}</p>
 
-          <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
+          <!-- prompt for email address if user is not logged in -->
+          <div v-if="!accountStore.isAuthenticated" class="mt-10">
+            <p class="text-sm my-2">
+              Enter your email address or
+              <a href="/login" class="text-indigo-500 hover:text-indigo-600"
+                >log in to an existing account.</a
+              >
+            </p>
+            <Form
+              class="sm:max-w-xl sm:mx-auto lg:mx-0"
+              :validation-schema="schema"
+              @submit="onClick"
+            >
+              <div class="sm:flex">
+                <div class="min-w-0 flex-1">
+                  <label for="email" class="sr-only">Email address</label>
+                  <Field
+                    id="email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    class="border block w-full px-4 py-3 rounded-md text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                    placeholder="Email address"
+                    rules="required"
+                  />
+                  <error-message
+                    class="text-red-500"
+                    name="email"
+                  ></error-message>
+                </div>
+                <div class="mt-3 sm:mt-0 sm:ml-3">
+                  <button
+                    type="submit"
+                    class="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                  >
+                    <CustomSpinner
+                      v-if="shopStore.loading"
+                      color="indigo"
+                      class="mr-2"
+                    ></CustomSpinner>
+                    <span v-if="!shopStore.loading">
+                      Pre-order with Stripe
+                    </span>
+                    <span v-if="shopStore.loading">
+                      Redirecting to Stripe Checkout
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </Form>
+          </div>
+
+          <div v-else class="mt-10">
             <button
               type="button"
-              class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+              class="flex w-full items-center block justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+              @click="onClick"
             >
-              Pre-order for {{ product.price }}
+              <CustomSpinner
+                v-if="shopStore.loading"
+                color="indigo"
+                class="mr-2"
+              ></CustomSpinner>
+              <span v-if="!shopStore.loading"> Pre-order with Stripe </span>
+              <span v-if="shopStore.loading">
+                Redirecting to Stripe Checkout
+              </span>
             </button>
-            <i>Shipping & handling calculated at checkout</i>
           </div>
+          <p class="text-sm mt-4">
+            Shipping is currently limited to US/Canada.
+          </p>
 
           <div class="mt-10 border-t border-gray-200 pt-10">
             <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
@@ -194,7 +264,26 @@
 </template>
 
 <script setup lang="ts">
+import * as yup from "yup";
+import { Field, ErrorMessage, Form } from "vee-validate";
+
+import CustomSpinner from "@/components/util/CustomSpinner.vue";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/vue";
+import { useShopStore } from "@/stores/shop";
+import { useAccountStore } from "@/stores/account";
+
+const accountStore = useAccountStore();
+const shopStore = useShopStore();
+
+const products = await shopStore.fetchProducts();
+const productData = products?.find((p) => p.slug == "sdwire");
+
+// define a validation schema
+const schema = yup.object({
+  email: yup.string().required().email(),
+});
+
+// TODO: load products via API instead of hard-coding
 
 const product = {
   name: "PrintNanny SDWire",
@@ -219,6 +308,17 @@ const product = {
   imageAlt: "3D rendering of PrintNanny SDWire board (front view)",
 };
 
+async function onClick(values: any) {
+  if (values && values.email !== undefined && productData !== undefined) {
+    await shopStore.createCheckoutSession(values.email, [productData.id] as Array<string>);
+  } else if (
+    accountStore.isAuthenticated &&
+    accountStore.user !== undefined &&
+    productData !== undefined
+  ) {
+    await shopStore.createCheckoutSession(accountStore.user?.email, [productData.id] as Array<string>);
+  }
+}
 // TODO prompt for review on delivery
 // const reviews = {
 //   average: 4,

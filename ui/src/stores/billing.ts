@@ -7,12 +7,13 @@ export const useBillingStore = defineStore({
   id: "billing",
   state: () => ({
     summary: undefined as api.BillingSummary | undefined,
+    loading: false,
   }),
   getters: {
     billingFormReady: (state) => state.summary !== undefined,
   },
   actions: {
-    async fetch() {
+    async fetchSummary() {
       const res = await billingApi
         .billingSummaryRetrieve()
         .catch(handleApiError);

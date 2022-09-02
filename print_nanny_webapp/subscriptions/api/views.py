@@ -1,9 +1,12 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+
 from drf_spectacular.utils import extend_schema_view, extend_schema
 from djstripe.enums import SubscriptionStatus
 
-from print_nanny_webapp.subscriptions.api.serializers import BillingSummarySerializer
+from print_nanny_webapp.subscriptions.api.serializers import (
+    BillingSummarySerializer,
+)
 from print_nanny_webapp.utils.api.views import generic_get_errors
 from print_nanny_webapp.subscriptions.services import (
     get_stripe_subscription,

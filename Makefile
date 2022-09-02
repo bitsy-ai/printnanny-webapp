@@ -466,6 +466,7 @@ stripe-local-webhooks:
 
 djstripe-sync-local:
 	docker-compose -f local.yml run --rm django python manage.py djstripe_sync_models
+	docker-compose -f local.yml run --rm django python manage.py loaddata print_nanny_webapp/shop/fixtures/product.json --app shop.Product
 
 gcs-fuse-image:
 	docker build \

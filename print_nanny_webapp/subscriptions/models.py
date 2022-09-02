@@ -4,6 +4,8 @@ from django.db.models import UniqueConstraint
 from django.utils.http import urlencode
 from django.urls import reverse
 from django.contrib.sites.models import Site
+
+
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from print_nanny_webapp.subscriptions.enum import ReferralCodeType
 

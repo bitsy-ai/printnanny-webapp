@@ -5,12 +5,12 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from django.db import models
+from django.apps import apps
 from rest_framework import serializers
 from anymail.message import AnymailMessage
 
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
-from print_nanny_webapp.subscriptions.models import MemberBadge
 
 import json
 
@@ -169,6 +169,7 @@ class User(AbstractUser):
 
     @property
     def is_paid_beta_tester(self) -> bool:
+        MemberBadge = apps.get_model("subscriptions", "MemberBadge")
         badge = self.member_badges.filter(
             type=MemberBadge.MemberBadgeType.PAID_BETA
         ).first()
@@ -176,6 +177,7 @@ class User(AbstractUser):
 
     @property
     def is_free_beta_tester(self) -> bool:
+        MemberBadge = apps.get_model("subscriptions", "MemberBadge")
         badge = self.member_badges.filter(
             type=MemberBadge.MemberBadgeType.FREE_BETA
         ).first()

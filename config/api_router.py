@@ -18,6 +18,11 @@ from print_nanny_webapp.events.api.views import (
     SinglePiStatusViewSet,
     SinglePiCommandsViewSet,
 )
+from print_nanny_webapp.shop.api.views import (
+    ProductsViewSet,
+    OrderCheckoutView,
+    OrderByStripeCheckoutSessionIdView,
+)
 
 
 from print_nanny_webapp.subscriptions.api.views import (
@@ -45,6 +50,12 @@ router.register("pis", PiViewSet)
 # enables /api/devices/:hostname lookup (no nested routing)
 other_urls = [
     path("billing/summary", BillingSummaryView.as_view(), name="billing-summary"),
+    path("shop/orders", OrderCheckoutView.as_view()),
+    path(
+        "shop/checkout/success/<str:stripe_checkout_session_id>",
+        OrderByStripeCheckoutSessionIdView.as_view(),
+        name="shop-checkout-success",
+    ),
     path("pis/events", AllPiEventsViewSet.as_view({"get": "list", "post": "create"})),
     path("pis/events/<int:id>", AllPiEventsViewSet.as_view({"get": "retrieve"})),
     path("pis/status", AllPiStatusViewSet.as_view({"get": "list", "post": "create"})),
@@ -73,6 +84,12 @@ pi_router.register(
     r"octoprint",
     OctoPrintServerByDeviceViewSet,
     basename="octoprints",
+)
+
+router.register(
+    r"shop/products",
+    ProductsViewSet,
+    basename="products",
 )
 
 router.register(
