@@ -159,7 +159,7 @@
           <div class="mt-10 border-t border-gray-200 pt-10">
             <h3 class="text-sm font-medium text-gray-900">Support</h3>
             <p class="text-gray-500 text-sm">
-              Email questions to leigh@printnanny.ai or
+              Email questions to support@printnanny.ai or
               <a
                 href="https://github.com/bitsy-ai/printnanny-sdwire"
                 class="text-indigo-500 hover:text-indigo-600"
@@ -170,8 +170,7 @@
         </div>
 
         <div
-          class="mx-auto mt-16 w-full max-w-2xl lg:col-span-4 lg:mt-0 lg:max-w-none"
-        >
+          class="mx-auto mt-16 w-full max-w-2xl lg:col-span-4 lg:mt-0 lg:max-w-none">
           <TabGroup as="div">
             <div class="border-b border-gray-200">
               <TabList class="-mb-px flex space-x-8">
@@ -352,20 +351,10 @@ async function onClick(values: any) {
 // }
 const faqs = [
   {
-    question: "Can you ship to my country?",
-    answer: "Possibly! Email support@printnanny.ai with your country, zip code, and order quantity.",
-  },
-  {
-    question: "When will I receive my order?",
-    answer: "The first batch of units will ship in October 2022.",
-  },
-  {
     question: "What can an SDWire be used for?",
     answer: `<p>SDWire is designed to make life easier for embedded software engineers and single-board computer enthusiasts. The SDWire board allows you to automate the transfer of SD card data, while the card is connected to a host (personal computer) and device-under-test (DUT) that boots from an SD card.</p> 
       <p>Anyone who has spent lots of time removing, re-imaging, re-inserting, SD cards will appreciate the quality-of-life improvements provided by SDWire.</p>
-      <p>SDWire is an SD card mux, which allows you to transfer data to any device that reads from an SD card. The 3D printing community has discovered a clever application for SDWire, such as <a href="https://github.com/arekm/OctoPrint-Sdwire">OctoPrint-SDwire</a>.</p>
-
-
+      <p>The 3D printing community uses SDWire to transfer gcode files to a printer's SD card reader. See <a href="https://github.com/arekm/OctoPrint-Sdwire" class="text-indigo-500 hover:text-indigo-600" target="_blank">OctoPrint-SDwire</a> for an example.</p>
       `,
   },
   {
@@ -375,12 +364,34 @@ const faqs = [
       "PrintNanny SDWire is based on the open-source SDWire design by Tizen, with revisions to replace unavailable components with parts that are easy to source in the US.",
   },
   {
-    question: "Is PrintNanny SDWire open source?",
-    answer: `Yes! The KiCAD project will be available on Github. Watch <a href="https://github.com/bitsy-ai/PrintNanny SDwire" class="text-indigo-500 hover:text-indigo-600">this repo</a> to get notified of updates.`,
+    question: "Can you ship to my country?",
+    answer: "If you do not see a shipping option available for your country, email support@printnanny.ai with your country, postal code, and order quantity. Please keep in mind that shipping outside of the US/Canada may be prohibitely expensive for small orders. If you would like to place a bulk order and re-distribute PrintNanny SDWire, get in touch for a quote.",
+  },
+  {
+    question: "When will I receive my order?",
+    answer: "The first batch of units will ship in October 2022. We assemble and ship pre-orders in they order they're received. You'll receive an email confirmation when your order is ready to ship, to make sure we have the correct address on file.",
+  },
+  {
+    question: "When does my payment method get charged?",
+    answer: "Your payment will be charged when you place your pre-order. If you cancel your pre-order, your payment method will be refunded."
+  },
+  {
+    question: "Can I cancel my pre-order?",
+    answer: "Yes, as long as your order hasn't shipped. Please send an email to support@printnanny.ai to cancel your pre-order and receive a refund."
+  },
+  {
+    question: "What is your return policy?",
+    answer: `If you receive a board that doesn't work, get in touch immediately! 
+      We happily accept returns within 30 days of delivery. Please send an email support@printanny.ai to start the return process.
+    `
   },
   {
     question: "Do you offer a bulk discount?",
     answer: "For orders of 5+ boards, email support@printnanny.ai with your country, zip code, and desired quantity.",
+  },
+  {
+    question: "Is PrintNanny SDWire open source?",
+    answer: `Yes! The KiCAD project will be available on Github. Watch <a href="https://github.com/bitsy-ai/PrintNanny-SDwire" class="text-indigo-500 hover:text-indigo-600">this repo</a> to get notified of updates.`,
   },
 ];
 const license = {

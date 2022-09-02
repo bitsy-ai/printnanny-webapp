@@ -233,7 +233,7 @@
         </p>
         <p class="mx-auto mt-4 max-w-xl text-xl text-white">
           <strong
-            >$99 / year early access price<br />
+            >$149 / year early access price<br />
             <s class="text-gray-900 text-sm">$199 / year public launch price</s>
           </strong>
         </p>
