@@ -352,13 +352,12 @@ async function onClick(values: any) {
 // }
 const faqs = [
   {
-    question: "When will I receive my order?",
-    answer: "The first batch of units will ship in October 2022.",
+    question: "Can you ship to my country?",
+    answer: "Possibly! Email support@printnanny.ai with your country, zip code, and order quantity.",
   },
   {
-    question: "When will I be charged for my order?",
-    answer:
-      "You will not be charged for your pre-order until the unit is ready to ship. When the unit is about to ship, we'll send you a confirmation email to make sure the shipping address and amount are correct.",
+    question: "When will I receive my order?",
+    answer: "The first batch of units will ship in October 2022.",
   },
   {
     question: "What can an SDWire be used for?",
@@ -379,7 +378,10 @@ const faqs = [
     question: "Is PrintNanny SDWire open source?",
     answer: `Yes! The KiCAD project will be available on Github. Watch <a href="https://github.com/bitsy-ai/PrintNanny SDwire" class="text-indigo-500 hover:text-indigo-600">this repo</a> to get notified of updates.`,
   },
-  // More FAQs...
+  {
+    question: "Do you offer a bulk discount?",
+    answer: "For orders of 5+ boards, email support@printnanny.ai with your country, zip code, and desired quantity.",
+  },
 ];
 const license = {
   href: "https://wiki.tizen.org/SDWire",
