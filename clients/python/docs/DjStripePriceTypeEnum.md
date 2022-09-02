@@ -1,4 +1,4 @@
-# TypeEnum
+# DjStripePriceTypeEnum
 
 
 ## Properties

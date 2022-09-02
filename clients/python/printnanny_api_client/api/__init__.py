@@ -13,3 +13,4 @@ from printnanny_api_client.api.octoprint_api import OctoprintApi
 from printnanny_api_client.api.pis_api import PisApi
 from printnanny_api_client.api.schema_api import SchemaApi
 from printnanny_api_client.api.settings_api import SettingsApi
+from printnanny_api_client.api.shop_api import ShopApi

@@ -71,5 +71,6 @@ pub mod octoprint_api;
 pub mod pis_api;
 pub mod schema_api;
 pub mod settings_api;
+pub mod shop_api;
 
 pub mod configuration;

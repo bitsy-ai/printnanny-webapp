@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **created** | Option<**String**> | The datetime this object was created in stripe. | [optional]
 **metadata** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format. | [optional]
 **billing_details** | [**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) | Billing information associated with the PaymentMethod that may be used or required by particular types of payment methods. | 
-**_type** | Option<[**crate::models::TypeEnum**](TypeEnum.md)> | The type of the PaymentMethod. | 
+**_type** | Option<[**crate::models::StripePaymentMethodTypeEnum**](StripePaymentMethodTypeEnum.md)> | The type of the PaymentMethod. | 
 **acss_debit** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Additional information for payment methods of type `acss_debit` | [optional]
 **afterpay_clearpay** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Additional information for payment methods of type `afterpay_clearpay` | [optional]
 **alipay** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Additional information for payment methods of type `alipay` | [optional]
