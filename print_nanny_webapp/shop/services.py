@@ -221,6 +221,9 @@ def sync_stripe_order(stripe_checkout_session_id) -> Order:
     """
     # pull latest checkout session data from Stripe and sync DjStripe model
     session = sync_stripe_checkout_session(stripe_checkout_session_id)
+    # pull latest customer info from Stripe
+    customer = sync_stripe_customer_by_id(session.customer.id)
+    order = Order.objects.get(djstripe_checkout_session=session)
 
     # if order was a payment, sync the payment intent model
     if session.mode == "payment":
@@ -228,10 +231,6 @@ def sync_stripe_order(stripe_checkout_session_id) -> Order:
         payment_intent = sync_stripe_payment_intent(session.payment_intent.id)
         order.payment_intent = payment_intent
 
-    # pull latest customer info from Stripe
-    customer = sync_stripe_customer_by_id(session.customer.id)
-
-    order = Order.objects.get(djstripe_checkout_session=session)
     order.djstripe_customer = customer
 
     order.save()
