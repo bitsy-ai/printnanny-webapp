@@ -237,9 +237,11 @@
             <s class="text-gray-900 text-sm">$199 / year public launch price</s>
           </strong>
         </p>
-        <router-link :to="{ name: 'shop-founding-membership' }"
+        <router-link
+          :to="{ name: 'shop-founding-membership' }"
           class="mt-6 sm:text-3xl inline-block w-full rounded-md border border-transparent bg-gray-900 py-3 px-8 font-medium text-white hover:bg-gray-800 sm:w-auto"
-          >Get Early Access Now</router-link>
+          >Get Early Access Now</router-link
+        >
         <p class="mx-auto mt-4 max-w-xl text-xl text-white">
           <strong
             >Money-back Guarantee.<br /><span class="text-gray-900 text-sm"

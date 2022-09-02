@@ -1,13 +1,29 @@
 <template>
   <div class="bg-white">
-    <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div
+      class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8"
+    >
       <h2 class="sr-only">Products</h2>
 
-      <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
-        <div v-for="product in products" :key="product.id" class="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
+      <div
+        class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8"
+      >
+        <div
+          v-for="product in products"
+          :key="product.id"
+          class="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white"
+        >
           <a :href="slugToProductPageUrl(product.slug)">
-            <div class="aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96">
-              <img v-for="image in product.images" :src="image" :alt="product.description" class="object-center sm:w-full" />
+            <div
+              class="aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96"
+            >
+              <img
+                v-for="(image, index) in product.images"
+                :key="index"
+                :src="image"
+                :alt="product.description"
+                class="object-center sm:w-full"
+              />
             </div>
           </a>
           <div class="flex flex-1 flex-col space-y-2 p-4">
@@ -15,12 +31,19 @@
               <a :href="slugToProductPageUrl(product.slug)">
                 <span aria-hidden="true" class="absolute inset-0" />
                 {{ product.name }}
-          </a>
+              </a>
             </h3>
             <p class="text-sm text-gray-500">{{ product.description }}</p>
             <div class="flex flex-1 flex-col justify-end">
               <p class="text-sm italic text-gray-500">{{ product.options }}</p>
-              <p class="text-base font-medium text-gray-900">{{ product.prices[0].human_readable_price.replace("(one time)", "") }}</p>
+              <p class="text-base font-medium text-gray-900">
+                {{
+                  product.prices[0].human_readable_price.replace(
+                    "(one time)",
+                    ""
+                  )
+                }}
+              </p>
             </div>
           </div>
         </div>
@@ -35,8 +58,8 @@ import { useShopStore } from "@/stores/shop";
 const shopStore = useShopStore();
 const products = await shopStore.fetchProducts();
 
-function slugToProductPageUrl(slug){
-  return `/shop/${slug}/`
+function slugToProductPageUrl(slug) {
+  return `/shop/${slug}/`;
 }
 
 // const products = [

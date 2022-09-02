@@ -1,8 +1,7 @@
 import LandingLayout from "@/layouts/LandingLayout.vue";
 import FoundingMembershipPage from "@/components/pages/FoundingMembershipPage.vue";
 import SDWirePage from "@/components/pages/SDWirePage.vue";
-import SDWireSuccessPage from "@/components/pages/SDWireSuccessPage.vue";
-import CheckoutPage from "@/components/pages/CheckoutPage.vue";
+import CheckoutSuccessPage from "@/components/pages/CheckoutSuccessPage.vue";
 import ShopProductsListPage from "@/components/pages/ShopProductsListPage.vue";
 export default [
   {
@@ -39,18 +38,10 @@ export default [
         path: "sdwire/success/:sessionId",
         name: "sdwire-checkout-success",
         components: {
-          default: SDWireSuccessPage,
+          default: CheckoutSuccessPage,
         },
         props: { default: true },
         meta: { title: "Pre-order accepted" },
-      },
-      {
-        path: "checkout",
-        name: "checkout",
-        components: {
-          default: CheckoutPage,
-        },
-        meta: { title: "Checkout" },
       },
     ],
   },

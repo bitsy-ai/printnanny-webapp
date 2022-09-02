@@ -62,9 +62,12 @@
           <p class="mt-6 text-gray-500">{{ product.description }}</p>
 
           <!-- prompt for email address if user is not logged in -->
-          <div class="mt-10" v-if="!accountStore.isAuthenticated">
+          <div v-if="!accountStore.isAuthenticated" class="mt-10">
             <p class="text-sm my-2">
-            Enter your email address or <a href="/login" class="text-indigo-500 hover:text-indigo-600">log in to an existing account.</a>
+              Enter your email address or
+              <a href="/login" class="text-indigo-500 hover:text-indigo-600"
+                >log in to an existing account.</a
+              >
             </p>
             <Form
               class="sm:max-w-xl sm:mx-auto lg:mx-0"
@@ -83,29 +86,34 @@
                     placeholder="Email address"
                     rules="required"
                   />
-                  <error-message class="text-red-500" name="email"></error-message>
+                  <error-message
+                    class="text-red-500"
+                    name="email"
+                  ></error-message>
                 </div>
                 <div class="mt-3 sm:mt-0 sm:ml-3">
                   <button
                     type="submit"
                     class="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                   >
-                                <CustomSpinner
-                v-if="shopStore.loading"
-                color="indigo"
-                class="mr-2"
-              ></CustomSpinner>
-                  <span v-if="!shopStore.loading"> Pre-order with Stripe </span>
-                  <span v-if="shopStore.loading">
-                    Redirecting to Stripe Checkout
-                  </span>
+                    <CustomSpinner
+                      v-if="shopStore.loading"
+                      color="indigo"
+                      class="mr-2"
+                    ></CustomSpinner>
+                    <span v-if="!shopStore.loading">
+                      Pre-order with Stripe
+                    </span>
+                    <span v-if="shopStore.loading">
+                      Redirecting to Stripe Checkout
+                    </span>
                   </button>
                 </div>
               </div>
             </Form>
           </div>
 
-          <div class="mt-10" v-else>
+          <div v-else class="mt-10">
             <button
               type="button"
               class="flex w-full items-center block justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
@@ -256,13 +264,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import * as yup from "yup";
 import { Field, ErrorMessage, Form } from "vee-validate";
 
 import CustomSpinner from "@/components/util/CustomSpinner.vue";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/vue";
-import { CheckoutProduct } from "@/types/checkout";
 import { useShopStore } from "@/stores/shop";
 import { useAccountStore } from "@/stores/account";
 
@@ -270,7 +276,7 @@ const accountStore = useAccountStore();
 const shopStore = useShopStore();
 
 const products = await shopStore.fetchProducts();
-const productId = products.filter(p => p.slug == "sdwire").map(p => p.id);
+const productIds = products.filter((p) => p.slug == "sdwire").map((p) => p.id);
 
 // define a validation schema
 const schema = yup.object({
@@ -278,7 +284,6 @@ const schema = yup.object({
 });
 
 // TODO: load products via API instead of hard-coding
-
 
 const product = {
   name: "PrintNanny SDWire",
@@ -304,10 +309,10 @@ const product = {
 };
 
 async function onClick(values: any) {
-  if (values && values.email !== undefined){
-    const checkoutSession = await shopStore.createCheckoutSession(values.email, productId);
-  } else if (accountStore.isAuthenticated){
-    const checkoutSession = await shopStore.createCheckoutSession(accountStore.user.email, productIds);
+  if (values && values.email !== undefined) {
+    await shopStore.createCheckoutSession(values.email, productIds);
+  } else if (accountStore.isAuthenticated) {
+    await shopStore.createCheckoutSession(accountStore.user.email, productIds);
   }
 }
 // TODO prompt for review on delivery

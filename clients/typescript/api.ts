@@ -207,6 +207,304 @@ export type ConfirmationMethodEnum = typeof ConfirmationMethodEnum[keyof typeof 
 /**
  * 
  * @export
+ * @interface DjStripeCharge
+ */
+export interface DjStripeCharge {
+    /**
+     * 
+     * @type {number}
+     * @memberof DjStripeCharge
+     */
+    'djstripe_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'djstripe_created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'djstripe_updated': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'id': string;
+    /**
+     * Null here indicates that the livemode status is unknown or was previously unrecorded. Otherwise, this field indicates whether this record comes from Stripe test mode or live mode operation.
+     * @type {boolean}
+     * @memberof DjStripeCharge
+     */
+    'livemode'?: boolean | null;
+    /**
+     * The datetime this object was created in stripe.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'created'?: string | null;
+    /**
+     * A set of key/value pairs that you can attach to an object. It can be useful for storing additional information about an object in a structured format.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCharge
+     */
+    'metadata'?: { [key: string]: any; } | null;
+    /**
+     * A description of this object.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'description'?: string | null;
+    /**
+     * Amount charged (as decimal).
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'amount': string;
+    /**
+     * Amount (as decimal) captured (can be less than the amount attribute on the charge if a partial capture was issued).
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'amount_captured'?: string | null;
+    /**
+     * Amount (as decimal) refunded (can be less than the amount attribute on the charge if a partial refund was issued).
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'amount_refunded': string;
+    /**
+     * ID of the Connect application that created the charge.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'application'?: string;
+    /**
+     * The amount (as decimal) of the application fee (if any) requested for the charge.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'application_fee_amount'?: string | null;
+    /**
+     * Billing information associated with the PaymentMethod at the time of the transaction.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCharge
+     */
+    'billing_details'?: { [key: string]: any; } | null;
+    /**
+     * The full statement descriptor that is passed to card networks, and that is displayed on your customers\' credit card and bank statements. Allows you to see what the statement descriptor looks like after the static and dynamic portions are combined.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'calculated_statement_descriptor'?: string;
+    /**
+     * If the charge was created without capturing, this boolean represents whether or not it is still uncaptured or has since been captured.
+     * @type {boolean}
+     * @memberof DjStripeCharge
+     */
+    'captured'?: boolean;
+    /**
+     * The currency in which the charge was made.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'currency': string;
+    /**
+     * Whether the charge has been disputed.
+     * @type {boolean}
+     * @memberof DjStripeCharge
+     */
+    'disputed'?: boolean;
+    /**
+     * Error code explaining reason for charge failure if available.
+     * @type {FailureCodeEnum | BlankEnum}
+     * @memberof DjStripeCharge
+     */
+    'failure_code'?: FailureCodeEnum | BlankEnum;
+    /**
+     * Message to user further explaining reason for charge failure if available.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'failure_message'?: string;
+    /**
+     * Hash with information on fraud assessments for the charge.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCharge
+     */
+    'fraud_details'?: { [key: string]: any; } | null;
+    /**
+     * Details about whether or not the payment was accepted, and why.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCharge
+     */
+    'outcome'?: { [key: string]: any; } | null;
+    /**
+     * True if the charge succeeded, or was successfully authorized for later capture, False otherwise.
+     * @type {boolean}
+     * @memberof DjStripeCharge
+     */
+    'paid'?: boolean;
+    /**
+     * Details about the payment method at the time of the transaction.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCharge
+     */
+    'payment_method_details'?: { [key: string]: any; } | null;
+    /**
+     * The email address that the receipt for this charge was sent to.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'receipt_email'?: string;
+    /**
+     * The transaction number that appears on email receipts sent for this charge.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'receipt_number'?: string;
+    /**
+     * This is the URL to view the receipt for this charge. The receipt is kept up-to-date to the latest state of the charge, including any refunds. If the charge is for an Invoice, the receipt will be stylized as an Invoice receipt.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'receipt_url'?: string;
+    /**
+     * Whether or not the charge has been fully refunded. If the charge is only partially refunded, this attribute will still be false.
+     * @type {boolean}
+     * @memberof DjStripeCharge
+     */
+    'refunded'?: boolean;
+    /**
+     * Shipping information for the charge
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCharge
+     */
+    'shipping'?: { [key: string]: any; } | null;
+    /**
+     * For card charges, use statement_descriptor_suffix instead. Otherwise, you can use this value as the complete description of a charge on your customers\' statements. Must contain at least one letter, maximum 22 characters.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'statement_descriptor'?: string | null;
+    /**
+     * Provides information about the charge that customers see on their statements. Concatenated with the prefix (shortened descriptor) or statement descriptor that\'s set on the account to form the complete statement descriptor. Maximum 22 characters for the concatenated descriptor.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'statement_descriptor_suffix'?: string | null;
+    /**
+     * The status of the payment.
+     * @type {DjStripeChargeStatusEnum}
+     * @memberof DjStripeCharge
+     */
+    'status': DjStripeChargeStatusEnum;
+    /**
+     * An optional dictionary including the account to automatically transfer to as part of a destination charge.
+     * @type {{ [key: string]: any; }}
+     * @memberof DjStripeCharge
+     */
+    'transfer_data'?: { [key: string]: any; } | null;
+    /**
+     * A string that identifies this transaction as part of a group.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'transfer_group'?: string | null;
+    /**
+     * The Stripe Account this object belongs to.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'djstripe_owner_account'?: string | null;
+    /**
+     * The application fee (if any) for the charge.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'application_fee'?: string | null;
+    /**
+     * The balance transaction that describes the impact of this charge on your account balance (not including refunds or disputes).
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'balance_transaction'?: string | null;
+    /**
+     * The customer associated with this charge.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'customer'?: string | null;
+    /**
+     * Details about the dispute if the charge has been disputed.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'dispute'?: string | null;
+    /**
+     * The invoice this charge is for if one exists.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'invoice'?: string | null;
+    /**
+     * The account (if any) the charge was made on behalf of without triggering an automatic transfer.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'on_behalf_of'?: string | null;
+    /**
+     * PaymentIntent associated with this charge, if one exists.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'payment_intent'?: string | null;
+    /**
+     * PaymentMethod used in this charge.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'payment_method'?: string | null;
+    /**
+     * The source used for this charge.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'source'?: string | null;
+    /**
+     * The transfer which created this charge. Only present if the charge came from another Stripe account.
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'source_transfer'?: string | null;
+    /**
+     * The transfer to the `destination` account (only applicable if the charge was created using the `destination` parameter).
+     * @type {string}
+     * @memberof DjStripeCharge
+     */
+    'transfer'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const DjStripeChargeStatusEnum = {
+    Failed: 'failed',
+    Pending: 'pending',
+    Succeeded: 'succeeded'
+} as const;
+
+export type DjStripeChargeStatusEnum = typeof DjStripeChargeStatusEnum[keyof typeof DjStripeChargeStatusEnum];
+
+
+/**
+ * 
+ * @export
  * @interface DjStripeCheckoutSession
  */
 export interface DjStripeCheckoutSession {
@@ -536,6 +834,12 @@ export interface DjStripePaymentIntent {
      * @memberof DjStripePaymentIntent
      */
     'djstripe_id': number;
+    /**
+     * 
+     * @type {Array<DjStripeCharge>}
+     * @memberof DjStripePaymentIntent
+     */
+    'charges': Array<DjStripeCharge>;
     /**
      * 
      * @type {string}
@@ -1229,6 +1533,105 @@ export const EventTypesEnum = {
 } as const;
 
 export type EventTypesEnum = typeof EventTypesEnum[keyof typeof EventTypesEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const FailureCodeEnum = {
+    AccountAlreadyExists: 'account_already_exists',
+    AccountCountryInvalidAddress: 'account_country_invalid_address',
+    AccountInvalid: 'account_invalid',
+    AccountNumberInvalid: 'account_number_invalid',
+    AlipayUpgradeRequired: 'alipay_upgrade_required',
+    AmountTooLarge: 'amount_too_large',
+    AmountTooSmall: 'amount_too_small',
+    ApiKeyExpired: 'api_key_expired',
+    BalanceInsufficient: 'balance_insufficient',
+    BankAccountExists: 'bank_account_exists',
+    BankAccountUnusable: 'bank_account_unusable',
+    BankAccountUnverified: 'bank_account_unverified',
+    BitcoinUpgradeRequired: 'bitcoin_upgrade_required',
+    CardDeclined: 'card_declined',
+    ChargeAlreadyCaptured: 'charge_already_captured',
+    ChargeAlreadyRefunded: 'charge_already_refunded',
+    ChargeDisputed: 'charge_disputed',
+    ChargeExceedsSourceLimit: 'charge_exceeds_source_limit',
+    ChargeExpiredForCapture: 'charge_expired_for_capture',
+    CountryUnsupported: 'country_unsupported',
+    CouponExpired: 'coupon_expired',
+    CustomerMaxSubscriptions: 'customer_max_subscriptions',
+    EmailInvalid: 'email_invalid',
+    ExpiredCard: 'expired_card',
+    IdempotencyKeyInUse: 'idempotency_key_in_use',
+    IncorrectAddress: 'incorrect_address',
+    IncorrectCvc: 'incorrect_cvc',
+    IncorrectNumber: 'incorrect_number',
+    IncorrectZip: 'incorrect_zip',
+    InstantPayoutsUnsupported: 'instant_payouts_unsupported',
+    InvalidCardType: 'invalid_card_type',
+    InvalidChargeAmount: 'invalid_charge_amount',
+    InvalidCvc: 'invalid_cvc',
+    InvalidExpiryMonth: 'invalid_expiry_month',
+    InvalidExpiryYear: 'invalid_expiry_year',
+    InvalidNumber: 'invalid_number',
+    InvalidSourceUsage: 'invalid_source_usage',
+    InvalidSwipeData: 'invalid_swipe_data',
+    InvoiceNoCustomerLineItems: 'invoice_no_customer_line_items',
+    InvoiceNoSubscriptionLineItems: 'invoice_no_subscription_line_items',
+    InvoiceNotEditable: 'invoice_not_editable',
+    InvoiceUpcomingNone: 'invoice_upcoming_none',
+    LivemodeMismatch: 'livemode_mismatch',
+    Missing: 'missing',
+    NotAllowedOnStandardAccount: 'not_allowed_on_standard_account',
+    OrderCreationFailed: 'order_creation_failed',
+    OrderRequiredSettings: 'order_required_settings',
+    OrderStatusInvalid: 'order_status_invalid',
+    OrderUpstreamTimeout: 'order_upstream_timeout',
+    OutOfInventory: 'out_of_inventory',
+    ParameterInvalidEmpty: 'parameter_invalid_empty',
+    ParameterInvalidInteger: 'parameter_invalid_integer',
+    ParameterInvalidStringBlank: 'parameter_invalid_string_blank',
+    ParameterInvalidStringEmpty: 'parameter_invalid_string_empty',
+    ParameterMissing: 'parameter_missing',
+    ParameterUnknown: 'parameter_unknown',
+    ParametersExclusive: 'parameters_exclusive',
+    PaymentIntentAuthenticationFailure: 'payment_intent_authentication_failure',
+    PaymentIntentIncompatiblePaymentMethod: 'payment_intent_incompatible_payment_method',
+    PaymentIntentInvalidParameter: 'payment_intent_invalid_parameter',
+    PaymentIntentPaymentAttemptFailed: 'payment_intent_payment_attempt_failed',
+    PaymentIntentUnexpectedState: 'payment_intent_unexpected_state',
+    PaymentMethodUnactivated: 'payment_method_unactivated',
+    PaymentMethodUnexpectedState: 'payment_method_unexpected_state',
+    PayoutsNotAllowed: 'payouts_not_allowed',
+    PlatformApiKeyExpired: 'platform_api_key_expired',
+    PostalCodeInvalid: 'postal_code_invalid',
+    ProcessingError: 'processing_error',
+    ProductInactive: 'product_inactive',
+    RateLimit: 'rate_limit',
+    ResourceAlreadyExists: 'resource_already_exists',
+    ResourceMissing: 'resource_missing',
+    RoutingNumberInvalid: 'routing_number_invalid',
+    SecretKeyRequired: 'secret_key_required',
+    SepaUnsupportedAccount: 'sepa_unsupported_account',
+    ShippingCalculationFailed: 'shipping_calculation_failed',
+    SkuInactive: 'sku_inactive',
+    StateUnsupported: 'state_unsupported',
+    TaxIdInvalid: 'tax_id_invalid',
+    TaxesCalculationFailed: 'taxes_calculation_failed',
+    TestmodeChargesOnly: 'testmode_charges_only',
+    TlsVersionUnsupported: 'tls_version_unsupported',
+    TokenAlreadyUsed: 'token_already_used',
+    TokenInUse: 'token_in_use',
+    TransfersNotAllowed: 'transfers_not_allowed',
+    UpstreamOrderCreationFailed: 'upstream_order_creation_failed',
+    UrlInvalid: 'url_invalid'
+} as const;
+
+export type FailureCodeEnum = typeof FailureCodeEnum[keyof typeof FailureCodeEnum];
 
 
 /**
@@ -2767,7 +3170,7 @@ export interface OctoPrinterProfileRequest {
     'volume_width'?: number | null;
 }
 /**
- * 
+ * Djstripe\'s representation of Stripe Checkout model is missing a number of fields, like subtotal amount and shipping/tax charges  stripe_checkout_session_data is the raw JSON returned by stripe.checkout.Session.retrieve
  * @export
  * @interface Order
  */
@@ -2826,6 +3229,12 @@ export interface Order {
      * @memberof Order
      */
     'stripe_checkout_redirect_url': string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof Order
+     */
+    'stripe_checkout_session_data': { [key: string]: any; };
 }
 /**
  * 
