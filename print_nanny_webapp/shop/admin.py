@@ -17,7 +17,7 @@ class ProductAdmin(admin.ModelAdmin):
     )
 
     def stripe_dashboard_url(self, obj):
-        url = obj.get_stripe_dashboard_url()
+        url = obj.djstripe_product.get_stripe_dashboard_url()
         return format_html("<a href='{url}'>{url}</a>", url=url)
 
     class Meta:

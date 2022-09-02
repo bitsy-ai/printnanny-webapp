@@ -35,13 +35,13 @@ export default [
         meta: { title: "Pre-order SDWire" },
       },
       {
-        path: "sdwire/success/:sessionId",
-        name: "sdwire-checkout-success",
+        path: "thank-you/:sessionId",
+        name: "shop-checkout-success",
         components: {
           default: CheckoutSuccessPage,
         },
         props: { default: true },
-        meta: { title: "Pre-order accepted" },
+        meta: { title: "Thank you!" },
       },
     ],
   },

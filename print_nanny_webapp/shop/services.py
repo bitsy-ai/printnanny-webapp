@@ -84,28 +84,24 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
         except DjStripeCustomer.DoesNotExist:
             extra_kwargs["customer_email"] = email
 
-    if product.slug == "sdwire":
-        price_id = product.prices.all()[0].id
+    # set success / cancel urls
+    extra_kwargs["success_url"] = request.build_absolute_uri("/shop/thank-you/")
+    # add "{CHECKOUT_SESSION_ID}" template string to url. this gets uri-encoded to %7B if passed to build_absolute_uri fn
+    extra_kwargs["success_url"] = extra_kwargs["success_url"] + "{CHECKOUT_SESSION_ID}"
 
-        # set success / cancel urls
-        extra_kwargs["success_url"] = request.build_absolute_uri(
-            "/shop/sdwire/success/"
+    extra_kwargs["cancel_url"] = request.build_absolute_uri(f"/shop/{product.slug}")
+
+    # quick hack to replace :8000 server-side port with front-end hot module reload port (in dev mode)
+    if settings.DEBUG:
+        extra_kwargs["success_url"] = extra_kwargs["success_url"].replace(
+            ":8000", ":3000"
         )
-        # add "{CHECKOUT_SESSION_ID}" template string to url. this gets uri-encoded to %7B if passed to build_absolute_uri fn
-        extra_kwargs["success_url"] = (
-            extra_kwargs["success_url"] + "{CHECKOUT_SESSION_ID}"
+        extra_kwargs["cancel_url"] = extra_kwargs["success_url"].replace(
+            ":8000", ":3000"
         )
+    price_id = product.prices.filter(active=True).first().id
 
-        extra_kwargs["cancel_url"] = request.build_absolute_uri("/shop/sdwire")
-
-        # quick hack to replace :8000 server-side port with front-end hot module reload port (in dev mode)
-        if settings.DEBUG:
-            extra_kwargs["success_url"] = extra_kwargs["success_url"].replace(
-                ":8000", ":3000"
-            )
-            extra_kwargs["cancel_url"] = extra_kwargs["success_url"].replace(
-                ":8000", ":3000"
-            )
+    if product.is_shippable:
 
         return (
             stripe.checkout.Session.create(
@@ -147,6 +143,28 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
                         }
                     },
                 ],
+                **extra_kwargs,
+            ),
+            order_id,
+        )
+    elif product.is_subscription:
+
+        return (
+            stripe.checkout.Session.create(
+                payment_method_types=["card"],
+                line_items=[
+                    {
+                        "price": price_id,
+                        "adjustable_quantity": {
+                            "enabled": True,
+                            "minimum": 1,
+                            "maximum": 10,
+                        },
+                        "quantity": 1,
+                    }
+                ],
+                mode="subscription",
+                billing_address_collection="required",
                 **extra_kwargs,
             ),
             order_id,
@@ -204,21 +222,16 @@ def sync_stripe_order(stripe_checkout_session_id) -> Order:
     # pull latest checkout session data from Stripe and sync DjStripe model
     session = sync_stripe_checkout_session(stripe_checkout_session_id)
 
-    # pull latest payment intent data from Stripe
-    payment_intent = sync_stripe_payment_intent(session.payment_intent.id)
-    # import pdb
-
-    # pdb.set_trace()
-
-    # pull latest charges data from Stripe
-    # for charge in payment_intent.charges
-    # charges = sync_stripe_charge()
+    # if order was a payment, sync the payment intent model
+    if session.mode == "payment":
+        # pull latest payment intent data from Stripe
+        payment_intent = sync_stripe_payment_intent(session.payment_intent.id)
+        order.payment_intent = payment_intent
 
     # pull latest customer info from Stripe
     customer = sync_stripe_customer_by_id(session.customer.id)
 
     order = Order.objects.get(djstripe_checkout_session=session)
-    order.payment_intent = payment_intent
     order.djstripe_customer = customer
 
     order.save()

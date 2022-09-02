@@ -128,18 +128,6 @@
             <p class="text-xl tracking-tight mt-2">50% off launch price</p>
           </div>
 
-          <!-- TODO Reviews 
-          <div class="mt-3">
-            <h3 class="sr-only">Reviews</h3>
-            <div class="flex items-center">
-              <div class="flex items-center">
-                <StarIcon v-for="rating in [0, 1, 2, 3, 4]" :key="rating" :class="[product.rating > rating ? 'text-indigo-500' : 'text-gray-300', 'h-5 w-5 flex-shrink-0']" aria-hidden="true" />
-              </div>
-              <p class="sr-only">{{ product.rating }} out of 5 stars</p>
-            </div>
-          </div>
-            -->
-
           <div class="mt-6">
             <h3 class="sr-only">Description</h3>
 
@@ -302,6 +290,10 @@ async function onClick(values: any) {
   ) {
     await shopStore.createCheckoutSession(accountStore.user?.email, [productData.id] as Array<string>);
   }
+}
+
+const timeline = {
+  content: ``
 }
 
 const faqs = [
