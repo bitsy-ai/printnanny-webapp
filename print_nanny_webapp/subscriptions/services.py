@@ -48,7 +48,7 @@ def get_stripe_subscription(customer: Customer) -> Subscription:
     return subscriptions.first()
 
 
-def get_stripe_customer(user: User) -> Customer:
+def get_stripe_customer(user) -> Customer:
     """
     Retrieve djstripe.model.Customer where Customer <-> User relationship may not be set
     Sets Customer.subscriber relationship if unset

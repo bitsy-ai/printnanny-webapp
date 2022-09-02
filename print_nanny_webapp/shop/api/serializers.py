@@ -67,7 +67,7 @@ class ProductSerializer(serializers.ModelSerializer):
 class OrderCheckoutSerializer(serializers.ModelSerializer):
     # provided by client to initialize Stripe checkout session
     email = serializers.EmailField()
-    products = serializers.PrimaryKeyRelatedField(
+    products = serializers.PrimaryKeyRelatedField(  # type: ignore[var-annotated]
         many=True, queryset=Product.objects.all()
     )
     stripe_checkout_redirect_url = serializers.CharField(read_only=True)
@@ -84,7 +84,7 @@ class OrderCheckoutSerializer(serializers.ModelSerializer):
             raise ValueError("Expected at least 1 product")
         if len(products) > 1:
             raise NotImplementedError(
-                f"Checkout for more than 1 product is not implemented (received {len(product_ids)})"
+                f"Checkout for more than 1 product is not implemented (received {len(products)})"
             )
 
         product = products[0]

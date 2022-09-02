@@ -1,4 +1,5 @@
 from uuid import uuid4
+from typing import Dict, Any
 from django.conf import settings
 from django.http.request import HttpRequest
 
@@ -43,7 +44,7 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
 
     """
     stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
-    django_session_key = request.session._get_or_create_session_key()
+    django_session_key = request.session._get_or_create_session_key()  # type: ignore[attr-defined]
 
     # prices = stripe.Price.list(lookup_keys=[stripe_lookup_key])
 
@@ -53,7 +54,7 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
     order_id = uuid4()
 
     # add django session key to stripe metadata
-    extra_kwargs = dict(
+    extra_kwargs: Dict[Any, Any] = dict(
         # expand customer and payment_intent fields in response
         expand=["customer", "payment_intent", "line_items"],
         metadata=dict(
@@ -91,7 +92,9 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
             "/shop/sdwire/success/"
         )
         # add "{CHECKOUT_SESSION_ID}" template string to url. this gets uri-encoded to %7B if passed to build_absolute_uri fn
-        extra_kwargs["success_url"] += "{CHECKOUT_SESSION_ID}"
+        extra_kwargs["success_url"] = (
+            extra_kwargs["success_url"] + "{CHECKOUT_SESSION_ID}"
+        )
 
         extra_kwargs["cancel_url"] = request.build_absolute_uri("/shop/sdwire")
 
