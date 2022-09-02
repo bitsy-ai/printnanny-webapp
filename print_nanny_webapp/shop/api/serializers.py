@@ -11,7 +11,7 @@ from djstripe.models.checkout import Session as DjStripeCheckoutSession
 from djstripe.settings import djstripe_settings
 import stripe
 
-from print_nanny_webapp.shop.models import Order, Product
+from print_nanny_webapp.shop.models import Order, OrderStatus, Product
 from print_nanny_webapp.shop.services import create_order
 
 
@@ -91,6 +91,12 @@ class OrderCheckoutSerializer(serializers.ModelSerializer):
         return create_order(request, product, email)
 
 
+class OrderStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderStatus
+        fields = "__all__"
+
+
 class OrderSerializer(serializers.ModelSerializer):
     """
     Djstripe's representation of Stripe Checkout model is missing a number of fields, like subtotal amount and shipping/tax charges
@@ -103,6 +109,8 @@ class OrderSerializer(serializers.ModelSerializer):
     djstripe_payment_intent = DjStripePaymentIntentSerializer(read_only=True)
     products = ProductSerializer(read_only=True, many=True)
     id = serializers.UUIDField(read_only=True)
+    last_status = OrderStatusSerializer()
+    status_history = OrderStatusSerializer(many=True)
 
     stripe_checkout_redirect_url = serializers.CharField(read_only=True, required=False)
 
@@ -131,6 +139,7 @@ class OrderSerializer(serializers.ModelSerializer):
             "djstripe_checkout_session",
             "djstripe_payment_intent",
             "last_status",
+            "status_history",
             "email",
             "stripe_checkout_redirect_url",
             "stripe_checkout_session_data",
