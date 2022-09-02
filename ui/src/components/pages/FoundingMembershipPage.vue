@@ -176,11 +176,9 @@ import { HeartIcon, MinusIcon, PlusIcon } from "@heroicons/vue/outline";
 import coaster1Url from "@/assets/images/founding-swag/coasters-1.jpeg";
 import coaster2Url from "@/assets/images/founding-swag/coasters-2.jpeg";
 import caseUrl from "@/assets/images/founding-swag/case-3.jpeg";
-import { CheckoutProduct } from "@/types/checkout";
 
 const product = ref({
   name: "Founding Membership",
-  checkout: CheckoutProduct.FoundingMembership,
   price: "$99 / year",
   fullPrice: "$199 / year",
   highlights: [

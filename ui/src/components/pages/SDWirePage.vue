@@ -276,7 +276,7 @@ const accountStore = useAccountStore();
 const shopStore = useShopStore();
 
 const products = await shopStore.fetchProducts();
-const productIds = products?.filter((p) => p.slug == "sdwire").map((p) => p.id);
+const productData = products?.find((p) => p.slug == "sdwire");
 
 // define a validation schema
 const schema = yup.object({
@@ -309,14 +309,14 @@ const product = {
 };
 
 async function onClick(values: any) {
-  if (values && values.email !== undefined && productIds !== undefined) {
-    await shopStore.createCheckoutSession(values.email, productIds);
+  if (values && values.email !== undefined && productData !== undefined) {
+    await shopStore.createCheckoutSession(values.email, [productData.id] as Array<string>);
   } else if (
     accountStore.isAuthenticated &&
     accountStore.user !== undefined &&
-    productIds !== undefined
+    productData !== undefined
   ) {
-    await shopStore.createCheckoutSession(accountStore.user?.email, productIds);
+    await shopStore.createCheckoutSession(accountStore.user?.email, [productData.id] as Array<string>);
   }
 }
 // TODO prompt for review on delivery
