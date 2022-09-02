@@ -1,6 +1,6 @@
 import logging
 from uuid import uuid4
-from typing import Optional
+from typing import Optional, List
 
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -116,12 +116,21 @@ class Order(SafeDeleteModel):
     djstripe_payment_intent = models.ForeignKey(
         "djstripe.PaymentIntent", on_delete=models.CASCADE, null=True
     )
+
+    # relationship created when handling checkout.session.complete (if subscription)
+    djstripe_subscription = models.ForeignKey(
+        "djstripe.Subscription", on_delete=models.CASCADE, null=True
+    )
     # will be null if order is created while not logged in, but can be reconciled
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     @property
     def last_status(self) -> Optional[OrderStatus]:
-        return self.order_status_set().first()
+        return self.orderstatus_set.first()
+
+    @property
+    def status_history(self) -> List[OrderStatus]:
+        return self.orderstatus_set
 
 
 class InventoryItem(SafeDeleteModel):

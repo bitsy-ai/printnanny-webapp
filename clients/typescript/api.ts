@@ -3213,10 +3213,16 @@ export interface Order {
     'djstripe_payment_intent': DjStripePaymentIntent;
     /**
      * 
-     * @type {string}
+     * @type {OrderStatus}
      * @memberof Order
      */
-    'last_status': string;
+    'last_status': OrderStatus;
+    /**
+     * 
+     * @type {Array<OrderStatus>}
+     * @memberof Order
+     */
+    'status_history': Array<OrderStatus>;
     /**
      * 
      * @type {string}
@@ -3280,6 +3286,65 @@ export interface OrderCheckoutRequest {
      */
     'email': string;
 }
+/**
+ * 
+ * @export
+ * @interface OrderStatus
+ */
+export interface OrderStatus {
+    /**
+     * 
+     * @type {number}
+     * @memberof OrderStatus
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderStatus
+     */
+    'deleted': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderStatus
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {OrderStatusStatusEnum}
+     * @memberof OrderStatus
+     */
+    'status': OrderStatusStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderStatus
+     */
+    'order': string;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const OrderStatusStatusEnum = {
+    CheckoutSessionCreated: 'checkout_session_created',
+    CheckoutSessionCompleted: 'checkout_session_completed',
+    CheckoutSessionExpired: 'checkout_session_expired',
+    Processing: 'processing',
+    ReadyToShip: 'ready_to_ship',
+    Shipped: 'shipped',
+    GoodsFulfilled: 'goods_fulfilled',
+    ServiceFulfilled: 'service_fulfilled',
+    RefundRequested: 'refund_requested',
+    RefundGranted: 'refund_granted'
+} as const;
+
+export type OrderStatusStatusEnum = typeof OrderStatusStatusEnum[keyof typeof OrderStatusStatusEnum];
+
+
 /**
  * 
  * @export

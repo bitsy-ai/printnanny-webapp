@@ -8,6 +8,7 @@ from djstripe.models.core import (
     PaymentIntent as DjStripePaymentIntent,
     Charge as DjStripeCharge,
 )
+from djstripe.models import Subscription as DjStripeSubscription
 from djstripe.settings import djstripe_settings
 from djstripe.models.checkout import Session as DjStripeCheckoutSession
 
@@ -22,7 +23,7 @@ def sync_stripe_checkout_session(session_id: str) -> DjStripeCheckoutSession:
     stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
 
     stripe_res = stripe.checkout.Session.retrieve(
-        session_id, expand=["customer", "payment_intent", "line_items"]
+        session_id, expand=["customer", "payment_intent", "line_items", "subscription"]
     )
     # sync djstripe model from response, then return djstripe model to be serialized
     session = DjStripeCheckoutSession.sync_from_stripe_data(stripe_res)
@@ -213,6 +214,12 @@ def sync_stripe_payment_intent(payment_intent_id: str) -> DjStripePaymentIntent:
     return payment_intent
 
 
+def sync_stripe_subscription(subscription_id: str) -> DjStripeSubscription:
+    stripe_res = stripe.Subscription.retrieve(subscription_id)
+    subscription = DjStripeSubscription.sync_from_stripe_data(stripe_res)
+    return subscription
+
+
 def sync_stripe_order(stripe_checkout_session_id) -> Order:
     """
     Sync Djstripe models associated with Stripe checkout session id
@@ -229,7 +236,14 @@ def sync_stripe_order(stripe_checkout_session_id) -> Order:
     if session.mode == "payment":
         # pull latest payment intent data from Stripe
         payment_intent = sync_stripe_payment_intent(session.payment_intent.id)
-        order.payment_intent = payment_intent
+        order.djstripe_payment_intent = payment_intent
+
+    # if order was a subscription, sync the subscription and payment intent models
+    elif session.mode == "subscription":
+        subscription = sync_stripe_subscription(session.subscription.id)
+        order.djstripe_subscription = subscription
+
+    # if order was a subscription, sync the subscription model
 
     order.djstripe_customer = customer
 
