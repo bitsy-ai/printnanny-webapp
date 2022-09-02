@@ -15,8 +15,10 @@ from print_nanny_webapp.shop.api.serializers import (
     OrderSerializer,
     OrderCheckoutSerializer,
 )
-from print_nanny_webapp.shop.models import Product
+from print_nanny_webapp.shop.enum import OrderStatusType
+from print_nanny_webapp.shop.models import Product, OrderStatus
 from print_nanny_webapp.utils.api.views import generic_get_errors, generic_create_errors
+from print_nanny_webapp.shop.services import sync_stripe_order
 
 
 @extend_schema_view(
@@ -59,7 +61,7 @@ class OrderCheckoutView(APIView):
 
 @extend_schema_view(
     get=extend_schema(
-        tags=["orders"],
+        tags=["shop"],
         request=OrderSerializer,
         responses={200: OrderSerializer(many=False)} | generic_get_errors,
     ),
@@ -67,20 +69,18 @@ class OrderCheckoutView(APIView):
 class OrderByStripeCheckoutSessionIdView(APIView):
     permission_classes = (AllowAny,)
 
-    def get(self, request, stripe_checkout_session_id=None):
-        pass
-        # if stripe_checkout_session_id is not None:
-        #     session = sync_stripe_checkout_session(stripe_checkout_session_id)
-        #     customer = get_stripe_customer_by_id(session.customer.id)
+    def get(self, _request, stripe_checkout_session_id=None):
+        if stripe_checkout_session_id is not None:
 
-        #     response_serializer = StripeCheckoutSuccessSerializer(
-        #         instance=dict(
-        #             stripe_checkout_session_id=stripe_checkout_session_id,
-        #             stripe_session=session,
-        #             stripe_customer=customer,
-        #         )
-        #     )
-        #     return Response(response_serializer.data, status=status.HTTP_200_OK)
-        # return Response(
-        #     "stripe_checkout_session_id is required", status=status.HTTP_400_BAD_REQUEST
-        # )
+            order = sync_stripe_order(stripe_checkout_session_id)
+
+            # create order status
+            OrderStatus.objects.create(
+                order=order, status=OrderStatusType.CHECKOUT_SESSION_COMPLETED
+            )
+
+            response_serializer = OrderSerializer(instance=order)
+            return Response(response_serializer.data, status=status.HTTP_200_OK)
+        return Response(
+            "stripe_checkout_session_id is required", status=status.HTTP_400_BAD_REQUEST
+        )

@@ -9,11 +9,12 @@ export const useShopStore = defineStore({
     state: () => ({
         loading: false,
         products: [] as Array<api.Product>,
+        order: undefined as undefined | api.Order
     }),
     actions: {
         async fetchProducts() {
             const res = await shopApi.shopProductsList();
-            console.log("Fetched products", res.data);
+            console.debug("Fetched products", res.data);
             if (res.data) {
                 this.$patch({ products: res.data.results });
                 return res.data.results;
@@ -31,8 +32,21 @@ export const useShopStore = defineStore({
                 .catch(handleApiError);
             if (res) {
                 this.$patch({ loading: false });
-                console.log(`Redirecting to ${res.data.stripe_checkout_redirect_url}`);
+                console.debug(`Redirecting to ${res.data.stripe_checkout_redirect_url}`);
                 window.location = res.data.stripe_checkout_redirect_url
+            }
+        },
+        async fetchCheckoutSession(sessionId: string) {
+            this.$patch({ loading: true });
+
+            const res = await shopApi
+                .shopCheckoutSuccessRetrieve(sessionId)
+                .catch(handleApiError);
+
+            if (res) {
+                this.$patch({ loading: false, order: res.data });
+                console.debug(res.data)
+                return res.data
             }
         },
     }

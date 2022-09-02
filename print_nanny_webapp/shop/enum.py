@@ -11,10 +11,6 @@ class OrderStatusType(models.TextChoices):
         "checkout_session_expired",
         "Checkout session expired",
     )
-    PAYMENT_INTENT = (
-        "checkout_session_success",
-        "Added PaymentIntent to checkout session",
-    )
 
     PROCESSING = ("processing", "Order is being proccessed")
     READY_TO_SHIP = ("ready_to_ship", "Order is ready to ship")

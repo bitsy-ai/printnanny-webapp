@@ -3,22 +3,32 @@
 <div class="bg-white">
     <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
     <div class="max-w-xl">
-        <h1 class="text-base font-medium text-indigo-600">Thank you!</h1>
-        <p class="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">Your pre-order was accepted!</p>
-        <p class="mt-2 text-base text-gray-500">Your order #14034056 has shipped and will be with you soon.</p>
-
-        <dl class="mt-12 text-sm font-medium">
-        <dt class="text-gray-900">Order Number</dt>
-        <dd class="mt-2 text-indigo-600">{{ billingStore.stripeCheckoutSuccess?.stripe_session }}</dd>
-        </dl>
+        <h1 class="text-base font-medium text-indigo-600">Thank you, {{ order?.stripe_checkout_session_data?.customer_details?.name }}!</h1>
+        <p class="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Your pre-order was accepted!</p>
+        <p class="mt-2 text-base text-gray-500">You'll receive a confirmation email when your order is ready to ship.</p>
+        <div class="grid grid-cols-2">
+            <dl class="mt-12 text-sm font-medium">
+            <dt class="text-gray-900">Email Address</dt>
+            <dd class="mt-2 text-indigo-600">{{ order?.email }}</dd>
+            </dl>
+            <dl class="mt-12 text-sm font-medium">
+            <dt class="text-gray-900">Order Number</dt>
+            <dd class="mt-2 text-indigo-600">{{ order?.id }}</dd>
+            </dl>
+        </div>
+        <a :href="order?.stripe_checkout_session_data?.payment_intent?.charges[0]?.receipt_url">
+            <button
+        class="mt-6 block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+        >Download/Print Receipt</Button>
+        </a>
     </div>
 
     <div class="mt-10 border-t border-gray-200">
         <h2 class="sr-only">Your order</h2>
 
         <h3 class="sr-only">Items</h3>
-        <div v-for="product in products" :key="product.id" class="flex space-x-6 border-b border-gray-200 py-10">
-        <img :src="product.imageSrc" :alt="product.imageAlt" class="h-20 w-20 flex-none rounded-lg bg-gray-100 object-cover object-center sm:h-40 sm:w-40" />
+        <div v-for="product in order?.products" :key="product.id" class="flex space-x-6 border-b border-gray-200 py-10">
+        <img :src="product?.images[1]" :alt="product.name" class="h-20 w-20 flex-none rounded-lg bg-gray-100 object-cover object-center sm:h-40 sm:w-40" />
         <div class="flex flex-auto flex-col">
             <div>
             <h4 class="font-medium text-gray-900">
@@ -30,11 +40,11 @@
             <dl class="flex space-x-4 divide-x divide-gray-200 text-sm sm:space-x-6">
                 <div class="flex">
                 <dt class="font-medium text-gray-900">Quantity</dt>
-                <dd class="ml-2 text-gray-700">{{ product.quantity }}</dd>
+                <dd class="ml-2 text-gray-700">{{ order?.djstripe_checkout_session_data?.display_items[0].quantity }}</dd>
                 </div>
                 <div class="flex pl-4 sm:pl-6">
                 <dt class="font-medium text-gray-900">Price</dt>
-                <dd class="ml-2 text-gray-700">{{ product.price }}</dd>
+                <dd class="ml-2 text-gray-700">{{  product.prices[0].human_readable_price }}</dd>
                 </div>
             </dl>
             </div>
@@ -50,9 +60,11 @@
             <dt class="font-medium text-gray-900">Shipping address</dt>
             <dd class="mt-2 text-gray-700">
                 <address class="not-italic">
-                <span class="block">Kristin Watson</span>
-                <span class="block">7363 Cynthia Pass</span>
-                <span class="block">Toronto, ON N3Y 4H8</span>
+                <span class="block">{{ order?.stripe_checkout_session_data?.shipping?.name}}</span>
+                <span class="block">{{ order?.stripe_checkout_session_data?.shipping?.address.line1}}</span>
+                <span v-if="order?.stripe_checkout_session_data?.shipping?.address.line2 !== undefined" class="block">{{ order?.stripe_checkout_session_data?.shipping?.address.line2}}</span>
+
+                <span class="block">{{ order?.stripe_checkout_session_data?.shipping?.address.city}}, {{ order?.stripe_checkout_session_data?.shipping?.address.state}}, {{ order?.stripe_checkout_session_data?.shipping?.address.country}} {{ order?.stripe_checkout_session_data?.shipping?.address.postal_code}}</span>
                 </address>
             </dd>
             </div>
@@ -60,9 +72,11 @@
             <dt class="font-medium text-gray-900">Billing address</dt>
             <dd class="mt-2 text-gray-700">
                 <address class="not-italic">
-                <span class="block">Kristin Watson</span>
-                <span class="block">7363 Cynthia Pass</span>
-                <span class="block">Toronto, ON N3Y 4H8</span>
+                <span class="block">{{ order?.stripe_checkout_session_data?.payment_intent?.charges.data[0]?.billing_details?.name}}</span>
+                <span class="block">{{ order?.stripe_checkout_session_data?.payment_intent?.charges.data[0]?.billing_details?.address.line1}}</span>
+                <span v-if="order?.stripe_checkout_session_data?.payment_intent?.charges.data[0]?.billing_details?.address.line2 !== undefined" class="block">{{ order?.stripe_checkout_session_data?.payment_intent?.charges.data[0]?.billing_details?.address.line2}}</span>
+                
+                <span class="block">{{ order?.stripe_checkout_session_data?.payment_intent?.charges.data[0]?.billing_details?.address.city}}, {{ order?.stripe_checkout_session_data?.payment_intent?.charges.data[0]?.billing_details?.address.state}}, {{ order?.stripe_checkout_session_data?.payment_intent?.charges.data[0]?.billing_details?.address.country}} {{ order?.stripe_checkout_session_data?.payment_intent?.charges.data[0]?.billing_details?.address.postal_code}}</span>
                 </address>
             </dd>
             </div>
@@ -73,16 +87,17 @@
             <div>
             <dt class="font-medium text-gray-900">Payment method</dt>
             <dd class="mt-2 text-gray-700">
-                <p>Apple Pay</p>
-                <p>Mastercard</p>
-                <p><span aria-hidden="true">••••</span><span class="sr-only">Ending in </span>1545</p>
+                <p>{{order?.stripe_checkout_session_data?.payment_intent?.charges.data[0]?.payment_method_details?.card?.brand}}</p>
+                <p><span aria-hidden="true">••••</span><span class="sr-only">Ending in </span>{{order?.stripe_checkout_session_data?.payment_intent?.charges.data[0]?.payment_method_details?.card?.last4}}</p>
             </dd>
             </div>
             <div>
             <dt class="font-medium text-gray-900">Shipping method</dt>
             <dd class="mt-2 text-gray-700">
-                <p>DHL</p>
+                <p>USPS Ground</p>
+                <!-- TODO fill shippo
                 <p>Takes up to 3 working days</p>
+                -->
             </dd>
             </div>
         </dl>
@@ -92,8 +107,10 @@
         <dl class="space-y-6 border-t border-gray-200 pt-10 text-sm">
             <div class="flex justify-between">
             <dt class="font-medium text-gray-900">Subtotal</dt>
-            <dd class="text-gray-700">$36.00</dd>
+            <dd class="text-gray-700">${{ order?.stripe_checkout_session_data?.amount_subtotal/100 }}</dd>
             </div>
+            <!-- TODO discount code dislay
+
             <div class="flex justify-between">
             <dt class="flex font-medium text-gray-900">
                 Discount
@@ -101,13 +118,15 @@
             </dt>
             <dd class="text-gray-700">-$18.00 (50%)</dd>
             </div>
+            -->
+
             <div class="flex justify-between">
             <dt class="font-medium text-gray-900">Shipping</dt>
-            <dd class="text-gray-700">$5.00</dd>
+            <dd class="text-gray-700">${{ order?.stripe_checkout_session_data?.shipping_options[0].shipping_amount/100}}</dd>
             </div>
             <div class="flex justify-between">
             <dt class="font-medium text-gray-900">Total</dt>
-            <dd class="text-gray-900">$23.00</dd>
+            <dd class="text-gray-900">${{ order?.stripe_checkout_session_data?.amount_total/100 }}</dd>
             </div>
         </dl>
         </div>
@@ -117,10 +136,10 @@
 </template>
   
 <script setup lang="ts">
-import { useBillingStore } from '@/stores/billing';
+import { useShopStore } from '@/stores/shop';
 
 
-const billingStore = useBillingStore();
+const shopStore = useShopStore();
 const props = defineProps({
     sessionId: {
         type: String,
@@ -128,7 +147,7 @@ const props = defineProps({
     }
 })
 
-billingStore.fetchCheckoutSessionSuccess(props.sessionId);
+const order = await shopStore.fetchCheckoutSession(props.sessionId);
 
 const products = [
 {

@@ -4,27 +4,36 @@ from django.http.request import HttpRequest
 
 from djstripe.models.core import (
     Customer as DjStripeCustomer,
+    PaymentIntent as DjStripePaymentIntent,
+    Charge as DjStripeCharge,
 )
 from djstripe.settings import djstripe_settings
 from djstripe.models.checkout import Session as DjStripeCheckoutSession
 
+
 import stripe
 
-from print_nanny_webapp.shop.models import Product, Order
+from print_nanny_webapp.shop.models import OrderStatus, Product, Order
+from print_nanny_webapp.shop.enum import OrderStatusType
 
 
 def sync_stripe_checkout_session(session_id: str) -> DjStripeCheckoutSession:
     stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
 
-    stripe_res = stripe.checkout.Session.retrieve(session_id)
+    stripe_res = stripe.checkout.Session.retrieve(
+        session_id, expand=["customer", "payment_intent", "line_items"]
+    )
     # sync djstripe model from response, then return djstripe model to be serialized
-    return Session.sync_from_stripe_data(stripe_res)
+    session = DjStripeCheckoutSession.sync_from_stripe_data(stripe_res)
+    session.display_items = stripe_res.line_items.data
+    session.save()
+    return session
 
 
 def sync_stripe_customer_by_id(stripe_customer_id: str) -> DjStripeCustomer:
     stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
 
-    stripe_res = stripe.DjStripeCustomer.retrieve(stripe_customer_id)
+    stripe_res = stripe.Customer.retrieve(stripe_customer_id)
     return DjStripeCustomer.sync_from_stripe_data(stripe_res)
 
 
@@ -46,7 +55,7 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
     # add django session key to stripe metadata
     extra_kwargs = dict(
         # expand customer and payment_intent fields in response
-        expand=["customer", "payment_intent"],
+        expand=["customer", "payment_intent", "line_items"],
         metadata=dict(
             django_session_key=django_session_key,
             django_product_id=product.id,
@@ -158,7 +167,56 @@ def create_order(request: HttpRequest, product: Product, email: str):
         djstripe_checkout_session=checkout_session,
         djstripe_payment_intent=checkout_session.payment_intent,
         id=order_id,
+        email=email,
     )
+    # associate product with order
     order.products.add(product)
+    # add stripe checkout redirect url to payload
     order.stripe_checkout_redirect_url = checkout_session_redirect
+
+    # create order status
+    OrderStatus.objects.create(
+        order=order, status=OrderStatusType.CHECKOUT_SESSION_CREATED
+    )
+    return order
+
+
+def sync_stripe_payment_intent(payment_intent_id: str) -> DjStripePaymentIntent:
+    stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
+
+    stripe_res = stripe.PaymentIntent.retrieve(payment_intent_id)
+    payment_intent = DjStripePaymentIntent.sync_from_stripe_data(stripe_res)
+    for charge in stripe_res.charges.data:
+        DjStripeCharge.sync_from_stripe_data(charge)
+    payment_intent.refresh_from_db()
+    return payment_intent
+
+
+def sync_stripe_order(stripe_checkout_session_id) -> Order:
+    """
+    Sync Djstripe models associated with Stripe checkout session id
+    Used to pull model data in situations where Stripe webhook events might not have arrived or settled yet
+    For example, showing order confirmation page
+    """
+    # pull latest checkout session data from Stripe and sync DjStripe model
+    session = sync_stripe_checkout_session(stripe_checkout_session_id)
+
+    # pull latest payment intent data from Stripe
+    payment_intent = sync_stripe_payment_intent(session.payment_intent.id)
+    # import pdb
+
+    # pdb.set_trace()
+
+    # pull latest charges data from Stripe
+    # for charge in payment_intent.charges
+    # charges = sync_stripe_charge()
+
+    # pull latest customer info from Stripe
+    customer = sync_stripe_customer_by_id(session.customer.id)
+
+    order = Order.objects.get(djstripe_checkout_session=session)
+    order.payment_intent = payment_intent
+    order.djstripe_customer = customer
+
+    order.save()
     return order

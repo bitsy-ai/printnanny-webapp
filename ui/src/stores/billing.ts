@@ -9,8 +9,6 @@ export const useBillingStore = defineStore({
     summary: undefined as api.BillingSummary | undefined,
     products: [] as Array<api.BillingProduct>,
     loading: false,
-    stripeCheckoutSessionUrl: undefined as undefined | string,
-    stripeCheckoutSuccess: undefined as undefined | api.StripeCheckoutSuccess
   }),
   getters: {
     billingFormReady: (state) => state.summary !== undefined,
