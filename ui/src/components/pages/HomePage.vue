@@ -195,7 +195,7 @@
               Apply updates with web ui
             </p>
           </div>
-          <div class="flex-1 hidden md:show">
+          <div class="flex-1 hidden md:block">
             <img src="@/assets/images/swupdate-messages.png" />
           </div>
         </div>
