@@ -400,6 +400,10 @@ const faqs = [
     question: "Is PrintNanny SDWire open source?",
     answer: `Yes! The <a href="https://github.com/bitsy-ai/PrintNanny-SDwire" class="text-indigo-500 hover:text-indigo-600">KiCAD project</a> is available on Github.`,
   },
+  {
+    question: "Where can I learn more about the development and production process?",
+    answer: `Check out the <a href="https://bitsy.ai/" class="text-indigo-500 hover:text-indigo-600">Bitsy AI blog</a> to learn how PrintNanny SDWire was created. If you have questions about the development process, subscribe to the Bitsy AI newsletter. We'll send out an "Ask the Electrical Engineer" form to collect your questions and answer them in an upcoming blog post!`,
+  },
 ];
 const license = {
   href: "https://wiki.tizen.org/SDWire",
