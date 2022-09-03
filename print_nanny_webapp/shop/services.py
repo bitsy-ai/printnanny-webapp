@@ -251,7 +251,7 @@ def sync_stripe_order(stripe_checkout_session_id) -> Order:
     # if order.user is None, attempt to reconcile with existing user by email
     if order.user is None:
         try:
-            user = User.objects.get(email=order.email)
+            user = User.objects.get(email=order.email)  # type: ignore[has-type]
             order.user = user
         except User.DoesNotExist:
             # user will be prompted to create a password in checkout view
