@@ -135,6 +135,9 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
                         "CA",
                     ]
                 ),
+                automatic_tax={
+                    "enabled": True,
+                },
                 shipping_options=[
                     {
                         "shipping_rate_data": {
@@ -167,6 +170,9 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
                         "quantity": 1,
                     }
                 ],
+                automatic_tax={
+                    "enabled": True,
+                },
                 mode="subscription",
                 billing_address_collection="required",
                 **extra_kwargs,
