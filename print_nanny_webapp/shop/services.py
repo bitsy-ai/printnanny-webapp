@@ -2,6 +2,7 @@ from uuid import uuid4
 from typing import Dict, Any
 from django.conf import settings
 from django.http.request import HttpRequest
+from django.contrib.auth import get_user_model
 
 from djstripe.models.core import (
     Customer as DjStripeCustomer,
@@ -17,6 +18,8 @@ import stripe
 
 from print_nanny_webapp.shop.models import OrderStatus, Product, Order
 from print_nanny_webapp.shop.enum import OrderStatusType
+
+User = get_user_model()
 
 
 def sync_stripe_checkout_session(session_id: str) -> DjStripeCheckoutSession:
@@ -244,6 +247,15 @@ def sync_stripe_order(stripe_checkout_session_id) -> Order:
         order.djstripe_subscription = subscription
 
     order.djstripe_customer = customer
+
+    # if order.user is None, attempt to reconcile with existing user by email
+    if order.user is None:
+        try:
+            user = User.objects.get(email=order.email)
+            order.user = user
+        except User.DoesNotExist:
+            # user will be prompted to create a password in checkout view
+            pass
 
     order.save()
     return order
