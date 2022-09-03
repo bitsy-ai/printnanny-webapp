@@ -9,7 +9,7 @@
           >
             <div class="flex items-center flex-1">
               <div class="flex items-center justify-between w-full md:w-auto">
-                <a href="#">
+                <a href="/">
                   <span class="sr-only">Workflow</span>
                   <img
                     class="h-8 w-auto sm:h-10"
