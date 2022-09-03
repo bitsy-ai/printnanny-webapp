@@ -83,7 +83,7 @@ deprecated==1.2.13
     # via redis
 dj-rest-auth==2.2.4
     # via -r /requirements/local.in
-dj-stripe==2.6.1
+dj-stripe==2.6.2
     # via -r /requirements/local.in
 django==3.2.12
     # via
@@ -313,7 +313,7 @@ plotly==5.6.0
     # via -r /requirements/local.in
 posthog==1.4.5
     # via -r /requirements/local.in
-printnanny-api-client==0.103.2
+printnanny-api-client==0.106.1
     # via -r /requirements/local.in
 prometheus-client==0.13.1
     # via django-prometheus
