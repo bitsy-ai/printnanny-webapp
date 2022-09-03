@@ -130,9 +130,6 @@
               </span>
             </button>
           </div>
-          <p class="text-sm mt-4">
-            Shipping is currently limited to US/Canada.
-          </p>
 
           <div class="mt-10 border-t border-gray-200 pt-10">
             <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
@@ -376,7 +373,7 @@ const faqs = [
   {
     question: "When will I receive my order?",
     answer:
-      "The first batch of units will ship in October 2022. We assemble and ship pre-orders in they order they're received. You'll receive an email confirmation when your order is ready to ship, to make sure we have the correct address on file.",
+      "The first batch of units will ship in October-Novermber 2022. We assemble and ship pre-orders in they order they're received. You'll receive an email confirmation when your order is ready to ship, to make sure we have the correct address on file.",
   },
   {
     question: "When does my payment method get charged?",
@@ -401,7 +398,7 @@ const faqs = [
   },
   {
     question: "Is PrintNanny SDWire open source?",
-    answer: `Yes! The KiCAD project will be available on Github. Watch <a href="https://github.com/bitsy-ai/PrintNanny-SDwire" class="text-indigo-500 hover:text-indigo-600">this repo</a> to get notified of updates.`,
+    answer: `Yes! The <a href="https://github.com/bitsy-ai/PrintNanny-SDwire" class="text-indigo-500 hover:text-indigo-600">KiCAD project</a> is available on Github.`,
   },
 ];
 const license = {
@@ -411,17 +408,21 @@ const license = {
 
 const timeline = {
   content: `
-    <h4>August 30, 2022</h4>
+    <h4>October-November, 2022</h4>
+    <ul role="list">
+      <li>Production Batch 1</li>
+    </ul>
+    <h4>September 5, 2022</h4>
       <ul role="list">
       <li>PrintNanny SDWire is available for pre-order.</li>
-      <li>Units ordered in September are expected to ship in October</li>
+      <li>Units ordered in September are expected to ship with Production Batch 1, October-November 2022</li>
       </ul>
 
     <h4>August 28, 2022</h4>
         
     <ul role="list">
-    <li>PCB revision 1 sent to manufacturer.</li>
-    <li>20 units expected with 2-3 weeks lead time.</li>
+    <li>Published PrintNanny SDWire v1.4-r1 </li>
+    <li>Test Batch 1 (10 units)</li>
     </ul>
     
   `,
