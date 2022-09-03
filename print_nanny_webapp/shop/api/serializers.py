@@ -15,6 +15,7 @@ import stripe
 
 from print_nanny_webapp.shop.models import Order, OrderStatus, Product
 from print_nanny_webapp.shop.services import create_order
+from print_nanny_webapp.users.api.serializers import UserSerializer
 
 
 class DjStripeProductSerializer(serializers.ModelSerializer):
@@ -138,6 +139,7 @@ class OrderSerializer(serializers.ModelSerializer):
     stripe_checkout_redirect_url = serializers.CharField(read_only=True, required=False)
 
     stripe_checkout_session_data = serializers.SerializerMethodField()
+    user = UserSerializer(required=False)
 
     def get_stripe_checkout_session_data(self, obj) -> Dict[Any, Any]:
         stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
@@ -166,4 +168,5 @@ class OrderSerializer(serializers.ModelSerializer):
             "email",
             "stripe_checkout_redirect_url",
             "stripe_checkout_session_data",
+            "user",
         )

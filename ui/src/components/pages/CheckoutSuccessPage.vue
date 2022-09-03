@@ -42,11 +42,14 @@
           </button>
         </a>
       </div>
-      <div v-if="order.user == undefined" class="mt-6">
+      <div v-if="order?.user == undefined" class="mt-6">
         <h2 class="font-medium text-indigo-600">Finish Account Registration</h2>
         <p class="text-gray-600">Create your password:</p>
-        <set-password-prompt v-if="order.user == undefined" :create-user="true" :email="order.email"></set-password-prompt>
-
+        <set-password-prompt
+          v-if="order?.user == undefined"
+          :create-user="true"
+          :email="order?.email"
+        ></set-password-prompt>
       </div>
       <order-item-summary v-if="order" :order="order"></order-item-summary>
       <p v-else>
