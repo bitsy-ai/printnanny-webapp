@@ -3,7 +3,7 @@
   <div class="bg-white">
     <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
       <div class="max-w-xl">
-        <h1 class="text-base font-medium text-indigo-600">
+        <h1 class="font-medium text-indigo-600">
           Thank you,
           {{ order?.stripe_checkout_session_data?.customer_details?.name }}!
         </h1>
@@ -42,7 +42,15 @@
           </button>
         </a>
       </div>
-
+      <div v-if="order?.user == undefined" class="mt-6">
+        <h2 class="font-medium text-indigo-600">Finish Account Registration</h2>
+        <p class="text-gray-600">Create your password:</p>
+        <set-password-prompt
+          v-if="order?.user == undefined"
+          :create-user="true"
+          :email="order?.email"
+        ></set-password-prompt>
+      </div>
       <order-item-summary v-if="order" :order="order"></order-item-summary>
       <p v-else>
         Error processing your order. Please email support@printnanny.ai for
@@ -55,6 +63,7 @@
 <script setup lang="ts">
 import { useShopStore } from "@/stores/shop";
 import OrderItemSummary from "@/components/shop/OrderItemSummary.vue";
+import SetPasswordPrompt from "../auth/RegisterAccount.vue";
 
 const shopStore = useShopStore();
 const props = defineProps({

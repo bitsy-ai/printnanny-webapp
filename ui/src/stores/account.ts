@@ -85,6 +85,19 @@ export const useAccountStore = defineStore({
       this.$reset();
       console.info("Successfully logged out");
     },
+
+    async createAccount(request: api.RegisterRequest) {
+      await accountsApi
+        .accountsRegistrationCreate(request)
+        .catch(handleApiError);
+      await accountsApi
+        .accountsLoginCreate({
+          email: request.email,
+          password: request.password1,
+        } as api.LoginRequest)
+        .catch(handleApiError);
+      await this.fetchUser();
+    },
   },
 });
 

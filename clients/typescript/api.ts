@@ -2920,6 +2920,12 @@ export interface Order {
      * @memberof Order
      */
     'stripe_checkout_session_data': { [key: string]: any; };
+    /**
+     * 
+     * @type {User}
+     * @memberof Order
+     */
+    'user'?: User;
 }
 /**
  * 
