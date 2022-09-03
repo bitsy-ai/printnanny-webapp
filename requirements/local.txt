@@ -425,7 +425,7 @@ sqlparse==0.4.2
     #   django-debug-toolbar
 statsd==3.3.0
     # via libhoney
-stripe==2.68.0
+stripe==4.1.0
     # via dj-stripe
 tenacity==8.0.1
     # via plotly
