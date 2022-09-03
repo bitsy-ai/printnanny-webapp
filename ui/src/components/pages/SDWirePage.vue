@@ -373,7 +373,7 @@ const faqs = [
   {
     question: "When will I receive my order?",
     answer:
-      "The first batch of units will ship in October-Novermber 2022. We assemble and ship pre-orders in they order they're received. You'll receive an email confirmation when your order is ready to ship, to make sure we have the correct address on file.",
+      "The first batch of units will ship in October-November 2022. We assemble and ship pre-orders in they order they're received. You'll receive an email confirmation when your order is ready to ship, to make sure we have the correct address on file.",
   },
   {
     question: "When does my payment method get charged?",
