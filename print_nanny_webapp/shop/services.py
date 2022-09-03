@@ -76,6 +76,10 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
         try:
             customer = DjStripeCustomer.objects.get(subscriber=user)
             extra_kwargs["customer"] = customer.id
+            # automatically update Stripe customer with shipping/billing address if these fields are modified during checkout session
+            extra_kwargs["customer_update"] = dict(
+                name="auto", shipping="auto", address="auto"
+            )
 
         # customer not found
         except DjStripeCustomer.DoesNotExist:
@@ -135,6 +139,12 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
                         "CA",
                     ]
                 ),
+                automatic_tax={
+                    "enabled": True,
+                },
+                tax_id_collection={
+                    "enabled": True,
+                },
                 shipping_options=[
                     {
                         "shipping_rate_data": {
@@ -167,6 +177,12 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
                         "quantity": 1,
                     }
                 ],
+                automatic_tax={
+                    "enabled": True,
+                },
+                tax_id_collection={
+                    "enabled": True,
+                },
                 mode="subscription",
                 billing_address_collection="required",
                 **extra_kwargs,
