@@ -161,6 +161,11 @@ const externalLinks = [
     icon: ExternalLinkIcon,
   },
   {
+    href: props.pi.urls.syncthing,
+    name: "Syncthing",
+    icon: ExternalLinkIcon,
+  },
+  {
     href: props.pi.urls.swupdate,
     name: "Software Update",
     icon: ExternalLinkIcon,

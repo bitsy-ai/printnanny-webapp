@@ -5173,13 +5173,19 @@ export interface PiUrls {
      * @type {string}
      * @memberof PiUrls
      */
+    'octoprint': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiUrls
+     */
     'swupdate': string;
     /**
      * 
      * @type {string}
      * @memberof PiUrls
      */
-    'octoprint': string;
+    'syncthing': string;
 }
 /**
  * @type PolymorphicOctoPrintEvent
