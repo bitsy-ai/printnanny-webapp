@@ -5,8 +5,7 @@ import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import { execSync } from "child_process";
-import ViteRadar from 'vite-plugin-radar'
-
+import ViteRadar from "vite-plugin-radar";
 
 // reference: https://stackoverflow.com/questions/71162040/how-to-insert-git-info-in-environment-variables-using-vite
 // embed git information in vite build
@@ -49,12 +48,16 @@ export default defineConfig(({ _command, mode }) => {
       },
     },
     envDir: ".env",
-    plugins: [vue(), vueJsx(), ViteRadar({
-      // Google Analytics tag injection
-      analytics: {
-        id: 'G-WTMKCWMW2K',
-      },
-    })],
+    plugins: [
+      vue(),
+      vueJsx(),
+      ViteRadar({
+        // Google Analytics tag injection
+        analytics: {
+          id: "G-WTMKCWMW2K",
+        },
+      }),
+    ],
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
