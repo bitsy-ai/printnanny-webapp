@@ -162,7 +162,7 @@
             </div>
           </div>
         </div>
-        <hr class="my-3">
+        <hr class="my-3" />
         <div class="mt-12 flex grid grid-cols-1 md:grid-cols-1 gap-4">
           <div class="flex-1">
             <p
@@ -197,20 +197,23 @@
             </p>
           </div>
           <div class="flex-1">
-            <img src="@/assets/images/swupdate-messages.png" class="drop-shadow-2xl" />
+            <img
+              src="@/assets/images/swupdate-messages.png"
+              class="drop-shadow-2xl"
+            />
           </div>
         </div>
-        
-        <hr class="my-3">
-        
+
+        <hr class="my-3" />
+
         <div class="mt-12 flex grid grid-cols-1 md:grid-cols-1 gap-4">
           <a href="#founding-membership">
-          <button
-            class="mb-3 inline-flex justify-center rounded-lg font-semibold py-3 px-4 bg-slate-900 text-white hover:bg-slate-700 sm:text-xl bg-gradient-to-r from-red-500 to-violet-600 rounded-md shadow-lg"
-          >
-            Get Access Now
-          </button>
-        </a>
+            <button
+              class="mb-3 inline-flex justify-center rounded-lg font-semibold py-3 px-4 bg-slate-900 text-white hover:bg-slate-700 sm:text-xl bg-gradient-to-r from-red-500 to-violet-600 rounded-md shadow-lg"
+            >
+              Get Access Now
+            </button>
+          </a>
           <div class="flex-1">
             <p
               class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
@@ -221,11 +224,12 @@
               How much time do you waste manually uploading files?<br />
             </p>
             <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-              Have you ever sent the wrong gcode revision to your printer?<br>
+              Have you ever sent the wrong gcode revision to your printer?<br />
               (but didn't realize until <strong>too late</strong>)
             </p>
             <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-              Whether you're at home, the workshop, or design lab<br> <strong>PrintNanny will keep your files in sync.</strong>
+              Whether you're at home, the workshop, or design lab<br />
+              <strong>PrintNanny will keep your files in sync.</strong>
             </p>
             <p
               class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
@@ -241,23 +245,18 @@
               class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
             >
               Private & Secure. You own your data.
-
             </p>
             <p
               class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
             >
               Powered by Syncthing
-
             </p>
-
           </div>
           <div class="flex-1 rounded-3xl drop-shadow-2xl">
             <img src="@/assets/images/syncthing/syncthing-example.png" />
           </div>
         </div>
       </div>
-
-      
     </div>
 
     <!-- founding member offer section -->
