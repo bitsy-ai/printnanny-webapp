@@ -35,8 +35,9 @@ def get_random_string_32():
 
 
 class PiUrls(TypedDict):
-    swupdate: str
     octoprint: str
+    swupdate: str
+    syncthing: str
 
 
 class Pi(SafeDeleteModel):
@@ -83,10 +84,8 @@ class Pi(SafeDeleteModel):
     def urls(self) -> PiUrls:
         swupdate = f"http://{self.fqdn}/update/"
         octoprint = f"http://{self.fqdn}{settings.OCTOPRINT_URL}"
-        return PiUrls(
-            swupdate=swupdate,
-            octoprint=octoprint,
-        )
+        syncthing = f"http://{self.fqdn}/syncthing/"
+        return PiUrls(swupdate=swupdate, octoprint=octoprint, syncthing=syncthing)
 
     @property
     def octoprint_server(self) -> Optional[OctoPrintServer]:
