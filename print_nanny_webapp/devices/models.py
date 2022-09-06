@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 from django.db.models import UniqueConstraint
 from django.utils.crypto import get_random_string
 from safedelete.models import SafeDeleteModel, SOFT_DELETE, SafeDeleteManager
-
+from print_nanny_webapp.devices.utils import convert_size
 from django_nats_nkeys.models import (
     AbstractNatsApp,
     NatsOrganization,
@@ -338,6 +338,85 @@ class SystemInfo(SafeDeleteModel):
     os_release_json = models.JSONField(
         default=dict, help_text="Full contents of /etc/os-release in key:value format"
     )
+
+    rootfs_size = models.IntegerField(help_text="Size of /dev/root filesystem in bytes")
+    rootfs_used = models.IntegerField(
+        help_text="Space used in /dev/root filesystem in bytes"
+    )
+
+    bootfs_size = models.IntegerField(
+        help_text="Size of /dev/mmcblk0p1 filesystem in bytes"
+    )
+    bootfs_used = models.IntegerField(
+        help_text="Space used in /dev/mmcblk0p1 filesystem in bytes"
+    )
+
+    datafs_size = models.IntegerField(
+        help_text="Size of /dev/mmcblk0p4 filesystem in bytes"
+    )
+    datafs_used = models.IntegerField(
+        help_text="Space used in /dev/mmcblk0p4 filesystem in bytes"
+    )
+
+    # start bootfs
+    @property
+    def bootfs_used_pretty(self) -> str:
+        perc = self.bootfs_used / self.bootfs_size
+        return f"{convert_size(self.bootfs_used)} ({perc:.0%} used)"
+
+    @property
+    def bootfs_size_pretty(self) -> str:
+        return convert_size(self.bootfs_size)
+
+    @property
+    def bootfs_available(self) -> int:
+        return self.bootfs_size - self.bootfs_used
+
+    @property
+    def bootfs_available_pretty(self) -> str:
+        perc = self.bootfs_available / self.bootfs_size
+        return f"{convert_size(self.bootfs_size_pretty)} ({perc:.0%} free)"
+
+    # end bootfs
+
+    # start datafs
+
+    @property
+    def datafs_available(self) -> int:
+        return self.datafs_size - self.datafs_used
+
+    @property
+    def datafs_available_pretty(self) -> str:
+        perc = self.datafs_available / self.datafs_size
+        return f"{convert_size(self.datafs_size)} ({perc:.0%} free)"
+
+    @property
+    def datafs_size_pretty(self) -> str:
+        return convert_size(self.datafs_size)
+
+    @property
+    def datafs_used_pretty(self) -> str:
+        perc = self.datafs_used / self.datafs_size
+        return f"{convert_size(self.datafs_used)} ({perc:.0%} used)"
+
+    # end datafs
+    @property
+    def rootfs_size_pretty(self) -> str:
+        return convert_size(self.rootfs_size)
+
+    @property
+    def rootfs_used_pretty(self) -> str:
+        perc = self.rootfs_used / self.rootfs_size
+        return f"{convert_size(self.rootfs_used)} ({perc:.0%} used)"
+
+    @property
+    def rootfs_available(self) -> int:
+        return self.rootfs_size - self.rootfs_used
+
+    @property
+    def rootfs_available_pretty(self) -> str:
+        perc = self.rootfs_available / self.rootfs_size
+        return f"{convert_size(self.rootfs_size)} ({perc:.0%} free)"
 
 
 class WebrtcStream(SafeDeleteModel):

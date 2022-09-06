@@ -3980,6 +3980,42 @@ export interface PatchedSystemInfoRequest {
      */
     'os_release_json'?: { [key: string]: any; };
     /**
+     * Size of /dev/root filesystem in bytes
+     * @type {number}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'rootfs_size'?: number;
+    /**
+     * Space used in /dev/root filesystem in bytes
+     * @type {number}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'rootfs_used'?: number;
+    /**
+     * Size of /dev/mmcblk0p1 filesystem in bytes
+     * @type {number}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'bootfs_size'?: number;
+    /**
+     * Space used in /dev/mmcblk0p1 filesystem in bytes
+     * @type {number}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'bootfs_used'?: number;
+    /**
+     * Size of /dev/mmcblk0p4 filesystem in bytes
+     * @type {number}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'datafs_size'?: number;
+    /**
+     * Space used in /dev/mmcblk0p4 filesystem in bytes
+     * @type {number}
+     * @memberof PatchedSystemInfoRequest
+     */
+    'datafs_used'?: number;
+    /**
      * 
      * @type {number}
      * @memberof PatchedSystemInfoRequest
@@ -6776,6 +6812,78 @@ export interface SystemInfo {
     'id': number;
     /**
      * 
+     * @type {number}
+     * @memberof SystemInfo
+     */
+    'bootfs_available': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'bootfs_available_pretty': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'bootfs_used_pretty': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'bootfs_size_pretty': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SystemInfo
+     */
+    'datafs_available': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'datafs_available_pretty': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'datafs_used_pretty': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'datafs_size_pretty': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SystemInfo
+     */
+    'rootfs_available': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'rootfs_available_pretty': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'rootfs_size_pretty': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SystemInfo
+     */
+    'rootfs_used_pretty': string;
+    /**
+     * 
      * @type {string}
      * @memberof SystemInfo
      */
@@ -6846,6 +6954,42 @@ export interface SystemInfo {
      * @memberof SystemInfo
      */
     'os_release_json'?: { [key: string]: any; };
+    /**
+     * Size of /dev/root filesystem in bytes
+     * @type {number}
+     * @memberof SystemInfo
+     */
+    'rootfs_size': number;
+    /**
+     * Space used in /dev/root filesystem in bytes
+     * @type {number}
+     * @memberof SystemInfo
+     */
+    'rootfs_used': number;
+    /**
+     * Size of /dev/mmcblk0p1 filesystem in bytes
+     * @type {number}
+     * @memberof SystemInfo
+     */
+    'bootfs_size': number;
+    /**
+     * Space used in /dev/mmcblk0p1 filesystem in bytes
+     * @type {number}
+     * @memberof SystemInfo
+     */
+    'bootfs_used': number;
+    /**
+     * Size of /dev/mmcblk0p4 filesystem in bytes
+     * @type {number}
+     * @memberof SystemInfo
+     */
+    'datafs_size': number;
+    /**
+     * Space used in /dev/mmcblk0p4 filesystem in bytes
+     * @type {number}
+     * @memberof SystemInfo
+     */
+    'datafs_used': number;
     /**
      * 
      * @type {number}
@@ -6919,6 +7063,42 @@ export interface SystemInfoRequest {
      * @memberof SystemInfoRequest
      */
     'os_release_json'?: { [key: string]: any; };
+    /**
+     * Size of /dev/root filesystem in bytes
+     * @type {number}
+     * @memberof SystemInfoRequest
+     */
+    'rootfs_size': number;
+    /**
+     * Space used in /dev/root filesystem in bytes
+     * @type {number}
+     * @memberof SystemInfoRequest
+     */
+    'rootfs_used': number;
+    /**
+     * Size of /dev/mmcblk0p1 filesystem in bytes
+     * @type {number}
+     * @memberof SystemInfoRequest
+     */
+    'bootfs_size': number;
+    /**
+     * Space used in /dev/mmcblk0p1 filesystem in bytes
+     * @type {number}
+     * @memberof SystemInfoRequest
+     */
+    'bootfs_used': number;
+    /**
+     * Size of /dev/mmcblk0p4 filesystem in bytes
+     * @type {number}
+     * @memberof SystemInfoRequest
+     */
+    'datafs_size': number;
+    /**
+     * Space used in /dev/mmcblk0p4 filesystem in bytes
+     * @type {number}
+     * @memberof SystemInfoRequest
+     */
+    'datafs_used': number;
     /**
      * 
      * @type {number}
