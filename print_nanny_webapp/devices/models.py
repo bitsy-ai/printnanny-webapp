@@ -339,24 +339,26 @@ class SystemInfo(SafeDeleteModel):
         default=dict, help_text="Full contents of /etc/os-release in key:value format"
     )
 
-    uptime = models.IntegerField(help_text="system uptime (in seconds)")
+    uptime = models.BigIntegerField(help_text="system uptime (in seconds)")
 
-    rootfs_size = models.IntegerField(help_text="Size of /dev/root filesystem in bytes")
-    rootfs_used = models.IntegerField(
+    rootfs_size = models.BigIntegerField(
+        help_text="Size of /dev/root filesystem in bytes"
+    )
+    rootfs_used = models.BigIntegerField(
         help_text="Space used in /dev/root filesystem in bytes"
     )
 
-    bootfs_size = models.IntegerField(
+    bootfs_size = models.BigIntegerField(
         help_text="Size of /dev/mmcblk0p1 filesystem in bytes"
     )
-    bootfs_used = models.IntegerField(
+    bootfs_used = models.BigIntegerField(
         help_text="Space used in /dev/mmcblk0p1 filesystem in bytes"
     )
 
-    datafs_size = models.IntegerField(
+    datafs_size = models.BigIntegerField(
         help_text="Size of /dev/mmcblk0p4 filesystem in bytes"
     )
-    datafs_used = models.IntegerField(
+    datafs_used = models.BigIntegerField(
         help_text="Space used in /dev/mmcblk0p4 filesystem in bytes"
     )
 
