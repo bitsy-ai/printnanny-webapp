@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **os_build_id** | Option<**String**> | PrintNanny OS BUILD_ID from /etc/os-release | [optional]
 **os_variant_id** | Option<**String**> | PrintNanny OS VARIANT_ID from /etc/os-release | [optional]
 **os_release_json** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Full contents of /etc/os-release in key:value format | [optional]
+**uptime** | Option<**i32**> | system uptime (in seconds) | [optional]
 **rootfs_size** | Option<**i32**> | Size of /dev/root filesystem in bytes | [optional]
 **rootfs_used** | Option<**i32**> | Space used in /dev/root filesystem in bytes | [optional]
 **bootfs_size** | Option<**i32**> | Size of /dev/mmcblk0p1 filesystem in bytes | [optional]

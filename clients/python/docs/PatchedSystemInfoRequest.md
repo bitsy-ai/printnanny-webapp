@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **os_build_id** | **datetime** | PrintNanny OS BUILD_ID from /etc/os-release | [optional] 
 **os_variant_id** | **str** | PrintNanny OS VARIANT_ID from /etc/os-release | [optional] 
 **os_release_json** | **dict(str, object)** | Full contents of /etc/os-release in key:value format | [optional] 
+**uptime** | **int** | system uptime (in seconds) | [optional] 
 **rootfs_size** | **int** | Size of /dev/root filesystem in bytes | [optional] 
 **rootfs_used** | **int** | Space used in /dev/root filesystem in bytes | [optional] 
 **bootfs_size** | **int** | Size of /dev/mmcblk0p1 filesystem in bytes | [optional] 
