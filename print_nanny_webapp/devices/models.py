@@ -358,9 +358,11 @@ class SystemInfo(SafeDeleteModel):
         help_text="Space used in /dev/mmcblk0p4 filesystem in bytes"
     )
 
+    # start bootfs
     @property
     def bootfs_used_pretty(self) -> str:
-        return convert_size(self.bootfs_used)
+        perc = self.bootfs_used / self.bootfs_size
+        return f"{convert_size(self.bootfs_used)} ({perc:.0%} used)"
 
     @property
     def bootfs_size_pretty(self) -> str:
@@ -374,6 +376,10 @@ class SystemInfo(SafeDeleteModel):
     def bootfs_available_pretty(self) -> str:
         perc = self.bootfs_available / self.bootfs_size
         return f"{convert_size(self.bootfs_size_pretty)} ({perc:.0%} free)"
+
+    # end bootfs
+
+    # start datafs
 
     @property
     def datafs_available(self) -> int:
@@ -390,15 +396,18 @@ class SystemInfo(SafeDeleteModel):
 
     @property
     def datafs_used_pretty(self) -> str:
-        return convert_size(self.datafs_used)
+        perc = self.datafs_used / self.datafs_size
+        return f"{convert_size(self.datafs_used)} ({perc:.0%} used)"
 
+    # end datafs
     @property
     def rootfs_size_pretty(self) -> str:
         return convert_size(self.rootfs_size)
 
     @property
     def rootfs_used_pretty(self) -> str:
-        return convert_size(self.rootfs_used)
+        perc = self.rootfs_used / self.rootfs_size
+        return f"{convert_size(self.rootfs_used)} ({perc:.0%} used)"
 
     @property
     def rootfs_available(self) -> int:
