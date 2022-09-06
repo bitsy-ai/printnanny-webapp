@@ -339,6 +339,8 @@ class SystemInfo(SafeDeleteModel):
         default=dict, help_text="Full contents of /etc/os-release in key:value format"
     )
 
+    uptime = models.IntegerField(help_text="system uptime (in seconds)")
+
     rootfs_size = models.IntegerField(help_text="Size of /dev/root filesystem in bytes")
     rootfs_used = models.IntegerField(
         help_text="Space used in /dev/root filesystem in bytes"
