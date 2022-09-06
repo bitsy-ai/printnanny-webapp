@@ -5,6 +5,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
+**bootfs_available** | **i32** |  | [readonly]
+**bootfs_available_pretty** | **String** |  | [readonly]
+**bootfs_used_pretty** | **String** |  | [readonly]
+**bootfs_size_pretty** | **String** |  | [readonly]
+**datafs_available** | **i32** |  | [readonly]
+**datafs_available_pretty** | **String** |  | [readonly]
+**datafs_used_pretty** | **String** |  | [readonly]
+**datafs_size_pretty** | **String** |  | [readonly]
+**rootfs_available** | **i32** |  | [readonly]
+**rootfs_available_pretty** | **String** |  | [readonly]
+**rootfs_size_pretty** | **String** |  | [readonly]
+**rootfs_used_pretty** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]
 **machine_id** | **String** | Populated from /etc/machine-id | 
@@ -17,6 +29,12 @@ Name | Type | Description | Notes
 **os_build_id** | **String** | PrintNanny OS BUILD_ID from /etc/os-release | 
 **os_variant_id** | **String** | PrintNanny OS VARIANT_ID from /etc/os-release | 
 **os_release_json** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Full contents of /etc/os-release in key:value format | [optional]
+**rootfs_size** | **i32** | Size of /dev/root filesystem in bytes | 
+**rootfs_used** | **i32** | Space used in /dev/root filesystem in bytes | 
+**bootfs_size** | **i32** | Size of /dev/mmcblk0p1 filesystem in bytes | 
+**bootfs_used** | **i32** | Space used in /dev/mmcblk0p1 filesystem in bytes | 
+**datafs_size** | **i32** | Size of /dev/mmcblk0p4 filesystem in bytes | 
+**datafs_used** | **i32** | Space used in /dev/mmcblk0p4 filesystem in bytes | 
 **pi** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

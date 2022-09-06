@@ -14,6 +14,12 @@ Name | Type | Description | Notes
 **os_build_id** | Option<**String**> | PrintNanny OS BUILD_ID from /etc/os-release | [optional]
 **os_variant_id** | Option<**String**> | PrintNanny OS VARIANT_ID from /etc/os-release | [optional]
 **os_release_json** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Full contents of /etc/os-release in key:value format | [optional]
+**rootfs_size** | Option<**i32**> | Size of /dev/root filesystem in bytes | [optional]
+**rootfs_used** | Option<**i32**> | Space used in /dev/root filesystem in bytes | [optional]
+**bootfs_size** | Option<**i32**> | Size of /dev/mmcblk0p1 filesystem in bytes | [optional]
+**bootfs_used** | Option<**i32**> | Space used in /dev/mmcblk0p1 filesystem in bytes | [optional]
+**datafs_size** | Option<**i32**> | Size of /dev/mmcblk0p4 filesystem in bytes | [optional]
+**datafs_used** | Option<**i32**> | Space used in /dev/mmcblk0p4 filesystem in bytes | [optional]
 **pi** | Option<**i32**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
