@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 from django.db.models import UniqueConstraint
 from django.utils.crypto import get_random_string
 from safedelete.models import SafeDeleteModel, SOFT_DELETE, SafeDeleteManager
-
+from print_nanny_webapp.devices.utils import convert_size
 from django_nats_nkeys.models import (
     AbstractNatsApp,
     NatsOrganization,
@@ -357,6 +357,54 @@ class SystemInfo(SafeDeleteModel):
     datafs_used = models.IntegerField(
         help_text="Space used in /dev/mmcblk0p4 filesystem in bytes"
     )
+
+    @property
+    def bootfs_used_pretty(self) -> str:
+        return convert_size(self.bootfs_used)
+
+    @property
+    def bootfs_size_pretty(self) -> str:
+        return convert_size(self.bootfs_size)
+
+    @property
+    def bootfs_available(self):
+        return self.bootfs_size - self.bootfs_used
+
+    @property
+    def bootfs_available_pretty(self):
+        return convert_size(self.bootfs_size_pretty)
+
+    @property
+    def datafs_available(self):
+        return self.datafs_size - self.datafs_used
+
+    @property
+    def datafs_available_pretty(self):
+        return convert_size(self.datafs_available)
+
+    @property
+    def datafs_size_pretty(self):
+        return convert_size(self.datafs_size)
+
+    @property
+    def datafs_used_pretty(self):
+        return convert_size(self.datafs_used)
+
+    @property
+    def rootfs_size_pretty(self) -> str:
+        return convert_size(self.rootfs_size)
+
+    @property
+    def rootfs_used_pretty(self) -> str:
+        return convert_size(self.rootfs_used)
+
+    @property
+    def rootfs_available(self) -> int:
+        return self.rootfs_size - self.rootfs_used
+
+    @property
+    def rootfs_available_pretty(self) -> str:
+        return convert_size(self.rootfs_available)
 
 
 class WebrtcStream(SafeDeleteModel):
