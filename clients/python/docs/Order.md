@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **email** | **str** |  | 
 **stripe_checkout_redirect_url** | **str** |  | [readonly] 
 **stripe_checkout_session_data** | **dict(str, object)** |  | [readonly] 
+**user** | [**User**](User.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

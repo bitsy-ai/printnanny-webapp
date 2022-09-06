@@ -14,6 +14,12 @@ Name | Type | Description | Notes
 **os_build_id** | **datetime** | PrintNanny OS BUILD_ID from /etc/os-release | [optional] 
 **os_variant_id** | **str** | PrintNanny OS VARIANT_ID from /etc/os-release | [optional] 
 **os_release_json** | **dict(str, object)** | Full contents of /etc/os-release in key:value format | [optional] 
+**rootfs_size** | **int** | Size of /dev/root filesystem in bytes | [optional] 
+**rootfs_used** | **int** | Space used in /dev/root filesystem in bytes | [optional] 
+**bootfs_size** | **int** | Size of /dev/mmcblk0p1 filesystem in bytes | [optional] 
+**bootfs_used** | **int** | Space used in /dev/mmcblk0p1 filesystem in bytes | [optional] 
+**datafs_size** | **int** | Size of /dev/mmcblk0p4 filesystem in bytes | [optional] 
+**datafs_used** | **int** | Space used in /dev/mmcblk0p4 filesystem in bytes | [optional] 
 **pi** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
