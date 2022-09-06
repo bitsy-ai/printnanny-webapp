@@ -13,7 +13,7 @@ import { stepKeys } from "@/components/wizard/piCreateWizard";
     </p>
     <div class="mt-6">
       <router-link
-        :to="{ name: 'pi-wizard', params: { activeStep: stepKeys[0].key } }"
+        :to="{ name: `pi-wizard-${stepKeys[0].key}`}"
       >
         <button
           type="button"
