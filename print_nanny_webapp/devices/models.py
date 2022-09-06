@@ -339,6 +339,25 @@ class SystemInfo(SafeDeleteModel):
         default=dict, help_text="Full contents of /etc/os-release in key:value format"
     )
 
+    rootfs_size = models.IntegerField(help_text="Size of /dev/root filesystem in bytes")
+    rootfs_used = models.IntegerField(
+        help_text="Space used in /dev/root filesystem in bytes"
+    )
+
+    bootfs_size = models.IntegerField(
+        help_text="Size of /dev/mmcblk0p1 filesystem in bytes"
+    )
+    bootfs_used = models.IntegerField(
+        help_text="Space used in /dev/mmcblk0p1 filesystem in bytes"
+    )
+
+    datafs_size = models.IntegerField(
+        help_text="Size of /dev/mmcblk0p4 filesystem in bytes"
+    )
+    datafs_used = models.IntegerField(
+        help_text="Space used in /dev/mmcblk0p4 filesystem in bytes"
+    )
+
 
 class WebrtcStream(SafeDeleteModel):
     """

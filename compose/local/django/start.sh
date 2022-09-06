@@ -6,6 +6,7 @@ set -o nounset
 
 python manage.py collectstatic --noinput
 python manage.py migrate
+python manage.py nsc_init || echo "DjangoOperator already created"
 python manage.py initrobots --name=firehose || echo "Firehose robot already exists"
 
 
