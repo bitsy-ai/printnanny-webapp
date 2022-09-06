@@ -134,10 +134,10 @@ class SystemInfoSerializer(serializers.ModelSerializer):
     bootfs_used_pretty = serializers.CharField(read_only=True)
     bootfs_size_pretty = serializers.CharField(read_only=True)
 
-    data_available = serializers.IntegerField(read_only=True)
-    data_available_pretty = serializers.CharField(read_only=True)
-    data_used_pretty = serializers.CharField(read_only=True)
-    data_size_pretty = serializers.CharField(read_only=True)
+    datafs_available = serializers.IntegerField(read_only=True)
+    datafs_available_pretty = serializers.CharField(read_only=True)
+    datafs_used_pretty = serializers.CharField(read_only=True)
+    datafs_size_pretty = serializers.CharField(read_only=True)
 
     rootfs_available = serializers.IntegerField(read_only=True)
     rootfs_available_pretty = serializers.CharField(read_only=True)

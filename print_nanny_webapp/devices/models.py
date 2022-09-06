@@ -367,27 +367,29 @@ class SystemInfo(SafeDeleteModel):
         return convert_size(self.bootfs_size)
 
     @property
-    def bootfs_available(self):
+    def bootfs_available(self) -> int:
         return self.bootfs_size - self.bootfs_used
 
     @property
-    def bootfs_available_pretty(self):
-        return convert_size(self.bootfs_size_pretty)
+    def bootfs_available_pretty(self) -> str:
+        perc = self.bootfs_available / self.bootfs_size
+        return f"{convert_size(self.bootfs_size_pretty)} ({perc:.0%} free)"
 
     @property
-    def datafs_available(self):
+    def datafs_available(self) -> int:
         return self.datafs_size - self.datafs_used
 
     @property
-    def datafs_available_pretty(self):
-        return convert_size(self.datafs_available)
+    def datafs_available_pretty(self) -> str:
+        perc = self.datafs_available / self.datafs_size
+        return f"{convert_size(self.datafs_size)} ({perc:.0%} free)"
 
     @property
-    def datafs_size_pretty(self):
+    def datafs_size_pretty(self) -> str:
         return convert_size(self.datafs_size)
 
     @property
-    def datafs_used_pretty(self):
+    def datafs_used_pretty(self) -> str:
         return convert_size(self.datafs_used)
 
     @property
@@ -404,7 +406,8 @@ class SystemInfo(SafeDeleteModel):
 
     @property
     def rootfs_available_pretty(self) -> str:
-        return convert_size(self.rootfs_available)
+        perc = self.rootfs_available / self.rootfs_size
+        return f"{convert_size(self.rootfs_size)} ({perc:.0%} free)"
 
 
 class WebrtcStream(SafeDeleteModel):

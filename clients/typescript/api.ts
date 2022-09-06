@@ -6839,25 +6839,25 @@ export interface SystemInfo {
      * @type {number}
      * @memberof SystemInfo
      */
-    'data_available': number;
+    'datafs_available': number;
     /**
      * 
      * @type {string}
      * @memberof SystemInfo
      */
-    'data_available_pretty': string;
+    'datafs_available_pretty': string;
     /**
      * 
      * @type {string}
      * @memberof SystemInfo
      */
-    'data_used_pretty': string;
+    'datafs_used_pretty': string;
     /**
      * 
      * @type {string}
      * @memberof SystemInfo
      */
-    'data_size_pretty': string;
+    'datafs_size_pretty': string;
     /**
      * 
      * @type {number}

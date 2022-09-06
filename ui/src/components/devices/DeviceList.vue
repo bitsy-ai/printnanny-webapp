@@ -67,7 +67,7 @@ const wizardSteps = PiCreateWizardSteps();
                 class="hidden md:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
                 scope="col"
               >
-                Disk
+                Disk Available
               </th>
               <th
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -152,8 +152,8 @@ const wizardSteps = PiCreateWizardSteps();
               >
                 {{
                   pi.system_info
-                    ? pi.system_info
-                    : "Waiting for first boot"
+                    ? pi.system_info.datafs_available_pretty
+                    : ""
                 }}
               </td>
               <td
