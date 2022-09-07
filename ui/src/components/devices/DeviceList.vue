@@ -151,9 +151,7 @@ const wizardSteps = PiCreateWizardSteps();
                 class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right"
               >
                 {{
-                  pi.system_info
-                    ? pi.system_info.datafs_available_pretty
-                    : ""
+                  pi.system_info ? pi.system_info.datafs_available_pretty : ""
                 }}
               </td>
               <td
