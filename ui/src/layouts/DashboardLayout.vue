@@ -138,9 +138,18 @@
 
                         <!-- loading state -->
                         <template #fallback>
-                          <div class="flex flex-1 justify-center items-center align-center min-h-screen flex-col">
-                            <h2 class="font-semibold tracking-wider text-3xl mb-6">Loading...</h2>
-                            <CustomSpinner width="w-46" height="h-46"></CustomSpinner>
+                          <div
+                            class="flex flex-1 justify-center items-center align-center min-h-screen flex-col"
+                          >
+                            <h2
+                              class="font-semibold tracking-wider text-3xl mb-6"
+                            >
+                              Loading...
+                            </h2>
+                            <CustomSpinner
+                              width="w-46"
+                              height="h-46"
+                            ></CustomSpinner>
                           </div>
                         </template>
                       </Suspense>

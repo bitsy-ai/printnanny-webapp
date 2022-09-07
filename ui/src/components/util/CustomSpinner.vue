@@ -27,7 +27,9 @@ const classes = `${color} ${props.width} ${props.height}`;
   <div role="status" class="inline-flex items-center">
     <!-- this is a dirty hack to get tailwind to generate css fill-${props.color}-600 -->
     <!-- haven't yet figured out how to work with tailwind + dynamic color props -->
-    <span class="hidden fill-indigo-600 fill-slate-600 fill-gray-600 fill-zinc-600 fill-stone-600 fill-red-600 fill-orange-600 fill-amber-600 fill-green-600 fill-emerald-600 fill-teal-600 fill-sky-600 fill-blue-600 fill-indigo-600 fill-violet-600 fill-purple-600 fill-pink-600 fill-rose-600"></span>
+    <span
+      class="hidden fill-indigo-600 fill-slate-600 fill-gray-600 fill-zinc-600 fill-stone-600 fill-red-600 fill-orange-600 fill-amber-600 fill-green-600 fill-emerald-600 fill-teal-600 fill-sky-600 fill-blue-600 fill-indigo-600 fill-violet-600 fill-purple-600 fill-pink-600 fill-rose-600"
+    ></span>
     <svg
       class="animate-spin-slow text-white"
       :class="classes"

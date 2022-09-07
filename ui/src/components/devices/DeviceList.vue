@@ -12,11 +12,6 @@ import { PiCreateWizardSteps } from "@/components/wizard/piCreateWizard";
 const deviceStore = useDeviceStore();
 const pis = await deviceStore.fetchDevices();
 const wizardSteps = PiCreateWizardSteps();
-
-async function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-await sleep(1000000000000000)
 </script>
 
 <template>
@@ -156,9 +151,7 @@ await sleep(1000000000000000)
                 class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right"
               >
                 {{
-                  pi.system_info
-                    ? pi.system_info.datafs_available_pretty
-                    : ""
+                  pi.system_info ? pi.system_info.datafs_available_pretty : ""
                 }}
               </td>
               <td
