@@ -12,6 +12,11 @@ import { PiCreateWizardSteps } from "@/components/wizard/piCreateWizard";
 const deviceStore = useDeviceStore();
 const pis = await deviceStore.fetchDevices();
 const wizardSteps = PiCreateWizardSteps();
+
+async function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+await sleep(1000000000000000)
 </script>
 
 <template>

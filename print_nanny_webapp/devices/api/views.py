@@ -109,6 +109,12 @@ class PiViewSet(
     queryset = Pi.objects.all()
     lookup_field = "id"
 
+    # def list(self, request, *args, **kwargs):
+
+    #     import pdb
+
+    #     pdb.set_trace()
+
     def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         hostname = request.data.get("hostname")
         try:

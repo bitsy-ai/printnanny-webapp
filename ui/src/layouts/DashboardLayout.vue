@@ -114,7 +114,7 @@
                 </div>
               </div>
             </div>
-            <main class="mb-20 min-h-screen">
+            <main class="mb-20 min-h-[50%]">
               <!-- Page title & actions -->
               <div
                 class="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8"
@@ -128,23 +128,26 @@
                 </div>
               </div>
               <!-- Main content area -->
-              <RouterView v-slot="{ Component }">
-                <template v-if="Component">
-                  <Transition mode="out-in" name="fade">
-                    <KeepAlive>
+              <div class="min-h-screen">
+                <RouterView v-slot="{ Component }">
+                  <template v-if="Component">
+                    <Transition mode="out-in" name="fade">
                       <Suspense>
                         <!-- main content -->
                         <component :is="Component"></component>
 
                         <!-- loading state -->
                         <template #fallback>
-                          <p>Loading ...</p>
+                          <div class="flex flex-1 justify-center items-center align-center min-h-screen flex-col">
+                            <h2 class="font-semibold tracking-wider text-3xl mb-6">Loading...</h2>
+                            <CustomSpinner width="w-46" height="h-46"></CustomSpinner>
+                          </div>
                         </template>
                       </Suspense>
-                    </KeepAlive>
-                  </Transition>
-                </template>
-              </RouterView>
+                    </Transition>
+                  </template>
+                </RouterView>
+              </div>
             </main>
             <FooterNav />
           </div>
@@ -169,6 +172,7 @@ import MobileProfileMenu from "@/components/nav/MobileProfileMenu.vue";
 import MobileSidebarNav from "@/components/nav/MobileSidebarNav.vue";
 import StickyAlerts from "@/components/alerts/StickyAlerts.vue";
 import FooterNav from "@/components/nav/FooterNav.vue";
+import CustomSpinner from "../components/util/CustomSpinner.vue";
 
 const sidebarOpen = ref(false);
 </script>

@@ -30,7 +30,7 @@ export default [
         meta: { title: "Manage Network" },
       },
       {
-        path: "delxete/:id/",
+        path: "delete/:id/",
         name: "device-delete",
         components: {
           default: DeviceDelete,
