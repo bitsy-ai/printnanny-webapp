@@ -135,16 +135,16 @@ const app_nav = [
     current: () => router.currentRoute.value.name == "devices",
   },
   {
-    name: "Settings",
-    link: { name: "alertSettings" },
-    icon: CogIcon,
-    current: () => router.currentRoute.value.path.includes("settings"),
-  },
-  {
     name: "Member Swag",
     link: { name: "swag" },
     icon: SparklesIcon,
     current: () => router.currentRoute.value.path.includes("swag"),
+  },
+  {
+    name: "Settings",
+    link: { name: "alertSettings" },
+    icon: CogIcon,
+    current: () => router.currentRoute.value.path.includes("settings"),
   },
   //   { name: 'My tasks', href: '#', icon: ViewListIcon, current: false },
   //   { name: 'Recent', href: '#', icon: ClockIcon, current: false },
