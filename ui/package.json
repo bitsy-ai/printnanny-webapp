@@ -4,6 +4,7 @@
   "scripts": {
     "cypress:open": "cypress open",
     "dev": "vite --mode dev",
+    "ci-test-build": "vite build --base=/ui/ --mode dev && cd .. && make ci-collectstatic",
     "dev-build": "vite build --base=/ui/ --mode dev && cd .. && make collectstatic",
     "build": "run-p lint type-check build-only",
     "preview": "vite preview --port 4173",

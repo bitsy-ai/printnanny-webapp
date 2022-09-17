@@ -541,8 +541,11 @@ migrations:
 migrate:
 	docker-compose -f local.yml run --rm django python manage.py migrate
 
-collectstatic:
+ci-collectstatic:
 	docker-compose -f local.yml run --rm django python manage.py collectstatic --noinput
+
+collectstatic:
+	docker-compose -f test.yml run --rm django python manage.py collectstatic --noinput
 
 dev-config: $(TMPDIR)
 	docker-compose -f local.yml exec django python manage.py devconfig \
