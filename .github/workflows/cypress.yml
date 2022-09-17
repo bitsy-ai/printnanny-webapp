@@ -34,8 +34,8 @@ jobs:
       - name: Start Django Webapp
         run: |
           make ci-up
-          make ts-client
           cd ui && npm install
+          cd ../clients/typescript && npm install && npm build
       - uses: cypress-io/github-action@v4.2.0
         with:
           start: npm run dev
