@@ -123,7 +123,7 @@
               >
               <span class="text-red-500 ml-2">{{ product.price }}</span>
             </p>
-            <p class="text-xl tracking-tight mt-2">50% off launch price</p>
+            <p class="text-xl tracking-tight mt-2">25% off launch price</p>
           </div>
 
           <div class="mt-6">
