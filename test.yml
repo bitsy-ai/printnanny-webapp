@@ -26,10 +26,7 @@ services:
     stdin_open: true
     tty: true
     # network_mode: "host"
-    build:
-      context: .
-      dockerfile: ./compose/local/django/Dockerfile
-    image: printnanny_webapp_local_django
+    image: bitsyai/printnanny-webapp:${{ github.sha }}
     container_name: printnanny_webapp_django
     depends_on:
       - postgres
