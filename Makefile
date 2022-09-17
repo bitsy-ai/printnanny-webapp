@@ -218,10 +218,18 @@ local-up-d: local-image-build local-creds
 	DJANGO_SUPERUSER_EMAIL=$(DJANGO_SUPERUSER_EMAIL) \
 		docker-compose -f -d local.yml up
 
+
 local-up-clean: local-clean local-image-build local-up
 
 cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(GCP_PROJECT)
+
+ci-image-build:
+	DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f test.yml build
+
+ci-up: ci-image-build
+	docker-compose -f test.yml up -d
+
 
 sandbox-config:
 	GIT_SHA=$(GIT_SHA) \
@@ -533,8 +541,11 @@ migrations:
 migrate:
 	docker-compose -f local.yml run --rm django python manage.py migrate
 
+ci-collectstatic:
+	docker-compose -f test.yml run --rm django python manage.py collectstatic --noinput
+
 collectstatic:
-	docker-compose -f local.yml run --rm django python manage.py collectstatic
+	docker-compose -f local.yml run --rm django python manage.py collectstatic --noinput
 
 dev-config: $(TMPDIR)
 	docker-compose -f local.yml exec django python manage.py devconfig \

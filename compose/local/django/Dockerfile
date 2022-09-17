@@ -15,9 +15,10 @@ RUN apt-get update \
   && apt-get install -y gettext \
   # postgres client (dbshell)
   && apt-get install -y postgresql \
-  # orca https://github.com/plotly/orca
-  && apt-get install -y openssh-server \
-  && apt-get -y install wget xvfb xauth poppler-utils \
+  # nsc dependencies \
+  && apt-get install -y wget \
+  # cypress dependencies
+  && apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
