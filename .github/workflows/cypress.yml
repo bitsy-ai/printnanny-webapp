@@ -34,6 +34,7 @@ jobs:
       - name: Start Django Webapp
         run: |
           make ci-up
+          make ts-client
           cd ui && npm install
       - uses: cypress-io/github-action@v4.2.0
         with:
