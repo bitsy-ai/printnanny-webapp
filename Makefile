@@ -224,8 +224,10 @@ local-up-clean: local-clean local-image-build local-up
 cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(GCP_PROJECT)
 
+ci-image-build:
+	DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f test.yml build
 
-ci-up: local-image-build
+ci-up: ci-image-build
 	docker-compose -f -d test.yml up
 
 
