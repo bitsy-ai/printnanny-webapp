@@ -74,9 +74,6 @@ def build_stripe_checkout_session_customer_extra_kwargs(
             customer = DjStripeCustomer.objects.get(email=email)
             extra_kwargs["customer"] = customer.id
             extra_kwargs["client_reference_id"] = customer.subscriber.id
-            extra_kwargs["metadata"][
-                djstripe_settings.SUBSCRIBER_CUSTOMER_KEY
-            ] = customer.subscriber.id
 
         # customer not found - pass email to Stripe Checkout Session create call
         # Django User creation will be handled in Stripe Checkout Session redirect
