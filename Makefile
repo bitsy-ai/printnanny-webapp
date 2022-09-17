@@ -228,7 +228,7 @@ ci-image-build:
 	DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f test.yml build
 
 ci-up: ci-image-build
-	docker-compose -f -d test.yml up
+	docker-compose -d -f test.yml up
 
 
 sandbox-config:
