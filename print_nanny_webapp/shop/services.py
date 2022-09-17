@@ -53,8 +53,6 @@ def build_stripe_checkout_session_customer_extra_kwargs(
     extra_kwargs = dict()
     if request.user.is_authenticated:
         user = request.user
-        # provides djstripe_subscriber_user reverse relationship
-        extra_kwargs["metadata"][djstripe_settings.SUBSCRIBER_CUSTOMER_KEY] = user.id
         # an extra reference id
         extra_kwargs["client_reference_id"] = user.id
         try:
@@ -65,7 +63,8 @@ def build_stripe_checkout_session_customer_extra_kwargs(
                 name="auto", shipping="auto", address="auto"
             )
 
-        # customer not found
+        # customer not found - pass email to Stripe Checkout Session create call
+        # Django User creation will be handled in Stripe Checkout Session redirect
         except DjStripeCustomer.DoesNotExist:
             extra_kwargs["customer_email"] = email
             extra_kwargs["customer_creation"] = "always"
@@ -74,7 +73,13 @@ def build_stripe_checkout_session_customer_extra_kwargs(
         try:
             customer = DjStripeCustomer.objects.get(email=email)
             extra_kwargs["customer"] = customer.id
-        # customer not found
+            extra_kwargs["client_reference_id"] = customer.subscriber.id
+            extra_kwargs["metadata"][
+                djstripe_settings.SUBSCRIBER_CUSTOMER_KEY
+            ] = customer.subscriber.id
+
+        # customer not found - pass email to Stripe Checkout Session create call
+        # Django User creation will be handled in Stripe Checkout Session redirect
         except DjStripeCustomer.DoesNotExist:
             extra_kwargs["customer_email"] = email
             extra_kwargs["customer_creation"] = "always"
@@ -91,9 +96,6 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
 
     # prices = stripe.Price.list(lookup_keys=[stripe_lookup_key])
 
-    # try to get Stripe customer from user
-    user = None
-    customer = None
     order_id = uuid4()
 
     # add django session key to stripe metadata
@@ -106,33 +108,18 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
             django_order_id=order_id,
         ),
     )
-    if request.user.is_authenticated:
-        user = request.user
-        # provides djstripe_subscriber_user reverse relationship
-        extra_kwargs["metadata"][djstripe_settings.SUBSCRIBER_CUSTOMER_KEY] = user.id
-        # an extra reference id
-        extra_kwargs["client_reference_id"] = user.id
-        try:
-            customer = DjStripeCustomer.objects.get(subscriber=user)
-            extra_kwargs["customer"] = customer.id
-            # automatically update Stripe customer with shipping/billing address if these fields are modified during checkout session
-            extra_kwargs["customer_update"] = dict(
-                name="auto", shipping="auto", address="auto"
-            )
 
-        # customer not found
-        except DjStripeCustomer.DoesNotExist:
-            extra_kwargs["customer_email"] = email
-            extra_kwargs["customer_creation"] = "always"
+    # try to get Stripe customer from Django user authentication, email lookup, or supply needed parameters to create new Stripe Customer
+    extra_kwargs.update(
+        build_stripe_checkout_session_customer_extra_kwargs(request, email)
+    )
 
-    else:
-        try:
-            customer = DjStripeCustomer.objects.get(email=email)
-            extra_kwargs["customer"] = customer.id
-        # customer not found
-        except DjStripeCustomer.DoesNotExist:
-            extra_kwargs["customer_email"] = email
-            extra_kwargs["customer_creation"] = "always"
+    # if client_reference_id was set, copy value to metadata.djstripe_settings.SUBSCRIBER_CUSTOMER_KEY
+    # provides djstripe_subscriber_user reverse relationship
+    if extra_kwargs.get("client_reference_id") is not None:
+        extra_kwargs["metadata"][
+            djstripe_settings.SUBSCRIBER_CUSTOMER_KEY
+        ] = extra_kwargs.get("client_reference_id")
 
     # set success / cancel urls
     extra_kwargs["success_url"] = request.build_absolute_uri("/shop/thank-you/")
@@ -150,6 +137,10 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
             ":8000", ":3000"
         )
     price_id = product.prices.filter(active=True).first().id
+
+    import pdb
+
+    pdb.set_trace()
 
     if product.is_shippable:
 
