@@ -2,7 +2,7 @@
   "name": "printnanny-ui",
   "version": "0.1.0",
   "scripts": {
-    "cypress": "cypress open",
+    "cypress:open": "cypress open",
     "dev": "vite --mode dev",
     "dev-build": "vite build --base=/ui/ --mode dev && cd .. && make collectstatic",
     "build": "run-p lint type-check build-only",

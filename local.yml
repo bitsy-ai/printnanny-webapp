@@ -8,8 +8,6 @@ volumes:
   local_octoprint_data: {}
   local_nsc_data: {}
 services:
-  cypress:
-    image: cypress/base:latest
   janus:
     hostname: janus
     image: bitsyai/janus:1.0.4

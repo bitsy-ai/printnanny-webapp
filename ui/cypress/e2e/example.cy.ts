@@ -1,8 +1,10 @@
 // https://docs.cypress.io/api/introduction/api.html
 
-describe("My First Test", () => {
-  it("visits the app root url", () => {
+describe("Landing Page", () => {
+  it("Rejects invalid email", () => {
     cy.visit("/");
-    cy.contains("h1", "You did it!");
+    let invalid = "foo123"
+    cy.get("input#email").click().type(invalid).get("button#email-submit").click();
+    cy.contains(`${invalid} must be a valid email`);
   });
 });
