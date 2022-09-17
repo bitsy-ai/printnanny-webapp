@@ -23,6 +23,9 @@ jobs:
       NSC_STORE: /var/lib/nats/nsc/stores
       MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
       MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
 
     runs-on: ubuntu-latest
     steps:
@@ -38,6 +41,7 @@ jobs:
           cd ../../ui && npm install
 
       - uses: cypress-io/github-action@v4
+
         with:
           build: npm run ci-test-build
           working-directory: ui
