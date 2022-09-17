@@ -14,13 +14,21 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   cypress-run:
+    environment: test
+    env:
+      DJANGO_SUPERUSER_PASSWORD: ${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
+      DJANGO_SUPERUSER_EMAIL: ${{ secrets.DJANGO_SUPERUSER_EMAIL }}
+      NKEYS_PATH: /var/lib/nats/nsc/keys
+      NSC_HOME: /var/lib/nats/nsc
+      NSC_STORE: /var/lib/nats/nsc/stores
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Start Django Webapp
         run: |
-          make local-up-d
+          make ci-up
       - uses: cypress-io/github-action@v4.2.0
         with:
           build: npm run build

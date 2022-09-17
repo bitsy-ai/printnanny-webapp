@@ -218,10 +218,16 @@ local-up-d: local-image-build local-creds
 	DJANGO_SUPERUSER_EMAIL=$(DJANGO_SUPERUSER_EMAIL) \
 		docker-compose -f -d local.yml up
 
+
 local-up-clean: local-clean local-image-build local-up
 
 cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(GCP_PROJECT)
+
+
+ci-up: local-image-build
+	docker-compose -f -d test.yml up
+
 
 sandbox-config:
 	GIT_SHA=$(GIT_SHA) \

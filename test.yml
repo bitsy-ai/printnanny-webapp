@@ -1,57 +1,148 @@
 version: "3"
 
 volumes:
-  test_postgres_data: {}
-  test_postgres_data_backups: {}
-  test_prometheus_data: {}
-  test_file_data: {}
-  test_octoprint_data: {}
+  local_postgres_data: {}
+  local_postgres_data_backups: {}
+  local_prometheus_data: {}
+  local_file_data: {}
+  local_octoprint_data: {}
+  local_nsc_data: {}
 services:
-  ui:
-    image: cypress/base:latest
+  janus:
+    hostname: janus
+    image: bitsyai/janus:1.0.4
+    container_name: printnanny_janus
+    ports:
+      - "8188:8188"
+      - "7188:7188"
+      - "7088:7088"
+      - "8088:8088"
+      - "5000-5100:5000-5100/udp"
+    env_file:
+      - ./.envs/.local/.janus
+    volumes:
+      - ./compose/local/janus/etc:/etc/janus
 
+  # octoprint:
+  #   hostname: octoprint
+  #   image: octoprint/octoprint
+  #   container_name: printnanny_webapp_octoprint
+  #   # network_mode: "host"
+  #   ports:
+  #     - "5005:5000"
+  #   environment:
+  #     OCTOPRINT_NANNY_GCP_PROJECT_ID: ${PROJECT}
+  #     OCTOPRINT_NANNY_API_URL: "http://django:8000/api/"
+  #     OCTOPRINT_NANNY_WS_URL: "ws://django:8000/ws/"
+  #     OCTOPRINT_NANNY_IOT_DEVICE_REGISTRY: "octoprint-devices"
+  #     OCTOPRINT_NANNY_HONEYCOMB_DATASET: ${PRINT_NANNY_HONEYCOMB_DATASET}
+  #     OCTOPRINT_NANNY_HONEYCOMB_API_KEY: ${PRINT_NANNY_HONEYCOMB_API_KEY}
+  #     OCTOPRINT_NANNY_HONEYCOMB_DEBUG: 1
+  #     PYTHONASYNCDEBUG: 1
+  #   volumes:
+  #     - local_octoprint_data:/octoprint
   django: &django # enables use of pdb
     hostname: django
     stdin_open: true
     tty: true
+    # network_mode: "host"
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
-    image: print_nanny_webapp_test_django
-    container_name: print_nanny_webapp_test
+    image: printnanny_webapp_local_django
+    container_name: printnanny_webapp_django
     depends_on:
       - postgres
+      - prometheus
+      - nats
+      - janus
     volumes:
       - .:/app:z
-      - test_file_data:/tmp:z
+      - local_file_data:/tmp:z
       # prevent host machine .venv and node_modules from being included in container
       # idea from: https://stackoverflow.com/questions/29181032/add-a-volume-to-docker-but-exclude-a-sub-folder
       - /app/node_modules
       - /app/.venv
+      - local_nsc_data:/var/lib/nats/nsc:z
     environment:
       DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
       DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
+      NKEYS_PATH: /var/lib/nats/nsc/keys
+      NSC_HOME: /var/lib/nats/nsc
+      NSC_STORE: /var/lib/nats/nsc/stores
+
     env_file:
-      - ./.envs/.test/.tests
-      - ./.envs/.test/.postgres
-      - ./.envs/.test/.django
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
     ports:
       - "8000:8000"
       - "8001:8001"
-    command: /start
 
-  postgres:
-    hostname: postgres
+    command:
+      - /start
+
+  firehose: &firehose
+    hostname: firehose
+    depends_on:
+      - postgres
+      - nats
     build:
       context: .
-      dockerfile: ./compose/production/postgres/Dockerfile
-    image: print_nanny_webapp_production_postgres
-    container_name: print_nanny_webapp_postgres
-    volumes:
-      - test_postgres_data:/var/lib/postgresql/data:z
-      - test_postgres_data_backups:/backups:z
+      dockerfile: ./compose/local/django/Dockerfile
+    image: printnanny_webapp_local_django
+    container_name: printnanny_webapp_firehose
+    environment:
+      DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
+      DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
+      NKEYS_PATH: /var/lib/nats/nsc/keys
+      NSC_HOME: /var/lib/nats/nsc
+      NSC_STORE: /var/lib/nats/nsc/stores
+      DJANGO_SETTINGS_MODULE: config.settings.local
     env_file:
-      - ./.envs/.test/.tests
-      - ./.envs/.test/.postgres
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
+      - ./.envs/.local/.secrets
+    volumes:
+      - .:/app:z
+      - local_nsc_data:/var/lib/nats/nsc:z
+
+    command:
+      - python
+      - -m
+      - print_nanny_webapp.events.streams.firehose
+  postgres:
+    hostname: postgres
+    image: postgres:12.3
+    container_name: printnanny_webapp_postgres
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data:z
+      - local_postgres_data_backups:/backups:z
+    env_file:
+      - ./.envs/.local/.postgres
     ports:
       - "5432:5432"
+
+  redis:
+    # network_mode: "host"
+    hostname: redis
+    build:
+      context: .
+      dockerfile: ./compose/local/redis/Dockerfile
+    container_name: printnanny_webapp_redis
+    ports:
+      - "6379:6379"
+
+  nats:
+    hostname: nats
+    image: nats:2.8-alpine
+    container_name: printnanny_webapp_nats
+    volumes:
+      - .nats/:/etc/nats
+    command:
+      - -c
+      - /etc/nats/nats-server.conf
+      - --name
+      - localnats
+    ports:
+      - "4222:4222"
+      - "8443:8443"
