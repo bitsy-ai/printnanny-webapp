@@ -41,3 +41,4 @@ jobs:
         with:
           build: npm run dev-build
           working-directory: ui
+          timeout-minutes: 5
