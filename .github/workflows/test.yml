@@ -1,4 +1,4 @@
-name: Cypress
+name: Pytest and Cypress
 
 # Controls when the action will run.
 on:
