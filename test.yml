@@ -3,7 +3,6 @@ version: "3"
 volumes:
   local_postgres_data: {}
   local_postgres_data_backups: {}
-  local_prometheus_data: {}
   local_file_data: {}
   local_octoprint_data: {}
   local_nsc_data: {}
@@ -53,7 +52,6 @@ services:
     container_name: printnanny_webapp_django
     depends_on:
       - postgres
-      - prometheus
       - nats
       - janus
     volumes:
