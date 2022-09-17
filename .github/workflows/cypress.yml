@@ -35,3 +35,4 @@ jobs:
         with:
           build: npm run build
           start: npm run dev
+          working-directory: ui
