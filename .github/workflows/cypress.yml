@@ -13,57 +13,15 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  mypy:
-    # The type of runner that the job will run on
+  cypress-run:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Start Django Webapp
+        run: |
+          make local-up-d
+      - uses: cypress-io/github-action@v4.2.0
         with:
-          python-version: "3.9"
-      - name: Mypy
-        shell: bash
-        run: |
-          pip3 install -r requirements/local.txt
-          pip3 install -r requirements/test.txt
-          . .envs/.test/.env.sh
-          mypy
-  pylint:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: "3.9"
-      - name: Run black linter
-        shell: bash
-        run: |
-          pip3 install -r requirements/test.txt
-          make lint
-  shellcheck:
-    name: Shellcheck
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run ShellCheck
-        run: |
-          sudo apt install shellcheck
-          make shellcheck
-  eslint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "16"
-      - name: Build UI
-        run: |
-          make ui
+          build: npm run build
+          start: npm run dev
