@@ -26,7 +26,7 @@ services:
     stdin_open: true
     tty: true
     # network_mode: "host"
-    image: bitsyai/printnanny-webapp:${{ github.sha }}
+    image: bitsyai/printnanny-webapp:${GITHUB_SHA}
     container_name: printnanny_webapp_django
     depends_on:
       - postgres
