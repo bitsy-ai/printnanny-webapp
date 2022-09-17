@@ -37,7 +37,7 @@ jobs:
           cd clients/typescript && npm install && npm run build
           cd ../../ui && npm install
 
-      - uses: cypress-io/github-action@v4.2.0
+      - uses: cypress-io/github-action@v4
         with:
           build: npm run ci-test-build
           working-directory: ui
