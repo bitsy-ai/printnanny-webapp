@@ -24,7 +24,7 @@ export default [
         components: {
           default: FoundingMembershipPage,
         },
-        meta: { title: "50% off launch price" },
+        meta: { title: "25% off launch price" },
       },
       {
         path: "sdwire",

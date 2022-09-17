@@ -146,8 +146,6 @@ const app_nav = [
     icon: CogIcon,
     current: () => router.currentRoute.value.path.includes("settings"),
   },
-  //   { name: 'My tasks', href: '#', icon: ViewListIcon, current: false },
-  //   { name: 'Recent', href: '#', icon: ClockIcon, current: false },
 ];
 
 // external hrefs
