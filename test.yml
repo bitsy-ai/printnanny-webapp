@@ -101,7 +101,6 @@ services:
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
-      - ./.envs/.local/.secrets
     volumes:
       - .:/app:z
       - local_nsc_data:/var/lib/nats/nsc:z
