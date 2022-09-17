@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 volumes:
   test_postgres_data: {}
@@ -7,8 +7,10 @@ volumes:
   test_file_data: {}
   test_octoprint_data: {}
 services:
-  django: &django
-    # enables use of pdb
+  ui:
+    image: cypress/base:latest
+
+  django: &django # enables use of pdb
     hostname: django
     stdin_open: true
     tty: true
@@ -53,5 +55,3 @@ services:
       - ./.envs/.test/.postgres
     ports:
       - "5432:5432"
-
-
