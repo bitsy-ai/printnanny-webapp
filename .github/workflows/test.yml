@@ -92,11 +92,8 @@ jobs:
         run: |
           make ci-up
           cd clients/typescript && npm install && npm run build
-          cd ../../ui && npm install && npm ci-test-build
-          make ci-collectstatic
-
+          cd ../../ui && npm install && npm run ci-test-build
       - uses: cypress-io/github-action@v4
-
         with:
           wait-on: "http://localhost:8000"
           working-directory: ui
