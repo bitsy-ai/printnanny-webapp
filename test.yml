@@ -43,6 +43,9 @@ services:
     environment:
       DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
       DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
+      MAILGUN_DOMAIN: ${MAILGUN_DOMAIN}
+      MAILGUN_API_KEY: ${MAILGUN_API_KEY}
+
       NKEYS_PATH: /var/lib/nats/nsc/keys
       NSC_HOME: /var/lib/nats/nsc
       NSC_STORE: /var/lib/nats/nsc/stores
