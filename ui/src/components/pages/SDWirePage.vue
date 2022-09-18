@@ -268,8 +268,11 @@ import CustomSpinner from "@/components/util/CustomSpinner.vue";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/vue";
 import { useShopStore } from "@/stores/shop";
 import { useAccountStore } from "@/stores/account";
+import {  useAlertStore } from "@/stores/alerts";
+import type { UiAlert, AlertAction } from "./alerts";
 
 const accountStore = useAccountStore();
+const alertStore = useAlertStore();
 const shopStore = useShopStore();
 
 const products = await shopStore.fetchProducts();
@@ -306,6 +309,23 @@ const product = {
 };
 
 async function onClick(values: any) {
+  if (productData == undefined){
+    const actions = [
+            {
+              color: "red",
+              text: "Refresh",
+              onClick: () => {
+                window.location.reload();
+              },
+            },
+    ] as Array<AlertAction>;
+    const alert: UiAlert = {
+      header: "Oops, something went wrong",
+      message: "Failed to get product information from Stripe.",
+      actions: actions
+    }
+    alertStore.push(alert)
+  }
   if (values && values.email !== undefined && productData !== undefined) {
     await shopStore.createCheckoutSession(values.email, [
       productData.id,
@@ -320,37 +340,6 @@ async function onClick(values: any) {
     ] as Array<string>);
   }
 }
-// TODO prompt for review on delivery
-// const reviews = {
-//   average: 4,
-//   featured: [
-//     {
-//       id: 1,
-//       rating: 5,
-//       content: `
-//         <p>This icon pack is just what I need for my latest project. There's an icon for just about anything I could ever need. Love the playful look!</p>
-//       `,
-//       date: 'July 16, 2021',
-//       datetime: '2021-07-16',
-//       author: 'Emily Selman',
-//       avatarSrc:
-//         'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80',
-//     },
-//     {
-//       id: 2,
-//       rating: 5,
-//       content: `
-//         <p>Blown away by how polished this icon pack is. Everything looks so consistent and each SVG is optimized out of the box so I can use it directly with confidence. It would take me several hours to create a single icon this good, so it's a steal at this price.</p>
-//       `,
-//       date: 'July 12, 2021',
-//       datetime: '2021-07-12',
-//       author: 'Hector Gibbons',
-//       avatarSrc:
-//         'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80',
-//     },
-//     // More reviews...
-//   ],
-// }
 const faqs = [
   {
     question: "What can an SDWire be used for?",

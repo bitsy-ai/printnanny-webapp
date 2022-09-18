@@ -6,9 +6,12 @@ set -o nounset
 
 python manage.py collectstatic --noinput
 python manage.py migrate
+# initialize nsc operator and robot account(s)
 python manage.py nsc_init || echo "DjangoOperator already created"
 python manage.py initrobots --name=firehose || echo "Firehose robot already exists"
-
+# initialize stripe product/shop models
+python manage.py djstripe_sync_models Product
+python manage.py loaddata print_nanny_webapp/shop/fixtures/product.json --app shop.Product
 
 # set the nsc store directory
 if [ -z "${NSC_STORE}" ]; then
