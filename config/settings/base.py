@@ -666,15 +666,6 @@ PASSWORDLESS_AUTH = {
     "PASSWORDLESS_VERIFY_PREFIX": "accounts/2fa-auth/verify/",
 }
 
-# django-coturn
-# https://github.com/bitsy-ai/django-coturn
-# ------------------------------------------------------------------------------
-coturn_db = env.db("COTURN_DATABASE_URL")
-coturn_db["ENGINE"] = "django_prometheus.db.backends.postgresql"
-DATABASES["coturn"] = coturn_db
-COTURN_SECRET_KEY = env("COTURN_SECRET_KEY")
-COTURN_REALM = env("COTURN_REALM")
-
 # ghost user management keys
 GHOST_ADMIN_API_KEY = ""
 GHOST_CONTENT_API_KEY = ""

@@ -8,7 +8,6 @@ django-allauth
 django-anymail[mailgun]
 django-compressor
 django-cors-headers
-django-coturn
 django-coverage-plugin
 django-crispy-forms
 django-debug-toolbar
