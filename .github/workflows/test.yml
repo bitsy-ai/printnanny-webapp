@@ -87,6 +87,8 @@ jobs:
         with:
           node-version: "16"
       - name: Start Django Webapp
+        env:
+          PRINTNANNY_WEBAPP_TAG: pr-${{ github.ref_name }}
         run: |
           make ci-up
           cd clients/typescript && npm install && npm run build
