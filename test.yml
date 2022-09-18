@@ -46,8 +46,8 @@ services:
       NKEYS_PATH: /var/lib/nats/nsc/keys
       NSC_HOME: /var/lib/nats/nsc
       NSC_STORE: /var/lib/nats/nsc/stores
-      STRIPE_TEST_PUBLIC_KEY: ${{ secrets.STRIPE_TEST_PUBLIC_KEY }}
-      STRIPE_TEST_SECRET_KEY: ${{ secrets.STRIPE_TEST_SECRET_KEY }}
+      STRIPE_TEST_PUBLIC_KEY: $STRIPE_TEST_PUBLIC_KEY}
+      STRIPE_TEST_SECRET_KEY: ${STRIPE_TEST_SECRET_KEY}
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
@@ -74,8 +74,8 @@ services:
       NSC_HOME: /var/lib/nats/nsc
       NSC_STORE: /var/lib/nats/nsc/stores
       DJANGO_SETTINGS_MODULE: config.settings.local
-      STRIPE_TEST_PUBLIC_KEY: ${{ secrets.STRIPE_TEST_PUBLIC_KEY }}
-      STRIPE_TEST_SECRET_KEY: ${{ secrets.STRIPE_TEST_SECRET_KEY }}
+      STRIPE_TEST_PUBLIC_KEY: ${STRIPE_TEST_PUBLIC_KEY}
+      STRIPE_TEST_SECRET_KEY: ${STRIPE_TEST_SECRET_KEY}
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
