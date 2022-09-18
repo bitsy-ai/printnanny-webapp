@@ -269,7 +269,7 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/vue";
 import { useShopStore } from "@/stores/shop";
 import { useAccountStore } from "@/stores/account";
 import { useAlertStore } from "@/stores/alerts";
-import type { UiAlert, AlertAction } from "./alerts";
+import type { UiAlert, AlertAction } from "@/types/alerts";
 
 const accountStore = useAccountStore();
 const alertStore = useAlertStore();
@@ -323,6 +323,7 @@ async function onClick(values: any) {
       header: "Oops, something went wrong",
       message: "Failed to get product information from Stripe.",
       actions: actions,
+      error: "Failed to get product information from Stripe.",
     };
     alertStore.push(alert);
   }
