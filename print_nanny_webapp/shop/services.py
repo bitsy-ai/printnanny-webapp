@@ -135,9 +135,9 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
         )
     price_id = product.prices.filter(active=True).first().id
 
-    import pdb
+    # import pdb
 
-    pdb.set_trace()
+    # pdb.set_trace()
 
     if product.is_shippable:
 

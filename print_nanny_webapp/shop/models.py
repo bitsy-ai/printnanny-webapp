@@ -5,8 +5,8 @@ from typing import Optional, List
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.contrib.postgres.fields import ArrayField
-
-from safedelete.models import SafeDeleteModel
+from djstripe.models import Product as DjstripeProduct
+from safedelete.models import SafeDeleteModel, SafeDeleteManager
 from print_nanny_webapp.shop.enum import OrderStatusType
 
 logger = logging.getLogger(__name__)
@@ -14,10 +14,23 @@ logger = logging.getLogger(__name__)
 User = get_user_model()
 
 
+class ProductManager(SafeDeleteManager):
+    def create(self, **kwargs):
+
+        stripe_product_id = kwargs.get("stripe_product_id")
+        if stripe_product_id is None:
+            raise ValueError("stripe_product_id is required")
+
+        djstripe_product = DjstripeProduct.objects.get(id=stripe_product_id)
+        return super().create(djstripe_product=djstripe_product, **kwargs)
+
+
 class Product(SafeDeleteModel):
     """
     Product listed for sale in PrintNanny's shop. Can be a physical (shippable) good, one-time electronic service, or recurring electronic subscription
     """
+
+    objects = ProductManager()
 
     class Meta:
         index_together = [
@@ -61,7 +74,25 @@ class Product(SafeDeleteModel):
     is_subscription = models.BooleanField()
 
     stripe_price_lookup_key = models.CharField(null=True, max_length=255)
+
+    stripe_product_id = models.CharField(unique=True, max_length=255, null=True)
+
     djstripe_product = models.ForeignKey("djstripe.Product", on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+
+        stripe_product_id = kwargs.get("stripe_product_id")
+        import pdb
+
+        pdb.set_trace()
+        if stripe_product_id is None:
+            super().save(*args, **kwargs)
+        else:
+            djstripe_product = DjstripeProduct.objects.get(id=stripe_product_id)
+            import pdb
+
+            pdb.set_trace()
+            return super().save(djstripe_product=djstripe_product, *args, **kwargs)
 
     @property
     def prices(self):
