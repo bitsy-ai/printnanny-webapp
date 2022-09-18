@@ -1,5 +1,5 @@
 <template>
-  <Form v-slot="{ meta }" :validation-schema="schema" @submit="onSubmit">
+  <Form v-slot="{ meta }" :validation-schema="schema" @submit="onSubmit" v-if="success == false">
     <label for="email" class="text-sm text-gray-500">Email address</label>
     <error-message class-name="text-red-500" name="email"></error-message>
     <input
@@ -52,9 +52,14 @@
       Set Password
     </button>
   </Form>
+  <div v-else class="flex w-full items-center py-4 text-gray-600">
+    <CheckCircleIcon class="w-10 h-10 text-emerald-500" />
+    <p class="pl-2">Success! Created account for {{email}}</p>
+  </div>
 </template>
 <script setup lang="ts">
 import { ref, reactive } from "vue";
+import { CheckCircleIcon } from "@heroicons/vue/solid";
 import type * as api from "printnanny-api-client";
 import * as yup from "yup";
 import { Field, ErrorMessage, Form } from "vee-validate";
@@ -63,8 +68,10 @@ import { useAlertStore } from "@/stores/alerts";
 import type { UiAlert } from "@/types";
 
 const loading = ref(false);
+const success = ref(false);
 const state = reactive({
   loading,
+  success,
 });
 
 const props = defineProps({
@@ -95,13 +102,16 @@ async function onSubmit(values: any) {
     password2: values.passwordConfirmation,
   } as api.RegisterRequest);
   state.loading = false;
-  const success = {
-    color: "green",
-    message: `Created account for ${props.email}`,
-    header: "Success!",
-    actions: [],
-    error: undefined,
-  } as UiAlert;
-  alerts.push(success);
+  if (res) {
+      state.success = true;
+      const success = {
+      color: "green",
+      message: `Created account for ${props.email}`,
+      header: "Success!",
+      actions: [],
+      error: undefined,
+    } as UiAlert;
+    alerts.push(success);
+  }
 }
 </script>

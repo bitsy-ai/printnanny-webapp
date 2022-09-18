@@ -55,9 +55,10 @@ export const useAccountStore = defineStore({
       });
       if (userData && userData.data) {
         console.log("Authenticated as user", userData.data);
-        return this.$patch({
+        this.$patch({
           user: userData.data,
         });
+        return userData.data
       }
     },
     async resendVerificationEmail(email: string) {
@@ -86,7 +87,7 @@ export const useAccountStore = defineStore({
       console.info("Successfully logged out");
     },
 
-    async createAccount(request: api.RegisterRequest) {
+    async createAccount(request: api.RegisterRequest): Promise<undefined | api.User> {
       await accountsApi
         .accountsRegistrationCreate(request)
         .catch(handleApiError);
@@ -96,7 +97,8 @@ export const useAccountStore = defineStore({
           password: request.password1,
         } as api.LoginRequest)
         .catch(handleApiError);
-      await this.fetchUser();
+      const user = await this.fetchUser();
+      return user
     },
   },
 });

@@ -1,7 +1,7 @@
 import { defineConfig } from "cypress";
 
 export default defineConfig({
-  chromeWebSecurity: true,
+  chromeWebSecurity: false,
   modifyObstructiveCode: true,
   experimentalModifyObstructiveThirdPartyCode: true,
   blockHosts: ["r.stripe.com", "m.stripe.com"],
