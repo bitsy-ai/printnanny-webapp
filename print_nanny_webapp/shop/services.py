@@ -183,6 +183,10 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
                                 "currency": "usd",
                             },
                             "display_name": "USPS Ground",
+                            # Stripe will automatically determine if shipping is a taxable (varies by state/country), then calculate correct tax
+                            # See: https://stripe.com/docs/payments/checkout/shipping#shipping-rate-with-tax-code
+                            "tax_code": "txcd_92010001",
+                            "tax_behavior": "exclusive",
                         }
                     },
                 ],
@@ -243,6 +247,7 @@ def create_order(request: HttpRequest, product: Product, email: str):
     order.products.add(product)
     # add stripe checkout redirect url to payload
     order.stripe_checkout_redirect_url = checkout_session_redirect
+    order.stripe_checkout_session_id = checkout_session.id
 
     # create order status
     OrderStatus.objects.create(

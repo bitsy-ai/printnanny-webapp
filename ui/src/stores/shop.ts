@@ -1,6 +1,7 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import { ApiConfig, handleApiError } from "@/utils/api";
+import { loadStripe } from '@stripe/stripe-js';
 
 const shopApi = api.ShopApiFactory(ApiConfig);
 
@@ -31,7 +32,7 @@ export const useShopStore = defineStore({
       if (res) {
         this.$patch({ loading: false });
         console.debug(
-          `Redirecting to ${res.data.stripe_checkout_redirect_url}`
+          `Got checkout data`, res.data
         );
         window.location.href = res.data.stripe_checkout_redirect_url;
       }

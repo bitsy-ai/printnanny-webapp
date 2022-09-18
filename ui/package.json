@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
     "dev": "vite --mode dev",
     "ci-test-build": "vite build --base=/ui/ --mode dev && cd .. && make ci-collectstatic",
     "dev-build": "vite build --base=/ui/ --mode dev && cd .. && make collectstatic",
@@ -19,7 +20,7 @@
   "dependencies": {
     "@headlessui/vue": "^1.6.7",
     "@heroicons/vue": "^1.0.6",
-    "@stripe/stripe-js": "^1.35.0",
+    "@stripe/stripe-js": "^1.36.0",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.5.2",
     "browserify-fs": "^1.0.0",

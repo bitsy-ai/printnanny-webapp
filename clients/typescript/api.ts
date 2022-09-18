@@ -2951,6 +2951,12 @@ export interface OrderCheckout {
      * @memberof OrderCheckout
      */
     'stripe_checkout_redirect_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderCheckout
+     */
+    'stripe_checkout_session_id': string;
 }
 /**
  * 
@@ -5429,6 +5435,12 @@ export interface Product {
      * @memberof Product
      */
     'stripe_price_lookup_key'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Product
+     */
+    'stripe_product_id'?: string | null;
 }
 /**
  * 
