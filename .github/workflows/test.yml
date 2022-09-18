@@ -24,6 +24,8 @@ env:
   CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
   GIT_SHA: ${{ github.sha }}
   GIT_BRANCH: ${{ github.ref }}
+  STRIPE_TEST_PUBLIC_KEY: ${{ secrets.STRIPE_TEST_PUBLIC_KEY }}
+  STRIPE_TEST_SECRET_KEY: ${{ secrets.STRIPE_TEST_SECRET_KEY }}
 # Docker Image cache from: https://evilmartians.com/chronicles/build-images-on-github-actions-with-docker-layer-caching
 jobs:
   docker-image:
