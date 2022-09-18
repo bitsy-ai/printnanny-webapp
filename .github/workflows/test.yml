@@ -61,13 +61,14 @@ jobs:
           node-version: "16"
       - name: Start Django Webapp
         run: |
-          make ci-up
           cd clients/typescript && npm install && npm run build
           cd ../../ui && npm install
 
       - uses: cypress-io/github-action@v4
 
         with:
+          start: docker-compose -f test.yml up
+          wait-on: "http://localhost:8080"
           build: npm run ci-test-build
           working-directory: ui
           timeout-minutes: 5
