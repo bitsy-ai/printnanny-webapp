@@ -43,7 +43,7 @@ describe.only("Shop and Checkout (SDWire)", () => {
       cy.get("input[name=cardCvc]").type(cvc);
       cy.get("input[name=cardUseShippingAsBilling]").check().then(() => {
         cy.get("button[type=submit]").contains("Pay").click().then(() => {
-          return cy.url().should("contain", "/shop/thank-you/").then(url => {
+          return cy.url({ timeout: 60000 }).should("contain", "/shop/thank-you/").then(url => {
             checkoutRedirectUrl = url;
           });
         });
