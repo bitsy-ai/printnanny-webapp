@@ -36,6 +36,7 @@
 //   }
 // }
 import * as api from "printnanny-api-client";
+import { AccountsApi } from "printnanny-api-client";
 
 const ApiConfig = new api.Configuration({
   basePath: 'http://localhost:8000',
@@ -56,6 +57,8 @@ Cypress.Commands.add('registerUser', (email, password) => {
 
 Cypress.Commands.add('loginUser', (email, password) => {
   const accountsApi = api.AccountsApiFactory(ApiConfig);
-  const req = { email, password: password, } as api.LoginRequest;
-  return accountsApi.accountsLoginCreate(req)
+  return cy.session(email, () => {
+    const req = { email, password } as api.LoginRequest;
+    return accountsApi.accountsLoginCreate(req);
+  })
 });

@@ -35,9 +35,9 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
   });
 
   it("Stripe CheckoutSession should redirects back to shop on success (anonymous checkout)", () => {
-    const sentArgs = { email, url: checkoutSessionUrl, checkoutRedirectUrl, shippingName, address1, city, zip, cardNumber, cvc };
+    const sentArgs = { email, url: checkoutSessionUrl, checkoutRedirectUrl, shippingName, address1, city, zip, cardNumber, cvc, exp };
     // cy.origin allows use to make cross-origin requests, with limitations
-    cy.origin("https://checkout.stripe.com", { args: sentArgs }, ({ email, url, checkoutRedirectUrl, shippingName, address1, city, zip, cardNumber, cvc }) => {
+    cy.origin("https://checkout.stripe.com", { args: sentArgs }, ({ email, url, checkoutRedirectUrl, shippingName, address1, city, zip, cardNumber, cvc, exp }) => {
       cy.visit(url);
 
 
@@ -107,15 +107,18 @@ describe.only("Shop and Checkout (SDWire, Authenticated)", () => {
   const cvc = "123"
 
   before(() => {
-    cy.registerUser(email, validPassword).loginUser(email, validPassword);
+    cy.registerUser(email, validPassword).then(() => {
+      return cy.loginUser(email, validPassword);
+    });
   })
 
-  it("Shop should redirect to Stripe CheckoutSession (anonymous checkout)", () => {
+  it("Shop should redirect to Stripe CheckoutSession (authenticated checkout)", () => {
     cy.visit("/shop/sdwire");
+    // should show Dashboard / Logout buttons
+    cy.contains("Dashboard");
+    cy.contains("Logout");
 
-    // customer should be prompted to enter email
-    cy.contains("Enter your email address or");
-    cy.get("input#email").click().type(email).get("button[type=submit]").click().then(() => {
+    cy.contains("Pre-order with Stripe").click().then(() => {
       // set checkoutSessionUrl / checkoutRedirectUrl for use in subsequent tests
       return cy.url({ timeout: 60000 }).should("contain", "checkout.stripe.com").then(url => {
         checkoutSessionUrl = url
@@ -125,13 +128,11 @@ describe.only("Shop and Checkout (SDWire, Authenticated)", () => {
     });
   });
 
-  it("Stripe CheckoutSession should redirects back to shop on success (anonymous checkout)", () => {
-    const sentArgs = { email, url: checkoutSessionUrl, checkoutRedirectUrl, shippingName, address1, city, zip, cardNumber, cvc };
+  it("Stripe CheckoutSession should redirects back to shop on success (authenticated checkout)", () => {
+    const sentArgs = { email, url: checkoutSessionUrl, checkoutRedirectUrl, shippingName, address1, city, zip, cardNumber, cvc, exp };
     // cy.origin allows use to make cross-origin requests, with limitations
-    cy.origin("https://checkout.stripe.com", { args: sentArgs }, ({ email, url, checkoutRedirectUrl, shippingName, address1, city, zip, cardNumber, cvc }) => {
+    cy.origin("https://checkout.stripe.com", { args: sentArgs }, ({ email, url, checkoutRedirectUrl, shippingName, address1, city, zip, cardNumber, cvc, exp }) => {
       cy.visit(url);
-
-
       cy.get("input[name=shippingName]").type(shippingName);
       cy.get("input[name=shippingAddressLine1]").type(address1).type('{enter}');
       cy.get("input[name=shippingLocality]").type(city);
@@ -147,34 +148,5 @@ describe.only("Shop and Checkout (SDWire, Authenticated)", () => {
     });
   });
 
-  it("Stripe CheckoutSession redirect should finish account registration (anonymous checkout)", () => {
-    cy.visit(checkoutRedirectUrl);
-
-    // should reject invalid password
-    cy.get("input[name=password]").type(invalidPassword);
-    cy.get("input[name=passwordConfirmation]").type(invalidPassword);
-    cy.get("button[type=submit]").click();
-    cy.get("The password is too similar to the email address")
-
-
-    // account registration should succeed
-    cy.contains("Finish Account Registration");
-    cy.get("input[name=email]").type(email);
-    cy.get("input[name=password]").type(validPassword);
-    cy.get("input[name=passwordConfirmation]").type(validPassword);
-    cy.get("button[type=submit]").click();
-    cy.contains(`Success! Created account for ${email}`);
-
-
-    // confirmation page should show shipping address
-    cy.contains(shippingName);
-    cy.contains(address1)
-    cy.contains(city);
-    cy.contains(zip);
-
-    // a shipping method should be present for physical goods
-    cy.contains("Shipping method")
-
-  });
 
 })
