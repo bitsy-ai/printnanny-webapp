@@ -23,8 +23,6 @@ services:
       - ./compose/local/janus/etc:/etc/janus
   django: &django # enables use of pdb
     hostname: django
-    stdin_open: true
-    tty: true
     # network_mode: "host"
     image: bitsyai/printnanny-webapp:${GITHUB_SHA}
     container_name: printnanny_webapp_django
@@ -65,10 +63,7 @@ services:
     depends_on:
       - postgres
       - nats
-    build:
-      context: .
-      dockerfile: ./compose/local/django/Dockerfile
-    image: printnanny_webapp_local_django
+    image: bitsyai/printnanny-webapp:${GITHUB_SHA}
     container_name: printnanny_webapp_firehose
     environment:
       DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
