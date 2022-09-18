@@ -99,8 +99,8 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
     // should reject invalid password
     cy.get("input[name=password]").type(invalidPassword);
     cy.get("input[name=passwordConfirmation]").type(invalidPassword);
-    cy.get("button[type=submit]").click();
-    cy.get("The password is too similar to the email address");
+    cy.get("button[type=submit]").click()
+    cy.contains("The password is too similar to the email address");
 
     // account registration should succeed
     cy.contains("Finish Account Registration");
@@ -121,7 +121,7 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
   });
 });
 
-describe.only("Shop and Checkout (SDWire, Authenticated)", () => {
+describe("Shop and Checkout (SDWire, Authenticated)", () => {
   const email = `testing-${uuidv4()}@printnanny.ai`;
   let checkoutSessionUrl = "";
   let checkoutRedirectUrl = "";
