@@ -57,16 +57,7 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
     cy.origin(
       "https://checkout.stripe.com",
       { args: sentArgs },
-      ({
-        url,
-        shippingName,
-        address1,
-        city,
-        zip,
-        cardNumber,
-        cvc,
-        exp,
-      }) => {
+      ({ url, shippingName, address1, city, zip, cardNumber, cvc, exp }) => {
         cy.visit(url);
 
         cy.get("input[name=shippingName]").type(shippingName);
@@ -83,9 +74,7 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
         cy.get("input[name=cardUseShippingAsBilling]")
           .check()
           .then(() => {
-            cy.get("button[type=submit]")
-              .contains("Pay")
-              .click();
+            cy.get("button[type=submit]").contains("Pay").click();
           });
       }
     );
@@ -99,7 +88,7 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
     // should reject invalid password
     cy.get("input[name=password]").type(invalidPassword);
     cy.get("input[name=passwordConfirmation]").type(invalidPassword);
-    cy.get("button[type=submit]").click()
+    cy.get("button[type=submit]").click();
     cy.contains("The password is too similar to the email address");
 
     // account registration should succeed
@@ -125,7 +114,6 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
   const email = `testing-${uuidv4()}@printnanny.ai`;
   let checkoutSessionUrl = "";
   let checkoutRedirectUrl = "";
-  const invalidPassword = "testing1234";
   const validPassword = "cypress1234";
 
   const shippingName = "Bitsy AI Labs";
@@ -181,16 +169,7 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
     cy.origin(
       "https://checkout.stripe.com",
       { args: sentArgs },
-      ({
-        url,
-        shippingName,
-        address1,
-        city,
-        zip,
-        cardNumber,
-        cvc,
-        exp,
-      }) => {
+      ({ url, shippingName, address1, city, zip, cardNumber, cvc, exp }) => {
         cy.visit(url);
         cy.get("input[name=shippingName]").type(shippingName);
         cy.get("input[name=shippingAddressLine1]")
