@@ -39,10 +39,9 @@ class TestShopServices(TestCase):
         request.user = AnonymousUser()
         email = "john.doe@example.com"
         # test provided email already associated with an existing stripe customer
-        user = User.objects.create(
+        user = User.objects.create(  # type: ignore[has-type]
             email=email, password="testing1234", is_superuser=False
         )
-
         # load fixture data
         with open(
             os.path.join(
@@ -71,7 +70,7 @@ class TestShopServices(TestCase):
         request = self.factory.post("/api/shop/orders")
         email = "john.doe@example.com"
         # test provided email already associated with an existing stripe customer
-        user = User.objects.create(
+        user = User.objects.create(  # type: ignore[has-type]
             email=email, password="testing1234", is_superuser=False
         )
         request.user = user

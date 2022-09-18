@@ -50,7 +50,7 @@ def build_stripe_checkout_session_customer_extra_kwargs(
 
     If Customer doesn't exist, set Stripe API kwargs needed to create Stripe Customer during Stripe Checkout Session flow
     """
-    extra_kwargs = dict()
+    extra_kwargs: Dict[Any, Any] = dict()
     if request.user.is_authenticated:
         user = request.user
         # an extra reference id
