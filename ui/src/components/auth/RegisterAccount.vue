@@ -1,5 +1,10 @@
 <template>
-  <Form v-slot="{ meta }" :validation-schema="schema" @submit="onSubmit" v-if="success == false">
+  <Form
+    v-if="success == false"
+    v-slot="{ meta }"
+    :validation-schema="schema"
+    @submit="onSubmit"
+  >
     <label for="email" class="text-sm text-gray-500">Email address</label>
     <error-message class-name="text-red-500" name="email"></error-message>
     <input
@@ -54,7 +59,7 @@
   </Form>
   <div v-else class="flex w-full items-center py-4 text-gray-600">
     <CheckCircleIcon class="w-10 h-10 text-emerald-500" />
-    <p class="pl-2">Success! Created account for {{email}}</p>
+    <p class="pl-2">Success! Created account for {{ email }}</p>
   </div>
 </template>
 <script setup lang="ts">
@@ -103,8 +108,8 @@ async function onSubmit(values: any) {
   } as api.RegisterRequest);
   state.loading = false;
   if (res) {
-      state.success = true;
-      const success = {
+    state.success = true;
+    const success = {
       color: "green",
       message: `Created account for ${props.email}`,
       header: "Success!",

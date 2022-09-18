@@ -268,7 +268,7 @@ import CustomSpinner from "@/components/util/CustomSpinner.vue";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/vue";
 import { useShopStore } from "@/stores/shop";
 import { useAccountStore } from "@/stores/account";
-import {  useAlertStore } from "@/stores/alerts";
+import { useAlertStore } from "@/stores/alerts";
 import type { UiAlert, AlertAction } from "./alerts";
 
 const accountStore = useAccountStore();
@@ -309,22 +309,22 @@ const product = {
 };
 
 async function onClick(values: any) {
-  if (productData == undefined){
+  if (productData == undefined) {
     const actions = [
-            {
-              color: "red",
-              text: "Refresh",
-              onClick: () => {
-                window.location.reload();
-              },
-            },
+      {
+        color: "red",
+        text: "Refresh",
+        onClick: () => {
+          window.location.reload();
+        },
+      },
     ] as Array<AlertAction>;
     const alert: UiAlert = {
       header: "Oops, something went wrong",
       message: "Failed to get product information from Stripe.",
-      actions: actions
-    }
-    alertStore.push(alert)
+      actions: actions,
+    };
+    alertStore.push(alert);
   }
   if (values && values.email !== undefined && productData !== undefined) {
     await shopStore.createCheckoutSession(values.email, [

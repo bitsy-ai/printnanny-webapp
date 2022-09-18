@@ -36,10 +36,9 @@
 //   }
 // }
 import * as api from "printnanny-api-client";
-import { AccountsApi } from "printnanny-api-client";
 
 const ApiConfig = new api.Configuration({
-  basePath: 'http://localhost:8000',
+  basePath: "http://localhost:8000",
   baseOptions: {
     xsrfCookieName: "csrftoken",
     xsrfHeaderName: "X-CSRFTOKEN",
@@ -47,18 +46,20 @@ const ApiConfig = new api.Configuration({
   },
 });
 
-
-Cypress.Commands.add('registerUser', (email, password) => {
+Cypress.Commands.add("registerUser", (email, password) => {
   const accountsApi = api.AccountsApiFactory(ApiConfig);
-  const req = { email, password1: password, password2: password } as api.RegisterRequest;
-  return accountsApi.accountsRegistrationCreate(req)
+  const req = {
+    email,
+    password1: password,
+    password2: password,
+  } as api.RegisterRequest;
+  return accountsApi.accountsRegistrationCreate(req);
 });
 
-
-Cypress.Commands.add('loginUser', (email, password) => {
+Cypress.Commands.add("loginUser", (email, password) => {
   const accountsApi = api.AccountsApiFactory(ApiConfig);
   return cy.session(email, () => {
     const req = { email, password } as api.LoginRequest;
     return accountsApi.accountsLoginCreate(req);
-  })
+  });
 });

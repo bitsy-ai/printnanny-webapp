@@ -10,12 +10,11 @@ export default defineConfig({
     specPattern: "cypress/e2e/**/*.{cy,spec}.{js,jsx,ts,tsx}",
     baseUrl: "http://localhost:3000",
     experimentalSessionAndOrigin: true,
-
   },
   component: {
     devServer: {
-      framework: 'vue',
-      bundler: 'vite'
-    }
+      framework: "vue",
+      bundler: "vite",
+    },
   },
 });
