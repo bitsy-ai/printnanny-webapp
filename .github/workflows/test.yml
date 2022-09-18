@@ -14,6 +14,7 @@ on:
 env:
   DJANGO_SUPERUSER_PASSWORD: ${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
   DJANGO_SUPERUSER_EMAIL: ${{ secrets.DJANGO_SUPERUSER_EMAIL }}
+  CYPRESS_BASE_URL: "http://localhost:8000"
   NKEYS_PATH: /var/lib/nats/nsc/keys
   NSC_HOME: /var/lib/nats/nsc
   NSC_STORE: /var/lib/nats/nsc/stores
@@ -61,17 +62,18 @@ jobs:
           node-version: "16"
       - name: Start Django Webapp
         run: |
+          make ci-up
           cd clients/typescript && npm install && npm run build
-          cd ../../ui && npm install
+          cd ../../ui && npm install && npm ci-test-build
+          make ci-collectstatic
 
       - uses: cypress-io/github-action@v4
 
         with:
-          start: docker-compose -f ../test.yml up,npm run dev
-          wait-on: "http://localhost:8000,http://localhost:3000"
-          build: npm run ci-test-build
+          wait-on: "http://localhost:8000"
           working-directory: ui
           timeout-minutes: 5
+          install: false
   pytest:
     needs: docker-image
     environment: test
