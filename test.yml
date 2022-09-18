@@ -30,6 +30,7 @@ services:
       - postgres
       - nats
       - janus
+      - mailhog
     volumes:
       - .:/app:z
       - local_file_data:/tmp:z
@@ -57,6 +58,11 @@ services:
 
     command:
       - /start
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    container_name: printnanny_webapp_local_mailhog
+    ports:
+      - "8025:8025"
 
   firehose: &firehose
     hostname: firehose

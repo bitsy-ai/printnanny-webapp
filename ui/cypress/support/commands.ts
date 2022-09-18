@@ -35,3 +35,27 @@
 //     }
 //   }
 // }
+import * as api from "printnanny-api-client";
+
+const ApiConfig = new api.Configuration({
+  basePath: 'http://localhost:8000',
+  baseOptions: {
+    xsrfCookieName: "csrftoken",
+    xsrfHeaderName: "X-CSRFTOKEN",
+    withCredentials: true,
+  },
+});
+
+
+Cypress.Commands.add('registerUser', (email, password) => {
+  const accountsApi = api.AccountsApiFactory(ApiConfig);
+  const req = { email, password1: password, password2: password } as api.RegisterRequest;
+  return accountsApi.accountsRegistrationCreate(req)
+});
+
+
+Cypress.Commands.add('loginUser', (email, password) => {
+  const accountsApi = api.AccountsApiFactory(ApiConfig);
+  const req = { email, password: password, } as api.LoginRequest;
+  return accountsApi.accountsLoginCreate(req)
+});
