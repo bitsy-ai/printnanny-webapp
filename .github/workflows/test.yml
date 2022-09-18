@@ -104,7 +104,7 @@ jobs:
             type=sha
       - name: Start Django Webapp
         env:
-          PRINTNANNY_WEBAPP_TAG: pr-${{ steps.meta.outputs.tags[3] }}
+          PRINTNANNY_WEBAPP_TAG: pr-${{ steps.meta.outputs.version }}
         run: |
           make ci-up
           cd clients/typescript && npm install && npm run build
