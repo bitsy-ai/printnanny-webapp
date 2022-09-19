@@ -89,10 +89,11 @@ jobs:
         run: |
           sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
       - name: Run Cypress tests
+        timeout-minutes: 8
         env:
           PRINTNANNY_WEBAPP_TAG: sha-${{ github.sha }}
         run: |
-          make ci-up
+          make ci-up &
           cd clients/typescript && npm install && npm run build
           cd ../../ui && npm install && npm run ci-test-build
           npm run ci-webapp-wait

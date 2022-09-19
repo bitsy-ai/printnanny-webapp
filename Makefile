@@ -228,7 +228,7 @@ ci-image-build:
 	DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f test.yml build
 
 ci-up:
-	docker-compose -f test.yml up -d
+	docker-compose -f test.yml up
 
 ci-pytest:
 	docker-compose -f test.yml run --rm django pytest
