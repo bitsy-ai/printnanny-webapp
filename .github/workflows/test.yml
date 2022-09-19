@@ -100,7 +100,7 @@ jobs:
         with:
           wait-on: "http://localhost:8000"
           start: npm run ci-webapp
-          build: npm run api-client:build, npm run ci-test-build
+          build: npm run api-client-build, npm run ci-test-build
           working-directory: ui
           install: false
   pytest:
