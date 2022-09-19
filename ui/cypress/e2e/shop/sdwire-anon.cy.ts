@@ -71,7 +71,7 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
         cy.get("input[name=cardCvc]").type(cvc);
         cy.get("input[name=cardUseShippingAsBilling]")
           .check();
-        cy.get("button[type=submit]").contains("Pay").should('not.be.disabled').click().contains("Processing");
+        cy.get("button[type=submit]").contains("Pay").should('have.class', 'SubmitButton--complete').click().contains("Processing");
       }
     );
 

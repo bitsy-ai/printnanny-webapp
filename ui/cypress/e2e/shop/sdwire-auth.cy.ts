@@ -74,10 +74,9 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
         cy.get("input[name=cardExpiry]").type(exp);
         cy.get("input[name=cardCvc]").type(cvc);
         cy.get("input[name=cardUseShippingAsBilling]")
-          .check()
-          .then(() => {
-            cy.get("button[type=submit]").contains("Pay").click().contains("Processing");
-          });
+          .check();
+        cy.get("button[type=submit]").contains("Pay").should('have.class', 'SubmitButton--complete').click().contains("Processing");
+
       }
     );
 
