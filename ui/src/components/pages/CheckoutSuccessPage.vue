@@ -31,22 +31,32 @@
         </div>
         <a
           :href="
-            order?.stripe_checkout_session_data?.payment_intent?.charges[0]
+            order?.stripe_checkout_session_data?.payment_intent?.charges.data[0]
               ?.receipt_url
           "
         >
           <button
+            v-if="receiptUrl !== undefined"
+            id="receipt"
             class="mt-6 block w-full flex-1 py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
           >
             Download/Print Receipt
           </button>
+          <button
+            v-else
+            disabled
+            class="mt-6 block w-full flex-1 py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-300 to-violet-400 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900 opacity-50"
+          >
+            Loading Receipt...
+          </button>
         </a>
-        <router-link :to="{name: 'devices'}" v-if="order?.user !== undefined">
-            <button
-                    class="mt-6 block w-full flex-1 py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-            >
-              Open Dashboard
-            </button>
+        <router-link v-if="order?.user !== undefined" :to="{ name: 'devices' }">
+          <button
+            id="dashboard"
+            class="mt-6 block w-full flex-1 py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-400 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+          >
+            Open Dashboard
+          </button>
         </router-link>
       </div>
       <div v-if="order?.user == undefined" class="mt-6">
@@ -56,7 +66,9 @@
           v-if="order?.user == undefined"
           :create-user="true"
           :email="order?.email"
-          :show-dashboard-button="order && order?.products.filter(p => p.is_subscription).length > 0"
+          :show-dashboard-button="
+            order && order?.products.filter((p) => p.is_subscription).length > 0
+          "
         ></set-password-prompt>
       </div>
 
@@ -70,6 +82,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import { RouterLink } from "vue-router";
 import { useShopStore } from "@/stores/shop";
 import OrderItemSummary from "@/components/shop/OrderItemSummary.vue";
@@ -84,4 +97,16 @@ const props = defineProps({
 });
 
 const order = await shopStore.fetchCheckoutSession(props.sessionId);
+
+const receiptUrl = computed(() => {
+  if (
+    order?.stripe_checkout_session_data?.payment_intent?.charges.data.length >
+      0 &&
+    order?.stripe_checkout_session_data?.payment_intent?.charges.data[0]
+  ) {
+    return order?.stripe_checkout_session_data?.payment_intent?.charges.data[0]
+      .receipt_url;
+  }
+  return undefined;
+});
 </script>

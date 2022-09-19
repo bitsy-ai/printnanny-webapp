@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
 
-
 describe("Shop and Checkout (Subscription, Anonymous)", () => {
   const email = `testing-${uuidv4()}@printnanny.ai`;
   let checkoutSessionUrl = "";
@@ -61,14 +60,16 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
         cy.get("input[name=cardNumber]").type(cardNumber);
         cy.get("input[name=cardExpiry]").type(exp);
         cy.get("input[name=cardCvc]").type(cvc);
-        cy.get("input[name=billingName]").type(billingName)
+        cy.get("input[name=billingName]").type(billingName);
         cy.get("input[name=billingAddressLine1]")
           .type(address1)
           .type("{enter}");
         cy.get("input[name=billingLocality]").type(city);
         cy.get("input[name=billingPostalCode]").type(zip);
-        cy.get("button[type=submit]", { timeout: 60000 }).should('have.class', 'SubmitButton--complete').click().contains("Processing");
-
+        cy.get("button[type=submit]", { timeout: 60000 })
+          .should("have.class", "SubmitButton--complete")
+          .click()
+          .contains("Processing");
       }
     );
 
@@ -84,10 +85,12 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
     cy.get("input[name=passwordConfirmation]").clear().type(validPassword);
 
     // subscription confirm screen should show open dashboard button after account registration
-    cy.get("button[type=submit]").click().then(() => {
-      cy.contains(`Success! Created account for ${email}`);
-      cy.get("button").contains("Open Dashboard")
-    });
+    cy.get("button[type=submit]")
+      .click()
+      .then(() => {
+        cy.contains(`Success! Created account for ${email}`);
+        cy.get("button").contains("Open Dashboard");
+      });
 
     // confirmation page should show shipping address
     cy.contains(billingName);
@@ -95,6 +98,12 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
     cy.contains(city);
     cy.contains(zip);
 
+    // Download/print receipt button should open pay.strime.com
+    cy.get("button#receipt", { timeout: 10000 })
+      .click()
+      .then(() => {
+        // set checkoutSessionUrl / checkoutRedirectUrl for use in subsequent tests
+        return cy.url({ timeout: 60000 }).should("contain", "pay.stripe.com");
+      });
   });
-
 });
