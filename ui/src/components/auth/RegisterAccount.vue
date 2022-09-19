@@ -66,11 +66,12 @@
       >
         Open Dashboard
       </button>
-  </router-link>
+    </router-link>
   </div>
 </template>
 <script setup lang="ts">
 import { ref, reactive } from "vue";
+import { RouterLink } from "vue-router";
 import { CheckCircleIcon } from "@heroicons/vue/solid";
 import type * as api from "printnanny-api-client";
 import * as yup from "yup";
