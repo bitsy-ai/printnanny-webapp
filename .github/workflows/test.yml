@@ -86,13 +86,12 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "16"
-      # - name: Start Django Webapp
-      #   env:
-      #     PRINTNANNY_WEBAPP_TAG: sha-${{ github.sha }}
-      #   run: |
-      #     make ci-up
-      #     cd clients/typescript && npm install && npm run build
-      #     cd ../../ui && npm install && npm run ci-test-build
+      - name: Build TS api client
+        env:
+          PRINTNANNY_WEBAPP_TAG: sha-${{ github.sha }}
+        run: |
+          cd clients/typescript && npm install && npm run build
+          cd ../../ui && npm install && npm run ci-test-build
       - uses: cypress-io/github-action@v4
         timeout-minutes: 5
         env:
@@ -100,8 +99,8 @@ jobs:
         with:
           wait-on: "http://localhost:8000"
           start: npm run ci-webapp
-          build: npm run ci-test-build
           working-directory: ui
+          install: false
   pytest:
     needs: docker-image
     environment: test
