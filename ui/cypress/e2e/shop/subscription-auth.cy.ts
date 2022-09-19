@@ -82,14 +82,14 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
   it("Stripe CheckoutSession redirect should show confirmation (authenticated checkout)", () => {
     cy.visit(checkoutRedirectUrl);
 
-    // confirmation page should show shipping address
-    cy.contains(billingName);
-    cy.contains(address1);
-    cy.contains(city);
-    cy.contains(zip);
+    // confirmation page should show billing info
+    cy.contains(billingName, { timeout: 10000 });
+    cy.contains(address1, { timeout: 10000 });
+    cy.contains(city, { timeout: 10000 });
+    cy.contains(zip, { timeout: 10000 });
 
     // subscription confirm screen should show open dashboard button after account registration
-    cy.get("button").contains("Open Dashboard")
+    cy.get("button").contains("Open Dashboard", { timeout: 10000 })
 
   });
 });
