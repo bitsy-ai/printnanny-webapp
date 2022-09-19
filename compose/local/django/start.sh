@@ -8,7 +8,7 @@ python manage.py collectstatic --noinput
 python manage.py migrate
 # initialize nsc operator and robot account(s)
 python manage.py nsc_init || echo "DjangoOperator already created"
-python manage.py initrobots --name=firehose || echo "Firehose robot already exists"
+
 # initialize stripe product/shop models
 python manage.py djstripe_sync_models Product
 python manage.py djstripe_sync_models Price
@@ -29,5 +29,7 @@ then
         --email "$DJANGO_SUPERUSER_EMAIL" || \
     echo "User already exists: $DJANGO_SUPERUSER_EMAIL"
 fi
+
+python manage.py initrobots --name=firehose || echo "Firehose robot already exists"
 
 uvicorn config.asgi:application --host 0.0.0.0 --reload --reload-dir print_nanny_webapp --timeout-keep-alive "$TIMEOUT_KEEP_ALIVE"

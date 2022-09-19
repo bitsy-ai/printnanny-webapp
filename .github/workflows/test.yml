@@ -104,6 +104,8 @@ jobs:
           cd ../../ui && npm install && npm run ci-test-build
           npm run ci-webapp-wait
           npm run ci-collectstatic
+          docker-compose -f ../test.yml restart nats
+          docker-compose -f ../test.yml run --rm django python manage.py initrobots --name=firehose
           docker-compose -f ../test.yml restart firehose
           npm run test:e2e:ci --browser ${{ matrix.browsers }}
   pytest:
