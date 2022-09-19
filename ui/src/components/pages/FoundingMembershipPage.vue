@@ -176,7 +176,7 @@
                       class="mr-2"
                     ></CustomSpinner>
                     <span v-if="!shopStore.loading">
-                      Pre-order with Stripe
+                      Checkout with Stripe
                     </span>
                     <span v-if="shopStore.loading">
                       Redirecting to Stripe Checkout
@@ -185,6 +185,23 @@
                 </div>
               </div>
             </Form>
+          </div>
+          <div v-else class="mt-10">
+            <button
+              type="button"
+              class="flex w-full items-center block justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+              @click="onClick"
+            >
+              <CustomSpinner
+                v-if="shopStore.loading"
+                color="indigo"
+                class="mr-2"
+              ></CustomSpinner>
+              <span v-if="!shopStore.loading">Checkout with Stripe</span>
+              <span v-if="shopStore.loading">
+                Redirecting to Stripe Checkout
+              </span>
+            </button>
           </div>
 
           <section aria-labelledby="details-heading" class="mt-12">

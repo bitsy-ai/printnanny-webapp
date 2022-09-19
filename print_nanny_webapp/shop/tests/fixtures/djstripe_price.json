@@ -1,0 +1,95 @@
+[
+    {
+        "model": "djstripe.price",
+        "pk": 1,
+        "fields": {
+            "djstripe_created": "2022-09-18T02:02:19.974Z",
+            "djstripe_updated": "2022-09-18T21:09:44.895Z",
+            "id": "price_1LcdiPLhchOaJShcVcAtJeIo",
+            "djstripe_owner_account": "acct_1I7fake",
+            "livemode": false,
+            "created": "2022-08-30T23:19:29Z",
+            "metadata": {},
+            "description": "",
+            "active": true,
+            "currency": "usd",
+            "nickname": "v1.4-rev1 preorder",
+            "product": "prod_MLKNaRKpwL6oIr",
+            "recurring": null,
+            "type": "one_time",
+            "unit_amount": 8900,
+            "unit_amount_decimal": "8900.000000000000",
+            "billing_scheme": "per_unit",
+            "lookup_key": "sdwire_preorder",
+            "tiers": null,
+            "tiers_mode": "",
+            "transform_quantity": null
+        }
+    },
+    {
+        "model": "djstripe.price",
+        "pk": 2,
+        "fields": {
+            "djstripe_created": "2022-09-18T02:02:20.049Z",
+            "djstripe_updated": "2022-09-18T21:09:44.907Z",
+            "id": "price_1KXthYLhchOaJShcPZiVD5Ba",
+            "djstripe_owner_account": "acct_1I7fake",
+            "livemode": false,
+            "created": "2022-02-27T20:50:44Z",
+            "metadata": {},
+            "description": "",
+            "active": false,
+            "currency": "usd",
+            "nickname": "",
+            "product": "prod_JkZA3TjMF6g2HA",
+            "recurring": {
+                "interval": "month",
+                "usage_type": "licensed",
+                "interval_count": 1,
+                "aggregate_usage": null,
+                "trial_period_days": null
+            },
+            "type": "recurring",
+            "unit_amount": 1699,
+            "unit_amount_decimal": "1699.000000000000",
+            "billing_scheme": "per_unit",
+            "lookup_key": "",
+            "tiers": null,
+            "tiers_mode": "",
+            "transform_quantity": null
+        }
+    },
+    {
+        "model": "djstripe.price",
+        "pk": 3,
+        "fields": {
+            "djstripe_created": "2022-09-18T02:02:20.058Z",
+            "djstripe_updated": "2022-09-18T21:09:44.915Z",
+            "id": "price_1J742HLhchOaJShcd0i0NO36",
+            "djstripe_owner_account": "acct_1I7fake",
+            "livemode": false,
+            "created": "2021-06-27T19:52:57Z",
+            "metadata": {},
+            "description": "",
+            "active": true,
+            "currency": "usd",
+            "nickname": "Founding Member Offer 1",
+            "product": "prod_JkZA3TjMF6g2HA",
+            "recurring": {
+                "interval": "year",
+                "usage_type": "licensed",
+                "interval_count": 1,
+                "aggregate_usage": null,
+                "trial_period_days": null
+            },
+            "type": "recurring",
+            "unit_amount": 9900,
+            "unit_amount_decimal": "9900.000000000000",
+            "billing_scheme": "per_unit",
+            "lookup_key": "",
+            "tiers": null,
+            "tiers_mode": "",
+            "transform_quantity": null
+        }
+    }
+]

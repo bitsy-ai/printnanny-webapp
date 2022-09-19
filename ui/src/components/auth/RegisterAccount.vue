@@ -60,10 +60,18 @@
   <div v-else class="flex w-full items-center py-4 text-gray-600">
     <CheckCircleIcon class="w-10 h-10 text-emerald-500" />
     <p class="pl-2">Success! Created account for {{ email }}</p>
+    <router-link :to="{name: 'devices'}" v-if="showDashboardButton">
+      <button
+              class="mt-6 block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+      >
+        Open Dashboard
+      </button>
+    </router-link>
   </div>
 </template>
 <script setup lang="ts">
 import { ref, reactive } from "vue";
+import { RouterLink } from "vue-router";
 import { CheckCircleIcon } from "@heroicons/vue/solid";
 import type * as api from "printnanny-api-client";
 import * as yup from "yup";
@@ -88,6 +96,10 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  showDashboardButton: {
+    type: Boolean,
+    default: true
+  }
 });
 
 const schema = yup.object({

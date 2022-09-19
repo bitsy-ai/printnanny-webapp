@@ -125,8 +125,9 @@ jobs:
           docker-compose -f ../test.yml restart firehose
       - name: Cypress
         timeout-minutes: 8
-        env:
-          DEBUG: "cypress:*"
+        # enable to log verbose cypress output
+        # env:
+        # DEBUG: "cypress:*"
         run: |
           cd ui && npm run test:e2e:ci -- --browser ${{ matrix.browser }}
   pytest:

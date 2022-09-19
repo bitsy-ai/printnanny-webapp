@@ -1,12 +1,13 @@
 import { v4 as uuidv4 } from "uuid";
 
-describe("Shop and Checkout (SDWire, Anonymous)", () => {
+
+describe("Shop and Checkout (Subscription, Anonymous)", () => {
   const email = `testing-${uuidv4()}@printnanny.ai`;
   let checkoutSessionUrl = "";
   let checkoutRedirectUrl = "";
   const validPassword = "cypress1234";
 
-  const shippingName = "Bitsy AI Labs";
+  const billingName = "Bitsy AI Labs";
   const address1 = "747 Howard St";
   const city = "San Francisco";
   const zip = "94107";
@@ -15,8 +16,8 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
   const exp = "05/25";
   const cvc = "123";
 
-  it("Shop should redirect to Stripe CheckoutSession (anonymous checkout)", () => {
-    cy.visit("/shop/sdwire");
+  it("Shop should redirect to Stripe CheckoutSession", () => {
+    cy.visit("/shop/founding-membership");
 
     // customer should be prompted to enter email
     cy.contains("Enter your email address or");
@@ -43,7 +44,7 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
       email,
       url: checkoutSessionUrl,
       checkoutRedirectUrl,
-      shippingName,
+      billingName,
       address1,
       city,
       zip,
@@ -55,23 +56,19 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
     cy.origin(
       "https://checkout.stripe.com",
       { args: sentArgs },
-      ({ url, shippingName, address1, city, zip, cardNumber, cvc, exp }) => {
+      ({ url, billingName, address1, city, zip, cardNumber, cvc, exp }) => {
         cy.visit(url);
-
-        cy.get("input[name=shippingName]").type(shippingName);
-        cy.get("input[name=shippingAddressLine1]")
-          .type(address1)
-          .type("{enter}");
-        cy.get("input[name=shippingLocality]").type(city);
-        cy.get("input[name=shippingPostalCode]").type(zip);
-        // cy.get("input[name=shippingAdministrativeArea]").click().contains(state).click();
-
         cy.get("input[name=cardNumber]").type(cardNumber);
         cy.get("input[name=cardExpiry]").type(exp);
         cy.get("input[name=cardCvc]").type(cvc);
-        cy.get("input[name=cardUseShippingAsBilling]")
-          .check();
-        cy.get("button[type=submit]").contains("Pay").should('have.class', 'SubmitButton--complete').click().contains("Processing");
+        cy.get("input[name=billingName]").type(billingName)
+        cy.get("input[name=billingAddressLine1]")
+          .type(address1)
+          .type("{enter}");
+        cy.get("input[name=billingLocality]").type(city);
+        cy.get("input[name=billingPostalCode]").type(zip);
+        cy.get("button[type=submit]", { timeout: 60000 }).should('have.class', 'SubmitButton--complete').click().contains("Processing");
+
       }
     );
 
@@ -85,16 +82,19 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
     cy.contains("Finish Account Registration", { timeout: 10000 });
     cy.get("input[name=password]").clear().type(validPassword);
     cy.get("input[name=passwordConfirmation]").clear().type(validPassword);
-    cy.get("button[type=submit]").click();
-    cy.contains(`Success! Created account for ${email}`);
+
+    // subscription confirm screen should show open dashboard button after account registration
+    cy.get("button[type=submit]").click().then(() => {
+      cy.contains(`Success! Created account for ${email}`);
+      cy.get("button").contains("Open Dashboard")
+    });
 
     // confirmation page should show shipping address
-    cy.contains(shippingName, { timeout: 10000 });
-    cy.contains(address1, { timeout: 10000 });
-    cy.contains(city, { timeout: 10000 });
-    cy.contains(zip, { timeout: 10000 });
+    cy.contains(billingName);
+    cy.contains(address1);
+    cy.contains(city);
+    cy.contains(zip);
 
-    // a shipping method should be present for physical goods
-    cy.contains("Shipping method");
   });
+
 });

@@ -36,11 +36,18 @@
           "
         >
           <button
-            class="mt-6 block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+            class="mt-6 block w-full flex-1 py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
           >
             Download/Print Receipt
           </button>
         </a>
+        <router-link :to="{name: 'devices'}" v-if="order?.user !== undefined">
+            <button
+                    class="mt-6 block w-full flex-1 py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+            >
+              Open Dashboard
+            </button>
+        </router-link>
       </div>
       <div v-if="order?.user == undefined" class="mt-6">
         <h2 class="font-medium text-indigo-600">Finish Account Registration</h2>
@@ -49,8 +56,10 @@
           v-if="order?.user == undefined"
           :create-user="true"
           :email="order?.email"
+          :show-dashboard-button="order && order?.products.filter(p => p.is_subscription).length > 0"
         ></set-password-prompt>
       </div>
+
       <order-item-summary v-if="order" :order="order"></order-item-summary>
       <p v-else>
         Error processing your order. Please email support@printnanny.ai for
@@ -61,6 +70,7 @@
 </template>
 
 <script setup lang="ts">
+import { RouterLink } from "vue-router";
 import { useShopStore } from "@/stores/shop";
 import OrderItemSummary from "@/components/shop/OrderItemSummary.vue";
 import SetPasswordPrompt from "../auth/RegisterAccount.vue";
