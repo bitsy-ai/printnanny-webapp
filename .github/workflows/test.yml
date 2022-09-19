@@ -102,7 +102,6 @@ jobs:
           start: npm run ci-webapp
           build: npm run ci-test-build
           working-directory: ui
-          install: false
   pytest:
     needs: docker-image
     environment: test
