@@ -274,7 +274,26 @@ def sync_stripe_order(stripe_checkout_session_id) -> Order:
     # pull latest checkout session data from Stripe and sync DjStripe model
     session = sync_stripe_checkout_session(stripe_checkout_session_id)
     # pull latest customer info from Stripe
-    customer = sync_stripe_customer_by_id(session.customer.id)
+    if session.customer is None:
+        # get Stripe Customer id by email
+        stripe_customer_data = stripe.Customer.search(
+            query=f"email:'{session.customer_email}'", limit=1
+        )
+        # import pdb
+
+        # pdb.set_trace()
+        if (
+            len(stripe_customer_data.data) == 1
+            and stripe_customer_data.data[0].get("id") is not None
+        ):
+            customer_id = stripe_customer_data.data.get("id")
+            customer = sync_stripe_customer_by_id(customer_id)
+        else:
+            raise ValueError(
+                "Something went wrong processing your payment, please email support@printnanny.ai for help."
+            )
+    else:
+        customer = sync_stripe_customer_by_id(session.customer.id)
     order = Order.objects.get(djstripe_checkout_session=session)
 
     # if order was a payment, sync the payment intent model

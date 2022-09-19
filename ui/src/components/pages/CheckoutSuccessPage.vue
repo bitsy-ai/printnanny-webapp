@@ -49,6 +49,7 @@
           v-if="order?.user == undefined"
           :create-user="true"
           :email="order?.email"
+          :show-dashboard-button="order && order?.products.filter(p => p.is_subscription).length > 0"
         ></set-password-prompt>
       </div>
       <order-item-summary v-if="order" :order="order"></order-item-summary>
