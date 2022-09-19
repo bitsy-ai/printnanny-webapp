@@ -29,12 +29,7 @@
             <dd class="mt-2 text-indigo-600">{{ order?.id }}</dd>
           </dl>
         </div>
-        <a
-          v-if="order?.receipt_url"
-          :href="
-            order?.receipt_url
-          "
-        >
+        <a v-if="order?.receipt_url" :href="order?.receipt_url">
           <button
             id="receipt"
             class="mt-6 block w-full flex-1 py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
@@ -42,12 +37,7 @@
             Download/Print Receipt
           </button>
         </a>
-        <a
-          v-if="order?.portal_url"
-          :href="
-            order?.portal_url
-          "
-        >
+        <a v-if="order?.portal_url" :href="order?.portal_url">
           <button
             id="receipt"
             class="mt-6 block w-full flex-1 py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
@@ -104,7 +94,6 @@ const props = defineProps({
 const order = await shopStore.fetchCheckoutSession(props.sessionId);
 
 const isSubscription = computed(() => {
-  return order && order?.products.filter(p => p.is_subscription).length > 0;
-})
-
+  return order && order?.products.filter((p) => p.is_subscription).length > 0;
+});
 </script>
