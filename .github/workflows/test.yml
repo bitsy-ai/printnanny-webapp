@@ -44,13 +44,13 @@ jobs:
             name=bitsyai/printnanny-webapp
           # generate Docker tags based on the following events/attributes
           tags: |
-            type=schedule
+            type=schedule,pattern=nightly
             type=ref,event=branch
             type=ref,event=pr
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
-            type=sha
+            type=sha,format=long,prefix=sha-
       - name: Cache Docker layers
         uses: actions/cache@v2
         with:
@@ -86,25 +86,9 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "16"
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v4
-        with:
-          # list of Docker images to use as base name for tags
-          images: |
-            name=bitsyai/printnanny-webapp
-          # generate Docker tags based on the following events/attributes
-          tags: |
-            type=schedule
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=sha
       - name: Start Django Webapp
         env:
-          PRINTNANNY_WEBAPP_TAG: pr-${{ steps.meta.outputs.version }}
+          PRINTNANNY_WEBAPP_TAG: sha-${{ github.sha }}
         run: |
           make ci-up
           cd clients/typescript && npm install && npm run build
