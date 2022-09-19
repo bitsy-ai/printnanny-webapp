@@ -28,7 +28,7 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
     cy.contains("Dashboard");
     cy.contains("Logout");
 
-    cy.contains("Pre-order with Stripe")
+    cy.contains("Checkout with Stripe")
       .click()
       .then(() => {
         // set checkoutSessionUrl / checkoutRedirectUrl for use in subsequent tests
@@ -82,8 +82,6 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
   it("Stripe CheckoutSession redirect should show confirmation (authenticated checkout)", () => {
     cy.visit(checkoutRedirectUrl);
 
-    // a shipping method should be present for physical goods
-    cy.contains("Shipping method");
     // confirmation page should show shipping address
     cy.contains(billingName);
     cy.contains(address1);
