@@ -85,7 +85,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        browser: ["firefox", "chrome", "edge"]
+        browser:
+          # Firefox doesn't support an equivalent of Chrome's --disable-web-security
+          # so we're unable to test cross-origin requests between localhost and stripe.checkout.com
+          # TODO find a way to enable/disable tests per platform
+          # https://bugzilla.mozilla.org/show_bug.cgi?id=1039678
+          # - "firefox"
+          - "chrome"
+          - "edge"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
