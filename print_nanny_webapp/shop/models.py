@@ -82,16 +82,10 @@ class Product(SafeDeleteModel):
     def save(self, *args, **kwargs):
 
         stripe_product_id = kwargs.get("stripe_product_id")
-        import pdb
-
-        pdb.set_trace()
         if stripe_product_id is None:
             super().save(*args, **kwargs)
         else:
             djstripe_product = DjstripeProduct.objects.get(id=stripe_product_id)
-            import pdb
-
-            pdb.set_trace()
             return super().save(djstripe_product=djstripe_product, *args, **kwargs)
 
     @property
