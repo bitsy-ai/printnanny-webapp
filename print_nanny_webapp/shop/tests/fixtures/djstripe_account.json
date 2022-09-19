@@ -1,0 +1,67 @@
+[
+    {
+        "model": "djstripe.account",
+        "pk": 1,
+        "fields": {
+            "djstripe_created": "2022-09-18T01:48:20.613Z",
+            "djstripe_updated": "2022-09-18T01:48:20.613Z",
+            "id": "acct_1I7fake",
+            "livemode": null,
+            "created": null,
+            "metadata": null,
+            "description": "",
+            "business_profile": null,
+            "business_type": "",
+            "charges_enabled": true,
+            "country": "US",
+            "company": null,
+            "default_currency": "usd",
+            "details_submitted": true,
+            "email": "",
+            "individual": null,
+            "payouts_enabled": true,
+            "product_description": "",
+            "requirements": null,
+            "settings": {
+                "payouts": {
+                    "schedule": {
+                        "interval": "daily",
+                        "delay_days": 2
+                    },
+                    "statement_descriptor": null,
+                    "debit_negative_balances": true
+                },
+                "branding": {
+                    "icon": "file_1J6gvQLhchOaJShcDsHLxDVL",
+                    "logo": "file_1J6gwRLhchOaJShcUhCl2uCR",
+                    "primary_color": "#727cf5",
+                    "secondary_color": "#8669ed"
+                },
+                "payments": {
+                    "statement_descriptor": "BITSY AI LABS",
+                    "statement_descriptor_kana": null,
+                    "statement_descriptor_kanji": null
+                },
+                "dashboard": {
+                    "timezone": "Europe/Athens",
+                    "display_name": "Atlas Account"
+                },
+                "card_issuing": {
+                    "tos_acceptance": {
+                        "ip": null,
+                        "date": null
+                    }
+                },
+                "card_payments": {
+                    "statement_descriptor_prefix": "PRINTNANNY",
+                    "statement_descriptor_prefix_kana": null,
+                    "statement_descriptor_prefix_kanji": null
+                },
+                "bacs_debit_payments": {},
+                "sepa_debit_payments": {}
+            },
+            "type": "standard",
+            "tos_acceptance": null
+        }
+    }
+]

@@ -41,15 +41,33 @@ def sync_stripe_customer_by_id(stripe_customer_id: str) -> DjStripeCustomer:
     return DjStripeCustomer.sync_from_stripe_data(stripe_res)
 
 
-def build_stripe_checkout_session_customer_extra_kwargs(
-    request: HttpRequest, email: str
+def build_stripe_checkout_session_kwargs(
+    request: HttpRequest, email: str, order_id: str, product: Product
 ) -> Dict[Any, Any]:
     """
     Looks up customer (by email) to associate Stripe Checkout Session with an existing customer
 
     If Customer doesn't exist, set Stripe API kwargs needed to create Stripe Customer during Stripe Checkout Session flow
     """
-    extra_kwargs: Dict[Any, Any] = dict()
+    # add django session key to stripe metadata
+    django_session_key = request.session._get_or_create_session_key()  # type: ignore[attr-defined]
+    extra_kwargs: Dict[Any, Any] = dict(
+        # expand customer and payment_intent fields in response
+        expand=["customer", "payment_intent", "line_items"],
+        metadata=dict(
+            django_session_key=django_session_key,
+            django_product_id=product.id,
+            django_order_id=order_id,
+        ),
+    )
+    # set success / cancel urls
+    extra_kwargs["success_url"] = request.build_absolute_uri("/shop/thank-you/")
+    # add "{CHECKOUT_SESSION_ID}" template string to url. this gets uri-encoded to %7B if passed to build_absolute_uri fn
+    extra_kwargs["success_url"] = extra_kwargs["success_url"] + "{CHECKOUT_SESSION_ID}"
+    extra_kwargs["cancel_url"] = request.build_absolute_uri(f"/shop/{product.slug}")
+
+    # begin Stripe Customer kwargs
+    # attempt to associate transaction with existing Stripe customer, or create new customer
     if request.user.is_authenticated:
         user = request.user
         # an extra reference id
@@ -61,24 +79,120 @@ def build_stripe_checkout_session_customer_extra_kwargs(
             extra_kwargs["customer_update"] = dict(
                 name="auto", shipping="auto", address="auto"
             )
-
+            extra_kwargs["metadata"][
+                djstripe_settings.SUBSCRIBER_CUSTOMER_KEY
+            ] = customer.subscriber.id
         # customer not found - pass email to Stripe Checkout Session create call
         # Django User creation will be handled in Stripe Checkout Session redirect
         except DjStripeCustomer.DoesNotExist:
             extra_kwargs["customer_email"] = email
-            extra_kwargs["customer_creation"] = "always"
+
+            if product.is_subscription is False:
+                # in subscription mode, Stripe always creates a Customer object (by default)
+                # in payment mode, we must set customer_creation to "always"
+                # see: https://stripe.com/docs/api/checkout/sessions/create#create_checkout_session-customer_creation
+                extra_kwargs["customer_creation"] = "always"
 
     else:
         try:
             customer = DjStripeCustomer.objects.get(email=email)
             extra_kwargs["customer"] = customer.id
             extra_kwargs["client_reference_id"] = customer.subscriber.id
-
+            extra_kwargs["metadata"][
+                djstripe_settings.SUBSCRIBER_CUSTOMER_KEY
+            ] = customer.subscriber.id
         # customer not found - pass email to Stripe Checkout Session create call
         # Django User creation will be handled in Stripe Checkout Session redirect
         except DjStripeCustomer.DoesNotExist:
             extra_kwargs["customer_email"] = email
-            extra_kwargs["customer_creation"] = "always"
+            if product.is_subscription is False:
+                # in subscription mode, Stripe always creates a Customer object (by default)
+                # in payment mode, we must set customer_creation to "always"
+                # see: https://stripe.com/docs/api/checkout/sessions/create#create_checkout_session-customer_creation
+                extra_kwargs["customer_creation"] = "always"
+    # end Stripe Customer kwargs
+
+    # begin Price, Line item, product kwargs
+    price_id = product.prices.filter(active=True).first().id
+
+    if product.is_shippable:
+        payment_kwargs = dict(
+            payment_method_types=["card"],
+            payment_intent_data={
+                # off_session indicates
+                "setup_future_usage": "off_session",
+                "metadata": extra_kwargs["metadata"],
+            },
+            line_items=[
+                {
+                    "price": price_id,
+                    "adjustable_quantity": {
+                        "enabled": True,
+                        "minimum": 1,
+                        "maximum": 10,
+                    },
+                    "quantity": 1,
+                }
+            ],
+            mode="payment",
+            billing_address_collection="required",
+            shipping_address_collection=dict(
+                allowed_countries=[
+                    "US",
+                    "CA",
+                ]
+            ),
+            automatic_tax={
+                "enabled": True,
+            },
+            tax_id_collection={
+                "enabled": True,
+            },
+            shipping_options=[
+                {
+                    "shipping_rate_data": {
+                        "type": "fixed_amount",
+                        "fixed_amount": {
+                            "amount": 999,
+                            "currency": "usd",
+                        },
+                        "display_name": "USPS Ground",
+                        # Stripe will automatically determine if shipping is a taxable (varies by state/country), then calculate correct tax
+                        # See: https://stripe.com/docs/payments/checkout/shipping#shipping-rate-with-tax-code
+                        "tax_code": "txcd_92010001",
+                        "tax_behavior": "exclusive",
+                    }
+                },
+            ],
+        )
+    elif product.is_subscription:
+        payment_kwargs = dict(
+            payment_method_types=["card"],
+            line_items=[
+                {
+                    "price": price_id,
+                    "adjustable_quantity": {
+                        "enabled": True,
+                        "minimum": 1,
+                        "maximum": 10,
+                    },
+                    "quantity": 1,
+                }
+            ],
+            automatic_tax={
+                "enabled": True,
+            },
+            tax_id_collection={
+                "enabled": True,
+            },
+            mode="subscription",
+            billing_address_collection="required",
+        )
+    else:
+        raise NotImplementedError(
+            f"create_stripe_checkout_session not implemented for Products={product}"
+        )
+    extra_kwargs.update(payment_kwargs)
     return extra_kwargs
 
 
@@ -88,129 +202,22 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
 
     """
     stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
-    django_session_key = request.session._get_or_create_session_key()  # type: ignore[attr-defined]
 
     # prices = stripe.Price.list(lookup_keys=[stripe_lookup_key])
 
     order_id = uuid4()
 
-    # add django session key to stripe metadata
-    extra_kwargs: Dict[Any, Any] = dict(
-        # expand customer and payment_intent fields in response
-        expand=["customer", "payment_intent", "line_items"],
-        metadata=dict(
-            django_session_key=django_session_key,
-            django_product_id=product.id,
-            django_order_id=order_id,
-        ),
-    )
-
     # try to get Stripe customer from Django user authentication, email lookup, or supply needed parameters to create new Stripe Customer
-    extra_kwargs.update(
-        build_stripe_checkout_session_customer_extra_kwargs(request, email)
+    extra_kwargs = build_stripe_checkout_session_kwargs(
+        request, email, str(order_id), product
     )
 
-    # if client_reference_id was set, copy value to metadata.djstripe_settings.SUBSCRIBER_CUSTOMER_KEY
-    # provides djstripe_subscriber_user reverse relationship
-    if extra_kwargs.get("client_reference_id") is not None:
-        extra_kwargs["metadata"][
-            djstripe_settings.SUBSCRIBER_CUSTOMER_KEY
-        ] = extra_kwargs.get("client_reference_id")
-
-    # set success / cancel urls
-    extra_kwargs["success_url"] = request.build_absolute_uri("/shop/thank-you/")
-    # add "{CHECKOUT_SESSION_ID}" template string to url. this gets uri-encoded to %7B if passed to build_absolute_uri fn
-    extra_kwargs["success_url"] = extra_kwargs["success_url"] + "{CHECKOUT_SESSION_ID}"
-
-    extra_kwargs["cancel_url"] = request.build_absolute_uri(f"/shop/{product.slug}")
-    price_id = product.prices.filter(active=True).first().id
-    if product.is_shippable:
-
-        return (
-            stripe.checkout.Session.create(
-                payment_method_types=["card"],
-                payment_intent_data={
-                    # off_session indicates
-                    "setup_future_usage": "off_session",
-                    "metadata": extra_kwargs["metadata"],
-                },
-                line_items=[
-                    {
-                        "price": price_id,
-                        "adjustable_quantity": {
-                            "enabled": True,
-                            "minimum": 1,
-                            "maximum": 10,
-                        },
-                        "quantity": 1,
-                    }
-                ],
-                mode="payment",
-                billing_address_collection="required",
-                shipping_address_collection=dict(
-                    allowed_countries=[
-                        "US",
-                        "CA",
-                    ]
-                ),
-                automatic_tax={
-                    "enabled": True,
-                },
-                tax_id_collection={
-                    "enabled": True,
-                },
-                shipping_options=[
-                    {
-                        "shipping_rate_data": {
-                            "type": "fixed_amount",
-                            "fixed_amount": {
-                                "amount": 999,
-                                "currency": "usd",
-                            },
-                            "display_name": "USPS Ground",
-                            # Stripe will automatically determine if shipping is a taxable (varies by state/country), then calculate correct tax
-                            # See: https://stripe.com/docs/payments/checkout/shipping#shipping-rate-with-tax-code
-                            "tax_code": "txcd_92010001",
-                            "tax_behavior": "exclusive",
-                        }
-                    },
-                ],
-                **extra_kwargs,
-            ),
-            order_id,
-        )
-    elif product.is_subscription:
-
-        return (
-            stripe.checkout.Session.create(
-                payment_method_types=["card"],
-                line_items=[
-                    {
-                        "price": price_id,
-                        "adjustable_quantity": {
-                            "enabled": True,
-                            "minimum": 1,
-                            "maximum": 10,
-                        },
-                        "quantity": 1,
-                    }
-                ],
-                automatic_tax={
-                    "enabled": True,
-                },
-                tax_id_collection={
-                    "enabled": True,
-                },
-                mode="subscription",
-                billing_address_collection="required",
-                **extra_kwargs,
-            ),
-            order_id,
-        )
-    else:
-        raise NotImplementedError(
-            f"create_stripe_checkout_session not implemented for Products={product}"
-        )
+    return (
+        stripe.checkout.Session.create(
+            **extra_kwargs,
+        ),
+        order_id,
+    )
 
 
 def create_order(request: HttpRequest, product: Product, email: str):

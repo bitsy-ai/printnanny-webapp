@@ -1,0 +1,56 @@
+[
+    {
+        "model": "djstripe.product",
+        "pk": 1,
+        "fields": {
+            "djstripe_created": "2022-09-18T01:48:20.959Z",
+            "djstripe_updated": "2022-09-18T21:09:42.527Z",
+            "id": "prod_MLKNaRKpwL6oIr",
+            "djstripe_owner_account": "acct_1I7fake",
+            "livemode": false,
+            "created": "2022-08-30T23:19:29Z",
+            "metadata": {},
+            "description": "SDWire connects a device-under-test to a host computer, enabling flashing/re-imaging an SD card with no moving parts.",
+            "name": "PrintNanny SDwire",
+            "type": "service",
+            "active": true,
+            "attributes": [],
+            "caption": "",
+            "deactivate_on": null,
+            "images": [
+                "https://files.stripe.com/links/MDB8YWNjdF8xSTd1ZlRMaGNoT2FKU2hjfGZsX3Rlc3RfQ0ZHV084SGI3aml2bHhZdVhVYm1WR2hV00VIv220yw"
+            ],
+            "package_dimensions": null,
+            "shippable": true,
+            "url": "",
+            "statement_descriptor": "PrintNanny SDWire",
+            "unit_label": "board"
+        }
+    },
+    {
+        "model": "djstripe.product",
+        "pk": 2,
+        "fields": {
+            "djstripe_created": "2022-09-18T01:48:21.026Z",
+            "djstripe_updated": "2022-09-18T21:09:42.538Z",
+            "id": "prod_JkZA3TjMF6g2HA",
+            "djstripe_owner_account": "acct_1I7fake",
+            "livemode": false,
+            "created": "2021-06-27T19:52:57Z",
+            "metadata": {},
+            "description": "Founding Members get unlimited access to Print Nanny. No metered usage. No additional cost per printer. Money-back guarantee. If you're not 100% satisfied, email leigh@printnanny.ai for a full refund. ",
+            "name": "PrintNanny Founding Membership",
+            "type": "service",
+            "active": true,
+            "attributes": [],
+            "caption": "",
+            "deactivate_on": null,
+            "images": [],
+            "package_dimensions": null,
+            "shippable": null,
+            "url": "",
+            "statement_descriptor": "PrintNanny Membership",
+            "unit_label": ""
+        }
+    }
+]
