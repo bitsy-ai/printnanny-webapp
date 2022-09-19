@@ -92,7 +92,7 @@ jobs:
           cd clients/typescript && npm install && npm run build
           cd ../../ui && npm install && npm run ci-test-build
       - uses: cypress-io/github-action@v4
-        timeout-minutes: 5
+        timeout-minutes: 8
         env:
           PRINTNANNY_WEBAPP_TAG: sha-${{ github.sha }}
           CYPRESS_BASE_URL: "http://localhost:8000"
@@ -100,7 +100,6 @@ jobs:
           wait-on: "http://localhost:8000"
           start: npm run ci-webapp
           working-directory: ui
-          install: false
   pytest:
     needs: docker-image
     environment: test
