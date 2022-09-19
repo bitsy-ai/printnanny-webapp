@@ -82,17 +82,17 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
     cy.visit(checkoutRedirectUrl);
 
     // account registration should succeed
-    cy.contains("Finish Account Registration");
+    cy.contains("Finish Account Registration", { timeout: 10000 });
     cy.get("input[name=password]").clear().type(validPassword);
     cy.get("input[name=passwordConfirmation]").clear().type(validPassword);
     cy.get("button[type=submit]").click();
     cy.contains(`Success! Created account for ${email}`);
 
     // confirmation page should show shipping address
-    cy.contains(shippingName);
-    cy.contains(address1);
-    cy.contains(city);
-    cy.contains(zip);
+    cy.contains(shippingName, { timeout: 10000 });
+    cy.contains(address1, { timeout: 10000 });
+    cy.contains(city, { timeout: 10000 });
+    cy.contains(zip, { timeout: 10000 });
 
     // a shipping method should be present for physical goods
     cy.contains("Shipping method");
