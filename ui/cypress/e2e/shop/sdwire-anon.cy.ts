@@ -4,7 +4,6 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
   const email = `testing-${uuidv4()}@printnanny.ai`;
   let checkoutSessionUrl = "";
   let checkoutRedirectUrl = "";
-  const invalidPassword = "testing1234";
   const validPassword = "cypress1234";
 
   const shippingName = "Bitsy AI Labs";
@@ -39,7 +38,7 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
       });
   });
 
-  it("Stripe CheckoutSession should redirects back to shop on success (anonymous checkout)", () => {
+  it("Stripe CheckoutSession should redirect back to shop on success (anonymous checkout)", () => {
     const sentArgs = {
       email,
       url: checkoutSessionUrl,
@@ -71,10 +70,8 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
         cy.get("input[name=cardExpiry]").type(exp);
         cy.get("input[name=cardCvc]").type(cvc);
         cy.get("input[name=cardUseShippingAsBilling]")
-          .check()
-          .then(() => {
-            return cy.get("button[type=submit]").contains("Pay").click().contains("Processing");
-          });
+          .check();
+        cy.get("button[type=submit]").contains("Pay").click().contains("Processing");
       }
     );
 
@@ -84,16 +81,10 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
   it("Stripe CheckoutSession redirect should finish account registration (anonymous checkout)", () => {
     cy.visit(checkoutRedirectUrl);
 
-    // should reject invalid password
-    cy.get("input[name=password]").type(invalidPassword);
-    cy.get("input[name=passwordConfirmation]").type(invalidPassword);
-    cy.get("button[type=submit]").click();
-    cy.contains("The password is too similar to the email address");
-
     // account registration should succeed
     cy.contains("Finish Account Registration");
-    cy.get("input[name=password]").type(validPassword);
-    cy.get("input[name=passwordConfirmation]").type(validPassword);
+    cy.get("input[name=password]").clear().type(validPassword);
+    cy.get("input[name=passwordConfirmation]").clear().type(validPassword);
     cy.get("button[type=submit]").click();
     cy.contains(`Success! Created account for ${email}`);
 
