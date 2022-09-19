@@ -103,6 +103,7 @@ jobs:
           start: npm run ci-webapp
           build: npx cypress info
           working-directory: ui
+          record: false
   pytest:
     needs: docker-image
     environment: test
