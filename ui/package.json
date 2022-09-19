@@ -16,7 +16,7 @@
     "preview": "vite preview --port 4173",
     "test:unit": "vitest --environment jsdom",
     "test:e2e": "cypress open --e2e",
-    "test:e2e:ci": "cypress run --e2e",
+    "test:e2e:ci": "cypress run --e2e --config baseUrl=http://localhost:8000",
     "build-only": "vite build --base=/ui/",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint:fix": "eslint --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore .",
