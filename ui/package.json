@@ -8,7 +8,7 @@
     "dev": "vite --mode dev",
     "ci-webapp": "cd ../ && make ci-up",
     "api-client-build": "cd ../clients/typescript && npm install && npm run build",
-    "ci-test-build": "vite build --base=/ui/ --mode dev && cd .. && make ci-collectstatic",
+    "ci-test-build": "npm run api-client-build && vite build --base=/ui/ --mode dev && cd .. && make ci-collectstatic",
     "dev-build": "vite build --base=/ui/ --mode dev && cd .. && make collectstatic",
     "build": "run-p lint type-check build-only",
     "preview": "vite preview --port 4173",
