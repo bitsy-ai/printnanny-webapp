@@ -14,7 +14,6 @@ on:
 env:
   DJANGO_SUPERUSER_PASSWORD: ${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
   DJANGO_SUPERUSER_EMAIL: ${{ secrets.DJANGO_SUPERUSER_EMAIL }}
-  CYPRESS_BASE_URL: "http://localhost:8000"
   NKEYS_PATH: /var/lib/nats/nsc/keys
   NSC_HOME: /var/lib/nats/nsc
   NSC_STORE: /var/lib/nats/nsc/stores
@@ -96,6 +95,7 @@ jobs:
         timeout-minutes: 5
         env:
           PRINTNANNY_WEBAPP_TAG: sha-${{ github.sha }}
+          CYPRESS_BASE_URL: "http://localhost:8000"
         with:
           wait-on: "http://localhost:8000"
           start: npm run ci-webapp
