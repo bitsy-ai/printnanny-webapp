@@ -87,11 +87,11 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
     cy.visit(checkoutRedirectUrl);
 
     // a shipping method should be present for physical goods
-    cy.contains("Shipping method");
+    cy.contains("Shipping method", { timeout: 10000 });
     // confirmation page should show shipping address
-    cy.contains(shippingName);
-    cy.contains(address1);
-    cy.contains(city);
-    cy.contains(zip);
+    cy.contains(shippingName, { timeout: 10000 });
+    cy.contains(address1, { timeout: 10000 });
+    cy.contains(city, { timeout: 10000 });
+    cy.contains(zip, { timeout: 10000 });
   });
 });
