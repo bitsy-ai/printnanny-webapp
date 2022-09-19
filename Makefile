@@ -544,7 +544,7 @@ migrate:
 	docker-compose -f local.yml run --rm django python manage.py migrate
 
 ci-collectstatic:
-	docker-compose -f test.yml exec django python manage.py collectstatic --noinput
+	docker-compose -f test.yml run --rm django python manage.py collectstatic --noinput
 
 collectstatic:
 	docker-compose -f local.yml run --rm django python manage.py collectstatic --noinput
