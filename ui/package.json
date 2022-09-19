@@ -2,6 +2,7 @@
   "name": "printnanny-ui",
   "version": "0.1.0",
   "scripts": {
+    "prebuild": "npm run api-client-build",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "dev": "vite --mode dev",
