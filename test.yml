@@ -67,6 +67,7 @@ services:
   firehose: &firehose
     hostname: firehose
     depends_on:
+      - django
       - postgres
       - nats
     image: bitsyai/printnanny-webapp:${PRINTNANNY_WEBAPP_TAG}
