@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 @webhooks.handler("checkout.session.completed")
 def notify_checkout_session_completed(event, **_kwargs):
-    session_id = event.get("id")
+    session_id = event.data.get("id")
     if session_id is None:
         logger.error("Failed to read event.id from event=%s", event)
         return
@@ -24,7 +24,7 @@ def notify_checkout_session_completed(event, **_kwargs):
 
 @webhooks.handler("checkout.session.expired")
 def notify_checkout_session_expired(event, **_kwargs):
-    session_id = event.get("id")
+    session_id = event.data.get("id")
     if session_id is None:
         logger.error("Failed to read event.id from event=%s", event)
         return
