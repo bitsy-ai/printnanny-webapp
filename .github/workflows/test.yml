@@ -85,7 +85,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        browser: ["firefix", "chrome"]
+        browser: ["firefix", "chrome", "electron"]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -97,17 +97,20 @@ jobs:
           sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
       - name: Run Cypress tests
         timeout-minutes: 8
+        env:
+          DEBUG: "cypress:*"
         run: |
           mkdir -p ui/dist
           make ci-up &
           cd clients/typescript && npm install && npm run build
           cd ../../ui && npm install && npm run ci-test-build
+          ./node_modules/.bin/cypress info
           npm run ci-webapp-wait
           npm run ci-collectstatic
           docker-compose -f ../test.yml restart nats
           docker-compose -f ../test.yml run --rm django python manage.py initrobots --name=firehose
           docker-compose -f ../test.yml restart firehose
-          npm run test:e2e:ci --browser ${{ matrix.browsers }}
+          npm run test:e2e:ci -- --browser ${{ matrix.browsers }}
   pytest:
     needs: docker-image
     environment: test
