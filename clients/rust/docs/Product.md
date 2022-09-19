@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **is_preorder** | **bool** |  | 
 **is_subscription** | **bool** |  | 
 **stripe_price_lookup_key** | Option<**String**> |  | [optional]
+**stripe_product_id** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
