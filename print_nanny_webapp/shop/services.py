@@ -1,7 +1,6 @@
 from uuid import uuid4
 from typing import Dict, Any
-from django.conf import settings
-from django.http.request import HttpRequest
+from django.http import HttpRequest
 from django.contrib.auth import get_user_model
 
 from djstripe.models.core import (
@@ -124,21 +123,7 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
     extra_kwargs["success_url"] = extra_kwargs["success_url"] + "{CHECKOUT_SESSION_ID}"
 
     extra_kwargs["cancel_url"] = request.build_absolute_uri(f"/shop/{product.slug}")
-
-    # quick hack to replace :8000 server-side port with front-end hot module reload port (in dev mode)
-    if settings.DEBUG:
-        extra_kwargs["success_url"] = extra_kwargs["success_url"].replace(
-            ":8000", ":3000"
-        )
-        extra_kwargs["cancel_url"] = extra_kwargs["success_url"].replace(
-            ":8000", ":3000"
-        )
     price_id = product.prices.filter(active=True).first().id
-
-    # import pdb
-
-    # pdb.set_trace()
-
     if product.is_shippable:
 
         return (
