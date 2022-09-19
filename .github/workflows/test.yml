@@ -123,7 +123,7 @@ jobs:
           docker-compose -f ../test.yml restart nats
           docker-compose -f ../test.yml run --rm django python manage.py initrobots --name=firehose
           docker-compose -f ../test.yml restart firehose
-      - name: Setup webapp
+      - name: Cypress
         timeout-minutes: 8
         env:
           DEBUG: "cypress:*"
