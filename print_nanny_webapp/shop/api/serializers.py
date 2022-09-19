@@ -147,6 +147,12 @@ class OrderSerializer(serializers.ModelSerializer):
     stripe_checkout_session_data = serializers.SerializerMethodField()
     user = UserSerializer(required=False)
 
+    is_subscription = serializers.BooleanField(read_only=True)
+    is_shippable = serializers.BooleanField(read_only=True)
+
+    receipt_url = serializers.CharField(required=False, read_only=True)
+    portal_url = serializers.CharField(required=False, read_only=True)
+
     def get_stripe_checkout_session_data(self, obj) -> Dict[Any, Any]:
         stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
         return stripe.checkout.Session.retrieve(
@@ -163,16 +169,20 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = (
-            "id",
             "created_dt",
-            "products",
-            "djstripe_customer",
             "djstripe_checkout_session",
+            "djstripe_customer",
             "djstripe_payment_intent",
-            "last_status",
-            "status_history",
             "email",
+            "id",
+            "is_shippable",
+            "is_subscription",
+            "last_status",
+            "products",
+            "status_history",
             "stripe_checkout_redirect_url",
             "stripe_checkout_session_data",
             "user",
+            "receipt_url",
+            "portal_url",
         )

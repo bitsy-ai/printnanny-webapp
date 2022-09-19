@@ -2859,25 +2859,7 @@ export interface Order {
      * @type {string}
      * @memberof Order
      */
-    'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Order
-     */
     'created_dt': string;
-    /**
-     * 
-     * @type {Array<Product>}
-     * @memberof Order
-     */
-    'products': Array<Product>;
-    /**
-     * 
-     * @type {DjStripeCustomer}
-     * @memberof Order
-     */
-    'djstripe_customer': DjStripeCustomer;
     /**
      * 
      * @type {DjStripeCheckoutSession}
@@ -2886,10 +2868,40 @@ export interface Order {
     'djstripe_checkout_session': DjStripeCheckoutSession;
     /**
      * 
+     * @type {DjStripeCustomer}
+     * @memberof Order
+     */
+    'djstripe_customer': DjStripeCustomer;
+    /**
+     * 
      * @type {DjStripePaymentIntent}
      * @memberof Order
      */
     'djstripe_payment_intent': DjStripePaymentIntent;
+    /**
+     * 
+     * @type {string}
+     * @memberof Order
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Order
+     */
+    'id': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Order
+     */
+    'is_shippable': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Order
+     */
+    'is_subscription': boolean;
     /**
      * 
      * @type {OrderStatus}
@@ -2898,16 +2910,16 @@ export interface Order {
     'last_status': OrderStatus;
     /**
      * 
+     * @type {Array<Product>}
+     * @memberof Order
+     */
+    'products': Array<Product>;
+    /**
+     * 
      * @type {Array<OrderStatus>}
      * @memberof Order
      */
     'status_history': Array<OrderStatus>;
-    /**
-     * 
-     * @type {string}
-     * @memberof Order
-     */
-    'email': string;
     /**
      * 
      * @type {string}
@@ -2926,6 +2938,18 @@ export interface Order {
      * @memberof Order
      */
     'user'?: User;
+    /**
+     * 
+     * @type {string}
+     * @memberof Order
+     */
+    'receipt_url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Order
+     */
+    'portal_url': string;
 }
 /**
  * 
