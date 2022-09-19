@@ -74,7 +74,7 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
         cy.get("input[name=cardUseShippingAsBilling]")
           .check()
           .then(() => {
-            cy.get("button[type=submit]").contains("Pay").click();
+            return cy.get("button[type=submit]").contains("Pay").click().contains("Processing");
           });
       }
     );
@@ -185,7 +185,7 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
         cy.get("input[name=cardUseShippingAsBilling]")
           .check()
           .then(() => {
-            cy.get("button[type=submit]").contains("Pay").click();
+            cy.get("button[type=submit]").contains("Pay").click().contains("Processing");
           });
       }
     );

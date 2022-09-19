@@ -99,6 +99,7 @@ jobs:
         with:
           wait-on: "http://localhost:8000"
           start: npm run ci-webapp
+          build: npx cypress info
           working-directory: ui
   pytest:
     needs: docker-image
