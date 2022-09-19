@@ -88,7 +88,7 @@ jobs:
       - name: Install platform deps
         run: |
           sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
-      - name: Build TS api client
+      - name: Run Cypress tests
         env:
           PRINTNANNY_WEBAPP_TAG: sha-${{ github.sha }}
         run: |
