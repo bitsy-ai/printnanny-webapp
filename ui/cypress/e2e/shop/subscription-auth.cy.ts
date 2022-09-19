@@ -97,8 +97,8 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
     cy.get("button#receipt", { timeout: 10000 })
       .click()
       .then(() => {
-        // set checkoutSessionUrl / checkoutRedirectUrl for use in subsequent tests
-        return cy.url({ timeout: 60000 }).should("contain", "pay.stripe.com");
+        // receipt button should link to  Stripe portal for subscription management
+        return cy.url({ timeout: 60000 }).should("contain", "billing.stripe.com");
       });
   });
 });
