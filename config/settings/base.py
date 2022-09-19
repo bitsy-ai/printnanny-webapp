@@ -85,7 +85,6 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     "rest_framework",
     "rest_framework.authtoken",
-    "django_coturn",
 ]
 
 LOCAL_APPS = [
@@ -122,9 +121,9 @@ AUTHENTICATION_BACKENDS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = "users.User"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = "users:redirect"
+LOGIN_REDIRECT_URL = "/devices/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
-LOGIN_URL = "account_login"
+LOGIN_URL = "/login/"
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
@@ -304,7 +303,8 @@ INSTALLED_APPS += ["anymail"]  # noqa F405
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 # https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
 # https://anymail.readthedocs.io/en/stable/esps/mailgun/
-EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_HOST = env("EMAIL_HOST", default="mailhog")
 ANYMAIL = {
     "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
     "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
@@ -665,15 +665,6 @@ PASSWORDLESS_AUTH = {
     "PASSWORDLESS_AUTH_PREFIX": "accounts/2fa-auth/",
     "PASSWORDLESS_VERIFY_PREFIX": "accounts/2fa-auth/verify/",
 }
-
-# django-coturn
-# https://github.com/bitsy-ai/django-coturn
-# ------------------------------------------------------------------------------
-coturn_db = env.db("COTURN_DATABASE_URL")
-coturn_db["ENGINE"] = "django_prometheus.db.backends.postgresql"
-DATABASES["coturn"] = coturn_db
-COTURN_SECRET_KEY = env("COTURN_SECRET_KEY")
-COTURN_REALM = env("COTURN_REALM")
 
 # ghost user management keys
 GHOST_ADMIN_API_KEY = ""

@@ -1,0 +1,147 @@
+name: Pytest and Cypress
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [main, devel]
+  pull_request:
+    branches: [main, devel]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  DJANGO_SUPERUSER_PASSWORD: ${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
+  DJANGO_SUPERUSER_EMAIL: ${{ secrets.DJANGO_SUPERUSER_EMAIL }}
+  NKEYS_PATH: /var/lib/nats/nsc/keys
+  NSC_HOME: /var/lib/nats/nsc
+  NSC_STORE: /var/lib/nats/nsc/stores
+  MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+  MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+  CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+  STRIPE_TEST_PUBLIC_KEY: ${{ secrets.STRIPE_TEST_PUBLIC_KEY }}
+  STRIPE_TEST_SECRET_KEY: ${{ secrets.STRIPE_TEST_SECRET_KEY }}
+# Docker Image cache from: https://evilmartians.com/chronicles/build-images-on-github-actions-with-docker-layer-caching
+jobs:
+  docker-image:
+    environment: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            name=bitsyai/printnanny-webapp
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=schedule,pattern=nightly
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha,format=long,prefix=sha-
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Login to DockerHubP
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          file: ./compose/local/django/Dockerfile
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha
+
+  cypress:
+    needs: docker-image
+    environment: test
+    env:
+      # avoid warnings like "tput: No value for $TERM and no -T specified"
+      TERM: xterm
+      PRINTNANNY_WEBAPP_TAG: sha-${{ github.sha }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser:
+          # Firefox doesn't support an equivalent of Chrome's --disable-web-security
+          # so we're unable to test cross-origin requests between localhost and stripe.checkout.com
+          # TODO find a way to enable/disable tests per platform
+          # https://bugzilla.mozilla.org/show_bug.cgi?id=1039678
+          # - "firefox"
+          - "chrome"
+          - "edge"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - name: Install platform deps
+        run: |
+          sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+      - name: Install "edge"
+        if: matrix.browser == 'edge'
+        run: |
+          curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+          sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+          sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-stable.list'
+          sudo rm microsoft.gpg
+          sudo apt update
+          sudo apt install microsoft-edge-stable
+      - name: Setup webapp
+        run: |
+          mkdir -p ui/dist
+          make ci-up &
+          cd clients/typescript && npm install && npm run build
+          cd ../../ui && npm install && npm run ci-test-build
+          ./node_modules/.bin/cypress info
+          npm run ci-webapp-wait
+          npm run ci-collectstatic
+          docker-compose -f ../test.yml restart nats
+          docker-compose -f ../test.yml run --rm django python manage.py initrobots --name=firehose
+          docker-compose -f ../test.yml restart firehose
+      - name: Cypress
+        timeout-minutes: 8
+        env:
+          DEBUG: "cypress:*"
+        run: |
+          cd ui && npm run test:e2e:ci -- --browser ${{ matrix.browser }}
+  pytest:
+    needs: docker-image
+    environment: test
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - name: Pytest
+        env:
+          PRINTNANNY_WEBAPP_TAG: sha-${{ github.sha }}
+        run: |
+          make ci-pytest

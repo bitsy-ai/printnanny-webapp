@@ -6,9 +6,13 @@ set -o nounset
 
 python manage.py collectstatic --noinput
 python manage.py migrate
+# initialize nsc operator and robot account(s)
 python manage.py nsc_init || echo "DjangoOperator already created"
-python manage.py initrobots --name=firehose || echo "Firehose robot already exists"
 
+# initialize stripe product/shop models
+python manage.py djstripe_sync_models Product
+python manage.py djstripe_sync_models Price
+python manage.py loaddata print_nanny_webapp/shop/fixtures/test_product.json --app shop.Product
 
 # set the nsc store directory
 if [ -z "${NSC_STORE}" ]; then
@@ -25,5 +29,7 @@ then
         --email "$DJANGO_SUPERUSER_EMAIL" || \
     echo "User already exists: $DJANGO_SUPERUSER_EMAIL"
 fi
+
+python manage.py initrobots --name=firehose || echo "Firehose robot already exists"
 
 uvicorn config.asgi:application --host 0.0.0.0 --reload --reload-dir print_nanny_webapp --timeout-keep-alive "$TIMEOUT_KEEP_ALIVE"

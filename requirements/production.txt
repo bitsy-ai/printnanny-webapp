@@ -98,7 +98,6 @@ django==3.2.12
     #   django-anymail
     #   django-appconf
     #   django-cors-headers
-    #   django-coturn
     #   django-debug-toolbar
     #   django-extensions
     #   django-filter
@@ -131,8 +130,6 @@ django-appconf==1.0.5
 django-compressor==3.1
     # via -r /requirements/production.in
 django-cors-headers==3.11.0
-    # via -r /requirements/production.in
-django-coturn==0.3.1
     # via -r /requirements/production.in
 django-coverage-plugin==2.0.2
     # via -r /requirements/production.in
@@ -322,7 +319,7 @@ plotly==5.6.0
     # via -r /requirements/production.in
 posthog==1.4.5
     # via -r /requirements/production.in
-printnanny-api-client==0.106.1
+printnanny-api-client==0.107.2
     # via -r /requirements/production.in
 priority==1.3.0
     # via twisted
@@ -341,7 +338,6 @@ protobuf==3.19.4
 psycopg2==2.9.3
     # via
     #   -r /requirements/production.in
-    #   django-coturn
     #   django-nats-nkeys
 pyarrow==7.0.0
     # via -r /requirements/production.in

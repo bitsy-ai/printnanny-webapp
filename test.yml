@@ -23,18 +23,14 @@ services:
       - ./compose/local/janus/etc:/etc/janus
   django: &django # enables use of pdb
     hostname: django
-    stdin_open: true
-    tty: true
     # network_mode: "host"
-    build:
-      context: .
-      dockerfile: ./compose/local/django/Dockerfile
-    image: printnanny_webapp_local_django
+    image: bitsyai/printnanny-webapp:${PRINTNANNY_WEBAPP_TAG}
     container_name: printnanny_webapp_django
     depends_on:
       - postgres
       - nats
       - janus
+      - mailhog
     volumes:
       - .:/app:z
       - local_file_data:/tmp:z
@@ -46,10 +42,13 @@ services:
     environment:
       DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
       DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
+      MAILGUN_DOMAIN: ${MAILGUN_DOMAIN}
+      MAILGUN_API_KEY: ${MAILGUN_API_KEY}
       NKEYS_PATH: /var/lib/nats/nsc/keys
       NSC_HOME: /var/lib/nats/nsc
       NSC_STORE: /var/lib/nats/nsc/stores
-
+      STRIPE_TEST_PUBLIC_KEY: $STRIPE_TEST_PUBLIC_KEY}
+      STRIPE_TEST_SECRET_KEY: ${STRIPE_TEST_SECRET_KEY}
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
@@ -59,24 +58,31 @@ services:
 
     command:
       - /start
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    container_name: printnanny_webapp_local_mailhog
+    ports:
+      - "8025:8025"
 
   firehose: &firehose
     hostname: firehose
     depends_on:
+      - django
       - postgres
       - nats
-    build:
-      context: .
-      dockerfile: ./compose/local/django/Dockerfile
-    image: printnanny_webapp_local_django
+    image: bitsyai/printnanny-webapp:${PRINTNANNY_WEBAPP_TAG}
     container_name: printnanny_webapp_firehose
     environment:
       DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
       DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
+      MAILGUN_DOMAIN: ${MAILGUN_DOMAIN}
+      MAILGUN_API_KEY: ${MAILGUN_API_KEY}
       NKEYS_PATH: /var/lib/nats/nsc/keys
       NSC_HOME: /var/lib/nats/nsc
       NSC_STORE: /var/lib/nats/nsc/stores
       DJANGO_SETTINGS_MODULE: config.settings.local
+      STRIPE_TEST_PUBLIC_KEY: ${STRIPE_TEST_PUBLIC_KEY}
+      STRIPE_TEST_SECRET_KEY: ${STRIPE_TEST_SECRET_KEY}
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres

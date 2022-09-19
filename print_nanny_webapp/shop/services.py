@@ -1,7 +1,6 @@
 from uuid import uuid4
 from typing import Dict, Any
-from django.conf import settings
-from django.http.request import HttpRequest
+from django.http import HttpRequest
 from django.contrib.auth import get_user_model
 
 from djstripe.models.core import (
@@ -42,6 +41,47 @@ def sync_stripe_customer_by_id(stripe_customer_id: str) -> DjStripeCustomer:
     return DjStripeCustomer.sync_from_stripe_data(stripe_res)
 
 
+def build_stripe_checkout_session_customer_extra_kwargs(
+    request: HttpRequest, email: str
+) -> Dict[Any, Any]:
+    """
+    Looks up customer (by email) to associate Stripe Checkout Session with an existing customer
+
+    If Customer doesn't exist, set Stripe API kwargs needed to create Stripe Customer during Stripe Checkout Session flow
+    """
+    extra_kwargs: Dict[Any, Any] = dict()
+    if request.user.is_authenticated:
+        user = request.user
+        # an extra reference id
+        extra_kwargs["client_reference_id"] = user.id
+        try:
+            customer = DjStripeCustomer.objects.get(subscriber=user)
+            extra_kwargs["customer"] = customer.id
+            # automatically update Stripe customer with shipping/billing address if these fields are modified during checkout session
+            extra_kwargs["customer_update"] = dict(
+                name="auto", shipping="auto", address="auto"
+            )
+
+        # customer not found - pass email to Stripe Checkout Session create call
+        # Django User creation will be handled in Stripe Checkout Session redirect
+        except DjStripeCustomer.DoesNotExist:
+            extra_kwargs["customer_email"] = email
+            extra_kwargs["customer_creation"] = "always"
+
+    else:
+        try:
+            customer = DjStripeCustomer.objects.get(email=email)
+            extra_kwargs["customer"] = customer.id
+            extra_kwargs["client_reference_id"] = customer.subscriber.id
+
+        # customer not found - pass email to Stripe Checkout Session create call
+        # Django User creation will be handled in Stripe Checkout Session redirect
+        except DjStripeCustomer.DoesNotExist:
+            extra_kwargs["customer_email"] = email
+            extra_kwargs["customer_creation"] = "always"
+    return extra_kwargs
+
+
 def create_stripe_checkout_session(request: HttpRequest, product: Product, email: str):
     """
     Attempt to create a Stripe checkout session for product_name
@@ -52,9 +92,6 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
 
     # prices = stripe.Price.list(lookup_keys=[stripe_lookup_key])
 
-    # try to get Stripe customer from user
-    user = None
-    customer = None
     order_id = uuid4()
 
     # add django session key to stripe metadata
@@ -67,30 +104,18 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
             django_order_id=order_id,
         ),
     )
-    if request.user.is_authenticated:
-        user = request.user
-        # provides djstripe_subscriber_user reverse relationship
-        extra_kwargs["metadata"][djstripe_settings.SUBSCRIBER_CUSTOMER_KEY] = user.id
-        # an extra reference id
-        extra_kwargs["client_reference_id"] = user.id
-        try:
-            customer = DjStripeCustomer.objects.get(subscriber=user)
-            extra_kwargs["customer"] = customer.id
-            # automatically update Stripe customer with shipping/billing address if these fields are modified during checkout session
-            extra_kwargs["customer_update"] = dict(
-                name="auto", shipping="auto", address="auto"
-            )
 
-        # customer not found
-        except DjStripeCustomer.DoesNotExist:
-            extra_kwargs["customer_email"] = email
-    else:
-        try:
-            customer = DjStripeCustomer.objects.get(email=email)
-            extra_kwargs["customer"] = customer.id
-        # customer not found
-        except DjStripeCustomer.DoesNotExist:
-            extra_kwargs["customer_email"] = email
+    # try to get Stripe customer from Django user authentication, email lookup, or supply needed parameters to create new Stripe Customer
+    extra_kwargs.update(
+        build_stripe_checkout_session_customer_extra_kwargs(request, email)
+    )
+
+    # if client_reference_id was set, copy value to metadata.djstripe_settings.SUBSCRIBER_CUSTOMER_KEY
+    # provides djstripe_subscriber_user reverse relationship
+    if extra_kwargs.get("client_reference_id") is not None:
+        extra_kwargs["metadata"][
+            djstripe_settings.SUBSCRIBER_CUSTOMER_KEY
+        ] = extra_kwargs.get("client_reference_id")
 
     # set success / cancel urls
     extra_kwargs["success_url"] = request.build_absolute_uri("/shop/thank-you/")
@@ -98,22 +123,11 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
     extra_kwargs["success_url"] = extra_kwargs["success_url"] + "{CHECKOUT_SESSION_ID}"
 
     extra_kwargs["cancel_url"] = request.build_absolute_uri(f"/shop/{product.slug}")
-
-    # quick hack to replace :8000 server-side port with front-end hot module reload port (in dev mode)
-    if settings.DEBUG:
-        extra_kwargs["success_url"] = extra_kwargs["success_url"].replace(
-            ":8000", ":3000"
-        )
-        extra_kwargs["cancel_url"] = extra_kwargs["success_url"].replace(
-            ":8000", ":3000"
-        )
     price_id = product.prices.filter(active=True).first().id
-
     if product.is_shippable:
 
         return (
             stripe.checkout.Session.create(
-                customer_creation="always",
                 payment_method_types=["card"],
                 payment_intent_data={
                     # off_session indicates
@@ -154,6 +168,10 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
                                 "currency": "usd",
                             },
                             "display_name": "USPS Ground",
+                            # Stripe will automatically determine if shipping is a taxable (varies by state/country), then calculate correct tax
+                            # See: https://stripe.com/docs/payments/checkout/shipping#shipping-rate-with-tax-code
+                            "tax_code": "txcd_92010001",
+                            "tax_behavior": "exclusive",
                         }
                     },
                 ],
@@ -214,6 +232,7 @@ def create_order(request: HttpRequest, product: Product, email: str):
     order.products.add(product)
     # add stripe checkout redirect url to payload
     order.stripe_checkout_redirect_url = checkout_session_redirect
+    order.stripe_checkout_session_id = checkout_session.id
 
     # create order status
     OrderStatus.objects.create(

@@ -30,9 +30,7 @@ export const useShopStore = defineStore({
       const res = await shopApi.shopOrdersCreate(req).catch(handleApiError);
       if (res) {
         this.$patch({ loading: false });
-        console.debug(
-          `Redirecting to ${res.data.stripe_checkout_redirect_url}`
-        );
+        console.debug(`Got checkout data`, res.data);
         window.location.href = res.data.stripe_checkout_redirect_url;
       }
     },

@@ -14,6 +14,10 @@ ALLOWED_HOSTS = env.list(
     ],
 )
 
+# Anymail
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+
+
 # posthog
 # ------------------------------------------------------------------------------
 # https://posthog.com/docs/libraries/python
