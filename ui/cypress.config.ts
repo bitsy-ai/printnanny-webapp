@@ -9,7 +9,7 @@ export default defineConfig({
     "r.stripe.com",
     "m.stripe.com",
     "analytics.google.com",
-    "*google.com"
+    "*google.com",
   ],
   includeShadowDom: true,
   e2e: {

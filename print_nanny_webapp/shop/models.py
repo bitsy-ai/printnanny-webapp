@@ -3,6 +3,7 @@ from uuid import uuid4
 from typing import Optional, List
 
 from django.db import models
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.postgres.fields import ArrayField
 from djstripe.models import Product as DjstripeProduct
@@ -156,6 +157,42 @@ class Order(SafeDeleteModel):
     @property
     def status_history(self) -> List[OrderStatus]:
         return self.orderstatus_set
+
+    @property
+    def is_subscription(self) -> bool:
+        """
+        True if any product in order is a subscription
+        Note: Order can contain more than 1 product
+        """
+        return self.products.filter(is_subscription=True).count() > 0
+
+    @property
+    def is_shippable(self) -> bool:
+        """
+        True if any product in order is a shippable physical good
+        Note: Order can contain more than 1 product
+        """
+        return self.products.filter(is_shippable=True).count() > 0
+
+    @property
+    def receipt_url(self) -> Optional[str]:
+        """
+        For orders with a PaymentIntent (mode=payment), link to pay.stripe.com receipt
+        Note: this field will be None for subscriptions, which use a portal url instead
+        """
+        if self.is_shippable and self.djstripe_payment_intent:
+            return self.djstripe_payment_intent.charges.first().receipt_url
+
+        return None
+
+    @property
+    def portal_url(self) -> Optional[str]:
+        """
+        Link to https://stripe.com/docs/customer-management Stripe Customer portal
+        """
+        if self.is_subscription:
+            return settings.STRIPE_PORTAL_URL
+        return None
 
 
 class InventoryItem(SafeDeleteModel):

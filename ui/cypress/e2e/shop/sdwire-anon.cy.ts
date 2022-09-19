@@ -69,9 +69,12 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
         cy.get("input[name=cardNumber]").type(cardNumber);
         cy.get("input[name=cardExpiry]").type(exp);
         cy.get("input[name=cardCvc]").type(cvc);
-        cy.get("input[name=cardUseShippingAsBilling]")
-          .check();
-        cy.get("button[type=submit]").contains("Pay").should('have.class', 'SubmitButton--complete').click().contains("Processing");
+        cy.get("input[name=cardUseShippingAsBilling]").check();
+        cy.get("button[type=submit]")
+          .contains("Pay")
+          .should("have.class", "SubmitButton--complete")
+          .click()
+          .contains("Processing");
       }
     );
 
@@ -96,5 +99,13 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
 
     // a shipping method should be present for physical goods
     cy.contains("Shipping method");
+
+    // Download/print receipt button should open pay.strime.com
+    cy.get("button#receipt", { timeout: 10000 })
+      .click()
+      .then(() => {
+        // set checkoutSessionUrl / checkoutRedirectUrl for use in subsequent tests
+        return cy.url({ timeout: 60000 }).should("contain", "pay.stripe.com");
+      });
   });
 });

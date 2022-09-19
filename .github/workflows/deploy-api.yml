@@ -115,6 +115,7 @@ jobs:
       STRIPE_LIVE_MODE: True
       STRIPE_LIVE_PUBLIC_KEY: ${{ secrets.STRIPE_LIVE_PUBLIC_KEY }}
       STRIPE_LIVE_SECRET_KEY: ${{ secrets.STRIPE_LIVE_SECRET_KEY }}
+      STRIPE_PORTAL_URL: ${{ secrets.STRIPE_PORTAL_URL }}
     needs: [lint, shellcheck, mypy]
     runs-on: ubuntu-latest
     steps:

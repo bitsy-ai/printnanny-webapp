@@ -65,14 +65,16 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
         cy.get("input[name=cardNumber]").type(cardNumber);
         cy.get("input[name=cardExpiry]").type(exp);
         cy.get("input[name=cardCvc]").type(cvc);
-        cy.get("input[name=billingName]").type(billingName)
+        cy.get("input[name=billingName]").type(billingName);
         cy.get("input[name=billingAddressLine1]")
           .type(address1)
           .type("{enter}");
         cy.get("input[name=billingLocality]").type(city);
         cy.get("input[name=billingPostalCode]").type(zip);
-        cy.get("button[type=submit]", { timeout: 60000 }).should('have.class', 'SubmitButton--complete').click().contains("Processing");
-
+        cy.get("button[type=submit]", { timeout: 60000 })
+          .should("have.class", "SubmitButton--complete")
+          .click()
+          .contains("Processing");
       }
     );
 
@@ -89,7 +91,14 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
     cy.contains(zip, { timeout: 10000 });
 
     // subscription confirm screen should show open dashboard button after account registration
-    cy.get("button").contains("Open Dashboard", { timeout: 10000 })
+    cy.get("button").contains("Open Dashboard", { timeout: 10000 });
 
+    // Download/print receipt button should open pay.strime.com
+    cy.get("button#receipt", { timeout: 10000 })
+      .click()
+      .then(() => {
+        // receipt button should link to  Stripe portal for subscription management
+        return cy.url({ timeout: 60000 }).should("contain", "billing.stripe.com");
+      });
   });
 });
