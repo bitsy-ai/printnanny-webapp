@@ -99,6 +99,7 @@ jobs:
           cd ../../ui && npm install && npm run ci-test-build
           npm run ci-webapp-wait
           npm run ci-collectstatic
+          docker-compose -f ../test.yml restart firehose
           npm run test:e2e:ci
 
       # - uses: cypress-io/github-action@v4
