@@ -104,7 +104,13 @@ jobs:
           sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
       - name: Install "edge"
         if: matrix.browser == 'edge'
-        run: sudo apt install microsoft-edge-dev
+        run: |
+          curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+          sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+          sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-stable.list'
+          sudo rm microsoft.gpg
+          sudo apt update
+          sudo apt install microsoft-edge-stable
       - name: Setup webapp
         run: |
           mkdir -p ui/dist
