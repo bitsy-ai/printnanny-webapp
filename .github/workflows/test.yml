@@ -111,5 +111,7 @@ jobs:
         with:
           node-version: "16"
       - name: Pytest
+        env:
+          PRINTNANNY_WEBAPP_TAG: sha-${{ github.sha }}
         run: |
           make ci-pytest
