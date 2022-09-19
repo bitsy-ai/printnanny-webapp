@@ -93,10 +93,10 @@ jobs:
         env:
           PRINTNANNY_WEBAPP_TAG: sha-${{ github.sha }}
         run: |
-          npm run ci-test-build
+          mkdir -p ui/dist
           make ci-up &
           cd clients/typescript && npm install && npm run build
-          cd ../../ui && npm install
+          cd ../../ui && npm install && npm run ci-test-build
           npm run ci-webapp-wait
           npm run test:e2e:ci
 
