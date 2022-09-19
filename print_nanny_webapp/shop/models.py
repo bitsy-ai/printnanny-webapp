@@ -180,7 +180,7 @@ class Order(SafeDeleteModel):
         For orders with a PaymentIntent (mode=payment), link to pay.stripe.com receipt
         Note: this field will be None for subscriptions, which use a portal url instead
         """
-        if self.is_shippable:
+        if self.is_shippable and self.djstripe_payment_intent:
             return self.djstripe_payment_intent.charges.first().receipt_url
 
         return None
