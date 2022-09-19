@@ -49,6 +49,7 @@ services:
       NSC_STORE: /var/lib/nats/nsc/stores
       STRIPE_TEST_PUBLIC_KEY: $STRIPE_TEST_PUBLIC_KEY}
       STRIPE_TEST_SECRET_KEY: ${STRIPE_TEST_SECRET_KEY}
+      STRIPE_PORTAL_URL: ${STRIPE_PORTAL_URL}
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
@@ -83,6 +84,8 @@ services:
       DJANGO_SETTINGS_MODULE: config.settings.local
       STRIPE_TEST_PUBLIC_KEY: ${STRIPE_TEST_PUBLIC_KEY}
       STRIPE_TEST_SECRET_KEY: ${STRIPE_TEST_SECRET_KEY}
+      STRIPE_PORTAL_URL: ${STRIPE_PORTAL_URL}
+
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
