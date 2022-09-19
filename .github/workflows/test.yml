@@ -82,6 +82,10 @@ jobs:
       TERM: xterm
       PRINTNANNY_WEBAPP_TAG: sha-${{ github.sha }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: ["firefix", "chrome"]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -101,7 +105,7 @@ jobs:
           npm run ci-webapp-wait
           npm run ci-collectstatic
           docker-compose -f ../test.yml restart firehose
-          npm run test:e2e:ci
+          npm run test:e2e:ci --browser ${{ matrix.browsers }}
   pytest:
     needs: docker-image
     environment: test
