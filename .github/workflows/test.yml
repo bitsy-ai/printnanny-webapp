@@ -77,7 +77,10 @@ jobs:
   cypress:
     needs: docker-image
     environment: test
-
+    env:
+      # avoid warnings like "tput: No value for $TERM and no -T specified"
+      TERM: xterm
+      PRINTNANNY_WEBAPP_TAG: sha-${{ github.sha }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -90,8 +93,6 @@ jobs:
           sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
       - name: Run Cypress tests
         timeout-minutes: 8
-        env:
-          PRINTNANNY_WEBAPP_TAG: sha-${{ github.sha }}
         run: |
           mkdir -p ui/dist
           make ci-up &
@@ -101,20 +102,6 @@ jobs:
           npm run ci-collectstatic
           docker-compose -f ../test.yml restart firehose
           npm run test:e2e:ci
-
-      # - uses: cypress-io/github-action@v4
-      #   timeout-minutes: 8
-      #   env:
-      #     PRINTNANNY_WEBAPP_TAG: sha-${{ github.sha }}
-      #     CYPRESS_BASE_URL: "http://localhost:8000"
-      #     DEBUG: "@cypress/github-action"
-
-      #   with:
-      #     wait-on: "http://localhost:8000"
-      #     start: npm run ci-webapp
-      #     build: npx cypress info
-      #     working-directory: ui
-      #     record: false
   pytest:
     needs: docker-image
     environment: test
