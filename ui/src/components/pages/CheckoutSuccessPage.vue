@@ -30,6 +30,7 @@
           </dl>
         </div>
         <a
+          v-if="order?.receipt_url"
           :href="
             order?.receipt_url
           "
@@ -42,6 +43,7 @@
           </button>
         </a>
         <a
+          v-if="order?.portal_url"
           :href="
             order?.portal_url
           "
@@ -105,23 +107,4 @@ const isSubscription = computed(() => {
   return order && order?.products.filter(p => p.is_subscription).length > 0;
 })
 
-const receiptUrl = computed(() => {
-
-
-  // Stripe billing portal url
-  if (isSubscription.value == true){
-
-  } else {
-    // receipt url for payment intent
-    if (
-      order?.stripe_checkout_session_data?.payment_intent?.charges.data.length >
-        0 &&
-      order?.stripe_checkout_session_data?.payment_intent?.charges.data[0]
-    ) {
-      return order?.stripe_checkout_session_data?.payment_intent?.charges.data[0]
-        .receipt_url;
-    }
-    return undefined;
-  }
-});
 </script>

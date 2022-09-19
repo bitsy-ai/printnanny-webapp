@@ -2943,13 +2943,13 @@ export interface Order {
      * @type {string}
      * @memberof Order
      */
-    'receipt_url': string;
+    'receipt_url': string | null;
     /**
      * 
      * @type {string}
      * @memberof Order
      */
-    'portal_url': string;
+    'portal_url': string | null;
 }
 /**
  * 

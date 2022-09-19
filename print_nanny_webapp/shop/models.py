@@ -181,7 +181,8 @@ class Order(SafeDeleteModel):
         Note: this field will be None for subscriptions, which use a portal url instead
         """
         if self.is_shippable:
-            return self.djstripe_payment_intent.receipt_url
+            return self.djstripe_payment_intent.charges.first().receipt_url
+
         return None
 
     @property

@@ -150,8 +150,8 @@ class OrderSerializer(serializers.ModelSerializer):
     is_subscription = serializers.BooleanField(read_only=True)
     is_shippable = serializers.BooleanField(read_only=True)
 
-    receipt_url = serializers.CharField(required=False, read_only=True)
-    portal_url = serializers.CharField(required=False, read_only=True)
+    receipt_url = serializers.CharField(read_only=True, required=False, allow_null=True)
+    portal_url = serializers.CharField(read_only=True, required=False, allow_null=True)
 
     def get_stripe_checkout_session_data(self, obj) -> Dict[Any, Any]:
         stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY

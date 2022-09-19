@@ -301,11 +301,13 @@ def sync_stripe_order(stripe_checkout_session_id) -> Order:
         # pull latest payment intent data from Stripe
         payment_intent = sync_stripe_payment_intent(session.payment_intent.id)
         order.djstripe_payment_intent = payment_intent
+        payment_intent.save()
 
     # if order was a subscription, sync the subscription models
     elif session.mode == "subscription":
         subscription = sync_stripe_subscription(session.subscription.id)
         order.djstripe_subscription = subscription
+        subscription.save()
 
     order.djstripe_customer = customer
 
