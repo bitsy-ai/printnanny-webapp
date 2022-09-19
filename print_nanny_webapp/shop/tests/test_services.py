@@ -36,7 +36,7 @@ class TestShopServices(TestCase):
         request.user = AnonymousUser()
         request.session = self.client.session
         email = "new-customer@test.com"
-        order_id = uuid4()
+        order_id = str(uuid4())
 
         product = Product.objects.filter(is_shippable=True).first()
 
@@ -51,7 +51,7 @@ class TestShopServices(TestCase):
         request.user = AnonymousUser()
         request.session = self.client.session
         email = "new-customer@test.com"
-        order_id = uuid4()
+        order_id = str(uuid4())
 
         product = Product.objects.filter(is_subscription=True).first()
 
@@ -74,7 +74,7 @@ class TestShopServices(TestCase):
         user = User.objects.create(  # type: ignore[has-type]
             email=email, password="testing1234", is_superuser=False
         )
-        order_id = uuid4()
+        order_id = str(uuid4())
 
         # load fixture data
         with open(
@@ -114,7 +114,7 @@ class TestShopServices(TestCase):
         user = User.objects.create(  # type: ignore[has-type]
             email=email, password="testing1234", is_superuser=False
         )
-        order_id = uuid4()
+        order_id = str(uuid4())
 
         # load fixture data
         with open(
@@ -171,7 +171,7 @@ class TestShopServices(TestCase):
         customer = Customer.sync_from_stripe_data(fixture_data)
         customer.subscriber = user
         customer.save()
-        order_id = uuid4()
+        order_id = str(uuid4())
         product = Product.objects.filter(is_shippable=True).first()
 
         # extra kwargs should include Stripe customer id, which will be passed to checkout session for continuity
@@ -213,7 +213,7 @@ class TestShopServices(TestCase):
         customer = Customer.sync_from_stripe_data(fixture_data)
         customer.subscriber = user
         customer.save()
-        order_id = uuid4()
+        order_id = str(uuid4())
         product = Product.objects.filter(is_subscription=True).first()
 
         # extra kwargs should include Stripe customer id, which will be passed to checkout session for continuity
