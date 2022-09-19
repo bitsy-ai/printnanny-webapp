@@ -128,7 +128,7 @@ jobs:
         env:
           DEBUG: "cypress:*"
         run: |
-          npm run test:e2e:ci -- --browser ${{ matrix.browser }}
+          cd ui && npm run test:e2e:ci -- --browser ${{ matrix.browser }}
   pytest:
     needs: docker-image
     environment: test
