@@ -25,7 +25,7 @@ RUN addgroup --system django \
   && adduser --system --ingroup django django
 
 # install nsc command-line tool
-RUN wget https://github.com/nats-io/nsc/releases/download/2.7.1/nsc-linux-amd64.zip -O nsc-linux-amd64.zip
+RUN wget https://github.com/nats-io/nsc/releases/download/2.7.2/nsc-linux-amd64.zip -O nsc-linux-amd64.zip
 RUN unzip nsc-linux-amd64.zip -d /usr/local/bin
 
 # Requirements are installed here to ensure they will be cached.
