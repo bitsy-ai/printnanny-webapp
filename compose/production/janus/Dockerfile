@@ -4,7 +4,7 @@ ARG LIBWEBSOCKETS_REPO=https://github.com/warmcat/libwebsockets.git
 ARG LIBWEBSOCKETS_VERSION=v3.2-stable
 
 ARG LIBNICE_REPO=https://github.com/libnice/libnice
-ARG LIBNICE_VERSION=0.1.18
+ARG LIBNICE_VERSION=0.1.19
 
 ARG USRSCTP_REPO=https://github.com/sctplab/usrsctp
 ARG USRSCTP_VERSION=0.9.5.0
@@ -43,6 +43,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     wget \
     python3 \
     python3-pip \
+    avahi-daemon avahi-discover libnss-mdns \
     # clean up cache + unused packages
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/*
