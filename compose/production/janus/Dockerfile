@@ -13,7 +13,7 @@ ARG LIBSRTP_VERSION=2.2.0
 ARG LIBSRTP_TARBALL="https://github.com/cisco/libsrtp/archive/v${LIBSRTP_VERSION}.tar.gz"
 
 ARG JANUS_REPO=https://github.com/meetecho/janus-gateway.git
-ARG JANUS_VERSION=1.0.4
+ARG JANUS_VERSION=1.1.0
 
 ARG LIB_PREFIX=/usr/local
 ARG JANUS_INSTALL=/opt/janus
@@ -43,6 +43,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     wget \
     python3 \
     python3-pip \
+    avahi-daemon avahi-discover libnss-mdns \
     # clean up cache + unused packages
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/*
