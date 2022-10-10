@@ -47,12 +47,7 @@ export const useAccountStore = defineStore({
       }
     },
     async fetchUser() {
-      const userData = await accountsApi.accountsUserRetrieve().catch((e) => {
-        console.warn("No authentication data is set", e);
-        this.$patch({
-          user: undefined,
-        });
-      });
+      const userData = await accountsApi.accountsUserRetrieve().catch(handleApiError);
       if (userData && userData.data) {
         console.log("Authenticated as user", userData.data);
         this.$patch({
