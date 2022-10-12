@@ -39,6 +39,11 @@ spec:
       - www.print-nanny.com
     secretName: printnanny-com-tls
   {% endif %}
+  defaultBackend:
+    service:
+      name: django
+      port:
+        number: 80
   rules:
     # live www and api
     {% if PRINTNANNY_NAMESPACE == 'live' %}
@@ -52,6 +57,13 @@ spec:
                 name: printnanny-blog
                 port:
                   number: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: django
+                port:
+                  number: 80       
     - host: www.printnanny.ai
       http:
         paths:
@@ -62,9 +74,6 @@ spec:
                 name: printnanny-blog
                 port:
                   number: 80
-    - host: printnanny.ai
-      http:
-        paths:
           - path: /
             pathType: Prefix
             backend:
@@ -73,36 +82,6 @@ spec:
                 port:
                   number: 80
     - host: api.printnanny.ai
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: django
-                port:
-                  number: 80
-    - host: print-nanny.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: django
-                port:
-                  number: 80
-    - host: www.printnanny.ai
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: django
-                port:
-                  number: 80
-    - host: www.print-nanny.com
       http:
         paths:
           - path: /
