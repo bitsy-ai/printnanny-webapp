@@ -52,6 +52,16 @@ spec:
                 name: printnanny-blog
                 port:
                   number: 80
+    - host: www.printnanny.ai
+      http:
+        paths:
+          - path: /blog
+            pathType: Prefix
+            backend:
+              service:
+                name: printnanny-blog
+                port:
+                  number: 80
     - host: printnanny.ai
       http:
         paths:
