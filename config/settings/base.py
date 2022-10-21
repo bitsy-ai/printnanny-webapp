@@ -694,6 +694,8 @@ CORS_ALLOWED_ORIGINS = [
     f"http://{socket.gethostname()}:8000",
     f"http://{socket.gethostname()}:3000",
 ]
+# set CORS headers on non-API routes - API requests will originate from client-side javascripts running in OctoPrint, Mainsail, etc.
+CORS_URLS_REGEX = r"^(?!/api/).*$"
 
 # Janus Cloud defaults
 # in production, Janus Gateway is deployed to Cloud as an SFU and adressible over internet
