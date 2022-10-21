@@ -1,11 +1,13 @@
 """
 Base settings to build other settings files upon.
 """
-from typing import List
 from pathlib import Path
-import os
+from typing import List
+
 import socket
 import environ
+import os
+
 from django.contrib.messages import constants as messages
 
 
@@ -694,8 +696,6 @@ CORS_ALLOWED_ORIGINS = [
     f"http://{socket.gethostname()}:8000",
     f"http://{socket.gethostname()}:3000",
 ]
-# set CORS headers on non-API routes - API requests will originate from client-side javascripts running in OctoPrint, Mainsail, etc.
-CORS_URLS_REGEX = r"^(?!/api/).*$"
 
 # Janus Cloud defaults
 # in production, Janus Gateway is deployed to Cloud as an SFU and adressible over internet
