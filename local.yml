@@ -13,10 +13,10 @@ services:
     image: bitsyai/janus:1.0.4
     container_name: printnanny_janus
     ports:
-      - "8188:8188"
-      - "7188:7188"
-      - "7088:7088"
-      - "8088:8088"
+      - "9188:8188"
+      - "11188:7188"
+      - "11088:7088"
+      - "9088:8088"
       - "5000-5100:5000-5100/udp"
     env_file:
       - ./.envs/.local/.janus
@@ -41,7 +41,7 @@ services:
     depends_on:
       - postgres
       - prometheus
-      - nats
+      - cloud-nats
       - janus
       - mailhog
 
@@ -75,7 +75,7 @@ services:
     hostname: firehose
     depends_on:
       - postgres
-      - nats
+      - cloud-nats
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
@@ -133,7 +133,7 @@ services:
       - ./prometheus:/etc/prometheus
       - local_prometheus_data:/prometheus
     command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
-  nats:
+  cloud-nats:
     hostname: nats
     image: nats:2.8-alpine
     container_name: printnanny_webapp_nats
