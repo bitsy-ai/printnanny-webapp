@@ -2,7 +2,12 @@
 Base settings to build other settings files upon.
 """
 from pathlib import Path
+from typing import List
+
 import socket
+import environ
+import os
+
 from django.contrib.messages import constants as messages
 
 
