@@ -1,17 +1,17 @@
 <template>
-<div
+  <div
     class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap"
->
+  >
     <h2
-    class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl flex-1 w-full text-center"
+      class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl flex-1 w-full text-center"
     >
-    {{ step.title }}
+      {{ step.title }}
     </h2>
     <p class="text-base text-center font-medium text-gray-900 mt-5 w-full">
-    {{ step.detail }}
+      {{ step.detail }}
     </p>
     <div
-    class="min-h-full min-w-full w-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
+      class="min-h-full min-w-full w-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 flex-wrap text-center"
     >
       <!-- setup steps container -->
       <div class="flow-root w-3/4">
@@ -118,23 +118,20 @@
     </div>
     <!-- footer buttons -->
     <div class="w-full m-auto justify-center flex-1">
-    <WizardButtons :current-step="step" />
+      <WizardButtons :current-step="step" />
     </div>
-</div>
+  </div>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
 import { LinkIcon } from "@heroicons/vue/solid";
-import {
-  CheckIcon,
-} from "@heroicons/vue/outline";
+import { CheckIcon } from "@heroicons/vue/outline";
 import { useWizardStore } from "@/stores/wizard";
 import { PiCreateWizardSteps } from "../piCreateWizard";
 import WizardButtons from "@/components/wizard/steps/WizardButtons.vue";
 import { ManualTestStep } from "@/types";
 import { FolderDownloadIcon, ExternalLinkIcon } from "@heroicons/vue/solid";
 import type { ManualActionButton } from "@/types/wizard";
-
 
 const props = defineProps({
   piId: {
@@ -148,7 +145,7 @@ const store = useWizardStore();
 const step = PiCreateWizardSteps()[2];
 await store.loadPi(parseInt(props.piId));
 
-const deviceDashboardUrl = `http://${store.pi.fqdn}/settings`
+const deviceDashboardUrl = `http://${store.pi.fqdn}/settings`;
 
 function nextManualStep(currentStep: ManualTestStep, currentitemIdx: number) {
   // mark current step done
