@@ -3,9 +3,10 @@ import { useWizardStore } from "@/stores/wizard";
 import type * as api from "printnanny-api-client";
 import SdCardStep from "./steps/SdCardStep.vue";
 import PiCreateStep from "./steps/PiCreateStep.vue";
-import DownloadLicenseStep from "./steps/DownloadLicenseStep.vue";
 import TestConnectionStep from "./steps/TestConnectionStep.vue";
 import DoneStep from "./steps/DoneStep.vue";
+import ConnectCloudAccountStep from "./steps/ConnectCloudAccountStep.vue";
+
 import type { WizardStep } from "@/types";
 
 export const stepKeys = [
@@ -17,10 +18,10 @@ export const stepKeys = [
   },
   { key: "raspberry-pi", title: "Register My Raspberry Pi", detail: "" },
   {
-    key: "download-license",
-    title: "Download PrintNanny.zip",
+    key: "connect-cloud-account",
+    title: "Connect PrintNanny Cloud Account",
     detail:
-      "This section will help you copy your PrintNanny license to your SD card.",
+      "This section will help you link your Raspberry Pi to your PrintNanny Cloud account.",
   },
   {
     key: "test-connection",
@@ -67,7 +68,6 @@ export function PiCreateWizardSteps(): WizardStep[] {
       style: "width: 33%",
       validationSchema: yup.object({
         hostname: yup.string().required(),
-        edition: yup.string().required(),
         sbc: yup.string().required(),
       }),
       nextButton: {
@@ -107,7 +107,7 @@ export function PiCreateWizardSteps(): WizardStep[] {
       path: `/connect/${stepKeys[2].key}/:piId`,
       routeName: `pi-wizard-${stepKeys[2].key}`,
       detail: stepKeys[2].detail,
-      component: DownloadLicenseStep,
+      component: ConnectCloudAccountStep,
       progress: "66%",
       style: "width: 66%",
       title: stepKeys[2].title,

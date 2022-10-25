@@ -80,7 +80,7 @@ const onSubmit = handleSubmit(async (values) => {
 
         <fieldset class="mt-6">
           <legend class="text-base font-medium text-gray-900">
-            3) Choose hardware
+            2) Choose hardware
           </legend>
           <p class="text-sm text-gray-500 mt-2">
             Which Raspberry Pi board are you using?

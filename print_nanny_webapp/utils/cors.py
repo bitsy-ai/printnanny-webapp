@@ -12,7 +12,9 @@ def cors_allow_api_to_everyone(sender, request, **kwargs):
         request,
         kwargs,
     )
-    return request.path.startswith("/api/")
+    return request.path.startswith("/api/") or request.path.startswith(
+        "/accounts/2fa-auth/"
+    )
 
 
 check_request_enabled.connect(cors_allow_api_to_everyone)

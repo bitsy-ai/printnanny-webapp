@@ -86,7 +86,7 @@
 <script setup lang="ts">
 import { RouterLink, useRouter } from "vue-router";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
-import { CreditCardIcon, BellIcon } from "@heroicons/vue/solid";
+import { CreditCardIcon, BellIcon, SelectorIcon } from "@heroicons/vue/solid";
 
 import { useAccountStore } from "@/stores/account";
 const account = useAccountStore();
