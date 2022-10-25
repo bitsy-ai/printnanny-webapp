@@ -77,43 +77,10 @@ const onSubmit = handleSubmit(async (values) => {
         </fieldset>
 
         <hr class="m-5" />
-        <fieldset class="mt-6">
-          <legend class="text-base font-medium text-gray-900">
-            2) Choose PrintNanny OS Edition
-          </legend>
-          <p class="text-sm text-gray-500 mt-2">
-            <a
-              target="_blank"
-              href="https://docs.printnanny.ai/docs/quick-start/choose-os-edition/"
-              class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-            >
-              Click to learn more
-            </a>
-            about each edition.
-          </p>
-          <div class="mt-4 space-y-4">
-            <div class="flex items-center">
-              <Field
-                id="edition"
-                name="edition"
-                type="radio"
-                value="octoprint_lite"
-                required
-                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-              />
-              <label for="edition" class="ml-3">
-                <span class="block text-sm font-medium text-gray-700"
-                  >OctoPrint Lite</span
-                >
-              </label>
-            </div>
-          </div>
-        </fieldset>
-        <hr class="m-5" />
 
         <fieldset class="mt-6">
           <legend class="text-base font-medium text-gray-900">
-            3) Choose hardware
+            2) Choose hardware
           </legend>
           <p class="text-sm text-gray-500 mt-2">
             Which Raspberry Pi board are you using?

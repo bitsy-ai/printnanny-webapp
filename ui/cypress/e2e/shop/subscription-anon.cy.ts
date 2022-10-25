@@ -103,7 +103,9 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
       .click()
       .then(() => {
         // receipt button should link to  Stripe portal for subscription management
-        return cy.url({ timeout: 60000 }).should("contain", "billing.stripe.com");
+        return cy
+          .url({ timeout: 60000 })
+          .should("contain", "billing.stripe.com");
       });
   });
 });

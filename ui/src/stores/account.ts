@@ -48,7 +48,7 @@ export const useAccountStore = defineStore({
     },
     async fetchUser() {
       const userData = await accountsApi.accountsUserRetrieve().catch((e) => {
-        console.warn(e)
+        console.warn(e);
       });
       if (userData && userData.data) {
         console.log("Authenticated as user", userData.data);
