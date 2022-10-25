@@ -145,7 +145,7 @@ const store = useWizardStore();
 const step = PiCreateWizardSteps()[2];
 await store.loadPi(parseInt(props.piId));
 
-const deviceDashboardUrl = `http://${store.pi.fqdn}/settings`;
+const deviceDashboardUrl = `http://${store?.pi?.fqdn}/settings`;
 
 function nextManualStep(currentStep: ManualTestStep, currentitemIdx: number) {
   // mark current step done
