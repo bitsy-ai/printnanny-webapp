@@ -32,14 +32,5 @@ class PrinterSoftwareType(models.TextChoices):
     # MAINSAL = "Mainsail", "Mainsail printer controller"
 
 
-class OsEdition(models.TextChoices):
-    OCTOPRINT_LITE = "octoprint_lite", "OctoPrint Lite"
-    # OCTOPRINT_LITE = "octoprint_lite", "PrintNanny OS OctoPrint Lite/Headless"
-    # REPETIER_DESKTOP = "repetier_desktop", "PrintNanny OS Repetier Desktop"
-    # REPETIER_LITE = "repetier_lite", "PrintNanny OS Repetier Lite/Headless"
-    # MAINSAIL_DESKTOP = "mainsail_desktop", "PrintNanny OS Mainsail Desktop"
-    # MAINSAIL_LITE = "mainsail_lite", "PrintNanny OS Mainsail Lite/Headless"
-
-
 class SingleBoardComputerType(models.TextChoices):
     RPI_4 = "rpi_4", "Raspberry Pi 4"
