@@ -121,6 +121,31 @@ class PiViewSet(
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+    @extend_schema(
+        tags=["devices"],
+        operation_id="pi_update_or_create",
+        responses={
+            200: PiSerializer,
+            201: PiSerializer,
+            202: PiSerializer,
+        },
+    )
+    @action(methods=["post"], detail=False, url_path="update-or-create")
+    def update_or_create(self, request, pi_id=None):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            hostname = serializer.validated_data.pop("hostname")
+            instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
+                serializer.validated_data, request.user.id, hostname
+            )
+            instance.get_or_create_mountpoint()
+            response_serializer = self.get_serializer(instance)
+            if not created:
+                return Response(response_serializer.data, status=status.HTTP_200_OK)
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 ###
 # PiSettings views

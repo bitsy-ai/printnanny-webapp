@@ -200,6 +200,11 @@ class PiSerializer(serializers.ModelSerializer):
         depth = 1
         exclude = ("deleted",)
 
+    def update_or_create(self, validated_data, user_id, hostname):
+        return Pi.objects.filter(user_id, hostname=hostname).update_or_create(
+            user_id, hostname=hostname, defaults=validated_data
+        )
+
 
 class PrintNannyLicenseSerializer(serializers.Serializer):
     api = PrintNannyApiConfigSerializer(read_only=True)
