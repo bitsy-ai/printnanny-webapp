@@ -177,7 +177,6 @@ class PiNatsAppSerializer(serializers.ModelSerializer):
 
 class PiSerializer(serializers.ModelSerializer):
     last_boot = serializers.CharField(read_only=True, allow_null=True)
-    # alert_settings = AlertSettingsSerializer(read_only=True)
     settings = PiSettingsSerializer(read_only=True)
     user = UserSerializer(read_only=True)
     system_info = SystemInfoSerializer(read_only=True)
@@ -185,7 +184,7 @@ class PiSerializer(serializers.ModelSerializer):
     webrtc_cloud = WebrtcStreamSerializer(read_only=True)
 
     octoprint_server = OctoPrintServerSerializer(
-        read_only=True, required=False, allow_null=True
+        read_only=True,
     )
 
     urls = serializers.SerializerMethodField(read_only=True)
