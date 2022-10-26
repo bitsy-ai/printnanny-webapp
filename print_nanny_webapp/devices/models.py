@@ -21,7 +21,6 @@ from print_nanny_webapp.devices.utils import (
 )
 from print_nanny_webapp.devices.enum import (
     JanusConfigType,
-    OsEdition,
     SingleBoardComputerType,
 )
 from print_nanny_webapp.octoprint.models import OctoPrintSettings, OctoPrintServer
@@ -62,9 +61,6 @@ class Pi(SafeDeleteModel):
         choices=SingleBoardComputerType.choices,
         default=SingleBoardComputerType.RPI_4,
     )
-    edition = models.CharField(
-        max_length=32, choices=OsEdition.choices, default=OsEdition.OCTOPRINT_LITE
-    )
 
     created_dt = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(
@@ -88,21 +84,14 @@ class Pi(SafeDeleteModel):
         return PiUrls(swupdate=swupdate, octoprint=octoprint, syncthing=syncthing)
 
     @property
-    def octoprint_server(self) -> Optional[OctoPrintServer]:
-        if self.edition == OsEdition.OCTOPRINT_LITE:
-            obj, _ = OctoPrintServer.objects.get_or_create(user=self.user, pi=self)
-            return obj
-        else:
-            return None
+    def octoprint_server(self) -> OctoPrintServer:
+        return OctoPrintServer.objects.get_or_create(user=self.user, pi=self)
 
     @property
-    def octoprint_settings(self) -> Optional[OctoPrintSettings]:
-        if self.edition == OsEdition.OCTOPRINT_LITE:
-            server = self.octoprint_server
-            obj, _ = OctoPrintSettings.objects.get_or_create(octoprint_server=server)
-            return obj
-        else:
-            return None
+    def octoprint_settings(self) -> OctoPrintSettings:
+        return OctoPrintSettings.objects.get_or_create(
+            octoprint_server=self.octoprint_server
+        )
 
     @property
     def alert_settings(self):
