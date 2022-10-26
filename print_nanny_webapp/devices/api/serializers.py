@@ -201,8 +201,8 @@ class PiSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
 
     def update_or_create(self, validated_data, user_id, hostname):
-        return Pi.objects.filter(user_id, hostname=hostname).update_or_create(
-            user_id, hostname=hostname, defaults=validated_data
+        return Pi.objects.filter(user_id=user_id, hostname=hostname).update_or_create(
+            user_id=user_id, hostname=hostname, defaults=validated_data
         )
 
 

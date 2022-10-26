@@ -138,7 +138,6 @@ class PiViewSet(
             instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
                 serializer.validated_data, request.user.id, hostname
             )
-            instance.get_or_create_mountpoint()
             response_serializer = self.get_serializer(instance)
             if not created:
                 return Response(response_serializer.data, status=status.HTTP_200_OK)
