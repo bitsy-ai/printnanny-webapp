@@ -76,12 +76,11 @@ export function PiCreateWizardSteps(): WizardStep[] {
           const store = useWizardStore();
           console.log("add-pi onSubmit", formData);
           // WIREGUARD TODO: allow user to specify fqdn
-          const { hostname, edition, sbc } = formData;
+          const { hostname, sbc } = formData;
           const req: api.PiRequest = {
             fqdn: `${hostname}.local`,
             favorite: false,
             hostname,
-            edition,
             sbc,
           };
           await store.createPi(req);
