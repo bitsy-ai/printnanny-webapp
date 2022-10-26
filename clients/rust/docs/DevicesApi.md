@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**pi_update_or_create**](DevicesApi.md#pi_update_or_create) | **POST** /api/pis/update-or-create/ | 
 [**pis_create**](DevicesApi.md#pis_create) | **POST** /api/pis/ | 
 [**pis_destroy**](DevicesApi.md#pis_destroy) | **DELETE** /api/pis/{id}/ | 
 [**pis_license_cloud_api_retrieve**](DevicesApi.md#pis_license_cloud_api_retrieve) | **GET** /api/pis/{pi_id}/license/cloud-api/ | 
@@ -30,6 +31,36 @@ Method | HTTP request | Description
 [**system_info_update_or_create**](DevicesApi.md#system_info_update_or_create) | **POST** /api/pis/{pi_id}/system-info/update-or-create/ | 
 [**webrtc_stream_update_or_create**](DevicesApi.md#webrtc_stream_update_or_create) | **POST** /api/pis/{pi_id}/webrtc-streams/update-or-create/ | 
 
+
+
+## pi_update_or_create
+
+> crate::models::Pi pi_update_or_create(pi_request)
+
+
+A device (Raspberry Pi) running Print Nanny OS
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**pi_request** | Option<[**PiRequest**](PiRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::Pi**](Pi.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## pis_create

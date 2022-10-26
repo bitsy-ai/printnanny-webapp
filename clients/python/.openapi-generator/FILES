@@ -68,7 +68,6 @@ docs/OrderCheckout.md
 docs/OrderCheckoutRequest.md
 docs/OrderStatus.md
 docs/OrderStatusType.md
-docs/OsEdition.md
 docs/PaginatedEmailAlertSettingsList.md
 docs/PaginatedGcodeFileList.md
 docs/PaginatedOctoPrintBackupList.md
@@ -257,7 +256,6 @@ printnanny_api_client/models/order_checkout.py
 printnanny_api_client/models/order_checkout_request.py
 printnanny_api_client/models/order_status.py
 printnanny_api_client/models/order_status_type.py
-printnanny_api_client/models/os_edition.py
 printnanny_api_client/models/paginated_email_alert_settings_list.py
 printnanny_api_client/models/paginated_gcode_file_list.py
 printnanny_api_client/models/paginated_octo_print_backup_list.py
@@ -438,7 +436,6 @@ test/test_order_checkout.py
 test/test_order_checkout_request.py
 test/test_order_status.py
 test/test_order_status_type.py
-test/test_os_edition.py
 test/test_paginated_email_alert_settings_list.py
 test/test_paginated_gcode_file_list.py
 test/test_paginated_octo_print_backup_list.py

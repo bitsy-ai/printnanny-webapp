@@ -67,7 +67,6 @@ docs/OrderCheckout.md
 docs/OrderCheckoutRequest.md
 docs/OrderStatus.md
 docs/OrderStatusType.md
-docs/OsEdition.md
 docs/PaginatedEmailAlertSettingsList.md
 docs/PaginatedGcodeFileList.md
 docs/PaginatedOctoPrintBackupList.md
@@ -254,7 +253,6 @@ src/models/order_checkout.rs
 src/models/order_checkout_request.rs
 src/models/order_status.rs
 src/models/order_status_type.rs
-src/models/os_edition.rs
 src/models/paginated_email_alert_settings_list.rs
 src/models/paginated_gcode_file_list.rs
 src/models/paginated_octo_print_backup_list.rs

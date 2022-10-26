@@ -15,7 +15,6 @@ Name | Type | Description | Notes
 **urls** | [**crate::models::PiUrls**](Pi_urls.md) |  | 
 **nats_app** | Option<[**crate::models::PiNatsApp**](PiNatsApp.md)> |  | [readonly]
 **sbc** | Option<[**crate::models::SbcEnum**](SbcEnum.md)> |  | [optional]
-**edition** | Option<[**crate::models::OsEdition**](OsEdition.md)> |  | [optional]
 **created_dt** | **String** |  | [readonly]
 **hostname** | Option<**String**> | Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension) | [optional]
 **fqdn** | Option<**String**> |  | [optional]

@@ -112,8 +112,6 @@ pub mod order_status;
 pub use self::order_status::OrderStatus;
 pub mod order_status_type;
 pub use self::order_status_type::OrderStatusType;
-pub mod os_edition;
-pub use self::os_edition::OsEdition;
 pub mod paginated_email_alert_settings_list;
 pub use self::paginated_email_alert_settings_list::PaginatedEmailAlertSettingsList;
 pub mod paginated_gcode_file_list;

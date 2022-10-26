@@ -15,7 +15,6 @@ Name | Type | Description | Notes
 **urls** | [**PiUrls**](PiUrls.md) |  | 
 **nats_app** | [**PiNatsApp**](PiNatsApp.md) |  | [readonly] 
 **sbc** | [**SbcEnum**](SbcEnum.md) |  | [optional] 
-**edition** | [**OsEdition**](OsEdition.md) |  | [optional] 
 **created_dt** | **datetime** |  | [readonly] 
 **hostname** | **str** | Please enter the hostname you set in the Raspberry Pi Imager&#39;s Advanced Options menu (without .local extension) | [optional] 
 **fqdn** | **str** |  | [optional] 
