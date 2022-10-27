@@ -97,6 +97,7 @@
               class="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white border-b border-gray-200 lg:hidden"
             >
               <button
+                id="pn-navmenu-button"
                 type="button"
                 class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 lg:hidden"
                 @click="sidebarOpen = true"

@@ -171,7 +171,7 @@ class User(AbstractUser):
     def is_paid_beta_tester(self) -> bool:
         MemberBadge = apps.get_model("subscriptions", "MemberBadge")
         badge = self.member_badges.filter(
-            type=MemberBadge.MemberBadgeType.PAID_BETA
+            type=MemberBadge.MemberBadgeType.FOUNDING_MEMBER
         ).first()
         return badge is not None
 
@@ -179,7 +179,7 @@ class User(AbstractUser):
     def is_free_beta_tester(self) -> bool:
         MemberBadge = apps.get_model("subscriptions", "MemberBadge")
         badge = self.member_badges.filter(
-            type=MemberBadge.MemberBadgeType.FREE_BETA
+            type=MemberBadge.MemberBadgeType.FOUNDING_MEMBER
         ).first()
         return badge is not None
 

@@ -17,12 +17,12 @@ class MemberBadge(models.Model):
     class MemberBadgeType(models.TextChoices):
 
         FREE_BETA = (
-            "FreeBeta",
+            "Free Beta",
             "Participated in free beta program",
         )
-        PAID_BETA = (
-            "PaidBeta",
-            "Founding Members supported PrintNanny's development by pre-ordering an annual subscription",
+        FOUNDING_MEMBER = (
+            "Founding Member",
+            "Supported PrintNanny by pre-ordering an annual subscription",
         )
 
     class Meta:

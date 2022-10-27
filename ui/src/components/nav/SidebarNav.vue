@@ -99,7 +99,7 @@
         <span
           v-for="item in accountStore.user?.member_badges"
           :key="item.type"
-          class="mt-2 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800"
+          class="pn-achievement-badge mt-2 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800"
         >
           {{ item.type }}
         </span>

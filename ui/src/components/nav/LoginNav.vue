@@ -3,6 +3,7 @@
   <div class="hidden md:flex md:items-center md:space-x-6">
     <a
       v-if="!account.isAuthenticated"
+      id="nav-login"
       href="/login"
       class="text-base font-medium text-white hover:text-gray-300"
     >
@@ -17,6 +18,7 @@
     </a>
     <a
       v-if="account.isAuthenticated"
+      id="nav-dashboard"
       href="/devices"
       class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
     >
@@ -24,6 +26,7 @@
     </a>
     <a
       v-if="account.isAuthenticated"
+      id="nav-logout"
       href="/logout"
       class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
     >
