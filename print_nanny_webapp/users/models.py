@@ -166,8 +166,11 @@ class User(AbstractUser):
 
     @property
     def is_subscribed(self) -> bool:
-        customer = djstripe.models.Customer.objects.get(subscriber=self)
-        return customer.has_any_active_subscription()
+        try:
+            customer = djstripe.models.Customer.objects.get(subscriber=self)
+            return customer.has_any_active_subscription()
+        except djstripe.models.Customer.DoesNotExist:
+            return False
 
     @property
     def is_beta_tester(self) -> bool:
