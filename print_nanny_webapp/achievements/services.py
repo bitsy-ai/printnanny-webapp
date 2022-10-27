@@ -1,16 +1,12 @@
 import logging
 
-from django.contrib.auth import get_user_model
-
 from print_nanny_webapp.achievements.enum import AchievementType
 from print_nanny_webapp.achievements.models import Achievement
-
-UserModel = get_user_model()
 
 logger = logging.getLogger(__name__)
 
 
-def check_achievements(user: UserModel):
+def check_achievements(user):
     """
     Checks achievement completion status for user (all achievements)
     """
@@ -23,6 +19,6 @@ def check_achievements(user: UserModel):
         if created:
             logger.info(
                 "Created Achievement. %s for user %s",
-                AchievementType.FOUNDING_MEMBER,
+                obj,
                 user,
             )
