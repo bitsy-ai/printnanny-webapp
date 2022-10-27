@@ -130,7 +130,7 @@ import { useWizardStore } from "@/stores/wizard";
 import { PiCreateWizardSteps } from "../piCreateWizard";
 import WizardButtons from "@/components/wizard/steps/WizardButtons.vue";
 import { ManualTestStep } from "@/types";
-import { FolderDownloadIcon, ExternalLinkIcon } from "@heroicons/vue/solid";
+import { ExternalLinkIcon } from "@heroicons/vue/solid";
 import type { ManualActionButton } from "@/types/wizard";
 
 const props = defineProps({

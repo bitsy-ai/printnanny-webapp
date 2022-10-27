@@ -97,7 +97,7 @@
         aria-labelledby="badges-headline"
       >
         <span
-          v-for="item in accountStore.user?.member_badges"
+          v-for="item in achievementStore.achievements"
           :key="item.type"
           class="pn-achievement-badge mt-2 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800"
         >
@@ -121,10 +121,9 @@ import {
   CodeIcon,
   TerminalIcon,
 } from "@heroicons/vue/outline";
+import { useAchievementsStore } from "@/stores/achievements";
 
-import { useAccountStore } from "@/stores/account";
-
-const accountStore = useAccountStore();
+const achievementStore = useAchievementsStore();
 const router = useRouter();
 // app-based navigiation links
 const app_nav = [
