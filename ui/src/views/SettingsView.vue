@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import BillingForm from "@/components/forms/BillingForm.vue";
-
 import BillingFormV2 from "@/components/forms/BillingFormV2.vue";
 import AlertSettingsForm from "@/components/forms/AlertSettingsForm.vue";
 import { RouterLink, useRouter } from "vue-router";
