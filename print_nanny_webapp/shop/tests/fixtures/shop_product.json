@@ -12,7 +12,7 @@
             "name": "Founding Membership",
             "description": "Founding Members get unlimited access to Print Nanny. No metered usage. No additional cost per printer. Money-back guarantee. If you're not 100% satisfied, email support@printnanny.ai for a full refund.",
             "statement_descriptor": "PrintNanny Founding Membership",
-            "images": "[\"placeholder\"]",
+            "images": "[\"https://cdn.printnanny.ai/www/logo/logo-square-love.png\"]",
             "is_active": true,
             "is_shippable": false,
             "is_preorder": false,
