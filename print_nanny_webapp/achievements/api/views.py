@@ -30,7 +30,6 @@ class AchievementViewSet(
 
     def list(self, request, *args, **kwargs):
         check_achievements(request.user)
-
         queryset = Achievement.objects.filter(user=request.user)
         page = self.paginate_queryset(queryset)
         if page is not None:

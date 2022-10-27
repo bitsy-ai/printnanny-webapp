@@ -124,6 +124,8 @@ import {
 import { useAchievementsStore } from "@/stores/achievements";
 
 const achievementStore = useAchievementsStore();
+achievementStore.fetchAchievements();
+
 const router = useRouter();
 // app-based navigiation links
 const app_nav = [

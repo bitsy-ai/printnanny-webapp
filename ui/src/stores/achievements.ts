@@ -11,8 +11,10 @@ export const useAchievementsStore = defineStore({
   }),
   actions: {
     async fetchAchievements() {
-      const res = await achievementsApi.achievementsList().catch(handleApiError);
-
+      const res = await achievementsApi
+        .achievementsList()
+        .catch(handleApiError);
+      console.log("Fetched achievements:", res);
       if (res?.data) {
         this.$patch({ achievements: res.data.results });
       }

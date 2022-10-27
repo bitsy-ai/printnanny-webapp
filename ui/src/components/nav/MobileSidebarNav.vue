@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { RouterLink, useRouter } from "vue-router";
-import { useAccountStore } from "@/stores/account";
 import { useAchievementsStore } from "@/stores/achievements";
 import {
   HomeIcon,
@@ -15,7 +14,7 @@ import {
 const router = useRouter();
 
 const achievementStore = useAchievementsStore();
-const accountStore = useAccountStore();
+achievementStore.fetchAchievements();
 // app-based navigiation links
 const app_nav = [
   {
