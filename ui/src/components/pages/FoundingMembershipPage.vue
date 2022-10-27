@@ -83,7 +83,16 @@
               <TabPanels as="template">
                 <TabPanel class="text-sm text-gray-500">
                   <h3 class="sr-only">Frequently Asked Questions</h3>
-
+                  <a
+                    href="https://docs.printnanny.ai/docs/faq/founding-membership/"
+                    target="_blank"
+                  >
+                    <button
+                      class="mt-4 block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                    >
+                      Read the full FAQ @ docs.printnanny.ai
+                    </button>
+                  </a>
                   <dl>
                     <template v-for="faq in faqs" :key="faq.question">
                       <dt class="mt-10 font-medium text-gray-900">
@@ -323,9 +332,17 @@ const faqs = [
   },
   {
     question: "Which boards are supported?",
-    answer: `PrintNanny's early access program requires a Raspberry Pi 4 (2GB+). Subscribe to the following Github issues to track support for other boards:
-      <br><a href="https://github.com/bitsy-ai/printnanny-os/issues/16" class="text-indigo-500 hover:text-indigo-600" target="_blank">Raspberry Pi 3</a>
-      <br><a href="https://github.com/bitsy-ai/printnanny-os/issues/37" class="text-indigo-500 hover:text-indigo-600" target="_blank">Rock Pi 4</a>
+    answer: `PrintNanny's early access program requires a Raspberry Pi 4 (2GB+).
+    `,
+  },
+  {
+    question: "Can I run OctoPrint?",
+    answer: `Yes, OctoPrint is included in PrintNanny OS.
+    `,
+  },
+  {
+    question: "Can I run Mainsail?",
+    answer: `Yes, Mainsail/Moonraker/Klipper is included in PrintNanny OS. We also package avrdude, so you can easily flash klipper's firmware to your microcontroller. 
     `,
   },
   {
