@@ -5,7 +5,6 @@ from __future__ import absolute_import
 # import apis into api package
 from printnanny_api_client.api.accounts_api import AccountsApi
 from printnanny_api_client.api.alerts_api import AlertsApi
-from printnanny_api_client.api.billing_api import BillingApi
 from printnanny_api_client.api.devices_api import DevicesApi
 from printnanny_api_client.api.events_api import EventsApi
 from printnanny_api_client.api.janus_api import JanusApi
