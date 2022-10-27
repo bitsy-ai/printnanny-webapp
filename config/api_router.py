@@ -24,10 +24,6 @@ from print_nanny_webapp.shop.api.views import (
     OrderByStripeCheckoutSessionIdView,
 )
 
-
-from print_nanny_webapp.subscriptions.api.views import (
-    BillingSummaryView,
-)
 from print_nanny_webapp.octoprint.api.views import (
     GcodeFileViewSet,
     OctoPrintBackupViewset,
@@ -49,7 +45,6 @@ router.register("pis", PiViewSet)
 
 # enables /api/devices/:hostname lookup (no nested routing)
 other_urls = [
-    path("billing/summary", BillingSummaryView.as_view(), name="billing-summary"),
     path("shop/orders", OrderCheckoutView.as_view()),
     path(
         "shop/checkout/success/<str:stripe_checkout_session_id>",
