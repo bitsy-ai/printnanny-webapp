@@ -76,3 +76,17 @@ BASE_URL = env("DJANGO_BASE_URL", default="http://localhost:8000/")
 
 WHITENOISE_MANIFEST_STRICT = False
 GOOGLE_ANALYTICS = ""
+
+# Django Channels
+# ------------------------------------------------------------------------------
+WS_BASE_URL = env("DJANGO_WS_URL", default="ws")
+BASE_URL = env("DJANGO_BASE_URL", default="/")
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [env("REDIS_URL")],
+            "group_expiry": 1800,
+        },
+    },
+}
