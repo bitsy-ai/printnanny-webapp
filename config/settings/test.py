@@ -4,8 +4,8 @@ With these settings, tests run faster.
 import django_stubs_ext
 
 django_stubs_ext.monkeypatch()
-from .base import *  # noqa
-from .base import env
+from config.settings.base import *  # noqa
+from config.settings.base import env
 
 
 # GENERAL
@@ -44,6 +44,16 @@ TEMPLATES[-1]["OPTIONS"]["loaders"] = [  # type: ignore[index] # noqa F405
         ],
     )
 ]
+
+# WhiteNoise
+# ------------------------------------------------------------------------------
+# http://whitenoise.evans.io/en/latest/django.html#using-whitenoise-in-development
+INSTALLED_APPS = ["whitenoise.runserver_nostatic"] + INSTALLED_APPS  # noqa F405
+WHITENOISE_AUTOREFRESH = True
+
+# CORS
+# ------------------------------------------------------------------------------
+CORS_ALLOW_ALL_ORIGINS = True
 
 # EMAIL
 # ------------------------------------------------------------------------------

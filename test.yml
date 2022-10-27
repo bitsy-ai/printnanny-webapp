@@ -81,7 +81,7 @@ services:
       NKEYS_PATH: /var/lib/nats/nsc/keys
       NSC_HOME: /var/lib/nats/nsc
       NSC_STORE: /var/lib/nats/nsc/stores
-      DJANGO_SETTINGS_MODULE: config.settings.local
+      DJANGO_SETTINGS_MODULE: config.settings.test
       STRIPE_TEST_PUBLIC_KEY: ${STRIPE_TEST_PUBLIC_KEY}
       STRIPE_TEST_SECRET_KEY: ${STRIPE_TEST_SECRET_KEY}
       STRIPE_PORTAL_URL: ${STRIPE_PORTAL_URL}
