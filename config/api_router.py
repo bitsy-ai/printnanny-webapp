@@ -1,6 +1,9 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedSimpleRouter
+
+
+from print_nanny_webapp.achievements.api.views import AchievementViewSet
 from print_nanny_webapp.devices.api.views import (
     SystemInfoViewSet,
     PiViewSet,
@@ -80,6 +83,8 @@ pi_router.register(
     OctoPrintServerByDeviceViewSet,
     basename="octoprints",
 )
+
+router.register("achievements", AchievementViewSet)
 
 router.register(
     r"shop/products",
