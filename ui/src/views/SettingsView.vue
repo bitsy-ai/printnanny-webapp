@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import BillingForm from "@/components/forms/BillingForm.vue";
+
+import BillingFormV2 from "@/components/forms/BillingFormV2.vue";
 import AlertSettingsForm from "@/components/forms/AlertSettingsForm.vue";
 import { RouterLink, useRouter } from "vue-router";
 
@@ -15,11 +17,11 @@ const navigation = [
     component: AlertSettingsForm,
   },
   {
-    name: "Plan & Billing",
+    name: "Subscription & Billing",
     link: { name: "billing" },
     icon: CreditCardIcon,
     key: "billing",
-    component: BillingForm,
+    component: BillingFormV2,
   },
 ];
 

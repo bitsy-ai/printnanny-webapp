@@ -17,6 +17,19 @@ from print_nanny_webapp.shop.models import Product
 User = get_user_model()
 
 
+class TestSubscriptionBadges(TestCase):
+    def setUp(self) -> None:
+        super().setUp()
+
+        self.factory = RequestFactory()
+
+    def test_badges_anon_new_customer(self):
+        request = self.factory.get("/api/shop/orders")
+        request.user = AnonymousUser()
+        request.session = self.client.session
+        email = "new-customer@test.com"
+
+
 class TestShopServices(TestCase):
     fixtures = [
         "/app/print_nanny_webapp/shop/tests/fixtures/djstripe_account.json",
