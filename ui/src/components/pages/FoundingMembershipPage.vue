@@ -83,10 +83,13 @@
               <TabPanels as="template">
                 <TabPanel class="text-sm text-gray-500">
                   <h3 class="sr-only">Frequently Asked Questions</h3>
-                  <a href="https://docs.printnanny.ai/docs/faq/founding-membership/" target="_blank">
+                  <a
+                    href="https://docs.printnanny.ai/docs/faq/founding-membership/"
+                    target="_blank"
+                  >
                     <button
                       class="mt-4 block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-                      >
+                    >
                       Read the full FAQ @ docs.printnanny.ai
                     </button>
                   </a>
