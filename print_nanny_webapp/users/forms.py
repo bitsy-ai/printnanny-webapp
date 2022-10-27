@@ -3,11 +3,11 @@ from typing import List
 from allauth.account.forms import SignupForm
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.contrib.auth import forms as admin_forms
-from django.core.exceptions import ValidationError
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext_lazy as _
 from django import forms
-from print_nanny_webapp.subscriptions.models import ReferralCode, ReferralSignup
+
+# from print_nanny_webapp.subscriptions.models import ReferralCode, ReferralSignup
 from print_nanny_webapp.users.models import User, InviteRequest, UserSettings
 
 logger = logging.getLogger(__name__)
@@ -109,29 +109,31 @@ class UserCreationForm(SignupForm):
         model = User
         fields = ("email", "password1", "password2", "referral_code")
 
-    def clean_referral_code(self):
-        referral_code = self.cleaned_data["referral_code"]
-        if referral_code == "":
-            return referral_code
-        logger.info("Got referral_code %s", referral_code)
-        try:
-            ReferralCode.objects.get(code=referral_code)
-        except ReferralCode.DoesNotExist:
-            raise ValidationError(self.error_messages["referral_code_invalid"])
-        return referral_code
+    # TODO: fix referral codes (move to shop)
 
-    def save(self, request):
-        logger.info("Using custom signup form")
-        # Ensure you call the parent class's save.
-        # .save() returns a User object.
-        user = super(UserCreationForm, self).save(request)
+    # def clean_referral_code(self):
+    #     referral_code = self.cleaned_data["referral_code"]
+    #     if referral_code == "":
+    #         return referral_code
+    #     logger.info("Got referral_code %s", referral_code)
+    #     try:
+    #         ReferralCode.objects.get(code=referral_code)
+    #     except ReferralCode.DoesNotExist:
+    #         raise ValidationError(self.error_messages["referral_code_invalid"])
+    #     return referral_code
 
-        # Add your own processing here.
-        referral_code = self.cleaned_data["referral_code"]
-        if referral_code != "":
-            code = ReferralCode.objects.get(code=referral_code)
-            referral_signup = ReferralSignup.objects.create(
-                code=code, referrer=code.user, recipient=user
-            )
-            logger.info("Created ReferralSignup %s", referral_signup)
-        return user
+    # def save(self, request):
+    #     logger.info("Using custom signup form")
+    #     # Ensure you call the parent class's save.
+    #     # .save() returns a User object.
+    #     user = super(UserCreationForm, self).save(request)
+
+    #     # Add your own processing here.
+    #     referral_code = self.cleaned_data["referral_code"]
+    #     if referral_code != "":
+    #         code = ReferralCode.objects.get(code=referral_code)
+    #         referral_signup = ReferralSignup.objects.create(
+    #             code=code, referrer=code.user, recipient=user
+    #         )
+    #         logger.info("Created ReferralSignup %s", referral_signup)
+    #     return user

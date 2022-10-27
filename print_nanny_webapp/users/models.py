@@ -5,7 +5,8 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from django.db import models
-from django.apps import apps
+
+import djstripe
 from rest_framework import serializers
 from anymail.message import AnymailMessage
 
@@ -154,6 +155,7 @@ class User(AbstractUser):
             "email": self.email,
             "subscribed": True,
         }
+        return data
 
     def __str__(self):
         return self.email
@@ -162,30 +164,14 @@ class User(AbstractUser):
     def events_channel(self) -> str:
         return f"events_{self.id}"
 
-    # @property
-    # def is_subscribed(self) -> bool:
-    #     customer = djstripe.models.Customer.objects.get(subscriber=self)
-    #     return customer.has_any_active_subscription()
-
     @property
-    def is_paid_beta_tester(self) -> bool:
-        MemberBadge = apps.get_model("subscriptions", "MemberBadge")
-        badge = self.member_badges.filter(
-            type=MemberBadge.MemberBadgeType.FOUNDING_MEMBER
-        ).first()
-        return badge is not None
-
-    @property
-    def is_free_beta_tester(self) -> bool:
-        MemberBadge = apps.get_model("subscriptions", "MemberBadge")
-        badge = self.member_badges.filter(
-            type=MemberBadge.MemberBadgeType.FOUNDING_MEMBER
-        ).first()
-        return badge is not None
+    def is_subscribed(self) -> bool:
+        customer = djstripe.models.Customer.objects.get(subscriber=self)
+        return customer.has_any_active_subscription()
 
     @property
     def is_beta_tester(self) -> bool:
-        return self.is_free_beta_tester or self.is_paid_beta_tester or self.is_superuser
+        return self.is_subscribed or self.is_superuser or self.is_staff
 
 
 class UserSettings(models.Model):

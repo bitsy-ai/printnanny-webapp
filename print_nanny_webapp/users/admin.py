@@ -32,7 +32,7 @@ class GroupAdmin(admin.ModelAdmin):
 # Register the new Group ModelAdmin.
 admin.site.register(Group, GroupAdmin)
 
-MemberBadge = apps.get_model("subscriptions", "MemberBadge")
+
 EmailWaitlist = apps.get_model("users", "EmailWaitlist")
 
 
@@ -45,16 +45,17 @@ def create_token(
         Token.objects.get_or_create(user=user)
 
 
-def add_free_beta(
-    _modeladmin,
-    request: HttpRequest,
-    queryset: QuerySet[Any],
-):
+# TODO: add achievement fn
+# def add_free_beta(
+#     _modeladmin,
+#     request: HttpRequest,
+#     queryset: QuerySet[Any],
+# ):
 
-    for user in queryset:
-        MemberBadge.objects.create(
-            user=user, type=MemberBadge.MemberBadgeType.FREE_BETA
-        )
+#     for user in queryset:
+#         MemberBadge.objects.create(
+#             user=user, type=MemberBadge.MemberBadgeType.FREE_BETA
+#         )
 
 
 @admin.register(User)
@@ -70,13 +71,11 @@ class UserAdmin(auth_admin.UserAdmin):
         "first_name",
         "last_name",
         "last_login",
-        "is_free_beta_tester",
-        "is_paid_beta_tester",
         "is_serviceuser",
         "auth_token",
     )
     list_filter = ("email", "is_staff", "is_superuser")
-    readonly_fields = ("is_free_beta_tester", "is_paid_beta_tester", "auth_token")
+    readonly_fields = ("auth_token",)
 
     fieldsets = (
         (
@@ -85,8 +84,6 @@ class UserAdmin(auth_admin.UserAdmin):
                 "fields": (
                     "email",
                     "password",
-                    "is_free_beta_tester",
-                    "is_paid_beta_tester",
                 )
             },
         ),
@@ -111,7 +108,9 @@ class UserAdmin(auth_admin.UserAdmin):
     search_fields = ("email",)
     ordering = ("email",)
 
-    actions = [create_token, add_free_beta]
+    # TODO: add achievement
+    # actions = [create_token, add_free_beta]
+    actions = [create_token]
 
 
 def send_beta_invite(
