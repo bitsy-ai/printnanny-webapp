@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, useRouter } from "vue-router";
+import { useAccountStore } from "@/stores/account";
 import {
   HomeIcon,
   QuestionMarkCircleIcon,
@@ -11,6 +12,8 @@ import {
 } from "@heroicons/vue/outline";
 
 const router = useRouter();
+
+const accountStore = useAccountStore();
 // app-based navigiation links
 const app_nav = [
   {
@@ -25,9 +28,6 @@ const app_nav = [
     icon: CogIcon,
     current: router.currentRoute.value.path.includes("settings"),
   },
-  //   { name: 'My Cameras', link: {name: "cameras" }, icon: VideoCameraIcon, current: router.currentRoute.value.name == "cameras"},
-  //   { name: 'My tasks', href: '#', icon: ViewListIcon, current: false },
-  //   { name: 'Recent', href: '#', icon: ClockIcon, current: false },
 ];
 
 // external hrefs
@@ -146,6 +146,26 @@ const misc_nav = [
             {{ item.name }}
           </a>
         </div>
+      </div>
+
+      <h3
+        id="badges-headline"
+        class="pt-4 px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider"
+      >
+        Achievements
+      </h3>
+      <div
+        class="mt-1 space-y-1"
+        role="group"
+        aria-labelledby="badges-headline"
+      >
+        <span
+          v-for="item in accountStore.user?.member_badges"
+          :key="item.type"
+          class="pn-achievement-badge mt-2 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800"
+        >
+          {{ item.type }}
+        </span>
       </div>
     </nav>
   </div>

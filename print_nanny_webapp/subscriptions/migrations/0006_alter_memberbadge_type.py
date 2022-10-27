@@ -6,13 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('subscriptions', '0005_alter_memberbadge_type'),
+        ("subscriptions", "0005_alter_memberbadge_type"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='memberbadge',
-            name='type',
-            field=models.CharField(choices=[('Free Beta', 'Participated in free beta program'), ('Founding Member', 'Supported PrintNanny by pre-ordering an annual subscription')], max_length=24),
+            model_name="memberbadge",
+            name="type",
+            field=models.CharField(
+                choices=[
+                    ("Free Beta", "Participated in free beta program"),
+                    (
+                        "Founding Member",
+                        "Supported PrintNanny by pre-ordering an annual subscription",
+                    ),
+                ],
+                max_length=24,
+            ),
         ),
     ]

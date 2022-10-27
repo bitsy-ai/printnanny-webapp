@@ -81,6 +81,22 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
     cy.url({ timeout: 60000 }).should("contain", "/shop/thank-you/");
   });
 
+  it("PrintNanny Cloud Dashboard should show Founding Member achievement badge", () => {
+
+    return cy.loginUser(email, validPassword).then(() => {
+      return cy.visit(checkoutRedirectUrl).then(() => {
+        return cy
+          .get("a#nav-dashboard", { timeout: 10000 })
+          .click()
+          .then(() => cy.url({ timeout: 2000 }).should("contain", "/devices").then(() => {
+            cy.get("button#pn-navmenu-button", { timeout: 10000 }).click();
+            cy.get(".pn-achievement-badge", { timeout: 10000 }).contains("Founding Member")
+          }));
+      });
+    })
+
+  });
+
   it("Stripe CheckoutSession redirect should show confirmation (authenticated checkout)", () => {
     cy.visit(checkoutRedirectUrl);
 
@@ -93,7 +109,7 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
     // subscription confirm screen should show open dashboard button after account registration
     cy.get("button").contains("Open Dashboard", { timeout: 10000 });
 
-    // Download/print receipt button should open pay.strime.com
+    // Download/print receipt button should open pay.stripe.com
     cy.get("button#receipt", { timeout: 10000 })
       .click()
       .then(() => {

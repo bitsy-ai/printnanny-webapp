@@ -2,6 +2,7 @@
 <template>
   <div class="hidden md:flex md:items-center md:space-x-6">
     <a
+      id="nav-login"
       v-if="!account.isAuthenticated"
       href="/login"
       class="text-base font-medium text-white hover:text-gray-300"
@@ -16,6 +17,7 @@
       Join Waitlist
     </a>
     <a
+      id="nav-dashboard"
       v-if="account.isAuthenticated"
       href="/devices"
       class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
@@ -23,6 +25,7 @@
       Dashboard
     </a>
     <a
+      id="nav-logout"
       v-if="account.isAuthenticated"
       href="/logout"
       class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
