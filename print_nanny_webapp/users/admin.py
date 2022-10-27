@@ -9,6 +9,9 @@ from django.contrib.auth.models import Group
 from invitations.utils import get_invitation_model
 
 from rest_framework.authtoken.models import Token
+
+from print_nanny_webapp.achievements.models import Achievement
+from print_nanny_webapp.achievements.enum import AchievementType
 from print_nanny_webapp.users.forms import (
     GroupAdminForm,
 )
@@ -45,17 +48,24 @@ def create_token(
         Token.objects.get_or_create(user=user)
 
 
-# TODO: add achievement fn
-# def add_free_beta(
-#     _modeladmin,
-#     request: HttpRequest,
-#     queryset: QuerySet[Any],
-# ):
+def add_free_beta_achievement(
+    _modeladmin,
+    request: HttpRequest,
+    queryset: QuerySet[Any],
+):
 
-#     for user in queryset:
-#         MemberBadge.objects.create(
-#             user=user, type=MemberBadge.MemberBadgeType.FREE_BETA
-#         )
+    for user in queryset:
+        Achievement.objects.create(user=user, type=AchievementType.FREE_BETA)
+
+
+def add_free_founding_member_achievement(
+    _modeladmin,
+    request: HttpRequest,
+    queryset: QuerySet[Any],
+):
+
+    for user in queryset:
+        Achievement.objects.create(user=user, type=AchievementType.FOUNDING_MEMBER)
 
 
 @admin.register(User)
@@ -108,9 +118,11 @@ class UserAdmin(auth_admin.UserAdmin):
     search_fields = ("email",)
     ordering = ("email",)
 
-    # TODO: add achievement
-    # actions = [create_token, add_free_beta]
-    actions = [create_token]
+    actions = [
+        create_token,
+        add_free_beta_achievement,
+        add_free_founding_member_achievement,
+    ]
 
 
 def send_beta_invite(
