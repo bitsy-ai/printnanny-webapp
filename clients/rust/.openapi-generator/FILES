@@ -4,6 +4,9 @@
 Cargo.toml
 README.md
 docs/AccountsApi.md
+docs/Achievement.md
+docs/AchievementTypeEnum.md
+docs/AchievementsApi.md
 docs/AlertsApi.md
 docs/CallbackTokenAuth.md
 docs/CallbackTokenAuthRequest.md
@@ -63,6 +66,7 @@ docs/OrderCheckout.md
 docs/OrderCheckoutRequest.md
 docs/OrderStatus.md
 docs/OrderStatusType.md
+docs/PaginatedAchievementList.md
 docs/PaginatedEmailAlertSettingsList.md
 docs/PaginatedGcodeFileList.md
 docs/PaginatedOctoPrintBackupList.md
@@ -166,6 +170,7 @@ docs/WebrtcStream.md
 docs/WebrtcStreamRequest.md
 git_push.sh
 src/apis/accounts_api.rs
+src/apis/achievements_api.rs
 src/apis/alerts_api.rs
 src/apis/configuration.rs
 src/apis/devices_api.rs
@@ -178,6 +183,8 @@ src/apis/schema_api.rs
 src/apis/settings_api.rs
 src/apis/shop_api.rs
 src/lib.rs
+src/models/achievement.rs
+src/models/achievement_type_enum.rs
 src/models/callback_token_auth.rs
 src/models/callback_token_auth_request.rs
 src/models/dj_stripe_charge.rs
@@ -233,6 +240,7 @@ src/models/order_checkout.rs
 src/models/order_checkout_request.rs
 src/models/order_status.rs
 src/models/order_status_type.rs
+src/models/paginated_achievement_list.rs
 src/models/paginated_email_alert_settings_list.rs
 src/models/paginated_gcode_file_list.rs
 src/models/paginated_octo_print_backup_list.rs

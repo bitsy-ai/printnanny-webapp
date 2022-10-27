@@ -5,6 +5,9 @@
 MANIFEST.in
 README.md
 docs/AccountsApi.md
+docs/Achievement.md
+docs/AchievementTypeEnum.md
+docs/AchievementsApi.md
 docs/AlertsApi.md
 docs/CallbackTokenAuth.md
 docs/CallbackTokenAuthRequest.md
@@ -64,6 +67,7 @@ docs/OrderCheckout.md
 docs/OrderCheckoutRequest.md
 docs/OrderStatus.md
 docs/OrderStatusType.md
+docs/PaginatedAchievementList.md
 docs/PaginatedEmailAlertSettingsList.md
 docs/PaginatedGcodeFileList.md
 docs/PaginatedOctoPrintBackupList.md
@@ -169,6 +173,7 @@ git_push.sh
 printnanny_api_client/__init__.py
 printnanny_api_client/api/__init__.py
 printnanny_api_client/api/accounts_api.py
+printnanny_api_client/api/achievements_api.py
 printnanny_api_client/api/alerts_api.py
 printnanny_api_client/api/devices_api.py
 printnanny_api_client/api/events_api.py
@@ -182,6 +187,8 @@ printnanny_api_client/api_client.py
 printnanny_api_client/configuration.py
 printnanny_api_client/exceptions.py
 printnanny_api_client/models/__init__.py
+printnanny_api_client/models/achievement.py
+printnanny_api_client/models/achievement_type_enum.py
 printnanny_api_client/models/callback_token_auth.py
 printnanny_api_client/models/callback_token_auth_request.py
 printnanny_api_client/models/dj_stripe_charge.py
@@ -236,6 +243,7 @@ printnanny_api_client/models/order_checkout.py
 printnanny_api_client/models/order_checkout_request.py
 printnanny_api_client/models/order_status.py
 printnanny_api_client/models/order_status_type.py
+printnanny_api_client/models/paginated_achievement_list.py
 printnanny_api_client/models/paginated_email_alert_settings_list.py
 printnanny_api_client/models/paginated_gcode_file_list.py
 printnanny_api_client/models/paginated_octo_print_backup_list.py
@@ -341,6 +349,9 @@ setup.py
 test-requirements.txt
 test/__init__.py
 test/test_accounts_api.py
+test/test_achievement.py
+test/test_achievement_type_enum.py
+test/test_achievements_api.py
 test/test_alerts_api.py
 test/test_callback_token_auth.py
 test/test_callback_token_auth_request.py
@@ -400,6 +411,7 @@ test/test_order_checkout.py
 test/test_order_checkout_request.py
 test/test_order_status.py
 test/test_order_status_type.py
+test/test_paginated_achievement_list.py
 test/test_paginated_email_alert_settings_list.py
 test/test_paginated_gcode_file_list.py
 test/test_paginated_octo_print_backup_list.py

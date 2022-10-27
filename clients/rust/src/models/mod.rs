@@ -1,3 +1,7 @@
+pub mod achievement;
+pub use self::achievement::Achievement;
+pub mod achievement_type_enum;
+pub use self::achievement_type_enum::AchievementTypeEnum;
 pub mod callback_token_auth;
 pub use self::callback_token_auth::CallbackTokenAuth;
 pub mod callback_token_auth_request;
@@ -106,6 +110,8 @@ pub mod order_status;
 pub use self::order_status::OrderStatus;
 pub mod order_status_type;
 pub use self::order_status_type::OrderStatusType;
+pub mod paginated_achievement_list;
+pub use self::paginated_achievement_list::PaginatedAchievementList;
 pub mod paginated_email_alert_settings_list;
 pub use self::paginated_email_alert_settings_list::PaginatedEmailAlertSettingsList;
 pub mod paginated_gcode_file_list;
