@@ -121,8 +121,9 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
               .should("contain", "/devices")
               .then(() => {
                 cy.get("button#pn-navmenu-button", { timeout: 10000 }).click();
-                // TODO
-                // cy.get(".pn-achievement-badge", { timeout: 10000 }).contains("Founding Member")
+                cy.get(".pn-achievement-badge", { timeout: 10000 }).contains(
+                  "Founding Member"
+                );
               })
           );
       });

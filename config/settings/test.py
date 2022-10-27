@@ -4,8 +4,8 @@ With these settings, tests run faster.
 import django_stubs_ext
 
 django_stubs_ext.monkeypatch()
-from .base import *  # noqa
-from .base import env
+from config.settings.base import *  # noqa
+from config.settings.base import env
 
 
 # GENERAL
@@ -17,6 +17,12 @@ SECRET_KEY = env(
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#test-runner
 TEST_RUNNER = "django.test.runner.DiscoverRunner"
+
+# https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+]
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -45,6 +51,16 @@ TEMPLATES[-1]["OPTIONS"]["loaders"] = [  # type: ignore[index] # noqa F405
     )
 ]
 
+# WhiteNoise
+# ------------------------------------------------------------------------------
+# http://whitenoise.evans.io/en/latest/django.html#using-whitenoise-in-development
+INSTALLED_APPS = ["whitenoise.runserver_nostatic"] + INSTALLED_APPS  # noqa F405
+WHITENOISE_AUTOREFRESH = True
+
+# CORS
+# ------------------------------------------------------------------------------
+CORS_ALLOW_ALL_ORIGINS = True
+
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
@@ -60,3 +76,17 @@ BASE_URL = env("DJANGO_BASE_URL", default="http://localhost:8000/")
 
 WHITENOISE_MANIFEST_STRICT = False
 GOOGLE_ANALYTICS = ""
+
+# Django Channels
+# ------------------------------------------------------------------------------
+WS_BASE_URL = env("DJANGO_WS_URL", default="ws")
+BASE_URL = env("DJANGO_BASE_URL", default="/")
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [env("REDIS_URL")],
+            "group_expiry": 1800,
+        },
+    },
+}

@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.db import models
 
 import djstripe
+from djstripe.sync import sync_subscriber
 from rest_framework import serializers
 from anymail.message import AnymailMessage
 
@@ -170,7 +171,18 @@ class User(AbstractUser):
             customer = djstripe.models.Customer.objects.get(subscriber=self)
             return customer.has_any_active_subscription()
         except djstripe.models.Customer.DoesNotExist:
-            return False
+            # try getting customer by email
+            # if Customer checkout out anonymously and later created an acccount, subscriber will not be set
+            try:
+                customer = djstripe.models.Customer.objects.get(email=self.email)
+                # set subscriber
+                customer.subscriber = self
+                customer.save()
+                customer = sync_subscriber(self)
+                return customer.has_any_active_subscription()
+
+            except djstripe.models.Customer.DoesNotExist:
+                return False
 
     @property
     def is_beta_tester(self) -> bool:

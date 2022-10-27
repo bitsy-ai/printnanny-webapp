@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, useRouter } from "vue-router";
-import { useAccountStore } from "@/stores/account";
+import { useAchievementsStore } from "@/stores/achievements";
 import {
   HomeIcon,
   QuestionMarkCircleIcon,
@@ -13,7 +13,8 @@ import {
 
 const router = useRouter();
 
-const accountStore = useAccountStore();
+const achievementStore = useAchievementsStore();
+achievementStore.fetchAchievements();
 // app-based navigiation links
 const app_nav = [
   {
@@ -160,7 +161,7 @@ const misc_nav = [
         aria-labelledby="badges-headline"
       >
         <span
-          v-for="item in accountStore.user?.member_badges"
+          v-for="item in achievementStore.achievements"
           :key="item.type"
           class="pn-achievement-badge mt-2 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800"
         >

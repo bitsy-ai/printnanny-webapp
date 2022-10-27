@@ -38,7 +38,9 @@ def sync_stripe_customer_by_id(stripe_customer_id: str) -> DjStripeCustomer:
     stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
 
     stripe_res = stripe.Customer.retrieve(stripe_customer_id)
-    return DjStripeCustomer.sync_from_stripe_data(stripe_res)
+    customer = DjStripeCustomer.sync_from_stripe_data(stripe_res)
+    customer.save()
+    return customer
 
 
 def build_stripe_checkout_session_kwargs(
@@ -228,6 +230,7 @@ def create_order(request: HttpRequest, product: Product, email: str):
     checkout_session = DjStripeCheckoutSession.sync_from_stripe_data(
         checkout_session_res
     )
+    checkout_session.save()
     order = Order.objects.create(
         djstripe_customer=checkout_session.customer,
         djstripe_checkout_session=checkout_session,
@@ -253,8 +256,10 @@ def sync_stripe_payment_intent(payment_intent_id: str) -> DjStripePaymentIntent:
 
     stripe_res = stripe.PaymentIntent.retrieve(payment_intent_id)
     payment_intent = DjStripePaymentIntent.sync_from_stripe_data(stripe_res)
+    payment_intent.save()
     for charge in stripe_res.charges.data:
-        DjStripeCharge.sync_from_stripe_data(charge)
+        charge_obj = DjStripeCharge.sync_from_stripe_data(charge)
+        charge_obj.save()
     payment_intent.refresh_from_db()
     return payment_intent
 
@@ -262,6 +267,7 @@ def sync_stripe_payment_intent(payment_intent_id: str) -> DjStripePaymentIntent:
 def sync_stripe_subscription(subscription_id: str) -> DjStripeSubscription:
     stripe_res = stripe.Subscription.retrieve(subscription_id)
     subscription = DjStripeSubscription.sync_from_stripe_data(stripe_res)
+    subscription.save()
     return subscription
 
 
