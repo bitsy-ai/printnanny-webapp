@@ -7,7 +7,7 @@
             "created_dt": "2022-10-28T05:50:33.387Z",
             "template": "founding-member-offer-1-nov-2022",
             "subject": "[PrintNanny] You're invited to the Founding Member program ✨",
-            "send_fn": "print_nanny_webapp.email_campaigns. send_fn_founding_member_november_2022_offer"
+            "send_fn": "print_nanny_webapp.email_campaigns.services.send_fn_founding_member_november_2022_offer"
         }
     }
 ]
