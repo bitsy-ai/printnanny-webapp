@@ -48,8 +48,8 @@ def send_fn_founding_member_november_2022_offer(
     msg.track_opens = True
 
     msg.to = [format_email(u) for u in queryset]
-    msg.merge_data = [format_merge_data(u) for u in queryset]
-    msg.merge_metadata = [format_merge_metadata(u, campaign) for u in queryset]
+    msg.merge_data = {u.email: format_merge_data(u) for u in queryset}
+    msg.merge_metadata = {u.email: format_merge_metadata(u, campaign) for u in queryset}
     msg.esp_extra = {
         "o:deliverytime-optimize-period": "24h",  # use Mailgun Send Time Optimization
         "o:time-zone-localize": "16:00",  # use Mailgun Timezone Optimization
