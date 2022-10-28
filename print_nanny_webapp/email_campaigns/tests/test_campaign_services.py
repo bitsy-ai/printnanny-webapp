@@ -29,12 +29,12 @@ class CampaignTestCase(TestCase):
             email=email2, password=password, is_superuser=False
         )
 
-        queryset = User.objects.all()
+        queryset = User.objects.all()  # type: ignore[has-type]
         campaign = Campaign.objects.get(template="founding-member-offer-1-nov-2022")
         msg = send_fn_founding_member_november_2022_offer(queryset, campaign)
 
         for email, recipient in msg.anymail_status.recipients.items():
-            user = User.objects.get(email=email)
+            user = User.objects.get(email=email)  # type: ignore[has-type]
             sent_log = EmailMessage.objects.get(
                 campaign=campaign, message_id=msg.anymail_status.message_id, user=user
             )
