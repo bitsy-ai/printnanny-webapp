@@ -20,8 +20,7 @@ def format_email(user) -> str:
         result += " "
     if result == "":
         return user.email
-    else:
-        return f"{result} <{user.email}>"
+    return f"{result} <{user.email}>"
 
 
 def format_merge_data(user) -> Dict[str, str]:
@@ -30,34 +29,34 @@ def format_merge_data(user) -> Dict[str, str]:
     return dict(name="Maker")
 
 
-def format_merge_metadata(user: User, campaign: Campaign) -> Dict[str, str]:
-    return dict(user_id=str(user.id), campaign_id=str(campaign.id))
+def format_merge_metadata(user: User) -> Dict[str, str]:
+    return dict(user_id=str(user.id))
 
 
 def send_fn_founding_member_november_2022_offer(
     queryset: QuerySet[User], campaign: Campaign
-):
+) -> AnymailMessage:
 
     msg = AnymailMessage(
         subject=campaign.subject,
         tags=["marketing", "founding_member"],
         from_email="beta@mail.printnanny.ai",
+        to=[u.email for u in queryset],
     )
-
-    msg.track_clicks = True
-    msg.track_opens = True
 
     msg.template_id = campaign.template
 
-    msg.to = [format_email(u) for u in queryset]
+    msg.to = [u.email for u in queryset]
     msg.merge_data = {u.email: format_merge_data(u) for u in queryset}
-    msg.merge_metadata = {u.email: format_merge_metadata(u, campaign) for u in queryset}
+    msg.merge_metadata = {u.email: format_merge_metadata(u) for u in queryset}
     msg.esp_extra = {
         "o:deliverytime-optimize-period": "24h",  # use Mailgun Send Time Optimization
         "o:time-zone-localize": "16:00",  # use Mailgun Timezone Optimization
         "h:Reply-To": "leigh@printnanny.ai",
     }
+    msg.merge_global_data = {"campaign_id": campaign.id}
 
     logger.info("Starting campaign %s to %s recipients", campaign.template, len(msg.to))
     msg.send(fail_silently=False)
     logger.info("Success! Started campaign %s", campaign.template)
+    return msg

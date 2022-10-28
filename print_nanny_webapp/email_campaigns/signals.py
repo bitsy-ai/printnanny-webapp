@@ -1,5 +1,6 @@
 import logging
 from anymail.signals import post_send, tracking
+from anymail.message import UNSET
 from django.dispatch import receiver
 
 from print_nanny_webapp.email_campaigns.models import EmailMessage, EmailTrackingEvent
@@ -8,24 +9,36 @@ logger = logging.getLogger(__name__)
 
 # log sent emails
 @receiver(post_send)
-def log_sent_message(_sender, message, status, _esp_name, **_kwargs):
-    campaign_id = message.metadata.get("campaign_id")
-    if campaign_id is None:
-        raise ValueError("metadata->campaign_id is required to log sent EmailMessage")
-    user_id = message.metadata.get("user_id")
-    if user_id is None:
-        raise ValueError("metadata->user_id is required to log sent EmailMessage")
+def log_sent_message(sender, message, status, esp_name, **_kwargs):
 
-    for email, recipient_status in status.recipients.items():
-        obj = EmailMessage.objects.create(
-            message_id=recipient_status.message_id,  # might be None if send failed
-            email=email,
-            subject=message.subject,
-            status=recipient_status.status,
-            campaign_id=campaign_id,
-            user_id=user_id,
+    if message.merge_global_data != UNSET:
+        campaign_id = message.merge_global_data.get("campaign_id")
+        if campaign_id is None:
+            raise ValueError(
+                "metadata->campaign_id is required to log sent EmailMessage"
+            )
+        for email, recipient_status in status.recipients.items():
+            metadata = message.merge_metadata[email]
+            user_id = metadata.get("user_id")
+            if user_id is None:
+                raise ValueError(
+                    "metadata->user_id is required to log sent EmailMessage"
+                )
+
+            obj = EmailMessage.objects.create(
+                message_id=recipient_status.message_id,  # might be None if send failed
+                send_status=recipient_status.status,
+                campaign_id=campaign_id,
+                user_id=user_id,
+            )
+            logger.info(
+                "Logged EmailMessage id=%s message_id=%s", obj.id, obj.message_id
+            )
+
+    else:
+        logger.warning(
+            "log_sent_message merge_global_data is UNSET, failed to log EmailMessage"
         )
-        logger.info("Logged EmailMessage id=%s message_id=%s", obj.id, obj.message_id)
 
 
 # record webhook tracking events

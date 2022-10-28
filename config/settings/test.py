@@ -11,6 +11,7 @@ from config.settings.base import env
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
+DEBUG = True
 SECRET_KEY = env(
     "DJANGO_SECRET_KEY",
     default="nF2tDTEGAdjzk2DNx9pfikPNgyiPILVSRJ7Ek9tRoYhvTapZUlq8d4f03sxLg5pP",
@@ -64,7 +65,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
+EMAIL_BACKEND = "anymail.backends.test.EmailBackend"
 
 # Your stuff...
 # ------------------------------------------------------------------------------

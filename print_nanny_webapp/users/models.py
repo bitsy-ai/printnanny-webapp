@@ -1,7 +1,6 @@
 from typing import Dict, Union, List
 
 from django.contrib.auth.models import AbstractUser
-from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from django.db import models
@@ -9,12 +8,10 @@ from django.db import models
 import djstripe
 from djstripe.sync import sync_subscriber
 from rest_framework import serializers
-from anymail.message import AnymailMessage
 
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 
-import json
 
 from print_nanny_webapp.users.managers import CustomUserManager
 
@@ -101,22 +98,6 @@ class InviteRequest(models.Model):
         null=True,
         help_text="Alternatively, tell us the WORST part of 3D printing today",
     )
-
-    def _admin_email_notification(self):
-        """
-        Sends emails to admins in settings.BETA_NOTIFY_EMAIL = ['leigh+testing@bitsy.ai']
-        """
-
-        subject = "New invite request"
-        text_body = json.dumps(InviteRequestSerializer(self).data, indent=2)
-
-        message = AnymailMessage(
-            subject=subject,
-            body=text_body,
-            to=settings.BETA_NOTIFY_EMAIL,
-            tags=["print-nanny-beta-request"],  # Anymail extra in constructor
-        )
-        return message.send()
 
     def to_ghost_member(self):
         return {

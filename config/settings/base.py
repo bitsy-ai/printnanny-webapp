@@ -322,7 +322,7 @@ DISCORD_NEW_SIGNUP_WEBHOOK = env("DISCORD_NEW_SIGNUP_WEBHOOK", default=None)
 # Django Admin URL.
 ADMIN_URL = "admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMINS = [("""Leigh Johnson""", "leigh@printnanny.ai")]
+ADMINS = []
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 DEMO_GROUP = "demo"
