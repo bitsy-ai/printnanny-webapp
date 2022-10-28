@@ -92,6 +92,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "print_nanny_webapp.achievements.apps.AchievementsConfig",
     "print_nanny_webapp.devices.apps.DevicesConfig",
+    "print_nanny_webapp.email_campaigns.apps.EmailCampaignsConfig",
     "print_nanny_webapp.users.apps.UsersConfig",
     "print_nanny_webapp.surveys.apps.SurveysConfig",
     "print_nanny_webapp.octoprint.apps.OctoprintConfig",
@@ -307,7 +308,7 @@ ANYMAIL = {
     "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
     "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
     "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
-    # "WEBHOOK_SECRET": env("MAILGUN_WEBHOOK_SECRET")
+    "MAILGUN_WEBHOOK_SIGNING_KEY": env("MAILGUN_WEBHOOK_SIGNING_KEY"),
 }
 
 # Discord
