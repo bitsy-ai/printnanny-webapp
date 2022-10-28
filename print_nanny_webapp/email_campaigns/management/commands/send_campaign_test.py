@@ -19,9 +19,8 @@ class Command(BaseCommand):
         template = options["template"]
 
         campaign = Campaign.objects.get(template=template)
-        queryset = User.objects.filter(email=email)  # type: ignore[has-type]
 
         fn_name = campaign.send_fn.split(".")[-1]
         func = getattr(print_nanny_webapp.email_campaigns.services, fn_name)
 
-        func(queryset, campaign)
+        func([email], campaign)
