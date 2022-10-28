@@ -51,6 +51,7 @@ services:
       STRIPE_TEST_PUBLIC_KEY: $STRIPE_TEST_PUBLIC_KEY}
       STRIPE_TEST_SECRET_KEY: ${STRIPE_TEST_SECRET_KEY}
       STRIPE_PORTAL_URL: ${STRIPE_PORTAL_URL}
+      MAILGUN_WEBHOOK_SIGNING_KEY: ${MAILGUN_WEBHOOK_SIGNING_KEY}
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
@@ -86,6 +87,7 @@ services:
       STRIPE_TEST_PUBLIC_KEY: ${STRIPE_TEST_PUBLIC_KEY}
       STRIPE_TEST_SECRET_KEY: ${STRIPE_TEST_SECRET_KEY}
       STRIPE_PORTAL_URL: ${STRIPE_PORTAL_URL}
+      MAILGUN_WEBHOOK_SIGNING_KEY: ${MAILGUN_WEBHOOK_SIGNING_KEY}
 
     env_file:
       - ./.envs/.local/.django
