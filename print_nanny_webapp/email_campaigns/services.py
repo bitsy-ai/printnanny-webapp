@@ -59,5 +59,5 @@ def send_fn_founding_member_november_2022_offer(
     }
 
     logger.info("Starting campaign %s to %s recipients", campaign.template, len(msg.to))
-    msg.send()
+    msg.send(fail_silently=False)
     logger.info("Success! Started campaign %s", campaign.template)
