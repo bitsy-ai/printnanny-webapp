@@ -3,6 +3,21 @@ from django.db import models
 # based on anymail.signals.EventType and anymail.signals.RejectReason, which are not exported in Django choices format
 
 
+class SendStatus(models.TextChoices):
+    SENT = (
+        "sent",
+        "the ESP has sent the message (though it may or may not get delivered)",
+    )
+    QUEUED = (
+        "queued",
+        "the ESP has accepted the message and will try to send it (possibly later)",
+    )
+    INVALID = ("invalid", "the recipient email was not valid")
+    REJECTED = ("rejected", "the recipient is denylisted")
+    FAILED = ("failed", "the attempt to send failed for some other reason")
+    UNKNOWN = ("unknown", "Unknown")
+
+
 class EventType(models.TextChoices):
     """Constants for normalized Anymail event types"""
 

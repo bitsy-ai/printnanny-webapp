@@ -6,7 +6,7 @@ from django.contrib.postgres.fields import ArrayField
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 
 from print_nanny_webapp.devices.models import UserModel
-from print_nanny_webapp.email_campaigns.enum import EventType, RejectReason
+from print_nanny_webapp.email_campaigns.enum import EventType, RejectReason, SendStatus
 
 UserModel = get_user_model()
 
@@ -61,11 +61,14 @@ class EmailMessage(SafeDeleteModel):
         constraints = [
             UniqueConstraint(
                 fields=["message_id"],
-                condition=models.Q(deleted=None),
+                condition=models.Q(deleted=None, message_id__isnull=False),
                 name="unique_esp_message_id",
             )
         ]
 
-    message_id = models.CharField(max_length=255)
+    message_id = models.CharField(
+        max_length=255, null=True
+    )  # may be null if message send failed
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE)
+    send_status = models.CharField(max_length=255, choices=SendStatus.choices)
