@@ -47,6 +47,8 @@ def send_fn_founding_member_november_2022_offer(
     msg.track_clicks = True
     msg.track_opens = True
 
+    msg.template_id = campaign.template
+
     msg.to = [format_email(u) for u in queryset]
     msg.merge_data = {u.email: format_merge_data(u) for u in queryset}
     msg.merge_metadata = {u.email: format_merge_metadata(u, campaign) for u in queryset}
