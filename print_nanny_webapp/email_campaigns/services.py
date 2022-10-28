@@ -10,7 +10,7 @@ from print_nanny_webapp.users.models import User
 logger = logging.getLogger(__name__)
 
 
-def format_email(user: User) -> str:
+def format_email(user) -> str:
     result = ""
     if user.first_name is not None:
         result += user.first_name
@@ -24,7 +24,7 @@ def format_email(user: User) -> str:
         return f"{result} <{user.email}>"
 
 
-def format_merge_data(user: User) -> Dict[str, str]:
+def format_merge_data(user) -> Dict[str, str]:
     if user.first_name:
         return dict(name=user.first_name)
     return dict(name="Maker")
