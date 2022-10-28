@@ -102,6 +102,7 @@ jobs:
       MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
       MAILGUN_API_URL: https://api.mailgun.net/v3
       MAILGUN_DOMAIN: mail.printnanny.ai
+      MAILGUN_WEBHOOK_SIGNING_KEY: ${{ MAILGUN_WEBHOOK_SIGNING_KEY }}
       METABASE_DB_NAME: ${{ secrets.METABASE_DB_NAME }}
       METABASE_DB_PASS: ${{ secrets.METABASE_DB_PASS }}
       METABASE_DB_USER: ${{ secrets.METABASE_DB_USER }}

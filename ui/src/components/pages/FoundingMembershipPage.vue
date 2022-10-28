@@ -332,7 +332,7 @@ const faqs = [
   },
   {
     question: "Which boards are supported?",
-    answer: `PrintNanny's early access program requires a Raspberry Pi 4 (2GB+).
+    answer: `PrintNanny requires a Raspberry Pi 4 (2GB or 4GB).
     `,
   },
   {
