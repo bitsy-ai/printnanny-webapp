@@ -49,6 +49,7 @@ jobs:
   deploy:
     environment: live
     env:
+      ANYMAIL_WEBHOOK_SECRET: ${{ secrets.ANYMAIL_WEBHOOK_SECRET }}
       CLOUD_SQL_POSTGRES_INSTANCE: ${{ secrets.CLOUD_SQL_POSTGRES_INSTANCE }}
       CLUSTER: www-spot
       COTURN_DATABASE_URL: ${{ secrets.COTURN_DATABASE_URL }}
