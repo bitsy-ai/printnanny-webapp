@@ -10,3 +10,4 @@ export MAILGUN_DOMAIN=""
 export DISCORD_TOKEN=""
 export HONEYCOMB_API_KEY=""
 export LOGLEVEL=debug
+export MAILGUN_WEBHOOK_SIGNING_KEY=""
