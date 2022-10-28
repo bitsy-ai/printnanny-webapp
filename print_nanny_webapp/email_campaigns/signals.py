@@ -20,16 +20,12 @@ def log_sent_message(sender, message, status, esp_name, **_kwargs):
         for email, recipient_status in status.recipients.items():
             metadata = message.merge_metadata[email]
             user_id = metadata.get("user_id")
-            if user_id is None:
-                raise ValueError(
-                    "metadata->user_id is required to log sent EmailMessage"
-                )
-
             obj = EmailMessage.objects.create(
                 message_id=recipient_status.message_id,  # might be None if send failed
                 send_status=recipient_status.status,
                 campaign_id=campaign_id,
                 user_id=user_id,
+                email=email,
             )
             logger.info(
                 "Logged EmailMessage id=%s message_id=%s", obj.id, obj.message_id

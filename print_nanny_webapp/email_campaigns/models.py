@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.db.models import UniqueConstraint
 from django.contrib.postgres.fields import ArrayField
 
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
@@ -40,8 +39,8 @@ class EmailTrackingEvent(SafeDeleteModel):
     message_id = models.CharField(max_length=255, db_index=True)
     ts = models.DateTimeField()
     event_id = models.CharField(max_length=255, null=True)
-    recipient = models.CharField(max_length=255, null=True)
-    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    recipient = models.EmailField(max_length=255, null=True)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True)
     metadata = models.JSONField()
     tags = ArrayField(models.CharField(max_length=255), default=list)
     reject_reason = models.CharField(
@@ -58,18 +57,12 @@ class EmailMessage(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
     class Meta:
-        index_together = (("campaign", "user", "message_id"),)
-        constraints = [
-            UniqueConstraint(
-                fields=["message_id", "user"],
-                condition=models.Q(deleted=None, message_id__isnull=False),
-                name="unique_esp_message_id_per_user",
-            )
-        ]
+        index_together = (("campaign", "user", "email", "message_id"),)
 
     message_id = models.CharField(
         max_length=255, null=True
     )  # may be null if message send failed
-    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True)
+    email = models.EmailField()
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE)
     send_status = models.CharField(max_length=255, choices=SendStatus.choices)
