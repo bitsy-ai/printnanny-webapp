@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path, re_path
 from django.views import defaults as default_views
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 from drf_spectacular.views import (
     SpectacularJSONAPIView,
@@ -56,7 +57,8 @@ urlpatterns += [
         name="redoc",
     ),
     path("", include("django_prometheus.urls")),
-    path("anymail/", include("anymail.urls")),
+    # exclude anymail webhook from csrf checks
+    path("anymail/", csrf_exempt(include("anymail.urls"))),
     # https://github.com/aaronn/django-rest-framework-passwordless
     path("", include("print_nanny_webapp.drfpasswordless.urls")),
     re_path(r"^.*$", TemplateView.as_view(template_name="index.html")),
