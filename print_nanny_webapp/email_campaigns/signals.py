@@ -9,12 +9,12 @@ logger = logging.getLogger(__name__)
 # log sent emails
 @receiver(post_send)
 def log_sent_message(_sender, message, status, _esp_name, **_kwargs):
-    campaign_id = message.header.get("X-Campaign-Id")
+    campaign_id = message.metadata.get("campaign_id")
     if campaign_id is None:
-        raise ValueError("X-Campaign-Id header is required to log sent EmailMessage")
-    user_id = message.header.get("X-User-Id")
+        raise ValueError("metadata->campaign_id is required to log sent EmailMessage")
+    user_id = message.metadata.get("user_id")
     if user_id is None:
-        raise ValueError("X-User-Id header is required to log sent EmailMessage")
+        raise ValueError("metadata->user_id is required to log sent EmailMessage")
 
     for email, recipient_status in status.recipients.items():
         obj = EmailMessage.objects.create(

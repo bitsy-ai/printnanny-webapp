@@ -16,7 +16,8 @@ class Campaign(SafeDeleteModel):
 
     created_dt = models.DateTimeField(auto_now_add=True)
     template = models.CharField(max_length=255)
-    subject_template = models.CharField(max_length=255)
+    subject = models.CharField(max_length=255)
+    send_fn = models.CharField(max_length=255)
 
 
 class EmailTrackingEvent(SafeDeleteModel):
