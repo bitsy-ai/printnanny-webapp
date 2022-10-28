@@ -2,6 +2,7 @@
 // import validator rules so all forms can access global rules
 import "@/utils/validators";
 
+// only enable tidio in production
 const tidioScript = import.meta.env.VITE_TIDIO_SCRIPT_URI;
 if (tidioScript !== undefined){
   let el = document.createElement('script');
