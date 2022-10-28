@@ -1,5 +1,5 @@
 import logging
-from typing import Dict, List
+from typing import Dict, List, Optional, Union
 
 from anymail.message import AnymailMessage
 
@@ -22,10 +22,10 @@ def format_email(user) -> str:
     return f"{result} <{user.email}>"
 
 
-def format_merge_metadata(email: str) -> Dict[str, str]:
+def format_merge_metadata(email: str) -> Dict[str, Optional[Union[str, int]]]:
     name = "Maker"
     try:
-        user = User.objects.get(email=email)
+        user = User.objects.get(email=email)  # type: ignore[has-type]
         if user.first_name:
             name = user.first_name
         return dict(user_id=str(user.id), name=name)
