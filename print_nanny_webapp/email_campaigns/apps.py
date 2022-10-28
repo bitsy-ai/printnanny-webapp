@@ -3,4 +3,7 @@ from django.apps import AppConfig
 
 class EmailCampaignsConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "email_campaigns"
+    name = "print_nanny_webapp.email_campaigns"
+
+    def ready(self):
+        import print_nanny_webapp.email_campaigns.signals

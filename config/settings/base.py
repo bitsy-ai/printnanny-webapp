@@ -92,6 +92,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "print_nanny_webapp.achievements.apps.AchievementsConfig",
     "print_nanny_webapp.devices.apps.DevicesConfig",
+    "print_nanny_webapp.email_campaigns.apps.EmailCampaignsConfig",
     "print_nanny_webapp.users.apps.UsersConfig",
     "print_nanny_webapp.surveys.apps.SurveysConfig",
     "print_nanny_webapp.octoprint.apps.OctoprintConfig",
