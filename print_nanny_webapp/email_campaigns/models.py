@@ -61,9 +61,9 @@ class EmailMessage(SafeDeleteModel):
         index_together = (("campaign", "user", "message_id"),)
         constraints = [
             UniqueConstraint(
-                fields=["message_id"],
+                fields=["message_id", "user"],
                 condition=models.Q(deleted=None, message_id__isnull=False),
-                name="unique_esp_message_id",
+                name="unique_esp_message_id_per_user",
             )
         ]
 
