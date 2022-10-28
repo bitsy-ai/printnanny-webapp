@@ -4,13 +4,11 @@ import "@/utils/validators";
 
 // only enable tidio in production
 const tidioScript = import.meta.env.VITE_TIDIO_SCRIPT_URI;
-if (tidioScript !== undefined){
-  let el = document.createElement('script');
-  el.setAttribute('src', tidioScript);
+if (tidioScript !== undefined) {
+  const el = document.createElement("script");
+  el.setAttribute("src", tidioScript);
   document.body.appendChild(el);
 }
 </script>
 
-<template>
-  <router-view> </router-view>>
-</template>
+<template><router-view> </router-view>></template>
