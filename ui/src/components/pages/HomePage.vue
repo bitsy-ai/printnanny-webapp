@@ -8,46 +8,54 @@
           >
             <div class="lg:py-12">
               <h1
-                class="text-4xl tracking-tight font-extrabold text-white sm:text-6xl xl:text-6xl"
+                class="tracking-tight font-extrabold text-white sm:text-6xl xl:text-6xl"
               >
                 <span
-                  class="block pb-3 block bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-violet-500 sm:pb-5"
+                  class="block pb-2 block bg-clip-text text-transparent rounded-md shadow bg-gradient-to-r from-indigo-400 to-violet-500 sm:pb-2"
                   >Stop babysitting</span
                 >
                 <span
-                  class="pb-3 bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 to-violet-400 sm:pb-5"
-                  >your 3D printer</span
+                  class="pb-2 bg-clip-text text-transparent rounded-md shadow bg-gradient-to-r from-indigo-400 to-violet-500 sm:pb-2"
+                  >your 3D printer!</span
                 >
                 👀
               </h1>
-              <h2 class="sm:text-xl md:text-3xl text-white mt-4 mb-4">
-                Get a personal assistant for your 3D printer.
+              <h2
+                class="sm:text-xl md:text-3xl text-white mt-4 mb-4 text-3xl font-extrabold tracking-tight sm:text-4xl"
+              >
+                PrintNanny is the
+                <span
+                  class="bg-clip-text text-transparent rounded-md shadow bg-gradient-to-r from-indigo-400 to-violet-500"
+                  >personal assistant</span
+                >
+                for your additive manufacturing business.
               </h2>
               <p
                 class="mt-4 text-base text-white sm:text-md lg:text-lg xl:text-lg"
               >
-                Quality control alerts. Live print progress.
+                Alerts & Monitoring &#9679; Remote Control &#9679; Sync Files &
+                Gcode Revisions
               </p>
               <p
                 class="mt-4 text-base text-white sm:text-md lg:text-lg xl:text-lg"
               >
-                Keep files and 3D model revisions in sync.
+                15 Minute Install &#9679; Raspberry Pi &#9679; Mix & Match
+                Software
               </p>
               <p
                 class="mt-4 text-base text-white sm:text-md lg:text-lg xl:text-lg"
               >
-                15 minute install. Works with OctoPrint, Mainsail + Moonraker +
-                Klipper.
+                OctoPrint &#9679; Mainsail + Moonraker + Klipper
               </p>
               <div class="mt-10 sm:mt-12">
                 <WaitlistForm />
               </div>
               <router-link :to="{ name: 'shop-founding-membership' }">
                 <button
-                  class="mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                  class="transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                 >
-                  Skip the waitlist!<br />
-                  Founding Members get early access
+                  Want to skip the waitlist?<br />
+                  Become a Founding Members and get early access.
                 </button>
               </router-link>
             </div>
@@ -84,25 +92,80 @@
           <h2
             class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
           >
-            Quality Control that Never Sleeps
+            PrintNanny Vision - Quality Control that Never Sleeps
           </h2>
-          <p class="py-6 max-w-prose mx-auto text-xl text-gray-500">
-            Get notified or automatically pause if print doesn't pass quality
-            standards.
+          <p class="pt-6 max-w-prose mx-auto text-xl text-gray-500">
+            Get notified or <strong>automatically pause</strong> if print job
+            doesn't pass quality control.
+          </p>
+          <p class="py-2 max-w-prose mx-auto text-xl text-gray-500">
+            PrintNanny runs the <strong>industrial-grade</strong> intelligence
+            you'd find in a <strong>large manufacturing facility</strong> but at
+            a <strong>fraction of the size/cost.</strong>
           </p>
           <p
             class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
           >
-            Works with no/low bandwidth
+            Real-time monitoring. No internet connection required.
           </p>
           <p
             class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
           >
-            Designed with privacy in mind
+            No metered billing. No hidden costs.
           </p>
+          <router-link :to="{ name: 'shop-founding-membership' }">
+            <button
+              class="inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block text-3xl font-extrabold py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+            >
+              Get Access Now
+            </button>
+          </router-link>
         </div>
         <div class="mt-12">
           <DemoQualityAlert></DemoQualityAlert>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature section with toggle -->
+    <div id="quality-control" class="relative bg-gray-50 pt-6 lg:pt-12">
+      <div
+        class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl"
+      >
+        <div>
+          <h2
+            class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
+          >
+            PrintNanny OS - Mix & Match Your Favorite Software
+          </h2>
+          <p class="py-6 max-w-prose mx-auto text-xl text-gray-500">
+            <strong>Tired of re-imaging SD cards?</strong><br />
+            Toggle between OctoPrint and Mainsail in PrintNanny OS, the 3D
+            printer operating system designed for busy professionals.
+          </p>
+          <p
+            class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
+          >
+            Choose the right tool for the job.
+          </p>
+          <p
+            class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
+          >
+            Run any software for Raspberry Pi.
+          </p>
+
+          <router-link :to="{ name: 'shop-founding-membership' }">
+            <button
+              class="inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block text-3xl font-extrabold py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+            >
+              Get Access Now
+            </button>
+          </router-link>
+        </div>
+        <div class="mt-12">
+          <div class="grid grid-cols-1">
+            <img src="@/assets/images/toggle-mainsail-octoprint.gif" />
+          </div>
         </div>
       </div>
     </div>
@@ -112,27 +175,19 @@
       <div
         class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
       >
-        <a href="#founding-membership">
+        <h2
+          class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
+        >
+          Ready to get started?
+        </h2>
+        <router-link :to="{ name: 'shop-founding-membership' }">
           <button
-            class="mb-3 inline-flex justify-center rounded-lg font-semibold py-3 px-4 bg-slate-900 text-white hover:bg-slate-700 sm:text-xl bg-gradient-to-r from-red-500 to-violet-600 rounded-md shadow-lg"
+            class="inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block text-3xl font-extrabold py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
           >
             Become a Founding Member
           </button>
-        </a>
-        <p
-          class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
-        >
-          The Operating System for your 3D Printer Farm
-        </p>
-        <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-          PrintNanny OS lets you mix/match OctoPrint + Moonraker + Mainsail +
-          Klipper.
-        </p>
-        <h2
-          class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
-        >
-          PrintNanny OS
-        </h2>
+        </router-link>
+
         <div class="mt-12">
           <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <div v-for="feature in features" :key="feature.name" class="pt-6">
@@ -172,23 +227,12 @@
               <br />+ <br />Over-the-Air Updates
             </p>
             <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-              Tired of burning SD cards? <br />
-              Are you still manually configuring your Raspberry Pis?
+              Are you still manually updating your Raspberry Pis?
             </p>
             <p
               class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
             >
-              Install once
-            </p>
-            <p
-              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
-            >
-              Easy customization Powered by cloud-init
-            </p>
-            <p
-              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
-            >
-              Configure hostname, wifi, locale, ssh
+              Install PrintNanny OS once
             </p>
             <p
               class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
@@ -207,13 +251,6 @@
         <hr class="my-3" />
 
         <div class="mt-12 flex grid grid-cols-1 md:grid-cols-1 gap-4">
-          <a href="#founding-membership">
-            <button
-              class="mb-3 inline-flex justify-center rounded-lg font-semibold py-3 px-4 bg-slate-900 text-white hover:bg-slate-700 sm:text-xl bg-gradient-to-r from-red-500 to-violet-600 rounded-md shadow-lg"
-            >
-              Get Access Now
-            </button>
-          </a>
           <div class="flex-1">
             <p
               class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
@@ -252,63 +289,23 @@
               Powered by Syncthing
             </p>
           </div>
+          <router-link :to="{ name: 'shop-founding-membership' }">
+            <button
+              class="inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block text-3xl font-extrabold py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+            >
+              Become a Founding Member
+            </button>
+          </router-link>
+          <!-- TODO better syncthing screenshot
           <div class="flex-1 rounded-3xl drop-shadow-2xl">
             <img src="@/assets/images/syncthing/syncthing-example.png" />
           </div>
+           -->
         </div>
       </div>
     </div>
 
     <!-- founding member offer section -->
-    <section
-      id="founding-membership"
-      aria-labelledby="sale-heading"
-      class="relative mx-auto flex max-w-7xl flex-col items-center px-4 sm:py-24 lg:py-32 text-center sm:px-6 lg:px-8 rounded-md shadow bg-gradient-to-r from-red-500 to-indigo-600 py-16 sm:py-24 lg:py-32"
-    >
-      <div class="mx-auto max-w-2xl lg:max-w-none">
-        <h2
-          id="sale-heading"
-          class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
-        >
-          <span class="text-white">Founding Members</span> enjoy early access
-        </h2>
-        <p class="mx-auto mt-4 max-w-xl text-xl text-white">
-          <strong
-            >No metered usage. <br />No monthly addons. <br /><span
-              class="text-gray-900 text-sm"
-              >24/7 printer monitoring with no hidden costs.</span
-            >
-          </strong>
-        </p>
-        <p class="mx-auto mt-4 max-w-xl text-xl text-white">
-          <strong
-            >#members-only Discord channel. <br /><span
-              class="text-gray-900 text-sm"
-              >Drive PrintNanny's roadmap.</span
-            >
-          </strong>
-        </p>
-        <p class="mx-auto mt-4 max-w-xl text-xl text-white">
-          <strong
-            >$149 / year early access price<br />
-            <s class="text-gray-900 text-sm">$199 / year public launch price</s>
-          </strong>
-        </p>
-        <router-link
-          :to="{ name: 'shop-founding-membership' }"
-          class="mt-6 sm:text-3xl inline-block w-full rounded-md border border-transparent bg-gray-900 py-3 px-8 font-medium text-white hover:bg-gray-800 sm:w-auto"
-          >Get Early Access Now</router-link
-        >
-        <p class="mx-auto mt-4 max-w-xl text-xl text-white">
-          <strong
-            >Money-back Guarantee.<br /><span class="text-gray-900 text-sm"
-              >If you're not 100% satisfied with PrintNanny, email
-              leigh@printnanny.ai for a full refund.</span
-            ></strong
-          >
-        </p>
-      </div>
-    </section>
     <!-- end founding member offer section -->
 
     <!-- Blog section -->
@@ -328,16 +325,22 @@
             Learn More
           </p>
           <p class="mt-5 mb-5 mx-auto max-w-prose text-xl text-gray-500">
-            Learn more about PrintNanny's development, roadmap, and join an
-            amazing community.
+            Join an amazing community of entrepreneurs and makers.
           </p>
           <p>
             <a
               href="https://discord.gg/sf23bk2hPr"
               target="_blank"
-              class="bg-indigo-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+              class="bg-indigo-500 hover:bg-blue-700 text-white font-extrabold py-2 px-4 rounded mt-4 sm:text-3xl transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
             >
               Join Discord
+            </a>
+            <a
+              href="https://docs.printnanny.ai/docs/faq/founding-membership/"
+              target="_blank"
+              class="bg-indigo-500 hover:bg-blue-700 text-white font-extrabold py-2 px-4 rounded mt-4 sm:text-3xl transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 ml-4"
+            >
+              Founding Member FAQ
             </a>
           </p>
         </div>
@@ -398,7 +401,7 @@ import WaitlistForm from "@/components/forms/WaitlistForm.vue";
 
 const features = [
   {
-    name: "One Install to Rule them All",
+    name: "Raspberry Pi",
     description:
       "Raspberry Pi 4 is fully supported, with Raspberry Pi 3 and Rock Pi in development.",
     icon: DesktopComputerIcon,

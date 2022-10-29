@@ -123,9 +123,10 @@ const learnMoreLinks = [
     blank: true,
   } as FlyoutMenuLink,
   {
-    name: "What's inside PrintNanny?",
-    description: "Designed to let you focus on the fun parts of 3D printing.",
-    href: "https://docs.printnanny.ai/docs/category/whats-inside-printnanny/",
+    name: "Founding Member FAQ",
+    description:
+      "Founding Members get unlimited access to PrintNanny at a flat rate.",
+    href: "https://docs.printnanny.ai/docs/faq/founding-membership/",
     blank: true,
   } as FlyoutMenuLink,
   {
