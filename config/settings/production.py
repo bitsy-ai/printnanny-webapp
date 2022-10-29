@@ -128,7 +128,7 @@ ADMIN_URL = env("DJANGO_ADMIN_URL")
 
 LOGGING = {
     "version": 1,
-    "disable_existing_loggers": False,
+    "disable_existing_loggers": True,
     "formatters": {
         "verbose": {
             "format": "%(levelname)s %(asctime)s %(module)s "
@@ -140,7 +140,11 @@ LOGGING = {
             "level": LOGLEVEL,
             "class": "logging.StreamHandler",
             "formatter": "verbose",
-        }
+        },
+        "mail_admins": {
+            "level": "ERROR",
+            "class": "print_nanny_webapp.utils.logging.ThrottledAdminEmailHandler",
+        },
     },
     "filters": {
         "exclude_health_endpoint": {
@@ -149,6 +153,11 @@ LOGGING = {
     },
     "root": {"level": LOGLEVEL, "handlers": ["console"]},
     "loggers": {
+        "django": {
+            "handlers": ["mail_admins", "console"],
+            "level": "ERROR",
+            "propagate": True,
+        },
         "django.db.backends": {
             "level": "INFO",
             "handlers": ["console"],
