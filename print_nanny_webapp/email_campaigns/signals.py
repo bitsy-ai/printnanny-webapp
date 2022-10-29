@@ -11,7 +11,9 @@ logger = logging.getLogger(__name__)
 @receiver(post_send)
 def log_sent_message(sender, message, status, esp_name, **_kwargs):
 
-    if message.merge_global_data != UNSET:
+    merge_global_data = getattr(message, "merge_global_data", None)
+
+    if merge_global_data is not None and merge_global_data != UNSET:
         campaign_id = message.merge_global_data.get("campaign_id")
         if campaign_id is None:
             raise ValueError(
