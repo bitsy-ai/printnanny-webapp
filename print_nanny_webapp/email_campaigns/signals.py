@@ -49,9 +49,7 @@ def log_tracking_event(sender, event, esp_name, **_kwargs):
         raise ValueError("message_id is required")
 
     try:
-        email_message = EmailMessage.objects.get(
-            message_id=message_id, recipient=recipient
-        )
+        email_message = EmailMessage.objects.get(message_id=message_id, email=recipient)
         obj = EmailTrackingEvent.objects.create(
             email_message=email_message,
             campaign=email_message.campaign,
