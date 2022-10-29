@@ -50,15 +50,37 @@ def log_tracking_event(sender, event, esp_name, **_kwargs):
 
     admin_emails = [email for name, email in settings.ADMINS]
 
-    if recipient in admin_emails:
+    if (
+        recipient in admin_emails or recipient == "leigh+alerts@printnanny.ail"
+    ):  # TODO remove hard-coded value
         logger.warning("Ignoring Mailgun tracking event for admin email %s", recipient)
         return
     if message_id is None:
         logger.warning("Received Mailgun tracking event without message_id: %s", event)
         return
 
-    try:
-        email_message = EmailMessage.objects.get(message_id=message_id, email=recipient)
+    email_messages = EmailMessage.objects.filter(
+        message_id=message_id, email=recipient
+    ).all()
+
+    if email_messages.count() > 1:
+        logger.error(
+            "Found %s EmailMessage rows for message_id=%s recipient=%s - associating with first found",
+            email_messages.count(),
+            message_id,
+            recipient,
+        )
+        email_message = email_messages.first()
+    elif email_messages.count() == 1:
+        email_message = email_messages.first()
+    else:
+        logger.warning(
+            "Received mailgun webhook with message_id=%s, but no EmailMessage log exists with message_id",
+            message_id,
+        )
+        email_message = None
+
+    if email_message is not None:
         obj = EmailTrackingEvent.objects.create(
             email_message=email_message,
             campaign=email_message.campaign,
@@ -77,11 +99,7 @@ def log_tracking_event(sender, event, esp_name, **_kwargs):
             click_url=event.click_url,
             esp_event=event.esp_event,
         )
-    except EmailMessage.DoesNotExist:
-        logger.warning(
-            "Received mailgun webhook with message_id=%s, but no EmailMessage log exists with message_id",
-            message_id,
-        )
+    else:
         obj = EmailTrackingEvent.objects.create(
             email_message=None,
             campaign=None,
