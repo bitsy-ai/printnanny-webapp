@@ -48,8 +48,9 @@ def send_fn_founding_member_november_2022_offer(
     msg.to = emails
     msg.merge_metadata = {email: format_merge_metadata(email) for email in emails}
     msg.esp_extra = {
-        "o:deliverytime-optimize-period": "24h",  # use Mailgun Send Time Optimization
-        "o:time-zone-localize": "16:00",  # use Mailgun Timezone Optimization
+        # TODO: send-time optimization is only available for single recipient messages
+        # "o:deliverytime-optimize-period": "24h",  # use Mailgun Send Time Optimization
+        # "o:time-zone-localize": "16:00",  # use Mailgun Timezone Optimization
         "h:Reply-To": "leigh@printnanny.ai",
     }
     msg.merge_global_data = {"campaign_id": campaign.id}
