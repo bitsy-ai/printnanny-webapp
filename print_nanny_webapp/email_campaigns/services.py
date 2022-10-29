@@ -40,7 +40,7 @@ def send_fn_founding_member_november_2022_offer(
     msg = AnymailMessage(
         subject=campaign.subject,
         tags=["marketing", "founding_member"],
-        from_email="beta@mail.printnanny.ai",
+        from_email="PrintNanny <beta@mail.printnanny.ai>",
     )
 
     msg.template_id = campaign.template
