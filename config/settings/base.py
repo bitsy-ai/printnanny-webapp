@@ -309,7 +309,9 @@ ANYMAIL = {
     "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
     "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
     "MAILGUN_WEBHOOK_SIGNING_KEY": env("MAILGUN_WEBHOOK_SIGNING_KEY"),
-    "WEBHOOK_SECRET": env("ANYMAIL_WEBHOOK_SECRET", default="debug:debug"),
+    # TODO: Basic auth headers used with PSK are getting stripped at L7 or L4 LB
+    # since webhook requests are already signed, we can disable basic auth - but it'd be good to figure out what's stripping this header
+    # "WEBHOOK_SECRET": env("ANYMAIL_WEBHOOK_SECRET", default="debug:debug"),
 }
 
 # Discord
