@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import re_path
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path, re_path
@@ -10,6 +11,11 @@ from drf_spectacular.views import (
     SpectacularJSONAPIView,
     SpectacularRedocView,
     SpectacularSwaggerView,
+)
+
+from anymail.webhooks.mailgun import (
+    MailgunTrackingWebhookView,
+    MailgunInboundWebhookView,
 )
 
 # non-API urls
@@ -58,7 +64,16 @@ urlpatterns += [
     ),
     path("", include("django_prometheus.urls")),
     # exclude anymail webhook from csrf checks
-    path("anymail/", csrf_exempt(include("anymail.urls"))),
+    re_path(
+        r"^anymail/mailgun/tracking/$",
+        csrf_exempt(MailgunTrackingWebhookView.as_view()),
+        name="mailgun_tracking_webhook",
+    ),
+    re_path(
+        r"^anymail/mailgun/inbound(_mime)?/$",
+        csrf_exempt(MailgunInboundWebhookView.as_view()),
+        name="mailgun_inbound_webhook",
+    ),
     # https://github.com/aaronn/django-rest-framework-passwordless
     path("", include("print_nanny_webapp.drfpasswordless.urls")),
     re_path(r"^.*$", TemplateView.as_view(template_name="index.html")),
