@@ -2,7 +2,7 @@
 Base settings to build other settings files upon.
 """
 from pathlib import Path
-from typing import List
+from typing import List, Tuple
 
 import socket
 import environ
@@ -325,9 +325,10 @@ DISCORD_NEW_SIGNUP_WEBHOOK = env("DISCORD_NEW_SIGNUP_WEBHOOK", default=None)
 # Django Admin URL.
 ADMIN_URL = "admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMINS = [("""Leigh Johnson""", "leigh+alerts@printnanny.ai")]
+# ADMINS = [("""Leigh Johnson""", "leigh+alerts@printnanny.ai")]
+ADMINS: List[Tuple[str, str]] = []
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
-MANAGERS = ADMINS
+MANAGERS: List[Tuple[str, str]] = ADMINS
 DEMO_GROUP = "demo"
 
 # LOGGING
