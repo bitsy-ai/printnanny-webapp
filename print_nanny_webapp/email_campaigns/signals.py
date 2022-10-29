@@ -39,33 +39,55 @@ def log_sent_message(sender, message, status, esp_name, **_kwargs):
 
 # record webhook tracking events
 @receiver(tracking)
-def log_tracking_event(_sender, event, _esp_name, **_kwargs):
+def log_tracking_event(sender, event, esp_name, **_kwargs):
     message_id = event.message_id
     if message_id is None:
         logger.error("Received Mailgun tracking event without message_id: %s", event)
         raise ValueError("message_id is required")
 
-    email_message = EmailMessage.objects.get(message_id=message_id)
-
-    obj = EmailTrackingEvent.objects.create(
-        campaign=email_message.campaign,
-        user=email_message.user,
-        event_type=event.event_type,
-        message_id=message_id,
-        ts=event.timestamp,
-        recipient=event.recipient,
-        metadata=event.metadata,
-        tags=event.tags,
-        reject_reason=event.reject_reason,
-        description=event.description,
-        mta_response=event.mta_response,
-        user_agent=event.user_agent,
-        click_url=event.click_url,
-        esp_event=event.esp_event,
-    )
+    try:
+        email_message = EmailMessage.objects.get(message_id=message_id)
+        obj = EmailTrackingEvent.objects.create(
+            email_message=email_message,
+            campaign=email_message.campaign,
+            user=email_message.user,
+            event_type=event.event_type,
+            message_id=message_id,
+            ts=event.timestamp,
+            recipient=event.recipient,
+            metadata=event.metadata,
+            tags=event.tags,
+            reject_reason=event.reject_reason,
+            description=event.description,
+            mta_response=event.mta_response,
+            user_agent=event.user_agent,
+            click_url=event.click_url,
+            esp_event=event.esp_event,
+        )
+    except EmailMessage.DoesNotExist:
+        logger.warning(
+            "Received mailgun webhook with message_id=%s, but no EmailMessage log exists with message_id",
+            message_id,
+        )
+        obj = EmailTrackingEvent.objects.create(
+            email_message=None,
+            campaign=None,
+            user=None,
+            event_type=event.event_type,
+            message_id=message_id,
+            ts=event.timestamp,
+            recipient=event.recipient,
+            metadata=event.metadata,
+            tags=event.tags,
+            reject_reason=event.reject_reason,
+            description=event.description,
+            mta_response=event.mta_response,
+            user_agent=event.user_agent,
+            click_url=event.click_url,
+            esp_event=event.esp_event,
+        )
     logger.info(
-        "Created EmailTrackingEvent id=%s user=%s event_type=%s",
+        "Created EmailTrackingEvent id=%s event_type=%s",
         obj.id,
-        obj.user.id,
         obj.event_type,
     )

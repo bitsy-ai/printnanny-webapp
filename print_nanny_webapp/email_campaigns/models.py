@@ -30,9 +30,9 @@ class EmailTrackingEvent(SafeDeleteModel):
     class Meta:
         index_together = (("campaign", "user", "event_type"),)
 
-    campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE)
+    campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, null=True)
     email_message = models.ForeignKey(
-        "email_campaigns.EmailMessage", on_delete=models.CASCADE
+        "email_campaigns.EmailMessage", on_delete=models.CASCADE, null=True
     )
 
     event_type = models.CharField(max_length=255, choices=EventType.choices)
