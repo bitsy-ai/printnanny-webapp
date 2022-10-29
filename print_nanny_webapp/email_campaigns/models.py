@@ -30,14 +30,14 @@ class EmailTrackingEvent(SafeDeleteModel):
     class Meta:
         index_together = (("campaign", "user", "event_type"),)
 
-    campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE)
+    campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, null=True)
     email_message = models.ForeignKey(
-        "email_campaigns.EmailMessage", on_delete=models.CASCADE
+        "email_campaigns.EmailMessage", on_delete=models.CASCADE, null=True
     )
 
     event_type = models.CharField(max_length=255, choices=EventType.choices)
     message_id = models.CharField(max_length=255, db_index=True)
-    ts = models.DateTimeField()
+    ts = models.DateTimeField(null=True)
     event_id = models.CharField(max_length=255, null=True)
     recipient = models.EmailField(max_length=255, null=True)
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True)
@@ -50,7 +50,7 @@ class EmailTrackingEvent(SafeDeleteModel):
     mta_response = models.CharField(max_length=255, null=True)
     user_agent = models.CharField(max_length=255, null=True)
     click_url = models.CharField(max_length=255, null=True)
-    esp_event = models.JSONField()
+    esp_event = models.JSONField(null=True)
 
 
 class EmailMessage(SafeDeleteModel):
