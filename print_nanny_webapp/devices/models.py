@@ -85,7 +85,8 @@ class Pi(SafeDeleteModel):
 
     @property
     def octoprint_server(self) -> OctoPrintServer:
-        return OctoPrintServer.objects.get_or_create(user=self.user, pi=self)
+        obj, _ = OctoPrintServer.objects.get_or_create(user=self.user, pi=self)
+        return obj
 
     @property
     def octoprint_settings(self) -> OctoPrintSettings:

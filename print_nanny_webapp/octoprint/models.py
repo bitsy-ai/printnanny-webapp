@@ -73,9 +73,9 @@ class OctoPrintServer(SafeDeleteModel):
     def pip_path(self) -> str:
         return os.path.join(self.venv_path, "bin/pip")
 
-    # @property
-    # def settings(self):
-    #     return OctoPrintSettings.objects.get(octoprint_server=self)
+    @property
+    def settings(self):
+        return OctoPrintSettings.objects.get(octoprint_server=self)
 
 
 class OctoPrintSettings(SafeDeleteModel):
