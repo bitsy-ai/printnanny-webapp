@@ -2,6 +2,7 @@ import logging
 from anymail.signals import post_send, tracking
 from anymail.message import UNSET
 from django.dispatch import receiver
+from django.conf import settings
 
 from print_nanny_webapp.email_campaigns.models import EmailMessage, EmailTrackingEvent
 
@@ -43,10 +44,18 @@ def log_sent_message(sender, message, status, esp_name, **_kwargs):
 @receiver(tracking)
 def log_tracking_event(sender, event, esp_name, **_kwargs):
     message_id = event.message_id
+
+    # do not log admin error emails
     recipient = event.recipient
+
+    admin_emails = [email for name, email in settings.ADMINS]
+
+    if recipient in admin_emails:
+        logger.warning("Ignoring Mailgun tracking event for admin email %s", recipient)
+        return
     if message_id is None:
-        logger.error("Received Mailgun tracking event without message_id: %s", event)
-        raise ValueError("message_id is required")
+        logger.warning("Received Mailgun tracking event without message_id: %s", event)
+        return
 
     try:
         email_message = EmailMessage.objects.get(message_id=message_id, email=recipient)
