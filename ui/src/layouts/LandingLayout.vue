@@ -124,7 +124,8 @@ const learnMoreLinks = [
   } as FlyoutMenuLink,
   {
     name: "Founding Member FAQ",
-    description: "Founding Members get unlimited access to PrintNanny at a flat rate.",
+    description:
+      "Founding Members get unlimited access to PrintNanny at a flat rate.",
     href: "https://docs.printnanny.ai/docs/faq/founding-membership/",
     blank: true,
   } as FlyoutMenuLink,
