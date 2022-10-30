@@ -176,6 +176,7 @@
                 </div>
                 <div class="mt-3 sm:mt-0 sm:ml-3">
                   <button
+                    id="checkout-submit"
                     type="submit"
                     class="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                   >
@@ -197,6 +198,7 @@
           </div>
           <div v-else class="mt-10">
             <button
+              id="checkout-submit"
               type="button"
               class="flex w-full items-center block justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
               @click="onClick"
