@@ -117,7 +117,8 @@
             PrintNanny OS + Raspberry Pi
           </p>
           <p class="py-6 max-w-prose mx-auto text-xl text-gray-500">
-            Toggle between <strong>OctoPrint</strong> and <strong>Mainsail</strong> with PrintNanny OS.
+            Toggle between <strong>OctoPrint</strong> and
+            <strong>Mainsail</strong> with PrintNanny OS.
           </p>
           <router-link :to="{ name: 'shop-founding-membership' }">
             <button
@@ -188,7 +189,7 @@
             <p
               class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
             >
-             Over-the-Air Updates
+              Over-the-Air Updates
             </p>
             <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
               <strong>Are you tired of re-imaging SD cards?</strong>
@@ -217,7 +218,7 @@
               Sync Files from Anywhere
             </p>
             <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-             Securely share a folder with a client or a whole classroom.
+              Securely share a folder with a client or a whole classroom.
             </p>
             <p
               class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
