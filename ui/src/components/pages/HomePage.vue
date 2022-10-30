@@ -16,7 +16,7 @@
                 >
                 <span
                   class="pb-2 bg-clip-text text-transparent rounded-md shadow bg-gradient-to-r from-indigo-400 to-violet-500 sm:pb-2"
-                  >your 3D printer!</span
+                  >your 3D printer</span
                 >
                 👀
               </h1>
@@ -30,23 +30,6 @@
                 >
                 for your additive manufacturing business.
               </h2>
-              <p
-                class="mt-4 text-base text-white sm:text-md lg:text-lg xl:text-lg"
-              >
-                Alerts & Monitoring &#9679; Remote Control &#9679; Sync Files &
-                Gcode Revisions
-              </p>
-              <p
-                class="mt-4 text-base text-white sm:text-md lg:text-lg xl:text-lg"
-              >
-                15 Minute Install &#9679; Raspberry Pi &#9679; Mix & Match
-                Software
-              </p>
-              <p
-                class="mt-4 text-base text-white sm:text-md lg:text-lg xl:text-lg"
-              >
-                OctoPrint &#9679; Mainsail + Moonraker + Klipper
-              </p>
               <div class="mt-10 sm:mt-12">
                 <WaitlistForm />
               </div>
@@ -92,26 +75,16 @@
           <h2
             class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
           >
-            PrintNanny Vision - Quality Control that Never Sleeps
+            Quality Control that Never Sleeps
           </h2>
+          <p
+            class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
+          >
+            PrintNanny Cam
+          </p>
           <p class="pt-6 max-w-prose mx-auto text-xl text-gray-500">
             Get notified or <strong>automatically pause</strong> if print job
             doesn't pass quality control.
-          </p>
-          <p class="py-2 max-w-prose mx-auto text-xl text-gray-500">
-            PrintNanny runs the <strong>industrial-grade</strong> intelligence
-            you'd find in a <strong>large manufacturing facility</strong> but at
-            a <strong>fraction of the size/cost.</strong>
-          </p>
-          <p
-            class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
-          >
-            Real-time monitoring. No internet connection required.
-          </p>
-          <p
-            class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
-          >
-            No metered billing. No hidden costs.
           </p>
           <router-link :to="{ name: 'shop-founding-membership' }">
             <button
@@ -136,24 +109,17 @@
           <h2
             class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
           >
-            PrintNanny OS - Mix & Match Your Favorite Software
+            Mix & Match Your Favorite Software
           </h2>
+          <p
+            class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
+          >
+            PrintNanny OS + Raspberry Pi
+          </p>
           <p class="py-6 max-w-prose mx-auto text-xl text-gray-500">
-            <strong>Tired of re-imaging SD cards?</strong><br />
-            Toggle between OctoPrint and Mainsail in PrintNanny OS, the 3D
-            printer operating system designed for busy professionals.
+            Toggle between <strong>OctoPrint</strong> and
+            <strong>Mainsail</strong> with PrintNanny OS.
           </p>
-          <p
-            class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
-          >
-            Choose the right tool for the job.
-          </p>
-          <p
-            class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
-          >
-            Run any software for Raspberry Pi.
-          </p>
-
           <router-link :to="{ name: 'shop-founding-membership' }">
             <button
               class="inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block text-3xl font-extrabold py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
@@ -223,21 +189,15 @@
             <p
               class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
             >
-              Easy Configuration
-              <br />+ <br />Over-the-Air Updates
+              Over-the-Air Updates
             </p>
             <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-              Are you still manually updating your Raspberry Pis?
+              <strong>Are you tired of re-imaging SD cards?</strong>
             </p>
             <p
               class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
             >
-              Install PrintNanny OS once
-            </p>
-            <p
-              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
-            >
-              Apply updates with web ui
+              Seamless A/B System Updates
             </p>
           </div>
           <div class="flex-1">
@@ -258,30 +218,7 @@
               Sync Files from Anywhere
             </p>
             <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-              How much time do you waste manually uploading files?<br />
-            </p>
-            <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-              Have you ever sent the wrong gcode revision to your printer?<br />
-              (but didn't realize until <strong>too late</strong>)
-            </p>
-            <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-              Whether you're at home, the workshop, or design lab<br />
-              <strong>PrintNanny will keep your files in sync.</strong>
-            </p>
-            <p
-              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
-            >
               Securely share a folder with a client or a whole classroom.
-            </p>
-            <p
-              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
-            >
-              Collaborate on versioned files.
-            </p>
-            <p
-              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
-            >
-              Private & Secure. You own your data.
             </p>
             <p
               class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
