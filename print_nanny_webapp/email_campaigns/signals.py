@@ -1,12 +1,17 @@
 import logging
+from typing import Optional
 from anymail.signals import post_send, tracking
 from anymail.message import UNSET
+from django.contrib.auth import get_user_model
 from django.dispatch import receiver
 from django.conf import settings
+import posthog
 
 from print_nanny_webapp.email_campaigns.models import EmailMessage, EmailTrackingEvent
 
 logger = logging.getLogger(__name__)
+
+UserModel = get_user_model()
 
 # log sent emails
 @receiver(post_send)
@@ -40,6 +45,33 @@ def log_sent_message(sender, message, status, esp_name, **_kwargs):
         )
 
 
+def get_email_message_log(event) -> Optional[EmailMessage]:
+    """
+    Try to find EmailMessage associated with anymail tracking event
+    """
+    email_messages = EmailMessage.objects.filter(
+        message_id=event.message_id, email=event.recipient
+    ).all()
+
+    if email_messages.count() > 1:
+        logger.error(
+            "Found %s EmailMessage rows for message_id=%s recipient=%s - associating with first found",
+            email_messages.count(),
+            event.message_id,
+            event.recipient,
+        )
+        email_message = email_messages.first()
+    elif email_messages.count() == 1:
+        email_message = email_messages.first()
+    else:
+        logger.warning(
+            "Received mailgun webhook with message_id=%s, but no EmailMessage log exists with message_id",
+            event.message_id,
+        )
+        email_message = None
+    return email_message
+
+
 # record webhook tracking events
 @receiver(tracking)
 def log_tracking_event(sender, event, esp_name, **_kwargs):
@@ -64,26 +96,7 @@ def log_tracking_event(sender, event, esp_name, **_kwargs):
             )
             return
 
-        email_messages = EmailMessage.objects.filter(
-            message_id=message_id, email=recipient
-        ).all()
-
-        if email_messages.count() > 1:
-            logger.error(
-                "Found %s EmailMessage rows for message_id=%s recipient=%s - associating with first found",
-                email_messages.count(),
-                message_id,
-                recipient,
-            )
-            email_message = email_messages.first()
-        elif email_messages.count() == 1:
-            email_message = email_messages.first()
-        else:
-            logger.warning(
-                "Received mailgun webhook with message_id=%s, but no EmailMessage log exists with message_id",
-                message_id,
-            )
-            email_message = None
+        email_message = get_email_message_log(event)
 
         if email_message is not None:
             obj = EmailTrackingEvent.objects.create(
@@ -129,5 +142,68 @@ def log_tracking_event(sender, event, esp_name, **_kwargs):
         )
 
     # catch-all for exceptions, since any exceptions here would send us into a loop
+    except Exception as e:
+        logger.error("Error handling mailgun tracking webhook: %s", e)
+
+
+# record webhook tracking events (posthog)
+@receiver(tracking)
+def log_posthog_tracking_event(sender, event, esp_name, **_kwargs):
+    # do not log admin error emails
+    try:
+        recipient = event.recipient
+        admin_emails = [email for name, email in settings.ADMINS]
+        if (
+            recipient in admin_emails or recipient == "leigh+alerts@printnanny.ail"
+        ):  # TODO remove hard-coded value
+            logger.warning(
+                "Ignoring Mailgun tracking event for admin email %s", recipient
+            )
+            return
+        if event.message_id is None:
+            logger.warning(
+                "Received Mailgun tracking event without message_id: %s", event
+            )
+            return
+
+        event_name = f"email_{event.event_type}"
+
+        capture_params = {
+            "message_id": event.message_id,
+        }
+
+        email_message = get_email_message_log(event)
+
+        # add campaign tracking info
+        if email_message is not None:
+            capture_params["campaign_id"] = email_message.campaign.id
+            capture_params["campaign_template"] = email_message.campaign.template
+            capture_params["campaign_subject"] = email_message.campaign.subject
+
+        if event.click_url is not None:
+            capture_params["click_url"] = event.click_url
+
+        if event.user_agent is not None:
+            capture_params["user_agent"] = event.user_agent
+
+        if event.tags is not None:
+            capture_params["tags"] = event.tags
+
+        if event.reject_reason is not None:
+            capture_params["reject_reason"] = event.reject_reason
+
+        posthog.capture(event.recipient, event=event_name, properties=capture_params)
+
+        user = UserModel.objects.filter(email=event.recipient).first()
+
+        identity_params = {
+            "email": event.recipient,
+        }
+
+        if user is not None:
+            identity_params["user_id"] = user.id
+            posthog.alias(event.recipient, f"user:{user.id}")
+        posthog.identify(event.recipient, identity_params)
+    # catch-all for exceptions, since any exceptions here would send us into an email send/tracking loop
     except Exception as e:
         logger.error("Error handling mailgun tracking webhook: %s", e)
