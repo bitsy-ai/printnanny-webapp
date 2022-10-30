@@ -194,7 +194,7 @@ def log_posthog_tracking_event(sender, event, esp_name, **_kwargs):
 
         posthog.capture(event.recipient, event=event_name, properties=capture_params)
 
-        user = UserModel.objects.filter(email=event.recipient).first()
+        user = UserModel.objects.filter(email=event.recipient).first()  # type: ignore[has-type]
 
         identity_params = {
             "email": event.recipient,
