@@ -35,6 +35,7 @@
     "nats.ws": "^1.8.1",
     "pinia": "^2.0.14",
     "pinia-plugin-persistedstate": "^1.6.3",
+    "posthog-js": "^1.34.0",
     "printnanny-api-client": "file:../clients/typescript",
     "uuid4": "^2.0.3",
     "vee-validate": "^4.6.1",

@@ -3,6 +3,9 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
 import { ApiConfig, handleApiError } from "@/utils/api";
+import posthog from "posthog-js";
+import { posthogIdentify, posthogReset } from "@/utils/posthog";
+
 const accountsApi = api.AccountsApiFactory(ApiConfig);
 
 export const useAccountStore = defineStore({
@@ -55,6 +58,7 @@ export const useAccountStore = defineStore({
         this.$patch({
           user: userData.data,
         });
+        posthogIdentify(userData.data);
         return userData.data;
       }
     },
@@ -81,6 +85,7 @@ export const useAccountStore = defineStore({
       }
       await accountsApi.accountsLogoutCreate().catch(handleApiError);
       this.$reset();
+      posthogReset();
       console.info("Successfully logged out");
     },
 
