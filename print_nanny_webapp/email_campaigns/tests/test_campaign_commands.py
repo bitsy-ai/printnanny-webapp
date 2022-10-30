@@ -27,7 +27,7 @@ class TestCommand(TestCase):
             "john.doe10@example.com",
             "john.doe11@example.com",
         ]
-        self.template = "founding-member-offer-1-nov-2022"
+        self.template = "founding-member-november-v2"
         for email in self.emails:
             EmailWaitlist.objects.create(email=email)
 
