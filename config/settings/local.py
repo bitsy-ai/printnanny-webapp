@@ -1,5 +1,6 @@
 from config.settings.base import *  # noqa
 from config.settings.base import env
+import posthog
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -136,3 +137,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 DEV_SERVER_HOSTNAME = "aurora"
 
 ANYMAIL_DEBUG_API_REQUESTS = True
+
+
+# posthog
+# ------------------------------------------------------------------------------
+posthog.debug = True

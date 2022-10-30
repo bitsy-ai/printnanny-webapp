@@ -7,6 +7,7 @@ from typing import List, Tuple
 import socket
 import environ
 import os
+import posthog
 
 from django.contrib.messages import constants as messages
 
@@ -681,7 +682,8 @@ PRINTNANNY_ENV = env("PRINTNANNY_ENV", default="sandbox")
 # posthog
 # ------------------------------------------------------------------------------
 POSTHOG_API_KEY = env("POSTHOG_API_KEY", default=None)
-POSTHOG_ENABLED = False
+if POSTHOG_API_KEY:
+    posthog.project_api_key = POSTHOG_API_KEY
 
 # corsheaders
 # see also: corsheaders.middleware.CorsMiddleware
