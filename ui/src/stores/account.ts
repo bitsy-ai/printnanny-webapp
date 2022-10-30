@@ -4,7 +4,7 @@ import * as api from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
 import { ApiConfig, handleApiError } from "@/utils/api";
 import posthog from "posthog-js";
-import { posthogIdentify } from "@/utils/posthog";
+import { posthogIdentify, posthogReset } from "@/utils/posthog";
 
 const accountsApi = api.AccountsApiFactory(ApiConfig);
 
@@ -85,7 +85,7 @@ export const useAccountStore = defineStore({
       }
       await accountsApi.accountsLogoutCreate().catch(handleApiError);
       this.$reset();
-      posthog.reset();
+      posthogReset();
       console.info("Successfully logged out");
     },
 
