@@ -43,82 +43,91 @@ def log_sent_message(sender, message, status, esp_name, **_kwargs):
 # record webhook tracking events
 @receiver(tracking)
 def log_tracking_event(sender, event, esp_name, **_kwargs):
-    message_id = event.message_id
+    try:
+        message_id = event.message_id
 
-    # do not log admin error emails
-    recipient = event.recipient
+        # do not log admin error emails
+        recipient = event.recipient
 
-    admin_emails = [email for name, email in settings.ADMINS]
+        admin_emails = [email for name, email in settings.ADMINS]
 
-    if (
-        recipient in admin_emails or recipient == "leigh+alerts@printnanny.ail"
-    ):  # TODO remove hard-coded value
-        logger.warning("Ignoring Mailgun tracking event for admin email %s", recipient)
-        return
-    if message_id is None:
-        logger.warning("Received Mailgun tracking event without message_id: %s", event)
-        return
+        if (
+            recipient in admin_emails or recipient == "leigh+alerts@printnanny.ail"
+        ):  # TODO remove hard-coded value
+            logger.warning(
+                "Ignoring Mailgun tracking event for admin email %s", recipient
+            )
+            return
+        if message_id is None:
+            logger.warning(
+                "Received Mailgun tracking event without message_id: %s", event
+            )
+            return
 
-    email_messages = EmailMessage.objects.filter(
-        message_id=message_id, email=recipient
-    ).all()
+        email_messages = EmailMessage.objects.filter(
+            message_id=message_id, email=recipient
+        ).all()
 
-    if email_messages.count() > 1:
-        logger.error(
-            "Found %s EmailMessage rows for message_id=%s recipient=%s - associating with first found",
-            email_messages.count(),
-            message_id,
-            recipient,
+        if email_messages.count() > 1:
+            logger.error(
+                "Found %s EmailMessage rows for message_id=%s recipient=%s - associating with first found",
+                email_messages.count(),
+                message_id,
+                recipient,
+            )
+            email_message = email_messages.first()
+        elif email_messages.count() == 1:
+            email_message = email_messages.first()
+        else:
+            logger.warning(
+                "Received mailgun webhook with message_id=%s, but no EmailMessage log exists with message_id",
+                message_id,
+            )
+            email_message = None
+
+        if email_message is not None:
+            obj = EmailTrackingEvent.objects.create(
+                email_message=email_message,
+                campaign=email_message.campaign,
+                user=email_message.user,
+                event_type=event.event_type,
+                message_id=message_id,
+                ts=event.timestamp,
+                recipient=event.recipient,
+                metadata=event.metadata,
+                tags=event.tags,
+                reject_reason=event.reject_reason,
+                description=event.description,
+                # mta_response=event.mta_response,
+                mta_response=None,
+                user_agent=event.user_agent,
+                click_url=event.click_url,
+                esp_event=event.esp_event,
+            )
+        else:
+            obj = EmailTrackingEvent.objects.create(
+                email_message=None,
+                campaign=None,
+                user=None,
+                event_type=event.event_type,
+                message_id=message_id,
+                ts=event.timestamp,
+                recipient=event.recipient,
+                metadata=event.metadata,
+                tags=event.tags,
+                reject_reason=event.reject_reason,
+                description=event.description,
+                mta_response=None,
+                user_agent=event.user_agent,
+                click_url=event.click_url,
+                esp_event=event.esp_event,
+            )
+        logger.info(
+            "Created EmailTrackingEvent id=%s event_type=%s",
+            obj.id,
+            obj.event_type,
         )
-        email_message = email_messages.first()
-    elif email_messages.count() == 1:
-        email_message = email_messages.first()
-    else:
-        logger.warning(
-            "Received mailgun webhook with message_id=%s, but no EmailMessage log exists with message_id",
-            message_id,
-        )
-        email_message = None
 
-    if email_message is not None:
-        obj = EmailTrackingEvent.objects.create(
-            email_message=email_message,
-            campaign=email_message.campaign,
-            user=email_message.user,
-            event_type=event.event_type,
-            message_id=message_id,
-            ts=event.timestamp,
-            recipient=event.recipient,
-            metadata=event.metadata,
-            tags=event.tags,
-            reject_reason=event.reject_reason,
-            description=event.description,
-            # mta_response=event.mta_response,
-            mta_response=None,
-            user_agent=event.user_agent,
-            click_url=event.click_url,
-            esp_event=event.esp_event,
-        )
-    else:
-        obj = EmailTrackingEvent.objects.create(
-            email_message=None,
-            campaign=None,
-            user=None,
-            event_type=event.event_type,
-            message_id=message_id,
-            ts=event.timestamp,
-            recipient=event.recipient,
-            metadata=event.metadata,
-            tags=event.tags,
-            reject_reason=event.reject_reason,
-            description=event.description,
-            mta_response=None,
-            user_agent=event.user_agent,
-            click_url=event.click_url,
-            esp_event=event.esp_event,
-        )
-    logger.info(
-        "Created EmailTrackingEvent id=%s event_type=%s",
-        obj.id,
-        obj.event_type,
-    )
+    # catch-all for exceptions, since any exceptions here would send us into a loop
+    except Exception as e:
+        logger.error("Error handling mailgun tracking webhook: %s", e)

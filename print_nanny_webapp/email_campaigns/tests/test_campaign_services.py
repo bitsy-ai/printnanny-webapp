@@ -60,7 +60,7 @@ class CampaignTestCase(TestCase):
         for email in emails[1:]:
             EmailWaitlist.objects.create(email=email)
 
-        campaign = Campaign.objects.get(template="founding-member-offer-1-nov-2022")
+        campaign = Campaign.objects.get(template="founding-member-november-v2")
         msg = send_fn_founding_member_november_2022_offer(emails, campaign)
 
         for email, recipient in msg.anymail_status.recipients.items():
