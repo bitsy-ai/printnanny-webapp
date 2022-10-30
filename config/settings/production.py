@@ -24,8 +24,9 @@ EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 # ------------------------------------------------------------------------------
 # https://posthog.com/docs/libraries/python
 POSTHOG_API_KEY = env("POSTHOG_API_KEY", default=None)
-POSTHOG_ENABLED = True
 posthog.project_api_key = POSTHOG_API_KEY
+posthog.debug = False
+posthog.disabled = False
 # DATABASES
 # ------------------------------------------------------------------------------
 DATABASES["default"] = env.db("DATABASE_URL")  # noqa F405

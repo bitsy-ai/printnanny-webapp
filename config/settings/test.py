@@ -94,3 +94,8 @@ CHANNEL_LAYERS = {
     },
 }
 DISCORD_NEW_SIGNUP_WEBHOOK = None
+
+
+# posthog
+# ------------------------------------------------------------------------------
+posthog.disabled = True
