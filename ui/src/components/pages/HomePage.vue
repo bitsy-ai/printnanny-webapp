@@ -264,22 +264,20 @@
           <p class="mt-5 mb-5 mx-auto max-w-prose text-xl text-gray-500">
             Join an amazing community of entrepreneurs and makers.
           </p>
-          <p>
             <a
               href="https://discord.gg/sf23bk2hPr"
               target="_blank"
-              class="bg-indigo-500 hover:bg-blue-700 text-white font-extrabold py-2 px-4 rounded mt-4 sm:text-3xl transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
+              class="bg-indigo-500 w-full m-auto md:w-1/3 block hover:bg-blue-700 text-white font-extrabold py-2 px-4 rounded mt-4 sm:text-xl transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
             >
               Join Discord
             </a>
             <a
               href="https://docs.printnanny.ai/docs/faq/founding-membership/"
               target="_blank"
-              class="bg-indigo-500 hover:bg-blue-700 text-white font-extrabold py-2 px-4 rounded mt-4 sm:text-3xl transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 ml-4"
+              class="bg-indigo-500 w-full m-auto md:w-1/3 block hover:bg-blue-700 text-white font-extrabold py-2 px-4 rounded mt-4 sm:text-xl transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
             >
               Founding Member FAQ
             </a>
-          </p>
         </div>
         <div
           class="mt-12 mx-auto max-w-md px-4 grid gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-3 lg:max-w-7xl"
