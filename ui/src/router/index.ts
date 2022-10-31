@@ -30,6 +30,7 @@ router.beforeEach(async (to, _from) => {
     // ❗️ Avoid an infinite redirect
     to.name !== "login" &&
     to.name !== "reset-password" &&
+    to.name !== "reset-password-confirm" &&
     // ❗️ Login is not required for home view, terms, privacy policy, shop
     to.name !== "home" &&
     to.name !== "terms" &&
