@@ -19,6 +19,13 @@ export default [
         meta: { title: "Stop Babysitting Your 3D Printer" },
       },
       {
+        path: "/account-verify-email/",
+        name: "account-verify-email",
+        components: {
+          default: () => import("@/components/forms/EmailVerificationForm.vue"),
+        },
+      },
+      {
         path: "/account-confirm-email/:verificationKey",
         name: "account-confirm-email",
         props: { default: true },
