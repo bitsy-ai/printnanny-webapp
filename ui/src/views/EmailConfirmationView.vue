@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import PasswordResetConfirmForm from "@/components/forms/PasswordResetConfirmForm.vue";
-import FooterNav from "@/components/nav/FooterNav.vue";
-import StickyAlerts from "@/components/alerts/StickyAlerts.vue";
 import CustomSpinner from "@/components/util/CustomSpinner.vue";
 import { ref, onMounted } from "vue";
 import { useAccountStore } from "@/stores/account";
 import type * as apiTypes from "printnanny-api-client";
-import { useRouter } from "vue-router";
 
 const account = useAccountStore();
 
@@ -16,10 +12,9 @@ const success = ref(false);
 const props = defineProps({
   verificationKey: {
     required: true,
+    type: String,
   },
 });
-
-const router = useRouter();
 
 onMounted(async () => {
   const req = { key: props.verificationKey } as apiTypes.VerifyEmailRequest;

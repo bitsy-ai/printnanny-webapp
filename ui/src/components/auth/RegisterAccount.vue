@@ -7,15 +7,14 @@
   >
     <label for="email" class="text-sm text-gray-500">Email address</label>
     <error-message class-name="text-red-500" name="email"></error-message>
-    <input
+    <Field
       id="email"
       name="email"
       type="email"
       class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mb-2"
-      :placeholder="email"
-      rules="required"
-      readonly="true"
-      disabled
+      :placeholder="emailPlaceholder"
+      :readonly="emailDisabled"
+      :disabled="emailDisabled"
     />
     <label for="password" class="text-sm text-gray-500">Password</label>
 
@@ -62,7 +61,7 @@
     <p class="pl-2">Success! Created account for {{ email }}</p>
     <router-link v-if="showDashboardButton" :to="{ name: 'devices' }">
       <button
-        class="mt-6 block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+        class="group mt-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-25"
       >
         Open Dashboard
       </button>
@@ -70,7 +69,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { ref, reactive, computed } from "vue";
+import { LockClosedIcon, RefreshIcon } from "@heroicons/vue/solid";
 import { RouterLink } from "vue-router";
 import { CheckCircleIcon } from "@heroicons/vue/solid";
 import type * as api from "printnanny-api-client";
@@ -100,9 +100,24 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  emailDisabled: {
+    default: false,
+  },
 });
 
+const email = ref(props.email);
+
+const emailSchema =
+  props.email === ""
+    ? yup.string().email().required()
+    : yup.string().email().default(props.email);
+
+const emailPlaceholder = computed(() =>
+  props.email === "" ? "Enter your email address" : props.email
+);
+
 const schema = yup.object({
+  email: emailSchema,
   password: yup.string().required("Password is required"),
   passwordConfirmation: yup
     .string()
@@ -113,8 +128,9 @@ const account = useAccountStore();
 const alerts = useAlertStore();
 async function onSubmit(values: any) {
   state.loading = true;
+  email.value = props.email === "" ? values.email : props.email;
   const res = await account.createAccount({
-    email: props.email,
+    email: email.value,
     password1: values.password,
     password2: values.passwordConfirmation,
   } as api.RegisterRequest);
@@ -123,7 +139,7 @@ async function onSubmit(values: any) {
     state.success = true;
     const success = {
       color: "green",
-      message: `Created account for ${props.email}`,
+      message: `Created account for ${email.value}`,
       header: "Success!",
       actions: [],
       error: undefined,

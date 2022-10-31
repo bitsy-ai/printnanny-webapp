@@ -19,6 +19,13 @@ export default [
         meta: { title: "Stop Babysitting Your 3D Printer" },
       },
       {
+        path: "/register/",
+        name: "register",
+        components: {
+          default: () => import("@/views/RegisterAccountView.vue"),
+        },
+      },
+      {
         path: "/account-verify-email/",
         name: "account-verify-email",
         components: {

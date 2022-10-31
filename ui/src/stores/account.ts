@@ -3,7 +3,6 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
 import { ApiConfig, handleApiError } from "@/utils/api";
-import posthog from "posthog-js";
 import { posthogIdentify, posthogReset } from "@/utils/posthog";
 import { handleError } from "vue";
 

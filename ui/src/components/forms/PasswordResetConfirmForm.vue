@@ -2,7 +2,7 @@
 import { useRouter } from "vue-router";
 import { LockClosedIcon, RefreshIcon } from "@heroicons/vue/solid";
 import { useAccountStore } from "@/stores/account";
-import { Field, ErrorMessage, Form } from "vee-validate";
+import { Field, Form } from "vee-validate";
 import { ref, reactive } from "vue";
 import * as yup from "yup";
 import type * as apiTypes from "printnanny-api-client";
@@ -10,9 +10,11 @@ import type * as apiTypes from "printnanny-api-client";
 const props = defineProps({
   userId: {
     required: true,
+    type: String,
   },
   token: {
     required: true,
+    type: String,
   },
 });
 
