@@ -26,6 +26,19 @@ export default [
     component: () => import("@/views/LoginView.vue"),
   },
   {
+    path: "/password-reset/",
+    name: "reset-password",
+    component: () => import("@/views/PasswordResetView.vue"),
+  },
+  {
+    path: "/password-reset/confirm/:userId/:token/",
+    name: "reset-password-confirm",
+    props: { default: true },
+    components: {
+      default: () => import("@/views/PasswordResetConfirmView.vue"),
+    },
+  },
+  {
     path: "/privacy/",
     name: "privacy",
     component: () => import("@/views/PrivacyView.vue"),

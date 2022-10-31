@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink } from "vue-router";
+import { useRouter } from "vue-router";
 import { LockClosedIcon, RefreshIcon } from "@heroicons/vue/solid";
 import { useAccountStore } from "@/stores/account";
 import { Field, ErrorMessage, Form } from "vee-validate";
@@ -7,23 +7,46 @@ import { ref, reactive } from "vue";
 import * as yup from "yup";
 import type * as apiTypes from "printnanny-api-client";
 
+const props = defineProps({
+  userId: {
+    required: true,
+  },
+  token: {
+    required: true,
+  },
+});
+
+const router = useRouter();
+
 const loading = ref(false);
+const sent = ref(false);
 const state = reactive({
   loading,
+  sent,
 });
 
 // define a validation schema
 const schema = yup.object({
-  email: yup.string().required().email(),
-  password: yup.string().required(),
+  password: yup.string().required("Password is required"),
+  passwordConfirmation: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must patch"),
 });
 
 const account = useAccountStore();
 async function onSubmit(values: any) {
   state.loading = true;
-  const res = await account.login(values as apiTypes.LoginRequest);
-  console.log("Got Response", res);
+  const req = {
+    uid: props.userId,
+    token: props.token,
+    new_password1: values.password,
+    new_password2: values.passwordConfirmation,
+  } as apiTypes.PasswordResetConfirmRequest;
+  const res = await account.resetPasswordConfirm(req);
   state.loading = false;
+  if (res !== undefined && res?.status === 200) {
+    router.push({ name: "login" });
+  }
 }
 </script>
 <template>
@@ -38,45 +61,30 @@ async function onSubmit(values: any) {
           alt="PrintNanny"
         />
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Sign in to your account
+          Set a New Password
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
-          Or
-          {{ " " }}
-          <a
-            href="/request-invite"
-            class="font-medium text-indigo-600 hover:text-indigo-500"
-          >
-            join the waitlist.</a
-          >
-        </p>
       </div>
       <Form v-slot="{ meta }" :validation-schema="schema" @submit="onSubmit">
-        <label for="email" class="sr-only">Email address</label>
-        <error-message class-name="text-red-500" name="email"></error-message>
-        <Field
-          id="email"
-          name="email"
-          type="email"
-          autocomplete="email"
-          class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-          placeholder="Email address"
-          rules="required"
-        />
-        <label for="password" class="sr-only">Password</label>
+        <label for="password" class="text-sm text-gray-500">Password</label>
+
         <Field
           id="password"
           name="password"
           type="password"
           autocomplete="current-password"
-          class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
           placeholder="Password"
           rules="required"
         />
-        <error-message
-          class-name="text-red-500"
-          name="password"
-        ></error-message>
+        <Field
+          id="passwordConfirmation"
+          name="passwordConfirmation"
+          type="password"
+          autocomplete="current-password"
+          class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          placeholder="Confirm Password"
+          rules="required"
+        />
 
         <button
           id="email-submit"
@@ -96,19 +104,9 @@ async function onSubmit(values: any) {
               aria-hidden="true"
             />
           </span>
-          Sign in
+          Save Password
         </button>
       </Form>
-
-      <p class="text-center my-2 text-sm text-gray-900">Trouble signing in?</p>
-      <p class="text-center my-2 text-sm">
-        <RouterLink
-          :to="{ name: 'reset-password' }"
-          class="font-medium text-indigo-600 hover:text-indigo-500"
-        >
-          Reset Password
-        </RouterLink>
-      </p>
     </div>
   </div>
 </template>
