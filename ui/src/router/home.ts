@@ -18,25 +18,45 @@ export default [
         },
         meta: { title: "Stop Babysitting Your 3D Printer" },
       },
+      {
+        path: "/account-verify-email/",
+        name: "account-verify-email",
+        components: {
+          default: () => import("@/components/forms/EmailVerificationForm.vue"),
+        },
+      },
+      {
+        path: "/account-confirm-email/:verificationKey",
+        name: "account-confirm-email",
+        props: { default: true },
+        components: {
+          default: () => import("@/views/EmailConfirmationView.vue"),
+        },
+      },
+      {
+        path: "/login/",
+        name: "login",
+        components: {
+          default: () => import("@/components/forms/LoginForm.vue"),
+        },
+      },
+      {
+        path: "/password-reset/",
+        name: "reset-password",
+        components: {
+          default: () => import("@/components/forms/PasswordResetForm.vue"),
+        },
+      },
+      {
+        path: "/password-reset/confirm/:userId/:token/",
+        name: "reset-password-confirm",
+        props: { default: true },
+        components: {
+          default: () =>
+            import("@/components/forms/PasswordResetConfirmForm.vue"),
+        },
+      },
     ],
-  },
-  {
-    path: "/login/",
-    name: "login",
-    component: () => import("@/views/LoginView.vue"),
-  },
-  {
-    path: "/password-reset/",
-    name: "reset-password",
-    component: () => import("@/views/PasswordResetView.vue"),
-  },
-  {
-    path: "/password-reset/confirm/:userId/:token/",
-    name: "reset-password-confirm",
-    props: { default: true },
-    components: {
-      default: () => import("@/views/PasswordResetConfirmView.vue"),
-    },
   },
   {
     path: "/privacy/",
@@ -57,13 +77,5 @@ export default [
       await account.logout();
       next("/");
     },
-  },
-  {
-    path: "/about/",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import("@/views/AboutView.vue"),
   },
 ] as Array<RouteRecordRaw>;

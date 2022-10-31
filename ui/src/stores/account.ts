@@ -117,6 +117,21 @@ export const useAccountStore = defineStore({
         .catch(handleApiError);
       return res;
     },
+    async verifyConfirmEmailKey(request: api.VerifyEmailRequest) {
+      const res = await accountsApi
+        .accountsRegistrationVerifyEmailCreate(request)
+        .catch(handleApiError);
+      return res;
+    },
+
+    async resendAccountVerificationEmail(
+      request: api.ResendEmailVerificationRequest
+    ) {
+      const res = await accountsApi
+        .accountsRegistrationResendEmailCreate(request)
+        .catch(handleApiError);
+      return res;
+    },
   },
 });
 
