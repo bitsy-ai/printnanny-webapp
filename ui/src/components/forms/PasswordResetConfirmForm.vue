@@ -41,10 +41,10 @@ async function onSubmit(values: any) {
     token: props.token,
     new_password1: values.password,
     new_password2: values.passwordConfirmation,
-  } as api.PasswordResetConfirmRequest;
+  } as apiTypes.PasswordResetConfirmRequest;
   const res = await account.resetPasswordConfirm(req);
   state.loading = false;
-  if (res.status === 200) {
+  if (res !== undefined && res?.status === 200) {
     router.push({ name: "login" });
   }
 }

@@ -26,7 +26,7 @@ async function onSubmit(values: any) {
   const res = await account.resetPasswordRequest(
     values as apiTypes.PasswordResetRequest
   );
-  if (res.status == 200) {
+  if (res !== undefined && res?.status === 200) {
     const alert = {
       header: "Check your email",
       message: res.data.detail,
