@@ -76,7 +76,14 @@ urlpatterns += [
     ),
     # https://github.com/aaronn/django-rest-framework-passwordless
     path("", include("print_nanny_webapp.drfpasswordless.urls")),
+    # pass to front-end
     re_path(r"^.*$", TemplateView.as_view(template_name="index.html")),
+    # this url is used to generate password email content
+    re_path(
+        r"^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/$",
+        TemplateView.as_view(template_name="index.html"),
+        name="password_reset_confirm",
+    ),
 ]
 
 

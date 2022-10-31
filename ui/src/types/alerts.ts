@@ -11,5 +11,5 @@ export interface UiAlert {
   header: string;
   icon?: FunctionalComponent<HTMLAttributes & VNodeProps>;
   actions: Array<AlertAction>;
-  error: Error | undefined | string;
+  error?: Error | undefined | string;
 }

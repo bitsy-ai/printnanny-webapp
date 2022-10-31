@@ -29,6 +29,7 @@ router.beforeEach(async (to, _from) => {
     !account.isAuthenticated &&
     // ❗️ Avoid an infinite redirect
     to.name !== "login" &&
+    to.name !== "reset-password" &&
     // ❗️ Login is not required for home view, terms, privacy policy, shop
     to.name !== "home" &&
     to.name !== "terms" &&

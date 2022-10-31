@@ -5,6 +5,7 @@ import { useAlertStore } from "./alerts";
 import { ApiConfig, handleApiError } from "@/utils/api";
 import posthog from "posthog-js";
 import { posthogIdentify, posthogReset } from "@/utils/posthog";
+import { handleError } from "vue";
 
 const accountsApi = api.AccountsApiFactory(ApiConfig);
 
@@ -104,7 +105,13 @@ export const useAccountStore = defineStore({
       const user = await this.fetchUser();
       return user;
     },
+    async resetPasswordRequest(request: api.PasswordResetRequest) {
+      const res = await accountsApi.accountsPasswordResetCreate(request).catch(handleApiError)
+      return res
+    }
   },
+
+
 });
 
 if (import.meta.hot) {
