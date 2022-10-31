@@ -9,12 +9,12 @@ import type * as apiTypes from "printnanny-api-client";
 
 const props = defineProps({
   userId: {
-    required: true
+    required: true,
   },
   token: {
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
 const router = useRouter();
 
@@ -22,7 +22,7 @@ const loading = ref(false);
 const sent = ref(false);
 const state = reactive({
   loading,
-  sent
+  sent,
 });
 
 // define a validation schema
@@ -40,12 +40,12 @@ async function onSubmit(values: any) {
     uid: props.userId,
     token: props.token,
     new_password1: values.password,
-    new_password2: values.passwordConfirmation
+    new_password2: values.passwordConfirmation,
   } as api.PasswordResetConfirmRequest;
   const res = await account.resetPasswordConfirm(req);
   state.loading = false;
-  if (res.status === 200){
-    router.push({name: "login"})
+  if (res.status === 200) {
+    router.push({ name: "login" });
   }
 }
 </script>
@@ -65,7 +65,7 @@ async function onSubmit(values: any) {
         </h2>
       </div>
       <Form v-slot="{ meta }" :validation-schema="schema" @submit="onSubmit">
-    <label for="password" class="text-sm text-gray-500">Password</label>
+        <label for="password" class="text-sm text-gray-500">Password</label>
 
         <Field
           id="password"

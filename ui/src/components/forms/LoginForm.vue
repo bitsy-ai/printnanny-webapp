@@ -100,13 +100,12 @@ async function onSubmit(values: any) {
         </button>
       </Form>
 
-      <p class="text-center my-2 text-sm text-gray-900">
-        Trouble signing in?
-      </p>
+      <p class="text-center my-2 text-sm text-gray-900">Trouble signing in?</p>
       <p class="text-center my-2 text-sm">
         <RouterLink
-          :to="{name: 'reset-password'}"
-          class="font-medium text-indigo-600 hover:text-indigo-500">
+          :to="{ name: 'reset-password' }"
+          class="font-medium text-indigo-600 hover:text-indigo-500"
+        >
           Reset Password
         </RouterLink>
       </p>

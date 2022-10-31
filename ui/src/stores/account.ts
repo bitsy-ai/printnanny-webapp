@@ -106,16 +106,18 @@ export const useAccountStore = defineStore({
       return user;
     },
     async resetPasswordRequest(request: api.PasswordResetRequest) {
-      const res = await accountsApi.accountsPasswordResetCreate(request).catch(handleApiError)
-      return res
+      const res = await accountsApi
+        .accountsPasswordResetCreate(request)
+        .catch(handleApiError);
+      return res;
     },
     async resetPasswordConfirm(request: api.PasswordResetConfirmRequest) {
-      const res = await accountsApi.accountsPasswordResetConfirmCreate(request).catch(handleApiError)
-      return res
-    }
+      const res = await accountsApi
+        .accountsPasswordResetConfirmCreate(request)
+        .catch(handleApiError);
+      return res;
+    },
   },
-
-
 });
 
 if (import.meta.hot) {

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import { LockClosedIcon, RefreshIcon } from "@heroicons/vue/solid";
 import { useAccountStore } from "@/stores/account";
 import { useAlertStore } from "@/stores/alerts";
@@ -12,7 +11,7 @@ const loading = ref(false);
 const sent = ref(false);
 const state = reactive({
   loading,
-  sent
+  sent,
 });
 
 // define a validation schema
@@ -24,14 +23,16 @@ const account = useAccountStore();
 const alerts = useAlertStore();
 async function onSubmit(values: any) {
   state.loading = true;
-  const res = await account.resetPasswordRequest(values as apiTypes.PasswordResetRequest);
-  if (res.status == 200){
+  const res = await account.resetPasswordRequest(
+    values as apiTypes.PasswordResetRequest
+  );
+  if (res.status == 200) {
     const alert = {
-        header: "Check your email",
-        message: res.data.detail,
-        actions: []
-    }
-    alerts.push(alert)
+      header: "Check your email",
+      message: res.data.detail,
+      actions: [],
+    };
+    alerts.push(alert);
   }
   state.loading = false;
 }

@@ -5,19 +5,19 @@ import StickyAlerts from "@/components/alerts/StickyAlerts.vue";
 
 defineProps({
   userId: {
-    required: true
+    required: true,
   },
   token: {
-    required: true
-  }
-})
+    required: true,
+  },
+});
 </script>
 
 <template>
   <div class="flex flex-col h-screen justify-between">
     <StickyAlerts />
     <main class="mb-auto h-full">
-      <PasswordResetConfirmForm :userId="userId" :token="token"/>
+      <PasswordResetConfirmForm :user-id="userId" :token="token" />
     </main>
     <FooterNav />
   </div>

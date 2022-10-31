@@ -35,8 +35,8 @@ export default [
     name: "reset-password-confirm",
     props: { default: true },
     components: {
-      default: () => import("@/views/PasswordResetConfirmView.vue")
-    }
+      default: () => import("@/views/PasswordResetConfirmView.vue"),
+    },
   },
   {
     path: "/privacy/",
