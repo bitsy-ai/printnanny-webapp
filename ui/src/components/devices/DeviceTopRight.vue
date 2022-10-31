@@ -21,18 +21,13 @@ async function refresh() {
     >
       Refresh
     </button>
-    <router-link
-      v-slot="{ navigate }"
-      :to="{ name: wizardSteps[0].routeName }"
-      custom
-    >
+    <a href="https://docs.printnanny.ai/docs/category/quick-start/" custom>
       <button
         type="button"
         class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3"
-        @click="navigate"
       >
-        New Connection
+        Quick Start
       </button>
-    </router-link>
+    </a>
   </span>
 </template>
