@@ -81,7 +81,7 @@ defusedxml==0.7.1
     # via python3-openid
 deprecated==1.2.13
     # via redis
-dj-rest-auth==2.2.4
+dj-rest-auth==2.2.5
     # via -r /requirements/local.in
 dj-stripe==2.6.2
     # via -r /requirements/local.in
