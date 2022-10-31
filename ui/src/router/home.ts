@@ -18,6 +18,14 @@ export default [
         },
         meta: { title: "Stop Babysitting Your 3D Printer" },
       },
+      {
+        path: "/account-confirm-email/:verificationKey",
+        name: "account-confirm-email",
+        props: { default: true },
+        components: {
+          default: () => import("@/views/EmailConfirmationView.vue"),
+        },
+      },
     ],
   },
   {
@@ -57,13 +65,5 @@ export default [
       await account.logout();
       next("/");
     },
-  },
-  {
-    path: "/about/",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import("@/views/AboutView.vue"),
   },
 ] as Array<RouteRecordRaw>;

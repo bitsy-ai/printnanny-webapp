@@ -31,6 +31,7 @@ router.beforeEach(async (to, _from) => {
     to.name !== "login" &&
     to.name !== "reset-password" &&
     to.name !== "reset-password-confirm" &&
+    to.name !== "account-confirm-email" &&
     // ❗️ Login is not required for home view, terms, privacy policy, shop
     to.name !== "home" &&
     to.name !== "terms" &&
