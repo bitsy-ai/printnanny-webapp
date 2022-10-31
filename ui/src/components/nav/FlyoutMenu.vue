@@ -4,7 +4,7 @@
     <PopoverButton
       :class="[
         open ? 'text-white' : 'text-white',
-        'group inline-flex items-center rounded-md bg-gray-900 text-base font-medium hover:text-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 p-2 md:p-0',
+        'group inline-flex items-center w-full rounded-md text-lg font-medium hover:text-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 py-2 px-4 md:p-0',
       ]"
     >
       <span>{{ menuText }}</span>

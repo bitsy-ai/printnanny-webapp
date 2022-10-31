@@ -12,16 +12,14 @@
       class="absolute top-0 inset-x-0 p-2 transition transform origin-top md:hidden"
     >
       <div
-        class="rounded-lg shadow-md bg-gray-800 ring-1 ring-black ring-opacity-5 overflow-hidden"
+        class="rounded-lg shadow-md bg-gradient-to-r from-gray-800 to-gray-900 ring-1 ring-black ring-opacity-5 overflow-hidden"
       >
         <div class="px-5 pt-4 flex items-center justify-between">
-          <div>
-            <img
-              class="h-8 w-auto"
-              src="@/assets/logo/logo-text-rect-white.svg"
-              alt="PrintNanny"
-            />
-          </div>
+          <img
+            class="h-8 w-auto"
+            src="@/assets/logo/logo-text-rect-white.svg"
+            alt="PrintNanny"
+          />
           <div class="-mr-2">
             <PopoverButton
               class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-600"
@@ -32,6 +30,9 @@
           </div>
         </div>
         <div class="pt-5 pb-6">
+          <span class="text-white font-medium text-base px-4"
+            >Tap to expand sections 👇</span
+          >
           <FlyoutMenu :links="learnMoreLinks" menu-text="Learn More" />
           <FlyoutMenu :links="communityLinks" menu-text="Join the Community" />
           <FlyoutMenu :links="shopLinks" menu-text="Shop" />
