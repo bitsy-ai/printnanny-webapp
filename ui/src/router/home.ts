@@ -26,25 +26,30 @@ export default [
           default: () => import("@/views/EmailConfirmationView.vue"),
         },
       },
+      {
+        path: "/login/",
+        name: "login",
+        components: {
+          default: () => import("@/components/forms/LoginForm.vue"),
+        },
+      },
+      {
+        path: "/password-reset/",
+        name: "reset-password",
+        components: {
+          default: () => import("@/components/forms/PasswordResetForm.vue"),
+        },
+      },
+      {
+        path: "/password-reset/confirm/:userId/:token/",
+        name: "reset-password-confirm",
+        props: { default: true },
+        components: {
+          default: () =>
+            import("@/components/forms/PasswordResetConfirmForm.vue"),
+        },
+      },
     ],
-  },
-  {
-    path: "/login/",
-    name: "login",
-    component: () => import("@/views/LoginView.vue"),
-  },
-  {
-    path: "/password-reset/",
-    name: "reset-password",
-    component: () => import("@/views/PasswordResetView.vue"),
-  },
-  {
-    path: "/password-reset/confirm/:userId/:token/",
-    name: "reset-password-confirm",
-    props: { default: true },
-    components: {
-      default: () => import("@/views/PasswordResetConfirmView.vue"),
-    },
   },
   {
     path: "/privacy/",
