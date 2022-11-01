@@ -64,6 +64,13 @@ spec:
                 name: printnanny-docusaurus
                 port:
                   number: 80
+          - path: /assets
+            pathType: Prefix
+            backend:
+              service:
+                name: printnanny-docusaurus
+                port:
+                  number: 80
           - path: /
             pathType: Prefix
             backend:
@@ -82,6 +89,13 @@ spec:
                 port:
                   number: 80
           - path: /docs
+            pathType: Prefix
+            backend:
+              service:
+                name: printnanny-docusaurus
+                port:
+                  number: 80
+          - path: /assets
             pathType: Prefix
             backend:
               service:
