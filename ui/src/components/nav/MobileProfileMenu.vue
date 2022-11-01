@@ -29,7 +29,7 @@ const menuItems = [
 const linkItems = [
   {
     name: "Documentation",
-    href: "https://docs.printnanny.ai/docs/category/quick-start/",
+    href: "https://printnanny.ai/docs/category/quick-start/",
   },
   {
     name: "Report Issue",

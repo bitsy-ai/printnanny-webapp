@@ -20,9 +20,9 @@ const step = PiCreateWizardSteps()[0];
         <br />
         <a
           class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-          href="https://docs.printnanny.ai/docs/quick-start/create-printnanny-os-image/"
+          href="https://printnanny.ai/docs/quick-start/create-printnanny-os-image/"
         >
-          docs.printnanny.ai/docs/quick-start/create-printnanny-os-image/</a
+          printnanny.ai/docs/quick-start/create-printnanny-os-image/</a
         >
       </p>
       <p class="text-base font-medium text-gray-900 mt-5 w-full text-left">

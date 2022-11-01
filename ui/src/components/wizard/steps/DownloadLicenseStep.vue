@@ -73,7 +73,7 @@ const manualSteps = ref([
         bgColorHover: "hover:bg-sky-600",
         bgColorFocus: "focus:ring-sky-500",
         icon: QuestionMarkCircleIcon,
-        href: "https://docs.printnanny.ai/docs/quick-start/copy-zip-to-sd-card",
+        href: "https://printnanny.ai/docs/quick-start/copy-zip-to-sd-card",
       } as ManualActionButton,
       {
         text: "Done",
@@ -96,7 +96,7 @@ const manualSteps = ref([
         bgColorHover: "hover:bg-sky-600",
         bgColorFocus: "focus:ring-sky-500",
         icon: QuestionMarkCircleIcon,
-        href: "https://docs.printnanny.ai/docs/quick-start/copy-zip-to-sd-card",
+        href: "https://printnanny.ai/docs/quick-start/copy-zip-to-sd-card",
       } as ManualActionButton,
       {
         text: "Done",

@@ -119,21 +119,21 @@ const learnMoreLinks = [
   {
     name: "Quick Start",
     description: "Setup PrintNanny OS in 15 minutes.",
-    href: "https://docs.printnanny.ai/docs/category/quick-start/",
+    href: "https://printnanny.ai/docs/category/quick-start/",
     blank: true,
   } as FlyoutMenuLink,
   {
     name: "Founding Member FAQ",
     description:
       "Founding Members get unlimited access to PrintNanny at a flat rate.",
-    href: "https://docs.printnanny.ai/docs/faq/founding-membership/",
+    href: "https://printnanny.ai/docs/faq/founding-membership/",
     blank: true,
   } as FlyoutMenuLink,
   {
     name: "How do I update PrintNanny?",
     description:
       "No-hassle updates with a web UI. Automated backup & recovery mode.",
-    href: "https://docs.printnanny.ai/docs/update-printnanny-os/",
+    href: "https://printnanny.ai/docs/update-printnanny-os/",
     blank: true,
   } as FlyoutMenuLink,
   {

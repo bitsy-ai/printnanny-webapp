@@ -153,7 +153,7 @@ const app_nav = [
 const help_nav = [
   {
     name: "Quick Start",
-    href: "https://docs.printnanny.ai/docs/category/quick-start/",
+    href: "https://printnanny.ai/docs/category/quick-start/",
     icon: QuestionMarkCircleIcon,
   },
   {
@@ -181,7 +181,7 @@ const help_nav = [
 const misc_nav = [
   {
     name: "Latest Release",
-    href: "https://docs.printnanny.ai/docs/release-history/0.2.0-beryl-kirkstone/",
+    href: "https://printnanny.ai/docs/release-history/0.2.0-beryl-kirkstone/",
     icon: DocumentDownloadIcon,
   },
   {
