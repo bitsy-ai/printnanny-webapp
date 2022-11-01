@@ -427,6 +427,6 @@ class PiLicenseZipViewset(
         zip_content = build_license_zip(pi)
 
         response = HttpResponse(zip_content, content_type=ZipRenderer.media_type)
-        filename = f"printnanny-{pi.hostname}.zip"
+        filename = "license.zip"
         response["Content-Disposition"] = f"attachment; filename={filename}"
         return response
