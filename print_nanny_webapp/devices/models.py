@@ -355,8 +355,10 @@ class SystemInfo(SafeDeleteModel):
     # start bootfs
     @property
     def bootfs_used_pretty(self) -> str:
-        perc = self.bootfs_used / self.bootfs_size
-        return f"{convert_size(self.bootfs_used)} ({perc:.0%} used)"
+        if self.bootfs_size > 0:
+            perc = self.bootfs_used / self.bootfs_size
+            return f"{convert_size(self.bootfs_used)} ({perc:.0%} used)"
+        return "Unknown"
 
     @property
     def bootfs_size_pretty(self) -> str:
@@ -371,8 +373,7 @@ class SystemInfo(SafeDeleteModel):
         if self.bootfs_size > 0:
             perc = self.bootfs_available / self.bootfs_size
             return f"{convert_size(self.bootfs_size_pretty)} ({perc:.0%} free)"
-        else:
-            return "Unknown"
+        return "Unknown"
 
     # end bootfs
 
@@ -384,8 +385,10 @@ class SystemInfo(SafeDeleteModel):
 
     @property
     def datafs_available_pretty(self) -> str:
-        perc = self.datafs_available / self.datafs_size
-        return f"{convert_size(self.datafs_size)} ({perc:.0%} free)"
+        if self.datafs_size > 0:
+            perc = self.datafs_available / self.datafs_size
+            return f"{convert_size(self.datafs_size)} ({perc:.0%} free)"
+        return "Unknown"
 
     @property
     def datafs_size_pretty(self) -> str:
@@ -393,8 +396,10 @@ class SystemInfo(SafeDeleteModel):
 
     @property
     def datafs_used_pretty(self) -> str:
-        perc = self.datafs_used / self.datafs_size
-        return f"{convert_size(self.datafs_used)} ({perc:.0%} used)"
+        if self.datafs_size:
+            perc = self.datafs_used / self.datafs_size
+            return f"{convert_size(self.datafs_used)} ({perc:.0%} used)"
+        return "Unknown"
 
     # end datafs
     @property
@@ -403,8 +408,10 @@ class SystemInfo(SafeDeleteModel):
 
     @property
     def rootfs_used_pretty(self) -> str:
-        perc = self.rootfs_used / self.rootfs_size
-        return f"{convert_size(self.rootfs_used)} ({perc:.0%} used)"
+        if self.rootfs_size > 0:
+            perc = self.rootfs_used / self.rootfs_size
+            return f"{convert_size(self.rootfs_used)} ({perc:.0%} used)"
+        return "Unknown"
 
     @property
     def rootfs_available(self) -> int:
@@ -412,8 +419,10 @@ class SystemInfo(SafeDeleteModel):
 
     @property
     def rootfs_available_pretty(self) -> str:
-        perc = self.rootfs_available / self.rootfs_size
-        return f"{convert_size(self.rootfs_size)} ({perc:.0%} free)"
+        if self.rootfs_size > 0:
+            perc = self.rootfs_available / self.rootfs_size
+            return f"{convert_size(self.rootfs_size)} ({perc:.0%} free)"
+        return "Unknown"
 
 
 class WebrtcStream(SafeDeleteModel):
