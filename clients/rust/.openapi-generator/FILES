@@ -136,8 +136,6 @@ docs/PolymorphicPiEvent.md
 docs/PolymorphicPiEventRequest.md
 docs/PolymorphicPiStatus.md
 docs/PolymorphicPiStatusRequest.md
-docs/PrintNannyApiConfig.md
-docs/PrintNannyLicense.md
 docs/Product.md
 docs/RegisterRequest.md
 docs/ResendEmailVerificationRequest.md
@@ -309,8 +307,6 @@ src/models/polymorphic_pi_event.rs
 src/models/polymorphic_pi_event_request.rs
 src/models/polymorphic_pi_status.rs
 src/models/polymorphic_pi_status_request.rs
-src/models/print_nanny_api_config.rs
-src/models/print_nanny_license.rs
 src/models/product.rs
 src/models/register_request.rs
 src/models/resend_email_verification_request.rs
