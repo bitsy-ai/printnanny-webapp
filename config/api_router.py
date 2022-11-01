@@ -9,7 +9,6 @@ from print_nanny_webapp.devices.api.views import (
     PiViewSet,
     WebrtcStreamViewSet,
     PiLicenseZipViewset,
-    PiLicenseJsonViewSet,
     PiSettingsViewSet,
 )
 from print_nanny_webapp.events.api.views import (
@@ -72,7 +71,6 @@ pi_router.register("events/commands", SinglePiCommandsViewSet, basename="pi-comm
 
 
 pi_router.register("license", PiLicenseZipViewset, basename="license-zip")
-pi_router.register("license", PiLicenseJsonViewSet, basename="license-api-json")
 
 pi_router.register("settings", PiSettingsViewSet, basename="settings")
 pi_router.register(r"webrtc-streams", WebrtcStreamViewSet, basename="janus-streams")
