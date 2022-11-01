@@ -84,13 +84,13 @@
                 <TabPanel class="text-sm text-gray-500">
                   <h3 class="sr-only">Frequently Asked Questions</h3>
                   <a
-                    href="https://docs.printnanny.ai/docs/faq/founding-membership/"
+                    href="https://printnanny.ai/docs/faq/founding-membership/"
                     target="_blank"
                   >
                     <button
                       class="mt-4 block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                     >
-                      Read the full FAQ @ docs.printnanny.ai
+                      Read the full FAQ @ printnanny.ai
                     </button>
                   </a>
                   <dl>
@@ -329,7 +329,7 @@ const faqs = [
   {
     question: "Does the Founding Membership include hardware?",
     answer: `You must supply your own hardware to participate in the Founding Member program. 
-    <br><a href="https://docs.printnanny.ai/docs/quick-start/hardware/" class="text-indigo-500 hover:text-indigo-600" target="_blank">
+    <br><a href="https://printnanny.ai/docs/quick-start/hardware/" class="text-indigo-500 hover:text-indigo-600" target="_blank">
       Learn more about required hardware.</a>`,
   },
   {
@@ -357,11 +357,11 @@ const faqs = [
   },
   {
     question: "How to I install PrintNanny OS?",
-    answer: `Check out the <a href="https://docs.printnanny.ai/docs/category/quick-start/" class="text-indigo-500 hover:text-indigo-600" target="_blank">Quick Start guide</a>.</a>`,
+    answer: `Check out the <a href="https://printnanny.ai/docs/category/quick-start/" class="text-indigo-500 hover:text-indigo-600" target="_blank">Quick Start guide</a>.</a>`,
   },
   {
     question: "How to I update PrintNanny OS?",
-    answer: `Follow the steps in <a href="https://docs.printnanny.ai/docs/update-printnanny-os/"  class="text-indigo-500 hover:text-indigo-600" target="_blank">Update PrintNanny OS</a>.`,
+    answer: `Follow the steps in <a href="https://printnanny.ai/docs/update-printnanny-os/"  class="text-indigo-500 hover:text-indigo-600" target="_blank">Update PrintNanny OS</a>.`,
   },
 ];
 
@@ -412,7 +412,7 @@ const product = ref({
       extra: "",
       open: true,
       items: [
-        `<a href="https://docs.printnanny.ai/docs/quick-start/hardware/" class="text-indigo-500 hover:text-indigo-600" target="_blank">Read more about required hardware</a>`,
+        `<a href="https://printnanny.ai/docs/quick-start/hardware/" class="text-indigo-500 hover:text-indigo-600" target="_blank">Read more about required hardware</a>`,
         "Raspberry Pi 4",
         "Raspberry Pi Camera",
         "5.1v / 3.0A DC power supply",

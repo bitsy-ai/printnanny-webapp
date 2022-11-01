@@ -272,7 +272,7 @@
             Join Discord
           </a>
           <a
-            href="https://docs.printnanny.ai/docs/faq/founding-membership/"
+            href="https://printnanny.ai/docs/faq/founding-membership/"
             target="_blank"
             class="bg-indigo-500 w-full m-auto md:w-1/3 block hover:bg-blue-700 text-white font-extrabold py-2 px-4 rounded mt-4 sm:text-xl transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
           >

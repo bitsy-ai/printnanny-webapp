@@ -598,7 +598,7 @@ INSTALLED_APPS += [
 
 # ------------------------------------------------------------------------------
 # docs site
-DOCS_SITE_URL = "https://docs.printnanny.ai/docs/category/quick-start/"
+DOCS_SITE_URL = "https://printnanny.ai/docs/category/quick-start/"
 DOCS_SITE__QUICKSTART = DOCS_SITE_URL
 
 # dj-stripe
