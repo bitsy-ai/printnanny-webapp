@@ -19,7 +19,6 @@ from django_nats_nkeys.models import (
     _default_name,
 )
 from django_nats_nkeys.services import create_organization, nsc_generate_creds
-from rest_framework.renderers import JSONRenderer
 from print_nanny_webapp.utils.api.service import get_api_config
 from print_nanny_webapp.devices.enum import JanusConfigType
 from print_nanny_webapp.devices.api.serializers import PrintNannyLicenseSerializer
@@ -413,19 +412,14 @@ def get_license_serializer(pi: Pi, request: HttpRequest) -> PrintNannyLicenseSer
     return PrintNannyLicenseSerializer(dict(api=api, pi=pi))
 
 
-def build_license_zip(pi: Pi, request: HttpRequest) -> bytes:
+def build_license_zip(pi: Pi) -> bytes:
 
     nats_app = get_or_create_pi_nats_app(pi)
-
-    license_serializer = get_license_serializer(pi, request)
-
     nats_creds = nsc_generate_creds(
         nats_app.organization.name, app_name=nats_app.app_name
     )
-
     creds_bundle = [
-        ("license.json", JSONRenderer().render(license_serializer.data)),
-        ("nats.creds", nats_creds),
+        ("printnanny-cloud-nats.creds", nats_creds),
     ]
 
     # do not write sensitive credentials to disk

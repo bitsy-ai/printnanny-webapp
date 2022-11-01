@@ -37,19 +37,15 @@ from print_nanny_webapp.devices.api.serializers import (
     PiSerializer,
     WebrtcStreamSerializer,
     PiSettingsSerializer,
-    PrintNannyLicenseSerializer,
 )
 from print_nanny_webapp.devices.models import (
     Pi,
     WebrtcStream,
     SystemInfo,
     PiSettings,
-    PiNatsApp,
 )
 from print_nanny_webapp.devices.services import (
     build_license_zip,
-    get_license_serializer,
-    get_or_create_pi_nats_app,
 )
 
 User = get_user_model()
@@ -428,33 +424,9 @@ class PiLicenseZipViewset(
     ) -> HttpResponse:
         pi = get_object_or_404(Pi.objects.filter(id=pi_id, user=request.user))
 
-        zip_content = build_license_zip(pi, request)
+        zip_content = build_license_zip(pi)
 
         response = HttpResponse(zip_content, content_type=ZipRenderer.media_type)
         filename = f"printnanny-{pi.hostname}.zip"
         response["Content-Disposition"] = f"attachment; filename={filename}"
         return response
-
-
-class PiLicenseJsonViewSet(GenericViewSet):
-    @extend_schema(
-        tags=["devices"],
-        parameters=[
-            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH),
-        ],
-        responses={200: PrintNannyLicenseSerializer} | generic_get_errors,
-    )
-    @action(detail=False, methods=["get"], url_path="cloud-api")
-    def cloud_api(
-        self, request: Request, pi_id=None, *args: Any, **kwargs: Any
-    ) -> HttpResponse:
-        pi = Pi.objects.get(id=pi_id, user=request.user)
-        # is there already a NatsApp associated with Pi?
-        try:
-            nats_app = PiNatsApp.objects.get(pi=pi)
-        # no app, step through NATS account + app creation process
-        except PiNatsApp.DoesNotExist:
-            nats_app = get_or_create_pi_nats_app(pi)
-        serializer = get_license_serializer(pi, request)
-
-        return Response(serializer.data)

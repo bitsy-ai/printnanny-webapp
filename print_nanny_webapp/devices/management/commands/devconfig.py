@@ -34,7 +34,7 @@ class Command(BaseCommand):
         request.user = user
         request.META["HTTP_HOST"] = f"{options['hostname']}:{options['port']}"
 
-        zipdata = build_license_zip(device, request)
+        zipdata = build_license_zip(device)
         with open(options["out"], "wb+") as f:
             f.write(zipdata)
         self.stdout.write(self.style.SUCCESS(f"Created {options['out']}"))
