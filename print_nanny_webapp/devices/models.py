@@ -368,8 +368,11 @@ class SystemInfo(SafeDeleteModel):
 
     @property
     def bootfs_available_pretty(self) -> str:
-        perc = self.bootfs_available / self.bootfs_size
-        return f"{convert_size(self.bootfs_size_pretty)} ({perc:.0%} free)"
+        if self.bootfs_size > 0:
+            perc = self.bootfs_available / self.bootfs_size
+            return f"{convert_size(self.bootfs_size_pretty)} ({perc:.0%} free)"
+        else:
+            return "Unknown"
 
     # end bootfs
 
