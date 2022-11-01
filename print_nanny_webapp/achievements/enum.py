@@ -4,10 +4,10 @@ from django.db import models
 class AchievementType(models.TextChoices):
 
     FREE_BETA = (
-        "Free Beta",
+        "FreeBeta",
         "Participated in free beta program",
     )
     FOUNDING_MEMBER = (
-        "Founding Member",
+        "FoundingMember",
         "Supported PrintNanny by pre-ordering an annual subscription",
     )
