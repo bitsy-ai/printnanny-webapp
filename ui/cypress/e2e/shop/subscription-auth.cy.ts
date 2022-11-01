@@ -94,7 +94,7 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
               .then(() => {
                 cy.get("button#pn-navmenu-button", { timeout: 10000 }).click();
                 cy.get(".pn-achievement-badge", { timeout: 10000 }).contains(
-                  "Founding Member"
+                  "FoundingMember"
                 );
               })
           );
