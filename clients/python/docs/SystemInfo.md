@@ -27,7 +27,6 @@ Name | Type | Description | Notes
 **ram** | **int** |  | 
 **os_version_id** | **str** | PrintNanny OS VERSION_ID from /etc/os-release | 
 **os_build_id** | **datetime** | PrintNanny OS BUILD_ID from /etc/os-release | 
-**os_variant_id** | **str** | PrintNanny OS VARIANT_ID from /etc/os-release | 
 **os_release_json** | **dict(str, object)** | Full contents of /etc/os-release in key:value format | [optional] 
 **uptime** | **int** | system uptime (in seconds) | 
 **rootfs_size** | **int** | Size of /dev/root filesystem in bytes | 

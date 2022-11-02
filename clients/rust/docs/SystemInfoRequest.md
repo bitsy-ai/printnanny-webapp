@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **ram** | **i64** |  | 
 **os_version_id** | **String** | PrintNanny OS VERSION_ID from /etc/os-release | 
 **os_build_id** | **String** | PrintNanny OS BUILD_ID from /etc/os-release | 
-**os_variant_id** | **String** | PrintNanny OS VARIANT_ID from /etc/os-release | 
 **os_release_json** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Full contents of /etc/os-release in key:value format | [optional]
 **uptime** | **i64** | system uptime (in seconds) | 
 **rootfs_size** | **i64** | Size of /dev/root filesystem in bytes | 
