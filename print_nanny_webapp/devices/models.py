@@ -143,12 +143,6 @@ class Pi(SafeDeleteModel):
         return self.system_info is not None
 
     @property
-    def is_octoprint(self) -> bool:
-        if self.system_info is not None:
-            return "octoprint" in self.system_info.os_variant_id
-        return False
-
-    @property
     def last_boot(self) -> Optional[datetime]:
         if self.system_info is not None:
             return self.system_info.updated_dt
@@ -280,7 +274,7 @@ class SystemInfo(SafeDeleteModel):
     class Meta:
         index_together = (
             ("pi", "created_dt", "updated_dt"),
-            ("os_build_id", "os_variant_id", "os_version_id", "pi"),
+            ("os_build_id", "os_version_id", "pi"),
         )
         constraints = [
             UniqueConstraint(
@@ -319,10 +313,6 @@ class SystemInfo(SafeDeleteModel):
     )
     os_build_id = models.DateTimeField(
         max_length=255, help_text="PrintNanny OS BUILD_ID from /etc/os-release"
-    )
-
-    os_variant_id = models.CharField(
-        max_length=255, help_text="PrintNanny OS VARIANT_ID from /etc/os-release"
     )
 
     os_release_json = models.JSONField(
