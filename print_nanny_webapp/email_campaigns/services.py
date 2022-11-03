@@ -3,7 +3,6 @@ from typing import Dict, Optional, Union
 
 from anymail.message import AnymailMessage
 from django.apps import apps
-from django.db.models.query import QuerySet
 
 from print_nanny_webapp.email_campaigns.models import Campaign, EmailMessage
 from print_nanny_webapp.users.models import User
@@ -76,9 +75,7 @@ def format_merge_metadata(email: str) -> Dict[str, Optional[Union[str, int]]]:
         return dict(user_id=None, name=name)
 
 
-def filter_email_waitlist_not_subscribed(
-    campaign: Campaign, limit=10
-) -> QuerySet[EmailWaitlist]:
+def filter_email_waitlist_not_subscribed(campaign: Campaign, limit=10):
     already_subscribed = User.objects.all().values("email")  # type: ignore[has-type]
     already_sent = EmailMessage.objects.filter(campaign=campaign).values("email")
     return (
