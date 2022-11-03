@@ -67,7 +67,7 @@ class CampaignTestCase(TestCase):
             EmailWaitlist.objects.create(email=email)
 
         campaign = Campaign.objects.get(template="founding-member-november-v2")
-        msg = send_fn_founding_member_november_2022_offer(campaign, EmailWaitlist)
+        msg = send_fn_founding_member_november_2022_offer(campaign)
 
         for email, recipient in msg.anymail_status.recipients.items():
             try:

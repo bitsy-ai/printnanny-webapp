@@ -17,8 +17,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         template = options["template"]
         limit = options["limit"]
-        app = options["app"]
-        model_str = options["model"]
 
         campaign = Campaign.objects.get(template=template)
         fn_name = campaign.send_fn.split(".")[-1]
