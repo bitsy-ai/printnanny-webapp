@@ -2,7 +2,6 @@ import logging
 from typing import Dict, Optional, Union
 
 from anymail.message import AnymailMessage
-from django.db import models
 from django.apps import apps
 
 from print_nanny_webapp.email_campaigns.models import Campaign, EmailMessage
@@ -77,9 +76,9 @@ def format_merge_metadata(email: str) -> Dict[str, Optional[Union[str, int]]]:
 
 
 def send_fn_founding_member_november_2022_offer(
-    campaign: Campaign, model: models.Model, limit=10
+    campaign: Campaign, model, limit=10
 ) -> AnymailMessage:
-    already_subscribed = User.objects.all().values("email")
+    already_subscribed = User.objects.all().values("email")  # type: ignore[has-type]
     already_sent = EmailMessage.objects.filter(campaign=campaign).values("email")
     emails = list(
         model.objects.exclude(email__in=already_sent)
@@ -113,10 +112,10 @@ def send_fn_founding_member_november_2022_offer(
 
 
 def send_fn_founding_member_november_2022_followup_offer(
-    campaign: Campaign, model: models.Model, limit=10
+    campaign: Campaign, model, limit=10
 ) -> AnymailMessage:
 
-    already_subscribed = User.objects.all().values("email")
+    already_subscribed = User.objects.all().values("email")  # type: ignore[has-type]
     already_sent = EmailMessage.objects.filter(campaign=campaign).values("email")
     emails = list(
         model.objects.exclude(email__in=already_sent)
