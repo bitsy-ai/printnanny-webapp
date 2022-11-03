@@ -2,6 +2,7 @@ from anymail.signals import AnymailTrackingEvent, tracking
 
 from django.contrib.auth import get_user_model
 from django.test import TestCase
+from django.apps import apps
 from django.test.utils import override_settings
 from print_nanny_webapp.email_campaigns.models import (
     EmailTrackingEvent,
@@ -9,10 +10,15 @@ from print_nanny_webapp.email_campaigns.models import (
 from print_nanny_webapp.email_campaigns.models import Campaign, EmailMessage
 from print_nanny_webapp.email_campaigns.services import (
     send_fn_founding_member_november_2022_offer,
+    migrate_surveys_to_email_waitlist,
 )
 from print_nanny_webapp.users.models import EmailWaitlist
 
 User = get_user_model()
+
+
+InviteRequest = apps.get_model("users", "InviteRequest")
+RemoteAccessSurvey1 = apps.get_model("surveys", "RemoteAccessSurvey1")
 
 
 @override_settings(EMAIL_BACKEND="anymail.backends.test.EmailBackend")
@@ -81,3 +87,52 @@ class CampaignTestCase(TestCase):
                 )
 
             assert recipient.status == sent_log.send_status
+
+
+class SurveysToEmailWaitlist(TestCase):
+    """
+    Test one-time data migration of various survey / invite request models to unified EmailWaitlist model
+    """
+
+    def test_migrate_surveys_to_email_waitlist(self):
+        survey1 = RemoteAccessSurvey1.objects.create(
+            email="test1@printnanny.ai",
+            first_name="foo",
+            last_name="bar",
+            print_frequency="DAILY",
+            num_printers=1,
+            business=False,
+            printer_models=["OTHER"],
+            usage="usage",
+            primary_os=["linux"],
+            mobile_os=["android"],
+            vpn_experience=["vpn_newbie"],
+            network_type=["school"],
+            user_scale=["multisite"],
+            printer_software=["octoprint"],
+            user_agent=dict(),
+        )
+
+        survey2 = InviteRequest.objects.create(
+            email="test2@printnanny.ai",
+            first_name="foo",
+            last_name="bar",
+            print_frequency="DAILY",
+            num_printers=1,
+            business=False,
+            usage="usage",
+            printer_models=["OTHER"],
+            filament_type=["FDM"],
+        )
+
+        migrate_surveys_to_email_waitlist()
+
+        email_waitlists = EmailWaitlist.objects.all()
+
+        assert email_waitlists.count() == 2
+
+        # subsequent calls should be a no-op
+        migrate_surveys_to_email_waitlist()
+        email_waitlists = EmailWaitlist.objects.all()
+
+        assert email_waitlists.count() == 2

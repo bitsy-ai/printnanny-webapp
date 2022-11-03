@@ -2,12 +2,53 @@ import logging
 from typing import Dict, Optional, Union
 
 from anymail.message import AnymailMessage
-from django.db import models
+from django.apps import apps
 
 from print_nanny_webapp.email_campaigns.models import Campaign, EmailMessage
 from print_nanny_webapp.users.models import User
 
 logger = logging.getLogger(__name__)
+
+
+InviteRequest = apps.get_model("users", "InviteRequest")
+RemoteAccessSurvey1 = apps.get_model("surveys", "RemoteAccessSurvey1")
+EmailWaitlist = apps.get_model("users", "EmailWaitlist")
+
+
+def migrate_surveys_to_email_waitlist():
+    already_added = EmailWaitlist.objects.all().values("email")
+    surveys_to_add = InviteRequest.objects.exclude(email__in=already_added).all()
+    remaining = surveys_to_add.count()
+    logger.info("Found %s InviteRequest not in EmailWaitlist, adding", remaining)
+
+    for survey in surveys_to_add:
+        try:
+            EmailWaitlist.objects.create(
+                created_dt=survey.created_dt, email=survey.email
+            )
+        except Exception as e:
+            logger.error("Failed to add %s to EmailWaitlist: %s", survey, e)
+        remaining -= 1
+
+        # log progress for every 100 signups
+        if remaining % 100 == 0:
+            logger.info("%s InviteRequest remainng", remaining)
+    already_added = EmailWaitlist.objects.all().values("email")
+    surveys_to_add = RemoteAccessSurvey1.objects.exclude(email__in=already_added).all()
+    remaining = surveys_to_add.count()
+    logger.info("Found %s RemoteAccessSurvey1 not in EmailWaitlist, adding", remaining)
+    for survey in surveys_to_add:
+        try:
+            EmailWaitlist.objects.create(
+                created_dt=survey.created_dt, email=survey.email
+            )
+        except Exception as e:
+            logger.error("Failed to add %s to EmailWaitlist: %s", survey, e)
+        remaining -= 1
+
+        # log progress for every 100 signups
+        if remaining % 100 == 0:
+            logger.info("%s InviteRequest remainng", remaining)
 
 
 def format_email(user) -> str:
@@ -35,9 +76,9 @@ def format_merge_metadata(email: str) -> Dict[str, Optional[Union[str, int]]]:
 
 
 def send_fn_founding_member_november_2022_offer(
-    campaign: Campaign, model: models.Model, limit=10
+    campaign: Campaign, model, limit=10
 ) -> AnymailMessage:
-    already_subscribed = User.objects.all().values("email")
+    already_subscribed = User.objects.all().values("email")  # type: ignore[has-type]
     already_sent = EmailMessage.objects.filter(campaign=campaign).values("email")
     emails = list(
         model.objects.exclude(email__in=already_sent)
@@ -71,10 +112,10 @@ def send_fn_founding_member_november_2022_offer(
 
 
 def send_fn_founding_member_november_2022_followup_offer(
-    campaign: Campaign, model: models.Model, limit=10
+    campaign: Campaign, model, limit=10
 ) -> AnymailMessage:
 
-    already_subscribed = User.objects.all().values("email")
+    already_subscribed = User.objects.all().values("email")  # type: ignore[has-type]
     already_sent = EmailMessage.objects.filter(campaign=campaign).values("email")
     emails = list(
         model.objects.exclude(email__in=already_sent)
