@@ -3,6 +3,7 @@ from typing import Dict, Optional, Union
 
 from anymail.message import AnymailMessage
 from django.apps import apps
+from django.db.models.query import QuerySet
 
 from print_nanny_webapp.email_campaigns.models import Campaign, EmailMessage
 from print_nanny_webapp.users.models import User
@@ -75,55 +76,25 @@ def format_merge_metadata(email: str) -> Dict[str, Optional[Union[str, int]]]:
         return dict(user_id=None, name=name)
 
 
+def filter_email_waitlist_not_subscribed(
+    campaign: Campaign, limit=10
+) -> QuerySet[EmailWaitlist]:
+    already_subscribed = User.objects.all().values("email")  # type: ignore[has-type]
+    already_sent = EmailMessage.objects.filter(campaign=campaign).values("email")
+    return (
+        EmailWaitlist.objects.exclude(email__in=already_sent)
+        .exclude(email__in=already_subscribed)
+        .order_by("-created_dt")
+        .all()[:limit]
+        .values_list("email", flat=True)
+    )
+
+
 def send_fn_founding_member_november_2022_offer(
-    campaign: Campaign, model, limit=10
+    campaign: Campaign, filter_fn=filter_email_waitlist_not_subscribed, limit=10
 ) -> AnymailMessage:
-    already_subscribed = User.objects.all().values("email")  # type: ignore[has-type]
-    already_sent = EmailMessage.objects.filter(campaign=campaign).values("email")
-    emails = list(
-        model.objects.exclude(email__in=already_sent)
-        .exclude(email__in=already_subscribed)
-        .order_by("-created_dt")
-        .all()[:limit]
-        .values_list("email", flat=True)
-    )
-    msg = AnymailMessage(
-        subject=campaign.subject,
-        tags=["marketing", "founding_member"],
-        from_email="PrintNanny <beta@mail.printnanny.ai>",
-    )
+    emails = list(filter_fn(campaign, limit=limit))
 
-    msg.template_id = campaign.template
-
-    msg.to = emails
-    msg.merge_metadata = {email: format_merge_metadata(email) for email in emails}
-    msg.esp_extra = {
-        # TODO: send-time optimization is only available for single recipient messages
-        # "o:deliverytime-optimize-period": "24h",  # use Mailgun Send Time Optimization
-        # "o:time-zone-localize": "16:00",  # use Mailgun Timezone Optimization
-        "h:Reply-To": "leigh@printnanny.ai",
-    }
-    msg.merge_global_data = {"campaign_id": campaign.id}
-
-    logger.info("Starting campaign %s to %s recipients", campaign.template, len(msg.to))
-    msg.send(fail_silently=False)
-    logger.info("Success! Started campaign %s", campaign.template)
-    return msg
-
-
-def send_fn_founding_member_november_2022_followup_offer(
-    campaign: Campaign, model, limit=10
-) -> AnymailMessage:
-
-    already_subscribed = User.objects.all().values("email")  # type: ignore[has-type]
-    already_sent = EmailMessage.objects.filter(campaign=campaign).values("email")
-    emails = list(
-        model.objects.exclude(email__in=already_sent)
-        .exclude(email__in=already_subscribed)
-        .order_by("-created_dt")
-        .all()[:limit]
-        .values_list("email", flat=True)
-    )
     msg = AnymailMessage(
         subject=campaign.subject,
         tags=["marketing", "founding_member"],
