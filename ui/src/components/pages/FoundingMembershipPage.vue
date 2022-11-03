@@ -90,7 +90,7 @@
                     <button
                       class="mt-4 block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                     >
-                      Read the full FAQ @ printnanny.ai
+                      Read the Founding Member FAQ
                     </button>
                   </a>
                   <dl>
@@ -250,6 +250,7 @@
                       />
                     </span>
                   </DisclosureButton>
+                  
                 </h3>
                 <DisclosurePanel as="div" class="prose prose-sm pb-6">
                   <ul role="list">
@@ -261,7 +262,10 @@
                   </ul>
                   <p>{{ detail.extra }}</p>
                 </DisclosurePanel>
+                
               </Disclosure>
+
+              
             </div>
           </section>
         </div>
@@ -346,14 +350,6 @@ const faqs = [
     question: "Can I run Mainsail?",
     answer: `Yes, Mainsail/Moonraker/Klipper is included in PrintNanny OS. We also package avrdude, so you can easily flash klipper's firmware to your microcontroller. 
     `,
-  },
-  {
-    question: "What is PrintNanny OS?",
-    answer: `PrintNanny OS is a Linux distribution based on the <a href="https://www.yoctoproject.org/" class="text-indigo-500 hover:text-indigo-600" target="_blank">Yocto Project</a>, designed to let you focus on the fun parts of 3D printing. 
-      Compared to general-purpose Linux distributions like Raspberry Pi OS (Raspbian), PrintNanny OS is highly optimized for 3D printer controllers and computer vision tasks. 
-
-      PrintNanny OS can receive over-the-air updates and is upgradable via web ui. Your settings are automatically kept in sync with PrintNanny Cloud.
-    <br>`,
   },
   {
     question: "How to I install PrintNanny OS?",
