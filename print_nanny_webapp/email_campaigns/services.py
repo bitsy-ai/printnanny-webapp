@@ -39,8 +39,9 @@ def send_fn_founding_member_november_2022_offer(
 ) -> AnymailMessage:
     already_subscribed = User.objects.all().values("email")
     already_sent = EmailMessage.objects.filter(campaign=campaign).values("email")
-    emails = (
-        model.objects.exclude(email__in=already_sent, email__in=already_subscribed)
+    emails = list(
+        model.objects.exclude(email__in=already_sent)
+        .exclude(email__in=already_subscribed)
         .order_by("-created_dt")
         .all()[:limit]
         .values_list("email", flat=True)
@@ -75,8 +76,9 @@ def send_fn_founding_member_november_2022_followup_offer(
 
     already_subscribed = User.objects.all().values("email")
     already_sent = EmailMessage.objects.filter(campaign=campaign).values("email")
-    emails = (
-        model.objects.exclude(email__in=already_sent, email__in=already_subscribed)
+    emails = list(
+        model.objects.exclude(email__in=already_sent)
+        .exclude(email__in=already_subscribed)
         .order_by("-created_dt")
         .all()[:limit]
         .values_list("email", flat=True)
