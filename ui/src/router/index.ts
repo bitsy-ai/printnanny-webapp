@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { useAccountStore } from "@/stores/account";
+import posthog from "posthog-js";
 
 import deviceRoutes from "./devices";
 import swagRoutes from "./swag";
@@ -17,6 +18,18 @@ const router = createRouter({
     ...shopRoutes,
   ],
 });
+
+// capture posthog events
+router.afterEach((to, _from) => {
+  if (
+    !window.location.href.includes("127.0.0.1") &&
+    !window.location.href.includes("localhost")
+  ) {
+    posthog.capture("$pageview", {
+      $current_url: to.fullPath,
+    });
+  }
+})
 
 router.beforeEach(async (to, _from) => {
   if (to.name == "logout") {
