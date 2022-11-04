@@ -20,13 +20,13 @@ const router = createRouter({
 });
 
 // capture posthog events
-router.afterEach((to, _from) => {
+router.afterEach((_to, _from) => {
   if (
     !window.location.href.includes("127.0.0.1") &&
     !window.location.href.includes("localhost")
   ) {
     posthog.capture("$pageview", {
-      $current_url: to.fullPath,
+      $current_url: window.location.href
     });
   }
 })
