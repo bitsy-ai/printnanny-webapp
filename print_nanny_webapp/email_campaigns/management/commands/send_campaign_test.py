@@ -23,4 +23,4 @@ class Command(BaseCommand):
         fn_name = campaign.send_fn.split(".")[-1]
         func = getattr(print_nanny_webapp.email_campaigns.services, fn_name)
 
-        func(campaign, limit=1, filter_fn=lambda x: email)
+        func(campaign, limit=1, filter_fn=lambda _campaign, _limit=10: email)
