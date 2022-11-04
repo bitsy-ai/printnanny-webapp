@@ -61,6 +61,7 @@ def build_stripe_checkout_session_kwargs(
             django_product_id=product.id,
             django_order_id=order_id,
         ),
+        allow_promotion_codes=True,
     )
     # set success / cancel urls
     extra_kwargs["success_url"] = request.build_absolute_uri("/shop/thank-you/")
