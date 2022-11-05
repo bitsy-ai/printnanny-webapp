@@ -172,6 +172,14 @@ class PiNatsAppSerializer(serializers.ModelSerializer):
             "nats_ws_uri",
             "nats_subject_pattern",
             "nats_subject_pattern_template",
+            "mqtt_subject_template_moonraker_request",
+            "mqtt_subject_moonraker_request",
+            "mqtt_subject_template_moonraker_response",
+            "mqtt_subject_moonraker_response",
+            "mqtt_subject_template_klipper_status",
+            "mqtt_subject_klipper_status",
+            "mqtt_broker_host",
+            "mqtt_broker_port",
         )
 
 
