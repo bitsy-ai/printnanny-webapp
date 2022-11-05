@@ -72,6 +72,20 @@ spec:
   dnsNames:
     - nats.live.printnanny.ai
     - nats.printnanny.ai
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nats-mqtt-tls
+  namespace: nats
+spec:
+  secretName: nats-mqtt-tls
+  issuerRef:
+    name: letsencrypt-dns-issuer
+    kind: ClusterIssuer
+  dnsNames:
+    - mqtt.live.printnanny.ai
+    - mqtt.printnanny.ai
 # TODO: enable for NATS operator $CLUSTER-mgmt internal service routes
 # ref: https://docs.nats.io/running-a-nats-service/nats-kubernetes/nats-cluster-and-cert-manager
 # ---

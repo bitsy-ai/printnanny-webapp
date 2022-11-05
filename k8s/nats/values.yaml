@@ -195,7 +195,7 @@ nats:
   #        name: log-config
 
   jetstream:
-    enabled: false
+    enabled: true
 
     # Jetstream Domain
     domain:
@@ -268,7 +268,7 @@ nats:
   #   key: "tls.key"
 
 mqtt:
-  enabled: false
+  enabled: true
   ackWait: 1m
   maxAckPending: 100
 
@@ -284,12 +284,12 @@ mqtt:
   #
 
   #
-  # tls:
-  #   secret:
-  #     name: nats-mqtt-tls
-  #   ca: "ca.crt"
-  #   cert: "tls.crt"
-  #   key: "tls.key"
+  tls:
+    secret:
+      name: nats-mqtt-tls
+    ca: "ca.crt"
+    cert: "tls.crt"
+    key: "tls.key"
 
 nameOverride: ""
 namespaceOverride: ""
