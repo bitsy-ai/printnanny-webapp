@@ -183,6 +183,42 @@ class PiNatsApp(AbstractNatsOrganizationApp, SafeDeleteModel):
         ]
 
     @property
+    def mqtt_subject_template_moonraker_request(self) -> str:
+        return "{app_name}/moonraker/api/request"
+
+    @property
+    def mqtt_subject_moonraker_request(self) -> str:
+        return self.mqtt_subject_template_moonraker_request.format(
+            app_name=self.app_name
+        )
+
+    @property
+    def mqtt_subject_template_moonraker_response(self) -> str:
+        return "{app_name}/moonraker/api/response"
+
+    @property
+    def mqtt_subject_moonraker_response(self) -> str:
+        return self.mqtt_subject_template_moonraker_response.format(
+            app_name=self.app_name
+        )
+
+    @property
+    def mqtt_subject_template_klipper_status(self) -> str:
+        return "{app_name}/klipper/status"
+
+    @property
+    def mqtt_subject_klipper_status(self) -> str:
+        return self.mqtt_subject_template_klipper_statu.format(app_name=self.app_name)
+
+    @property
+    def mqtt_broker_host(self) -> str:
+        return settings.NATS_MQTT_BROKER_HOST
+
+    @property
+    def mqtt_broker_port(self) -> int:
+        return settings.NATS_MQTT_BROKER_PORT
+
+    @property
     def nats_subject_pattern_template(self) -> str:
         return "pi.{pi_id}.>"
 
