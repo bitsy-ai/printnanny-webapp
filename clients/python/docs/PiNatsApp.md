@@ -14,6 +14,14 @@ Name | Type | Description | Notes
 **nats_ws_uri** | **str** |  | [readonly] 
 **nats_subject_pattern** | **str** |  | [readonly] 
 **nats_subject_pattern_template** | **str** |  | [readonly] 
+**mqtt_subject_template_moonraker_request** | **str** |  | [readonly] 
+**mqtt_subject_moonraker_request** | **str** |  | [readonly] 
+**mqtt_subject_template_moonraker_response** | **str** |  | [readonly] 
+**mqtt_subject_moonraker_response** | **str** |  | [readonly] 
+**mqtt_subject_template_klipper_status** | **str** |  | [readonly] 
+**mqtt_subject_klipper_status** | **str** |  | [readonly] 
+**mqtt_broker_host** | **str** |  | [readonly] 
+**mqtt_broker_port** | **int** |  | [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
