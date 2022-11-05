@@ -1,7 +1,7 @@
 ---
 library: asyncio
 packageName: printnanny_api_client
-packageVersion: '0.113.0'
+packageVersion: '0.114.0'
 templateDir: clients/templates
 infoName: "Leigh Johnson"
 infoEmail: "leigh@print-nanny.com"
