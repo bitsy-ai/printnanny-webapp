@@ -155,7 +155,7 @@ django-loginas==0.3.10
     # via -r /requirements/production.in
 django-model-utils==4.2.0
     # via -r /requirements/production.in
-django-nats-nkeys[drf]==0.9.4
+django-nats-nkeys[drf]==0.9.6
     # via -r /requirements/production.in
 django-organizations==2.0.2
     # via django-nats-nkeys
