@@ -174,9 +174,7 @@ class PiNatsApp(AbstractNatsOrganizationApp, SafeDeleteModel):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(
-                fields=["app_name", "organization"], name="unique_nats_app_name_per_org"
-            ),
+            models.UniqueConstraint(fields=["app_name"], name="unique_nats_app_name"),
             UniqueConstraint(
                 fields=["pi"],
                 condition=models.Q(deleted=None),
