@@ -207,7 +207,7 @@ class PiNatsApp(AbstractNatsOrganizationApp, SafeDeleteModel):
         return "{app_name}/klipper/status"
 
     @property
-    def mqtt_subject_klipper_statuse(self) -> str:
+    def mqtt_subject_klipper_status(self) -> str:
         return self.mqtt_subject_template_klipper_statu.format(app_name=self.app_name)
 
     @property
