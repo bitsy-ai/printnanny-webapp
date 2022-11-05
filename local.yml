@@ -7,6 +7,7 @@ volumes:
   local_file_data: {}
   local_octoprint_data: {}
   local_nsc_data: {}
+  local_jetstream_data: {}
 services:
   janus:
     hostname: janus
@@ -139,6 +140,7 @@ services:
     container_name: printnanny_webapp_nats
     volumes:
       - .nats/:/etc/nats
+      - local_jetstream_data:/data/jetstream:z
     command:
       - -c
       - /etc/nats/nats-server.conf
@@ -147,6 +149,7 @@ services:
     ports:
       - "4222:4222"
       - "8443:8443"
+      - "1883:1883"
   # events:
   #   container_name: printnanny_webapp_octoprint_events
   #   <<: *django
