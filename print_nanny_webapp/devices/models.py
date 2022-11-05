@@ -10,10 +10,8 @@ from django.utils.crypto import get_random_string
 from safedelete.models import SafeDeleteModel, SOFT_DELETE, SafeDeleteManager
 from print_nanny_webapp.devices.utils import convert_size
 from django_nats_nkeys.models import (
-    AbstractNatsApp,
-    NatsOrganization,
-    NatsOrganizationUser,
     NatsOrganizationAppManager,
+    AbstractNatsOrganizationApp,
 )
 from print_nanny_webapp.devices.utils import (
     get_available_data_rtp_port,
@@ -170,23 +168,13 @@ class PiNatsAppManager(SafeDeleteManager, NatsOrganizationAppManager):
 
 
 # add Pi foreign key reference to NatsApp
-class PiNatsApp(AbstractNatsApp, SafeDeleteModel):
+class PiNatsApp(AbstractNatsOrganizationApp, SafeDeleteModel):
     objects = PiNatsAppManager()
     pi = models.ForeignKey(Pi, on_delete=models.CASCADE, related_name="nats_apps")
-    organization_user = models.ForeignKey(
-        NatsOrganizationUser, on_delete=models.CASCADE, related_name="nats_pi_apps"
-    )
-    organization = models.ForeignKey(
-        NatsOrganization,
-        on_delete=models.CASCADE,
-        related_name="nats_pi_apps",
-    )
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(
-                fields=["app_name", "organization"], name="unique_nats_app_name_per_org"
-            ),
+            models.UniqueConstraint(fields=["app_name"], name="unique_nats_app_name"),
             UniqueConstraint(
                 fields=["pi"],
                 condition=models.Q(deleted=None),
