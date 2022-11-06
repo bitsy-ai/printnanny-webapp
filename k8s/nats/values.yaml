@@ -287,7 +287,6 @@ mqtt:
   tls:
     secret:
       name: nats-mqtt-tls
-    ca: "ca.crt"
     cert: "tls.crt"
     key: "tls.key"
 
