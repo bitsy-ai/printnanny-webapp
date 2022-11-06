@@ -4,7 +4,7 @@
 #                             #
 ###############################
 nats:
-  image: nats:2.8.4-alpine
+  image: nats:2.9.6-alpine
   pullPolicy: IfNotPresent
 
   # The servers name prefix, must be used for example when we want a NATS cluster
@@ -195,7 +195,7 @@ nats:
   #        name: log-config
 
   jetstream:
-    enabled: false
+    enabled: true
 
     # Jetstream Domain
     domain:
@@ -268,7 +268,7 @@ nats:
   #   key: "tls.key"
 
 mqtt:
-  enabled: false
+  enabled: true
   ackWait: 1m
   maxAckPending: 100
 
@@ -284,12 +284,11 @@ mqtt:
   #
 
   #
-  # tls:
-  #   secret:
-  #     name: nats-mqtt-tls
-  #   ca: "ca.crt"
-  #   cert: "tls.crt"
-  #   key: "tls.key"
+  tls:
+    secret:
+      name: nats-mqtt-tls
+    cert: "tls.crt"
+    key: "tls.key"
 
 nameOverride: ""
 namespaceOverride: ""
