@@ -86,6 +86,8 @@ spec:
   dnsNames:
     - mqtt.live.printnanny.ai
     - mqtt.printnanny.ai
+    - nats.live.printnanny.ai
+    - nats.printnanny.ai
 # TODO: enable for NATS operator $CLUSTER-mgmt internal service routes
 # ref: https://docs.nats.io/running-a-nats-service/nats-kubernetes/nats-cluster-and-cert-manager
 # ---
