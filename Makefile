@@ -568,6 +568,17 @@ nats-upgrade:
 		printnanny-nats nats/nats \
 		--reuse-values
 
+nats-upgrade-values:
+	helm upgrade --namespace nats \
+		--debug \
+		--install \
+		printnanny-nats nats/nats \
+		--values k8s/nats/values.yaml \
+		--set "auth.resolver.operator=${NATS_OPERATOR_NKEY}" \
+		--set "auth.resolver.systemAccount=${NATS_SYSTEM_ACCOUNT}" \
+		--set "auth.resolver.resolverPreload.${NATS_SYSTEM_ACCOUNT}=${NATS_RESOLVER_PRELOAD}"
+
+
 shellcheck:
 	find -name '*.sh' -not -path './.venv/*' -not -path './clients/*' | xargs shellcheck
 
