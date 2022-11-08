@@ -28,10 +28,6 @@
         </button>
       </div>
     </div>
-    <p class="mt-3 text-sm text-gray-300 sm:mt-4">
-      By providing your email, you agree to our
-      <a href="/terms" class="font-medium text-white">Terms of Service.</a>
-    </p>
   </Form>
 </template>
 <script setup lang="ts">
