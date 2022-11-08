@@ -67,33 +67,40 @@
     </div>
 
     <!-- Feature section with quality control demo -->
+
     <div id="quality-control" class="relative bg-gray-50 pt-6 lg:pt-12">
       <div
         class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl"
       >
-        <div>
-          <h2
-            class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
-          >
-            Quality Control that Never Sleeps
-          </h2>
-          <p
-            class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
-          >
-            PrintNanny Cam
-          </p>
-          <p class="pt-6 max-w-prose mx-auto text-xl text-gray-500">
-            Get notified or <strong>automatically pause</strong> if print job
-            doesn't pass quality control.
-          </p>
-          <router-link :to="{ name: 'shop-founding-membership' }">
-            <button
-              class="inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block text-3xl font-extrabold py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+        <Transition
+          enter-from-class="translate-x-[150%] opacity-0"
+          enter-active-class="transition duration-300"
+          appear
+        >
+          <div>
+            <h2
+              class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
             >
-              Get Access Now
-            </button>
-          </router-link>
-        </div>
+              Quality Control that Never Sleeps
+            </h2>
+            <p
+              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
+            >
+              PrintNanny Cam
+            </p>
+            <p class="pt-6 max-w-prose mx-auto text-xl text-gray-500">
+              Get notified or <strong>automatically pause</strong> if print job
+              doesn't pass quality control.
+            </p>
+            <router-link :to="{ name: 'shop-founding-membership' }">
+              <button
+                class="inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block text-3xl font-extrabold py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+              >
+                Get Access Now
+              </button>
+            </router-link>
+          </div>
+        </Transition>
         <div class="mt-12">
           <DemoQualityAlert></DemoQualityAlert>
         </div>
