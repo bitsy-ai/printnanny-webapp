@@ -52,15 +52,34 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
       cardNumber,
       cvc,
       exp,
-      promotionCode
+      promotionCode,
     };
     // cy.origin allows use to make cross-origin requests, with limitations
     cy.origin(
       "https://checkout.stripe.com",
       { args: sentArgs },
-      ({ url, billingName, address1, city, zip, cardNumber, cvc, exp, promotionCode }) => {
+      ({
+        url,
+        billingName,
+        address1,
+        city,
+        zip,
+        cardNumber,
+        cvc,
+        exp,
+        promotionCode,
+      }) => {
         cy.visit(url);
-        cy.get("input[name=promotionCode").type(promotionCode).then(() => cy.get("button.PromotionCodeEntry-applyButton").click().then(() => cy.get(".ProductSummaryTotalAmount").contains("$89.01")));
+        cy.get("input[name=promotionCode")
+          .type(promotionCode)
+          .then(() =>
+            cy
+              .get("button.PromotionCodeEntry-applyButton")
+              .click()
+              .then(() =>
+                cy.get(".ProductSummaryTotalAmount").contains("$89.01")
+              )
+          );
         cy.get("input[name=cardNumber]").type(cardNumber);
         cy.get("input[name=cardExpiry]").type(exp);
         cy.get("input[name=cardCvc]").type(cvc);

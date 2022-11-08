@@ -250,7 +250,6 @@
                       />
                     </span>
                   </DisclosureButton>
-                  
                 </h3>
                 <DisclosurePanel as="div" class="prose prose-sm pb-6">
                   <ul role="list">
@@ -262,10 +261,7 @@
                   </ul>
                   <p>{{ detail.extra }}</p>
                 </DisclosurePanel>
-                
               </Disclosure>
-
-              
             </div>
           </section>
         </div>

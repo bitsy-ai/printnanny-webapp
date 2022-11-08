@@ -26,10 +26,10 @@ router.afterEach((_to, _from) => {
     !window.location.href.includes("localhost")
   ) {
     posthog.capture("$pageview", {
-      $current_url: window.location.href
+      $current_url: window.location.href,
     });
   }
-})
+});
 
 router.beforeEach(async (to, _from) => {
   if (to.name == "logout") {
