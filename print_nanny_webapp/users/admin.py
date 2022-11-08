@@ -97,7 +97,10 @@ class UserAdmin(auth_admin.UserAdmin):
                 )
             },
         ),
-        ("Permissions", {"fields": ("is_staff", "is_active", "is_serviceuser")}),
+        (
+            "Permissions",
+            {"fields": ("is_staff", "is_active", "is_serviceuser", "is_demo")},
+        ),
     )
     add_fieldsets = (
         (
