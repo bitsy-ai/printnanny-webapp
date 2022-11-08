@@ -8,7 +8,7 @@
           >
             <div class="lg:py-12">
               <h1
-                class="tracking-tight font-extrabold text-white sm:text-6xl xl:text-6xl"
+                class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl"
               >
                 <span
                   class="block pb-2 block bg-clip-text text-transparent rounded-md shadow bg-gradient-to-r from-indigo-400 to-violet-500 sm:pb-2"
@@ -21,7 +21,7 @@
                 👀
               </h1>
               <h2
-                class="sm:text-xl md:text-3xl text-white mt-4 mb-4 text-3xl font-extrabold tracking-tight sm:text-4xl"
+                class="sm:text-xl md:text-3xl text-white mt-4 mb-4 text-2xl font-extrabold tracking-tight sm:text-4xl"
               >
                 PrintNanny is the
                 <span
