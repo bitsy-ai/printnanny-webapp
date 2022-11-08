@@ -118,6 +118,7 @@ class User(AbstractUser):
     is_serviceuser = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    is_demo = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
     last_login = models.DateTimeField(default=timezone.now)  # type: ignore
