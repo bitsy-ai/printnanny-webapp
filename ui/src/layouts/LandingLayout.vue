@@ -1,56 +1,73 @@
 <template>
   <div class="bg-white">
     <div class="relative overflow-hidden">
-      <Popover as="header" class="relative">
-        <div class="bg-gray-900 py-6">
-          <nav
-            class="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6"
-            aria-label="Global"
-          >
-            <div class="flex items-center flex-1">
-              <div class="flex items-center justify-between w-full md:w-auto">
-                <a href="/">
-                  <span class="sr-only">Workflow</span>
-                  <img
-                    class="h-8 w-auto sm:h-10"
-                    src="@/assets/logo/logo-text-rect-white.svg"
-                    alt="PrintNanny"
+      <Transition
+        enter-active-class="duration-300 ease-out"
+        enter-from-class="transform opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="duration-200 ease-in"
+        leave-from-class="opacity-100"
+        leave-to-class="transform opacity-0"
+        appear
+      >
+        <Popover as="header" class="relative">
+          <div class="bg-gray-900 py-6">
+            <nav
+              class="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6"
+              aria-label="Global"
+            >
+              <div class="flex items-center flex-1">
+                <div class="flex items-center justify-between w-full md:w-auto">
+                  <a href="/">
+                    <span class="sr-only">Workflow</span>
+                    <img
+                      class="h-8 w-auto sm:h-10"
+                      src="@/assets/logo/logo-text-rect-white.svg"
+                      alt="PrintNanny"
+                    />
+                  </a>
+                  <div class="-mr-2 flex items-center md:hidden">
+                    <PopoverButton
+                      class="bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white"
+                    >
+                      <span class="sr-only">Open main menu</span>
+                      <MenuIcon class="h-6 w-6" aria-hidden="true" />
+                    </PopoverButton>
+                  </div>
+                </div>
+                <div class="hidden space-x-8 md:flex md:ml-10">
+                  <FlyoutMenu :links="learnMoreLinks" menu-text="Learn More" />
+                  <FlyoutMenu
+                    :links="communityLinks"
+                    menu-text="Join the Community"
                   />
-                </a>
-                <div class="-mr-2 flex items-center md:hidden">
-                  <PopoverButton
-                    class="bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white"
-                  >
-                    <span class="sr-only">Open main menu</span>
-                    <MenuIcon class="h-6 w-6" aria-hidden="true" />
-                  </PopoverButton>
+                  <FlyoutMenu :links="shopLinks" menu-text="Shop" />
                 </div>
               </div>
-              <div class="hidden space-x-8 md:flex md:ml-10">
-                <FlyoutMenu :links="learnMoreLinks" menu-text="Learn More" />
-                <FlyoutMenu
-                  :links="communityLinks"
-                  menu-text="Join the Community"
-                />
-                <FlyoutMenu :links="shopLinks" menu-text="Shop" />
-              </div>
-            </div>
-            <LoginNav />
-          </nav>
-        </div>
-        <MobileLoginNav
-          :shop-links="shopLinks"
-          :community-links="communityLinks"
-          :learn-more-links="learnMoreLinks"
-        />
-      </Popover>
-
+              <LoginNav />
+            </nav>
+          </div>
+          <MobileLoginNav
+            :shop-links="shopLinks"
+            :community-links="communityLinks"
+            :learn-more-links="learnMoreLinks"
+          />
+        </Popover>
+      </Transition>
       <StickyAlerts />
 
       <!-- Main content area -->
       <RouterView v-slot="{ Component }">
         <template v-if="Component">
-          <Transition mode="out-in" name="fade">
+          <Transition
+            enter-active-class="duration-300 ease-out"
+            enter-from-class="transform opacity-0"
+            enter-to-class="opacity-100"
+            leave-active-class="duration-200 ease-in"
+            leave-from-class="opacity-100"
+            leave-to-class="transform opacity-0"
+            appear
+          >
             <KeepAlive>
               <Suspense>
                 <!-- main content -->
