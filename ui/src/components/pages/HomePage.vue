@@ -137,7 +137,7 @@
         </div>
         <div class="mt-12">
           <div class="grid grid-cols-1">
-            <img src="@/assets/images/toggle-mainsail-octoprint.gif" />
+            <img src="@/assets/images/toggle-mainsail-octoprint.gif" class="md:w-3/4 w-full m-auto"/>
           </div>
         </div>
       </div>
