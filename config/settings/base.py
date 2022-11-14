@@ -669,6 +669,8 @@ PASSWORDLESS_AUTH = {
     "PASSWORDLESS_EMAIL_PLAINTEXT_MESSAGE": "Enter this token to sign in: %s",
     "PASSWORDLESS_AUTH_PREFIX": "accounts/2fa-auth/",
     "PASSWORDLESS_VERIFY_PREFIX": "accounts/2fa-auth/verify/",
+    "PASSWORDLESS_EMAIL_TOKEN_HTML_TEMPLATE_NAME": "drfpasswordless/passwordless_custom_token_email.html",
+    "PASSWORDLESS_EMAIL_SUBJECT": "[PrintNanny] Your temporary login code",
 }
 
 # ghost user management keys
