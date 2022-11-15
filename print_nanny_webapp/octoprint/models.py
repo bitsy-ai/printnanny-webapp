@@ -10,7 +10,6 @@ from print_nanny_webapp.events.models.base import AbstractEvent
 from print_nanny_webapp.utils.fields import file_field_upload_to
 
 from print_nanny_webapp.octoprint.enum import (
-    OctoPrintClientStatusType,
     OctoPrintPrintJobStatusType,
     OctoPrintPrinterStatusType,
     OctoPrintServerStatusType,
@@ -235,16 +234,6 @@ class OctoPrintPrinterStatus(BaseOctoPrintEvent):
     subject_pattern = OctoprintEventSubjectPattern.OctoPrintPrinterStatus
     event_type = models.CharField(
         max_length=32, choices=OctoPrintPrinterStatusType.choices, db_index=True
-    )
-
-
-class OctoPrintClientStatus(BaseOctoPrintEvent):
-    class Meta:
-        index_together = ()
-
-    subject_pattern = OctoprintEventSubjectPattern.OctoPrintClientStatus
-    event_type = models.CharField(
-        max_length=32, choices=OctoPrintClientStatusType.choices, db_index=True
     )
 
 

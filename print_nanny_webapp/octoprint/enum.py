@@ -4,7 +4,6 @@ from django.db import models
 class OctoprintEventSubjectPattern(models.TextChoices):
     OctoPrintServerStatus = "pi.{pi_id}.octoprint.server"
     OctoPrintPrinterStatus = "pi.{pi_id}.octoprint.printer"
-    OctoPrintClientStatus = "pi.{pi_id}.octoprint.client"
     OctoPrintPrintJobStatus = "pi.{pi_id}.octoprint.print_job"
     OctoPrintGcodeEvent = "pi.{pi_id}.octoprint.gcode"
 
@@ -54,12 +53,3 @@ class OctoPrintPrinterStatusType(models.TextChoices):
         "Printer is finishing job",
     )
     ERROR = "PrinterError", "Printer connection error"
-
-
-class OctoPrintClientStatusType(models.TextChoices):
-    CLIENT_OPENED = "ClientOpened", "Client has connected to OctoPrint push socket."
-    CLIENT_AUTHED = (
-        "ClientAuthed",
-        "Client has authenticated user session on OctoPrint psuh socket.",
-    )
-    CLIENT_CLOSED = "ClientClosed", "Client has disconnected from push socket"
