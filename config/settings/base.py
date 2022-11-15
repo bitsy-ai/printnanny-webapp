@@ -446,7 +446,6 @@ SPECTACULAR_SETTINGS = {
         "OctoPrintPrintJobStatusType": "print_nanny_webapp.octoprint.enum.OctoPrintPrintJobStatusType",
         "OctoPrintServerStatusType": "print_nanny_webapp.octoprint.enum.OctoPrintServerStatusType",
         "OctoPrintPrinterStatusType": "print_nanny_webapp.octoprint.enum.OctoPrintPrinterStatusType",
-        "OctoPrintClientStatusType": "print_nanny_webapp.octoprint.enum.OctoPrintClientStatusType",
         # end OctoPrint polymorphic event types
         # begin shop types
         "OrderStatusType": "print_nanny_webapp.shop.enum.OrderStatusType",

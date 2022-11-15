@@ -6,7 +6,6 @@ from rest_polymorphic.serializers import PolymorphicSerializer
 
 from print_nanny_webapp.octoprint.models import (
     OctoPrintBackup,
-    OctoPrintClientStatus,
     OctoPrintPrintJobStatus,
     OctoPrintPrinterStatus,
     OctoPrintSettings,
@@ -125,23 +124,6 @@ class OctoPrintPrintJobStatusSerializer(serializers.ModelSerializer):
         exclude = ("deleted", "polymorphic_ctype")
 
 
-class OctoPrintClientStatusPayloadSerializer(serializers.Serializer):
-    remoteAddress = serializers.CharField()
-    username = serializers.CharField(required=False)
-
-
-class OctoPrintClientStatusSerializer(serializers.ModelSerializer):
-    subject_pattern = serializers.ChoiceField(
-        choices=[OctoprintEventSubjectPattern.OctoPrintClientStatus]
-    )
-
-    payload = OctoPrintClientStatusPayloadSerializer()
-
-    class Meta:
-        model = OctoPrintClientStatus
-        exclude = ("deleted", "polymorphic_ctype")
-
-
 class OctoPrintServerStatusSerializer(serializers.ModelSerializer):
     subject_pattern = serializers.ChoiceField(
         choices=[OctoprintEventSubjectPattern.OctoPrintServerStatus]
@@ -167,7 +149,6 @@ class PolymorphicOctoPrintEventSerializer(PolymorphicSerializer):
     model_serializer_mapping = {
         OctoPrintPrintJobStatus: OctoPrintPrintJobStatusSerializer,
         OctoPrintPrinterStatus: OctoPrintPrinterStatusSerializer,
-        OctoPrintClientStatus: OctoPrintClientStatusSerializer,
         OctoPrintServerStatus: OctoPrintServerStatusSerializer,
         OctoPrintGcodeEvent: OctoPrintGcodeEventSerializer,
     }
