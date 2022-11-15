@@ -266,7 +266,7 @@ class OctoPrintGcodeEvent(BaseOctoPrintEvent):
     class Meta:
         index_together = ()
 
-    subject_pattern = OctoprintEventSubjectPattern.OctoPrintGcode
+    subject_pattern = OctoprintEventSubjectPattern.OctoPrintGcodeEvent
     event_type = models.CharField(
         max_length=32, choices=GcodeEventType.choices, db_index=True
     )

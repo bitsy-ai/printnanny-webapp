@@ -154,7 +154,7 @@ class OctoPrintServerStatusSerializer(serializers.ModelSerializer):
 
 class OctoPrintGcodeEventSerializer(serializers.ModelSerializer):
     subject_pattern = serializers.ChoiceField(
-        choices=[OctoprintEventSubjectPattern.OctoPrintGcode]
+        choices=[OctoprintEventSubjectPattern.OctoPrintGcodeEvent]
     )
 
     class Meta:
