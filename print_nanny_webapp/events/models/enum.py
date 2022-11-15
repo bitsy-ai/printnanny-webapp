@@ -1,6 +1,19 @@
 from django.db import models
 
 
+class GcodeEventType(models.TextChoices):
+    Alert_M300 = "M300", "Alert (M300)"
+    Cooling_M245 = "M245", "Cooling (M245)"
+    Dwell_G4 = "G4", "Dwell (G4)"
+    EStop_M112 = "M112", "Estop (M112)"
+    FilamentChange_M600 = "M600", "Filament Change (M600)"
+    FilamentLoad_M701 = "M701", "Filament Load (M701)"
+    FilamentUnload_M702 = "M702", "Filament Unload (M702)"
+    Home = "G28", "Home (G28)"
+    PowerOff = "M81", "Power Off (M81)"
+    PowerOn = "M80", "Power On (M80)"
+
+
 class AlertEventType(models.TextChoices):
     PRINT_QUALITY = "PrintQuality", "Quality control alerts"
     PRINT_STARTED = "PrintStarted", "Triggered on print job start"

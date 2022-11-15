@@ -5,6 +5,7 @@ from django.db import models
 from django.db.models import UniqueConstraint
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 
+from print_nanny_webapp.events.models.enum import GcodeEventType
 from print_nanny_webapp.events.models.base import AbstractEvent
 from print_nanny_webapp.utils.fields import file_field_upload_to
 
@@ -254,4 +255,18 @@ class OctoPrintPrintJobStatus(BaseOctoPrintEvent):
     subject_pattern = OctoprintEventSubjectPattern.OctoPrintPrintJobStatus
     event_type = models.CharField(
         max_length=32, choices=OctoPrintPrintJobStatusType.choices, db_index=True
+    )
+
+
+class OctoPrintGcodeEvent(BaseOctoPrintEvent):
+    """
+    Subset of OctoPrint Gcode Processing events: https://docs.octoprint.org/en/master/events/index.html?highlight=events#gcode-processing
+    """
+
+    class Meta:
+        index_together = ()
+
+    subject_pattern = OctoprintEventSubjectPattern.OctoPrintGcode
+    event_type = models.CharField(
+        max_length=32, choices=GcodeEventType.choices, db_index=True
     )
