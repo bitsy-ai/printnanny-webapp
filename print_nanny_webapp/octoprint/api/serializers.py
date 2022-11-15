@@ -14,6 +14,7 @@ from print_nanny_webapp.octoprint.models import (
     OctoPrinterProfile,
     OctoPrintServer,
     OctoPrintServerStatus,
+    OctoPrintGcodeEvent,
 )
 from print_nanny_webapp.octoprint.enum import OctoprintEventSubjectPattern
 
@@ -151,6 +152,16 @@ class OctoPrintServerStatusSerializer(serializers.ModelSerializer):
         exclude = ("deleted", "polymorphic_ctype")
 
 
+class OctoPrintGcodeEventSerializer(serializers.ModelSerializer):
+    subject_pattern = serializers.ChoiceField(
+        choices=[OctoprintEventSubjectPattern.OctoPrintGcodeEvent]
+    )
+
+    class Meta:
+        model = OctoPrintGcodeEvent
+        exclude = ("deleted", "polymorphic_ctype")
+
+
 class PolymorphicOctoPrintEventSerializer(PolymorphicSerializer):
     resource_type_field_name = "subject_pattern"
     model_serializer_mapping = {
@@ -158,6 +169,7 @@ class PolymorphicOctoPrintEventSerializer(PolymorphicSerializer):
         OctoPrintPrinterStatus: OctoPrintPrinterStatusSerializer,
         OctoPrintClientStatus: OctoPrintClientStatusSerializer,
         OctoPrintServerStatus: OctoPrintServerStatusSerializer,
+        OctoPrintGcodeEvent: OctoPrintGcodeEventSerializer,
     }
 
     def to_resource_type(self, model_or_instance):

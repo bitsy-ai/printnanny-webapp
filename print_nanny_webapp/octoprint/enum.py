@@ -6,6 +6,7 @@ class OctoprintEventSubjectPattern(models.TextChoices):
     OctoPrintPrinterStatus = "pi.{pi_id}.octoprint.printer"
     OctoPrintClientStatus = "pi.{pi_id}.octoprint.client"
     OctoPrintPrintJobStatus = "pi.{pi_id}.octoprint.print_job"
+    OctoPrintGcodeEvent = "pi.{pi_id}.octoprint.gcode"
 
 
 class OctoPrintServerStatusType(models.TextChoices):
