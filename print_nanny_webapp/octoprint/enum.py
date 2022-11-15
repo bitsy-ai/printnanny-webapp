@@ -9,7 +9,7 @@ class OctoprintEventSubjectPattern(models.TextChoices):
 
 
 class OctoPrintServerStatusType(models.TextChoices):
-
+    SERVER_TEST = "Test", "Test Event"
     SERVER_STARTUP = "Startup", "Server Startup"  # server
     SERVER_SHUTDOWN = "Shutdown", "Server Shutdown"  # server
 
