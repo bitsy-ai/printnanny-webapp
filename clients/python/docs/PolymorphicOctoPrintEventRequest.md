@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**subject_pattern** | [**OctoPrintServerStatusSubjectPatternEnum**](OctoPrintServerStatusSubjectPatternEnum.md) |  | 
+**subject_pattern** | [**OctoPrintGcodeEventSubjectPatternEnum**](OctoPrintGcodeEventSubjectPatternEnum.md) |  | 
 **payload** | **dict(str, object)** |  | 
-**event_type** | [**OctoPrintServerStatusType**](OctoPrintServerStatusType.md) |  | 
+**event_type** | [**GcodeEventType**](GcodeEventType.md) |  | 
 **octoprint_server** | **int** |  | 
 **pi** | **int** |  | 
 

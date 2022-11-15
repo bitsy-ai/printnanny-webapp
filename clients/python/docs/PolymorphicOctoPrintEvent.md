@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [readonly] 
-**subject_pattern** | [**OctoPrintServerStatusSubjectPatternEnum**](OctoPrintServerStatusSubjectPatternEnum.md) |  | 
+**subject_pattern** | [**OctoPrintGcodeEventSubjectPatternEnum**](OctoPrintGcodeEventSubjectPatternEnum.md) |  | 
 **payload** | **dict(str, object)** |  | 
 **created_dt** | **datetime** |  | [readonly] 
-**event_type** | [**OctoPrintServerStatusType**](OctoPrintServerStatusType.md) |  | 
+**event_type** | [**GcodeEventType**](GcodeEventType.md) |  | 
 **octoprint_server** | **int** |  | 
 **pi** | **int** |  | 
 

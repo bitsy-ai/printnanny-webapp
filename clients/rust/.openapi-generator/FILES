@@ -26,6 +26,7 @@ docs/EmailWaitlistRequest.md
 docs/ErrorDetail.md
 docs/EventTypesEnum.md
 docs/EventsApi.md
+docs/GcodeEventType.md
 docs/GcodeFile.md
 docs/JanusApi.md
 docs/JanusConfigType.md
@@ -40,6 +41,9 @@ docs/OctoPrintClientStatusPayloadRequest.md
 docs/OctoPrintClientStatusRequest.md
 docs/OctoPrintClientStatusSubjectPatternEnum.md
 docs/OctoPrintClientStatusType.md
+docs/OctoPrintGcodeEvent.md
+docs/OctoPrintGcodeEventRequest.md
+docs/OctoPrintGcodeEventSubjectPatternEnum.md
 docs/OctoPrintPrintJobPayload.md
 docs/OctoPrintPrintJobPayloadRequest.md
 docs/OctoPrintPrintJobStatus.md
@@ -199,6 +203,7 @@ src/models/email_waitlist.rs
 src/models/email_waitlist_request.rs
 src/models/error_detail.rs
 src/models/event_types_enum.rs
+src/models/gcode_event_type.rs
 src/models/gcode_file.rs
 src/models/janus_config_type.rs
 src/models/login_request.rs
@@ -213,6 +218,9 @@ src/models/octo_print_client_status_payload_request.rs
 src/models/octo_print_client_status_request.rs
 src/models/octo_print_client_status_subject_pattern_enum.rs
 src/models/octo_print_client_status_type.rs
+src/models/octo_print_gcode_event.rs
+src/models/octo_print_gcode_event_request.rs
+src/models/octo_print_gcode_event_subject_pattern_enum.rs
 src/models/octo_print_print_job_payload.rs
 src/models/octo_print_print_job_payload_request.rs
 src/models/octo_print_print_job_status.rs

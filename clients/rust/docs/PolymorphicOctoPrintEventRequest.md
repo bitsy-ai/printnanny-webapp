@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**subject_pattern** | [**crate::models::OctoPrintServerStatusSubjectPatternEnum**](OctoPrintServerStatusSubjectPatternEnum.md) |  | 
+**subject_pattern** | [**crate::models::OctoPrintGcodeEventSubjectPatternEnum**](OctoPrintGcodeEventSubjectPatternEnum.md) |  | 
 **payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | 
-**event_type** | [**crate::models::OctoPrintServerStatusType**](OctoPrintServerStatusType.md) |  | 
+**event_type** | [**crate::models::GcodeEventType**](GcodeEventType.md) |  | 
 **octoprint_server** | **i32** |  | 
 **pi** | **i32** |  | 
 

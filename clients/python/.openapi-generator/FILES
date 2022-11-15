@@ -27,6 +27,7 @@ docs/EmailWaitlistRequest.md
 docs/ErrorDetail.md
 docs/EventTypesEnum.md
 docs/EventsApi.md
+docs/GcodeEventType.md
 docs/GcodeFile.md
 docs/JanusApi.md
 docs/JanusConfigType.md
@@ -41,6 +42,9 @@ docs/OctoPrintClientStatusPayloadRequest.md
 docs/OctoPrintClientStatusRequest.md
 docs/OctoPrintClientStatusSubjectPatternEnum.md
 docs/OctoPrintClientStatusType.md
+docs/OctoPrintGcodeEvent.md
+docs/OctoPrintGcodeEventRequest.md
+docs/OctoPrintGcodeEventSubjectPatternEnum.md
 docs/OctoPrintPrintJobPayload.md
 docs/OctoPrintPrintJobPayloadRequest.md
 docs/OctoPrintPrintJobStatus.md
@@ -203,6 +207,7 @@ printnanny_api_client/models/email_waitlist.py
 printnanny_api_client/models/email_waitlist_request.py
 printnanny_api_client/models/error_detail.py
 printnanny_api_client/models/event_types_enum.py
+printnanny_api_client/models/gcode_event_type.py
 printnanny_api_client/models/gcode_file.py
 printnanny_api_client/models/janus_config_type.py
 printnanny_api_client/models/login_request.py
@@ -216,6 +221,9 @@ printnanny_api_client/models/octo_print_client_status_payload_request.py
 printnanny_api_client/models/octo_print_client_status_request.py
 printnanny_api_client/models/octo_print_client_status_subject_pattern_enum.py
 printnanny_api_client/models/octo_print_client_status_type.py
+printnanny_api_client/models/octo_print_gcode_event.py
+printnanny_api_client/models/octo_print_gcode_event_request.py
+printnanny_api_client/models/octo_print_gcode_event_subject_pattern_enum.py
 printnanny_api_client/models/octo_print_print_job_payload.py
 printnanny_api_client/models/octo_print_print_job_payload_request.py
 printnanny_api_client/models/octo_print_print_job_status.py
@@ -367,6 +375,7 @@ test/test_email_waitlist_request.py
 test/test_error_detail.py
 test/test_event_types_enum.py
 test/test_events_api.py
+test/test_gcode_event_type.py
 test/test_gcode_file.py
 test/test_janus_api.py
 test/test_janus_config_type.py
@@ -381,6 +390,9 @@ test/test_octo_print_client_status_payload_request.py
 test/test_octo_print_client_status_request.py
 test/test_octo_print_client_status_subject_pattern_enum.py
 test/test_octo_print_client_status_type.py
+test/test_octo_print_gcode_event.py
+test/test_octo_print_gcode_event_request.py
+test/test_octo_print_gcode_event_subject_pattern_enum.py
 test/test_octo_print_print_job_payload.py
 test/test_octo_print_print_job_payload_request.py
 test/test_octo_print_print_job_status.py
