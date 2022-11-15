@@ -35,12 +35,6 @@ docs/NatsOrganization.md
 docs/NatsOrganizationRequest.md
 docs/NatsOrganizationUser.md
 docs/OctoPrintBackup.md
-docs/OctoPrintClientStatus.md
-docs/OctoPrintClientStatusPayload.md
-docs/OctoPrintClientStatusPayloadRequest.md
-docs/OctoPrintClientStatusRequest.md
-docs/OctoPrintClientStatusSubjectPatternEnum.md
-docs/OctoPrintClientStatusType.md
 docs/OctoPrintGcodeEvent.md
 docs/OctoPrintGcodeEventRequest.md
 docs/OctoPrintGcodeEventSubjectPatternEnum.md
@@ -212,12 +206,6 @@ src/models/nats_organization.rs
 src/models/nats_organization_request.rs
 src/models/nats_organization_user.rs
 src/models/octo_print_backup.rs
-src/models/octo_print_client_status.rs
-src/models/octo_print_client_status_payload.rs
-src/models/octo_print_client_status_payload_request.rs
-src/models/octo_print_client_status_request.rs
-src/models/octo_print_client_status_subject_pattern_enum.rs
-src/models/octo_print_client_status_type.rs
 src/models/octo_print_gcode_event.rs
 src/models/octo_print_gcode_event_request.rs
 src/models/octo_print_gcode_event_subject_pattern_enum.rs
