@@ -31,8 +31,8 @@ const footerNavigation = {
     { name: "API Docs", href: import.meta.env.VITE_PRINTNANNY_API_REDOCS_URL },
     { name: "CLI Docs", href: import.meta.env.VITE_PRINTNANNY_CLI_DOCS_URL },
     {
-      name: "Release History",
-      href: "https://printnanny.ai/docs/release-history/",
+      name: "Latest Release ",
+      href: import.meta.env.VITE_PRINTNANNY_OS_LATEST_RELEASE_URL,
     },
     { name: "API Status", href: "/health" },
   ],
@@ -115,13 +115,10 @@ const footerNavigation = {
               <h3
                 class="text-sm font-semibold text-gray-400 tracking-wider uppercase"
               >
-                PrintNanny OS
+                Quick Start
               </h3>
               <ul role="list" class="mt-4 space-y-4">
-                <li
-                  v-for="item in footerNavigation.printnannyos"
-                  :key="item.name"
-                >
+                <li v-for="item in footerNavigation.intro" :key="item.name">
                   <a
                     :href="item.href"
                     class="text-base text-gray-500 hover:text-white"
@@ -135,10 +132,13 @@ const footerNavigation = {
               <h3
                 class="text-sm font-semibold text-gray-400 tracking-wider uppercase"
               >
-                Quick Start
+                PrintNanny OS
               </h3>
               <ul role="list" class="mt-4 space-y-4">
-                <li v-for="item in footerNavigation.intro" :key="item.name">
+                <li
+                  v-for="item in footerNavigation.printnannyos"
+                  :key="item.name"
+                >
                   <a
                     :href="item.href"
                     class="text-base text-gray-500 hover:text-white"
