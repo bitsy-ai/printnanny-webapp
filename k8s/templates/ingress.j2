@@ -25,6 +25,7 @@ spec:
   - hosts:
       {% if PRINTNANNY_NAMESPACE == 'live' %}
       - printnanny.ai
+      - discord.printnanny.ai
       - dl.printnanny.ai
       - download.printnanny.ai
       - api.printnanny.ai
@@ -47,6 +48,16 @@ spec:
   rules:
     # live www and api
     {% if PRINTNANNY_NAMESPACE == 'live' %}
+    - host: discord.printnanny.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: discord-redirect
+                port:
+                  number: 80
     - host: printnanny.ai
       http:
         paths:

@@ -14,3 +14,4 @@ j2 k8s/templates/janus.j2 -o dist/k8s/janus.yml
 j2 k8s/templates/gcsfuse.j2 -o dist/k8s/gcsfuse.yml
 j2 k8s/templates/metabase.j2 -o dist/k8s/metabase.yml
 j2 k8s/templates/cron.j2 -o dist/k8s/cron.yml
+j2 k8s/templates/discord.j2 -o dist/k8s/discord.yml
