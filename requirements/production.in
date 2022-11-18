@@ -21,7 +21,7 @@ django-environ
 django-extensions
 django-filter
 django-flags
-django-ghost>=0.2.1
+django-ghost>=0.2.2
 django-nats-nkeys[drf]>=0.9.7
 django-health-check
 django-invitations
