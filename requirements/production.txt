@@ -102,6 +102,7 @@ django==3.2.12
     #   django-extensions
     #   django-filter
     #   django-flags
+    #   django-ghost
     #   django-health-check
     #   django-model-utils
     #   django-nats-nkeys
@@ -146,6 +147,8 @@ django-extensions==3.2.0
 django-filter==21.1
     # via -r /requirements/production.in
 django-flags==5.0.9
+    # via -r /requirements/production.in
+django-ghost==0.2.0
     # via -r /requirements/production.in
 django-health-check==3.16.5
     # via -r /requirements/production.in
@@ -321,7 +324,7 @@ plotly==5.6.0
     # via -r /requirements/production.in
 posthog==1.4.5
     # via -r /requirements/production.in
-printnanny-api-client==0.113.0
+printnanny-api-client==0.117.1
     # via -r /requirements/production.in
 priority==1.3.0
     # via twisted
@@ -340,6 +343,7 @@ protobuf==3.19.4
 psycopg2==2.9.3
     # via
     #   -r /requirements/production.in
+    #   django-ghost
     #   django-nats-nkeys
 pyarrow==7.0.0
     # via -r /requirements/production.in
@@ -354,8 +358,10 @@ pyasn1-modules==0.2.8
     #   service-identity
 pycparser==2.21
     # via cffi
-pyjwt[crypto]==2.3.0
-    # via django-allauth
+pyjwt[crypto]==2.6.0
+    # via
+    #   django-allauth
+    #   django-ghost
 pyopenssl==22.0.0
     # via twisted
 pyparsing==3.0.7
@@ -388,10 +394,11 @@ rcssmin==1.1.0
     # via django-compressor
 redis==4.1.4
     # via django-redis
-requests==2.27.1
+requests==2.28.1
     # via
     #   django-allauth
     #   django-anymail
+    #   django-ghost
     #   google-api-core
     #   google-cloud-storage
     #   libhoney
