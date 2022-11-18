@@ -269,6 +269,7 @@ GHOST_NEWSLETTER_API_URL = env("GHOST_NEWSLETTER_API_URL", default="https://bits
 GHOST_NEWSLETTER_IDS = env.list("GHOST_NEWSLETTER_IDS", default=[])
 GHOST_ADMIN_API_APP_ID = env("GHOST_ADMIN_API_APP_ID")
 GHOST_ADMIN_API_APP_SECRET = env("GHOST_ADMIN_API_APP_SECRET")
+GHOST_SYNC_MODEL = "users.EmailWaitlist"
 GHOST_MEMBER_LABELS = [
     DEFAULT_GHOST_LABEL,
     GhostLabel(name="PrintNanny Waitlist", slug="printnanny_waitlist"),
