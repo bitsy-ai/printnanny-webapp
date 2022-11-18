@@ -72,7 +72,6 @@ EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
 ADMINS = []
 
 BETA_NOTIFY_EMAIL = "test@print-nanny.com"
-GHOST_ADMIN_API_KEY = ""
 WS_BASE_URL = env("DJANGO_WS_URL", default="ws://localhost:8000/ws")
 BASE_URL = env("DJANGO_BASE_URL", default="http://localhost:8000/")
 

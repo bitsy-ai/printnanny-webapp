@@ -673,10 +673,6 @@ PASSWORDLESS_AUTH = {
     "PASSWORDLESS_EMAIL_SUBJECT": "[PrintNanny] Your temporary login code",
 }
 
-# ghost user management keys
-GHOST_ADMIN_API_KEY = ""
-GHOST_CONTENT_API_KEY = ""
-
 # internal PRINTNANNY_ vars
 # ------------------------------------------------------------------------------
 PRINTNANNY_ENV = env("PRINTNANNY_ENV", default="sandbox")
