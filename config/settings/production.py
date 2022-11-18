@@ -1,5 +1,6 @@
 import posthog
 from config.settings.base import *  # noqa
+from django_ghost.settings import GhostLabel, DEFAULT_GHOST_LABEL
 
 
 # GENERAL
@@ -265,3 +266,16 @@ NATS_SERVER_URI = env("NATS_SERVER_URI", default="nats://nats.live.printnanny.ai
 NATS_WS_URI = env("NATS_WS_URI", default="wss://nats.live.printnanny.ai:8443")
 NATS_MQTT_BROKER_HOST = env("NATS_MQTT_BROKER_HOST", default="mqtt.live.printnanny.ai")
 NATS_MQTT_BROKER_PORT = env("NATS_MQTT_BROKER_PORT", default=1883)
+
+
+# django-ghost
+# sync EmailWaitlist with Ghost newsletter list
+INSTALLED_APPS += "django_ghost"
+GHOST_NEWSLETTER_API_URL = env("GHOST_NEWSLETTER_API_URL", default="https://bitsy.ai")
+GHOST_NEWSLETTER_IDS = env.list("GHOST_NEWSLETTER_IDS", default=[])
+GHOST_ADMIN_API_APP_ID = env("GHOST_ADMIN_API_APP_ID")
+GHOST_ADMIN_API_APP_SECRET = env("GHOST_ADMIN_API_APP_SECRET")
+GHOST_MEMBER_LABELS = [
+    DEFAULT_GHOST_LABEL,
+    GhostLabel(name="PrintNanny Waitlist", slug="printnanny_waitlist"),
+]
