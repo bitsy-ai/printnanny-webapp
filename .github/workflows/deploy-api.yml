@@ -55,6 +55,7 @@ jobs:
       COTURN_DATABASE_URL: ${{ secrets.COTURN_DATABASE_URL }}
       COTURN_REALM: ${{ secrets.COTURN_REALM }}
       COTURN_SECRET_KEY: ${{ secrets.COTURN_SECRET_KEY }}
+      DISCORD_INVITE_URL: https://discord.gg/sf23bk2hPr
       DISCORD_NEW_SIGNUP_WEBHOOK: ${{ secrets.DISCORD_NEW_SIGNUP_WEBHOOK }}
       DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
       DJANGO_ADMIN_URL: ${{ secrets.DJANGO_ADMIN_URL }}
