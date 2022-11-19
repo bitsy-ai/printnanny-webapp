@@ -87,7 +87,7 @@ dj-rest-auth==2.2.5
     # via -r /requirements/production.in
 dj-stripe==2.6.2
     # via -r /requirements/production.in
-django==3.2.12
+django==3.2.16
     # via
     #   -r /requirements/production.in
     #   channels
