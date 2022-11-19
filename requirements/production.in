@@ -7,7 +7,7 @@ coolname
 discord.py
 dj-stripe
 dj-rest-auth
-django>3,<4
+django>=3.2.16,<4
 dj_rest_auth
 django-allauth
 django-allow-cidr
