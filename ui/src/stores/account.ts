@@ -24,7 +24,7 @@ export const useAccountStore = defineStore({
     isAuthenticated: (state) => state.user !== undefined,
     accountsApi: (state) => api.AccountsApiFactory(state.apiConfig),
     achievementsApi: (state) => api.AchievementsApiFactory(state.apiConfig),
-    devicesApi: (state) => api.DevicesApiFactory(state.apiConfig)
+    devicesApi: (state) => api.DevicesApiFactory(state.apiConfig),
   },
   actions: {
     async submitEmailWaitlist(email: string) {
@@ -55,9 +55,11 @@ export const useAccountStore = defineStore({
       }
     },
     async fetchUser() {
-      const userData = await this.accountsApi.accountsUserRetrieve().catch((e) => {
-        console.warn(e);
-      });
+      const userData = await this.accountsApi
+        .accountsUserRetrieve()
+        .catch((e) => {
+          console.warn(e);
+        });
       if (userData && userData.data) {
         console.log("Authenticated as user", userData.data);
         this.$patch({
@@ -137,7 +139,7 @@ export const useAccountStore = defineStore({
       return res;
     },
 
-    async twoFactorStage1(email: String): Promise<boolean> {
+    async twoFactorStage1(email: string): Promise<boolean> {
       const req = { email } as api.EmailAuthRequest;
       const res = await this.accountsApi
         .accounts2faAuthEmailCreate(req)
@@ -146,7 +148,6 @@ export const useAccountStore = defineStore({
     },
 
     async twoFactorStage2(email: string, token: string): Promise<boolean> {
-
       const req = { email, token } as api.CallbackTokenAuthRequest;
       const res = await this.accountsApi
         .accounts2faAuthTokenCreate(req)
@@ -167,7 +168,6 @@ export const useAccountStore = defineStore({
       }
       return ok;
     },
-
   },
 });
 

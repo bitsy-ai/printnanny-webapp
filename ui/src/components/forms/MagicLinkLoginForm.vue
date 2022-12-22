@@ -7,7 +7,7 @@ import { ref, reactive } from "vue";
 import * as yup from "yup";
 import type * as apiTypes from "printnanny-api-client";
 
-const router = useRouter()
+const router = useRouter();
 const loading = ref(false);
 const state = reactive({
   loading,
@@ -24,7 +24,7 @@ async function onSubmit(values: any) {
   const res = await account.twoFactorStage1(values.email);
   console.log("Got Response", res);
   state.loading = false;
-  await router.push({ name: "login-confirm", params: {email: values.email}})
+  await router.push({ name: "login-confirm", params: { email: values.email } });
 }
 </script>
 <template>
@@ -87,11 +87,9 @@ async function onSubmit(values: any) {
         </button>
 
         <p class="mt-2 text-center text-sm text-gray-600">
-            ✨ We'll email you a magic link for password-free sign in ✨
+          ✨ We'll email you a magic link for password-free sign in ✨
         </p>
       </Form>
-      
-
     </div>
   </div>
 </template>

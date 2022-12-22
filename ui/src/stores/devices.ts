@@ -19,7 +19,9 @@ export const useDeviceStore = defineStore({
   actions: {
     async delete(id: number) {
       const accountStore = useAccountStore();
-      const res = await accountStore.devicesApi.pisDestroy(id).catch(handleApiError);
+      const res = await accountStore.devicesApi
+        .pisDestroy(id)
+        .catch(handleApiError);
       console.debug("devicesDestroy response: ", res);
     },
     async partialUpdate(

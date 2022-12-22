@@ -15,9 +15,9 @@ const state = reactive({
 const props = defineProps({
   email: {
     type: String,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
 // define a validation schema
 const schema = yup.object({
@@ -47,7 +47,8 @@ async function onSubmit(values: any) {
           Check your email
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600">
-          We've sent a 6-character code to <strong>{{ email }}</strong>. The code expires, so please enter it soon.
+          We've sent a 6-character code to <strong>{{ email }}</strong
+          >. The code expires, so please enter it soon.
         </p>
       </div>
       <Form v-slot="{ meta }" :validation-schema="schema" @submit="onSubmit">
@@ -85,11 +86,9 @@ async function onSubmit(values: any) {
         </button>
 
         <p class="mt-2 text-center text-sm text-gray-600">
-            ✨ We'll email you a magic link for password-free sign in ✨
+          ✨ We'll email you a magic link for password-free sign in ✨
         </p>
       </Form>
-      
-
     </div>
   </div>
 </template>
