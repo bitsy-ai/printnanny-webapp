@@ -6,7 +6,7 @@ import { Field, ErrorMessage, Form } from "vee-validate";
 import { ref, reactive } from "vue";
 import * as yup from "yup";
 import type * as apiTypes from "printnanny-api-client";
-
+const router = useRouter();
 const loading = ref(false);
 const state = reactive({
   loading,
@@ -21,15 +21,16 @@ const props = defineProps({
 
 // define a validation schema
 const schema = yup.object({
-  email: yup.string().required().email(),
+  token: yup.string().required().matches(/\d+$/),
 });
 
 const account = useAccountStore();
 async function onSubmit(values: any) {
   state.loading = true;
-  const res = await account.login(values as apiTypes.LoginRequest);
+  const res = await account.twoFactorStage2(props.email, values.token);
   console.log("Got Response", res);
   state.loading = false;
+  router.push({ name: "devices" });
 }
 </script>
 <template>
@@ -55,15 +56,14 @@ async function onSubmit(values: any) {
         <label for="email" class="sr-only">Email address</label>
         <error-message class-name="text-red-500" name="email"></error-message>
         <Field
-          id="email"
-          name="email"
-          type="email"
-          autocomplete="email"
+          id="token"
+          name="token"
+          type="text"
+          maxlength="6"
           class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-          placeholder="Email address"
           rules="required"
         />
-        <label for="password" class="sr-only">Password</label>
+
         <button
           id="email-submit"
           :disabled="state.loading || !meta.valid"
@@ -82,7 +82,7 @@ async function onSubmit(values: any) {
               aria-hidden="true"
             />
           </span>
-          Sign in with Email
+          Submit
         </button>
 
         <p class="mt-2 text-center text-sm text-gray-600">

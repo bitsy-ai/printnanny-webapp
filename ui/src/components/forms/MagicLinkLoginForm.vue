@@ -23,8 +23,8 @@ async function onSubmit(values: any) {
   state.loading = true;
   const res = await account.twoFactorStage1(values.email);
   console.log("Got Response", res);
+  router.push({ name: "login-confirm", params: { email: values.email } });
   state.loading = false;
-  await router.push({ name: "login-confirm", params: { email: values.email } });
 }
 </script>
 <template>
@@ -64,11 +64,9 @@ async function onSubmit(values: any) {
           placeholder="Email address"
           rules="required"
         />
-        <label for="password" class="sr-only">Password</label>
         <button
           id="email-submit"
           :disabled="state.loading || !meta.valid"
-          type="submit"
           class="group mt-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-25"
         >
           <span class="absolute left-0 inset-y-0 flex items-center pl-3">

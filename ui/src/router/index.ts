@@ -41,6 +41,7 @@ router.beforeEach(async (to, _from) => {
     // make sure the user is authenticated
     !account.isAuthenticated &&
     // ❗️ Avoid an infinite redirect
+    to.name !== "login-confirm" &&
     to.name !== "login" &&
     to.name !== "reset-password" &&
     to.name !== "reset-password-confirm" &&
