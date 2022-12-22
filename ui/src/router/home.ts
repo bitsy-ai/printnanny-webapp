@@ -19,21 +19,21 @@ export default [
         meta: { title: "Stop Babysitting Your 3D Printer" },
       },
       {
-        path: "/register/",
+        path: "register",
         name: "register",
         components: {
           default: () => import("@/views/RegisterAccountView.vue"),
         },
       },
       {
-        path: "/account-verify-email/",
+        path: "account-verify-email",
         name: "account-verify-email",
         components: {
           default: () => import("@/components/forms/EmailVerificationForm.vue"),
         },
       },
       {
-        path: "/account-confirm-email/:verificationKey",
+        path: "account-confirm-email/:verificationKey",
         name: "account-confirm-email",
         props: { default: true },
         components: {
@@ -41,21 +41,29 @@ export default [
         },
       },
       {
-        path: "/login/",
+        path: "login",
         name: "login",
         components: {
-          default: () => import("@/components/forms/LoginForm.vue"),
+          default: () => import("@/components/forms/MagicLinkLoginForm.vue"),
         },
       },
       {
-        path: "/password-reset/",
+        path: "login/confirm/:email/:token?",
+        name: "login-confirm",
+        props: { default: true },
+        components: {
+          default: () => import("@/components/forms/MagicLinkConfirmForm.vue"),
+        },
+      },
+      {
+        path: "password-reset",
         name: "reset-password",
         components: {
           default: () => import("@/components/forms/PasswordResetForm.vue"),
         },
       },
       {
-        path: "/password-reset/confirm/:userId/:token/",
+        path: "password-reset/confirm/:userId/:token",
         name: "reset-password-confirm",
         props: { default: true },
         components: {

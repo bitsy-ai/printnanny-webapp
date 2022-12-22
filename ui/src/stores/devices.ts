@@ -2,6 +2,7 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import type { Pi } from "printnanny-api-client";
 import { ApiConfig, handleApiError } from "@/utils/api";
+import { useAccountStore } from "./account";
 
 const devicesApi = api.DevicesApiFactory(ApiConfig);
 export const useDeviceStore = defineStore({
@@ -17,7 +18,10 @@ export const useDeviceStore = defineStore({
   },
   actions: {
     async delete(id: number) {
-      const res = await devicesApi.pisDestroy(id).catch(handleApiError);
+      const accountStore = useAccountStore();
+      const res = await accountStore.devicesApi
+        .pisDestroy(id)
+        .catch(handleApiError);
       console.debug("devicesDestroy response: ", res);
     },
     async partialUpdate(
@@ -26,7 +30,9 @@ export const useDeviceStore = defineStore({
       request: api.PatchedPiRequest
     ) {
       this.$patch({ loading: true });
-      const res = await devicesApi
+      const accountStore = useAccountStore();
+
+      const res = await accountStore.devicesApi
         .pisPartialUpdate(id, request)
         .catch(handleApiError);
       this.$patch({ loading: false });
@@ -37,7 +43,8 @@ export const useDeviceStore = defineStore({
     },
     async fetchDevices(): Promise<Array<Pi> | undefined> {
       this.$patch({ loading: true });
-      const res = await devicesApi.pisList().catch(handleApiError);
+      const accountStore = useAccountStore();
+      const res = await accountStore.devicesApi.pisList().catch(handleApiError);
       console.debug("pisList response ", res);
       if (res?.data?.results) {
         this.$patch({
