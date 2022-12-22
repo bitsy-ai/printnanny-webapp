@@ -6,8 +6,6 @@ import { ApiConfig, handleApiError } from "@/utils/api";
 import { posthogIdentify, posthogReset } from "@/utils/posthog";
 import { handleError } from "vue";
 
-const accountsApi = api.AccountsApiFactory(ApiConfig);
-
 export const useAccountStore = defineStore({
   id: "accounts",
   // persist option provided by: https://github.com/prazdevs/pinia-plugin-persistedstate
@@ -17,15 +15,22 @@ export const useAccountStore = defineStore({
   state: () => ({
     user: undefined as api.User | undefined,
     nkey: undefined as api.NatsOrganizationUser | undefined,
+    token: undefined as string | undefined,
+    apiConfig: new api.Configuration({
+      basePath: import.meta.env.VITE_PRINTNANNY_API_URL,
+    }),
   }),
   getters: {
     isAuthenticated: (state) => state.user !== undefined,
+    accountsApi: (state) => api.AccountsApiFactory(state.apiConfig),
+    achievementsApi: (state) => api.AchievementsApiFactory(state.apiConfig),
+    devicesApi: (state) => api.DevicesApiFactory(state.apiConfig)
   },
   actions: {
     async submitEmailWaitlist(email: string) {
       const alerts = useAlertStore();
       const req: api.EmailWaitlistRequest = { email };
-      const res = await accountsApi
+      const res = await this.accountsApi
         .accountsEmailWaitlistCreate(req)
         .catch(handleApiError);
       console.debug("accountsEmailWaitlistCreate response", res);
@@ -38,7 +43,7 @@ export const useAccountStore = defineStore({
       alerts.push(alert);
     },
     async fetchUserNkey(): Promise<api.NatsOrganizationUser | undefined> {
-      const nkeyData = await accountsApi
+      const nkeyData = await this.accountsApi
         .accountsUserNkeyRetrieve()
         .catch(handleApiError);
       console.log("Loaded NATS identity", nkeyData);
@@ -50,7 +55,7 @@ export const useAccountStore = defineStore({
       }
     },
     async fetchUser() {
-      const userData = await accountsApi.accountsUserRetrieve().catch((e) => {
+      const userData = await this.accountsApi.accountsUserRetrieve().catch((e) => {
         console.warn(e);
       });
       if (userData && userData.data) {
@@ -70,7 +75,7 @@ export const useAccountStore = defineStore({
      * @param {api.LoginRequest} request
      */
     async login(request: api.LoginRequest) {
-      await accountsApi.accountsLoginCreate(request).catch(handleApiError);
+      await this.accountsApi.accountsLoginCreate(request).catch(handleApiError);
       await this.fetchUser();
       await this.$router.push({ name: "devices" });
     },
@@ -83,7 +88,7 @@ export const useAccountStore = defineStore({
         console.warn("logout action called without user set");
         return;
       }
-      await accountsApi.accountsLogoutCreate().catch(handleApiError);
+      await this.accountsApi.accountsLogoutCreate().catch(handleApiError);
       this.$reset();
       posthogReset();
       console.info("Successfully logged out");
@@ -92,10 +97,10 @@ export const useAccountStore = defineStore({
     async createAccount(
       request: api.RegisterRequest
     ): Promise<undefined | api.User> {
-      await accountsApi
+      await this.accountsApi
         .accountsRegistrationCreate(request)
         .catch(handleApiError);
-      await accountsApi
+      await this.accountsApi
         .accountsLoginCreate({
           email: request.email,
           password: request.password1,
@@ -105,19 +110,19 @@ export const useAccountStore = defineStore({
       return user;
     },
     async resetPasswordRequest(request: api.PasswordResetRequest) {
-      const res = await accountsApi
+      const res = await this.accountsApi
         .accountsPasswordResetCreate(request)
         .catch(handleApiError);
       return res;
     },
     async resetPasswordConfirm(request: api.PasswordResetConfirmRequest) {
-      const res = await accountsApi
+      const res = await this.accountsApi
         .accountsPasswordResetConfirmCreate(request)
         .catch(handleApiError);
       return res;
     },
     async verifyConfirmEmailKey(request: api.VerifyEmailRequest) {
-      const res = await accountsApi
+      const res = await this.accountsApi
         .accountsRegistrationVerifyEmailCreate(request)
         .catch(handleApiError);
       return res;
@@ -126,11 +131,43 @@ export const useAccountStore = defineStore({
     async resendAccountVerificationEmail(
       request: api.ResendEmailVerificationRequest
     ) {
-      const res = await accountsApi
+      const res = await this.accountsApi
         .accountsRegistrationResendEmailCreate(request)
         .catch(handleApiError);
       return res;
     },
+
+    async twoFactorStage1(email: String): Promise<boolean> {
+      const req = { email } as api.EmailAuthRequest;
+      const res = await this.accountsApi
+        .accounts2faAuthEmailCreate(req)
+        .catch(handleApiError);
+      return res !== undefined && res.status == 200;
+    },
+
+    async twoFactorStage2(email: string, token: string): Promise<boolean> {
+
+      const req = { email, token } as api.CallbackTokenAuthRequest;
+      const res = await this.accountsApi
+        .accounts2faAuthTokenCreate(req)
+        .catch(handleApiError);
+      console.debug("accounts2faAuthTokenCreate response: ", res);
+      const ok = res !== undefined && res.status === 200;
+      if (ok) {
+        const token = res.data.token;
+        const apiConfig = new api.Configuration({
+          basePath: import.meta.env.VITE_PRINTNANNY_CLOUD_API_URL,
+          baseOptions: {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        });
+
+        console.log(`Success! Authenticated as ${email}`);
+        this.$patch({ token, apiConfig });
+      }
+      return ok;
+    },
+
   },
 });
 

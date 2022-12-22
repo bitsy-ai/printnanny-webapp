@@ -1,8 +1,7 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import { ApiConfig, handleApiError } from "@/utils/api";
-import * as api from "printnanny-api-client";
-
-const achievementsApi = api.AchievementsApiFactory(ApiConfig);
+import type * as api from "printnanny-api-client";
+import { useAccountStore } from "./account";
 
 export const useAchievementsStore = defineStore({
   id: "achievements",
@@ -11,7 +10,8 @@ export const useAchievementsStore = defineStore({
   }),
   actions: {
     async fetchAchievements() {
-      const res = await achievementsApi
+      const accountStore = useAccountStore();
+      const res = await accountStore.achievementsApi
         .achievementsList()
         .catch(handleApiError);
       console.log("Fetched achievements:", res);

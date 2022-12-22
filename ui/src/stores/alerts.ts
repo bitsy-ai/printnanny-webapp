@@ -1,5 +1,7 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
+import { CheckIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
+
 import type {
   EmailAlertSettings,
   EmailAlertSettingsRequest,
@@ -65,6 +67,42 @@ export const useAlertStore = defineStore({
     },
   },
 });
+
+export function success(header: string, message: string) {
+  const store = useAlertStore();
+  const alert = {
+    header,
+    message,
+    icon: CheckIcon,
+    iconClass: "text-emerald-500",
+    actions: [],
+  };
+  store.push(alert);
+}
+
+export function warning(header: string, message: string) {
+  const store = useAlertStore();
+  const alert = {
+    header,
+    message,
+    icon: ExclamationCircleIcon,
+    iconClass: "text-amber-500",
+    actions: [],
+  };
+  store.push(alert);
+}
+
+export function error(header: string, message: string) {
+  const store = useAlertStore();
+  const alert = {
+    header,
+    message,
+    icon: ExclamationCircleIcon,
+    iconClass: "text-red-500",
+    actions: [],
+  };
+  store.push(alert);
+}
 
 if (import.meta.hot) {
   import.meta.hot.accept(acceptHMRUpdate(useAlertStore, import.meta.hot));

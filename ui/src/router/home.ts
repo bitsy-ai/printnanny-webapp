@@ -44,7 +44,15 @@ export default [
         path: "/login/",
         name: "login",
         components: {
-          default: () => import("@/components/forms/LoginForm.vue"),
+          default: () => import("@/components/forms/MagicLinkLoginForm.vue"),
+        },
+      },
+      {
+        path: "/login/confirm/:email",
+        name: "login-confirm",
+        props: { default: true },
+        components: {
+          default: () => import("@/components/forms/MagicLinkConfirmForm.vue"),
         },
       },
       {
