@@ -81,6 +81,7 @@ jobs:
       GCP_REGION: ${{ secrets.GCP_REGION }}
       GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT_KEY  }}
       GCP_SERVICE_ACCOUNT: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT }}
+      USE_GKE_GCLOUD_AUTH_PLUGIN: true
       GCSFUSE_BUCKET: printnanny-downloads
       GHOST_NEWSLETTER_IDS: ${{ secrets.GHOST_NEWSLETTER_IDS }}
       GHOST_ADMIN_API_APP_ID: ${{ secrets.GHOST_ADMIN_API_APP_ID }}
@@ -146,6 +147,8 @@ jobs:
           echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
           curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
           sudo apt-get update && sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
+          gcloud components update
+          gcloud container clusters get-credentials $CLUSTER --region=$GCP_REGION
           gcloud auth activate-service-account $GCP_SERVICE_ACCOUNT --key-file=key.json
 
       - name: Configure docker registry credentials
