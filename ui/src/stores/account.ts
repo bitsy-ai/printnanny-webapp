@@ -25,6 +25,7 @@ export const useAccountStore = defineStore({
     accountsApi: (state) => api.AccountsApiFactory(state.apiConfig),
     achievementsApi: (state) => api.AchievementsApiFactory(state.apiConfig),
     devicesApi: (state) => api.DevicesApiFactory(state.apiConfig),
+    shopApi: (state) => api.ShopApiFactory(state.apiConfig),
   },
   actions: {
     async submitEmailWaitlist(email: string) {
@@ -166,7 +167,6 @@ export const useAccountStore = defineStore({
         const accountsApi = api.AccountsApiFactory(apiConfig);
         this.$patch({ token, apiConfig });
         await this.fetchUser();
-
       }
       return ok;
     },

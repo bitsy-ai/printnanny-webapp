@@ -12,8 +12,8 @@ import { ApiConfig, handleApiError } from "@/utils/api";
 import type { WebrtcStream } from "printnanny-api-client";
 import { useEventStore } from "./events";
 import { useAlertStore } from "./alerts";
+import { useAccountStore } from "./account";
 
-const devicesApi = api.DevicesApiFactory(ApiConfig);
 const RTCPeerConnection = window.RTCPeerConnection.bind(window);
 
 export const useWebrtcStore = defineStore({
@@ -41,11 +41,12 @@ export const useWebrtcStore = defineStore({
     async getOrCreateCloudStream(
       piId: number
     ): Promise<undefined | api.WebrtcStream> {
+      const account = useAccountStore();
       const req = {
         active: true,
         config_type: api.JanusConfigType.Cloud,
       } as api.WebrtcStreamRequest;
-      const res = await devicesApi
+      const res = await account.devicesApi
         .webrtcStreamUpdateOrCreate(piId, req)
         .catch(handleApiError);
       if (res) {

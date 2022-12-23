@@ -1,8 +1,7 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import { ApiConfig, handleApiError } from "@/utils/api";
-
-const shopApi = api.ShopApiFactory(ApiConfig);
+import { useAccountStore } from "./account";
 
 export const useShopStore = defineStore({
   id: "shop",
@@ -13,7 +12,8 @@ export const useShopStore = defineStore({
   }),
   actions: {
     async fetchProducts() {
-      const res = await shopApi.shopProductsList();
+      const account = useAccountStore();
+      const res = await account.shopApi.shopProductsList();
       console.debug("Fetched products", res.data);
       if (res.data) {
         this.$patch({ products: res.data.results });
@@ -21,13 +21,16 @@ export const useShopStore = defineStore({
       }
     },
     async createCheckoutSession(email: string, products: Array<string>) {
+      const account = useAccountStore();
       this.$patch({ loading: true });
       const req = {
         products: products,
         email: email,
       } as api.OrderCheckoutRequest;
 
-      const res = await shopApi.shopOrdersCreate(req).catch(handleApiError);
+      const res = await account.shopApi
+        .shopOrdersCreate(req)
+        .catch(handleApiError);
       if (res) {
         this.$patch({ loading: false });
         console.debug(`Got checkout data`, res.data);
@@ -36,8 +39,9 @@ export const useShopStore = defineStore({
     },
     async fetchCheckoutSession(sessionId: string) {
       this.$patch({ loading: true });
+      const account = useAccountStore();
 
-      const res = await shopApi
+      const res = await account.shopApi
         .shopCheckoutSuccessRetrieve(sessionId)
         .catch(handleApiError);
 

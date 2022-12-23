@@ -6,8 +6,7 @@ import { useEventStore } from "./events";
 import type { NatsConnection } from "nats.ws";
 import { ConnectTestStep } from "@/types";
 import moment from "moment";
-
-const devicesApi = api.DevicesApiFactory(ApiConfig);
+import { useAccountStore } from "./account";
 
 export const useWizardStore = defineStore({
   id: "wizard",
@@ -31,7 +30,8 @@ export const useWizardStore = defineStore({
     },
     async loadPi(piId: number) {
       if (this.pi === undefined) {
-        const res = await devicesApi.pisRetrieve(piId);
+        const account = useAccountStore();
+        const res = await account.devicesApi.pisRetrieve(piId);
         console.log("loadPi response", res);
         this.$patch({ pi: res.data });
         return res.data;
@@ -99,9 +99,11 @@ export const useWizardStore = defineStore({
       return connectTestSteps;
     },
     async downloadLicenseZip(piId: number) {
+      const account = useAccountStore();
+
       this.$patch({ loading: true });
       // responseType: "arraybuffer" is needed to correctly serialize application/zip data
-      const res = await devicesApi.pisLicenseZipRetrieve(piId, {
+      const res = await account.devicesApi.pisLicenseZipRetrieve(piId, {
         responseType: "arraybuffer",
       });
 
@@ -122,7 +124,9 @@ export const useWizardStore = defineStore({
     async createPi(req: api.PiRequest) {
       // Wireguard TODO: allow user to specify fqdn
       this.$patch({ loading: true });
-      const res = await devicesApi.pisCreate(req).catch(handleApiError);
+      const account = useAccountStore();
+
+      const res = await account.devicesApi.pisCreate(req).catch(handleApiError);
       console.debug("pisCreate response", res);
       if (res) {
         this.$patch({ loading: false, pi: res.data });
@@ -132,7 +136,9 @@ export const useWizardStore = defineStore({
 
     async finishSetup(piId: number) {
       const req = { setup_finished: true } as api.PatchedPiRequest;
-      const res = await devicesApi
+      const account = useAccountStore();
+
+      const res = await account.devicesApi
         .pisPartialUpdate(piId, req)
         .catch(handleApiError);
       if (res) {
