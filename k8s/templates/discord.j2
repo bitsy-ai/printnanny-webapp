@@ -58,7 +58,7 @@ spec:
           volumeMounts:
             - mountPath: /etc/nginx # mount discord-redirect-nginx-conf volumn to /etc/nginx
               readOnly: true
-              name:  discord-redirect-nginx-conf
+              name:  discord-redirect
             - mountPath: /var/log/nginx
               name: log
       volumes:
