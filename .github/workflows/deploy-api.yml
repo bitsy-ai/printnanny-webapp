@@ -142,7 +142,7 @@ jobs:
         run: echo $GCP_SERVICE_ACCOUNT_KEY > key.json
       - name: Active Service Account
         run: |
-          gcloud components install gke-gcloud-auth-plugin
+          sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
           gcloud auth activate-service-account $GCP_SERVICE_ACCOUNT --key-file=key.json
 
       - name: Configure docker registry credentials
