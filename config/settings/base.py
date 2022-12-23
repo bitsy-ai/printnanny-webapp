@@ -670,6 +670,7 @@ PASSWORDLESS_AUTH = {
     "PASSWORDLESS_AUTH_PREFIX": "accounts/2fa-auth/",
     "PASSWORDLESS_VERIFY_PREFIX": "accounts/2fa-auth/verify/",
     "PASSWORDLESS_EMAIL_TOKEN_HTML_TEMPLATE_NAME": "drfpasswordless/passwordless_custom_token_email.html",
+    "PASSWORDLESS_EMAIL_CALLBACK": "print_nanny_webapp.drfpasswordless.utils.send_email_with_callback_token",
     "PASSWORDLESS_EMAIL_SUBJECT": "[PrintNanny] Your temporary login code",
 }
 
