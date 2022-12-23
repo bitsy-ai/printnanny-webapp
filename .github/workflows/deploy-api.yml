@@ -79,6 +79,7 @@ jobs:
       GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT }}
       GCP_PROJECT: ${{ secrets.GCP_PROJECT }}
       GCP_REGION: ${{ secrets.GCP_REGION }}
+      GCP_ZONE: us-central1-c
       GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT_KEY  }}
       GCP_SERVICE_ACCOUNT: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT }}
       USE_GKE_GCLOUD_AUTH_PLUGIN: true
@@ -148,7 +149,7 @@ jobs:
           curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
           sudo apt-get update && sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
           gcloud auth activate-service-account $GCP_SERVICE_ACCOUNT --key-file=key.json --project $GCP_PROJECT
-          gcloud container clusters get-credentials $CLUSTER --region=$GCP_REGION --project $GCP_PROJECT
+          gcloud container clusters get-credentials $CLUSTER --region=$GCP_ZONE --project $GCP_PROJECT
 
       - name: Configure docker registry credentials
         run: gcloud auth configure-docker
