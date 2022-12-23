@@ -158,7 +158,7 @@ export const useAccountStore = defineStore({
       if (ok) {
         const token = res.data.token;
         const apiConfig = new api.Configuration({
-          basePath: import.meta.env.VITE_PRINTNANNY_CLOUD_API_URL,
+          basePath: import.meta.env.VITE_PRINTNANNY_API_URL,
           baseOptions: {
             headers: { Authorization: `Bearer ${token}` },
           },
