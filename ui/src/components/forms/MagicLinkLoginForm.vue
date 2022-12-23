@@ -22,8 +22,9 @@ const account = useAccountStore();
 async function onSubmit(values: any) {
   state.loading = true;
   const res = await account.twoFactorStage1(values.email);
-  console.log("Got Response", res);
-  router.push({ name: "login-confirm", params: { email: values.email } });
+  if (res == true){
+    router.push({ name: "login-confirm", params: { email: values.email } });
+  }
   state.loading = false;
 }
 </script>

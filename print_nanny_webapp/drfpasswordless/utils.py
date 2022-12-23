@@ -34,7 +34,7 @@ def send_email_with_callback_token(user, email_token, **kwargs):
                 {
                     "callback_token": email_token.key,
                     "email": user.email,
-                    "name": user.first_mame or "Maker",
+                    "name": user.first_name or "Maker",
                 }
             )
             html_message = loader.render_to_string(
@@ -51,17 +51,17 @@ def send_email_with_callback_token(user, email_token, **kwargs):
             )
 
         else:
-            logger.debug(
+            logger.error(
                 "Failed to send token email. Missing PASSWORDLESS_EMAIL_NOREPLY_ADDRESS."
             )
             return False
         return True
 
     except Exception as e:
-        logger.debug(
+        logger.error(
             "Failed to send token email to user: %d. Possibly no email on user object. Email entered was %s",
             user.id,
             getattr(user, api_settings.PASSWORDLESS_USER_EMAIL_FIELD_NAME),
         )
-        logger.debug(e)
+        logger.error(e)
         return False
