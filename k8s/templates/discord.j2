@@ -56,15 +56,15 @@ spec:
           ports:
             - containerPort: 80
           volumeMounts:
-            - mountPath: /etc/nginx # mount nginx-conf volumn to /etc/nginx
+            - mountPath: /etc/nginx # mount discord-redirect-nginx-conf volumn to /etc/nginx
               readOnly: true
-              name: nginx-conf
+              name:  discord-redirect-nginx-conf
             - mountPath: /var/log/nginx
               name: log
       volumes:
         - name: discord-redirect
           configMap:
-            name: discord-redirect-nginx-conf # place ConfigMap `nginx-conf` on /etc/nginx
+            name: discord-redirect-nginx-conf # place ConfigMap `discord-redirect-nginx-conf` on /etc/nginx
             items:
               - key: nginx.conf
                 path: nginx.conf
