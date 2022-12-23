@@ -3,7 +3,7 @@ import { RouterLink, useRouter } from "vue-router";
 import { LockClosedIcon, RefreshIcon } from "@heroicons/vue/solid";
 import { useAccountStore } from "@/stores/account";
 import { Field, ErrorMessage, Form } from "vee-validate";
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import * as yup from "yup";
 import type * as apiTypes from "printnanny-api-client";
 const router = useRouter();
@@ -17,11 +17,24 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  token: {
+    type: String,
+  },
 });
+
+const initialValues = {
+  token: props.token,
+};
 
 // define a validation schema
 const schema = yup.object({
   token: yup.string().required().matches(/\d+$/),
+});
+
+onMounted(() => {
+  if (props.token !== undefined) {
+    initialValues.token = props.token;
+  }
 });
 
 const account = useAccountStore();
@@ -52,7 +65,12 @@ async function onSubmit(values: any) {
           >. The code expires, so please enter it soon.
         </p>
       </div>
-      <Form v-slot="{ meta }" :validation-schema="schema" @submit="onSubmit">
+      <Form
+        v-slot="{ meta }"
+        :validation-schema="schema"
+        :initial-values="initialValues"
+        @submit="onSubmit"
+      >
         <label for="email" class="sr-only">Email address</label>
         <error-message class-name="text-red-500" name="email"></error-message>
         <Field
@@ -82,12 +100,8 @@ async function onSubmit(values: any) {
               aria-hidden="true"
             />
           </span>
-          Submit
+          Login
         </button>
-
-        <p class="mt-2 text-center text-sm text-gray-600">
-          ✨ We'll email you a magic link for password-free sign in ✨
-        </p>
       </Form>
     </div>
   </div>
