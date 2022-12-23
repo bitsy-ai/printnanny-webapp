@@ -163,8 +163,10 @@ export const useAccountStore = defineStore({
           },
         });
 
-        console.log(`Success! Authenticated as ${email}`);
+        const accountsApi = api.AccountsApiFactory(apiConfig);
         this.$patch({ token, apiConfig });
+        await this.fetchUser();
+
       }
       return ok;
     },
