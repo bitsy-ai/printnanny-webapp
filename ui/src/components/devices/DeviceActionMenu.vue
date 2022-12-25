@@ -132,7 +132,7 @@ async function removeFavorite() {
 }
 
 const externalLinks = [
-{
+  {
     href: props.pi.urls.mission_control,
     name: "PrintNanny OS",
     icon: ExternalLinkIcon,
