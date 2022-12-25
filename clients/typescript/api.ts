@@ -5275,6 +5275,12 @@ export interface PiUrls {
      * @type {string}
      * @memberof PiUrls
      */
+    'mission_control': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PiUrls
+     */
     'octoprint': string;
     /**
      * 
