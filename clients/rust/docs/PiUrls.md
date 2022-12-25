@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**mission_control** | **String** |  | 
 **octoprint** | **String** |  | 
 **swupdate** | **String** |  | 
 **syncthing** | **String** |  | 

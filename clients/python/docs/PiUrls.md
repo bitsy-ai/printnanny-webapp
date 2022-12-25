@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**mission_control** | **str** |  | 
 **octoprint** | **str** |  | 
 **swupdate** | **str** |  | 
 **syncthing** | **str** |  | 
