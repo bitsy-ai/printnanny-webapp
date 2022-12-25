@@ -18,6 +18,11 @@ export const useAccountStore = defineStore({
     token: undefined as string | undefined,
     apiConfig: new api.Configuration({
       basePath: import.meta.env.VITE_PRINTNANNY_API_URL,
+      baseOptions: {
+        xsrfCookieName: "csrftoken",
+        xsrfHeaderName: "X-CSRFTOKEN",
+        withCredentials: true,
+      },
     }),
   }),
   getters: {
@@ -161,6 +166,9 @@ export const useAccountStore = defineStore({
           basePath: import.meta.env.VITE_PRINTNANNY_API_URL,
           baseOptions: {
             headers: { Authorization: `Bearer ${token}` },
+            xsrfCookieName: "csrftoken",
+            xsrfHeaderName: "X-CSRFTOKEN",
+            withCredentials: true,
           },
         });
 
