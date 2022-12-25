@@ -126,14 +126,14 @@ const wizardSteps = PiCreateWizardSteps();
                       Finish Setup
                     </span>
                   </router-link>
-                  <a v-else :href="pi.urls.octoprint" target="_blank">
+                  <a v-else :href="pi.urls.mission_control" target="_blank">
                     <span
                       class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-emerald-100 text-emerald-800 hover:bg-emerald-200"
                     >
                       <ExternalLinkIcon
                         class="mr-1 w-5 h-5 text-emerald-800 text-emerald-800"
                       />
-                      OctoPrint
+                      PrintNanny OS
                     </span>
                   </a>
                 </div>
