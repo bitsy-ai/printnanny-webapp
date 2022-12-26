@@ -383,7 +383,9 @@ class SystemInfo(SafeDeleteModel):
 
     @property
     def bootfs_size_pretty(self) -> str:
-        return convert_size(self.bootfs_size)
+        if self.bootfs_size > 0:
+            return convert_size(self.bootfs_size)
+        return "Unknown"
 
     @property
     def bootfs_available(self) -> int:
@@ -413,7 +415,9 @@ class SystemInfo(SafeDeleteModel):
 
     @property
     def datafs_size_pretty(self) -> str:
-        return convert_size(self.datafs_size)
+        if self.datafs_size > 0:
+            return convert_size(self.datafs_size)
+        return "Unknown"
 
     @property
     def datafs_used_pretty(self) -> str:
@@ -425,7 +429,9 @@ class SystemInfo(SafeDeleteModel):
     # end datafs
     @property
     def rootfs_size_pretty(self) -> str:
-        return convert_size(self.rootfs_size)
+        if self.rootfs_size > 0:
+            return convert_size(self.rootfs_size)
+        return "Unknown"
 
     @property
     def rootfs_used_pretty(self) -> str:
