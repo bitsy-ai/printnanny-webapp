@@ -107,7 +107,8 @@ const wizardSteps = PiCreateWizardSteps();
                       {{ " " }}
                     </span>
                   </a>
-                  <!-- setup incomplete badge / link -->
+                  <!-- TODO add a failed badge indicator  -->
+                  <!--
                   <router-link
                     v-if="!pi.setup_finished"
                     :to="{
@@ -136,6 +137,7 @@ const wizardSteps = PiCreateWizardSteps();
                       PrintNanny OS
                     </span>
                   </a>
+                  -->
                 </div>
               </td>
               <td

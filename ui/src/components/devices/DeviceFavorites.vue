@@ -5,7 +5,7 @@
     </h2>
     <ul
       role="list"
-      class="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 xl:grid-cols-6 mt-3"
+      class="grid grid-cols-1 gap-2 sm:gap-6 sm:grid-cols-2 xl:grid-cols-6 mt-3"
     >
       <li
         v-for="(pi, index) in deviceStore.favorites"
@@ -15,7 +15,7 @@
         <div
           :class="[
             colors[index % mod],
-            'flex-shrink-0 flex items-center justify-center w-8 text-white text-sm font-medium rounded-l-md',
+            'flex-shrink-0 flex items-center justify-center w-8 text-white text-sm font-medium rounded-md',
           ]"
         >
           <HeartIcon class="text-white" />
@@ -27,7 +27,13 @@
             <p class="text-gray-900 font-medium hover:text-gray-600">
               {{ pi.hostname }}
             </p>
-            <p class="text-gray-500">{{ pi.last_boot }}</p>
+            <p class="text-gray-500">
+              {{
+                pi.last_boot
+                  ? moment(pi.last_boot).fromNow()
+                  : "Waiting for first boot"
+              }}
+            </p>
           </div>
           <DeviceActionMenu :pi="pi" :index="index" />
         </div>
@@ -36,8 +42,8 @@
   </div>
 </template>
 <script setup lang="ts">
+import moment from "moment";
 import { HeartIcon } from "@heroicons/vue/solid";
-
 import { useDeviceStore } from "@/stores/devices";
 import DeviceActionMenu from "@/components/devices/DeviceActionMenu.vue";
 const deviceStore = useDeviceStore();
