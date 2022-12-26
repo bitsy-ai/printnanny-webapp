@@ -5,7 +5,7 @@
     </h2>
     <ul
       role="list"
-      class="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 xl:grid-cols-6 mt-3"
+      class="grid grid-cols-1 gap-2 sm:gap-6 sm:grid-cols-2 xl:grid-cols-6 mt-3"
     >
       <li
         v-for="(pi, index) in deviceStore.favorites"
