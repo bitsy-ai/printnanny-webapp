@@ -27,7 +27,11 @@
             <p class="text-gray-900 font-medium hover:text-gray-600">
               {{ pi.hostname }}
             </p>
-            <p class="text-gray-500">{{ pi.last_boot }}</p>
+            <p class="text-gray-500">                {{
+                  pi.last_boot
+                    ? moment(pi.last_boot).fromNow()
+                    : "Waiting for first boot"
+                }}</p>
           </div>
           <DeviceActionMenu :pi="pi" :index="index" />
         </div>
