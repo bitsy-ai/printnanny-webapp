@@ -15,7 +15,7 @@
         <div
           :class="[
             colors[index % mod],
-            'flex-shrink-0 flex items-center justify-center w-8 text-white text-sm font-medium rounded-l-md',
+            'flex-shrink-0 flex items-center justify-center w-8 text-white text-sm font-medium rounded-md',
           ]"
         >
           <HeartIcon class="text-white" />
@@ -27,11 +27,13 @@
             <p class="text-gray-900 font-medium hover:text-gray-600">
               {{ pi.hostname }}
             </p>
-            <p class="text-gray-500">                {{
-                  pi.last_boot
-                    ? moment(pi.last_boot).fromNow()
-                    : "Waiting for first boot"
-                }}</p>
+            <p class="text-gray-500">
+              {{
+                pi.last_boot
+                  ? moment(pi.last_boot).fromNow()
+                  : "Waiting for first boot"
+              }}
+            </p>
           </div>
           <DeviceActionMenu :pi="pi" :index="index" />
         </div>
