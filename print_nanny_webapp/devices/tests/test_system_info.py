@@ -1,4 +1,6 @@
+from typing import Optional
 from django.test import TestCase
+from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth import get_user_model
 from print_nanny_webapp.devices.models import Pi, SystemInfo
 from print_nanny_webapp.devices.enum import (
@@ -13,10 +15,13 @@ class TestSystemInfoDiskUsage(TestCase):
     Tests SystemInfo disk utilization display
     """
 
+    user: Optional[AbstractBaseUser] = None
+    pi: Optional[Pi] = None
+
     @classmethod
     def setUpClass(cls) -> None:
         super().setUpClass()
-        cls.user = User.objects.create(
+        cls.user = User.objects.create(  # type: ignore[has-type]
             email="admin@test.com", password="testing1234", is_superuser=False
         )
 
