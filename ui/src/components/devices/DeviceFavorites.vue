@@ -5,7 +5,7 @@
     </h2>
     <ul
       role="list"
-      class="grid grid-cols-1 gap-2 sm:gap-6 sm:grid-cols-2 xl:grid-cols-6 mt-3"
+      class="grid grid-cols-1 xl:gap-2 sm:gap-6 sm:grid-cols-2 xl:grid-cols-6 mt-3"
     >
       <li
         v-for="(pi, index) in deviceStore.favorites"
@@ -27,10 +27,8 @@
             <p class="text-gray-900 font-medium hover:text-gray-600">
               {{ pi.hostname }}
             </p>
-            <p class="text-gray-500">{{ pi.last_boot }}</p>
-            foo
           </div>
-          <DeviceActionMenu :pi="pi" :index="index" class="mr-2" />
+          <DeviceActionMenu :pi="pi" :index="index" />
         </div>
       </li>
     </ul>
