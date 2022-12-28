@@ -43,7 +43,6 @@ const show = ref(true);
       </div>
       <div class="px-4 py-5 sm:p-6">
         <video
-          autoplay="true"
           muted="true"
           loop="true"
           controls="true"
@@ -94,7 +93,6 @@ const show = ref(true);
       </div>
       <div class="px-4 py-5 sm:p-6">
         <video
-          autoplay="true"
           muted="true"
           loop="true"
           controls="true"
