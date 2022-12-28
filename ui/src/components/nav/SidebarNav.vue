@@ -162,11 +162,6 @@ const help_nav = [
     icon: CodeIcon,
   },
   {
-    name: "CLI Docs",
-    href: import.meta.env.VITE_PRINTNANNY_CLI_DOCS_URL,
-    icon: TerminalIcon,
-  },
-  {
     name: "Report Issue",
     href: "https://github.com/bitsy-ai/printnanny-os/issues/new/choose",
     icon: ExclamationIcon,

@@ -29,7 +29,6 @@ const footerNavigation = {
   ],
   documentation: [
     { name: "API Docs", href: import.meta.env.VITE_PRINTNANNY_API_REDOCS_URL },
-    { name: "CLI Docs", href: import.meta.env.VITE_PRINTNANNY_CLI_DOCS_URL },
     {
       name: "Latest Release ",
       href: import.meta.env.VITE_PRINTNANNY_OS_LATEST_RELEASE_URL,
@@ -193,7 +192,7 @@ const footerNavigation = {
       </div>
       <div class="mt-12 border-t border-gray-200 py-8">
         <p class="text-sm font-medium text-gray-400 flex">
-          <span>&copy; 2022 Bitsy AI Labs, LLC. All rights reserved.</span>
+          <span>&copy; 2022 Bitsy AI Labs, LLC. All rights reserved. </span>
           <BuildInfoFooter />
         </p>
       </div>

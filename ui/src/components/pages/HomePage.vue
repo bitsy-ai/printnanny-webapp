@@ -161,12 +161,15 @@
         </div>
 
         <div
-          class="mt-12 mx-auto max-w-md px-4 grid grid-cols-2 gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-4 lg:max-w-7xl"
+          class="mt-12 mx-auto max-w-md px-4 grid grid-cols-1 gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-4 lg:max-w-7xl"
         >
           <div
-            v-for="post in releases"
+            v-for="post, idx in releases"
             :key="post.name"
-            class="flex flex-col rounded-lg shadow-lg overflow-hidden"
+            :class="[
+              idx > 1 ? 'hidden md:flex md:flex-col' : 'flex flex-col',
+              'rounded-lg shadow-lg overflow-hidden'
+            ]"
           >
               <div class="flex-1 bg-gray-100 p-6 flex flex-col justify-between">
                 <div class="flex-1">
@@ -193,15 +196,14 @@
               </div>
             </div>
           </div>
-        <div class="flex mt-4 md:mt-6">
-          <img
-            src="@/assets/images/swupdate-messages.png"
-            class="drop-shadow-xl w-3/4 m-auto py-6"
-          />
-        </div>
       </div>
     </div>
-
+    <div class="relative bg-white p-2 lg:py-6">
+          <img
+            src="@/assets/images/swupdate-messages.png"
+            class="drop-shadow-xl w-full md:w-3/4 m-auto py-6"
+          />
+    </div>
     <!-- Feature section with grid -->
     <div id="printnanny-os" class="relative bg-white py-4 sm:py-8">
       <div
@@ -274,21 +276,34 @@
           <p class="mt-5 mb-5 mx-auto max-w-prose text-xl text-gray-500">
             Join an amazing community of entrepreneurs and makers.
           </p>
+
+          
           <a
             href="https://discord.gg/sf23bk2hPr"
             target="_blank"
-            class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl bg-indigo-500 w-full m-auto md:w-1/2 block hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
+            class="my-12 text-white text-3xl font-extrabold tracking-tight sm:text-4xl bg-indigo-500 w-full m-auto md:w-1/2 block hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
           >
             Join Discord
           </a>
           <a
             href="https://printnanny.ai/docs/faq/founding-membership/"
             target="_blank"
-            class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl bg-indigo-500 w-full m-auto md:w-1/2 block hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
+            class="my-12 text-white text-3xl font-extrabold tracking-tight sm:text-4xl bg-indigo-500 w-full m-auto md:w-1/2 block hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
           >
             Founding Member FAQ
           </a>
         </div>
+
+        <h2
+          class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl text-center mt-24"
+        >
+          Development Blog
+        </h2>
+        <h2
+            class="text-base font-semibold tracking-wider text-indigo-600 uppercase text-center mt-2"
+          >
+            Deep dive into the nitty-gritty of how PrintNanny works.
+        </h2>
         <div
           class="mt-12 mx-auto max-w-md px-4 grid gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-3 lg:max-w-7xl"
         >
@@ -413,6 +428,20 @@ const features = [
 ];
 const blogPosts = [
   {
+    id: 4,
+    title: "I needed a sold-out SDWire board, so I learned how to fab PCBs",
+    date: "Nov 16, 2022",
+    dateTime: "2022-11-16",
+    category: {
+      name: "PrintNanny Blog",
+      href: "https://bitsy.ai/tag/printnanny/"
+    },
+    href: "https://bitsy.ai/preorder-printnanny-sdwire/",
+    imageUrl: "https://bitsy.ai/content/images/size/w1000/2022/08/SDWire-3D-front-v1.4-r1-2.jpg",
+    preview: "I desperately needed a Tizen SDWire board to automate smoke tests for PrintNanny OS, but couldn't buy one due to supply shortages. So I learned how to fab PCBs with components made in the USA.",
+    readingLength: "4 min"
+  },
+  {
     id: 2,
     title: "Launching an AI/ML Product as a Solo Founder",
     href: "https://towardsdatascience.com/soft-launching-an-ai-ml-product-as-a-solo-founder-87ee81bbe6f6",
@@ -454,6 +483,34 @@ const blogPosts = [
     imageUrl: googleIoImg,
     preview: "Training & evaluating PrintNanny's first detection model",
     readingLength: "10 min",
+  },
+  {
+    id: 5,
+    title: "Automate Image Annotation",
+    href: "https://bitsy.ai/automate-bounding-box-annotation-with-tensorflow-and-automl/",
+    date: "Nov 2, 2020",
+    datetime: "2020-11-02",
+    category: {
+      name: "PrintNanny Blog",
+      href: "https://bitsy.ai/tag/printnanny/"
+    },
+    imageUrl: "https://bitsy.ai/content/images/size/w2000/2021/05/microsoft-vott-custom-tensorflow-js-model.resized-1--1--1.gif",
+    preview: "How I used TensorFlow.js and Automated Machine Learning (AutoML) to increase the efficiency of manual data labeling.",
+    readingLength: "10 min",
+  },
+  {
+    id: 5,
+    title: "Automate Image Annotation",
+    href: "https://bitsy.ai/real-time-object-tracking-with-tensorflow--raspberry-pi--and-pan-tilt-hat/",
+    date: "Nov 2, 2020",
+    datetime: "2020-11-02",
+    category: {
+      name: "PrintNanny Blog",
+      href: "https://bitsy.ai/tag/printnanny/"
+    },
+    imageUrl: "https://bitsy.ai/content/images/2021/05/1-xAs0SJR4gvvgcuuySdfmAw.jpeg",
+    preview: "etect and track an object in real-time using a Raspberry Pi, Pan-Tilt HAT, and TensorFlow. Perfect for hobbyists curious about computer vision & machine learning.",
+    readingLength: "12 min",
   },
 ];
 </script>
