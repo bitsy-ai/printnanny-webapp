@@ -21,7 +21,7 @@
                 👀
               </h1>
               <p class="pt-6 max-w-prose mx-auto text-xl text-white">
-              PrintNanny is the personal assistant for your 3D printer.
+                PrintNanny is the personal assistant for your 3D printer.
               </p>
               <div class="mt-10 sm:mt-12">
                 <WaitlistForm />
@@ -150,59 +150,60 @@
           >
             Over-the-air Updates
           </h2>
-              <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-                <strong>Are you tired of re-imaging SD cards?</strong>
-              </p>
-              <p
-                class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
-              >
-                Seamless A/B System Updates
-              </p>
+          <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+            <strong>Are you tired of re-imaging SD cards?</strong>
+          </p>
+          <p
+            class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
+          >
+            Seamless A/B System Updates
+          </p>
         </div>
-          <div class="flex grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="flex grid grid-cols-2 gap-2">
-              <p
+        <div class="flex grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex grid grid-cols-2 gap-2">
+            <p
               class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl col-span-2"
             >
               Release History
             </p>
-              <div class="p-6 rounded-lg shadow-sm bg-gray-50 border border-gray-200">
-                  <p class="m-0 mb-1 text-sm text-slate-500">
-                    27 Dec, 2022
-                  </p>
-                  <h2 class="m-0 mb-6 text-2xl leading-6 text-slate-500">
-                    v0.5.0
-                  </h2>
-                  <p class="m-0 mb-6 text-base text-slate-700">
-                    Tailscale add-on.Edit settings files in your browser. USB camera support.
-                  </p>
-                  <a href="https://printnanny.ai/docs/release-history/0.5.x-emerald-langdale/"
-                    class="text-base text-indigo-700 hover:text-indigo-500 [text-decoration:none]">
-                    Release Notes &rarr;
-                  </a>
-              </div>
-                <div class="p-6 rounded-lg shadow-sm bg-gray-50 border border-gray-200">
-                  <p class="m-0 mb-1 text-sm text-slate-500">
-                     27 Oct, 2022
-                  </p>
-                  <h2 class="m-0 mb-6 text-2xl leading-6 text-slate-500">
-                   v0.4.0
-                  </h2>
-                  <p class="m-0 mb-6 text-base text-slate-700">
-                     Mainsail and Syncthing GA. PrintNanny monitoring works without an internet
-                              connection.
-                  </p>
-                  <a href="https://printnanny.ai/docs/release-history/0.4.x-dunite-langdale/"
-                    class="text-base text-indigo-700 hover:text-indigo-500 [text-decoration:none]">
-                    Release Notes &rarr;
-                  </a>
-              </div>
+            <div
+              class="p-6 rounded-lg shadow-sm bg-gray-50 border border-gray-200"
+            >
+              <p class="m-0 mb-1 text-sm text-slate-500">27 Dec, 2022</p>
+              <h2 class="m-0 mb-6 text-2xl leading-6 text-slate-500">v0.5.0</h2>
+              <p class="m-0 mb-6 text-base text-slate-700">
+                Tailscale add-on. Edit settings files in your browser. USB
+                camera support.
+              </p>
+              <a
+                href="https://printnanny.ai/docs/release-history/0.5.x-emerald-langdale/"
+                class="text-base text-indigo-700 hover:text-indigo-500 [text-decoration:none]"
+              >
+                Release Notes &rarr;
+              </a>
             </div>
-            <img
-              src="@/assets/images/swupdate-messages.png"
-              class="drop-shadow-2xl"
-            />
+            <div
+              class="p-6 rounded-lg shadow-sm bg-gray-50 border border-gray-200"
+            >
+              <p class="m-0 mb-1 text-sm text-slate-500">27 Oct, 2022</p>
+              <h2 class="m-0 mb-6 text-2xl leading-6 text-slate-500">v0.4.0</h2>
+              <p class="m-0 mb-6 text-base text-slate-700">
+                Mainsail and Syncthing GA. PrintNanny monitoring works without
+                an internet connection.
+              </p>
+              <a
+                href="https://printnanny.ai/docs/release-history/0.4.x-dunite-langdale/"
+                class="text-base text-indigo-700 hover:text-indigo-500 [text-decoration:none]"
+              >
+                Release Notes &rarr;
+              </a>
+            </div>
           </div>
+          <img
+            src="@/assets/images/swupdate-messages.png"
+            class="drop-shadow-2xl"
+          />
+        </div>
       </div>
     </div>
 
