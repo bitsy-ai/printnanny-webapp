@@ -12,16 +12,16 @@
               >
                 <span
                   class="block pb-2 block bg-clip-text text-transparent rounded-md shadow bg-gradient-to-r from-indigo-400 to-violet-500 sm:pb-2"
-                  >Stop babysitting</span
+                  >Stop Babysitting</span
                 >
                 <span
                   class="pb-2 bg-clip-text text-transparent rounded-md shadow bg-gradient-to-r from-indigo-400 to-violet-500 sm:pb-2"
-                  >your 3D printer</span
+                  >your 3D Printer</span
                 >
                 👀
               </h1>
               <p class="pt-6 max-w-prose mx-auto text-xl text-white">
-                PrintNanny is the personal assistant for your 3D printer.
+                Get an AI-powered personal assistant <br>to automate the tedious parts of 3D printing.
               </p>
               <div class="mt-10 sm:mt-12">
                 <WaitlistForm />
@@ -71,32 +71,28 @@
           appear
         >
           <div>
+            <img src="@/assets/logo/logo-rect-light.svg" class="m-auto h-36 py-2"/>
             <h2
-              class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
+              class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8"
             >
-              Quality Control that Never Sleeps
+              <span class="text-gray-900">Quality Control that Never Sleeps</span>
             </h2>
-            <p
-              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
-            >
-              PrintNanny Cam
-            </p>
             <p class="pt-6 max-w-prose mx-auto text-xl text-gray-500">
               Get notified or <strong>automatically pause</strong> if print job
               doesn't pass quality control.
             </p>
-            <router-link :to="{ name: 'shop-founding-membership' }">
-              <button
-                class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-              >
-                Get Access Now
-              </button>
-            </router-link>
           </div>
         </Transition>
         <div class="mt-12">
           <DemoQualityAlert></DemoQualityAlert>
         </div>
+        <router-link :to="{ name: 'shop-founding-membership' }">
+              <button
+                class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+              >
+                Get Access Now
+              </button>
+      </router-link>
       </div>
     </div>
 
@@ -120,13 +116,6 @@
             Toggle between <strong>OctoPrint</strong> and
             <strong>Mainsail</strong> with PrintNanny OS.
           </p>
-          <router-link :to="{ name: 'shop-founding-membership' }">
-            <button
-              class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-            >
-              Get Access Now
-            </button>
-          </router-link>
         </div>
         <div class="mt-12">
           <div class="grid grid-cols-1">
