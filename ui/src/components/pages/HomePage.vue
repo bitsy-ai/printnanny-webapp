@@ -383,7 +383,7 @@ const features = [
   {
     name: "Access from Anywhere",
     description:
-      "Connect to a secure Wireguard VPN to control your PrintNanny devices from anywhere.",
+      "Connect to a secure Tailscale VPN to control your PrintNanny devices from anywhere.",
     icon: GlobeIcon,
   },
 ];
