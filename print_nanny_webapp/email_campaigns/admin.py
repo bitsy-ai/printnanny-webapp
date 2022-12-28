@@ -13,13 +13,13 @@ class CampaignAdmin(admin.ModelAdmin):
     model = Campaign
 
 
-@admin.register(Campaign)
+@admin.register(EmailTrackingEvent)
 class EmailTrackingEventAdmin(admin.ModelAdmin):
     list_display = ("created_dt", "recipient", "email_message", "user", "campaign")
     model = EmailTrackingEvent
 
 
-@admin.register(Campaign)
+@admin.register(EmailMessage)
 class EmailMessageAdmin(admin.ModelAdmin):
     list_display = ("message_id", "user", "email", "campsign", "send_status")
     model = EmailMessage
