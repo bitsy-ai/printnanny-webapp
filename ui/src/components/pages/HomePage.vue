@@ -159,56 +159,51 @@
             Seamless A/B System Updates
           </p>
         </div>
-        <div class="flex grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="flex grid grid-cols-2 gap-2">
-            <p
-              class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl col-span-2"
-            >
-              Release History
-            </p>
-            <div
-              class="p-6 rounded-lg shadow-sm bg-gray-50 border border-gray-200"
-            >
-              <p class="m-0 mb-1 text-sm text-slate-500">27 Dec, 2022</p>
-              <h2 class="m-0 mb-6 text-2xl leading-6 text-slate-500">v0.5.0</h2>
-              <p class="m-0 mb-6 text-base text-slate-700">
-                Tailscale add-on. Edit settings files in your browser. USB
-                camera support.
-              </p>
-              <a
-                href="https://printnanny.ai/docs/release-history/0.5.x-emerald-langdale/"
+
+        <div
+          class="mt-12 mx-auto max-w-md px-4 grid grid-cols-2 gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-4 lg:max-w-7xl"
+        >
+          <div
+            v-for="post in releases"
+            :key="post.name"
+            class="flex flex-col rounded-lg shadow-lg overflow-hidden"
+          >
+              <div class="flex-1 bg-gray-100 p-6 flex flex-col justify-between">
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-cyan-600">
+                    <a :href="post.href" class="hover:underline">
+                      {{ post.date}}
+                    </a>
+                  </p>
+                  <a :href="post.href" class="block mt-2">
+                    <p class="text-xl font-semibold text-gray-900">
+                      {{ post.name }}
+                    </p>
+                    <p class="mt-3 text-base text-gray-500">
+                      {{ post.description}}
+                    </p>
+                  </a>
+                <a
+                :href="post.href"
                 class="text-base text-indigo-700 hover:text-indigo-500 [text-decoration:none]"
-              >
-                Release Notes &rarr;
-              </a>
-            </div>
-            <div
-              class="p-6 rounded-lg shadow-sm bg-gray-50 border border-gray-200"
-            >
-              <p class="m-0 mb-1 text-sm text-slate-500">27 Oct, 2022</p>
-              <h2 class="m-0 mb-6 text-2xl leading-6 text-slate-500">v0.4.0</h2>
-              <p class="m-0 mb-6 text-base text-slate-700">
-                Mainsail and Syncthing GA. PrintNanny monitoring works without
-                an internet connection.
-              </p>
-              <a
-                href="https://printnanny.ai/docs/release-history/0.4.x-dunite-langdale/"
-                class="text-base text-indigo-700 hover:text-indigo-500 [text-decoration:none]"
-              >
-                Release Notes &rarr;
-              </a>
+                  >
+                    Release Notes &rarr;
+                </a>
+                </div>
+              </div>
             </div>
           </div>
+        <div class="flex mt-4 md:mt-6">
           <img
             src="@/assets/images/swupdate-messages.png"
-            class="drop-shadow-2xl"
+            class="drop-shadow-xl w-3/4 m-auto py-6"
           />
         </div>
       </div>
     </div>
 
     <!-- Feature section with grid -->
-    <div id="printnanny-os" class="relative bg-white py-16 sm:py-16">
+    <div id="printnanny-os" class="relative bg-white py-4 sm:py-8">
       <div
         class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
       >
@@ -349,6 +344,34 @@ import googleIoImg from "@/assets/press/google-io.png";
 import tfEverywhereImg from "@/assets/press/tensorflow-everywhere-na.png";
 import WaitlistForm from "@/components/forms/WaitlistForm.vue";
 
+const releases = [
+{
+    date: "Upcoming",
+    description: "See what's on the roadmap for January/February 2023.",
+    name: "v0.6.0 (January 2023)",
+    href: "https://github.com/bitsy-ai/printnanny-os/milestone/6",
+    linkText: "Roadmap &rarr;"
+  },
+  {
+    date: "27 Dec, 2022",
+    description: "Tailscale add-on. Edit settings files in your browser. USB camera support.",
+    name: "v0.5.0 (Emerald)",
+    href: "https://printnanny.ai/docs/release-history/0.5.x-emerald-langdale/",
+    linkText: "Release Notes &rarr;"
+  },
+  {
+    date: "27 Oct, 2022",
+    description: "Mainsail and Syncthing GA. New device dashboard. PrintNanny monitoring works without an internet connection.",
+    name: "v0.4.0 (Dunite)",
+    href: "https://printnanny.ai/docs/release-history/0.4.x-dunite-langdale/"
+  },
+  {
+    date: "28 Aug, 2022",
+    description: "PrintNanny Cam available from mobile/cellular network. Swagger and Redoc API docs. Cloud UI theme",
+    name: "v0.3.0 (Cinnabar)",
+    href: "https://printnanny.ai/docs/release-history/0.3.x-cinnabar-kirkstone/"
+  },
+]
 
 const features = [
   {
