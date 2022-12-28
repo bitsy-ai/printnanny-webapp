@@ -42,13 +42,7 @@ const show = ref(true);
         </div>
       </div>
       <div class="px-4 py-5 sm:p-6">
-        <video
-          autoplay="true"
-          muted="true"
-          loop="true"
-          controls="true"
-          class="w-full"
-        >
+        <video muted="true" loop="true" controls="true" class="w-full">
           <source
             src="https://cdn.printnanny.ai/www/demo-video-1.mp4"
             type="video/mp4"
@@ -93,13 +87,7 @@ const show = ref(true);
         </div>
       </div>
       <div class="px-4 py-5 sm:p-6">
-        <video
-          autoplay="true"
-          muted="true"
-          loop="true"
-          controls="true"
-          class="w-full"
-        >
+        <video muted="true" loop="true" controls="true" class="w-full">
           <source
             src="https://cdn.printnanny.ai/www/demo-video-3.mp4"
             type="video/mp4"

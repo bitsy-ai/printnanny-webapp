@@ -12,16 +12,17 @@
               >
                 <span
                   class="block pb-2 block bg-clip-text text-transparent rounded-md shadow bg-gradient-to-r from-indigo-400 to-violet-500 sm:pb-2"
-                  >Stop babysitting</span
+                  >Stop Babysitting</span
                 >
                 <span
                   class="pb-2 bg-clip-text text-transparent rounded-md shadow bg-gradient-to-r from-indigo-400 to-violet-500 sm:pb-2"
-                  >your 3D printer</span
+                  >your 3D Printer</span
                 >
                 👀
               </h1>
               <p class="pt-6 max-w-prose mx-auto text-xl text-white">
-                PrintNanny is the personal assistant for your 3D printer.
+                Get an AI-powered personal assistant <br />to automate the
+                tedious parts of 3D printing.
               </p>
               <div class="mt-10 sm:mt-12">
                 <WaitlistForm />
@@ -71,32 +72,33 @@
           appear
         >
           <div>
+            <img
+              src="@/assets/logo/logo-rect-light.svg"
+              class="m-auto h-36 py-2"
+            />
             <h2
-              class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
+              class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8"
             >
-              Quality Control that Never Sleeps
+              <span class="text-gray-900"
+                >Quality Control that Never Sleeps</span
+              >
             </h2>
-            <p
-              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
-            >
-              PrintNanny Cam
-            </p>
             <p class="pt-6 max-w-prose mx-auto text-xl text-gray-500">
               Get notified or <strong>automatically pause</strong> if print job
               doesn't pass quality control.
             </p>
-            <router-link :to="{ name: 'shop-founding-membership' }">
-              <button
-                class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-              >
-                Get Access Now
-              </button>
-            </router-link>
           </div>
         </Transition>
         <div class="mt-12">
           <DemoQualityAlert></DemoQualityAlert>
         </div>
+        <router-link :to="{ name: 'shop-founding-membership' }">
+          <button
+            class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+          >
+            Get Access Now
+          </button>
+        </router-link>
       </div>
     </div>
 
@@ -114,19 +116,20 @@
           <p
             class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
           >
-            PrintNanny OS + Raspberry Pi
+            Simple Install for Raspberry Pi
           </p>
           <p class="py-6 max-w-prose mx-auto text-xl text-gray-500">
-            Toggle between <strong>OctoPrint</strong> and
-            <strong>Mainsail</strong> with PrintNanny OS.
+            PrintNanny OS makes it easy to install your favorite 3D printing
+            tools.
           </p>
-          <router-link :to="{ name: 'shop-founding-membership' }">
-            <button
-              class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-            >
-              Get Access Now
-            </button>
-          </router-link>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-4 w-1/2 m-auto py-6">
+          <img src="@/assets/images/addons/octoprint/octoprint_512x512.png" />
+          <img src="@/assets/images/addons/mainsail/mainsail_512x512.png" />
+          <img src="@/assets/images/addons/klipper/klipper_512x512.png" />
+          <img src="@/assets/images/addons/moonraker/moonraker_512x256.png" />
+          <img src="@/assets/images/addons/syncthing/syncthing_512x256.png" />
+          <img src="@/assets/images/addons/tailscale/tailscale_512x256.png" />
         </div>
         <div class="mt-12">
           <div class="grid grid-cols-1">
@@ -134,6 +137,10 @@
               src="@/assets/images/toggle-mainsail-octoprint.gif"
               class="md:w-3/4 w-full m-auto"
             />
+            <p class="pb-6 max-w-prose mx-auto text-xl text-gray-500">
+              Toggle between <strong>OctoPrint</strong> and
+              <strong>Mainsail</strong> without re-imaging your SD card.
+            </p>
           </div>
         </div>
       </div>
@@ -159,56 +166,53 @@
             Seamless A/B System Updates
           </p>
         </div>
-        <div class="flex grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="flex grid grid-cols-2 gap-2">
-            <p
-              class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl col-span-2"
-            >
-              Release History
-            </p>
-            <div
-              class="p-6 rounded-lg shadow-sm bg-gray-50 border border-gray-200"
-            >
-              <p class="m-0 mb-1 text-sm text-slate-500">27 Dec, 2022</p>
-              <h2 class="m-0 mb-6 text-2xl leading-6 text-slate-500">v0.5.0</h2>
-              <p class="m-0 mb-6 text-base text-slate-700">
-                Tailscale add-on. Edit settings files in your browser. USB
-                camera support.
-              </p>
-              <a
-                href="https://printnanny.ai/docs/release-history/0.5.x-emerald-langdale/"
-                class="text-base text-indigo-700 hover:text-indigo-500 [text-decoration:none]"
-              >
-                Release Notes &rarr;
-              </a>
-            </div>
-            <div
-              class="p-6 rounded-lg shadow-sm bg-gray-50 border border-gray-200"
-            >
-              <p class="m-0 mb-1 text-sm text-slate-500">27 Oct, 2022</p>
-              <h2 class="m-0 mb-6 text-2xl leading-6 text-slate-500">v0.4.0</h2>
-              <p class="m-0 mb-6 text-base text-slate-700">
-                Mainsail and Syncthing GA. PrintNanny monitoring works without
-                an internet connection.
-              </p>
-              <a
-                href="https://printnanny.ai/docs/release-history/0.4.x-dunite-langdale/"
-                class="text-base text-indigo-700 hover:text-indigo-500 [text-decoration:none]"
-              >
-                Release Notes &rarr;
-              </a>
+
+        <div
+          class="mt-12 mx-auto max-w-md px-4 grid grid-cols-1 gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-4 lg:max-w-7xl"
+        >
+          <div
+            v-for="(post, idx) in releases"
+            :key="post.name"
+            :class="[
+              idx > 1 ? 'hidden md:flex md:flex-col' : 'flex flex-col',
+              'rounded-lg shadow-lg overflow-hidden',
+            ]"
+          >
+            <div class="flex-1 bg-gray-100 p-6 flex flex-col justify-between">
+              <div class="flex-1">
+                <p class="text-sm font-medium text-cyan-600">
+                  <a :href="post.href" class="hover:underline">
+                    {{ post.date }}
+                  </a>
+                </p>
+                <a :href="post.href" class="block mt-2">
+                  <p class="text-xl font-semibold text-gray-900">
+                    {{ post.name }}
+                  </p>
+                  <p class="mt-3 text-base text-gray-500">
+                    {{ post.description }}
+                  </p>
+                </a>
+                <a
+                  :href="post.href"
+                  class="text-base text-indigo-700 hover:text-indigo-500 [text-decoration:none]"
+                >
+                  Release Notes &rarr;
+                </a>
+              </div>
             </div>
           </div>
-          <img
-            src="@/assets/images/swupdate-messages.png"
-            class="drop-shadow-2xl"
-          />
         </div>
       </div>
     </div>
-
+    <div class="relative bg-white p-2 lg:py-6">
+      <img
+        src="@/assets/images/swupdate-messages.png"
+        class="drop-shadow-xl w-full md:w-3/4 m-auto py-6"
+      />
+    </div>
     <!-- Feature section with grid -->
-    <div id="printnanny-os" class="relative bg-white py-16 sm:py-16">
+    <div id="printnanny-os" class="relative bg-white py-4 sm:py-8">
       <div
         class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
       >
@@ -279,21 +283,33 @@
           <p class="mt-5 mb-5 mx-auto max-w-prose text-xl text-gray-500">
             Join an amazing community of entrepreneurs and makers.
           </p>
+
           <a
             href="https://discord.gg/sf23bk2hPr"
             target="_blank"
-            class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl bg-indigo-500 w-full m-auto md:w-1/2 block hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
+            class="my-12 text-white text-3xl font-extrabold tracking-tight sm:text-4xl bg-indigo-500 w-full m-auto md:w-1/2 block hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
           >
             Join Discord
           </a>
           <a
             href="https://printnanny.ai/docs/faq/founding-membership/"
             target="_blank"
-            class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl bg-indigo-500 w-full m-auto md:w-1/2 block hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
+            class="my-12 text-white text-3xl font-extrabold tracking-tight sm:text-4xl bg-indigo-500 w-full m-auto md:w-1/2 block hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
           >
             Founding Member FAQ
           </a>
         </div>
+
+        <h2
+          class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl text-center mt-24"
+        >
+          Development Blog
+        </h2>
+        <h2
+          class="text-base font-semibold tracking-wider text-indigo-600 uppercase text-center mt-2"
+        >
+          Deep dive into the nitty-gritty of how PrintNanny works.
+        </h2>
         <div
           class="mt-12 mx-auto max-w-md px-4 grid gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-3 lg:max-w-7xl"
         >
@@ -349,6 +365,38 @@ import googleIoImg from "@/assets/press/google-io.png";
 import tfEverywhereImg from "@/assets/press/tensorflow-everywhere-na.png";
 import WaitlistForm from "@/components/forms/WaitlistForm.vue";
 
+const releases = [
+  {
+    date: "Upcoming",
+    description: "See what's on the roadmap for January/February 2023.",
+    name: "v0.6.0 (January 2023)",
+    href: "https://github.com/bitsy-ai/printnanny-os/milestone/6",
+    linkText: "Roadmap &rarr;",
+  },
+  {
+    date: "27 Dec, 2022",
+    description:
+      "Tailscale add-on. Edit settings files in your browser. USB camera support.",
+    name: "v0.5.0 (Emerald)",
+    href: "https://printnanny.ai/docs/release-history/0.5.x-emerald-langdale/",
+    linkText: "Release Notes &rarr;",
+  },
+  {
+    date: "27 Oct, 2022",
+    description:
+      "Mainsail and Syncthing GA. New device dashboard. PrintNanny monitoring works without an internet connection.",
+    name: "v0.4.0 (Dunite)",
+    href: "https://printnanny.ai/docs/release-history/0.4.x-dunite-langdale/",
+  },
+  {
+    date: "28 Aug, 2022",
+    description:
+      "PrintNanny Cam available from mobile/cellular network. Swagger and Redoc API docs. Cloud UI theme",
+    name: "v0.3.0 (Cinnabar)",
+    href: "https://printnanny.ai/docs/release-history/0.3.x-cinnabar-kirkstone/",
+  },
+];
+
 const features = [
   {
     name: "Raspberry Pi",
@@ -388,6 +436,22 @@ const features = [
   },
 ];
 const blogPosts = [
+  {
+    id: 4,
+    title: "I needed a sold-out SDWire board, so I learned how to fab PCBs",
+    date: "Nov 16, 2022",
+    dateTime: "2022-11-16",
+    category: {
+      name: "PrintNanny Blog",
+      href: "https://bitsy.ai/tag/printnanny/",
+    },
+    href: "https://bitsy.ai/preorder-printnanny-sdwire/",
+    imageUrl:
+      "https://bitsy.ai/content/images/size/w1000/2022/08/SDWire-3D-front-v1.4-r1-2.jpg",
+    preview:
+      "I desperately needed a Tizen SDWire board to automate smoke tests for PrintNanny OS, but couldn't buy one due to supply shortages. So I learned how to fab PCBs with components made in the USA.",
+    readingLength: "4 min",
+  },
   {
     id: 2,
     title: "Launching an AI/ML Product as a Solo Founder",
@@ -430,6 +494,38 @@ const blogPosts = [
     imageUrl: googleIoImg,
     preview: "Training & evaluating PrintNanny's first detection model",
     readingLength: "10 min",
+  },
+  {
+    id: 5,
+    title: "Automate Image Annotation",
+    href: "https://bitsy.ai/automate-bounding-box-annotation-with-tensorflow-and-automl/",
+    date: "Nov 2, 2020",
+    datetime: "2020-11-02",
+    category: {
+      name: "PrintNanny Blog",
+      href: "https://bitsy.ai/tag/printnanny/",
+    },
+    imageUrl:
+      "https://bitsy.ai/content/images/size/w2000/2021/05/microsoft-vott-custom-tensorflow-js-model.resized-1--1--1.gif",
+    preview:
+      "How I used TensorFlow.js and Automated Machine Learning (AutoML) to increase the efficiency of manual data labeling.",
+    readingLength: "10 min",
+  },
+  {
+    id: 5,
+    title: "Automate Image Annotation",
+    href: "https://bitsy.ai/real-time-object-tracking-with-tensorflow--raspberry-pi--and-pan-tilt-hat/",
+    date: "Nov 2, 2020",
+    datetime: "2020-11-02",
+    category: {
+      name: "PrintNanny Blog",
+      href: "https://bitsy.ai/tag/printnanny/",
+    },
+    imageUrl:
+      "https://bitsy.ai/content/images/2021/05/1-xAs0SJR4gvvgcuuySdfmAw.jpeg",
+    preview:
+      "etect and track an object in real-time using a Raspberry Pi, Pan-Tilt HAT, and TensorFlow. Perfect for hobbyists curious about computer vision & machine learning.",
+    readingLength: "12 min",
   },
 ];
 </script>
