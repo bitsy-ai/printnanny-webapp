@@ -110,12 +110,19 @@
           <p
             class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
           >
-            PrintNanny OS + Raspberry Pi
+            Simple Install for Raspberry Pi
           </p>
           <p class="py-6 max-w-prose mx-auto text-xl text-gray-500">
-            Toggle between <strong>OctoPrint</strong> and
-            <strong>Mainsail</strong> with PrintNanny OS.
+            PrintNanny OS makes it easy to install your favorite 3D printing tools.
           </p>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-4 w-1/2 m-auto py-6">
+          <img src="@/assets/images/addons/octoprint/octoprint_512x512.png" />
+          <img src="@/assets/images/addons/mainsail/mainsail_512x512.png" />
+          <img src="@/assets/images/addons/klipper/klipper_512x512.png" />
+          <img src="@/assets/images/addons/moonraker/moonraker_512x256.png" />
+          <img src="@/assets/images/addons/syncthing/syncthing_512x256.png" />
+          <img src="@/assets/images/addons/tailscale/tailscale_512x256.png" />
         </div>
         <div class="mt-12">
           <div class="grid grid-cols-1">
@@ -123,6 +130,10 @@
               src="@/assets/images/toggle-mainsail-octoprint.gif"
               class="md:w-3/4 w-full m-auto"
             />
+            <p class="pb-6 max-w-prose mx-auto text-xl text-gray-500">
+            Toggle between <strong>OctoPrint</strong> and
+            <strong>Mainsail</strong> without re-imaging your SD card.
+            </p>
           </div>
         </div>
       </div>
@@ -337,6 +348,7 @@ import DemoQualityAlert from "@/components/demo/DemoQualityAlert.vue";
 import googleIoImg from "@/assets/press/google-io.png";
 import tfEverywhereImg from "@/assets/press/tensorflow-everywhere-na.png";
 import WaitlistForm from "@/components/forms/WaitlistForm.vue";
+
 
 const features = [
   {
