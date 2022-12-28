@@ -21,5 +21,5 @@ class EmailTrackingEventAdmin(admin.ModelAdmin):
 
 @admin.register(EmailMessage)
 class EmailMessageAdmin(admin.ModelAdmin):
-    list_display = ("message_id", "user", "email", "campsign", "send_status")
+    list_display = ("message_id", "user", "email", "campaign", "send_status")
     model = EmailMessage
