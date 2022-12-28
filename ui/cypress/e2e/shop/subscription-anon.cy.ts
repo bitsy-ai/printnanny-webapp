@@ -14,6 +14,7 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
   const cardNumber = "4242 4242 4242 4242";
   const exp = "05/25";
   const cvc = "123";
+  const phoneNumber = "8888675309";
 
   const promotionCode = "FOUNDING10";
 
@@ -53,6 +54,7 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
       cvc,
       exp,
       promotionCode,
+      phoneNumber
     };
     // cy.origin allows use to make cross-origin requests, with limitations
     cy.origin(
@@ -68,6 +70,7 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
         cvc,
         exp,
         promotionCode,
+        phoneNumber
       }) => {
         cy.visit(url);
         cy.get("input[name=promotionCode")
@@ -89,6 +92,7 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
           .type("{enter}");
         cy.get("input[name=billingLocality]").type(city);
         cy.get("input[name=billingPostalCode]").type(zip);
+        cy.get("input[name=phoneNumber]").type(phoneNumber);
         cy.get("button[type=submit]", { timeout: 60000 })
           .should("have.class", "SubmitButton--complete")
           .click()

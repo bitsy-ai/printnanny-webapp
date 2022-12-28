@@ -15,6 +15,7 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
   const cardNumber = "4242 4242 4242 4242";
   const exp = "05/25";
   const cvc = "123";
+  const phoneNumber = "8888675309";
 
   before(() => {
     cy.registerUser(email, validPassword).then(() => {
@@ -55,12 +56,13 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
       cardNumber,
       cvc,
       exp,
+      phoneNumber
     };
     // cy.origin allows use to make cross-origin requests, with limitations
     cy.origin(
       "https://checkout.stripe.com",
       { args: sentArgs },
-      ({ url, billingName, address1, city, zip, cardNumber, cvc, exp }) => {
+      ({ url, billingName, address1, city, zip, cardNumber, cvc, exp, phoneNumber }) => {
         cy.visit(url);
         cy.get("input[name=cardNumber]").type(cardNumber);
         cy.get("input[name=cardExpiry]").type(exp);
@@ -71,6 +73,8 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
           .type("{enter}");
         cy.get("input[name=billingLocality]").type(city);
         cy.get("input[name=billingPostalCode]").type(zip);
+        cy.get("input[name=phoneNumber]").type(phoneNumber)
+
         cy.get("button[type=submit]", { timeout: 60000 })
           .should("have.class", "SubmitButton--complete")
           .click()
