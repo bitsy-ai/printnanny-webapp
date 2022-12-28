@@ -20,16 +20,9 @@
                 >
                 👀
               </h1>
-              <h2
-                class="sm:text-xl md:text-3xl text-white mt-4 mb-4 text-2xl font-extrabold tracking-tight sm:text-4xl"
-              >
-                PrintNanny is the
-                <span
-                  class="bg-clip-text text-transparent rounded-md shadow bg-gradient-to-r from-indigo-400 to-violet-500"
-                  >personal assistant</span
-                >
-                for your additive manufacturing business.
-              </h2>
+              <p class="pt-6 max-w-prose mx-auto text-xl text-white">
+              PrintNanny is the personal assistant for your 3D printer.
+              </p>
               <div class="mt-10 sm:mt-12">
                 <WaitlistForm />
               </div>
@@ -94,7 +87,7 @@
             </p>
             <router-link :to="{ name: 'shop-founding-membership' }">
               <button
-                class="inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block text-3xl font-extrabold py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
               >
                 Get Access Now
               </button>
@@ -129,7 +122,7 @@
           </p>
           <router-link :to="{ name: 'shop-founding-membership' }">
             <button
-              class="inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block text-3xl font-extrabold py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+              class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
             >
               Get Access Now
             </button>
@@ -146,8 +139,75 @@
       </div>
     </div>
 
+    <!-- OTA updates -->
+    <div id="printnanny-os" class="relative bg-white p-6 lg:py-12">
+      <div
+        class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
+      >
+        <div class="flex-1">
+          <h2
+            class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
+          >
+            Over-the-air Updates
+          </h2>
+              <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+                <strong>Are you tired of re-imaging SD cards?</strong>
+              </p>
+              <p
+                class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
+              >
+                Seamless A/B System Updates
+              </p>
+        </div>
+          <div class="flex grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex grid grid-cols-2 gap-2">
+              <p
+              class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl col-span-2"
+            >
+              Release History
+            </p>
+              <div class="p-6 rounded-lg shadow-sm bg-gray-50 border border-gray-200">
+                  <p class="m-0 mb-1 text-sm text-slate-500">
+                    27 Dec, 2022
+                  </p>
+                  <h2 class="m-0 mb-6 text-2xl leading-6 text-slate-500">
+                    v0.5.0
+                  </h2>
+                  <p class="m-0 mb-6 text-base text-slate-700">
+                    Tailscale add-on.Edit settings files in your browser. USB camera support.
+                  </p>
+                  <a href="https://printnanny.ai/docs/release-history/0.5.x-emerald-langdale/"
+                    class="text-base text-indigo-700 hover:text-indigo-500 [text-decoration:none]">
+                    Release Notes &rarr;
+                  </a>
+              </div>
+                <div class="p-6 rounded-lg shadow-sm bg-gray-50 border border-gray-200">
+                  <p class="m-0 mb-1 text-sm text-slate-500">
+                     27 Oct, 2022
+                  </p>
+                  <h2 class="m-0 mb-6 text-2xl leading-6 text-slate-500">
+                   v0.4.0
+                  </h2>
+                  <p class="m-0 mb-6 text-base text-slate-700">
+                     Mainsail and Syncthing GA. PrintNanny monitoring works without an internet
+                              connection.
+                  </p>
+                  <a href="https://printnanny.ai/docs/release-history/0.4.x-dunite-langdale/"
+                    class="text-base text-indigo-700 hover:text-indigo-500 [text-decoration:none]">
+                    Release Notes &rarr;
+                  </a>
+              </div>
+            </div>
+            <img
+              src="@/assets/images/swupdate-messages.png"
+              class="drop-shadow-2xl"
+            />
+          </div>
+      </div>
+    </div>
+
     <!-- Feature section with grid -->
-    <div id="printnanny-os" class="relative bg-white py-16 sm:py-24 lg:py-32">
+    <div id="printnanny-os" class="relative bg-white py-16 sm:py-16">
       <div
         class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
       >
@@ -158,7 +218,7 @@
         </h2>
         <router-link :to="{ name: 'shop-founding-membership' }">
           <button
-            class="inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block text-3xl font-extrabold py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+            class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
           >
             Become a Founding Member
           </button>
@@ -193,62 +253,6 @@
             </div>
           </div>
         </div>
-        <hr class="my-3" />
-        <div class="mt-12 flex grid grid-cols-1 md:grid-cols-1 gap-4">
-          <div class="flex-1">
-            <p
-              class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
-            >
-              Over-the-Air Updates
-            </p>
-            <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-              <strong>Are you tired of re-imaging SD cards?</strong>
-            </p>
-            <p
-              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
-            >
-              Seamless A/B System Updates
-            </p>
-          </div>
-          <div class="flex-1">
-            <img
-              src="@/assets/images/swupdate-messages.png"
-              class="drop-shadow-2xl"
-            />
-          </div>
-        </div>
-
-        <hr class="my-3" />
-
-        <div class="mt-12 flex grid grid-cols-1 md:grid-cols-1 gap-4">
-          <div class="flex-1">
-            <p
-              class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
-            >
-              Sync Files from Anywhere
-            </p>
-            <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-              Securely share a folder with a client or a whole classroom.
-            </p>
-            <p
-              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
-            >
-              Powered by Syncthing
-            </p>
-          </div>
-          <router-link :to="{ name: 'shop-founding-membership' }">
-            <button
-              class="inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block text-3xl font-extrabold py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-            >
-              Become a Founding Member
-            </button>
-          </router-link>
-          <!-- TODO better syncthing screenshot
-          <div class="flex-1 rounded-3xl drop-shadow-2xl">
-            <img src="@/assets/images/syncthing/syncthing-example.png" />
-          </div>
-           -->
-        </div>
       </div>
     </div>
 
@@ -277,14 +281,14 @@
           <a
             href="https://discord.gg/sf23bk2hPr"
             target="_blank"
-            class="bg-indigo-500 w-full m-auto md:w-1/3 block hover:bg-blue-700 text-white font-extrabold py-2 px-4 rounded mt-4 sm:text-xl transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
+            class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl bg-indigo-500 w-full m-auto md:w-1/2 block hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
           >
             Join Discord
           </a>
           <a
             href="https://printnanny.ai/docs/faq/founding-membership/"
             target="_blank"
-            class="bg-indigo-500 w-full m-auto md:w-1/3 block hover:bg-blue-700 text-white font-extrabold py-2 px-4 rounded mt-4 sm:text-xl transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
+            class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl bg-indigo-500 w-full m-auto md:w-1/2 block hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
           >
             Founding Member FAQ
           </a>
