@@ -15,7 +15,7 @@ class CampaignAdmin(admin.ModelAdmin):
 
 @admin.register(EmailTrackingEvent)
 class EmailTrackingEventAdmin(admin.ModelAdmin):
-    list_display = ("created_dt", "recipient", "email_message", "user", "campaign")
+    list_display = ("ts", "recipient", "email_message", "user", "campaign")
     model = EmailTrackingEvent
 
 
