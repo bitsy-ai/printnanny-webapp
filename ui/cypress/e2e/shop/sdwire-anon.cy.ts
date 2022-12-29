@@ -51,13 +51,23 @@ describe("Shop and Checkout (SDWire, Anonymous)", () => {
       cardNumber,
       cvc,
       exp,
-      phoneNumber
+      phoneNumber,
     };
     // cy.origin allows use to make cross-origin requests, with limitations
     cy.origin(
       "https://checkout.stripe.com",
       { args: sentArgs },
-      ({ url, shippingName, address1, city, zip, cardNumber, cvc, exp, phoneNumber }) => {
+      ({
+        url,
+        shippingName,
+        address1,
+        city,
+        zip,
+        cardNumber,
+        cvc,
+        exp,
+        phoneNumber,
+      }) => {
         cy.visit(url);
 
         cy.get("input[name=shippingName]").type(shippingName);

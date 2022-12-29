@@ -54,7 +54,7 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
       cvc,
       exp,
       promotionCode,
-      phoneNumber
+      phoneNumber,
     };
     // cy.origin allows use to make cross-origin requests, with limitations
     cy.origin(
@@ -70,7 +70,7 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
         cvc,
         exp,
         promotionCode,
-        phoneNumber
+        phoneNumber,
       }) => {
         cy.visit(url);
         cy.get("input[name=promotionCode")
