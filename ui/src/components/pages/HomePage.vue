@@ -287,6 +287,12 @@
           <a
             href="https://discord.gg/sf23bk2hPr"
             target="_blank"
+          >
+          <img src="https://img.shields.io/discord/773452324692688956?color=%236366f1&label=discord&style=for-the-badge" class="m-auto">
+          </a>
+          <a
+            href="https://discord.gg/sf23bk2hPr"
+            target="_blank"
             class="my-12 text-white text-3xl font-extrabold tracking-tight sm:text-4xl bg-indigo-500 w-full m-auto md:w-1/2 block hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
           >
             Join Discord
