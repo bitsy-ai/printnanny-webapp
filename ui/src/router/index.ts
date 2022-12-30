@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { useAccountStore } from "@/stores/account";
 import posthog from "posthog-js";
+import { posthogPageview } from "@/utils/posthog";
 
 import deviceRoutes from "./devices";
 import swagRoutes from "./swag";
@@ -25,9 +26,7 @@ router.afterEach((_to, _from) => {
     !window.location.href.includes("127.0.0.1") &&
     !window.location.href.includes("localhost")
   ) {
-    posthog.capture("$pageview", {
-      $current_url: window.location.href,
-    });
+    posthogPageview();
   }
 });
 

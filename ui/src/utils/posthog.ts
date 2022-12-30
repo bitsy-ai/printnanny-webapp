@@ -1,5 +1,37 @@
 import type * as api from "printnanny-api-client";
 import posthog from "posthog-js";
+import { useAccountStore } from "@/stores/account";
+
+interface posthogProperties {
+  email?: string
+  user_id?: number
+}
+
+function posthogPageview() {
+  const queryString = window.location.search;
+  const params = new URLSearchParams(queryString);
+  const email = params.get("email");
+  const userId = params.get("user_id");
+  const set: posthogProperties = {};
+  if (email) {
+    const account = useAccountStore();
+    account.$patch({ email: email });
+    set["email"] = email;
+  }
+  if (userId) {
+    const account = useAccountStore();
+    const userIdInt = parseInt(userId);
+    if (userIdInt) {
+      account.$patch({ userId: userIdInt });
+      set["user_id"] = userIdInt;
+
+    }
+  }
+  posthog.capture("$pageview", {
+    $current_url: window.location.href,
+    $set: set
+  });
+}
 
 function posthogIdentify(user: api.User) {
   // initialize posthog in production only
@@ -30,4 +62,4 @@ function posthogReset() {
   }
 }
 
-export { posthogIdentify, posthogReset };
+export { posthogIdentify, posthogReset, posthogPageview };
