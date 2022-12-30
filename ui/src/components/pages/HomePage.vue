@@ -284,11 +284,11 @@
             Join an amazing community of entrepreneurs and makers.
           </p>
 
-          <a
-            href="https://discord.gg/sf23bk2hPr"
-            target="_blank"
-          >
-          <img src="https://img.shields.io/discord/773452324692688956?color=%236366f1&label=discord&style=for-the-badge" class="m-auto">
+          <a href="https://discord.gg/sf23bk2hPr" target="_blank">
+            <img
+              src="https://img.shields.io/discord/773452324692688956?color=%236366f1&label=discord&style=for-the-badge"
+              class="m-auto"
+            />
           </a>
           <a
             href="https://discord.gg/sf23bk2hPr"

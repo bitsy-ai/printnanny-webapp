@@ -3,8 +3,8 @@ import posthog from "posthog-js";
 import { useAccountStore } from "@/stores/account";
 
 interface posthogProperties {
-  email?: string
-  user_id?: number
+  email?: string;
+  user_id?: number;
 }
 
 function posthogPageview() {
@@ -24,12 +24,11 @@ function posthogPageview() {
     if (userIdInt) {
       account.$patch({ userId: userIdInt });
       set["user_id"] = userIdInt;
-
     }
   }
   posthog.capture("$pageview", {
     $current_url: window.location.href,
-    $set: set
+    $set: set,
   });
 }
 
