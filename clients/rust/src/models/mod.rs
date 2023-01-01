@@ -6,6 +6,8 @@ pub mod callback_token_auth;
 pub use self::callback_token_auth::CallbackTokenAuth;
 pub mod callback_token_auth_request;
 pub use self::callback_token_auth_request::CallbackTokenAuthRequest;
+pub mod crash_report;
+pub use self::crash_report::CrashReport;
 pub mod dj_stripe_charge;
 pub use self::dj_stripe_charge::DjStripeCharge;
 pub mod dj_stripe_checkout_session;

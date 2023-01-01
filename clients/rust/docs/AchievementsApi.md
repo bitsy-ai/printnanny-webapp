@@ -26,7 +26,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

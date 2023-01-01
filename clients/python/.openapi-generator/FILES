@@ -11,6 +11,8 @@ docs/AchievementsApi.md
 docs/AlertsApi.md
 docs/CallbackTokenAuth.md
 docs/CallbackTokenAuthRequest.md
+docs/CrashReport.md
+docs/CrashReportsApi.md
 docs/DevicesApi.md
 docs/DjStripeCharge.md
 docs/DjStripeCheckoutSession.md
@@ -171,6 +173,7 @@ printnanny_api_client/api/__init__.py
 printnanny_api_client/api/accounts_api.py
 printnanny_api_client/api/achievements_api.py
 printnanny_api_client/api/alerts_api.py
+printnanny_api_client/api/crash_reports_api.py
 printnanny_api_client/api/devices_api.py
 printnanny_api_client/api/events_api.py
 printnanny_api_client/api/janus_api.py
@@ -187,6 +190,7 @@ printnanny_api_client/models/achievement.py
 printnanny_api_client/models/achievement_type_enum.py
 printnanny_api_client/models/callback_token_auth.py
 printnanny_api_client/models/callback_token_auth_request.py
+printnanny_api_client/models/crash_report.py
 printnanny_api_client/models/dj_stripe_charge.py
 printnanny_api_client/models/dj_stripe_checkout_session.py
 printnanny_api_client/models/dj_stripe_customer.py
@@ -347,6 +351,8 @@ test/test_achievements_api.py
 test/test_alerts_api.py
 test/test_callback_token_auth.py
 test/test_callback_token_auth_request.py
+test/test_crash_report.py
+test/test_crash_reports_api.py
 test/test_devices_api.py
 test/test_dj_stripe_charge.py
 test/test_dj_stripe_checkout_session.py

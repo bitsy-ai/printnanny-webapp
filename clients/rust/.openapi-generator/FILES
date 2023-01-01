@@ -10,6 +10,8 @@ docs/AchievementsApi.md
 docs/AlertsApi.md
 docs/CallbackTokenAuth.md
 docs/CallbackTokenAuthRequest.md
+docs/CrashReport.md
+docs/CrashReportsApi.md
 docs/DevicesApi.md
 docs/DjStripeCharge.md
 docs/DjStripeCheckoutSession.md
@@ -169,6 +171,7 @@ src/apis/accounts_api.rs
 src/apis/achievements_api.rs
 src/apis/alerts_api.rs
 src/apis/configuration.rs
+src/apis/crash_reports_api.rs
 src/apis/devices_api.rs
 src/apis/events_api.rs
 src/apis/janus_api.rs
@@ -183,6 +186,7 @@ src/models/achievement.rs
 src/models/achievement_type_enum.rs
 src/models/callback_token_auth.rs
 src/models/callback_token_auth_request.rs
+src/models/crash_report.rs
 src/models/dj_stripe_charge.rs
 src/models/dj_stripe_checkout_session.rs
 src/models/dj_stripe_customer.rs

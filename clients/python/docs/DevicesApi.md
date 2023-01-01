@@ -40,48 +40,6 @@ A device (Raspberry Pi) running Print Nanny OS
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    pi_request = printnanny_api_client.PiRequest() # PiRequest |  (optional)
-
-    try:
-        api_response = api_instance.pi_update_or_create(pi_request=pi_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pi_update_or_create: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -99,12 +57,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -136,7 +88,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -161,48 +113,6 @@ A device (Raspberry Pi) running Print Nanny OS
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    pi_request = printnanny_api_client.PiRequest() # PiRequest |  (optional)
-
-    try:
-        api_response = api_instance.pis_create(pi_request=pi_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_create: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -220,12 +130,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -257,7 +161,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -285,47 +189,6 @@ A device (Raspberry Pi) running Print Nanny OS
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this pi.
-
-    try:
-        api_instance.pis_destroy(id)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_destroy: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -343,12 +206,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -379,7 +236,7 @@ void (empty response body)
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -400,48 +257,6 @@ void (empty response body)
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    pi_id = 56 # int | 
-
-    try:
-        api_response = api_instance.pis_license_zip_retrieve(pi_id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_license_zip_retrieve: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -459,12 +274,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -496,7 +305,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -519,48 +328,6 @@ A device (Raspberry Pi) running Print Nanny OS
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    page = 56 # int | A page number within the paginated result set. (optional)
-
-    try:
-        api_response = api_instance.pis_list(page=page)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_list: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -578,12 +345,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -615,7 +376,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -642,49 +403,6 @@ A device (Raspberry Pi) running Print Nanny OS
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this pi.
-patched_pi_request = printnanny_api_client.PatchedPiRequest() # PatchedPiRequest |  (optional)
-
-    try:
-        api_response = api_instance.pis_partial_update(id, patched_pi_request=patched_pi_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_partial_update: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -702,12 +420,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -741,7 +453,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -769,48 +481,6 @@ A device (Raspberry Pi) running Print Nanny OS
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this pi.
-
-    try:
-        api_response = api_instance.pis_retrieve(id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_retrieve: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -828,12 +498,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -865,7 +529,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -886,49 +550,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    pi_id = 56 # int | 
-pi_settings_request = printnanny_api_client.PiSettingsRequest() # PiSettingsRequest | 
-
-    try:
-        api_response = api_instance.pis_settings_create(pi_id, pi_settings_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_settings_create: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -946,12 +567,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -985,7 +600,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1011,49 +626,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    pi_id = 56 # int | 
-page = 56 # int | A page number within the paginated result set. (optional)
-
-    try:
-        api_response = api_instance.pis_settings_list(pi_id, page=page)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_settings_list: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1071,12 +643,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1110,7 +676,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1135,50 +701,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this pi settings.
-pi_id = 56 # int | 
-patched_pi_settings_request = printnanny_api_client.PatchedPiSettingsRequest() # PatchedPiSettingsRequest |  (optional)
-
-    try:
-        api_response = api_instance.pis_settings_partial_update(id, pi_id, patched_pi_settings_request=patched_pi_settings_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_settings_partial_update: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1196,12 +718,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1237,7 +753,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1263,49 +779,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this pi settings.
-pi_id = 56 # int | 
-
-    try:
-        api_response = api_instance.pis_settings_retrieve(id, pi_id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_settings_retrieve: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1323,12 +796,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1362,7 +829,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1383,50 +850,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this pi settings.
-pi_id = 56 # int | 
-pi_settings_request = printnanny_api_client.PiSettingsRequest() # PiSettingsRequest | 
-
-    try:
-        api_response = api_instance.pis_settings_update(id, pi_id, pi_settings_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_settings_update: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1444,12 +867,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1485,7 +902,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1511,49 +928,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    pi_id = 56 # int | 
-system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
-
-    try:
-        api_response = api_instance.pis_system_info_create(pi_id, system_info_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_system_info_create: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1571,12 +945,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1610,7 +978,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1636,49 +1004,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    pi_id = 56 # int | 
-page = 56 # int | A page number within the paginated result set. (optional)
-
-    try:
-        api_response = api_instance.pis_system_info_list(pi_id, page=page)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_system_info_list: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1696,12 +1021,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1735,7 +1054,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1760,50 +1079,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this system info.
-pi_id = 56 # int | 
-patched_system_info_request = printnanny_api_client.PatchedSystemInfoRequest() # PatchedSystemInfoRequest |  (optional)
-
-    try:
-        api_response = api_instance.pis_system_info_partial_update(id, pi_id, patched_system_info_request=patched_system_info_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_system_info_partial_update: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1821,12 +1096,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1862,7 +1131,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1888,49 +1157,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this system info.
-pi_id = 56 # int | 
-
-    try:
-        api_response = api_instance.pis_system_info_retrieve(id, pi_id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_system_info_retrieve: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1948,12 +1174,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1987,7 +1207,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -2008,50 +1228,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this system info.
-pi_id = 56 # int | 
-system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
-
-    try:
-        api_response = api_instance.pis_system_info_update(id, pi_id, system_info_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_system_info_update: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -2069,12 +1245,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -2110,7 +1280,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -2138,49 +1308,6 @@ A device (Raspberry Pi) running Print Nanny OS
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this pi.
-pi_request = printnanny_api_client.PiRequest() # PiRequest |  (optional)
-
-    try:
-        api_response = api_instance.pis_update(id, pi_request=pi_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_update: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -2198,12 +1325,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -2237,7 +1358,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -2263,49 +1384,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    pi_id = 56 # int | 
-webrtc_stream_request = printnanny_api_client.WebrtcStreamRequest() # WebrtcStreamRequest |  (optional)
-
-    try:
-        api_response = api_instance.pis_webrtc_streams_create(pi_id, webrtc_stream_request=webrtc_stream_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_webrtc_streams_create: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -2323,12 +1401,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -2362,7 +1434,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -2388,49 +1460,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    pi_id = 56 # int | 
-page = 56 # int | A page number within the paginated result set. (optional)
-
-    try:
-        api_response = api_instance.pis_webrtc_streams_list(pi_id, page=page)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_webrtc_streams_list: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -2448,12 +1477,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -2487,7 +1510,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -2512,50 +1535,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this webrtc stream.
-pi_id = 56 # int | 
-patched_webrtc_stream_request = printnanny_api_client.PatchedWebrtcStreamRequest() # PatchedWebrtcStreamRequest |  (optional)
-
-    try:
-        api_response = api_instance.pis_webrtc_streams_partial_update(id, pi_id, patched_webrtc_stream_request=patched_webrtc_stream_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_webrtc_streams_partial_update: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -2573,12 +1552,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -2614,7 +1587,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -2640,49 +1613,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this webrtc stream.
-pi_id = 56 # int | 
-
-    try:
-        api_response = api_instance.pis_webrtc_streams_retrieve(id, pi_id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_webrtc_streams_retrieve: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -2700,12 +1630,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -2739,7 +1663,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -2765,50 +1689,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    id = 56 # int | A unique integer value identifying this webrtc stream.
-pi_id = 56 # int | 
-webrtc_stream_request = printnanny_api_client.WebrtcStreamRequest() # WebrtcStreamRequest |  (optional)
-
-    try:
-        api_response = api_instance.pis_webrtc_streams_update(id, pi_id, webrtc_stream_request=webrtc_stream_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->pis_webrtc_streams_update: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -2826,12 +1706,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -2867,7 +1741,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -2893,49 +1767,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    pi_id = 56 # int | 
-system_info_request = printnanny_api_client.SystemInfoRequest() # SystemInfoRequest | 
-
-    try:
-        api_response = api_instance.system_info_update_or_create(pi_id, system_info_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->system_info_update_or_create: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -2953,12 +1784,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -2992,7 +1817,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -3015,49 +1840,6 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.DevicesApi(api_client)
-    pi_id = 56 # int | 
-webrtc_stream_request = printnanny_api_client.WebrtcStreamRequest() # WebrtcStreamRequest |  (optional)
-
-    try:
-        api_response = api_instance.webrtc_stream_update_or_create(pi_id, webrtc_stream_request=webrtc_stream_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling DevicesApi->webrtc_stream_update_or_create: %s\n" % e)
-```
-
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -3075,12 +1857,6 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -3114,7 +1890,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+[tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
