@@ -32,6 +32,7 @@ export const useAccountStore = defineStore({
     accountsApi: (state) => api.AccountsApiFactory(state.apiConfig),
     achievementsApi: (state) => api.AchievementsApiFactory(state.apiConfig),
     devicesApi: (state) => api.DevicesApiFactory(state.apiConfig),
+    settingsApi: (state) => api.SettingsApiFactory(state.apiConfig),
     shopApi: (state) => api.ShopApiFactory(state.apiConfig),
   },
   actions: {

@@ -1,15 +1,4 @@
 import * as api from "printnanny-api-client";
-
-console.log("Configuring api url: ", import.meta.env.VITE_PRINTNANNY_API_URL);
-const ApiConfig = new api.Configuration({
-  basePath: import.meta.env.VITE_PRINTNANNY_API_URL,
-  baseOptions: {
-    xsrfCookieName: "csrftoken",
-    xsrfHeaderName: "X-CSRFTOKEN",
-    withCredentials: true,
-  },
-});
-
 import axios from "axios";
 import type { AxiosError } from "axios";
 import { useAlertStore } from "@/stores/alerts";
@@ -52,4 +41,4 @@ function handleApiError(e: Error | AxiosError) {
   alerts.push(alert);
 }
 
-export { ApiConfig, handleApiError };
+export { handleApiError };
