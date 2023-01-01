@@ -22,7 +22,10 @@ class CrashReport(SafeDeleteModel):
     user = models.ForeignKey(
         UserModel, null=True, on_delete=models.CASCADE, related_name="crash_reports"
     )
-    os_version = models.CharField(null=True)
+    pi = models.ForeignKey(
+        "devices.Pi", null=True, on_delete=models.CASCADE, related_name="crash_reports"
+    )
+    os_version = models.CharField(null=True, max_length=255)
     os_logs = models.FileField(upload_to=crash_report_filepath, null=True)
-    browser_version = models.CharField(null=True)
+    browser_version = models.CharField(null=True, max_length=255)
     browser_logs = models.FileField(upload_to=crash_report_filepath, null=True)
