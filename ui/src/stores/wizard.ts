@@ -1,7 +1,7 @@
 import uuid4 from "uuid4";
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
-import { ApiConfig, handleApiError } from "@/utils/api";
+import { handleApiError } from "@/utils/api";
 import { useEventStore } from "./events";
 import type { NatsConnection } from "nats.ws";
 import { ConnectTestStep } from "@/types";

@@ -2,7 +2,7 @@ import type { UiAlert } from "@/types";
 import { defineStore, acceptHMRUpdate } from "pinia";
 import * as api from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
-import { ApiConfig, handleApiError } from "@/utils/api";
+import { handleApiError } from "@/utils/api";
 import { posthogIdentify, posthogReset } from "@/utils/posthog";
 import { handleError } from "vue";
 
@@ -32,6 +32,7 @@ export const useAccountStore = defineStore({
     accountsApi: (state) => api.AccountsApiFactory(state.apiConfig),
     achievementsApi: (state) => api.AchievementsApiFactory(state.apiConfig),
     devicesApi: (state) => api.DevicesApiFactory(state.apiConfig),
+    settingsApi: (state) => api.SettingsApiFactory(state.apiConfig),
     shopApi: (state) => api.ShopApiFactory(state.apiConfig),
   },
   actions: {

@@ -6,8 +6,9 @@ import type {
   EmailAlertSettings,
   EmailAlertSettingsRequest,
 } from "printnanny-api-client";
-import { ApiConfig, handleApiError } from "@/utils/api";
+import { handleApiError } from "@/utils/api";
 import type { UiAlert } from "@/types";
+import { useAccountStore } from "./account";
 
 export const useAlertStore = defineStore({
   id: "alerts",
@@ -23,12 +24,12 @@ export const useAlertStore = defineStore({
   },
   actions: {
     async updateEmailAlertSettings(req: EmailAlertSettingsRequest) {
-      const alertSettingsApi = api.SettingsApiFactory(ApiConfig);
+      const account = useAccountStore();
 
       console.log("updateEmailAlertSetting called", req);
       this.$patch({ loading: true });
       if (this.emailAlertSettings) {
-        const alertsSettingsData = await alertSettingsApi
+        const alertsSettingsData = await account.settingsApi
           .alertSettingsEmailUpdate(this.emailAlertSettings.id, req)
           .catch(handleApiError);
         if (alertsSettingsData) {
@@ -40,10 +41,10 @@ export const useAlertStore = defineStore({
       }
     },
     async fetchEmailAlertSettings(): Promise<EmailAlertSettings | undefined> {
-      const alertSettingsApi = api.SettingsApiFactory(ApiConfig);
+      const account = useAccountStore();
 
       this.$patch({ loading: true });
-      const alertsSettingsData = await alertSettingsApi
+      const alertsSettingsData = await account.settingsApi
         .alertSettingsEmailList()
         .catch(handleApiError);
       if (alertsSettingsData && alertsSettingsData.data.results) {
