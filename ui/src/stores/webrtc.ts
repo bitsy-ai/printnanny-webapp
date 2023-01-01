@@ -8,7 +8,7 @@ import Janode from "janode";
 import StreamingPlugin from "janode/plugins/streaming";
 
 import type { UiAlert, AlertAction } from "@/types";
-import { ApiConfig, handleApiError } from "@/utils/api";
+import { handleApiError } from "@/utils/api";
 import type { WebrtcStream } from "printnanny-api-client";
 import { useEventStore } from "./events";
 import { useAlertStore } from "./alerts";
@@ -276,8 +276,7 @@ export const useWebrtcStore = defineStore({
         StreamingPlugin.EVENT.STREAMING_STATUS,
         (evtdata: any) => {
           console.log(
-            `${
-              streamingHandle.name
+            `${streamingHandle.name
             } streaming handle event status ${JSON.stringify(evtdata)}`
           );
         }
