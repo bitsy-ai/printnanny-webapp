@@ -2,6 +2,7 @@ import logging
 
 from drf_spectacular.utils import extend_schema_view, extend_schema
 
+from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import (
     CreateModelMixin,
@@ -31,6 +32,8 @@ class CrashReportViewSet(
     serializer_class = CrashReportSerializer
     queryset = CrashReport.objects.all()
     lookup_field = "id"
+
     parser_classes = [
         parsers.MultiPartParser,
     ]
+    permission_classes = (AllowAny,)

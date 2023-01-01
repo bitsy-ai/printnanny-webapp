@@ -9,7 +9,7 @@ UserModel = get_user_model()
 
 
 def crash_report_filepath(instance, filename):
-    path = strftime("uploads/crash_reports/%Y/%m/%d", instance.created_dt)
+    path = instance.created_dt.strftime("uploads/crash_reports/%Y/%m/%d")
     return f"{path}/{instance.id}/{filename}"
 
 
@@ -18,7 +18,7 @@ class CrashReport(SafeDeleteModel):
 
     id = models.UUIDField(primary_key=True, default=uuid4)
     created_dt = models.DateTimeField(auto_now_add=True)
-
+    email = models.EmailField(null=True)
     user = models.ForeignKey(
         UserModel, null=True, on_delete=models.CASCADE, related_name="crash_reports"
     )
