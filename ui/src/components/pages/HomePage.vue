@@ -123,7 +123,7 @@
             tools.
           </p>
         </div>
-        <div class="grid sm:grid-cols-3 gap-4 w-1/2 m-auto py-6">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 w-1/2 m-auto py-6">
           <img src="@/assets/images/addons/octoprint/octoprint_512x512.png" />
           <img src="@/assets/images/addons/mainsail/mainsail_512x512.png" />
           <img src="@/assets/images/addons/klipper/klipper_512x512.png" />
