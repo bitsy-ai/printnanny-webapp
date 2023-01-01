@@ -4,6 +4,7 @@ from rest_framework_nested.routers import NestedSimpleRouter
 
 
 from print_nanny_webapp.achievements.api.views import AchievementViewSet
+from print_nanny_webapp.crash_reports.api.views import CrashReportViewSet
 from print_nanny_webapp.devices.api.views import (
     SystemInfoViewSet,
     PiViewSet,
@@ -42,6 +43,8 @@ router = DefaultRouter()
 
 router.register("accounts/email-waitlist", EmailWaitlistViewSet, "email-waitlist")
 router.register("pis", PiViewSet)
+
+router.register("crash-reports", CrashReportViewSet)
 
 # octoprint endpoints (PrintNanny os data model)
 
