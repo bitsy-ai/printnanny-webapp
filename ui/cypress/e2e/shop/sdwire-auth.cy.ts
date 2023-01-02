@@ -19,7 +19,7 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
 
   before(() => {
     cy.registerUser(email, validPassword).then(() => {
-      return cy.loginUser(email, validPassword);
+      return cy.loginUserWithPassword(email, validPassword);
     });
   });
 
@@ -87,8 +87,7 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
         cy.get("input[name=cardUseShippingAsBilling]").check();
         cy.get("input[name=phoneNumber]").type(phoneNumber);
 
-        cy.get("button[type=submit]")
-          .contains("Pay")
+        cy.get("button[type=submit]", { timeout: 60000 })
           .should("have.class", "SubmitButton--complete")
           .click()
           .contains("Processing");

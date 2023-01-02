@@ -56,10 +56,26 @@ Cypress.Commands.add("registerUser", (email, password) => {
   return accountsApi.accountsRegistrationCreate(req);
 });
 
-Cypress.Commands.add("loginUser", (email, password) => {
+Cypress.Commands.add("loginUserWithPassword", (email, password) => {
   const accountsApi = api.AccountsApiFactory(ApiConfig);
   return cy.session(email, () => {
     const req = { email, password } as api.LoginRequest;
     return accountsApi.accountsLoginCreate(req);
+  });
+});
+
+Cypress.Commands.add("loginUserWithMagicLink", (email: string) => {
+  return cy.session(email, () => {
+    return cy.visit("/login/").then(() => {
+      cy.get("input[name=email]").type(email);
+      cy.get("button[type=submit]").click();
+      cy.visit(Cypress.env('MAILHOG_URL'));
+      cy.get("[PrintNanny] Your temporary login code").click()
+      cy.get('#token').should(($div) => {
+        const token = $div.text()
+        cy.get("input[name=email]").type(token);
+        cy.get("button[type=submit]").click();
+      })
+    })
   });
 });
