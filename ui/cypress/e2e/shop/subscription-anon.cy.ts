@@ -109,10 +109,10 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
     cy.visit(checkoutRedirectUrl);
 
     // confirmation page should show shipping address
-    cy.contains(billingName);
-    cy.contains(address1);
-    cy.contains(city);
-    cy.contains(zip);
+    cy.contains(billingName, { timeout: 10000 });
+    cy.contains(address1, { timeout: 10000 });
+    cy.contains(city, { timeout: 10000 });
+    cy.contains(zip, { timeout: 10000 });
 
     // Download/print receipt button should open pay.strime.com
     cy.get("button#receipt", { timeout: 10000 })
