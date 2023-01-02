@@ -79,7 +79,7 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
           .type(address1)
           .type("{enter}");
         cy.get("input[name=shippingLocality]").type(city);
-        cy.get("input[name=shippingPostalCode]").type(zip);
+        cy.get("input[name=shippingPostalCode]").type(zip).type("{enter}");
         // cy.get("input[name=shippingAdministrativeArea]").click().contains(state).click();
         cy.get("input[name=cardNumber]").type(cardNumber);
         cy.get("input[name=cardExpiry]").type(exp);
