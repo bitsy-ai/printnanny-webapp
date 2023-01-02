@@ -82,7 +82,8 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
           .type(address1)
           .type("{enter}");
         cy.get("input[name=billingLocality]").type(city);
-        cy.get("input[name=billingPostalCode]").type(zip);
+        cy.get("input[name=billingPostalCode]").type(zip).type("{enter}");
+        cy.get("input[name=enableStripePass]").check();
         cy.get("input[name=phoneNumber]").type(phoneNumber);
 
         cy.get("button[type=submit]", { timeout: 60000 })

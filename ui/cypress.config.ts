@@ -23,6 +23,6 @@ export default defineConfig({
     },
   },
   env: {
-    MAILHOG_URL: "http://localhost:8085"
+    MAILHOG_URL: "http://localhost:8025"
   }
 });
