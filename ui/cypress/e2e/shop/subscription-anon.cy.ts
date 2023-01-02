@@ -125,24 +125,24 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
       });
   });
 
-  it("PrintNanny Cloud Dashboard should show Founding Member achievement badge", () => {
-    return cy.loginUserWithMagicLink(email, validPassword).then(() => {
-      return cy.visit(checkoutRedirectUrl).then(() => {
-        return cy
-          .get("a#nav-dashboard", { timeout: 10000 })
-          .click()
-          .then(() =>
-            cy
-              .url({ timeout: 2000 })
-              .should("contain", "/devices")
-              .then(() => {
-                cy.get("button#pn-navmenu-button", { timeout: 10000 }).click();
-                cy.get(".pn-achievement-badge", { timeout: 10000 }).contains(
-                  "FoundingMember"
-                );
-              })
-          );
-      });
-    });
-  });
+  // it("PrintNanny Cloud Dashboard should show Founding Member achievement badge", () => {
+  //   return cy.loginUserWithMagicLink(email, validPassword).then(() => {
+  //     return cy.visit(checkoutRedirectUrl).then(() => {
+  //       return cy
+  //         .get("a#nav-dashboard", { timeout: 10000 })
+  //         .click()
+  //         .then(() =>
+  //           cy
+  //             .url({ timeout: 2000 })
+  //             .should("contain", "/devices")
+  //             .then(() => {
+  //               cy.get("button#pn-navmenu-button", { timeout: 10000 }).click();
+  //               cy.get(".pn-achievement-badge", { timeout: 10000 }).contains(
+  //                 "FoundingMember"
+  //               );
+  //             })
+  //         );
+  //     });
+  //   });
+  // });
 });

@@ -70,7 +70,7 @@ Cypress.Commands.add("loginUserWithMagicLink", (email: string) => {
       cy.get("input[name=email]").type(email);
       cy.get("button[type=submit]").click();
       const cmd = `docker-compose -f ../local.yml run --rm django python manage.py drfpasswordless_callback_token --email ${email}`;
-      cy.exec(cmd, { failOnNonZeroExit: false }).then((result: any) => {
+      return cy.exec(cmd).then((result: any) => {
         // once the command has completed, the callback function is called
         if (result.code != 0) {
           // log and return if we encounter an error
