@@ -85,6 +85,7 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
         cy.get("input[name=cardExpiry]").type(exp);
         cy.get("input[name=cardCvc]").type(cvc);
         cy.get("input[name=cardUseShippingAsBilling]").check();
+        cy.get("input[name=enableStripePass]").check();
         cy.get("input[name=phoneNumber]").type(phoneNumber);
 
         cy.get("button[type=submit]", { timeout: 60000 })
