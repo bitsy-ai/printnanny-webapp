@@ -54,19 +54,6 @@
           </button>
         </router-link>
       </div>
-      <div v-if="order?.user == undefined" class="mt-6">
-        <h2 class="font-medium text-indigo-600">Finish Account Registration</h2>
-        <p class="text-gray-600">Create your password:</p>
-        <set-password-prompt
-          v-if="order?.user == undefined"
-          :create-user="true"
-          :email="order?.email"
-          :show-dashboard-button="
-            order && order?.products.filter((p) => p.is_subscription).length > 0
-          "
-        ></set-password-prompt>
-      </div>
-
       <order-item-summary v-if="order" :order="order"></order-item-summary>
       <p v-else>
         Error processing your order. Please email support@printnanny.ai for

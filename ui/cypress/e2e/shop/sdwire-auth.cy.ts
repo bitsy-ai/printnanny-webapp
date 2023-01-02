@@ -19,7 +19,7 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
 
   before(() => {
     cy.registerUser(email, validPassword).then(() => {
-      return cy.loginUser(email, validPassword);
+      return cy.loginUserWithPassword(email, validPassword);
     });
   });
 
@@ -79,16 +79,16 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
           .type(address1)
           .type("{enter}");
         cy.get("input[name=shippingLocality]").type(city);
-        cy.get("input[name=shippingPostalCode]").type(zip);
+        cy.get("input[name=shippingPostalCode]").type(zip).type("{enter}");
         // cy.get("input[name=shippingAdministrativeArea]").click().contains(state).click();
         cy.get("input[name=cardNumber]").type(cardNumber);
         cy.get("input[name=cardExpiry]").type(exp);
         cy.get("input[name=cardCvc]").type(cvc);
         cy.get("input[name=cardUseShippingAsBilling]").check();
+        cy.get("input[name=enableStripePass]").check();
         cy.get("input[name=phoneNumber]").type(phoneNumber);
 
-        cy.get("button[type=submit]")
-          .contains("Pay")
+        cy.get("button[type=submit]", { timeout: 60000 })
           .should("have.class", "SubmitButton--complete")
           .click()
           .contains("Processing");

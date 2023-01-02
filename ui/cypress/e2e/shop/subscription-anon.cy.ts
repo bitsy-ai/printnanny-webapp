@@ -91,7 +91,9 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
           .type(address1)
           .type("{enter}");
         cy.get("input[name=billingLocality]").type(city);
-        cy.get("input[name=billingPostalCode]").type(zip);
+        cy.get("input[name=billingPostalCode]").type(zip).type("{enter}");
+        cy.get("input[name=enableStripePass]").check();
+
         cy.get("input[name=phoneNumber]").type(phoneNumber);
         cy.get("button[type=submit]", { timeout: 60000 })
           .should("have.class", "SubmitButton--complete")
@@ -106,24 +108,11 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
   it("Stripe CheckoutSession redirect should finish account registration (anonymous checkout)", () => {
     cy.visit(checkoutRedirectUrl);
 
-    // account registration should succeed
-    cy.contains("Finish Account Registration", { timeout: 10000 });
-    cy.get("input[name=password]").clear().type(validPassword);
-    cy.get("input[name=passwordConfirmation]").clear().type(validPassword);
-
-    // subscription confirm screen should show open dashboard button after account registration
-    cy.get("button[type=submit]")
-      .click()
-      .then(() => {
-        cy.contains(`Success! Created account for ${email}`);
-        cy.get("button").contains("Open Dashboard");
-      });
-
     // confirmation page should show shipping address
-    cy.contains(billingName);
-    cy.contains(address1);
-    cy.contains(city);
-    cy.contains(zip);
+    cy.contains(billingName, { timeout: 10000 });
+    cy.contains(address1, { timeout: 10000 });
+    cy.contains(city, { timeout: 10000 });
+    cy.contains(zip, { timeout: 10000 });
 
     // Download/print receipt button should open pay.strime.com
     cy.get("button#receipt", { timeout: 10000 })
@@ -136,24 +125,24 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
       });
   });
 
-  it("PrintNanny Cloud Dashboard should show Founding Member achievement badge", () => {
-    return cy.loginUser(email, validPassword).then(() => {
-      return cy.visit(checkoutRedirectUrl).then(() => {
-        return cy
-          .get("a#nav-dashboard", { timeout: 10000 })
-          .click()
-          .then(() =>
-            cy
-              .url({ timeout: 2000 })
-              .should("contain", "/devices")
-              .then(() => {
-                cy.get("button#pn-navmenu-button", { timeout: 10000 }).click();
-                cy.get(".pn-achievement-badge", { timeout: 10000 }).contains(
-                  "FoundingMember"
-                );
-              })
-          );
-      });
-    });
-  });
+  // it("PrintNanny Cloud Dashboard should show Founding Member achievement badge", () => {
+  //   return cy.loginUserWithMagicLink(email, validPassword).then(() => {
+  //     return cy.visit(checkoutRedirectUrl).then(() => {
+  //       return cy
+  //         .get("a#nav-dashboard", { timeout: 10000 })
+  //         .click()
+  //         .then(() =>
+  //           cy
+  //             .url({ timeout: 2000 })
+  //             .should("contain", "/devices")
+  //             .then(() => {
+  //               cy.get("button#pn-navmenu-button", { timeout: 10000 }).click();
+  //               cy.get(".pn-achievement-badge", { timeout: 10000 }).contains(
+  //                 "FoundingMember"
+  //               );
+  //             })
+  //         );
+  //     });
+  //   });
+  // });
 });

@@ -19,7 +19,7 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
 
   before(() => {
     cy.registerUser(email, validPassword).then(() => {
-      return cy.loginUser(email, validPassword);
+      return cy.loginUserWithPassword(email, validPassword);
     });
   });
 
@@ -82,7 +82,8 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
           .type(address1)
           .type("{enter}");
         cy.get("input[name=billingLocality]").type(city);
-        cy.get("input[name=billingPostalCode]").type(zip);
+        cy.get("input[name=billingPostalCode]").type(zip).type("{enter}");
+        cy.get("input[name=enableStripePass]").check();
         cy.get("input[name=phoneNumber]").type(phoneNumber);
 
         cy.get("button[type=submit]", { timeout: 60000 })
@@ -96,7 +97,7 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
   });
 
   it("PrintNanny Cloud Dashboard should show Founding Member achievement badge", () => {
-    return cy.loginUser(email, validPassword).then(() => {
+    return cy.loginUserWithPassword(email).then(() => {
       return cy.visit(checkoutRedirectUrl).then(() => {
         return cy
           .get("a#nav-dashboard", { timeout: 10000 })
