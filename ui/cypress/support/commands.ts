@@ -70,7 +70,7 @@ Cypress.Commands.add("loginUserWithMagicLink", (email: string) => {
       cy.get("input[name=email]").type(email);
       cy.get("button[type=submit]").click();
       cy.visit(Cypress.env('MAILHOG_URL'));
-      cy.contains("[PrintNanny] Your temporary login code").click()
+      cy.contains(email).click()
       cy.get('#token').should(($div) => {
         const token = $div.text()
         cy.get("input[name=email]").type(token);
