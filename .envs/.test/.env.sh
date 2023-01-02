@@ -11,3 +11,4 @@ export DISCORD_TOKEN=""
 export HONEYCOMB_API_KEY=""
 export LOGLEVEL=debug
 export MAILGUN_WEBHOOK_SIGNING_KEY=""
+export PRINTNANNY_WEBAPP_TAG=$(git rev-parse HEAD)

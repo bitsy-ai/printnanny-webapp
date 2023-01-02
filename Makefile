@@ -224,6 +224,9 @@ local-up-clean: local-clean local-image-build local-up
 cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(GCP_PROJECT)
 
+ci-callback-token:
+	. .envs/.test/.env.sh && docker-compose -f test.yml run --rm django python manage.py drfpasswordless_callback_token $(ARGS)
+
 ci-image-build:
 	DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f test.yml build
 
