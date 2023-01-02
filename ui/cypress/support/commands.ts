@@ -82,7 +82,7 @@ Cypress.Commands.add("loginUserWithMagicLink", (email: string) => {
         // log the output received from the command
         const lines = result.stdout.split("\n");
         const token = lines[lines.length - 1]
-        cy.get("input[name=email]").type(token);
+        cy.get("input[name=token]").type(token);
         cy.get("button[type=submit]").click();
       })
     })
