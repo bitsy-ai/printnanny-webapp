@@ -69,10 +69,19 @@ Cypress.Commands.add("loginUserWithMagicLink", (email: string) => {
     return cy.visit("/login/").then(() => {
       cy.get("input[name=email]").type(email);
       cy.get("button[type=submit]").click();
-      cy.visit(Cypress.env('MAILHOG_URL'));
-      cy.contains(email).click();
-      cy.get('#token', { timeout: 10000 }).should(($div) => {
-        const token = $div.text()
+      const cmd = `docker-compose -f ../test.yml run --rm django python manage.py drfpasswordless_callback_token ${email}`;
+      cy.exec(cmd).then((result: any) => {
+        // once the command has completed, the callback function is called
+        if (result.code != 0) {
+          // log and return if we encounter an error
+          console.error("Could not execute command: ", cmd)
+          console.log(result.stdout)
+          console.error(result.stderr)
+          return
+        }
+        // log the output received from the command
+        const lines = result.stdout.split("\n");
+        const token = lines[lines.length - 1]
         cy.get("input[name=email]").type(token);
         cy.get("button[type=submit]").click();
       })
