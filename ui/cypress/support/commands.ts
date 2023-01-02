@@ -70,8 +70,8 @@ Cypress.Commands.add("loginUserWithMagicLink", (email: string) => {
       cy.get("input[name=email]").type(email);
       cy.get("button[type=submit]").click();
       cy.visit(Cypress.env('MAILHOG_URL'));
-      cy.contains(email).click()
-      cy.get('#token').should(($div) => {
+      cy.contains(email).click();
+      cy.get('#token', { timeout: 10000 }).should(($div) => {
         const token = $div.text()
         cy.get("input[name=email]").type(token);
         cy.get("button[type=submit]").click();
