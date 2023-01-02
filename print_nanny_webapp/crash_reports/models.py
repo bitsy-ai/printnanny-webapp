@@ -29,3 +29,4 @@ class CrashReport(SafeDeleteModel):
     os_logs = models.FileField(upload_to=crash_report_filepath, null=True)
     browser_version = models.CharField(null=True, max_length=255)
     browser_logs = models.FileField(upload_to=crash_report_filepath, null=True)
+    serial = models.CharField(max_length=255, null=True)
