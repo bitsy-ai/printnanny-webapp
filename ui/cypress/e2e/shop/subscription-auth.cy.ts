@@ -96,7 +96,7 @@ describe("Shop and Checkout (SDWire, Authenticated)", () => {
   });
 
   it("PrintNanny Cloud Dashboard should show Founding Member achievement badge", () => {
-    return cy.loginUserWithMagicLink(email).then(() => {
+    return cy.loginUserWithPassword(email).then(() => {
       return cy.visit(checkoutRedirectUrl).then(() => {
         return cy
           .get("a#nav-dashboard", { timeout: 10000 })

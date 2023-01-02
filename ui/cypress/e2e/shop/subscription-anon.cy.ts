@@ -126,7 +126,7 @@ describe("Shop and Checkout (Subscription, Anonymous)", () => {
   });
 
   it("PrintNanny Cloud Dashboard should show Founding Member achievement badge", () => {
-    return cy.loginUser(email, validPassword).then(() => {
+    return cy.loginUserWithMagicLink(email, validPassword).then(() => {
       return cy.visit(checkoutRedirectUrl).then(() => {
         return cy
           .get("a#nav-dashboard", { timeout: 10000 })
