@@ -74,17 +74,17 @@ Cypress.Commands.add("loginUserWithMagicLink", (email: string) => {
         // once the command has completed, the callback function is called
         if (result.code != 0) {
           // log and return if we encounter an error
-          console.error("Could not execute command: ", cmd)
-          console.log(result.stdout)
-          console.error(result.stderr)
-          return
+          console.error("Could not execute command: ", cmd);
+          console.log(result.stdout);
+          console.error(result.stderr);
+          return;
         }
         // log the output received from the command
         const lines = result.stdout.split("\n");
-        const token = lines[lines.length - 1]
+        const token = lines[lines.length - 1];
         cy.get("input[name=token]").type(token);
         cy.get("button[type=submit]").click();
-      })
-    })
+      });
+    });
   });
 });
