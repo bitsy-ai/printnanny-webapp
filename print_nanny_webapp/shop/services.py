@@ -17,6 +17,7 @@ import stripe
 
 from print_nanny_webapp.shop.models import OrderStatus, Product, Order
 from print_nanny_webapp.shop.enum import OrderStatusType
+from print_nanny_webapp.users.services import get_or_create_user_by_email
 
 User = get_user_model()
 
@@ -51,6 +52,8 @@ def build_stripe_checkout_session_kwargs(
 
     If Customer doesn't exist, set Stripe API kwargs needed to create Stripe Customer during Stripe Checkout Session flow
     """
+    # get or create user by email address
+    user = get_or_create_user_by_email(email)
     # add django session key to stripe metadata
     django_session_key = request.session._get_or_create_session_key()  # type: ignore[attr-defined]
     extra_kwargs: Dict[Any, Any] = dict(
@@ -69,32 +72,27 @@ def build_stripe_checkout_session_kwargs(
     extra_kwargs["success_url"] = extra_kwargs["success_url"] + "{CHECKOUT_SESSION_ID}"
     extra_kwargs["cancel_url"] = request.build_absolute_uri(f"/shop/{product.slug}")
 
-    # begin Stripe Customer kwargs
-    # attempt to associate transaction with existing Stripe customer, or create new customer
-    if request.user.is_authenticated:
-        user = request.user
-        # an extra reference id
-        extra_kwargs["client_reference_id"] = user.id
-        try:
-            customer = DjStripeCustomer.objects.get(subscriber=user)
-            extra_kwargs["customer"] = customer.id
-            # automatically update Stripe customer with shipping/billing address if these fields are modified during checkout session
-            extra_kwargs["customer_update"] = dict(
-                name="auto", shipping="auto", address="auto"
-            )
-            extra_kwargs["metadata"][
-                djstripe_settings.SUBSCRIBER_CUSTOMER_KEY
-            ] = customer.subscriber.id
-        # customer not found - pass email to Stripe Checkout Session create call
-        # Django User creation will be handled in Stripe Checkout Session redirect
-        except DjStripeCustomer.DoesNotExist:
-            extra_kwargs["customer_email"] = email
+    extra_kwargs["client_reference_id"] = user.id
+    try:
+        customer = DjStripeCustomer.objects.get(subscriber=user)
+        extra_kwargs["customer"] = customer.id
+        # automatically update Stripe customer with shipping/billing address if these fields are modified during checkout session
+        extra_kwargs["customer_update"] = dict(
+            name="auto", shipping="auto", address="auto"
+        )
+        extra_kwargs["metadata"][
+            djstripe_settings.SUBSCRIBER_CUSTOMER_KEY
+        ] = customer.subscriber.id
+    # customer not found - pass email to Stripe Checkout Session create call
+    # Django User creation will be handled in Stripe Checkout Session redirect
+    except DjStripeCustomer.DoesNotExist:
+        extra_kwargs["customer_email"] = email
 
-            if product.is_subscription is False:
-                # in subscription mode, Stripe always creates a Customer object (by default)
-                # in payment mode, we must set customer_creation to "always"
-                # see: https://stripe.com/docs/api/checkout/sessions/create#create_checkout_session-customer_creation
-                extra_kwargs["customer_creation"] = "always"
+        if product.is_subscription is False:
+            # in subscription mode, Stripe always creates a Customer object (by default)
+            # in payment mode, we must set customer_creation to "always"
+            # see: https://stripe.com/docs/api/checkout/sessions/create#create_checkout_session-customer_creation
+            extra_kwargs["customer_creation"] = "always"
 
     else:
         try:
