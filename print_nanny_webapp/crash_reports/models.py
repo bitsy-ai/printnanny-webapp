@@ -1,7 +1,8 @@
 from uuid import uuid4
-from time import strftime
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth import get_user_model
+from django.contrib.contenttypes.models import ContentType
 
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 
@@ -36,3 +37,10 @@ class CrashReport(SafeDeleteModel):
         null=True,
         on_delete=models.CASCADE,
     )
+
+    def get_admin_url(self):
+        content_type = ContentType.objects.get_for_model(self.__class__)
+        return reverse(
+            f"admin:{content_type.app_label}_{content_type.model}_change",
+            args=(self.id,),
+        )

@@ -10,4 +10,4 @@ from print_nanny_webapp.users.models import EmailWaitlist
 def email_waitlist_to_discord_webhook(sender, instance, **kwargs):
     if settings.DISCORD_NEW_SIGNUP_WEBHOOK is not None and settings.DEBUG is not True:
         body = {"content": f"{instance.email} added to waitlist 🎉"}
-        requests.post(settings.DISCORD_NEW_SIGNUP_WEBHOOK, json=body)
+        requests.post(settings.DISCORD_NEW_SIGNUP_WEBHOOK, json=body, timeout=300)
