@@ -50,11 +50,29 @@ pub async fn crash_reports_create(configuration: &configuration::Configuration, 
     if let Some(local_var_param_value) = os_version {
         local_var_form = local_var_form.text("os_version", local_var_param_value.to_string());
     }
-    // TODO: support file upload for 'os_logs' parameter
+    if let Some(local_var_param_value) = os_logs {
+        let kind = infer::get_from_path(&local_var_param_value)?.unwrap();
+        let file = tokio::fs::File::open(local_var_param_value).await?;
+        let stream = tokio_util::codec::FramedRead::new(file, tokio_util::codec::BytesCodec::new());
+        let file_body = reqwest::Body::wrap_stream(stream);
+        let file_part = reqwest::multipart::Part::stream(file_body)
+        .file_name("os_logs")
+        .mime_str(kind.mime_type())?;
+        local_var_form = local_var_form.part("os_logs", file_part);
+    }
     if let Some(local_var_param_value) = browser_version {
         local_var_form = local_var_form.text("browser_version", local_var_param_value.to_string());
     }
-    // TODO: support file upload for 'browser_logs' parameter
+    if let Some(local_var_param_value) = browser_logs {
+        let kind = infer::get_from_path(&local_var_param_value)?.unwrap();
+        let file = tokio::fs::File::open(local_var_param_value).await?;
+        let stream = tokio_util::codec::FramedRead::new(file, tokio_util::codec::BytesCodec::new());
+        let file_body = reqwest::Body::wrap_stream(stream);
+        let file_part = reqwest::multipart::Part::stream(file_body)
+        .file_name("browser_logs")
+        .mime_str(kind.mime_type())?;
+        local_var_form = local_var_form.part("browser_logs", file_part);
+    }
     if let Some(local_var_param_value) = serial {
         local_var_form = local_var_form.text("serial", local_var_param_value.to_string());
     }

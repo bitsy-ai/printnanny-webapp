@@ -28,9 +28,14 @@ futures = "0.1.23"
 reqwest = "~0.9"
 {{/supportAsync}}
 {{#supportAsync}}
+infer = "0.3"
+tokio = { version = "1.23", features = ["fs","macros", "rt-multi-thread"] }
+tokio-util = { version = "0.7", features = ["codec"]}
+
 [dependencies.reqwest]
 version = "^0.11"
-features = ["json", "multipart"]
+features = ["json", "multipart", "stream"]
+
 {{/supportAsync}}
 {{/reqwest}}
 
