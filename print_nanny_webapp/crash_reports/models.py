@@ -31,3 +31,8 @@ class CrashReport(SafeDeleteModel):
     browser_logs = models.FileField(upload_to=crash_report_filepath, null=True)
     serial = models.CharField(max_length=255, null=True)
     posthog_session = models.CharField(max_length=255, null=True)
+    related_crash_report = models.ForeignKey(
+        "crash_reports.CrashReport",
+        null=True,
+        on_delete=models.CASCADE,
+    )
