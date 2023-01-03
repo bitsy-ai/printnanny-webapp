@@ -37,3 +37,12 @@ class CrashReportViewSet(
         parsers.MultiPartParser,
     ]
     permission_classes = (AllowAny,)
+
+    def create(self, request, *args, **kwargs):
+        logger.info(
+            "CrashReport.create called with request=%s args=%s kwargs%s",
+            request.__dict__,
+            args,
+            kwargs,
+        )
+        return super().create(request, *args, **kwargs)
