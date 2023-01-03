@@ -1,19 +1,12 @@
 from storages.backends.gcloud import GoogleCloudStorage
-from google.cloud import storage
-from datetime import datetime, timedelta
 from typing import Dict, Any
 import google.auth
-
-credentials, project_id = google.auth.default()
 
 # Perform a refresh request to get the access token of the current credentials (Else, it's None)
 from google.auth.transport import requests
 from storages.utils import (
-    check_location,
     clean_name,
-    get_available_overwrite_name,
     safe_join,
-    setting,
 )
 
 
@@ -26,6 +19,7 @@ class StaticRootGoogleCloudStorage(GoogleCloudStorage):
 class SignBlob:
     def get_sign_kwargs(self) -> Dict[str, Any]:
         r = requests.Request()
+        credentials, project_id = google.auth.default()
         credentials.refresh(r)
         return {
             "service_account_email": credentials.service_account_email,
