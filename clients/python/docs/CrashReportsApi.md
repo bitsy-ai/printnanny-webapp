@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **crash_reports_create**
-> CrashReport crash_reports_create(email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, user=user, pi=pi)
+> CrashReport crash_reports_create(email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, user=user, pi=pi, related_crash_report=related_crash_report)
 
 
 
@@ -53,11 +53,13 @@ os_logs = '/path/to/file' # file |  (optional)
 browser_version = 'browser_version_example' # str |  (optional)
 browser_logs = '/path/to/file' # file |  (optional)
 serial = 'serial_example' # str |  (optional)
+posthog_session = 'posthog_session_example' # str |  (optional)
 user = 56 # int |  (optional)
 pi = 56 # int |  (optional)
+related_crash_report = 'related_crash_report_example' # str |  (optional)
 
     try:
-        api_response = api_instance.crash_reports_create(email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, user=user, pi=pi)
+        api_response = api_instance.crash_reports_create(email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, user=user, pi=pi, related_crash_report=related_crash_report)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CrashReportsApi->crash_reports_create: %s\n" % e)
@@ -102,11 +104,13 @@ os_logs = '/path/to/file' # file |  (optional)
 browser_version = 'browser_version_example' # str |  (optional)
 browser_logs = '/path/to/file' # file |  (optional)
 serial = 'serial_example' # str |  (optional)
+posthog_session = 'posthog_session_example' # str |  (optional)
 user = 56 # int |  (optional)
 pi = 56 # int |  (optional)
+related_crash_report = 'related_crash_report_example' # str |  (optional)
 
     try:
-        api_response = api_instance.crash_reports_create(email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, user=user, pi=pi)
+        api_response = api_instance.crash_reports_create(email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, user=user, pi=pi, related_crash_report=related_crash_report)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CrashReportsApi->crash_reports_create: %s\n" % e)
@@ -122,8 +126,10 @@ Name | Type | Description  | Notes
  **browser_version** | **str**|  | [optional] 
  **browser_logs** | **file**|  | [optional] 
  **serial** | **str**|  | [optional] 
+ **posthog_session** | **str**|  | [optional] 
  **user** | **int**|  | [optional] 
  **pi** | **int**|  | [optional] 
+ **related_crash_report** | **str**|  | [optional] 
 
 ### Return type
 
@@ -135,7 +141,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details

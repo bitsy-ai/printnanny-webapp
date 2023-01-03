@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## crash_reports_create
 
-> crate::models::CrashReport crash_reports_create(email, os_version, os_logs, browser_version, browser_logs, serial, user, pi)
+> crate::models::CrashReport crash_reports_create(email, os_version, os_logs, browser_version, browser_logs, serial, posthog_session, user, pi, related_crash_report)
 
 
 ### Parameters
@@ -24,8 +24,10 @@ Name | Type | Description  | Required | Notes
 **browser_version** | Option<**String**> |  |  |
 **browser_logs** | Option<**std::path::PathBuf**> |  |  |
 **serial** | Option<**String**> |  |  |
+**posthog_session** | Option<**String**> |  |  |
 **user** | Option<**i32**> |  |  |
 **pi** | Option<**i32**> |  |  |
+**related_crash_report** | Option<**String**> |  |  |
 
 ### Return type
 
@@ -37,7 +39,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: multipart/form-data
+- **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

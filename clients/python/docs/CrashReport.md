@@ -12,8 +12,10 @@ Name | Type | Description | Notes
 **browser_version** | **str** |  | [optional] 
 **browser_logs** | **str** |  | [optional] 
 **serial** | **str** |  | [optional] 
+**posthog_session** | **str** |  | [optional] 
 **user** | **int** |  | [optional] 
 **pi** | **int** |  | [optional] 
+**related_crash_report** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
