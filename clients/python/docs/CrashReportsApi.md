@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **crash_reports_create**
-> CrashReport crash_reports_create(email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, user=user, pi=pi, related_crash_report=related_crash_report)
+> CrashReport crash_reports_create(description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, user=user, pi=pi, related_crash_report=related_crash_report)
 
 
 
@@ -47,7 +47,8 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.CrashReportsApi(api_client)
-    email = 'email_example' # str |  (optional)
+    description = 'description_example' # str |  (optional)
+email = 'email_example' # str |  (optional)
 os_version = 'os_version_example' # str |  (optional)
 os_logs = '/path/to/file' # file |  (optional)
 browser_version = 'browser_version_example' # str |  (optional)
@@ -59,7 +60,7 @@ pi = 56 # int |  (optional)
 related_crash_report = 'related_crash_report_example' # str |  (optional)
 
     try:
-        api_response = api_instance.crash_reports_create(email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, user=user, pi=pi, related_crash_report=related_crash_report)
+        api_response = api_instance.crash_reports_create(description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, user=user, pi=pi, related_crash_report=related_crash_report)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CrashReportsApi->crash_reports_create: %s\n" % e)
@@ -98,7 +99,8 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.CrashReportsApi(api_client)
-    email = 'email_example' # str |  (optional)
+    description = 'description_example' # str |  (optional)
+email = 'email_example' # str |  (optional)
 os_version = 'os_version_example' # str |  (optional)
 os_logs = '/path/to/file' # file |  (optional)
 browser_version = 'browser_version_example' # str |  (optional)
@@ -110,7 +112,7 @@ pi = 56 # int |  (optional)
 related_crash_report = 'related_crash_report_example' # str |  (optional)
 
     try:
-        api_response = api_instance.crash_reports_create(email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, user=user, pi=pi, related_crash_report=related_crash_report)
+        api_response = api_instance.crash_reports_create(description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, user=user, pi=pi, related_crash_report=related_crash_report)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CrashReportsApi->crash_reports_create: %s\n" % e)
@@ -120,6 +122,7 @@ related_crash_report = 'related_crash_report_example' # str |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **description** | **str**|  | [optional] 
  **email** | **str**|  | [optional] 
  **os_version** | **str**|  | [optional] 
  **os_logs** | **file**|  | [optional] 

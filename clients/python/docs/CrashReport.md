@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
+**description** | **str** |  | [optional] 
 **email** | **str** |  | [optional] 
 **os_version** | **str** |  | [optional] 
 **os_logs** | **str** |  | [optional] 

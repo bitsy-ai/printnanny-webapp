@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
+**description** | Option<**String**> |  | [optional]
 **email** | Option<**String**> |  | [optional]
 **os_version** | Option<**String**> |  | [optional]
 **os_logs** | Option<**String**> |  | [optional]

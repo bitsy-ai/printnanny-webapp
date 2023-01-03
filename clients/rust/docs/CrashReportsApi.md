@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## crash_reports_create
 
-> crate::models::CrashReport crash_reports_create(email, os_version, os_logs, browser_version, browser_logs, serial, posthog_session, user, pi, related_crash_report)
+> crate::models::CrashReport crash_reports_create(description, email, os_version, os_logs, browser_version, browser_logs, serial, posthog_session, user, pi, related_crash_report)
 
 
 ### Parameters
@@ -18,6 +18,7 @@ Method | HTTP request | Description
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
+**description** | Option<**String**> |  |  |
 **email** | Option<**String**> |  |  |
 **os_version** | Option<**String**> |  |  |
 **os_logs** | Option<**std::path::PathBuf**> |  |  |
