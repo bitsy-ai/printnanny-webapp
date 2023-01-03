@@ -19,6 +19,7 @@ class CrashReport(SafeDeleteModel):
 
     id = models.UUIDField(primary_key=True, default=uuid4)
     created_dt = models.DateTimeField(auto_now_add=True)
+    description = models.TextField(null=True)
     email = models.EmailField(null=True)
     user = models.ForeignKey(
         UserModel, null=True, on_delete=models.CASCADE, related_name="crash_reports"
