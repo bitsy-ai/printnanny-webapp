@@ -44,7 +44,7 @@ nats-py[nkeys]
 pandas
 plotly
 posthog
-printnanny-api-client>=0.118.4
+printnanny-api-client>=0.119.0
 psycopg2
 pyarrow
 qrcode[pil]
