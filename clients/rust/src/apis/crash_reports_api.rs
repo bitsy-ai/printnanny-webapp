@@ -52,9 +52,9 @@ pub async fn crash_reports_create(configuration: &configuration::Configuration, 
     }
     if let Some(local_var_param_value) = os_logs {
         let kind = infer::get_from_path(&local_var_param_value)?.unwrap();
-        let filebytes = tokio::fs::read(local_var_param_value).await?;
+        let filebytes = tokio::fs::read(&local_var_param_value).await?;
         let file_part = reqwest::multipart::Part::bytes(filebytes)
-            .file_name("os_logs")
+            .file_name(local_var_param_value.display().to_string())
             .mime_str(kind.mime_type())?;
         local_var_form = local_var_form.part("os_logs", file_part);
     }
@@ -63,9 +63,9 @@ pub async fn crash_reports_create(configuration: &configuration::Configuration, 
     }
     if let Some(local_var_param_value) = browser_logs {
         let kind = infer::get_from_path(&local_var_param_value)?.unwrap();
-        let filebytes = tokio::fs::read(local_var_param_value).await?;
+        let filebytes = tokio::fs::read(&local_var_param_value).await?;
         let file_part = reqwest::multipart::Part::bytes(filebytes)
-            .file_name("browser_logs")
+            .file_name(local_var_param_value.display().to_string())
             .mime_str(kind.mime_type())?;
         local_var_form = local_var_form.part("browser_logs", file_part);
     }
