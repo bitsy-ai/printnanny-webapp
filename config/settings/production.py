@@ -157,7 +157,7 @@ LOGGING = {
     "loggers": {
         "django": {
             "handlers": ["mail_admins", "console"],
-            "level": "ERROR",
+            "level": LOGLEVEL,
             "propagate": True,
         },
         "django.db.backends": {

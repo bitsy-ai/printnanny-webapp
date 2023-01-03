@@ -34,6 +34,15 @@ class CrashReportViewSet(
     lookup_field = "id"
 
     parser_classes = [
+        parsers.FormParser,
         parsers.MultiPartParser,
     ]
     permission_classes = (AllowAny,)
+
+    def create(self, request, *args, **kwargs):
+        logger.info(
+            "CrashReport.create called with request=%s asgi.request=%s",
+            request.__dict__,
+            request._request.__dict__,
+        )
+        return super().create(request, *args, **kwargs)
