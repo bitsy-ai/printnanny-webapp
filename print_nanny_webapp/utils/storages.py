@@ -1,4 +1,13 @@
 from storages.backends.gcloud import GoogleCloudStorage
+from google.cloud import storage
+from datetime import datetime, timedelta
+from typing import Dict, Any
+import google.auth
+
+credentials, project_id = google.auth.default()
+
+# Perform a refresh request to get the access token of the current credentials (Else, it's None)
+from google.auth.transport import requests
 from storages.utils import (
     check_location,
     clean_name,
@@ -13,7 +22,18 @@ class StaticRootGoogleCloudStorage(GoogleCloudStorage):
     default_acl = "publicRead"
 
 
-class MediaRootGoogleCloudStorage(GoogleCloudStorage):
+# based on: https://stackoverflow.com/questions/64234214/how-to-generate-a-blob-signed-url-in-google-cloud-run
+class SignBlob:
+    def get_sign_kwargs(self) -> Dict[str, Any]:
+        r = requests.Request()
+        credentials.refresh(r)
+        return {
+            "service_account_email": credentials.service_account_email,
+            "access_token": credentials.token,
+        }
+
+
+class MediaRootGoogleCloudStorage(GoogleCloudStorage, SignBlob):
     location = "media"
     file_overwrite = True
     default_acl = "projectPrivate"
@@ -38,27 +58,13 @@ class MediaRootGoogleCloudStorage(GoogleCloudStorage):
         """
         name = self._normalize_name(clean_name(name))
         blob = self.bucket.blob(name)
-        # no_signed_url = (
-        #     self.default_acl == 'publicRead' or not self.querystring_auth)
-
-        # if not self.custom_endpoint and no_signed_url:
-        #     return blob.public_url
-        # elif no_signed_url:
-        #     return '{storage_base_url}/{quoted_name}'.format(
-        #         storage_base_url=self.custom_endpoint,
-        #         quoted_name=_quote(name, safe=b"/~"),
-        #     )
-        # elif not self.custom_endpoint:
-        return blob.generate_signed_url(self.expiration, version=version)
-        # else:
-        #     return blob.generate_signed_url(
-        #         expiration=self.expiration,
-        #         api_access_endpoint=self.custom_endpoint,
-        #         version=version
-        #     )
+        sign_kwargs = self.get_sign_kwargs()
+        return blob.generate_signed_url(
+            expiration=self.expiration, version=version, **sign_kwargs
+        )
 
 
-class PublicGoogleCloudStorage(GoogleCloudStorage):
+class PublicGoogleCloudStorage(GoogleCloudStorage, SignBlob):
     location = "public"
     file_overwrite = True
     default_acl = "publicRead"
@@ -83,21 +89,7 @@ class PublicGoogleCloudStorage(GoogleCloudStorage):
         """
         name = self._normalize_name(clean_name(name))
         blob = self.bucket.blob(name)
-        # no_signed_url = (
-        #     self.default_acl == 'publicRead' or not self.querystring_auth)
-
-        # if not self.custom_endpoint and no_signed_url:
-        #     return blob.public_url
-        # elif no_signed_url:
-        #     return '{storage_base_url}/{quoted_name}'.format(
-        #         storage_base_url=self.custom_endpoint,
-        #         quoted_name=_quote(name, safe=b"/~"),
-        #     )
-        # elif not self.custom_endpoint:
-        return blob.generate_signed_url(self.expiration, version=version)
-        # else:
-        #     return blob.generate_signed_url(
-        #         expiration=self.expiration,
-        #         api_access_endpoint=self.custom_endpoint,
-        #         version=version
-        #     )
+        sign_kwargs = self.get_sign_kwargs()
+        return blob.generate_signed_url(
+            expiration=self.expiration, version=version, **sign_kwargs
+        )
