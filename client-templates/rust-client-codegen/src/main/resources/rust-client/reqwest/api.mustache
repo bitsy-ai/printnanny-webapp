@@ -206,7 +206,18 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration: 
     {{/required}}
     {{/supportAsync}}
     {{#supportAsync}}
-    // TODO: support file upload for '{{{baseName}}}' parameter
+    {{^required}}
+    if let Some(local_var_param_value) = {{{paramName}}} {
+        let kind = infer::get_from_path(&local_var_param_value)?.unwrap();
+        let file = tokio::fs::File::open(local_var_param_value).await?;
+        let stream = tokio_util::codec::FramedRead::new(file, tokio_util::codec::BytesCodec::new());
+        let file_body = reqwest::Body::wrap_stream(stream);
+        let file_part = reqwest::multipart::Part::stream(file_body)
+        .file_name("{{{baseName}}}")
+        .mime_str(kind.mime_type())?;
+        local_var_form = local_var_form.part("{{{baseName}}}", file_part);
+    }
+    {{/required}}
     {{/supportAsync}}
     {{/isFile}}
     {{^isFile}}

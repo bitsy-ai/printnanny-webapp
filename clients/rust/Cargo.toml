@@ -15,8 +15,13 @@ serde = "^1.0"
 serde_derive = "^1.0"
 serde_json = "^1.0"
 url = "^2.2"
+infer = "0.3"
+tokio = { version = "1.23", features = ["fs","macros", "rt-multi-thread"] }
+tokio-util = { version = "0.7", features = ["codec"]}
+
 [dependencies.reqwest]
 version = "^0.11"
-features = ["json", "multipart"]
+features = ["json", "multipart", "stream"]
+
 
 [dev-dependencies]
