@@ -300,12 +300,10 @@ pub async fn octoprint_backups_create(configuration: &configuration::Configurati
     local_var_form = local_var_form.text("octoprint_version", octoprint_version.to_string());
     let local_var_param_value = file;
     let kind = infer::get_from_path(&local_var_param_value)?.unwrap();
-    let file = tokio::fs::File::open(local_var_param_value).await?;
-    let stream = tokio_util::codec::FramedRead::new(file, tokio_util::codec::BytesCodec::new());
-    let file_body = reqwest::Body::wrap_stream(stream);
-    let file_part = reqwest::multipart::Part::stream(file_body)
-    .file_name("file")
-    .mime_str(kind.mime_type())?;
+    let filebytes = tokio::fs::read(local_var_param_value).await?;
+    let file_part = reqwest::multipart::Part::bytes(filebytes)
+        .file_name("file")
+        .mime_str(kind.mime_type())?;
     local_var_form = local_var_form.part("file", file_part);
     local_var_req_builder = local_var_req_builder.multipart(local_var_form);
 
@@ -533,12 +531,10 @@ pub async fn octoprint_gcode_files_create(configuration: &configuration::Configu
     local_var_form = local_var_form.text("name", name.to_string());
     let local_var_param_value = file;
     let kind = infer::get_from_path(&local_var_param_value)?.unwrap();
-    let file = tokio::fs::File::open(local_var_param_value).await?;
-    let stream = tokio_util::codec::FramedRead::new(file, tokio_util::codec::BytesCodec::new());
-    let file_body = reqwest::Body::wrap_stream(stream);
-    let file_part = reqwest::multipart::Part::stream(file_body)
-    .file_name("file")
-    .mime_str(kind.mime_type())?;
+    let filebytes = tokio::fs::read(local_var_param_value).await?;
+    let file_part = reqwest::multipart::Part::bytes(filebytes)
+        .file_name("file")
+        .mime_str(kind.mime_type())?;
     local_var_form = local_var_form.part("file", file_part);
     local_var_form = local_var_form.text("hash", hash.to_string());
     local_var_req_builder = local_var_req_builder.multipart(local_var_form);
