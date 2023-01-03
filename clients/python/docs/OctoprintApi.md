@@ -38,6 +38,51 @@ Method | HTTP request | Description
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    hostname = 'hostname_example' # str | 
+name = 'name_example' # str | 
+octoprint_version = 'octoprint_version_example' # str | 
+file = '/path/to/file' # file | 
+
+    try:
+        api_response = api_instance.octoprint_backups_create(hostname, name, octoprint_version, file)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_backups_create: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -55,6 +100,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -92,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -118,6 +169,48 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.octoprint_backups_list(page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_backups_list: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -135,6 +228,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -166,7 +265,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -191,6 +290,48 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    id = 56 # int | A unique integer value identifying this octo print backup.
+
+    try:
+        api_response = api_instance.octoprint_backups_retrieve(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_backups_retrieve: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -208,6 +349,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -239,7 +386,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -265,6 +412,48 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    octo_print_server_request = printnanny_api_client.OctoPrintServerRequest() # OctoPrintServerRequest | 
+
+    try:
+        api_response = api_instance.octoprint_create(octo_print_server_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_create: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -282,6 +471,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -313,7 +508,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -341,6 +536,48 @@ Interact with all events inheriting from BasePiEvent
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    polymorphic_octo_print_event_request = printnanny_api_client.PolymorphicOctoPrintEventRequest() # PolymorphicOctoPrintEventRequest |  (optional)
+
+    try:
+        api_response = api_instance.octoprint_events_create(polymorphic_octo_print_event_request=polymorphic_octo_print_event_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_events_create: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -358,6 +595,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -389,7 +632,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -417,6 +660,48 @@ Interact with all events inheriting from BasePiEvent
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.octoprint_events_list(page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_events_list: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -434,6 +719,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -465,7 +756,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -492,6 +783,48 @@ Interact with all events inheriting from BasePiEvent
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    id = 'id_example' # str | A UUID string identifying this base octo print event.
+
+    try:
+        api_response = api_instance.octoprint_events_retrieve(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_events_retrieve: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -509,6 +842,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -540,7 +879,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -566,6 +905,50 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    name = 'name_example' # str | 
+file = '/path/to/file' # file | 
+hash = 'hash_example' # str | 
+
+    try:
+        api_response = api_instance.octoprint_gcode_files_create(name, file, hash)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_gcode_files_create: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -583,6 +966,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -618,7 +1007,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -644,6 +1033,48 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.octoprint_gcode_files_list(page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_gcode_files_list: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -661,6 +1092,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -692,7 +1129,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -717,6 +1154,48 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    id = 56 # int | A unique integer value identifying this gcode file.
+
+    try:
+        api_response = api_instance.octoprint_gcode_files_retrieve(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_gcode_files_retrieve: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -734,6 +1213,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -765,7 +1250,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -791,6 +1276,48 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.octoprint_list(page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_list: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -808,6 +1335,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -839,7 +1372,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -864,6 +1397,49 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    id = 56 # int | A unique integer value identifying this octo print server.
+patched_octo_print_server_request = printnanny_api_client.PatchedOctoPrintServerRequest() # PatchedOctoPrintServerRequest |  (optional)
+
+    try:
+        api_response = api_instance.octoprint_partial_update(id, patched_octo_print_server_request=patched_octo_print_server_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_partial_update: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -881,6 +1457,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -914,7 +1496,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -935,6 +1517,48 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    octo_printer_profile_request = printnanny_api_client.OctoPrinterProfileRequest() # OctoPrinterProfileRequest | 
+
+    try:
+        api_response = api_instance.octoprint_printer_profiles_create(octo_printer_profile_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_printer_profiles_create: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -952,6 +1576,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -983,7 +1613,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1009,6 +1639,48 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.octoprint_printer_profiles_list(page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_printer_profiles_list: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1026,6 +1698,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1057,7 +1735,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1082,6 +1760,49 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    id = 56 # int | A unique integer value identifying this octo printer profile.
+patched_octo_printer_profile_request = printnanny_api_client.PatchedOctoPrinterProfileRequest() # PatchedOctoPrinterProfileRequest |  (optional)
+
+    try:
+        api_response = api_instance.octoprint_printer_profiles_partial_update(id, patched_octo_printer_profile_request=patched_octo_printer_profile_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_printer_profiles_partial_update: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1099,6 +1820,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1132,7 +1859,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1153,6 +1880,49 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    id = 56 # int | A unique integer value identifying this octo printer profile.
+octo_printer_profile_request = printnanny_api_client.OctoPrinterProfileRequest() # OctoPrinterProfileRequest | 
+
+    try:
+        api_response = api_instance.octoprint_printer_profiles_update(id, octo_printer_profile_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_printer_profiles_update: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1170,6 +1940,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1203,7 +1979,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1229,6 +2005,48 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    octo_printer_profile_request = printnanny_api_client.OctoPrinterProfileRequest() # OctoPrinterProfileRequest | 
+
+    try:
+        api_response = api_instance.octoprint_profile_update_or_create(octo_printer_profile_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_profile_update_or_create: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1246,6 +2064,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1277,7 +2101,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1299,6 +2123,48 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    octo_print_server_request = printnanny_api_client.OctoPrintServerRequest() # OctoPrintServerRequest | 
+
+    try:
+        api_response = api_instance.octoprint_server_update_or_create(octo_print_server_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_server_update_or_create: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1316,6 +2182,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1347,7 +2219,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1369,6 +2241,48 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    octo_print_settings_request = printnanny_api_client.OctoPrintSettingsRequest() # OctoPrintSettingsRequest | 
+
+    try:
+        api_response = api_instance.octoprint_settings_create(octo_print_settings_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_settings_create: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1386,6 +2300,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1417,7 +2337,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1443,6 +2363,48 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.octoprint_settings_list(page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_settings_list: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1460,6 +2422,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1491,7 +2459,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1516,6 +2484,49 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    id = 56 # int | A unique integer value identifying this octo print settings.
+patched_octo_print_settings_request = printnanny_api_client.PatchedOctoPrintSettingsRequest() # PatchedOctoPrintSettingsRequest |  (optional)
+
+    try:
+        api_response = api_instance.octoprint_settings_partial_update(id, patched_octo_print_settings_request=patched_octo_print_settings_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_settings_partial_update: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1533,6 +2544,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1566,7 +2583,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1587,6 +2604,49 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    id = 56 # int | A unique integer value identifying this octo print settings.
+octo_print_settings_request = printnanny_api_client.OctoPrintSettingsRequest() # OctoPrintSettingsRequest | 
+
+    try:
+        api_response = api_instance.octoprint_settings_update(id, octo_print_settings_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_settings_update: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1604,6 +2664,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1637,7 +2703,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1663,6 +2729,48 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    octo_print_settings_request = printnanny_api_client.OctoPrintSettingsRequest() # OctoPrintSettingsRequest | 
+
+    try:
+        api_response = api_instance.octoprint_settings_update_or_create(octo_print_settings_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_settings_update_or_create: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1680,6 +2788,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1711,7 +2825,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1733,6 +2847,49 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    id = 56 # int | A unique integer value identifying this octo print server.
+octo_print_server_request = printnanny_api_client.OctoPrintServerRequest() # OctoPrintServerRequest | 
+
+    try:
+        api_response = api_instance.octoprint_update(id, octo_print_server_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->octoprint_update: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1750,6 +2907,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1783,7 +2946,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -1809,6 +2972,49 @@ Name | Type | Description  | Notes
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.OctoprintApi(api_client)
+    pi_id = 56 # int | 
+page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.pis_octoprint_list(pi_id, page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling OctoprintApi->pis_octoprint_list: %s\n" % e)
+```
+
 * Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
@@ -1826,6 +3032,12 @@ configuration = printnanny_api_client.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
 # Configure Bearer authorization: tokenAuth
 configuration = printnanny_api_client.Configuration(
@@ -1859,7 +3071,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

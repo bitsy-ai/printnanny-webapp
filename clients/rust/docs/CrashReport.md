@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **os_logs** | Option<**String**> |  | [optional]
 **browser_version** | Option<**String**> |  | [optional]
 **browser_logs** | Option<**String**> |  | [optional]
+**serial** | Option<**String**> |  | [optional]
 **user** | Option<**i32**> |  | [optional]
 **pi** | Option<**i32**> |  | [optional]
 

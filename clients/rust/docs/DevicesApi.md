@@ -52,7 +52,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -112,7 +112,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -140,7 +140,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -170,7 +170,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -201,7 +201,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -231,7 +231,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -260,7 +260,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -289,7 +289,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -319,7 +319,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -348,7 +348,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -378,7 +378,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -407,7 +407,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -436,7 +436,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -466,7 +466,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -495,7 +495,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -525,7 +525,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -556,7 +556,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -585,7 +585,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -614,7 +614,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -644,7 +644,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -673,7 +673,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -703,7 +703,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -732,7 +732,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
@@ -761,7 +761,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 

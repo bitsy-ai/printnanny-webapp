@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## crash_reports_create
 
-> crate::models::CrashReport crash_reports_create(email, os_version, os_logs, browser_version, browser_logs, user, pi)
+> crate::models::CrashReport crash_reports_create(email, os_version, os_logs, browser_version, browser_logs, serial, user, pi)
 
 
 ### Parameters
@@ -23,6 +23,7 @@ Name | Type | Description  | Required | Notes
 **os_logs** | Option<**std::path::PathBuf**> |  |  |
 **browser_version** | Option<**String**> |  |  |
 **browser_logs** | Option<**std::path::PathBuf**> |  |  |
+**serial** | Option<**String**> |  |  |
 **user** | Option<**i32**> |  |  |
 **pi** | Option<**i32**> |  |  |
 
@@ -32,7 +33,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
 
 ### HTTP request headers
 
