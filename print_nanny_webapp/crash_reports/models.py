@@ -6,6 +6,8 @@ from django.contrib.contenttypes.models import ContentType
 
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 
+from print_nanny_webapp.crash_reports.enum import CrashReportStatusType
+
 UserModel = get_user_model()
 
 
@@ -33,11 +35,6 @@ class CrashReport(SafeDeleteModel):
     browser_logs = models.FileField(upload_to=crash_report_filepath, null=True)
     serial = models.CharField(max_length=255, null=True)
     posthog_session = models.CharField(max_length=255, null=True)
-    related_crash_report = models.ForeignKey(
-        "crash_reports.CrashReport",
-        null=True,
-        on_delete=models.CASCADE,
-    )
 
     def get_admin_url(self):
         content_type = ContentType.objects.get_for_model(self.__class__)
@@ -45,3 +42,10 @@ class CrashReport(SafeDeleteModel):
             f"admin:{content_type.app_label}_{content_type.model}_change",
             args=(self.id,),
         )
+
+    status = models.CharField(
+        max_length=255,
+        choices=CrashReportStatusType.choices,
+        default=CrashReportStatusType.INVESTIGATING,
+    )
+    support_comment = models.TextField(null=True)

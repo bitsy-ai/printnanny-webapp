@@ -3,16 +3,19 @@ import { useAccountStore } from "@/stores/account";
 import posthog from "posthog-js";
 import { posthogPageview } from "@/utils/posthog";
 
+import crashReportRoutes from "./crash-reports";
 import deviceRoutes from "./devices";
 import swagRoutes from "./swag";
 import settingsRoutes from "./settings";
 import homeRoutes from "./home";
 import shopRoutes from "./shop";
 
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     ...homeRoutes,
+    ...crashReportRoutes,
     ...deviceRoutes,
     ...swagRoutes,
     ...settingsRoutes,

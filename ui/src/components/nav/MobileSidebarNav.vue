@@ -21,7 +21,13 @@ const app_nav = [
     name: "My Network",
     link: { name: "devices" },
     icon: HomeIcon,
-    current: router.currentRoute.value.name == "devices",
+    current: router.currentRoute.value.name == "crash-reports",
+  },
+  {
+    name: "Crash Reports",
+    link: { name: "crash-reports" },
+    icon: HomeIcon,
+    current: router.currentRoute.value.name == "crash-reports",
   },
   {
     name: "Settings",

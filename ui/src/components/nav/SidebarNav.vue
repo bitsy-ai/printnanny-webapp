@@ -120,6 +120,8 @@ import {
   SparklesIcon,
   CodeIcon,
   TerminalIcon,
+  SupportIcon
+  
 } from "@heroicons/vue/outline";
 import { useAchievementsStore } from "@/stores/achievements";
 
@@ -134,6 +136,12 @@ const app_nav = [
     link: { name: "devices" },
     icon: HomeIcon,
     current: () => router.currentRoute.value.name == "devices",
+  },
+  {
+    name: "Crash Reports",
+    link: { name: "crash-reports" },
+    icon: SupportIcon,
+    current: () => router.currentRoute.value.name == "crash-reports",
   },
   {
     name: "Member Swag",
