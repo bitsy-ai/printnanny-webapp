@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [readonly] 
+**url** | **str** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **description** | **str** |  | [optional] 
 **email** | **str** |  | [optional] 
@@ -14,9 +15,10 @@ Name | Type | Description | Notes
 **browser_logs** | **str** |  | [optional] 
 **serial** | **str** |  | [optional] 
 **posthog_session** | **str** |  | [optional] 
+**status** | [**CrashReportStatusEnum**](CrashReportStatusEnum.md) |  | [optional] 
+**support_comment** | **str** |  | [optional] 
 **user** | **int** |  | [optional] 
 **pi** | **int** |  | [optional] 
-**related_crash_report** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
