@@ -133,6 +133,12 @@ export interface CrashReport {
      * @type {string}
      * @memberof CrashReport
      */
+    'url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CrashReport
+     */
     'created_dt': string;
     /**
      * 
@@ -184,6 +190,18 @@ export interface CrashReport {
     'posthog_session'?: string | null;
     /**
      * 
+     * @type {CrashReportStatusEnum}
+     * @memberof CrashReport
+     */
+    'status'?: CrashReportStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof CrashReport
+     */
+    'support_comment'?: string | null;
+    /**
+     * 
      * @type {number}
      * @memberof CrashReport
      */
@@ -194,13 +212,21 @@ export interface CrashReport {
      * @memberof CrashReport
      */
     'pi'?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CrashReport
-     */
-    'related_crash_report'?: string | null;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const CrashReportStatusEnum = {
+    Investigating: 'Investigating',
+    Fixed: 'Fixed'
+} as const;
+
+export type CrashReportStatusEnum = typeof CrashReportStatusEnum[keyof typeof CrashReportStatusEnum];
+
+
 /**
  * 
  * @export
@@ -3163,6 +3189,37 @@ export interface PaginatedAchievementList {
      * @memberof PaginatedAchievementList
      */
     'results'?: Array<Achievement>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedCrashReportList
+ */
+export interface PaginatedCrashReportList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedCrashReportList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedCrashReportList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedCrashReportList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<CrashReport>}
+     * @memberof PaginatedCrashReportList
+     */
+    'results'?: Array<CrashReport>;
 }
 /**
  * 
@@ -8284,13 +8341,14 @@ export const CrashReportsApiAxiosParamCreator = function (configuration?: Config
          * @param {any} [browserLogs] 
          * @param {string} [serial] 
          * @param {string} [posthogSession] 
+         * @param {CrashReportStatusEnum} [status] 
+         * @param {string} [supportComment] 
          * @param {number} [user] 
          * @param {number} [pi] 
-         * @param {string} [relatedCrashReport] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        crashReportsCreate: async (description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, user?: number, pi?: number, relatedCrashReport?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        crashReportsCreate: async (description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/crash-reports/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8343,6 +8401,14 @@ export const CrashReportsApiAxiosParamCreator = function (configuration?: Config
                 localVarFormParams.append('posthog_session', posthogSession as any);
             }
     
+            if (status !== undefined) { 
+                localVarFormParams.append('status', new Blob([JSON.stringify(status)], { type: "application/json", }));
+            }
+    
+            if (supportComment !== undefined) { 
+                localVarFormParams.append('support_comment', supportComment as any);
+            }
+    
             if (user !== undefined) { 
                 localVarFormParams.append('user', user as any);
             }
@@ -8351,8 +8417,289 @@ export const CrashReportsApiAxiosParamCreator = function (configuration?: Config
                 localVarFormParams.append('pi', pi as any);
             }
     
-            if (relatedCrashReport !== undefined) { 
-                localVarFormParams.append('related_crash_report', relatedCrashReport as any);
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        crashReportsList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/crash-reports/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this crash report.
+         * @param {string} [description] 
+         * @param {string} [email] 
+         * @param {string} [osVersion] 
+         * @param {any} [osLogs] 
+         * @param {string} [browserVersion] 
+         * @param {any} [browserLogs] 
+         * @param {string} [serial] 
+         * @param {string} [posthogSession] 
+         * @param {CrashReportStatusEnum} [status] 
+         * @param {string} [supportComment] 
+         * @param {number} [user] 
+         * @param {number} [pi] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        crashReportsPartialUpdate: async (id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('crashReportsPartialUpdate', 'id', id)
+            const localVarPath = `/api/crash-reports/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+            if (description !== undefined) { 
+                localVarFormParams.append('description', description as any);
+            }
+    
+            if (email !== undefined) { 
+                localVarFormParams.append('email', email as any);
+            }
+    
+            if (osVersion !== undefined) { 
+                localVarFormParams.append('os_version', osVersion as any);
+            }
+    
+            if (osLogs !== undefined) { 
+                localVarFormParams.append('os_logs', osLogs as any);
+            }
+    
+            if (browserVersion !== undefined) { 
+                localVarFormParams.append('browser_version', browserVersion as any);
+            }
+    
+            if (browserLogs !== undefined) { 
+                localVarFormParams.append('browser_logs', browserLogs as any);
+            }
+    
+            if (serial !== undefined) { 
+                localVarFormParams.append('serial', serial as any);
+            }
+    
+            if (posthogSession !== undefined) { 
+                localVarFormParams.append('posthog_session', posthogSession as any);
+            }
+    
+            if (status !== undefined) { 
+                localVarFormParams.append('status', new Blob([JSON.stringify(status)], { type: "application/json", }));
+            }
+    
+            if (supportComment !== undefined) { 
+                localVarFormParams.append('support_comment', supportComment as any);
+            }
+    
+            if (user !== undefined) { 
+                localVarFormParams.append('user', user as any);
+            }
+    
+            if (pi !== undefined) { 
+                localVarFormParams.append('pi', pi as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this crash report.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        crashReportsRetrieve: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('crashReportsRetrieve', 'id', id)
+            const localVarPath = `/api/crash-reports/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this crash report.
+         * @param {string} [description] 
+         * @param {string} [email] 
+         * @param {string} [osVersion] 
+         * @param {any} [osLogs] 
+         * @param {string} [browserVersion] 
+         * @param {any} [browserLogs] 
+         * @param {string} [serial] 
+         * @param {string} [posthogSession] 
+         * @param {CrashReportStatusEnum} [status] 
+         * @param {string} [supportComment] 
+         * @param {number} [user] 
+         * @param {number} [pi] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        crashReportsUpdate: async (id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('crashReportsUpdate', 'id', id)
+            const localVarPath = `/api/crash-reports/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+            if (description !== undefined) { 
+                localVarFormParams.append('description', description as any);
+            }
+    
+            if (email !== undefined) { 
+                localVarFormParams.append('email', email as any);
+            }
+    
+            if (osVersion !== undefined) { 
+                localVarFormParams.append('os_version', osVersion as any);
+            }
+    
+            if (osLogs !== undefined) { 
+                localVarFormParams.append('os_logs', osLogs as any);
+            }
+    
+            if (browserVersion !== undefined) { 
+                localVarFormParams.append('browser_version', browserVersion as any);
+            }
+    
+            if (browserLogs !== undefined) { 
+                localVarFormParams.append('browser_logs', browserLogs as any);
+            }
+    
+            if (serial !== undefined) { 
+                localVarFormParams.append('serial', serial as any);
+            }
+    
+            if (posthogSession !== undefined) { 
+                localVarFormParams.append('posthog_session', posthogSession as any);
+            }
+    
+            if (status !== undefined) { 
+                localVarFormParams.append('status', new Blob([JSON.stringify(status)], { type: "application/json", }));
+            }
+    
+            if (supportComment !== undefined) { 
+                localVarFormParams.append('support_comment', supportComment as any);
+            }
+    
+            if (user !== undefined) { 
+                localVarFormParams.append('user', user as any);
+            }
+    
+            if (pi !== undefined) { 
+                localVarFormParams.append('pi', pi as any);
             }
     
     
@@ -8388,14 +8735,79 @@ export const CrashReportsApiFp = function(configuration?: Configuration) {
          * @param {any} [browserLogs] 
          * @param {string} [serial] 
          * @param {string} [posthogSession] 
+         * @param {CrashReportStatusEnum} [status] 
+         * @param {string} [supportComment] 
          * @param {number} [user] 
          * @param {number} [pi] 
-         * @param {string} [relatedCrashReport] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async crashReportsCreate(description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, user?: number, pi?: number, relatedCrashReport?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CrashReport>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.crashReportsCreate(description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, user, pi, relatedCrashReport, options);
+        async crashReportsCreate(description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CrashReport>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.crashReportsCreate(description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async crashReportsList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCrashReportList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.crashReportsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this crash report.
+         * @param {string} [description] 
+         * @param {string} [email] 
+         * @param {string} [osVersion] 
+         * @param {any} [osLogs] 
+         * @param {string} [browserVersion] 
+         * @param {any} [browserLogs] 
+         * @param {string} [serial] 
+         * @param {string} [posthogSession] 
+         * @param {CrashReportStatusEnum} [status] 
+         * @param {string} [supportComment] 
+         * @param {number} [user] 
+         * @param {number} [pi] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async crashReportsPartialUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CrashReport>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.crashReportsPartialUpdate(id, description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this crash report.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async crashReportsRetrieve(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CrashReport>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.crashReportsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this crash report.
+         * @param {string} [description] 
+         * @param {string} [email] 
+         * @param {string} [osVersion] 
+         * @param {any} [osLogs] 
+         * @param {string} [browserVersion] 
+         * @param {any} [browserLogs] 
+         * @param {string} [serial] 
+         * @param {string} [posthogSession] 
+         * @param {CrashReportStatusEnum} [status] 
+         * @param {string} [supportComment] 
+         * @param {number} [user] 
+         * @param {number} [pi] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async crashReportsUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CrashReport>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.crashReportsUpdate(id, description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -8418,14 +8830,75 @@ export const CrashReportsApiFactory = function (configuration?: Configuration, b
          * @param {any} [browserLogs] 
          * @param {string} [serial] 
          * @param {string} [posthogSession] 
+         * @param {CrashReportStatusEnum} [status] 
+         * @param {string} [supportComment] 
          * @param {number} [user] 
          * @param {number} [pi] 
-         * @param {string} [relatedCrashReport] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        crashReportsCreate(description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, user?: number, pi?: number, relatedCrashReport?: string, options?: any): AxiosPromise<CrashReport> {
-            return localVarFp.crashReportsCreate(description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, user, pi, relatedCrashReport, options).then((request) => request(axios, basePath));
+        crashReportsCreate(description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: any): AxiosPromise<CrashReport> {
+            return localVarFp.crashReportsCreate(description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        crashReportsList(page?: number, options?: any): AxiosPromise<PaginatedCrashReportList> {
+            return localVarFp.crashReportsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this crash report.
+         * @param {string} [description] 
+         * @param {string} [email] 
+         * @param {string} [osVersion] 
+         * @param {any} [osLogs] 
+         * @param {string} [browserVersion] 
+         * @param {any} [browserLogs] 
+         * @param {string} [serial] 
+         * @param {string} [posthogSession] 
+         * @param {CrashReportStatusEnum} [status] 
+         * @param {string} [supportComment] 
+         * @param {number} [user] 
+         * @param {number} [pi] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        crashReportsPartialUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: any): AxiosPromise<CrashReport> {
+            return localVarFp.crashReportsPartialUpdate(id, description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this crash report.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        crashReportsRetrieve(id: string, options?: any): AxiosPromise<CrashReport> {
+            return localVarFp.crashReportsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this crash report.
+         * @param {string} [description] 
+         * @param {string} [email] 
+         * @param {string} [osVersion] 
+         * @param {any} [osLogs] 
+         * @param {string} [browserVersion] 
+         * @param {any} [browserLogs] 
+         * @param {string} [serial] 
+         * @param {string} [posthogSession] 
+         * @param {CrashReportStatusEnum} [status] 
+         * @param {string} [supportComment] 
+         * @param {number} [user] 
+         * @param {number} [pi] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        crashReportsUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: any): AxiosPromise<CrashReport> {
+            return localVarFp.crashReportsUpdate(id, description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -8446,14 +8919,75 @@ export interface CrashReportsApiInterface {
      * @param {any} [browserLogs] 
      * @param {string} [serial] 
      * @param {string} [posthogSession] 
+     * @param {CrashReportStatusEnum} [status] 
+     * @param {string} [supportComment] 
      * @param {number} [user] 
      * @param {number} [pi] 
-     * @param {string} [relatedCrashReport] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CrashReportsApiInterface
      */
-    crashReportsCreate(description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, user?: number, pi?: number, relatedCrashReport?: string, options?: AxiosRequestConfig): AxiosPromise<CrashReport>;
+    crashReportsCreate(description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): AxiosPromise<CrashReport>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CrashReportsApiInterface
+     */
+    crashReportsList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedCrashReportList>;
+
+    /**
+     * 
+     * @param {string} id A UUID string identifying this crash report.
+     * @param {string} [description] 
+     * @param {string} [email] 
+     * @param {string} [osVersion] 
+     * @param {any} [osLogs] 
+     * @param {string} [browserVersion] 
+     * @param {any} [browserLogs] 
+     * @param {string} [serial] 
+     * @param {string} [posthogSession] 
+     * @param {CrashReportStatusEnum} [status] 
+     * @param {string} [supportComment] 
+     * @param {number} [user] 
+     * @param {number} [pi] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CrashReportsApiInterface
+     */
+    crashReportsPartialUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): AxiosPromise<CrashReport>;
+
+    /**
+     * 
+     * @param {string} id A UUID string identifying this crash report.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CrashReportsApiInterface
+     */
+    crashReportsRetrieve(id: string, options?: AxiosRequestConfig): AxiosPromise<CrashReport>;
+
+    /**
+     * 
+     * @param {string} id A UUID string identifying this crash report.
+     * @param {string} [description] 
+     * @param {string} [email] 
+     * @param {string} [osVersion] 
+     * @param {any} [osLogs] 
+     * @param {string} [browserVersion] 
+     * @param {any} [browserLogs] 
+     * @param {string} [serial] 
+     * @param {string} [posthogSession] 
+     * @param {CrashReportStatusEnum} [status] 
+     * @param {string} [supportComment] 
+     * @param {number} [user] 
+     * @param {number} [pi] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CrashReportsApiInterface
+     */
+    crashReportsUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): AxiosPromise<CrashReport>;
 
 }
 
@@ -8474,15 +9008,84 @@ export class CrashReportsApi extends BaseAPI implements CrashReportsApiInterface
      * @param {any} [browserLogs] 
      * @param {string} [serial] 
      * @param {string} [posthogSession] 
+     * @param {CrashReportStatusEnum} [status] 
+     * @param {string} [supportComment] 
      * @param {number} [user] 
      * @param {number} [pi] 
-     * @param {string} [relatedCrashReport] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CrashReportsApi
      */
-    public crashReportsCreate(description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, user?: number, pi?: number, relatedCrashReport?: string, options?: AxiosRequestConfig) {
-        return CrashReportsApiFp(this.configuration).crashReportsCreate(description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, user, pi, relatedCrashReport, options).then((request) => request(this.axios, this.basePath));
+    public crashReportsCreate(description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig) {
+        return CrashReportsApiFp(this.configuration).crashReportsCreate(description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CrashReportsApi
+     */
+    public crashReportsList(page?: number, options?: AxiosRequestConfig) {
+        return CrashReportsApiFp(this.configuration).crashReportsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A UUID string identifying this crash report.
+     * @param {string} [description] 
+     * @param {string} [email] 
+     * @param {string} [osVersion] 
+     * @param {any} [osLogs] 
+     * @param {string} [browserVersion] 
+     * @param {any} [browserLogs] 
+     * @param {string} [serial] 
+     * @param {string} [posthogSession] 
+     * @param {CrashReportStatusEnum} [status] 
+     * @param {string} [supportComment] 
+     * @param {number} [user] 
+     * @param {number} [pi] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CrashReportsApi
+     */
+    public crashReportsPartialUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig) {
+        return CrashReportsApiFp(this.configuration).crashReportsPartialUpdate(id, description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A UUID string identifying this crash report.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CrashReportsApi
+     */
+    public crashReportsRetrieve(id: string, options?: AxiosRequestConfig) {
+        return CrashReportsApiFp(this.configuration).crashReportsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A UUID string identifying this crash report.
+     * @param {string} [description] 
+     * @param {string} [email] 
+     * @param {string} [osVersion] 
+     * @param {any} [osLogs] 
+     * @param {string} [browserVersion] 
+     * @param {any} [browserLogs] 
+     * @param {string} [serial] 
+     * @param {string} [posthogSession] 
+     * @param {CrashReportStatusEnum} [status] 
+     * @param {string} [supportComment] 
+     * @param {number} [user] 
+     * @param {number} [pi] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CrashReportsApi
+     */
+    public crashReportsUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig) {
+        return CrashReportsApiFp(this.configuration).crashReportsUpdate(id, description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
