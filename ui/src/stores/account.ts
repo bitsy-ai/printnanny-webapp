@@ -31,6 +31,7 @@ export const useAccountStore = defineStore({
     isAuthenticated: (state) => state.user !== undefined,
     accountsApi: (state) => api.AccountsApiFactory(state.apiConfig),
     achievementsApi: (state) => api.AchievementsApiFactory(state.apiConfig),
+    crashReportsApi: (state) => api.CrashReportsApiFactory(state.apiConfig),
     devicesApi: (state) => api.DevicesApiFactory(state.apiConfig),
     settingsApi: (state) => api.SettingsApiFactory(state.apiConfig),
     shopApi: (state) => api.ShopApiFactory(state.apiConfig),

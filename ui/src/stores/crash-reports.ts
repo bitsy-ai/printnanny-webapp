@@ -22,21 +22,21 @@ export const useCrashReportStore = defineStore({
         .catch(handleApiError);
       console.debug("devicesDestroy response: ", res);
     },
-    // async fetchCrashReports(): Promise<Array<Pi> | undefined> {
-    //   this.$patch({ loading: true });
-    //   const accountStore = useAccountStore();
-    //   const res = await accountStore.devicesApi.pisList().catch(handleApiError);
-    //   console.debug("pisList response ", res);
-    //   if (res?.data?.results) {
-    //     this.$patch({
-    //       loading: false,
-    //       pis: res.data.results,
-    //     });
-    //     return res.data.results;
-    //   } else {
-    //     this.$patch({ loading: false });
-    //   }
-    // },
+    async fetchCrashReports(): Promise<Array<Pi> | undefined> {
+      this.$patch({ loading: true });
+      const accountStore = useAccountStore();
+      const res = await accountStore.crashReportsApi.crashReportsList().catch(handleApiError);
+      console.debug("pisList response ", res);
+      if (res?.data?.results) {
+        this.$patch({
+          loading: false,
+          pis: res.data.results,
+        });
+        return res.data.results;
+      } else {
+        this.$patch({ loading: false });
+      }
+    },
   },
 });
 
