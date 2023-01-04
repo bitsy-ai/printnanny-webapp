@@ -20,6 +20,7 @@ from print_nanny_webapp.crash_reports.api.serializers import CrashReportSerializ
 from print_nanny_webapp.utils.api.views import (
     generic_create_errors,
     generic_list_errors,
+    generic_update_errors,
 )
 
 logger = logging.getLogger(__name__)
@@ -32,11 +33,27 @@ logger = logging.getLogger(__name__)
         responses={201: CrashReportSerializer} | generic_create_errors,
     ),
     list=extend_schema(
-        tags=["crash-report"],
+        tags=["crash-reports"],
         responses={
             200: CrashReportSerializer(many=True),
         }
         | generic_list_errors,
+    ),
+    update=extend_schema(
+        tags=["crash-reports"],
+        request=CrashReportSerializer,
+        responses={
+            202: CrashReportSerializer,
+        }
+        | generic_update_errors,
+    ),
+    partial_update=extend_schema(
+        tags=["crash-reports"],
+        request=CrashReportSerializer,
+        responses={
+            202: CrashReportSerializer,
+        }
+        | generic_update_errors,
     ),
 )
 class CrashReportViewSet(
@@ -44,6 +61,7 @@ class CrashReportViewSet(
     CreateModelMixin,
     ListModelMixin,
     RetrieveModelMixin,
+    UpdateModelMixin,
 ):
     serializer_class = CrashReportSerializer
     queryset = CrashReport.objects.all()
