@@ -12,7 +12,7 @@ export type FlyoutMenuLink = {
 export type TableActionLink = {
   name: string;
   icon?: FunctionalComponent<HTMLAttributes & VNodeProps>;
-  click?: () => void
+  click?: () => void;
   href?: string;
   routerLink?: RouteLocationRaw;
   slot?: FunctionalComponent<HTMLAttributes & VNodeProps>;
