@@ -44,7 +44,7 @@ router = DefaultRouter()
 router.register("accounts/email-waitlist", EmailWaitlistViewSet, "email-waitlist")
 router.register("pis", PiViewSet)
 
-router.register("crash-reports", CrashReportViewSet)
+router.register("crash-reports", CrashReportViewSet, "crash-reports")
 
 # octoprint endpoints (PrintNanny os data model)
 

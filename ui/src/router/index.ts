@@ -10,7 +10,6 @@ import settingsRoutes from "./settings";
 import homeRoutes from "./home";
 import shopRoutes from "./shop";
 
-
 const router = createRouter({
   history: createWebHistory(),
   routes: [

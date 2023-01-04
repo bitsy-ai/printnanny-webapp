@@ -9,28 +9,31 @@ export const useCrashReportStore = defineStore({
   state: () => ({
     crashReports: [] as Array<CrashReport>,
     loading: false,
+    showReport: false,
+    viewReport: undefined as undefined | CrashReport,
   }),
   getters: {
     showEmpty: (state) =>
       state.loading == false && Object.keys(state.crashReports).length == 0,
   },
   actions: {
-    async delete(id: number) {
-      const accountStore = useAccountStore();
-      const res = await accountStore.devicesApi
-        .pisDestroy(id)
-        .catch(handleApiError);
-      console.debug("devicesDestroy response: ", res);
+    openReport(report: CrashReport) {
+      this.$patch({ viewReport: report, showReport: true });
     },
-    async fetchCrashReports(): Promise<Array<Pi> | undefined> {
+    closeReport() {
+      this.$patch({ showReport: false });
+    },
+    async fetchCrashReports(): Promise<Array<CrashReport> | undefined> {
       this.$patch({ loading: true });
       const accountStore = useAccountStore();
-      const res = await accountStore.crashReportsApi.crashReportsList().catch(handleApiError);
+      const res = await accountStore.crashReportsApi
+        .crashReportsList()
+        .catch(handleApiError);
       console.debug("pisList response ", res);
       if (res?.data?.results) {
         this.$patch({
           loading: false,
-          pis: res.data.results,
+          crashReports: res.data.results,
         });
         return res.data.results;
       } else {

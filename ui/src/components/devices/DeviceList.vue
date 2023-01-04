@@ -1,17 +1,21 @@
 <script setup lang="ts">
 import moment from "moment";
-import { useDeviceStore } from "@/stores/devices";
-import DeviceEmpty from "./DeviceEmpty.vue";
+import { useDeviceStore, buildDeviceActions } from "@/stores/devices";
+import {
+  ChevronDownIcon,
+  ChevronRightIcon,
+  HeartIcon,
+  TrashIcon,
+  ExternalLinkIcon,
+} from "@heroicons/vue/solid";
+import TableEmpty from "./TableEmpty.vue";
 import DeviceActionMenu from "./DeviceActionMenu.vue";
 import DeviceFavorites from "./DeviceFavorites.vue";
 import { ExclamationIcon } from "@heroicons/vue/outline";
-import { ExternalLinkIcon } from "@heroicons/vue/solid";
-
-import { PiCreateWizardSteps } from "@/components/wizard/piCreateWizard";
+import type { Pi, PatchedPiRequest } from "printnanny-api-client";
 
 const deviceStore = useDeviceStore();
 const pis = await deviceStore.fetchDevices();
-const wizardSteps = PiCreateWizardSteps();
 </script>
 
 <template>
@@ -79,7 +83,7 @@ const wizardSteps = PiCreateWizardSteps();
           </thead>
           <tbody class="bg-white divide-y divide-gray-100">
             <!-- No pis found -->
-            <DeviceEmpty v-if="deviceStore.showEmpty" />
+            <TableEmpty v-if="deviceStore.showEmpty" />
             <!-- pi list -->
             <tr
               v-for="(pi, index) in pis"

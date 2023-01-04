@@ -37,7 +37,7 @@
 <script setup lang="ts">
 import moment from "moment";
 import { HeartIcon } from "@heroicons/vue/solid";
-import { useDeviceStore } from "@/stores/devices";
+import { useDeviceStore, buildDeviceActions } from "@/stores/devices";
 import DeviceActionMenu from "@/components/devices/DeviceActionMenu.vue";
 const deviceStore = useDeviceStore();
 const colors = ["bg-pink-500", "bg-green-500", "bg-indigo-500", "bg-blue-500"];
