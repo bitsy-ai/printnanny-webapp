@@ -15,14 +15,7 @@ export const useCrashReportStore = defineStore({
       state.loading == false && Object.keys(state.crashReports).length == 0,
   },
   actions: {
-    async delete(id: number) {
-      const accountStore = useAccountStore();
-      const res = await accountStore.devicesApi
-        .pisDestroy(id)
-        .catch(handleApiError);
-      console.debug("devicesDestroy response: ", res);
-    },
-    async fetchCrashReports(): Promise<Array<Pi> | undefined> {
+    async fetchCrashReports(): Promise<Array<CrashReport> | undefined> {
       this.$patch({ loading: true });
       const accountStore = useAccountStore();
       const res = await accountStore.crashReportsApi.crashReportsList().catch(handleApiError);

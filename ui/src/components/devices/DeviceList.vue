@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import moment from "moment";
 import { useDeviceStore } from "@/stores/devices";
-import DeviceEmpty from "./DeviceEmpty.vue";
+import TableEmpty from "./TableEmpty.vue";
 import DeviceActionMenu from "./DeviceActionMenu.vue";
 import DeviceFavorites from "./DeviceFavorites.vue";
 import { ExclamationIcon } from "@heroicons/vue/outline";
@@ -79,7 +79,7 @@ const wizardSteps = PiCreateWizardSteps();
           </thead>
           <tbody class="bg-white divide-y divide-gray-100">
             <!-- No pis found -->
-            <DeviceEmpty v-if="deviceStore.showEmpty" />
+            <TableEmpty v-if="deviceStore.showEmpty" />
             <!-- pi list -->
             <tr
               v-for="(pi, index) in pis"
