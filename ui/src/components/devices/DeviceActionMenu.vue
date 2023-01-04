@@ -22,58 +22,27 @@
         class="z-50 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
       >
         <div class="py-1">
-          <MenuItem v-for="link in externalLinks" :key="link.name">
+          <MenuItem v-for="action in actions[0]" :key="action.name" as="div"  v-slot="{ active }">
+            <!-- href link action -->
             <a
-              :href="link.href"
+              :href="action.href"
+              v-if="action.href !== undefined"
               target="_blank"
               class="text-gray-700 group flex items-center px-4 py-2 text-sm"
             >
               <component
-                :is="link.icon"
+                :is="action.icon"
                 class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
                 aria-hidden="true"
               />
-              {{ link.name }}
+              {{ action.name }}
             </a>
-          </MenuItem>
-        </div>
-        <div class="py-1">
-          <!-- favorites actions -->
-          <MenuItem v-if="!pi.favorite" v-slot="{ active }">
-            <a
-              :class="[
-                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                'group flex items-center px-4 py-2 text-sm',
-              ]"
-              @click="addFavorite"
-            >
-              <HeartIcon
-                class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                aria-hidden="true"
-              />
-              Add to favorites
-            </a>
-          </MenuItem>
-          <MenuItem v-if="pi.favorite" v-slot="{ active }">
-            <a
-              :class="[
-                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                'group flex items-center px-4 py-2 text-sm',
-              ]"
-              @click="removeFavorite"
-            >
-              <HeartIcon
-                class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                aria-hidden="true"
-              />
-              Remove from favorites
-            </a>
-          </MenuItem>
-        </div>
-        <div class="py-1">
-          <MenuItem v-for="action in footerActions" :key="action.name">
+
+            <!-- router link action -->
             <router-link
-              :to="action.link"
+              :to="action.routerLink"
+              v-else-if="action.routerLink !== undefined"
+
               class="text-gray-700 group flex items-center px-4 py-2 text-sm"
             >
               <component
@@ -83,6 +52,76 @@
               />
               {{ action.name }}
             </router-link>
+
+            <!-- custom menu item content-->
+          </MenuItem>
+        </div>
+        <div class="py-1">
+
+          <MenuItem v-if="!pi.favorite" v-slot="{ active }">
+    <a
+        :class="[
+        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+        'group flex items-center px-4 py-2 text-sm',
+        ]"
+        @click="addFavorite"
+    >
+        <HeartIcon
+        class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+        aria-hidden="true"
+        />
+        Add to favorites
+    </a>
+    </MenuItem>
+    <MenuItem v-if="pi.favorite" v-slot="{ active }">
+    <a
+        :class="[
+        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+        'group flex items-center px-4 py-2 text-sm',
+        ]"
+        @click="removeFavorite"
+    >
+        <HeartIcon
+        class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+        aria-hidden="true"
+        />
+        Remove from favorites
+    </a>
+    </MenuItem>
+        </div>
+        <div class="py-1">
+          <MenuItem v-for="action in actions[1]" :key="action.name" as="div"  v-slot="{ active }">
+            <!-- href link action -->
+            <a
+              :href="action.href"
+              v-if="action.href !== undefined"
+              target="_blank"
+              class="text-gray-700 group flex items-center px-4 py-2 text-sm"
+            >
+              <component
+                :is="action.icon"
+                class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                aria-hidden="true"
+              />
+              {{ action.name }}
+            </a>
+
+            <!-- router link action -->
+            <router-link
+              :to="action.routerLink"
+              v-else-if="action.routerLink !== undefined"
+
+              class="text-gray-700 group flex items-center px-4 py-2 text-sm"
+            >
+              <component
+                :is="action.icon"
+                class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                aria-hidden="true"
+              />
+              {{ action.name }}
+            </router-link>
+
+            <!-- custom menu item content-->
           </MenuItem>
         </div>
       </MenuItems>
@@ -102,10 +141,11 @@ import {
   ExternalLinkIcon,
 } from "@heroicons/vue/solid";
 import { ExclamationIcon } from "@heroicons/vue/outline";
-import { PiCreateWizardSteps } from "@/components/wizard/piCreateWizard";
-import { useDeviceStore } from "@/stores/devices";
+import { useDeviceStore, buildDeviceActions} from "@/stores/devices";
+import type { TableActionLink} from "@/types";
 
-const wizardSteps = PiCreateWizardSteps();
+const deviceStore = useDeviceStore();
+
 
 const props = defineProps({
   pi: {
@@ -114,11 +154,9 @@ const props = defineProps({
   },
   index: {
     type: Number,
-    required: true,
-  },
+    required: true
+  }
 });
-const deviceStore = useDeviceStore();
-
 async function addFavorite() {
   await deviceStore.partialUpdate(props.pi.id, props.index, {
     favorite: true,
@@ -131,39 +169,7 @@ async function removeFavorite() {
   } as PatchedPiRequest);
 }
 
-const externalLinks = [
-  {
-    href: props.pi.urls.mission_control,
-    name: "PrintNanny OS",
-    icon: ExternalLinkIcon,
-  },
-  {
-    href: props.pi.urls.octoprint,
-    name: "OctoPrint",
-    icon: ExternalLinkIcon,
-  },
-  {
-    href: props.pi.urls.syncthing,
-    name: "Syncthing",
-    icon: ExternalLinkIcon,
-  },
-  {
-    href: props.pi.urls.swupdate,
-    name: "Software Update",
-    icon: ExternalLinkIcon,
-  },
-];
+const actions = buildDeviceActions(props.pi, props.index);
 
-// TODO: pin / add to favorites
-const footerActions = [
-  {
-    name: "Delete",
-    link: {
-      name: "device-delete",
-      params: { id: props.pi.id },
-      query: { hostname: props.pi.hostname },
-    },
-    icon: TrashIcon,
-  },
-];
+
 </script>

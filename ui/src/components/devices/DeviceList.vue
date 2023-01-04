@@ -1,17 +1,23 @@
 <script setup lang="ts">
 import moment from "moment";
-import { useDeviceStore } from "@/stores/devices";
+import { useDeviceStore, buildDeviceActions } from "@/stores/devices";
+import {
+  ChevronDownIcon,
+  ChevronRightIcon,
+  HeartIcon,
+  TrashIcon,
+  ExternalLinkIcon,
+} from "@heroicons/vue/solid";
 import TableEmpty from "./TableEmpty.vue";
 import DeviceActionMenu from "./DeviceActionMenu.vue";
 import DeviceFavorites from "./DeviceFavorites.vue";
 import { ExclamationIcon } from "@heroicons/vue/outline";
-import { ExternalLinkIcon } from "@heroicons/vue/solid";
-
-import { PiCreateWizardSteps } from "@/components/wizard/piCreateWizard";
+import type { Pi, PatchedPiRequest } from "printnanny-api-client";
 
 const deviceStore = useDeviceStore();
 const pis = await deviceStore.fetchDevices();
-const wizardSteps = PiCreateWizardSteps();
+
+
 </script>
 
 <template>
@@ -159,7 +165,7 @@ const wizardSteps = PiCreateWizardSteps();
               <td
                 class="px-6 py-3 whitespace-nowrap text-sm font-medium text-right"
               >
-                <DeviceActionMenu :pi="pi" :index="index" />
+              <DeviceActionMenu :pi="pi" :index="index" />
               </td>
             </tr>
           </tbody>

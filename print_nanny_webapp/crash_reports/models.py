@@ -21,6 +21,8 @@ class CrashReport(SafeDeleteModel):
 
     id = models.UUIDField(primary_key=True, default=uuid4)
     created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
+
     description = models.TextField(null=True)
     email = models.EmailField(null=True)
     user = models.ForeignKey(

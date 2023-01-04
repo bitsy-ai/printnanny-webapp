@@ -1,8 +1,68 @@
+import { ref, h } from "vue";
 import { defineStore, acceptHMRUpdate } from "pinia";
 import type * as api from "printnanny-api-client";
 import type { Pi } from "printnanny-api-client";
 import { handleApiError } from "@/utils/api";
 import { useAccountStore } from "./account";
+import type { TableActionLink } from "@/types";
+import {
+  ExternalLinkIcon,
+  TrashIcon
+} from "@heroicons/vue/solid";
+import DeviceFavoriteMenuItem from "@/components/devices/DeviceFavoriteMenuItem.vue";
+
+export function buildDeviceActions(pi: Pi, index: number): Array<Array<TableActionLink>> {
+
+  const externalLinks = [
+    {
+      href: pi.urls.mission_control,
+      name: "PrintNanny OS",
+      icon: ExternalLinkIcon,
+    },
+    {
+      href: pi.urls.octoprint,
+      name: "OctoPrint",
+      icon: ExternalLinkIcon,
+    },
+    {
+      href: pi.urls.syncthing,
+      name: "Syncthing",
+      icon: ExternalLinkIcon,
+    },
+    {
+      href: pi.urls.swupdate,
+      name: "Software Update",
+      icon: ExternalLinkIcon,
+    },
+  ];
+
+  const footerActions = [
+    {
+      name: "Delete",
+      routerLink: {
+        name: "device-delete",
+        params: { id: pi.id },
+        query: { hostname: pi.hostname },
+      },
+      icon: TrashIcon,
+    }
+  ];
+
+
+
+  // const favoriteAction = defineComponent({
+  //   extends: defineComponent({ ...DeviceFavoriteMenuItem }), data: () => ({ pi: pi, index: index })
+  // });
+
+
+  // const favoriteAction = DeviceFavoriteMenuItem.setup({ pi, index })
+
+  return [
+    externalLinks,
+    footerActions
+  ]
+}
+
 
 export const useDeviceStore = defineStore({
   id: "devices",
