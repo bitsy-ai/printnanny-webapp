@@ -71,11 +71,10 @@ class CrashReportViewSet(
         parsers.MultiPartParser,
     ]
 
-    # allow create from un-authenticated requests, but required authentication and object ownership for list/get
+    # allow write actions from un-authenticated requests, but required authentication to read
     def get_permissions(self):
-        if self.action == "create":
+        if self.action in ["create", "update", "partial_update"]:
             return [
                 AllowAny(),
             ]
-        else:
-            return [IsAuthenticated()]
+        return [IsAuthenticated()]
