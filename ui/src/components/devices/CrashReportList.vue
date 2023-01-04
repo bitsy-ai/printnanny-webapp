@@ -4,7 +4,7 @@ import TableEmpty from "./TableEmpty.vue";
 import DeviceActionMenu from "./DeviceActionMenu.vue";
 import DeviceFavorites from "./DeviceFavorites.vue";
 import { ExclamationIcon, SupportIcon} from "@heroicons/vue/outline";
-import { ExternalLinkIcon } from "@heroicons/vue/solid";
+import { ExternalLinkIcon, ChevronRightIcon} from "@heroicons/vue/solid";
 import { useCrashReportStore } from "@/stores/crash-reports";
 
 const store = useCrashReportStore();

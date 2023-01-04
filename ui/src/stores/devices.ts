@@ -9,7 +9,6 @@ import {
   ExternalLinkIcon,
   TrashIcon
 } from "@heroicons/vue/solid";
-import DeviceFavoriteMenuItem from "@/components/devices/DeviceFavoriteMenuItem.vue";
 
 export function buildDeviceActions(pi: Pi, index: number): Array<Array<TableActionLink>> {
 
