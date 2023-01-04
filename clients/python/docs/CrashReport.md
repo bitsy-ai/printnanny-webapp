@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **id** | **str** |  | [readonly] 
 **url** | **str** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
+**updated_dt** | **datetime** |  | [readonly] 
 **description** | **str** |  | [optional] 
 **email** | **str** |  | [optional] 
 **os_version** | **str** |  | [optional] 
