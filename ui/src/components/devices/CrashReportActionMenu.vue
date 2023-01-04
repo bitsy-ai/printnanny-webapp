@@ -51,7 +51,7 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import { DownloadIcon, ChevronDownIcon } from "@heroicons/vue/solid";
 import { useCrashReportStore } from "@/stores/crash-reports";
-import { PropType } from "vue";
+import type { PropType } from "vue";
 import type { CrashReport } from "printnanny-api-client";
 
 const props = defineProps({

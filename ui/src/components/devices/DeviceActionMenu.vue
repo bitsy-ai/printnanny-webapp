@@ -33,6 +33,10 @@
               v-if="action.href !== undefined"
               :href="action.href"
               target="_blank"
+              :class="[
+                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                'group flex items-center px-4 py-2 text-sm',
+              ]"
               class="text-gray-700 group flex items-center px-4 py-2 text-sm"
             >
               <component
@@ -104,6 +108,10 @@
               v-if="action.href !== undefined"
               :href="action.href"
               target="_blank"
+              :class="[
+                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                'group flex items-center px-4 py-2 text-sm',
+              ]"
               class="text-gray-700 group flex items-center px-4 py-2 text-sm"
             >
               <component

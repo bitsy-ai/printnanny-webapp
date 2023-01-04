@@ -74,7 +74,7 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import { XIcon } from "@heroicons/vue/outline";
-import { PropType } from "vue";
+import type { PropType } from "vue";
 import type { CrashReport } from "printnanny-api-client";
 
 import { useCrashReportStore } from "@/stores/crash-reports";
