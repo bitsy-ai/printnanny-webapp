@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import moment from "moment";
 import TableEmpty from "./TableEmpty.vue";
+import CrashReportModal from "@/components/devices/CrashReportModal.vue";
+import CrashReportActionMenu from "./CrashReportActionMenu.vue";
 import DeviceActionMenu from "./DeviceActionMenu.vue";
 import DeviceFavorites from "./DeviceFavorites.vue";
 import { ExclamationIcon, SupportIcon} from "@heroicons/vue/outline";
@@ -49,7 +51,7 @@ const crashReports = await store.fetchCrashReports();
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 scope="col"
               >
-                <span class="lg:pl-2">Report ID</span>
+                <span class="lg:pl-2">Description</span>
               </th>
               <th
                 class="hidden md:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -78,10 +80,30 @@ const crashReports = await store.fetchCrashReports();
               v-show="!store.showEmpty"
               class="flex-row"
             >
-
+            <td
+                class="px-6 py-3 max-w-0 text-sm font-medium text-gray-900"
+              >
+              {{ report.description }}
+            </td>
+            <td
+                class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right"
+              >
+                {{moment(report.updated_dt).fromNow()}}
+              </td>
+              <td
+                class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right"
+              >
+                {{report.status}}
+              </td>
+              <td
+                class="px-6 py-3 whitespace-nowrap text-sm font-medium text-right"
+              >
+              <CrashReportActionMenu :crash-report="report" />
+              </td>
             </tr>
           </tbody>
         </table>
+        <CrashReportModal />
       </div>
     </div>
   </section>

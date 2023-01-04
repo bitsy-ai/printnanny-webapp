@@ -10,11 +10,10 @@ from rest_framework.mixins import (
     RetrieveModelMixin,
     UpdateModelMixin,
     CreateModelMixin,
-    DestroyModelMixin,
 )
 from rest_framework import parsers
 
-from print_nanny_webapp.utils.api.permissions import IsObjectOwner
+
 from print_nanny_webapp.crash_reports.models import CrashReport
 from print_nanny_webapp.crash_reports.api.serializers import CrashReportSerializer
 from print_nanny_webapp.utils.api.views import (
@@ -64,20 +63,19 @@ class CrashReportViewSet(
     UpdateModelMixin,
 ):
     serializer_class = CrashReportSerializer
-    queryset = CrashReport.objects.all()
     lookup_field = "id"
+    queryset = CrashReport.objects.all()
 
     parser_classes = [
         parsers.FormParser,
         parsers.MultiPartParser,
     ]
+
     # allow create from un-authenticated requests, but required authentication and object ownership for list/get
     def get_permissions(self):
         if self.action == "create":
             permission_classes = (AllowAny,)
         else:
-            permission_classes = (
-                IsAuthenticated,
-                IsObjectOwner,
-            )
+            permission_classes = (IsAuthenticated,)
+
         return [permission() for permission in permission_classes]

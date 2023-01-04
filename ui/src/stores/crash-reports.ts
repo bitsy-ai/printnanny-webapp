@@ -9,12 +9,21 @@ export const useCrashReportStore = defineStore({
   state: () => ({
     crashReports: [] as Array<CrashReport>,
     loading: false,
+    showReport: false,
+    viewReport: undefined as undefined | CrashReport
   }),
   getters: {
     showEmpty: (state) =>
       state.loading == false && Object.keys(state.crashReports).length == 0,
   },
   actions: {
+    openReport(report: CrashReport) {
+      this.$patch({ viewReport: report, showReport: true });
+
+    },
+    closeReport() {
+      this.$patch({ showReport: false })
+    },
     async fetchCrashReports(): Promise<Array<CrashReport> | undefined> {
       this.$patch({ loading: true });
       const accountStore = useAccountStore();
