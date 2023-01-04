@@ -2,8 +2,7 @@ import type { RouteRecordRaw } from "vue-router";
 
 import DashboardLayout from "@/layouts/DashboardLayout.vue";
 import PageTitle from "@/components/nav/PageTitle.vue";
-import DeviceDelete from "@/components/devices/DeviceDelete.vue";
-import DeviceList from "@/components/devices/DeviceList.vue";
+import CrashReportList from "@/components/devices/CrashReportList.vue";
 import DeviceTopRight from "@/components/devices/DeviceTopRight.vue";
 
 import wizardRoutes from "./wizard";
@@ -23,7 +22,7 @@ export default [
         path: "",
         name: "crash-reports",
         components: {
-          default: DeviceList,
+          default: CrashReportList,
           TopRight: DeviceTopRight,
           TopBar: PageTitle,
         },

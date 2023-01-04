@@ -74,8 +74,10 @@ class CrashReportViewSet(
     # allow create from un-authenticated requests, but required authentication and object ownership for list/get
     def get_permissions(self):
         if self.action == "create":
-            return (AllowAny,)
-        return (
-            IsAuthenticated,
-            IsObjectOwner,
-        )
+            permission_classes = (AllowAny,)
+        else:
+            permission_classes = (
+                IsAuthenticated,
+                IsObjectOwner,
+            )
+        return [permission() for permission in permission_classes]

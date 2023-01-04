@@ -30,7 +30,7 @@ export const useCrashReportStore = defineStore({
       if (res?.data?.results) {
         this.$patch({
           loading: false,
-          pis: res.data.results,
+          crashReports: res.data.results
         });
         return res.data.results;
       } else {
