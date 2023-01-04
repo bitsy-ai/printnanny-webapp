@@ -30,7 +30,7 @@ def crash_report_to_discord_webhook(sender, instance, created, **kwargs):
 def try_associate_user(sender, instance, **kwargs):
     # if instance.user is not set, attempt to build the association by email address
     if instance.user is None:
-        user = User.objects.filter(email=instance.email).first()
+        user = User.objects.filter(email=instance.email).first()  # type: ignore[has-type]
         if user is not None:
             instance.user = user
             instance.save()
