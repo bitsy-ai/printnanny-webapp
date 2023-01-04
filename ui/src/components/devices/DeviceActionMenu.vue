@@ -22,11 +22,16 @@
         class="z-50 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
       >
         <div class="py-1">
-          <MenuItem v-for="action in actions[0]" :key="action.name" as="div"  v-slot="{ active }">
+          <MenuItem
+            v-for="action in actions[0]"
+            :key="action.name"
+            v-slot="{ active }"
+            as="div"
+          >
             <!-- href link action -->
             <a
-              :href="action.href"
               v-if="action.href !== undefined"
+              :href="action.href"
               target="_blank"
               class="text-gray-700 group flex items-center px-4 py-2 text-sm"
             >
@@ -40,9 +45,8 @@
 
             <!-- router link action -->
             <router-link
-              :to="action.routerLink"
               v-else-if="action.routerLink !== undefined"
-
+              :to="action.routerLink"
               class="text-gray-700 group flex items-center px-4 py-2 text-sm"
             >
               <component
@@ -57,44 +61,48 @@
           </MenuItem>
         </div>
         <div class="py-1">
-
           <MenuItem v-if="!pi.favorite" v-slot="{ active }">
-    <a
-        :class="[
-        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-        'group flex items-center px-4 py-2 text-sm',
-        ]"
-        @click="addFavorite"
-    >
-        <HeartIcon
-        class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-        aria-hidden="true"
-        />
-        Add to favorites
-    </a>
-    </MenuItem>
-    <MenuItem v-if="pi.favorite" v-slot="{ active }">
-    <a
-        :class="[
-        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-        'group flex items-center px-4 py-2 text-sm',
-        ]"
-        @click="removeFavorite"
-    >
-        <HeartIcon
-        class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-        aria-hidden="true"
-        />
-        Remove from favorites
-    </a>
-    </MenuItem>
+            <a
+              :class="[
+                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                'group flex items-center px-4 py-2 text-sm',
+              ]"
+              @click="addFavorite"
+            >
+              <HeartIcon
+                class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                aria-hidden="true"
+              />
+              Add to favorites
+            </a>
+          </MenuItem>
+          <MenuItem v-if="pi.favorite" v-slot="{ active }">
+            <a
+              :class="[
+                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                'group flex items-center px-4 py-2 text-sm',
+              ]"
+              @click="removeFavorite"
+            >
+              <HeartIcon
+                class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                aria-hidden="true"
+              />
+              Remove from favorites
+            </a>
+          </MenuItem>
         </div>
         <div class="py-1">
-          <MenuItem v-for="action in actions[1]" :key="action.name" as="div"  v-slot="{ active }">
+          <MenuItem
+            v-for="action in actions[1]"
+            :key="action.name"
+            v-slot="{ active }"
+            as="div"
+          >
             <!-- href link action -->
             <a
-              :href="action.href"
               v-if="action.href !== undefined"
+              :href="action.href"
               target="_blank"
               class="text-gray-700 group flex items-center px-4 py-2 text-sm"
             >
@@ -108,9 +116,8 @@
 
             <!-- router link action -->
             <router-link
-              :to="action.routerLink"
               v-else-if="action.routerLink !== undefined"
-
+              :to="action.routerLink"
               class="text-gray-700 group flex items-center px-4 py-2 text-sm"
             >
               <component
@@ -141,11 +148,10 @@ import {
   ExternalLinkIcon,
 } from "@heroicons/vue/solid";
 import { ExclamationIcon } from "@heroicons/vue/outline";
-import { useDeviceStore, buildDeviceActions} from "@/stores/devices";
-import type { TableActionLink} from "@/types";
+import { useDeviceStore, buildDeviceActions } from "@/stores/devices";
+import type { TableActionLink } from "@/types";
 
 const deviceStore = useDeviceStore();
-
 
 const props = defineProps({
   pi: {
@@ -154,8 +160,8 @@ const props = defineProps({
   },
   index: {
     type: Number,
-    required: true
-  }
+    required: true,
+  },
 });
 async function addFavorite() {
   await deviceStore.partialUpdate(props.pi.id, props.index, {
@@ -170,6 +176,4 @@ async function removeFavorite() {
 }
 
 const actions = buildDeviceActions(props.pi, props.index);
-
-
 </script>

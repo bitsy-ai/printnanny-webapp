@@ -16,8 +16,6 @@ import type { Pi, PatchedPiRequest } from "printnanny-api-client";
 
 const deviceStore = useDeviceStore();
 const pis = await deviceStore.fetchDevices();
-
-
 </script>
 
 <template>
@@ -165,7 +163,7 @@ const pis = await deviceStore.fetchDevices();
               <td
                 class="px-6 py-3 whitespace-nowrap text-sm font-medium text-right"
               >
-              <DeviceActionMenu :pi="pi" :index="index" />
+                <DeviceActionMenu :pi="pi" :index="index" />
               </td>
             </tr>
           </tbody>

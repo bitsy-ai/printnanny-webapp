@@ -5,8 +5,8 @@ import CrashReportModal from "@/components/devices/CrashReportModal.vue";
 import CrashReportActionMenu from "./CrashReportActionMenu.vue";
 import DeviceActionMenu from "./DeviceActionMenu.vue";
 import DeviceFavorites from "./DeviceFavorites.vue";
-import { ExclamationIcon, SupportIcon} from "@heroicons/vue/outline";
-import { ExternalLinkIcon, ChevronRightIcon} from "@heroicons/vue/solid";
+import { ExclamationIcon, SupportIcon } from "@heroicons/vue/outline";
+import { ExternalLinkIcon, ChevronRightIcon } from "@heroicons/vue/solid";
 import { useCrashReportStore } from "@/stores/crash-reports";
 
 const store = useCrashReportStore();
@@ -74,31 +74,34 @@ const crashReports = await store.fetchCrashReports();
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-100">
-            <TableEmpty v-if="store.showEmpty" :icon="SupportIcon" header="No crash reports found" />
+            <TableEmpty
+              v-if="store.showEmpty"
+              :icon="SupportIcon"
+              header="No crash reports found"
+            />
             <tr
-            v-for="report in crashReports" :key="report.id"
+              v-for="report in crashReports"
               v-show="!store.showEmpty"
+              :key="report.id"
               class="flex-row"
             >
-            <td
-                class="px-6 py-3 max-w-0 text-sm font-medium text-gray-900"
-              >
-              {{ report.description }}
-            </td>
-            <td
-                class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right"
-              >
-                {{moment(report.updated_dt).fromNow()}}
+              <td class="px-6 py-3 max-w-0 text-sm font-medium text-gray-900">
+                {{ report.description }}
               </td>
               <td
                 class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right"
               >
-                {{report.status}}
+                {{ moment(report.updated_dt).fromNow() }}
+              </td>
+              <td
+                class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right"
+              >
+                {{ report.status }}
               </td>
               <td
                 class="px-6 py-3 whitespace-nowrap text-sm font-medium text-right"
               >
-              <CrashReportActionMenu :crash-report="report" />
+                <CrashReportActionMenu :crash-report="report" />
               </td>
             </tr>
           </tbody>

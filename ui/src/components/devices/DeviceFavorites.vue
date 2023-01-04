@@ -29,7 +29,6 @@
             </p>
           </div>
           <DeviceActionMenu :pi="pi" :index="index" />
-
         </div>
       </li>
     </ul>

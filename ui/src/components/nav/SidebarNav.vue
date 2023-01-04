@@ -120,8 +120,7 @@ import {
   SparklesIcon,
   CodeIcon,
   TerminalIcon,
-  SupportIcon
-  
+  SupportIcon,
 } from "@heroicons/vue/outline";
 import { useAchievementsStore } from "@/stores/achievements";
 

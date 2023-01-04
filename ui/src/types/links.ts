@@ -10,10 +10,10 @@ export type FlyoutMenuLink = {
 };
 
 export type TableActionLink = {
-  name: string,
+  name: string;
   icon?: FunctionalComponent<HTMLAttributes & VNodeProps>;
-  click?: Function,
-  href?: string,
+  click?: Function;
+  href?: string;
   routerLink?: RouteLocationRaw;
   slot?: FunctionalComponent<HTMLAttributes & VNodeProps>;
-}
+};

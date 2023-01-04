@@ -5,23 +5,26 @@ import { stepKeys } from "@/components/wizard/piCreateWizard";
 
 defineProps({
   icon: {
-    default: PrinterIcon
+    default: PrinterIcon,
   },
   header: {
-    default: "No Connections Found"
+    default: "No Connections Found",
   },
   body: {
-    default: "Get started by installing PrintNanny OS."
-  }
-})
-
+    default: "Get started by installing PrintNanny OS.",
+  },
+});
 </script>
 <template>
   <div class="text-center mx-auto p-6">
-    <component :is="icon" class="mx-auto h-12 w-12 text-gray-400" aria-hidden="true" ></component>
+    <component
+      :is="icon"
+      class="mx-auto h-12 w-12 text-gray-400"
+      aria-hidden="true"
+    ></component>
     <h3 class="mt-2 text-sm font-medium text-gray-900">{{ header }}</h3>
     <p class="mt-1 text-sm text-gray-500">
-      {{  body }}
+      {{ body }}
     </p>
     <div class="mt-6">
       <a href="https://printnanny.ai/docs/category/quick-start/">

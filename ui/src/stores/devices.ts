@@ -5,13 +5,12 @@ import type { Pi } from "printnanny-api-client";
 import { handleApiError } from "@/utils/api";
 import { useAccountStore } from "./account";
 import type { TableActionLink } from "@/types";
-import {
-  ExternalLinkIcon,
-  TrashIcon
-} from "@heroicons/vue/solid";
+import { ExternalLinkIcon, TrashIcon } from "@heroicons/vue/solid";
 
-export function buildDeviceActions(pi: Pi, index: number): Array<Array<TableActionLink>> {
-
+export function buildDeviceActions(
+  pi: Pi,
+  index: number
+): Array<Array<TableActionLink>> {
   const externalLinks = [
     {
       href: pi.urls.mission_control,
@@ -44,24 +43,17 @@ export function buildDeviceActions(pi: Pi, index: number): Array<Array<TableActi
         query: { hostname: pi.hostname },
       },
       icon: TrashIcon,
-    }
+    },
   ];
-
-
 
   // const favoriteAction = defineComponent({
   //   extends: defineComponent({ ...DeviceFavoriteMenuItem }), data: () => ({ pi: pi, index: index })
   // });
 
-
   // const favoriteAction = DeviceFavoriteMenuItem.setup({ pi, index })
 
-  return [
-    externalLinks,
-    footerActions
-  ]
+  return [externalLinks, footerActions];
 }
-
 
 export const useDeviceStore = defineStore({
   id: "devices",
