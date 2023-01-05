@@ -1,6 +1,7 @@
 from storages.backends.gcloud import GoogleCloudStorage
 from typing import Dict, Any
 import google.auth
+import os
 
 # Perform a refresh request to get the access token of the current credentials (Else, it's None)
 from google.auth.transport import requests
@@ -18,13 +19,20 @@ class StaticRootGoogleCloudStorage(GoogleCloudStorage):
 # based on: https://stackoverflow.com/questions/64234214/how-to-generate-a-blob-signed-url-in-google-cloud-run
 class SignBlob:
     def get_sign_kwargs(self) -> Dict[str, Any]:
+
+        # if os.environ contains GOOGLE_APPLICATION_CREDENTIALS then referenced private key for signing (dev/test setup)
+
+        if os.environ.get("GOOGLE_APPLICATION_CREDENTIALS") is not None:
+            return dict()
+
+        # otherwise, attempt to sign blob using short-lived token (production setup)
         r = requests.Request()
         credentials, project_id = google.auth.default()
         credentials.refresh(r)
-        return {
-            "service_account_email": credentials.service_account_email,
-            "access_token": credentials.token,
-        }
+        return dict(
+            service_account_email=credentials.service_account_email,
+            access_token=credentials.token,
+        )
 
 
 class MediaRootGoogleCloudStorage(GoogleCloudStorage, SignBlob):
