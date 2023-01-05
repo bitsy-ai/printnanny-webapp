@@ -45,7 +45,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -113,7 +113,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -181,7 +181,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
