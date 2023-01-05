@@ -67,7 +67,6 @@ class CrashReportViewSet(
     queryset = CrashReport.objects.all()
 
     parser_classes = [
-        parsers.FormParser,
         parsers.MultiPartParser,
     ]
 
