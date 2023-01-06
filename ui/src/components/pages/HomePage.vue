@@ -208,7 +208,7 @@
     <div class="relative bg-white p-2 lg:py-6">
       <img
         src="@/assets/images/swupdate-messages.png"
-        class="drop-shadow-xl w-full md:w-3/4 m-auto py-6"
+        class="drop-shadow-xl w-full md:w-3/4 lg:w-1/2 m-auto py-6"
       />
     </div>
     <!-- Feature section with grid -->
