@@ -6,8 +6,6 @@ from django.contrib.auth import get_user_model
 from django_nats_nkeys.api.serializers import (
     NatsOrganizationSerializer,
 )
-
-
 from print_nanny_webapp.devices.models import (
     Pi,
     PiNatsApp,
@@ -129,17 +127,17 @@ class WebrtcStreamSerializer(serializers.ModelSerializer):
 
 class SystemInfoSerializer(serializers.ModelSerializer):
 
-    bootfs_available = serializers.IntegerField(read_only=True)
+    bootfs_available = Int64Field(read_only=True)
     bootfs_available_pretty = serializers.CharField(read_only=True)
     bootfs_used_pretty = serializers.CharField(read_only=True)
     bootfs_size_pretty = serializers.CharField(read_only=True)
 
-    datafs_available = serializers.IntegerField(read_only=True)
+    datafs_available = Int64Field(read_only=True)
     datafs_available_pretty = serializers.CharField(read_only=True)
     datafs_used_pretty = serializers.CharField(read_only=True)
     datafs_size_pretty = serializers.CharField(read_only=True)
 
-    rootfs_available = serializers.IntegerField(read_only=True)
+    rootfs_available = Int64Field(read_only=True)
     rootfs_available_pretty = serializers.CharField(read_only=True)
     rootfs_size_pretty = serializers.CharField(read_only=True)
     rootfs_used_pretty = serializers.CharField(read_only=True)
