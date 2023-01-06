@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**bootfs_available** | **i32** |  | [readonly]
+**bootfs_available** | **i64** |  | [readonly]
 **bootfs_available_pretty** | **String** |  | [readonly]
 **bootfs_used_pretty** | **String** |  | [readonly]
 **bootfs_size_pretty** | **String** |  | [readonly]
-**datafs_available** | **i32** |  | [readonly]
+**datafs_available** | **i64** |  | [readonly]
 **datafs_available_pretty** | **String** |  | [readonly]
 **datafs_used_pretty** | **String** |  | [readonly]
 **datafs_size_pretty** | **String** |  | [readonly]
-**rootfs_available** | **i32** |  | [readonly]
+**rootfs_available** | **i64** |  | [readonly]
 **rootfs_available_pretty** | **String** |  | [readonly]
 **rootfs_size_pretty** | **String** |  | [readonly]
 **rootfs_used_pretty** | **String** |  | [readonly]
