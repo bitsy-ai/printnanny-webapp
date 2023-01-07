@@ -27,7 +27,7 @@
               <div class="mt-10 sm:mt-12">
                 <WaitlistForm />
               </div>
-              <router-link :to="{ name: 'shop-founding-membership' }">
+              <router-link :to="{ name: 'shop-founding-membership' }" id="skip-the-waitlist">
                 <button
                   class="transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                 >
