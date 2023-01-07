@@ -91,7 +91,7 @@ def send_fn_founding_member_offer(
     campaign: Campaign,
     filter_fn=filter_email_waitlist_not_subscribed,
     limit=10,
-    tags=tuple("marketing", "founding_member"),
+    tags=("marketing", "founding_member"),
     from_email="PrintNanny <beta@mail.printnanny.ai>",
 ) -> AnymailMessage:
     emails = list(filter_fn(campaign, limit=limit))
@@ -133,5 +133,5 @@ def send_fn_founding_member_jan_2023_offer(
         campaign,
         filter_fn=filter_fn,
         limit=limit,
-        tags=tuple("marketing", "founding_member", "2023-01"),
+        tags=("marketing", "founding_member", "2023-01"),
     )
