@@ -36,12 +36,13 @@
                   </div>
                 </div>
                 <div class="hidden space-x-8 md:flex md:ml-10">
-                  <FlyoutMenu :links="learnMoreLinks" menu-text="Learn More" />
+                  <FlyoutMenu :links="learnMoreLinks" menu-text="Learn More"  id="learn-more-flyout"/>
                   <FlyoutMenu
                     :links="communityLinks"
                     menu-text="Join the Community"
+                    id="community-flyout"
                   />
-                  <FlyoutMenu :links="shopLinks" menu-text="Shop" />
+                  <FlyoutMenu :links="shopLinks" menu-text="Shop" id="shop-flyout"/>
                 </div>
               </div>
               <LoginNav />
