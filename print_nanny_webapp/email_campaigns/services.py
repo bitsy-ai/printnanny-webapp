@@ -87,15 +87,19 @@ def filter_email_waitlist_not_subscribed(campaign: Campaign, limit=10):
     )
 
 
-def send_fn_founding_member_november_2022_offer(
-    campaign: Campaign, filter_fn=filter_email_waitlist_not_subscribed, limit=10
+def send_fn_founding_member_offer(
+    campaign: Campaign,
+    filter_fn=filter_email_waitlist_not_subscribed,
+    limit=10,
+    tags=("marketing", "founding_member"),
+    from_email="PrintNanny <beta@mail.printnanny.ai>",
 ) -> AnymailMessage:
     emails = list(filter_fn(campaign, limit=limit))
 
     msg = AnymailMessage(
         subject=campaign.subject,
-        tags=["marketing", "founding_member"],
-        from_email="PrintNanny <beta@mail.printnanny.ai>",
+        tags=tags,
+        from_email=from_email,
     )
 
     msg.template_id = campaign.template
@@ -114,3 +118,20 @@ def send_fn_founding_member_november_2022_offer(
     msg.send(fail_silently=False)
     logger.info("Success! Started campaign %s", campaign.template)
     return msg
+
+
+def send_fn_founding_member_november_2022_offer(
+    campaign: Campaign, filter_fn=filter_email_waitlist_not_subscribed, limit=10
+) -> AnymailMessage:
+    return send_fn_founding_member_offer(campaign, filter_fn=filter_fn, limit=limit)
+
+
+def send_fn_founding_member_jan_2023_offer(
+    campaign: Campaign, filter_fn=filter_email_waitlist_not_subscribed, limit=10
+) -> AnymailMessage:
+    return send_fn_founding_member_offer(
+        campaign,
+        filter_fn=filter_fn,
+        limit=limit,
+        tags=("marketing", "founding_member", "2023-01"),
+    )
