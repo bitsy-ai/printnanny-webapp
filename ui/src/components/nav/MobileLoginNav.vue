@@ -33,9 +33,9 @@
           <span class="text-white font-medium text-base px-4"
             >Tap to expand sections 👇</span
           >
-          <FlyoutMenu :links="learnMoreLinks" menu-text="Learn More" />
-          <FlyoutMenu :links="communityLinks" menu-text="Join the Community" />
-          <FlyoutMenu :links="shopLinks" menu-text="Shop" />
+          <FlyoutMenu :links="learnMoreLinks" menu-text="Learn More" id="learn-more-flyout"/>
+          <FlyoutMenu :links="communityLinks" menu-text="Join the Community" id="community-flyout" />
+          <FlyoutMenu :links="shopLinks" menu-text="Shop" id="shop-flyout" />
           <div class="mt-6 px-5">
             <p
               class="text-center text-base font-medium md:text-gray-500 text-white"

@@ -8,7 +8,7 @@ describe("Landing Page", () => {
     cy.get("input#email")
       .click()
       .type(invalid)
-      .get("button#email-submit")
+      .get("button#waitlist-submit")
       .click();
     cy.contains(`email must be a valid email`);
   });
@@ -18,7 +18,7 @@ describe("Landing Page", () => {
     cy.get("input#email")
       .click()
       .type(valid)
-      .get("button#email-submit")
+      .get("button#waitlist-submit")
       .click();
     cy.contains("Thanks for signing up!");
   });
