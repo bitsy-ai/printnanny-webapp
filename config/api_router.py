@@ -10,7 +10,7 @@ from print_nanny_webapp.devices.api.views import (
     PiViewSet,
     WebrtcStreamViewSet,
     PiLicenseZipViewset,
-    # PiSettingsViewSet,
+    PiSettingsViewSet,
 )
 from print_nanny_webapp.events.api.views import (
     AllPiEventsViewSet,
@@ -45,6 +45,7 @@ router.register("accounts/email-waitlist", EmailWaitlistViewSet, "email-waitlist
 router.register("pis", PiViewSet)
 
 router.register("crash-reports", CrashReportViewSet, "crash-reports")
+router.register("pi-settings", PiSettingsViewSet, basename="pi-settings")
 
 # octoprint endpoints (PrintNanny os data model)
 
@@ -74,8 +75,6 @@ pi_router.register("events/commands", SinglePiCommandsViewSet, basename="pi-comm
 
 
 pi_router.register("license", PiLicenseZipViewset, basename="license-zip")
-
-# pi_router.register("settings", PiSettingsViewSet, basename="settings")
 pi_router.register(r"webrtc-streams", WebrtcStreamViewSet, basename="janus-streams")
 
 pi_router.register(r"system-info", SystemInfoViewSet, basename="system-info")

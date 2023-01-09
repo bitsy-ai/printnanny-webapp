@@ -9,26 +9,54 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('devices', '0053_delete_pisettings'),
+        ("devices", "0053_delete_pisettings"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='PiSettings',
+            name="PiSettings",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('deleted', models.DateTimeField(editable=False, null=True)),
-                ('updated_dt', models.DateTimeField(auto_now=True)),
-                ('preferred_dns', models.CharField(choices=[('multicast', 'Multicast DNS (mDNS)'), ('tailscale', 'Tailscale Magic DNS')], default='multicast', max_length=32)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("deleted", models.DateTimeField(editable=False, null=True)),
+                ("updated_dt", models.DateTimeField(auto_now=True)),
+                (
+                    "preferred_dns",
+                    models.CharField(
+                        choices=[
+                            ("multicast", "Multicast DNS (mDNS)"),
+                            ("tailscale", "Tailscale Magic DNS"),
+                        ],
+                        default="multicast",
+                        max_length=32,
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.AddConstraint(
-            model_name='pisettings',
-            constraint=models.UniqueConstraint(condition=models.Q(('deleted', None)), fields=('user',), name='unique_pi_settings_per_user'),
+            model_name="pisettings",
+            constraint=models.UniqueConstraint(
+                condition=models.Q(("deleted", None)),
+                fields=("user",),
+                name="unique_pi_settings_per_user",
+            ),
         ),
         migrations.AlterIndexTogether(
-            name='pisettings',
-            index_together={('user', 'updated_dt')},
+            name="pisettings",
+            index_together={("user", "updated_dt")},
         ),
     ]

@@ -106,10 +106,10 @@ class Pi(SafeDeleteModel):
         obj, _ = AlertSettings.objects.get_or_create(user=self.user)
         return obj
 
-    # @property
-    # def settings(self):
-    #     obj, _ = PiSettings.objects.get_or_create(pi=self)
-    #     return obj
+    @property
+    def pi_settings(self):
+        obj, _ = PiSettings.objects.get_or_create(user=self.user)
+        return obj
 
     @property
     def webrtc_edge(self):
