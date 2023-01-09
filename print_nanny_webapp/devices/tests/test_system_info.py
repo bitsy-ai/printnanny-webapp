@@ -28,7 +28,6 @@ class TestSystemInfoDiskUsage(TestCase):
         cls.pi = Pi.objects.create(
             user=cls.user,
             hostname="test",
-            fqdn="test.local",
             favorite=True,
             setup_finished=True,
             sbc=SingleBoardComputerType.RPI_4,

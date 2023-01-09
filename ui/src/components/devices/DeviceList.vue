@@ -107,7 +107,7 @@ const pis = await deviceStore.fetchDevices();
                   ></div>
                   <a href="#" class="truncate hover:text-gray-600">
                     <span>
-                      {{ pi.fqdn }}
+                      {{ pi.hostname }}
                       {{ " " }}
                     </span>
                   </a>

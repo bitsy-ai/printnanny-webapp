@@ -71,8 +71,6 @@ class Pi(SafeDeleteModel):
         help_text="Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)",
         default="printnanny",
     )
-
-    fqdn = models.CharField(max_length=255, default="printnanny.local")
     favorite = models.BooleanField(default=True)
     setup_finished = models.BooleanField(default=False)
 
@@ -584,13 +582,25 @@ class WebrtcStream(SafeDeleteModel):
     def api_domain(self) -> str:
         if self.config_type == JanusConfigType.CLOUD:
             return settings.JANUS_CLOUD_DOMAIN
-        return self.pi.fqdn
+        if self.pi.network_settings.preferred_dns == PreferredDnsType.MULTICAST:
+            return self.pi.mdns_hostname
+        elif self.pi.network_settings.preferred_dns == PreferredDnsType.TAILSCALE:
+            return self.pi.hostname
+        raise ValueError(
+            f"WebrtcStream.api_domain not implemented for {self.pi.network_settings.preferred_dns}"
+        )
 
     @property
     def rtp_domain(self) -> str:
         if self.config_type == JanusConfigType.CLOUD:
             return settings.JANUS_CLOUD_RTP_DOMAIN
-        return self.pi.fqdn
+        if self.pi.network_settings.preferred_dns == PreferredDnsType.MULTICAST:
+            return self.pi.mdns_hostname
+        elif self.pi.network_settings.preferred_dns == PreferredDnsType.TAILSCALE:
+            return self.pi.hostname
+        raise ValueError(
+            f"WebrtcStream.rtp_domain not implemented for {self.pi.network_settings.preferred_dns}"
+        )
 
     @property
     def ws_port(self) -> int:
