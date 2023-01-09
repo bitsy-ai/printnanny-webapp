@@ -44,8 +44,8 @@ async function onSubmit(values: any) {
           Or
           {{ " " }}
           <a
-            href="/request-invite"
             id="join-waitlist"
+            href="/request-invite"
             class="font-medium text-indigo-600 hover:text-indigo-500"
           >
             join the waitlist.</a

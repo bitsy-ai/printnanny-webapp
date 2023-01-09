@@ -111,24 +111,30 @@ export const useDeviceStore = defineStore({
       this.$patch({ loading: true });
       const accountStore = useAccountStore();
 
-      const res = await accountStore.devicesApi.networkSettingsRetrieve().catch(handleApiError);
+      const res = await accountStore.devicesApi
+        .networkSettingsRetrieve()
+        .catch(handleApiError);
       console.debug("networkSettingsList response", res);
       const networkSettings = res?.data;
       this.$patch({
         loading: false,
-        networkSettings: networkSettings
-      })
-      return networkSettings
+        networkSettings: networkSettings,
+      });
+      return networkSettings;
     },
-    async saveNetworkSettings(request: api.PatchedNetworkSettingsRequest): Promise<undefined | api.NetworkSettings> {
+    async saveNetworkSettings(
+      request: api.PatchedNetworkSettingsRequest
+    ): Promise<undefined | api.NetworkSettings> {
       const accountStore = useAccountStore();
       if (this.networkSettings) {
-        const res = await accountStore.devicesApi.networkSettingsPartialUpdate(this.networkSettings.id, request);
+        const res = await accountStore.devicesApi.networkSettingsPartialUpdate(
+          this.networkSettings.id,
+          request
+        );
         const networkSettings = res?.data;
-        return networkSettings
+        return networkSettings;
       }
-    }
-
+    },
   },
 });
 

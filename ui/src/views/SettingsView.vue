@@ -21,7 +21,7 @@ const navigation = [
     icon: BellIcon,
     key: "alertSettings",
     component: AlertSettingsForm,
-},
+  },
   {
     name: "Subscription & Billing",
     link: { name: "billing" },

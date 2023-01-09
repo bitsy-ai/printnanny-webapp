@@ -1,7 +1,7 @@
 <template>
   <Transition name="fade" mode="out-in" :duration="{ enter: 800, leave: 500 }">
     <v-slot></v-slot>
-</Transition>
+  </Transition>
 </template>
 <style>
 .fade-enter-active,

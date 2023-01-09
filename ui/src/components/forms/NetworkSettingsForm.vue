@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue"
+import { onMounted, ref } from "vue";
 import * as api from "printnanny-api-client";
 import * as yup from "yup";
 import { Form, Field } from "vee-validate";
@@ -19,23 +19,23 @@ const validationSchema = yup.object({
   preferred_dns: yup.string(),
 });
 
-const preferredDNSFieldset =  [
-    {
-      value: api.PreferredDnsType.Multicast,
-      label: "Multicast DNS (mDNS)",
-      display: "Your Raspberry Pis will be discoverable using .local domain.",
-    },
-    {
-      value: api.PreferredDnsType.Tailscale,
-      label: "Tailscale DNS",
-      display: "Requires Tailscale to be enabled on your Raspberry Pi.",
-    },
-  ];
+const preferredDNSFieldset = [
+  {
+    value: api.PreferredDnsType.Multicast,
+    label: "Multicast DNS (mDNS)",
+    display: "Your Raspberry Pis will be discoverable using .local domain.",
+  },
+  {
+    value: api.PreferredDnsType.Tailscale,
+    label: "Tailscale DNS",
+    display: "Requires Tailscale to be enabled on your Raspberry Pi.",
+  },
+];
 
-async function onSubmit(values){
+async function onSubmit(values) {
   savingForm.value = true;
   console.log("received form values", values);
-  await store.saveNetworkSettings(values as  api.PatchedNetworkSettingsRequest);
+  await store.saveNetworkSettings(values as api.PatchedNetworkSettingsRequest);
   const success = {
     color: "green",
     message: "Saved network settings",
@@ -48,7 +48,12 @@ async function onSubmit(values){
 }
 </script>
 <template>
-  <Form class="space-y-8 divide-y divide-gray-200" @submit="onSubmit" :initial-values="store.networkSettings" :validation-schema="validationSchema" >
+  <Form
+    class="space-y-8 divide-y divide-gray-200"
+    :initial-values="store.networkSettings"
+    :validation-schema="validationSchema"
+    @submit="onSubmit"
+  >
     <div class="space-y-8 divide-y divide-gray-200">
       <div>
         <div>
@@ -108,7 +113,7 @@ async function onSubmit(values){
 
     <div class="pt-5 pb-5">
       <div class="flex justify-end">
-        <TextSpinner text="Saving..." class="mr-2" v-if="savingForm" />
+        <TextSpinner v-if="savingForm" text="Saving..." class="mr-2" />
         <button
           type="reset"
           class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
