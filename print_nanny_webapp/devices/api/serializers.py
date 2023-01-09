@@ -9,7 +9,7 @@ from django_nats_nkeys.api.serializers import (
 from print_nanny_webapp.devices.models import (
     Pi,
     PiNatsApp,
-    PiSettings,
+    # PiSettings,
     PiUrls,
     WebrtcStream,
     SystemInfo,
@@ -36,10 +36,10 @@ class Int64Field(serializers.Field):
         return value
 
 
-class PiSettingsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PiSettings
-        exclude = ("deleted",)
+# class PiSettingsSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = PiSettings
+#         exclude = ("deleted",)
 
 
 class WebrtcStreamSerializer(serializers.ModelSerializer):
@@ -183,7 +183,7 @@ class PiNatsAppSerializer(serializers.ModelSerializer):
 
 class PiSerializer(serializers.ModelSerializer):
     last_boot = serializers.CharField(read_only=True, allow_null=True)
-    settings = PiSettingsSerializer(read_only=True)
+    # settings = PiSettingsSerializer(read_only=True)
     user = UserSerializer(read_only=True)
     system_info = SystemInfoSerializer(read_only=True)
     webrtc_edge = WebrtcStreamSerializer(read_only=True)

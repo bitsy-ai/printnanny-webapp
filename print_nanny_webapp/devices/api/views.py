@@ -36,13 +36,13 @@ from print_nanny_webapp.devices.api.serializers import (
     SystemInfoSerializer,
     PiSerializer,
     WebrtcStreamSerializer,
-    PiSettingsSerializer,
+    # PiSettingsSerializer,
 )
 from print_nanny_webapp.devices.models import (
     Pi,
     WebrtcStream,
     SystemInfo,
-    PiSettings,
+    # PiSettings,
 )
 from print_nanny_webapp.devices.services import (
     build_license_zip,
@@ -145,62 +145,62 @@ class PiViewSet(
 ###
 # PiSettings views
 ###
-@extend_schema_view(
-    retrieve=extend_schema(tags=["devices"]),
-    list=extend_schema(
-        tags=["devices"],
-        parameters=[
-            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        responses={
-            200: PiSettingsSerializer(many=False),
-        }
-        | generic_list_errors,
-    ),
-    create=extend_schema(
-        tags=["devices"],
-        parameters=[
-            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        request=PiSettingsSerializer,
-        responses={
-            201: PiSettingsSerializer,
-        }
-        | generic_create_errors,
-    ),
-    update=extend_schema(
-        tags=["devices"],
-        parameters=[
-            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        request=PiSettingsSerializer,
-        responses={
-            202: PiSettingsSerializer,
-        }
-        | generic_update_errors,
-    ),
-    partial_update=extend_schema(
-        tags=["devices"],
-        parameters=[
-            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
-        ],
-        request=PiSettingsSerializer,
-        responses={
-            202: PiSettingsSerializer,
-        }
-        | generic_update_errors,
-    ),
-)
-class PiSettingsViewSet(
-    GenericViewSet,
-    ListModelMixin,
-    RetrieveModelMixin,
-    UpdateModelMixin,
-    CreateModelMixin,
-):
-    serializer_class = PiSettingsSerializer
-    queryset = PiSettings.objects.all()
-    lookup_field = "id"
+# @extend_schema_view(
+#     retrieve=extend_schema(tags=["devices"]),
+#     list=extend_schema(
+#         tags=["devices"],
+#         parameters=[
+#             OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
+#         ],
+#         responses={
+#             200: PiSettingsSerializer(many=False),
+#         }
+#         | generic_list_errors,
+#     ),
+#     create=extend_schema(
+#         tags=["devices"],
+#         parameters=[
+#             OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
+#         ],
+#         request=PiSettingsSerializer,
+#         responses={
+#             201: PiSettingsSerializer,
+#         }
+#         | generic_create_errors,
+#     ),
+#     update=extend_schema(
+#         tags=["devices"],
+#         parameters=[
+#             OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
+#         ],
+#         request=PiSettingsSerializer,
+#         responses={
+#             202: PiSettingsSerializer,
+#         }
+#         | generic_update_errors,
+#     ),
+#     partial_update=extend_schema(
+#         tags=["devices"],
+#         parameters=[
+#             OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
+#         ],
+#         request=PiSettingsSerializer,
+#         responses={
+#             202: PiSettingsSerializer,
+#         }
+#         | generic_update_errors,
+#     ),
+# )
+# class PiSettingsViewSet(
+#     GenericViewSet,
+#     ListModelMixin,
+#     RetrieveModelMixin,
+#     UpdateModelMixin,
+#     CreateModelMixin,
+# ):
+#     serializer_class = PiSettingsSerializer
+#     queryset = PiSettings.objects.all()
+#     lookup_field = "id"
 
 
 ###

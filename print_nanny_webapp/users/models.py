@@ -172,7 +172,6 @@ class User(AbstractUser):
 
 
 class UserSettings(models.Model):
-
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, unique=True, primary_key=True
     )

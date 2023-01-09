@@ -20,6 +20,7 @@ from print_nanny_webapp.devices.utils import (
 from print_nanny_webapp.devices.enum import (
     JanusConfigType,
     SingleBoardComputerType,
+    PreferredDns,
 )
 from print_nanny_webapp.octoprint.models import OctoPrintSettings, OctoPrintServer
 
@@ -105,10 +106,10 @@ class Pi(SafeDeleteModel):
         obj, _ = AlertSettings.objects.get_or_create(user=self.user)
         return obj
 
-    @property
-    def settings(self):
-        obj, _ = PiSettings.objects.get_or_create(pi=self)
-        return obj
+    # @property
+    # def settings(self):
+    #     obj, _ = PiSettings.objects.get_or_create(pi=self)
+    #     return obj
 
     @property
     def webrtc_edge(self):
@@ -265,34 +266,56 @@ class PiNatsApp(AbstractNatsOrganizationApp, SafeDeleteModel):
         return nsc_validate(account_name=self.organization.name)
 
 
-class PiSettings(SafeDeleteModel):
-    """
-    User-facing settings, configurable per device
-    """
+# class PiSettings(SafeDeleteModel):
+#     """
+#     User-facing settings, configurable per device
+#     """
 
-    class Meta:
-        index_together = ("pi", "updated_dt")
-        constraints = [
-            UniqueConstraint(
-                fields=["pi"],
-                condition=models.Q(deleted=None),
-                name="unique_settings_per_pi",
-            )
-        ]
+#     class Meta:
+#         index_together = ("pi", "updated_dt")
+#         constraints = [
+#             UniqueConstraint(
+#                 fields=["pi"],
+#                 condition=models.Q(deleted=None),
+#                 name="unique_settings_per_pi",
+#             )
+#         ]
 
-    pi = models.ForeignKey(Pi, on_delete=models.CASCADE)
-    updated_dt = models.DateTimeField(auto_now=True)
-    cloud_video_enabled = models.BooleanField(
-        default=True, help_text="Send camera stream to PrintNanny Cloud"
-    )
-    telemetry_enabled = models.BooleanField(
-        default=False,
-        help_text="Send telemetry and performance profiling data to PrintNanny Cloud",
-    )
+#     pi = models.ForeignKey(Pi, on_delete=models.CASCADE)
+#     updated_dt = models.DateTimeField(auto_now=True)
+#     cloud_video_enabled = models.BooleanField(
+#         default=True, help_text="Send camera stream to PrintNanny Cloud"
+#     )
+#     telemetry_enabled = models.BooleanField(
+#         default=False,
+#         help_text="Send telemetry and performance profiling data to PrintNanny Cloud",
+#     )
 
-    @property
-    def user(self):
-        return self.pi.user
+#     @property
+#     def user(self):
+#         return self.pi.user
+
+
+# class GlobalPiSettings(SafeDeleteModel):
+#     """
+#     User-facing settings, configurable per account
+#     """
+
+#     class Meta:
+#         index_together = ("user", "updated_dt")
+#         constraints = [
+#             UniqueConstraint(
+#                 fields=["user"],
+#                 condition=models.Q(deleted=None),
+#                 name="unique_pi_settings_per_user",
+#             )
+#         ]
+
+#     updated_dt = models.DateTimeField(auto_now=True)
+#     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+#     preferred_dns = models.CharField(
+#         max_length=32, choices=PreferredDns.choices, default=PreferredDns.MULTICAST
+#     )
 
 
 class SystemInfo(SafeDeleteModel):
