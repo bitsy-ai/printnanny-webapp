@@ -108,21 +108,10 @@ export const useWizardStore = defineStore({
       });
 
       if (res.data) {
-        // const blob = new Blob([res.data], {
-        //   type: res.headers["content-type"],
-        // });
-        // const pi = await this.loadPi(piId);
-        // const link = document.createElement("a");
-        // link.href = URL.createObjectURL(blob);
-        // link.download = `PrintNanny-${pi?.hostname}.zip`;
-        // link.click();
-        // URL.revokeObjectURL(link.href);
-
         this.$patch({ loading: false, downloadUrl: res.config.url });
       }
     },
     async createPi(req: api.PiRequest) {
-      // Wireguard TODO: allow user to specify fqdn
       this.$patch({ loading: true });
       const account = useAccountStore();
 
