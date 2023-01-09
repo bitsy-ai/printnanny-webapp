@@ -32,7 +32,7 @@ const preferredDNSFieldset = [
   },
 ];
 
-async function onSubmit(values) {
+async function onSubmit(values: any) {
   savingForm.value = true;
   console.log("received form values", values);
   await store.saveNetworkSettings(values as api.PatchedNetworkSettingsRequest);
