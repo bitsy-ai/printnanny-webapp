@@ -183,7 +183,7 @@ class PiNatsAppSerializer(serializers.ModelSerializer):
 
 class PiSerializer(serializers.ModelSerializer):
     last_boot = serializers.CharField(read_only=True, allow_null=True)
-    pi_settings = NetworkSettingsSerializer(read_only=True)
+    network_settings = NetworkSettingsSerializer(read_only=True)
     user = UserSerializer(read_only=True)
     system_info = SystemInfoSerializer(read_only=True)
     webrtc_edge = WebrtcStreamSerializer(read_only=True)
@@ -193,12 +193,22 @@ class PiSerializer(serializers.ModelSerializer):
         read_only=True,
     )
 
-    urls = serializers.SerializerMethodField(read_only=True)
-
     nats_app = PiNatsAppSerializer(read_only=True)
+
+    urls = serializers.SerializerMethodField(read_only=True)
 
     def get_urls(self, obj) -> PiUrls:
         return obj.urls
+
+    shortname_urls = serializers.SerializerMethodField(read_only=True)
+
+    def get_shortname_urls(self, obj) -> PiUrls:
+        return obj.shortname_urls
+
+    mdns_urls = serializers.SerializerMethodField(read_only=True)
+
+    def get_mdns_urls(self, obj) -> PiUrls:
+        return obj.mdns_urls
 
     class Meta:
         model = Pi

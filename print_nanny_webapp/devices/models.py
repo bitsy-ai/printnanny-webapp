@@ -77,17 +77,45 @@ class Pi(SafeDeleteModel):
     setup_finished = models.BooleanField(default=False)
 
     @property
-    def urls(self) -> PiUrls:
-        mission_control = f"http://{self.fqdn}/"
-        swupdate = f"http://{self.fqdn}/update/"
-        octoprint = f"http://{self.fqdn}{settings.OCTOPRINT_URL}"
-        syncthing = f"http://{self.fqdn}/syncthing/"
+    def mdns_hostname(self):
+        return f"{self.hostname}.local"
+
+    @property
+    def mdns_urls(self) -> PiUrls:
+        mission_control = f"http://{self.mdns_hostname}/"
+        swupdate = f"http://{self.mdns_hostname}/update/"
+        octoprint = f"http://{self.mdns_hostname}{settings.OCTOPRINT_URL}"
+        syncthing = f"http://{self.mdns_hostname}/syncthing/"
         return PiUrls(
             swupdate=swupdate,
             octoprint=octoprint,
             syncthing=syncthing,
             mission_control=mission_control,
         )
+
+    @property
+    def shortname_urls(self) -> PiUrls:
+        mission_control = f"http://{self.hostname}/"
+        swupdate = f"http://{self.hostname}/update/"
+        octoprint = f"http://{self.hostname}{settings.OCTOPRINT_URL}"
+        syncthing = f"http://{self.hostname}/syncthing/"
+        return PiUrls(
+            swupdate=swupdate,
+            octoprint=octoprint,
+            syncthing=syncthing,
+            mission_control=mission_control,
+        )
+
+    @property
+    def urls(self) -> PiUrls:
+        if self.network_settings.preferred_dns == PreferredDnsType.MULTICAST:
+            return self.mdns_urls
+        elif self.network_settings.preferred_dns == PreferredDnsType.TAILSCALE:
+            return self.shortname_urls
+        else:
+            raise ValueError(
+                f"Pi.urls gettr is not implemented for {self.network_settings.preferred_dns}"
+            )
 
     @property
     def octoprint_server(self) -> OctoPrintServer:
@@ -107,7 +135,7 @@ class Pi(SafeDeleteModel):
         return obj
 
     @property
-    def pi_settings(self):
+    def network_settings(self):
         obj, _ = NetworkSettings.objects.get_or_create(user=self.user)
         return obj
 
