@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { PiCreateWizardSteps } from "@/components/wizard/piCreateWizard";
-
 const router = useRouter();
-
-const wizardSteps = PiCreateWizardSteps();
 
 async function refresh() {
   console.log("refreshing page");
