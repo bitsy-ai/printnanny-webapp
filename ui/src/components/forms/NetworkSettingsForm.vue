@@ -1,71 +1,54 @@
 <script setup lang="ts">
-import { useAlertStore } from "@/stores/alerts";
+import { onMounted, ref } from "vue"
 import * as api from "printnanny-api-client";
 import * as yup from "yup";
-import { useForm, Field } from "vee-validate";
+import { Form, Field } from "vee-validate";
 import type { UiAlert } from "@/types";
+import FadeOutIn from "@/components/transitions/FadeOutIn.vue";
+import { useDeviceStore } from "@/stores/devices";
+import { useAlertStore } from "@/stores/alerts";
+import TextSpinner from "@/components/util/TextSpinner.vue";
 
 const alertStore = useAlertStore();
-const initialValues = await alertStore.fetchEmailAlertSettings();
+const store = useDeviceStore();
+await store.fetchNetworkSettings();
 
-console.log("initialValues", initialValues);
+const savingForm = ref(false);
 
 const validationSchema = yup.object({
-  enabled: yup.boolean(),
-  event_types: yup.array().of(yup.string()),
-  progress_percent: yup.number().min(1).max(99),
-});
-
-const { resetForm, handleSubmit } = useForm({
-  validationSchema: validationSchema,
-  initialValues: initialValues,
+  preferred_dns: yup.string(),
 });
 
 const preferredDNSFieldset =  [
-    // {
-    //   value: api.PreferredDnsType.
-    //   display: "Quality control alerts",
-    // },
     {
-      value: api.EventTypesEnum.PrintStarted,
-      display: "Triggered on print job start",
+      value: api.PreferredDnsType.Multicast,
+      label: "Multicast DNS (mDNS)",
+      display: "Your Raspberry Pis will be discoverable using .local domain.",
     },
     {
-      value: api.EventTypesEnum.PrintDone,
-      display: "Triggered when print job is done",
-    },
-    {
-      value: api.EventTypesEnum.PrintProgress,
-      display: "Triggered when print job progress reaches %percent",
-    },
-
-    {
-      value: api.EventTypesEnum.PrintPaused,
-      display: "Triggered when print job is paused",
-    },
-
-    {
-      value: api.EventTypesEnum.PrintCancelled,
-      display: "Triggered when print job is cancelled",
+      value: api.PreferredDnsType.Tailscale,
+      label: "Tailscale DNS",
+      display: "Requires Tailscale to be enabled on your Raspberry Pi.",
     },
   ];
 
-const onSubmit = handleSubmit(async (values) => {
+async function onSubmit(values){
+  savingForm.value = true;
   console.log("received form values", values);
-  await alertStore.updateEmailAlertSettings(values);
+  await store.saveNetworkSettings(values as  api.PatchedNetworkSettingsRequest);
   const success = {
     color: "green",
-    message: "Saved email notification settings",
+    message: "Saved network settings",
     header: "Success!",
     actions: [],
     error: undefined,
   } as UiAlert;
   alertStore.push(success);
-});
+  savingForm.value = false;
+}
 </script>
 <template>
-  <!-- Suspense: loaded settings from remote -->
-  <form class="space-y-8 divide-y divide-gray-200" @submit="onSubmit">
+  <Form class="space-y-8 divide-y divide-gray-200" @submit="onSubmit" :initial-values="store.networkSettings" :validation-schema="validationSchema" >
     <div class="space-y-8 divide-y divide-gray-200">
       <div>
         <div>
@@ -103,40 +86,18 @@ const onSubmit = handleSubmit(async (values) => {
                   <Field
                     :id="option.value"
                     :value="option.value"
-                    name="event_types"
+                    name="preferred_dns"
                     type="checkbox"
                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                   />
                 </div>
                 <div class="ml-3 text-sm">
                   <label :for="option.value" class="font-medium text-gray-700"
-                    >{{ option.value }} <br /><span
+                    >{{ option.label }} <br /><span
                       class="text-sm text-gray-500"
                       >{{ option.display }}</span
                     >
                   </label>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-              <div class="sm:col-span-3">
-                <label
-                  for="print-progress"
-                  class="block text-sm font-medium text-gray-700"
-                  >Print progress notification interval</label
-                >
-                <div class="mt-1">
-                  <Field
-                    type="number"
-                    :value="alertStore.emailAlertSettings?.progress_percent"
-                    name="print-progress"
-                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                  />
-                  <small
-                    >Example: 25 will notify you at 25%, 50%, 75%, and 100%
-                    progress</small
-                  >
                 </div>
               </div>
             </div>
@@ -147,9 +108,9 @@ const onSubmit = handleSubmit(async (values) => {
 
     <div class="pt-5 pb-5">
       <div class="flex justify-end">
+        <TextSpinner text="Saving..." class="mr-2" v-if="savingForm" />
         <button
-          type="button"
-          :click="resetForm"
+          type="reset"
           class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           Cancel
@@ -162,5 +123,5 @@ const onSubmit = handleSubmit(async (values) => {
         </button>
       </div>
     </div>
-  </form>
+  </Form>
 </template>

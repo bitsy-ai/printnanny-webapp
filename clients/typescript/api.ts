@@ -3342,37 +3342,6 @@ export interface PaginatedGcodeFileList {
 /**
  * 
  * @export
- * @interface PaginatedNetworkSettingsList
- */
-export interface PaginatedNetworkSettingsList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedNetworkSettingsList
-     */
-    'count'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedNetworkSettingsList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedNetworkSettingsList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<NetworkSettings>}
-     * @memberof PaginatedNetworkSettingsList
-     */
-    'results'?: Array<NetworkSettings>;
-}
-/**
- * 
- * @export
  * @interface PaginatedOctoPrintBackupList
  */
 export interface PaginatedOctoPrintBackupList {
@@ -9141,47 +9110,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        networkSettingsList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/network-settings/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this network settings.
+         * @param {number} id 
          * @param {PatchedNetworkSettingsRequest} [patchedNetworkSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -9189,7 +9118,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         networkSettingsPartialUpdate: async (id: number, patchedNetworkSettingsRequest?: PatchedNetworkSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('networkSettingsPartialUpdate', 'id', id)
-            const localVarPath = `/api/network-settings/{id}/`
+            const localVarPath = `/api/network-settings/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9224,15 +9153,11 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this network settings.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        networkSettingsRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('networkSettingsRetrieve', 'id', id)
-            const localVarPath = `/api/network-settings/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        networkSettingsRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/network-settings/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9263,7 +9188,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this network settings.
+         * @param {number} id 
          * @param {NetworkSettingsRequest} networkSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -9273,7 +9198,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             assertParamExists('networkSettingsUpdate', 'id', id)
             // verify required parameter 'networkSettingsRequest' is not null or undefined
             assertParamExists('networkSettingsUpdate', 'networkSettingsRequest', networkSettingsRequest)
-            const localVarPath = `/api/network-settings/{id}/`
+            const localVarPath = `/api/network-settings/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10189,17 +10114,7 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async networkSettingsList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedNetworkSettingsList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.networkSettingsList(page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this network settings.
+         * @param {number} id 
          * @param {PatchedNetworkSettingsRequest} [patchedNetworkSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10210,17 +10125,16 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this network settings.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async networkSettingsRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NetworkSettings>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.networkSettingsRetrieve(id, options);
+        async networkSettingsRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NetworkSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.networkSettingsRetrieve(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this network settings.
+         * @param {number} id 
          * @param {NetworkSettingsRequest} networkSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10468,16 +10382,7 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        networkSettingsList(page?: number, options?: any): AxiosPromise<PaginatedNetworkSettingsList> {
-            return localVarFp.networkSettingsList(page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this network settings.
+         * @param {number} id 
          * @param {PatchedNetworkSettingsRequest} [patchedNetworkSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10487,16 +10392,15 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this network settings.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        networkSettingsRetrieve(id: number, options?: any): AxiosPromise<NetworkSettings> {
-            return localVarFp.networkSettingsRetrieve(id, options).then((request) => request(axios, basePath));
+        networkSettingsRetrieve(options?: any): AxiosPromise<NetworkSettings> {
+            return localVarFp.networkSettingsRetrieve(options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this network settings.
+         * @param {number} id 
          * @param {NetworkSettingsRequest} networkSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10722,16 +10626,7 @@ export interface DevicesApiInterface {
 
     /**
      * 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    networkSettingsList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedNetworkSettingsList>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this network settings.
+     * @param {number} id 
      * @param {PatchedNetworkSettingsRequest} [patchedNetworkSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -10741,16 +10636,15 @@ export interface DevicesApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this network settings.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    networkSettingsRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<NetworkSettings>;
+    networkSettingsRetrieve(options?: AxiosRequestConfig): AxiosPromise<NetworkSettings>;
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this network settings.
+     * @param {number} id 
      * @param {NetworkSettingsRequest} networkSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -10978,18 +10872,7 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
 
     /**
      * 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public networkSettingsList(page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).networkSettingsList(page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this network settings.
+     * @param {number} id 
      * @param {PatchedNetworkSettingsRequest} [patchedNetworkSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -11001,18 +10884,17 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this network settings.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public networkSettingsRetrieve(id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).networkSettingsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public networkSettingsRetrieve(options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).networkSettingsRetrieve(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this network settings.
+     * @param {number} id 
      * @param {NetworkSettingsRequest} networkSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

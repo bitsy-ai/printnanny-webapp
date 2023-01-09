@@ -146,13 +146,13 @@ class PiViewSet(
 # NetworkSettings views
 ##
 @extend_schema_view(
-    retrieve=extend_schema(tags=["devices"]),
-    list=extend_schema(
+    retrieve=extend_schema(
         tags=["devices"],
+        request=NetworkSettingsSerializer,
         responses={
-            200: NetworkSettingsSerializer(many=False),
+            200: NetworkSettingsSerializer,
         }
-        | generic_list_errors,
+        | generic_create_errors,
     ),
     create=extend_schema(
         tags=["devices"],
@@ -189,6 +189,11 @@ class NetworkSettingsViewSet(
     serializer_class = NetworkSettingsSerializer
     queryset = NetworkSettings.objects.all()
     lookup_field = "id"
+
+    def retrieve(self, request, pk=None):
+        settings, _created = NetworkSettings.objects.get_or_create(user=request.user)
+        serializer = NetworkSettingsSerializer(settings)
+        return Response(serializer.data)
 
 
 ###
