@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 import { PlusIcon, PrinterIcon } from "@heroicons/vue/solid";
-import { stepKeys } from "@/components/wizard/piCreateWizard";
-
 defineProps({
   icon: {
     default: PrinterIcon,
