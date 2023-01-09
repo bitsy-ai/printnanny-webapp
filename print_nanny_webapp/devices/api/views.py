@@ -36,13 +36,13 @@ from print_nanny_webapp.devices.api.serializers import (
     SystemInfoSerializer,
     PiSerializer,
     WebrtcStreamSerializer,
-    PiSettingsSerializer,
+    NetworkSettingsSerializer,
 )
 from print_nanny_webapp.devices.models import (
     Pi,
     WebrtcStream,
     SystemInfo,
-    PiSettings,
+    NetworkSettings,
 )
 from print_nanny_webapp.devices.services import (
     build_license_zip,
@@ -143,52 +143,57 @@ class PiViewSet(
 
 
 ##
-# PiSettings views
+# NetworkSettings views
 ##
 @extend_schema_view(
-    retrieve=extend_schema(tags=["devices"]),
-    list=extend_schema(
+    retrieve=extend_schema(
         tags=["devices"],
+        request=NetworkSettingsSerializer,
         responses={
-            200: PiSettingsSerializer(many=False),
+            200: NetworkSettingsSerializer,
         }
-        | generic_list_errors,
+        | generic_create_errors,
     ),
     create=extend_schema(
         tags=["devices"],
-        request=PiSettingsSerializer,
+        request=NetworkSettingsSerializer,
         responses={
-            201: PiSettingsSerializer,
+            201: NetworkSettingsSerializer,
         }
         | generic_create_errors,
     ),
     update=extend_schema(
         tags=["devices"],
-        request=PiSettingsSerializer,
+        request=NetworkSettingsSerializer,
         responses={
-            202: PiSettingsSerializer,
+            202: NetworkSettingsSerializer,
         }
         | generic_update_errors,
     ),
     partial_update=extend_schema(
         tags=["devices"],
-        request=PiSettingsSerializer,
+        request=NetworkSettingsSerializer,
         responses={
-            202: PiSettingsSerializer,
+            202: NetworkSettingsSerializer,
         }
         | generic_update_errors,
     ),
 )
-class PiSettingsViewSet(
+class NetworkSettingsViewSet(
     GenericViewSet,
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
     CreateModelMixin,
 ):
-    serializer_class = PiSettingsSerializer
-    queryset = PiSettings.objects.all()
+    serializer_class = NetworkSettingsSerializer
+    queryset = NetworkSettings.objects.all()
     lookup_field = "id"
+
+    def retrieve(self, request, pk=None):
+        settings, _created = NetworkSettings.objects.get_or_create(user=request.user)
+        serializer = NetworkSettingsSerializer(settings)
+        return Response(serializer.data)
 
 
 ###

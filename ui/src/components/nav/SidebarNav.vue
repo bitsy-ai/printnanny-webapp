@@ -150,7 +150,7 @@ const app_nav = [
   },
   {
     name: "Settings",
-    link: { name: "alertSettings" },
+    link: { name: "networkSettings" },
     icon: CogIcon,
     current: () => router.currentRoute.value.path.includes("settings"),
   },

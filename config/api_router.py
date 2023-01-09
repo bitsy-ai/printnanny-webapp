@@ -10,7 +10,7 @@ from print_nanny_webapp.devices.api.views import (
     PiViewSet,
     WebrtcStreamViewSet,
     PiLicenseZipViewset,
-    PiSettingsViewSet,
+    NetworkSettingsViewSet,
 )
 from print_nanny_webapp.events.api.views import (
     AllPiEventsViewSet,
@@ -45,11 +45,9 @@ router.register("accounts/email-waitlist", EmailWaitlistViewSet, "email-waitlist
 router.register("pis", PiViewSet)
 
 router.register("crash-reports", CrashReportViewSet, "crash-reports")
-router.register("pi-settings", PiSettingsViewSet, basename="pi-settings")
 
 # octoprint endpoints (PrintNanny os data model)
 
-# enables /api/devices/:hostname lookup (no nested routing)
 other_urls = [
     path("shop/orders", OrderCheckoutView.as_view()),
     path(
@@ -64,6 +62,24 @@ other_urls = [
         "pis/commands", AllPiCommandsViewSet.as_view({"get": "list", "post": "create"})
     ),
     path("accounts/user/nkey", UserNkeyView.as_view()),
+    path(
+        "network-settings/",
+        NetworkSettingsViewSet.as_view(
+            {
+                "get": "retrieve",
+                "post": "create",
+            }
+        ),
+    ),
+    path(
+        "network-settings/<int:id>",
+        NetworkSettingsViewSet.as_view(
+            {
+                "put": "update",
+                "patch": "partial_update",
+            }
+        ),
+    ),
 ]
 
 # router.register("pis/events", AllPiEventsViewSet, basename="all-pi-events")

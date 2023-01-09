@@ -1796,6 +1796,56 @@ export interface NatsOrganizationUser {
 /**
  * 
  * @export
+ * @interface NetworkSettings
+ */
+export interface NetworkSettings {
+    /**
+     * 
+     * @type {number}
+     * @memberof NetworkSettings
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof NetworkSettings
+     */
+    'updated_dt': string;
+    /**
+     * 
+     * @type {PreferredDnsType}
+     * @memberof NetworkSettings
+     */
+    'preferred_dns'?: PreferredDnsType;
+    /**
+     * 
+     * @type {number}
+     * @memberof NetworkSettings
+     */
+    'user': number;
+}
+/**
+ * 
+ * @export
+ * @interface NetworkSettingsRequest
+ */
+export interface NetworkSettingsRequest {
+    /**
+     * 
+     * @type {PreferredDnsType}
+     * @memberof NetworkSettingsRequest
+     */
+    'preferred_dns'?: PreferredDnsType;
+    /**
+     * 
+     * @type {number}
+     * @memberof NetworkSettingsRequest
+     */
+    'user': number;
+}
+/**
+ * 
+ * @export
  * @interface OctoPrintBackup
  */
 export interface OctoPrintBackup {
@@ -3447,37 +3497,6 @@ export interface PaginatedPiList {
 /**
  * 
  * @export
- * @interface PaginatedPiSettingsList
- */
-export interface PaginatedPiSettingsList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedPiSettingsList
-     */
-    'count'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedPiSettingsList
-     */
-    'next'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedPiSettingsList
-     */
-    'previous'?: string | null;
-    /**
-     * 
-     * @type {Array<PiSettings>}
-     * @memberof PaginatedPiSettingsList
-     */
-    'results'?: Array<PiSettings>;
-}
-/**
- * 
- * @export
  * @interface PaginatedPolymorphicOctoPrintEventList
  */
 export interface PaginatedPolymorphicOctoPrintEventList {
@@ -3783,6 +3802,25 @@ export interface PatchedEmailAlertSettingsRequest {
 /**
  * 
  * @export
+ * @interface PatchedNetworkSettingsRequest
+ */
+export interface PatchedNetworkSettingsRequest {
+    /**
+     * 
+     * @type {PreferredDnsType}
+     * @memberof PatchedNetworkSettingsRequest
+     */
+    'preferred_dns'?: PreferredDnsType;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedNetworkSettingsRequest
+     */
+    'user'?: number;
+}
+/**
+ * 
+ * @export
  * @interface PatchedOctoPrintServerRequest
  */
 export interface PatchedOctoPrintServerRequest {
@@ -4069,25 +4107,6 @@ export interface PatchedPiRequest {
 /**
  * 
  * @export
- * @interface PatchedPiSettingsRequest
- */
-export interface PatchedPiSettingsRequest {
-    /**
-     * 
-     * @type {PreferredDnsEnum}
-     * @memberof PatchedPiSettingsRequest
-     */
-    'preferred_dns'?: PreferredDnsEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPiSettingsRequest
-     */
-    'user'?: number;
-}
-/**
- * 
- * @export
  * @interface PatchedSystemInfoRequest
  */
 export interface PatchedSystemInfoRequest {
@@ -4258,10 +4277,10 @@ export interface Pi {
     'last_boot': string | null;
     /**
      * 
-     * @type {PiSettings}
+     * @type {NetworkSettings}
      * @memberof Pi
      */
-    'pi_settings': PiSettings;
+    'pi_settings': NetworkSettings;
     /**
      * 
      * @type {User}
@@ -4998,56 +5017,6 @@ export interface PiRequest {
 /**
  * 
  * @export
- * @interface PiSettings
- */
-export interface PiSettings {
-    /**
-     * 
-     * @type {number}
-     * @memberof PiSettings
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PiSettings
-     */
-    'updated_dt': string;
-    /**
-     * 
-     * @type {PreferredDnsEnum}
-     * @memberof PiSettings
-     */
-    'preferred_dns'?: PreferredDnsEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof PiSettings
-     */
-    'user': number;
-}
-/**
- * 
- * @export
- * @interface PiSettingsRequest
- */
-export interface PiSettingsRequest {
-    /**
-     * 
-     * @type {PreferredDnsEnum}
-     * @memberof PiSettingsRequest
-     */
-    'preferred_dns'?: PreferredDnsEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof PiSettingsRequest
-     */
-    'user': number;
-}
-/**
- * 
- * @export
  * @interface PiSoftwareUpdateCommand
  */
 export interface PiSoftwareUpdateCommand {
@@ -5479,12 +5448,12 @@ export type PolymorphicPiStatusRequest = PiBootStatusRequest | PiCamStatusReques
  * @enum {string}
  */
 
-export const PreferredDnsEnum = {
+export const PreferredDnsType = {
     Multicast: 'multicast',
     Tailscale: 'tailscale'
 } as const;
 
-export type PreferredDnsEnum = typeof PreferredDnsEnum[keyof typeof PreferredDnsEnum];
+export type PreferredDnsType = typeof PreferredDnsType[keyof typeof PreferredDnsType];
 
 
 /**
@@ -9100,14 +9069,14 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
-         * @param {PiSettingsRequest} piSettingsRequest 
+         * @param {NetworkSettingsRequest} networkSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        piSettingsCreate: async (piSettingsRequest: PiSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'piSettingsRequest' is not null or undefined
-            assertParamExists('piSettingsCreate', 'piSettingsRequest', piSettingsRequest)
-            const localVarPath = `/api/pi-settings/`;
+        networkSettingsCreate: async (networkSettingsRequest: NetworkSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'networkSettingsRequest' is not null or undefined
+            assertParamExists('networkSettingsCreate', 'networkSettingsRequest', networkSettingsRequest)
+            const localVarPath = `/api/network-settings/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9132,7 +9101,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(piSettingsRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(networkSettingsRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -9141,55 +9110,15 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} [page] A page number within the paginated result set.
+         * @param {number} id 
+         * @param {PatchedNetworkSettingsRequest} [patchedNetworkSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        piSettingsList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/pi-settings/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this pi settings.
-         * @param {PatchedPiSettingsRequest} [patchedPiSettingsRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        piSettingsPartialUpdate: async (id: number, patchedPiSettingsRequest?: PatchedPiSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        networkSettingsPartialUpdate: async (id: number, patchedNetworkSettingsRequest?: PatchedNetworkSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('piSettingsPartialUpdate', 'id', id)
-            const localVarPath = `/api/pi-settings/{id}/`
+            assertParamExists('networkSettingsPartialUpdate', 'id', id)
+            const localVarPath = `/api/network-settings/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9215,7 +9144,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedPiSettingsRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedNetworkSettingsRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -9224,15 +9153,11 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this pi settings.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        piSettingsRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('piSettingsRetrieve', 'id', id)
-            const localVarPath = `/api/pi-settings/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        networkSettingsRetrieve: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/network-settings/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -9263,17 +9188,17 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this pi settings.
-         * @param {PiSettingsRequest} piSettingsRequest 
+         * @param {number} id 
+         * @param {NetworkSettingsRequest} networkSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        piSettingsUpdate: async (id: number, piSettingsRequest: PiSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        networkSettingsUpdate: async (id: number, networkSettingsRequest: NetworkSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('piSettingsUpdate', 'id', id)
-            // verify required parameter 'piSettingsRequest' is not null or undefined
-            assertParamExists('piSettingsUpdate', 'piSettingsRequest', piSettingsRequest)
-            const localVarPath = `/api/pi-settings/{id}/`
+            assertParamExists('networkSettingsUpdate', 'id', id)
+            // verify required parameter 'networkSettingsRequest' is not null or undefined
+            assertParamExists('networkSettingsUpdate', 'networkSettingsRequest', networkSettingsRequest)
+            const localVarPath = `/api/network-settings/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9299,7 +9224,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(piSettingsRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(networkSettingsRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -10179,54 +10104,43 @@ export const DevicesApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {PiSettingsRequest} piSettingsRequest 
+         * @param {NetworkSettingsRequest} networkSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async piSettingsCreate(piSettingsRequest: PiSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PiSettings>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.piSettingsCreate(piSettingsRequest, options);
+        async networkSettingsCreate(networkSettingsRequest: NetworkSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NetworkSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.networkSettingsCreate(networkSettingsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} [page] A page number within the paginated result set.
+         * @param {number} id 
+         * @param {PatchedNetworkSettingsRequest} [patchedNetworkSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async piSettingsList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPiSettingsList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.piSettingsList(page, options);
+        async networkSettingsPartialUpdate(id: number, patchedNetworkSettingsRequest?: PatchedNetworkSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NetworkSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.networkSettingsPartialUpdate(id, patchedNetworkSettingsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this pi settings.
-         * @param {PatchedPiSettingsRequest} [patchedPiSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async piSettingsPartialUpdate(id: number, patchedPiSettingsRequest?: PatchedPiSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PiSettings>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.piSettingsPartialUpdate(id, patchedPiSettingsRequest, options);
+        async networkSettingsRetrieve(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NetworkSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.networkSettingsRetrieve(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this pi settings.
+         * @param {number} id 
+         * @param {NetworkSettingsRequest} networkSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async piSettingsRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PiSettings>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.piSettingsRetrieve(id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this pi settings.
-         * @param {PiSettingsRequest} piSettingsRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async piSettingsUpdate(id: number, piSettingsRequest: PiSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PiSettings>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.piSettingsUpdate(id, piSettingsRequest, options);
+        async networkSettingsUpdate(id: number, networkSettingsRequest: NetworkSettingsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NetworkSettings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.networkSettingsUpdate(id, networkSettingsRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10459,50 +10373,40 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
-         * @param {PiSettingsRequest} piSettingsRequest 
+         * @param {NetworkSettingsRequest} networkSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        piSettingsCreate(piSettingsRequest: PiSettingsRequest, options?: any): AxiosPromise<PiSettings> {
-            return localVarFp.piSettingsCreate(piSettingsRequest, options).then((request) => request(axios, basePath));
+        networkSettingsCreate(networkSettingsRequest: NetworkSettingsRequest, options?: any): AxiosPromise<NetworkSettings> {
+            return localVarFp.networkSettingsCreate(networkSettingsRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} [page] A page number within the paginated result set.
+         * @param {number} id 
+         * @param {PatchedNetworkSettingsRequest} [patchedNetworkSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        piSettingsList(page?: number, options?: any): AxiosPromise<PaginatedPiSettingsList> {
-            return localVarFp.piSettingsList(page, options).then((request) => request(axios, basePath));
+        networkSettingsPartialUpdate(id: number, patchedNetworkSettingsRequest?: PatchedNetworkSettingsRequest, options?: any): AxiosPromise<NetworkSettings> {
+            return localVarFp.networkSettingsPartialUpdate(id, patchedNetworkSettingsRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this pi settings.
-         * @param {PatchedPiSettingsRequest} [patchedPiSettingsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        piSettingsPartialUpdate(id: number, patchedPiSettingsRequest?: PatchedPiSettingsRequest, options?: any): AxiosPromise<PiSettings> {
-            return localVarFp.piSettingsPartialUpdate(id, patchedPiSettingsRequest, options).then((request) => request(axios, basePath));
+        networkSettingsRetrieve(options?: any): AxiosPromise<NetworkSettings> {
+            return localVarFp.networkSettingsRetrieve(options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this pi settings.
+         * @param {number} id 
+         * @param {NetworkSettingsRequest} networkSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        piSettingsRetrieve(id: number, options?: any): AxiosPromise<PiSettings> {
-            return localVarFp.piSettingsRetrieve(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this pi settings.
-         * @param {PiSettingsRequest} piSettingsRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        piSettingsUpdate(id: number, piSettingsRequest: PiSettingsRequest, options?: any): AxiosPromise<PiSettings> {
-            return localVarFp.piSettingsUpdate(id, piSettingsRequest, options).then((request) => request(axios, basePath));
+        networkSettingsUpdate(id: number, networkSettingsRequest: NetworkSettingsRequest, options?: any): AxiosPromise<NetworkSettings> {
+            return localVarFp.networkSettingsUpdate(id, networkSettingsRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
@@ -10713,50 +10617,40 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
 export interface DevicesApiInterface {
     /**
      * 
-     * @param {PiSettingsRequest} piSettingsRequest 
+     * @param {NetworkSettingsRequest} networkSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    piSettingsCreate(piSettingsRequest: PiSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<PiSettings>;
+    networkSettingsCreate(networkSettingsRequest: NetworkSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<NetworkSettings>;
 
     /**
      * 
-     * @param {number} [page] A page number within the paginated result set.
+     * @param {number} id 
+     * @param {PatchedNetworkSettingsRequest} [patchedNetworkSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    piSettingsList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPiSettingsList>;
+    networkSettingsPartialUpdate(id: number, patchedNetworkSettingsRequest?: PatchedNetworkSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<NetworkSettings>;
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this pi settings.
-     * @param {PatchedPiSettingsRequest} [patchedPiSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    piSettingsPartialUpdate(id: number, patchedPiSettingsRequest?: PatchedPiSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<PiSettings>;
+    networkSettingsRetrieve(options?: AxiosRequestConfig): AxiosPromise<NetworkSettings>;
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this pi settings.
+     * @param {number} id 
+     * @param {NetworkSettingsRequest} networkSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    piSettingsRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<PiSettings>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this pi settings.
-     * @param {PiSettingsRequest} piSettingsRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    piSettingsUpdate(id: number, piSettingsRequest: PiSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<PiSettings>;
+    networkSettingsUpdate(id: number, networkSettingsRequest: NetworkSettingsRequest, options?: AxiosRequestConfig): AxiosPromise<NetworkSettings>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
@@ -10967,59 +10861,47 @@ export interface DevicesApiInterface {
 export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * 
-     * @param {PiSettingsRequest} piSettingsRequest 
+     * @param {NetworkSettingsRequest} networkSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public piSettingsCreate(piSettingsRequest: PiSettingsRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).piSettingsCreate(piSettingsRequest, options).then((request) => request(this.axios, this.basePath));
+    public networkSettingsCreate(networkSettingsRequest: NetworkSettingsRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).networkSettingsCreate(networkSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} [page] A page number within the paginated result set.
+     * @param {number} id 
+     * @param {PatchedNetworkSettingsRequest} [patchedNetworkSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public piSettingsList(page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).piSettingsList(page, options).then((request) => request(this.axios, this.basePath));
+    public networkSettingsPartialUpdate(id: number, patchedNetworkSettingsRequest?: PatchedNetworkSettingsRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).networkSettingsPartialUpdate(id, patchedNetworkSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this pi settings.
-     * @param {PatchedPiSettingsRequest} [patchedPiSettingsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public piSettingsPartialUpdate(id: number, patchedPiSettingsRequest?: PatchedPiSettingsRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).piSettingsPartialUpdate(id, patchedPiSettingsRequest, options).then((request) => request(this.axios, this.basePath));
+    public networkSettingsRetrieve(options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).networkSettingsRetrieve(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this pi settings.
+     * @param {number} id 
+     * @param {NetworkSettingsRequest} networkSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public piSettingsRetrieve(id: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).piSettingsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this pi settings.
-     * @param {PiSettingsRequest} piSettingsRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public piSettingsUpdate(id: number, piSettingsRequest: PiSettingsRequest, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).piSettingsUpdate(id, piSettingsRequest, options).then((request) => request(this.axios, this.basePath));
+    public networkSettingsUpdate(id: number, networkSettingsRequest: NetworkSettingsRequest, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).networkSettingsUpdate(id, networkSettingsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

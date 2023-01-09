@@ -20,7 +20,7 @@ from print_nanny_webapp.devices.utils import (
 from print_nanny_webapp.devices.enum import (
     JanusConfigType,
     SingleBoardComputerType,
-    PreferredDns,
+    PreferredDnsType,
 )
 from print_nanny_webapp.octoprint.models import OctoPrintSettings, OctoPrintServer
 
@@ -108,7 +108,7 @@ class Pi(SafeDeleteModel):
 
     @property
     def pi_settings(self):
-        obj, _ = PiSettings.objects.get_or_create(user=self.user)
+        obj, _ = NetworkSettings.objects.get_or_create(user=self.user)
         return obj
 
     @property
@@ -266,7 +266,7 @@ class PiNatsApp(AbstractNatsOrganizationApp, SafeDeleteModel):
         return nsc_validate(account_name=self.organization.name)
 
 
-class PiSettings(SafeDeleteModel):
+class NetworkSettings(SafeDeleteModel):
     """
     User-facing settings, configurable per account
     """
@@ -284,7 +284,9 @@ class PiSettings(SafeDeleteModel):
     updated_dt = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     preferred_dns = models.CharField(
-        max_length=32, choices=PreferredDns.choices, default=PreferredDns.MULTICAST
+        max_length=32,
+        choices=PreferredDnsType.choices,
+        default=PreferredDnsType.MULTICAST,
     )
 
 

@@ -1,12 +1,20 @@
 <script setup lang="ts">
 import BillingFormV2 from "@/components/forms/BillingFormV2.vue";
 import AlertSettingsForm from "@/components/forms/AlertSettingsForm.vue";
+import NetworkSettingsForm from "@/components/forms/NetworkSettingsForm.vue";
 import { RouterLink, useRouter } from "vue-router";
 
-import { CreditCardIcon, BellIcon } from "@heroicons/vue/outline";
+import { CreditCardIcon, BellIcon, WifiIcon } from "@heroicons/vue/outline";
 const router = useRouter();
 
 const navigation = [
+  {
+    name: "Network",
+    link: { name: "networkSettings" },
+    icon: WifiIcon,
+    key: "networkSettings",
+    component: NetworkSettingsForm,
+  },
   {
     name: "Email Notifications",
     link: { name: "alertSettings" },

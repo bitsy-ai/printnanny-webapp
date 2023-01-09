@@ -430,6 +430,7 @@ SPECTACULAR_SETTINGS = {
         "CameraType": "print_nanny_webapp.devices.enum.CameraType",
         "JanusConfigType": "print_nanny_webapp.devices.enum.JanusConfigType",
         "DeviceReleaseChannel": "print_nanny_webapp.devices.enum.DeviceReleaseChannel",
+        "PreferredDnsType": "print_nanny_webapp.devices.enum.PreferredDnsType",
         # end device app enums
         # begin alerts app enums
         # end alerts app enums
