@@ -4,6 +4,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**pi_settings_create**](DevicesApi.md#pi_settings_create) | **POST** /api/pi-settings/ | 
+[**pi_settings_list**](DevicesApi.md#pi_settings_list) | **GET** /api/pi-settings/ | 
+[**pi_settings_partial_update**](DevicesApi.md#pi_settings_partial_update) | **PATCH** /api/pi-settings/{id}/ | 
+[**pi_settings_retrieve**](DevicesApi.md#pi_settings_retrieve) | **GET** /api/pi-settings/{id}/ | 
+[**pi_settings_update**](DevicesApi.md#pi_settings_update) | **PUT** /api/pi-settings/{id}/ | 
 [**pi_update_or_create**](DevicesApi.md#pi_update_or_create) | **POST** /api/pis/update-or-create/ | 
 [**pis_create**](DevicesApi.md#pis_create) | **POST** /api/pis/ | 
 [**pis_destroy**](DevicesApi.md#pis_destroy) | **DELETE** /api/pis/{id}/ | 
@@ -11,11 +16,6 @@ Method | HTTP request | Description
 [**pis_list**](DevicesApi.md#pis_list) | **GET** /api/pis/ | 
 [**pis_partial_update**](DevicesApi.md#pis_partial_update) | **PATCH** /api/pis/{id}/ | 
 [**pis_retrieve**](DevicesApi.md#pis_retrieve) | **GET** /api/pis/{id}/ | 
-[**pis_settings_create**](DevicesApi.md#pis_settings_create) | **POST** /api/pis/{pi_id}/settings/ | 
-[**pis_settings_list**](DevicesApi.md#pis_settings_list) | **GET** /api/pis/{pi_id}/settings/ | 
-[**pis_settings_partial_update**](DevicesApi.md#pis_settings_partial_update) | **PATCH** /api/pis/{pi_id}/settings/{id}/ | 
-[**pis_settings_retrieve**](DevicesApi.md#pis_settings_retrieve) | **GET** /api/pis/{pi_id}/settings/{id}/ | 
-[**pis_settings_update**](DevicesApi.md#pis_settings_update) | **PUT** /api/pis/{pi_id}/settings/{id}/ | 
 [**pis_system_info_create**](DevicesApi.md#pis_system_info_create) | **POST** /api/pis/{pi_id}/system-info/ | 
 [**pis_system_info_list**](DevicesApi.md#pis_system_info_list) | **GET** /api/pis/{pi_id}/system-info/ | 
 [**pis_system_info_partial_update**](DevicesApi.md#pis_system_info_partial_update) | **PATCH** /api/pis/{pi_id}/system-info/{id}/ | 
@@ -30,6 +30,148 @@ Method | HTTP request | Description
 [**system_info_update_or_create**](DevicesApi.md#system_info_update_or_create) | **POST** /api/pis/{pi_id}/system-info/update-or-create/ | 
 [**webrtc_stream_update_or_create**](DevicesApi.md#webrtc_stream_update_or_create) | **POST** /api/pis/{pi_id}/webrtc-streams/update-or-create/ | 
 
+
+
+## pi_settings_create
+
+> crate::models::PiSettings pi_settings_create(pi_settings_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**pi_settings_request** | [**PiSettingsRequest**](PiSettingsRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::PiSettings**](PiSettings.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## pi_settings_list
+
+> crate::models::PaginatedPiSettingsList pi_settings_list(page)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+
+### Return type
+
+[**crate::models::PaginatedPiSettingsList**](PaginatedPiSettingsList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## pi_settings_partial_update
+
+> crate::models::PiSettings pi_settings_partial_update(id, patched_pi_settings_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** | A unique integer value identifying this pi settings. | [required] |
+**patched_pi_settings_request** | Option<[**PatchedPiSettingsRequest**](PatchedPiSettingsRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::PiSettings**](PiSettings.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## pi_settings_retrieve
+
+> crate::models::PiSettings pi_settings_retrieve(id)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** | A unique integer value identifying this pi settings. | [required] |
+
+### Return type
+
+[**crate::models::PiSettings**](PiSettings.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## pi_settings_update
+
+> crate::models::PiSettings pi_settings_update(id, pi_settings_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** | A unique integer value identifying this pi settings. | [required] |
+**pi_settings_request** | [**PiSettingsRequest**](PiSettingsRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::PiSettings**](PiSettings.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## pi_update_or_create
@@ -236,153 +378,6 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## pis_settings_create
-
-> crate::models::PiSettings pis_settings_create(pi_id, pi_settings_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**pi_id** | **i32** |  | [required] |
-**pi_settings_request** | [**PiSettingsRequest**](PiSettingsRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::PiSettings**](PiSettings.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## pis_settings_list
-
-> crate::models::PaginatedPiSettingsList pis_settings_list(pi_id, page)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**pi_id** | **i32** |  | [required] |
-**page** | Option<**i32**> | A page number within the paginated result set. |  |
-
-### Return type
-
-[**crate::models::PaginatedPiSettingsList**](PaginatedPiSettingsList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## pis_settings_partial_update
-
-> crate::models::PiSettings pis_settings_partial_update(id, pi_id, patched_pi_settings_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this pi settings. | [required] |
-**pi_id** | **i32** |  | [required] |
-**patched_pi_settings_request** | Option<[**PatchedPiSettingsRequest**](PatchedPiSettingsRequest.md)> |  |  |
-
-### Return type
-
-[**crate::models::PiSettings**](PiSettings.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## pis_settings_retrieve
-
-> crate::models::PiSettings pis_settings_retrieve(id, pi_id)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this pi settings. | [required] |
-**pi_id** | **i32** |  | [required] |
-
-### Return type
-
-[**crate::models::PiSettings**](PiSettings.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## pis_settings_update
-
-> crate::models::PiSettings pis_settings_update(id, pi_id, pi_settings_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this pi settings. | [required] |
-**pi_id** | **i32** |  | [required] |
-**pi_settings_request** | [**PiSettingsRequest**](PiSettingsRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::PiSettings**](PiSettings.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

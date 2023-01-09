@@ -138,6 +138,7 @@ docs/PolymorphicPiEvent.md
 docs/PolymorphicPiEventRequest.md
 docs/PolymorphicPiStatus.md
 docs/PolymorphicPiStatusRequest.md
+docs/PreferredDnsEnum.md
 docs/Product.md
 docs/RegisterRequest.md
 docs/ResendEmailVerificationRequest.md
@@ -311,6 +312,7 @@ src/models/polymorphic_pi_event.rs
 src/models/polymorphic_pi_event_request.rs
 src/models/polymorphic_pi_status.rs
 src/models/polymorphic_pi_status_request.rs
+src/models/preferred_dns_enum.rs
 src/models/product.rs
 src/models/register_request.rs
 src/models/resend_email_verification_request.rs

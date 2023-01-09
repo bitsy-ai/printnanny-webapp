@@ -139,6 +139,7 @@ docs/PolymorphicPiEvent.md
 docs/PolymorphicPiEventRequest.md
 docs/PolymorphicPiStatus.md
 docs/PolymorphicPiStatusRequest.md
+docs/PreferredDnsEnum.md
 docs/Product.md
 docs/RegisterRequest.md
 docs/ResendEmailVerificationRequest.md
@@ -314,6 +315,7 @@ printnanny_api_client/models/polymorphic_pi_event.py
 printnanny_api_client/models/polymorphic_pi_event_request.py
 printnanny_api_client/models/polymorphic_pi_status.py
 printnanny_api_client/models/polymorphic_pi_status_request.py
+printnanny_api_client/models/preferred_dns_enum.py
 printnanny_api_client/models/product.py
 printnanny_api_client/models/register_request.py
 printnanny_api_client/models/resend_email_verification_request.py
@@ -483,6 +485,7 @@ test/test_polymorphic_pi_event.py
 test/test_polymorphic_pi_event_request.py
 test/test_polymorphic_pi_status.py
 test/test_polymorphic_pi_status_request.py
+test/test_preferred_dns_enum.py
 test/test_product.py
 test/test_register_request.py
 test/test_resend_email_verification_request.py

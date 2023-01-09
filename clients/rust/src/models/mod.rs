@@ -250,6 +250,8 @@ pub mod polymorphic_pi_status;
 pub use self::polymorphic_pi_status::PolymorphicPiStatus;
 pub mod polymorphic_pi_status_request;
 pub use self::polymorphic_pi_status_request::PolymorphicPiStatusRequest;
+pub mod preferred_dns_enum;
+pub use self::preferred_dns_enum::PreferredDnsEnum;
 pub mod product;
 pub use self::product::Product;
 pub mod register_request;
