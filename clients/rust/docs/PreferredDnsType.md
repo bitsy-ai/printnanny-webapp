@@ -1,7 +1,7 @@
-# PreferredDnsEnum
-
+# PreferredDnsType
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

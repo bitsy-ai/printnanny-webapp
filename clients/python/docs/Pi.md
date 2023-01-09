@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **last_boot** | **str** |  | [readonly] 
-**pi_settings** | [**PiSettings**](PiSettings.md) |  | [readonly] 
+**pi_settings** | [**NetworkSettings**](NetworkSettings.md) |  | [readonly] 
 **user** | [**User**](User.md) |  | [readonly] 
 **system_info** | [**SystemInfo**](SystemInfo.md) |  | [readonly] 
 **webrtc_edge** | [**WebrtcStream**](WebrtcStream.md) |  | [readonly] 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
 **last_boot** | Option<**String**> |  | [readonly]
-**pi_settings** | Option<[**crate::models::PiSettings**](PiSettings.md)> |  | [readonly]
+**pi_settings** | Option<[**crate::models::NetworkSettings**](NetworkSettings.md)> |  | [readonly]
 **user** | Option<[**crate::models::User**](User.md)> |  | [readonly]
 **system_info** | Option<[**crate::models::SystemInfo**](SystemInfo.md)> |  | [readonly]
 **webrtc_edge** | Option<[**crate::models::WebrtcStream**](WebrtcStream.md)> |  | [readonly]

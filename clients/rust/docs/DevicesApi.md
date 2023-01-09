@@ -4,11 +4,10 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**pi_settings_create**](DevicesApi.md#pi_settings_create) | **POST** /api/pi-settings/ | 
-[**pi_settings_list**](DevicesApi.md#pi_settings_list) | **GET** /api/pi-settings/ | 
-[**pi_settings_partial_update**](DevicesApi.md#pi_settings_partial_update) | **PATCH** /api/pi-settings/{id}/ | 
-[**pi_settings_retrieve**](DevicesApi.md#pi_settings_retrieve) | **GET** /api/pi-settings/{id}/ | 
-[**pi_settings_update**](DevicesApi.md#pi_settings_update) | **PUT** /api/pi-settings/{id}/ | 
+[**network_settings_create**](DevicesApi.md#network_settings_create) | **POST** /api/network-settings/ | 
+[**network_settings_partial_update**](DevicesApi.md#network_settings_partial_update) | **PATCH** /api/network-settings/{id} | 
+[**network_settings_retrieve**](DevicesApi.md#network_settings_retrieve) | **GET** /api/network-settings/ | 
+[**network_settings_update**](DevicesApi.md#network_settings_update) | **PUT** /api/network-settings/{id} | 
 [**pi_update_or_create**](DevicesApi.md#pi_update_or_create) | **POST** /api/pis/update-or-create/ | 
 [**pis_create**](DevicesApi.md#pis_create) | **POST** /api/pis/ | 
 [**pis_destroy**](DevicesApi.md#pis_destroy) | **DELETE** /api/pis/{id}/ | 
@@ -32,9 +31,9 @@ Method | HTTP request | Description
 
 
 
-## pi_settings_create
+## network_settings_create
 
-> crate::models::PiSettings pi_settings_create(pi_settings_request)
+> crate::models::NetworkSettings network_settings_create(network_settings_request)
 
 
 ### Parameters
@@ -42,11 +41,11 @@ Method | HTTP request | Description
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**pi_settings_request** | [**PiSettingsRequest**](PiSettingsRequest.md) |  | [required] |
+**network_settings_request** | [**NetworkSettingsRequest**](NetworkSettingsRequest.md) |  | [required] |
 
 ### Return type
 
-[**crate::models::PiSettings**](PiSettings.md)
+[**crate::models::NetworkSettings**](NetworkSettings.md)
 
 ### Authorization
 
@@ -60,37 +59,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## pi_settings_list
+## network_settings_partial_update
 
-> crate::models::PaginatedPiSettingsList pi_settings_list(page)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**page** | Option<**i32**> | A page number within the paginated result set. |  |
-
-### Return type
-
-[**crate::models::PaginatedPiSettingsList**](PaginatedPiSettingsList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## pi_settings_partial_update
-
-> crate::models::PiSettings pi_settings_partial_update(id, patched_pi_settings_request)
+> crate::models::NetworkSettings network_settings_partial_update(id, patched_network_settings_request)
 
 
 ### Parameters
@@ -98,12 +69,12 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this pi settings. | [required] |
-**patched_pi_settings_request** | Option<[**PatchedPiSettingsRequest**](PatchedPiSettingsRequest.md)> |  |  |
+**id** | **i32** |  | [required] |
+**patched_network_settings_request** | Option<[**PatchedNetworkSettingsRequest**](PatchedNetworkSettingsRequest.md)> |  |  |
 
 ### Return type
 
-[**crate::models::PiSettings**](PiSettings.md)
+[**crate::models::NetworkSettings**](NetworkSettings.md)
 
 ### Authorization
 
@@ -117,21 +88,18 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## pi_settings_retrieve
+## network_settings_retrieve
 
-> crate::models::PiSettings pi_settings_retrieve(id)
+> crate::models::NetworkSettings network_settings_retrieve()
 
 
 ### Parameters
 
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this pi settings. | [required] |
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::PiSettings**](PiSettings.md)
+[**crate::models::NetworkSettings**](NetworkSettings.md)
 
 ### Authorization
 
@@ -145,9 +113,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## pi_settings_update
+## network_settings_update
 
-> crate::models::PiSettings pi_settings_update(id, pi_settings_request)
+> crate::models::NetworkSettings network_settings_update(id, network_settings_request)
 
 
 ### Parameters
@@ -155,12 +123,12 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this pi settings. | [required] |
-**pi_settings_request** | [**PiSettingsRequest**](PiSettingsRequest.md) |  | [required] |
+**id** | **i32** |  | [required] |
+**network_settings_request** | [**NetworkSettingsRequest**](NetworkSettingsRequest.md) |  | [required] |
 
 ### Return type
 
-[**crate::models::PiSettings**](PiSettings.md)
+[**crate::models::NetworkSettings**](NetworkSettings.md)
 
 ### Authorization
 
