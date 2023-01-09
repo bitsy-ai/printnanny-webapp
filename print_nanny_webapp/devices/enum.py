@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class PreferredDns(models.TextChoices):
+class PreferredDnsType(models.TextChoices):
     MULTICAST = "multicast", "Multicast DNS (mDNS)"
     TAILSCALE = "tailscale", "Tailscale Magic DNS"
 
