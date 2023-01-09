@@ -1,6 +1,11 @@
 from django.db import models
 
 
+class PreferredDns(models.TextChoices):
+    MULTICAST = "multicast", "Multicast DNS (mDNS)"
+    TAILSCALE = "tailscale", "Tailscale Magic DNS"
+
+
 class JanusConfigType(models.TextChoices):
     CLOUD = "cloud", "Cloud WebRTC Gateway"
     EDGE = "edge", "Edge WebRTC Gateway"
