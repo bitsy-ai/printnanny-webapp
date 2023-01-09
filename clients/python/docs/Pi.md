@@ -19,7 +19,6 @@ Name | Type | Description | Notes
 **sbc** | [**SbcEnum**](SbcEnum.md) |  | [optional] 
 **created_dt** | **datetime** |  | [readonly] 
 **hostname** | **str** | Please enter the hostname you set in the Raspberry Pi Imager&#39;s Advanced Options menu (without .local extension) | [optional] 
-**fqdn** | **str** |  | [optional] 
 **favorite** | **bool** |  | [optional] 
 **setup_finished** | **bool** |  | [optional] 
 
