@@ -5,9 +5,6 @@ import PageTitle from "@/components/nav/PageTitle.vue";
 import DeviceDelete from "@/components/devices/DeviceDelete.vue";
 import DeviceList from "@/components/devices/DeviceList.vue";
 import DeviceTopRight from "@/components/devices/DeviceTopRight.vue";
-
-import wizardRoutes from "./wizard";
-
 export default [
   // DashboardLayout views
   // default: main content area
@@ -38,7 +35,6 @@ export default [
         props: { default: true },
         meta: { title: "Delete Connection" },
       },
-      ...wizardRoutes,
     ],
   },
 ] as Array<RouteRecordRaw>;
