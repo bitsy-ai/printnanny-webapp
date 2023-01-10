@@ -242,7 +242,7 @@ class PiNatsApp(AbstractNatsOrganizationApp, SafeDeleteModel):
 
     @property
     def mqtt_subject_klipper_status(self) -> str:
-        return self.mqtt_subject_template_klipper_statu.format(app_name=self.app_name)
+        return self.mqtt_subject_template_klipper_status.format(app_name=self.app_name)
 
     @property
     def mqtt_broker_host(self) -> str:
