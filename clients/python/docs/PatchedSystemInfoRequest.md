@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **cores** | **int** |  | [optional] 
 **ram** | **int** |  | [optional] 
 **os_version_id** | **str** | PrintNanny OS VERSION_ID from /etc/os-release | [optional] 
-**os_build_id** | **datetime** | PrintNanny OS BUILD_ID from /etc/os-release | [optional] 
+**os_build_id** | **str** | PrintNanny OS BUILD_ID from /etc/os-release | [optional] 
 **os_release_json** | **dict(str, object)** | Full contents of /etc/os-release in key:value format | [optional] 
 **uptime** | **int** | system uptime (in seconds) | [optional] 
 **rootfs_size** | **int** | Size of /dev/root filesystem in bytes | [optional] 
