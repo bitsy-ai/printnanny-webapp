@@ -360,11 +360,14 @@ class SystemInfo(SafeDeleteModel):
     pi = models.ForeignKey(Pi, on_delete=models.CASCADE, related_name="system_infos")
 
     os_version_id = models.CharField(
+        blank=True,
         max_length=255,
         help_text="PrintNanny OS VERSION_ID from /etc/os-release",
     )
     os_build_id = models.CharField(
-        max_length=255, help_text="PrintNanny OS BUILD_ID from /etc/os-release"
+        blank=True,
+        max_length=255,
+        help_text="PrintNanny OS BUILD_ID from /etc/os-release",
     )
 
     os_release_json = models.JSONField(
