@@ -528,6 +528,7 @@ class WebrtcStream(SafeDeleteModel):
     )
     video_rtp_port = models.PositiveSmallIntegerField(null=True)
     data_rtp_port = models.PositiveSmallIntegerField(null=True)
+    mountpoint = models.CharField(max_length=255)
 
     info = models.JSONField(default=dict)
 
