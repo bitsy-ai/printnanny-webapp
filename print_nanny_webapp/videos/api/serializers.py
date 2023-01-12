@@ -4,12 +4,12 @@ from print_nanny_webapp.videos.models import VideoRecording
 
 
 class VideoRecordingSerializer(serializers.ModelSerializer):
-    url = serializers.SerializerMethodField()
+    mjr_upload_url = serializers.SerializerMethodField()
 
-    def get_url(self, obj) -> str:
-        return f"/crash-reports/{obj.id}/"
+    def get_mjr_upload_url(self, obj) -> str:
+        return obj.mjr_upload_url()
 
     class Meta:
         model = VideoRecording
         exclude = ("deleted",)
-        read_only_fields = ("id", "url")
+        read_only_fields = ("id", "mjr_upload_url", "user")

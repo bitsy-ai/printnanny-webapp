@@ -2,6 +2,7 @@ from storages.backends.gcloud import GoogleCloudStorage
 from typing import Dict, Any
 import google.auth
 import os
+import datetime
 
 # Perform a refresh request to get the access token of the current credentials (Else, it's None)
 from google.auth.transport import requests
@@ -63,6 +64,14 @@ class MediaRootGoogleCloudStorage(GoogleCloudStorage, SignBlob):
         sign_kwargs = self.get_sign_kwargs()
         return blob.generate_signed_url(
             expiration=self.expiration, version=version, **sign_kwargs
+        )
+
+    def upload_url(self, name, version="v4", expiration=datetime.timedelta(days=2)):
+        name = self._normalize_name(clean_name(name))
+        blob = self.bucket.blob(name)
+        sign_kwargs = self.get_sign_kwargs()
+        return blob.generate_signed_url(
+            method="PUT", expiration=expiration, version=version, **sign_kwargs
         )
 
 

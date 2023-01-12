@@ -69,3 +69,6 @@ class VideoRecordingViewSet(
     parser_classes = [
         parsers.MultiPartParser,
     ]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
