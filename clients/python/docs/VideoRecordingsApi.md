@@ -1,14 +1,14 @@
-# printnanny_api_client.VideosApi
+# printnanny_api_client.VideoRecordingsApi
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**videos_retrieve**](VideosApi.md#videos_retrieve) | **GET** /api/videos/{id}/ | 
+[**video_recordings_retrieve**](VideoRecordingsApi.md#video_recordings_retrieve) | **GET** /api/video-recordings/{id}/ | 
 
 
-# **videos_retrieve**
-> VideoRecording videos_retrieve(id)
+# **video_recordings_retrieve**
+> VideoRecording video_recordings_retrieve(id)
 
 
 
@@ -46,14 +46,14 @@ configuration = printnanny_api_client.Configuration(
 # Enter a context with an instance of the API client
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = printnanny_api_client.VideosApi(api_client)
+    api_instance = printnanny_api_client.VideoRecordingsApi(api_client)
     id = 56 # int | A unique integer value identifying this video recording.
 
     try:
-        api_response = api_instance.videos_retrieve(id)
+        api_response = api_instance.video_recordings_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling VideosApi->videos_retrieve: %s\n" % e)
+        print("Exception when calling VideoRecordingsApi->video_recordings_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -88,14 +88,14 @@ configuration = printnanny_api_client.Configuration(
 # Enter a context with an instance of the API client
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = printnanny_api_client.VideosApi(api_client)
+    api_instance = printnanny_api_client.VideoRecordingsApi(api_client)
     id = 56 # int | A unique integer value identifying this video recording.
 
     try:
-        api_response = api_instance.videos_retrieve(id)
+        api_response = api_instance.video_recordings_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling VideosApi->videos_retrieve: %s\n" % e)
+        print("Exception when calling VideoRecordingsApi->video_recordings_retrieve: %s\n" % e)
 ```
 
 ### Parameters

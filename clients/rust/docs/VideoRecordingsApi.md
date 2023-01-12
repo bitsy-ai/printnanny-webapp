@@ -1,16 +1,16 @@
-# \VideosApi
+# \VideoRecordingsApi
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**videos_retrieve**](VideosApi.md#videos_retrieve) | **GET** /api/videos/{id}/ | 
+[**video_recordings_retrieve**](VideoRecordingsApi.md#video_recordings_retrieve) | **GET** /api/video-recordings/{id}/ | 
 
 
 
-## videos_retrieve
+## video_recordings_retrieve
 
-> crate::models::VideoRecording videos_retrieve(id)
+> crate::models::VideoRecording video_recordings_retrieve(id)
 
 
 ### Parameters

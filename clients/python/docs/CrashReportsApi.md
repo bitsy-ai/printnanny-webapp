@@ -9,10 +9,10 @@ Method | HTTP request | Description
 [**crash_reports_partial_update**](CrashReportsApi.md#crash_reports_partial_update) | **PATCH** /api/crash-reports/{id}/ | 
 [**crash_reports_retrieve**](CrashReportsApi.md#crash_reports_retrieve) | **GET** /api/crash-reports/{id}/ | 
 [**crash_reports_update**](CrashReportsApi.md#crash_reports_update) | **PUT** /api/crash-reports/{id}/ | 
-[**videos_create**](CrashReportsApi.md#videos_create) | **POST** /api/videos/ | 
-[**videos_list**](CrashReportsApi.md#videos_list) | **GET** /api/videos/ | 
-[**videos_partial_update**](CrashReportsApi.md#videos_partial_update) | **PATCH** /api/videos/{id}/ | 
-[**videos_update**](CrashReportsApi.md#videos_update) | **PUT** /api/videos/{id}/ | 
+[**video_recordings_create**](CrashReportsApi.md#video_recordings_create) | **POST** /api/video-recordings/ | 
+[**video_recordings_list**](CrashReportsApi.md#video_recordings_list) | **GET** /api/video-recordings/ | 
+[**video_recordings_partial_update**](CrashReportsApi.md#video_recordings_partial_update) | **PATCH** /api/video-recordings/{id}/ | 
+[**video_recordings_update**](CrashReportsApi.md#video_recordings_update) | **PUT** /api/video-recordings/{id}/ | 
 
 
 # **crash_reports_create**
@@ -724,8 +724,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **videos_create**
-> VideoRecording videos_create(start_dt, name, user, end_dt=end_dt, mjr_recording=mjr_recording)
+# **video_recordings_create**
+> VideoRecording video_recordings_create(start_dt, name, end_dt=end_dt, mjr_recording=mjr_recording)
 
 
 
@@ -766,15 +766,14 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.CrashReportsApi(api_client)
     start_dt = '2013-10-20T19:20:30+01:00' # datetime | 
 name = 'name_example' # str | 
-user = 56 # int | 
 end_dt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 mjr_recording = '/path/to/file' # file |  (optional)
 
     try:
-        api_response = api_instance.videos_create(start_dt, name, user, end_dt=end_dt, mjr_recording=mjr_recording)
+        api_response = api_instance.video_recordings_create(start_dt, name, end_dt=end_dt, mjr_recording=mjr_recording)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling CrashReportsApi->videos_create: %s\n" % e)
+        print("Exception when calling CrashReportsApi->video_recordings_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -812,15 +811,14 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.CrashReportsApi(api_client)
     start_dt = '2013-10-20T19:20:30+01:00' # datetime | 
 name = 'name_example' # str | 
-user = 56 # int | 
 end_dt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 mjr_recording = '/path/to/file' # file |  (optional)
 
     try:
-        api_response = api_instance.videos_create(start_dt, name, user, end_dt=end_dt, mjr_recording=mjr_recording)
+        api_response = api_instance.video_recordings_create(start_dt, name, end_dt=end_dt, mjr_recording=mjr_recording)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling CrashReportsApi->videos_create: %s\n" % e)
+        print("Exception when calling CrashReportsApi->video_recordings_create: %s\n" % e)
 ```
 
 ### Parameters
@@ -829,7 +827,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start_dt** | **datetime**|  | 
  **name** | **str**|  | 
- **user** | **int**|  | 
  **end_dt** | **datetime**|  | [optional] 
  **mjr_recording** | **file**|  | [optional] 
 
@@ -858,8 +855,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **videos_list**
-> PaginatedVideoRecordingList videos_list(page=page)
+# **video_recordings_list**
+> PaginatedVideoRecordingList video_recordings_list(page=page)
 
 
 
@@ -901,10 +898,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.videos_list(page=page)
+        api_response = api_instance.video_recordings_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling CrashReportsApi->videos_list: %s\n" % e)
+        print("Exception when calling CrashReportsApi->video_recordings_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -943,10 +940,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.videos_list(page=page)
+        api_response = api_instance.video_recordings_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling CrashReportsApi->videos_list: %s\n" % e)
+        print("Exception when calling CrashReportsApi->video_recordings_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -979,8 +976,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **videos_partial_update**
-> VideoRecording videos_partial_update(id, start_dt=start_dt, end_dt=end_dt, name=name, mjr_recording=mjr_recording, user=user)
+# **video_recordings_partial_update**
+> VideoRecording video_recordings_partial_update(id, start_dt=start_dt, end_dt=end_dt, name=name, mjr_recording=mjr_recording)
 
 
 
@@ -1024,13 +1021,12 @@ start_dt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 end_dt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 name = 'name_example' # str |  (optional)
 mjr_recording = '/path/to/file' # file |  (optional)
-user = 56 # int |  (optional)
 
     try:
-        api_response = api_instance.videos_partial_update(id, start_dt=start_dt, end_dt=end_dt, name=name, mjr_recording=mjr_recording, user=user)
+        api_response = api_instance.video_recordings_partial_update(id, start_dt=start_dt, end_dt=end_dt, name=name, mjr_recording=mjr_recording)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling CrashReportsApi->videos_partial_update: %s\n" % e)
+        print("Exception when calling CrashReportsApi->video_recordings_partial_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1071,13 +1067,12 @@ start_dt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 end_dt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 name = 'name_example' # str |  (optional)
 mjr_recording = '/path/to/file' # file |  (optional)
-user = 56 # int |  (optional)
 
     try:
-        api_response = api_instance.videos_partial_update(id, start_dt=start_dt, end_dt=end_dt, name=name, mjr_recording=mjr_recording, user=user)
+        api_response = api_instance.video_recordings_partial_update(id, start_dt=start_dt, end_dt=end_dt, name=name, mjr_recording=mjr_recording)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling CrashReportsApi->videos_partial_update: %s\n" % e)
+        print("Exception when calling CrashReportsApi->video_recordings_partial_update: %s\n" % e)
 ```
 
 ### Parameters
@@ -1089,7 +1084,6 @@ Name | Type | Description  | Notes
  **end_dt** | **datetime**|  | [optional] 
  **name** | **str**|  | [optional] 
  **mjr_recording** | **file**|  | [optional] 
- **user** | **int**|  | [optional] 
 
 ### Return type
 
@@ -1116,8 +1110,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **videos_update**
-> VideoRecording videos_update(id, start_dt, name, user, end_dt=end_dt, mjr_recording=mjr_recording)
+# **video_recordings_update**
+> VideoRecording video_recordings_update(id, start_dt, name, end_dt=end_dt, mjr_recording=mjr_recording)
 
 
 
@@ -1159,15 +1153,14 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this video recording.
 start_dt = '2013-10-20T19:20:30+01:00' # datetime | 
 name = 'name_example' # str | 
-user = 56 # int | 
 end_dt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 mjr_recording = '/path/to/file' # file |  (optional)
 
     try:
-        api_response = api_instance.videos_update(id, start_dt, name, user, end_dt=end_dt, mjr_recording=mjr_recording)
+        api_response = api_instance.video_recordings_update(id, start_dt, name, end_dt=end_dt, mjr_recording=mjr_recording)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling CrashReportsApi->videos_update: %s\n" % e)
+        print("Exception when calling CrashReportsApi->video_recordings_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1206,15 +1199,14 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this video recording.
 start_dt = '2013-10-20T19:20:30+01:00' # datetime | 
 name = 'name_example' # str | 
-user = 56 # int | 
 end_dt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 mjr_recording = '/path/to/file' # file |  (optional)
 
     try:
-        api_response = api_instance.videos_update(id, start_dt, name, user, end_dt=end_dt, mjr_recording=mjr_recording)
+        api_response = api_instance.video_recordings_update(id, start_dt, name, end_dt=end_dt, mjr_recording=mjr_recording)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling CrashReportsApi->videos_update: %s\n" % e)
+        print("Exception when calling CrashReportsApi->video_recordings_update: %s\n" % e)
 ```
 
 ### Parameters
@@ -1224,7 +1216,6 @@ Name | Type | Description  | Notes
  **id** | **int**| A unique integer value identifying this video recording. | 
  **start_dt** | **datetime**|  | 
  **name** | **str**|  | 
- **user** | **int**|  | 
  **end_dt** | **datetime**|  | [optional] 
  **mjr_recording** | **file**|  | [optional] 
 
