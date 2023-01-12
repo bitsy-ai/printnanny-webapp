@@ -18,7 +18,7 @@ class VideoRecording(SafeDeleteModel):
     """
 
     start_dt = models.DateTimeField()
-    end_dt = models.DateTimeField()
+    end_dt = models.DateTimeField(null=True)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
