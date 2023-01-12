@@ -46,7 +46,7 @@ router.register("accounts/email-waitlist", EmailWaitlistViewSet, "email-waitlist
 router.register("pis", PiViewSet)
 
 router.register("crash-reports", CrashReportViewSet, "crash-reports")
-router.register("videos", VideoRecordingViewSet, "videos")
+router.register("video-recordings", VideoRecordingViewSet, "video-recordings")
 
 # octoprint endpoints (PrintNanny os data model)
 
