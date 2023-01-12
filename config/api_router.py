@@ -37,6 +37,7 @@ from print_nanny_webapp.octoprint.api.views import (
     AllOctoPrintEventsViewSet,
 )
 from print_nanny_webapp.users.api.views import EmailWaitlistViewSet, UserNkeyView
+from print_nanny_webapp.videos.api.views import VideoRecordingViewSet
 
 
 router = DefaultRouter()
@@ -45,6 +46,7 @@ router.register("accounts/email-waitlist", EmailWaitlistViewSet, "email-waitlist
 router.register("pis", PiViewSet)
 
 router.register("crash-reports", CrashReportViewSet, "crash-reports")
+router.register("videos", VideoRecordingViewSet, "videos")
 
 # octoprint endpoints (PrintNanny os data model)
 
