@@ -84,6 +84,7 @@ docs/PaginatedPolymorphicPiEventList.md
 docs/PaginatedPolymorphicPiStatusList.md
 docs/PaginatedProductList.md
 docs/PaginatedSystemInfoList.md
+docs/PaginatedVideoRecordingList.md
 docs/PaginatedWebrtcStreamList.md
 docs/PasswordChangeRequest.md
 docs/PasswordResetConfirmRequest.md
@@ -166,6 +167,8 @@ docs/Token.md
 docs/User.md
 docs/UserRequest.md
 docs/VerifyEmailRequest.md
+docs/VideoRecording.md
+docs/VideosApi.md
 docs/WebrtcStream.md
 docs/WebrtcStreamRequest.md
 git_push.sh
@@ -183,6 +186,7 @@ src/apis/pis_api.rs
 src/apis/schema_api.rs
 src/apis/settings_api.rs
 src/apis/shop_api.rs
+src/apis/videos_api.rs
 src/lib.rs
 src/models/achievement.rs
 src/models/achievement_type_enum.rs
@@ -258,6 +262,7 @@ src/models/paginated_polymorphic_pi_event_list.rs
 src/models/paginated_polymorphic_pi_status_list.rs
 src/models/paginated_product_list.rs
 src/models/paginated_system_info_list.rs
+src/models/paginated_video_recording_list.rs
 src/models/paginated_webrtc_stream_list.rs
 src/models/password_change_request.rs
 src/models/password_reset_confirm_request.rs
@@ -336,5 +341,6 @@ src/models/token.rs
 src/models/user.rs
 src/models/user_request.rs
 src/models/verify_email_request.rs
+src/models/video_recording.rs
 src/models/webrtc_stream.rs
 src/models/webrtc_stream_request.rs

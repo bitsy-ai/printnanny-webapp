@@ -9,6 +9,10 @@ Method | HTTP request | Description
 [**crash_reports_partial_update**](CrashReportsApi.md#crash_reports_partial_update) | **PATCH** /api/crash-reports/{id}/ | 
 [**crash_reports_retrieve**](CrashReportsApi.md#crash_reports_retrieve) | **GET** /api/crash-reports/{id}/ | 
 [**crash_reports_update**](CrashReportsApi.md#crash_reports_update) | **PUT** /api/crash-reports/{id}/ | 
+[**videos_create**](CrashReportsApi.md#videos_create) | **POST** /api/videos/ | 
+[**videos_list**](CrashReportsApi.md#videos_list) | **GET** /api/videos/ | 
+[**videos_partial_update**](CrashReportsApi.md#videos_partial_update) | **PATCH** /api/videos/{id}/ | 
+[**videos_update**](CrashReportsApi.md#videos_update) | **PUT** /api/videos/{id}/ | 
 
 
 
@@ -174,6 +178,132 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::CrashReport**](CrashReport.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## videos_create
+
+> crate::models::VideoRecording videos_create(start_dt, name, user, end_dt, mjr_recording)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**start_dt** | **String** |  | [required] |
+**name** | **String** |  | [required] |
+**user** | **i32** |  | [required] |
+**end_dt** | Option<**String**> |  |  |
+**mjr_recording** | Option<**std::path::PathBuf**> |  |  |
+
+### Return type
+
+[**crate::models::VideoRecording**](VideoRecording.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## videos_list
+
+> crate::models::PaginatedVideoRecordingList videos_list(page)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+
+### Return type
+
+[**crate::models::PaginatedVideoRecordingList**](PaginatedVideoRecordingList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## videos_partial_update
+
+> crate::models::VideoRecording videos_partial_update(id, start_dt, end_dt, name, mjr_recording, user)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** | A unique integer value identifying this video recording. | [required] |
+**start_dt** | Option<**String**> |  |  |
+**end_dt** | Option<**String**> |  |  |
+**name** | Option<**String**> |  |  |
+**mjr_recording** | Option<**std::path::PathBuf**> |  |  |
+**user** | Option<**i32**> |  |  |
+
+### Return type
+
+[**crate::models::VideoRecording**](VideoRecording.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## videos_update
+
+> crate::models::VideoRecording videos_update(id, start_dt, name, user, end_dt, mjr_recording)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** | A unique integer value identifying this video recording. | [required] |
+**start_dt** | **String** |  | [required] |
+**name** | **String** |  | [required] |
+**user** | **i32** |  | [required] |
+**end_dt** | Option<**String**> |  |  |
+**mjr_recording** | Option<**std::path::PathBuf**> |  |  |
+
+### Return type
+
+[**crate::models::VideoRecording**](VideoRecording.md)
 
 ### Authorization
 
