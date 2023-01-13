@@ -427,16 +427,19 @@ python-protobuf:
 	sed -i 's/monitoring_pb2/print_nanny_client.protobuf.monitoring_pb2/' clients/python/print_nanny_client/protobuf/monitoring_pb2.py
 
 
-python-client: clean-python-client # python-flatbuffer python-protobuf
-	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  validate \
-		-i http://localhost:8000/api/schema/ --recommend
+# python-client: clean-python-client # python-flatbuffer python-protobuf
+# 	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  validate \
+# 		-i http://localhost:8000/api/schema/ --recommend
 
-	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  generate \
-		-i http://localhost:8000/api/schema/ \
-		-g python-legacy \
-		-o $(PWD)/clients/python \
-		-c $(PWD)/clients/python.yaml \
+# 	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  generate \
+# 		-i http://localhost:8000/api/schema/ \
+# 		-g python-legacy \
+# 		-o $(PWD)/clients/python \
+# 		-c $(PWD)/clients/python.yaml \
 
+python-client: clean-python-client
+	openapi-python-client generate --url http://localhost:8000/api/schema/ --config clients/python.yaml --meta setup
+	mv printnanny-api-client clients/python
 
 clean-pyc: ## remove Python file artifacts
 	find . -name '*.pyc' -exec rm -f {} \;
