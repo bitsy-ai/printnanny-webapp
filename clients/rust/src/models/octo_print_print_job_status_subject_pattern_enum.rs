@@ -12,22 +12,19 @@
 /// 
 #[derive(Clone, Copy, clap::ValueEnum, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum OctoPrintPrintJobStatusSubjectPatternEnum {
-    #[serde(rename = "pi.{pi_id}.octoprint.print_job")]
-    PiPiIdOctoprintPrintJob,
 
 }
 
 impl ToString for OctoPrintPrintJobStatusSubjectPatternEnum {
     fn to_string(&self) -> String {
         match self {
-            Self::PiPiIdOctoprintPrintJob => String::from("pi.{pi_id}.octoprint.print_job"),
         }
     }
 }
 
 impl Default for OctoPrintPrintJobStatusSubjectPatternEnum {
     fn default() -> OctoPrintPrintJobStatusSubjectPatternEnum {
-        Self::PiPiIdOctoprintPrintJob
+        Self::
     }
 }
 

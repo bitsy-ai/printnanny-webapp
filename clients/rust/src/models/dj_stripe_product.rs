@@ -38,7 +38,7 @@ pub struct DjStripeProduct {
     pub name: String,
     /// The type of the product. The product is either of type `good`, which is eligible for use with Orders and SKUs, or `service`, which is eligible for use with Subscriptions and Plans.
     #[serde(rename = "type")]
-    pub _type: Option<Box<crate::models::StripeProductType>>,
+    pub _type: Box<crate::models::StripeProductType>,
     /// Whether the product is currently available for purchase. Only applicable to products of `type=good`.
     #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
     pub active: Option<bool>,
@@ -74,7 +74,7 @@ pub struct DjStripeProduct {
 }
 
 impl DjStripeProduct {
-    pub fn new(djstripe_id: i32, djstripe_created: String, djstripe_updated: String, id: String, name: String, _type: Option<crate::models::StripeProductType>) -> DjStripeProduct {
+    pub fn new(djstripe_id: i32, djstripe_created: String, djstripe_updated: String, id: String, name: String, _type: crate::models::StripeProductType) -> DjStripeProduct {
         DjStripeProduct {
             djstripe_id,
             djstripe_created,
@@ -85,7 +85,7 @@ impl DjStripeProduct {
             metadata: None,
             description: None,
             name,
-            _type: _type.map(Box::new),
+            _type: Box::new(_type),
             active: None,
             attributes: None,
             caption: None,

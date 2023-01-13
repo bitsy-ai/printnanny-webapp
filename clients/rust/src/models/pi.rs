@@ -18,19 +18,19 @@ pub struct Pi {
     #[serde(rename = "last_boot")]
     pub last_boot: Option<String>,
     #[serde(rename = "network_settings")]
-    pub network_settings: Option<Box<crate::models::NetworkSettings>>,
+    pub network_settings: Box<crate::models::NetworkSettings>,
     #[serde(rename = "user")]
-    pub user: Option<Box<crate::models::User>>,
+    pub user: Box<crate::models::User>,
     #[serde(rename = "system_info")]
-    pub system_info: Option<Box<crate::models::SystemInfo>>,
+    pub system_info: Box<crate::models::SystemInfo>,
     #[serde(rename = "webrtc_edge")]
-    pub webrtc_edge: Option<Box<crate::models::WebrtcStream>>,
+    pub webrtc_edge: Box<crate::models::WebrtcStream>,
     #[serde(rename = "webrtc_cloud")]
-    pub webrtc_cloud: Option<Box<crate::models::WebrtcStream>>,
+    pub webrtc_cloud: Box<crate::models::WebrtcStream>,
     #[serde(rename = "octoprint_server")]
-    pub octoprint_server: Option<Box<crate::models::OctoPrintServer>>,
+    pub octoprint_server: Box<crate::models::OctoPrintServer>,
     #[serde(rename = "nats_app")]
-    pub nats_app: Option<Box<crate::models::PiNatsApp>>,
+    pub nats_app: Box<crate::models::PiNatsApp>,
     #[serde(rename = "urls")]
     pub urls: Box<crate::models::PiUrls>,
     #[serde(rename = "shortname_urls")]
@@ -51,17 +51,17 @@ pub struct Pi {
 }
 
 impl Pi {
-    pub fn new(id: i32, last_boot: Option<String>, network_settings: Option<crate::models::NetworkSettings>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, webrtc_edge: Option<crate::models::WebrtcStream>, webrtc_cloud: Option<crate::models::WebrtcStream>, octoprint_server: Option<crate::models::OctoPrintServer>, nats_app: Option<crate::models::PiNatsApp>, urls: crate::models::PiUrls, shortname_urls: crate::models::PiUrls, mdns_urls: crate::models::PiUrls, created_dt: String) -> Pi {
+    pub fn new(id: i32, last_boot: Option<String>, network_settings: crate::models::NetworkSettings, user: crate::models::User, system_info: crate::models::SystemInfo, webrtc_edge: crate::models::WebrtcStream, webrtc_cloud: crate::models::WebrtcStream, octoprint_server: crate::models::OctoPrintServer, nats_app: crate::models::PiNatsApp, urls: crate::models::PiUrls, shortname_urls: crate::models::PiUrls, mdns_urls: crate::models::PiUrls, created_dt: String) -> Pi {
         Pi {
             id,
             last_boot,
-            network_settings: network_settings.map(Box::new),
-            user: user.map(Box::new),
-            system_info: system_info.map(Box::new),
-            webrtc_edge: webrtc_edge.map(Box::new),
-            webrtc_cloud: webrtc_cloud.map(Box::new),
-            octoprint_server: octoprint_server.map(Box::new),
-            nats_app: nats_app.map(Box::new),
+            network_settings: Box::new(network_settings),
+            user: Box::new(user),
+            system_info: Box::new(system_info),
+            webrtc_edge: Box::new(webrtc_edge),
+            webrtc_cloud: Box::new(webrtc_cloud),
+            octoprint_server: Box::new(octoprint_server),
+            nats_app: Box::new(nats_app),
             urls: Box::new(urls),
             shortname_urls: Box::new(shortname_urls),
             mdns_urls: Box::new(mdns_urls),

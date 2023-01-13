@@ -12,25 +12,19 @@
 /// 
 #[derive(Clone, Copy, clap::ValueEnum, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum StripeBillingScheme {
-    #[serde(rename = "per_unit")]
-    PerUnit,
-    #[serde(rename = "tiered")]
-    Tiered,
 
 }
 
 impl ToString for StripeBillingScheme {
     fn to_string(&self) -> String {
         match self {
-            Self::PerUnit => String::from("per_unit"),
-            Self::Tiered => String::from("tiered"),
         }
     }
 }
 
 impl Default for StripeBillingScheme {
     fn default() -> StripeBillingScheme {
-        Self::PerUnit
+        Self::
     }
 }
 

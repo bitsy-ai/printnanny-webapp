@@ -61,11 +61,7 @@ class TestPaginatedPiList(unittest.TestCase):
                             octoprint = '', 
                             swupdate = '', 
                             syncthing = '', ), 
-                        mdns_urls = printnanny_api_client.models.pi_urls.Pi_urls(
-                            mission_control = '', 
-                            octoprint = '', 
-                            swupdate = '', 
-                            syncthing = '', ), 
+                        mdns_urls = , 
                         sbc = 'rpi_4', 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         hostname = '', 

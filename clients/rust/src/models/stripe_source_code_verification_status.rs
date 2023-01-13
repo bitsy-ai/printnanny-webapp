@@ -12,28 +12,19 @@
 /// 
 #[derive(Clone, Copy, clap::ValueEnum, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum StripeSourceCodeVerificationStatus {
-    #[serde(rename = "failed")]
-    Failed,
-    #[serde(rename = "pending")]
-    Pending,
-    #[serde(rename = "succeeded")]
-    Succeeded,
 
 }
 
 impl ToString for StripeSourceCodeVerificationStatus {
     fn to_string(&self) -> String {
         match self {
-            Self::Failed => String::from("failed"),
-            Self::Pending => String::from("pending"),
-            Self::Succeeded => String::from("succeeded"),
         }
     }
 }
 
 impl Default for StripeSourceCodeVerificationStatus {
     fn default() -> StripeSourceCodeVerificationStatus {
-        Self::Failed
+        Self::
     }
 }
 

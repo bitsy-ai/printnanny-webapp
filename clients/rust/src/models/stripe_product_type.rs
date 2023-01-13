@@ -12,25 +12,19 @@
 /// 
 #[derive(Clone, Copy, clap::ValueEnum, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum StripeProductType {
-    #[serde(rename = "good")]
-    Good,
-    #[serde(rename = "service")]
-    Service,
 
 }
 
 impl ToString for StripeProductType {
     fn to_string(&self) -> String {
         match self {
-            Self::Good => String::from("good"),
-            Self::Service => String::from("service"),
         }
     }
 }
 
 impl Default for StripeProductType {
     fn default() -> StripeProductType {
-        Self::Good
+        Self::
     }
 }
 

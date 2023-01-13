@@ -16,7 +16,7 @@ pub struct OctoPrintServer {
     #[serde(rename = "id")]
     pub id: i32,
     #[serde(rename = "settings")]
-    pub settings: Option<Box<crate::models::OctoPrintSettings>>,
+    pub settings: Box<crate::models::OctoPrintSettings>,
     #[serde(rename = "base_path")]
     pub base_path: String,
     #[serde(rename = "venv_path")]
@@ -46,10 +46,10 @@ pub struct OctoPrintServer {
 }
 
 impl OctoPrintServer {
-    pub fn new(id: i32, settings: Option<crate::models::OctoPrintSettings>, base_path: String, venv_path: String, pip_path: String, python_path: String, created_dt: String, updated_dt: String, user: i32, pi: i32) -> OctoPrintServer {
+    pub fn new(id: i32, settings: crate::models::OctoPrintSettings, base_path: String, venv_path: String, pip_path: String, python_path: String, created_dt: String, updated_dt: String, user: i32, pi: i32) -> OctoPrintServer {
         OctoPrintServer {
             id,
-            settings: settings.map(Box::new),
+            settings: Box::new(settings),
             base_path,
             venv_path,
             pip_path,

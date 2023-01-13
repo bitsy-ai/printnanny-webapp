@@ -185,6 +185,8 @@ class Pi(object):
         :param network_settings: The network_settings of this Pi.  # noqa: E501
         :type network_settings: NetworkSettings
         """
+        if self.local_vars_configuration.client_side_validation and network_settings is None:  # noqa: E501
+            raise ValueError("Invalid value for `network_settings`, must not be `None`")  # noqa: E501
 
         self._network_settings = network_settings
 
@@ -206,6 +208,8 @@ class Pi(object):
         :param user: The user of this Pi.  # noqa: E501
         :type user: User
         """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 
@@ -227,6 +231,8 @@ class Pi(object):
         :param system_info: The system_info of this Pi.  # noqa: E501
         :type system_info: SystemInfo
         """
+        if self.local_vars_configuration.client_side_validation and system_info is None:  # noqa: E501
+            raise ValueError("Invalid value for `system_info`, must not be `None`")  # noqa: E501
 
         self._system_info = system_info
 
@@ -248,6 +254,8 @@ class Pi(object):
         :param webrtc_edge: The webrtc_edge of this Pi.  # noqa: E501
         :type webrtc_edge: WebrtcStream
         """
+        if self.local_vars_configuration.client_side_validation and webrtc_edge is None:  # noqa: E501
+            raise ValueError("Invalid value for `webrtc_edge`, must not be `None`")  # noqa: E501
 
         self._webrtc_edge = webrtc_edge
 
@@ -269,6 +277,8 @@ class Pi(object):
         :param webrtc_cloud: The webrtc_cloud of this Pi.  # noqa: E501
         :type webrtc_cloud: WebrtcStream
         """
+        if self.local_vars_configuration.client_side_validation and webrtc_cloud is None:  # noqa: E501
+            raise ValueError("Invalid value for `webrtc_cloud`, must not be `None`")  # noqa: E501
 
         self._webrtc_cloud = webrtc_cloud
 
@@ -290,6 +300,8 @@ class Pi(object):
         :param octoprint_server: The octoprint_server of this Pi.  # noqa: E501
         :type octoprint_server: OctoPrintServer
         """
+        if self.local_vars_configuration.client_side_validation and octoprint_server is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_server`, must not be `None`")  # noqa: E501
 
         self._octoprint_server = octoprint_server
 
@@ -311,6 +323,8 @@ class Pi(object):
         :param nats_app: The nats_app of this Pi.  # noqa: E501
         :type nats_app: PiNatsApp
         """
+        if self.local_vars_configuration.client_side_validation and nats_app is None:  # noqa: E501
+            raise ValueError("Invalid value for `nats_app`, must not be `None`")  # noqa: E501
 
         self._nats_app = nats_app
 

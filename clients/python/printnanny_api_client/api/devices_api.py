@@ -127,8 +127,7 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'network_settings_request' is set
-        if self.api_client.client_side_validation and ('network_settings_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['network_settings_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('network_settings_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `network_settings_request` when calling `network_settings_create`")  # noqa: E501
 
         collection_formats = {}
@@ -150,10 +149,12 @@ class DevicesApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -279,8 +280,7 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `network_settings_partial_update`")  # noqa: E501
 
         collection_formats = {}
@@ -304,10 +304,12 @@ class DevicesApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'PATCH', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -563,12 +565,10 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `network_settings_update`")  # noqa: E501
         # verify the required parameter 'network_settings_request' is set
-        if self.api_client.client_side_validation and ('network_settings_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['network_settings_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('network_settings_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `network_settings_request` when calling `network_settings_update`")  # noqa: E501
 
         collection_formats = {}
@@ -592,10 +592,12 @@ class DevicesApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -737,10 +739,12 @@ class DevicesApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -879,10 +883,12 @@ class DevicesApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -1005,8 +1011,7 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `pis_destroy`")  # noqa: E501
 
         collection_formats = {}
@@ -1135,8 +1140,7 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `pis_license_zip_retrieve`")  # noqa: E501
 
         collection_formats = {}
@@ -1278,7 +1282,7 @@ class DevicesApi(object):
         path_params = {}
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
@@ -1416,8 +1420,7 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `pis_partial_update`")  # noqa: E501
 
         collection_formats = {}
@@ -1441,10 +1444,12 @@ class DevicesApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'PATCH', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -1567,8 +1572,7 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `pis_retrieve`")  # noqa: E501
 
         collection_formats = {}
@@ -1708,12 +1712,10 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `pis_system_info_create`")  # noqa: E501
         # verify the required parameter 'system_info_request' is set
-        if self.api_client.client_side_validation and ('system_info_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['system_info_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('system_info_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `system_info_request` when calling `pis_system_info_create`")  # noqa: E501
 
         collection_formats = {}
@@ -1737,10 +1739,12 @@ class DevicesApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -1866,8 +1870,7 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `pis_system_info_list`")  # noqa: E501
 
         collection_formats = {}
@@ -1877,7 +1880,7 @@ class DevicesApi(object):
             path_params['pi_id'] = local_var_params['pi_id']  # noqa: E501
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
@@ -2018,12 +2021,10 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `pis_system_info_partial_update`")  # noqa: E501
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `pis_system_info_partial_update`")  # noqa: E501
 
         collection_formats = {}
@@ -2049,10 +2050,12 @@ class DevicesApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'PATCH', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -2178,12 +2181,10 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `pis_system_info_retrieve`")  # noqa: E501
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `pis_system_info_retrieve`")  # noqa: E501
 
         collection_formats = {}
@@ -2330,16 +2331,13 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `pis_system_info_update`")  # noqa: E501
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `pis_system_info_update`")  # noqa: E501
         # verify the required parameter 'system_info_request' is set
-        if self.api_client.client_side_validation and ('system_info_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['system_info_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('system_info_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `system_info_request` when calling `pis_system_info_update`")  # noqa: E501
 
         collection_formats = {}
@@ -2365,10 +2363,12 @@ class DevicesApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -2496,8 +2496,7 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `pis_update`")  # noqa: E501
 
         collection_formats = {}
@@ -2521,10 +2520,12 @@ class DevicesApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -2650,8 +2651,7 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `pis_webrtc_streams_create`")  # noqa: E501
 
         collection_formats = {}
@@ -2675,10 +2675,12 @@ class DevicesApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -2804,8 +2806,7 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `pis_webrtc_streams_list`")  # noqa: E501
 
         collection_formats = {}
@@ -2815,7 +2816,7 @@ class DevicesApi(object):
             path_params['pi_id'] = local_var_params['pi_id']  # noqa: E501
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
@@ -2956,12 +2957,10 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `pis_webrtc_streams_partial_update`")  # noqa: E501
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `pis_webrtc_streams_partial_update`")  # noqa: E501
 
         collection_formats = {}
@@ -2987,10 +2986,12 @@ class DevicesApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'PATCH', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -3116,12 +3117,10 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `pis_webrtc_streams_retrieve`")  # noqa: E501
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `pis_webrtc_streams_retrieve`")  # noqa: E501
 
         collection_formats = {}
@@ -3273,12 +3272,10 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `pis_webrtc_streams_update`")  # noqa: E501
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `pis_webrtc_streams_update`")  # noqa: E501
 
         collection_formats = {}
@@ -3304,10 +3301,12 @@ class DevicesApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -3433,12 +3432,10 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `system_info_update_or_create`")  # noqa: E501
         # verify the required parameter 'system_info_request' is set
-        if self.api_client.client_side_validation and ('system_info_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['system_info_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('system_info_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `system_info_request` when calling `system_info_update_or_create`")  # noqa: E501
 
         collection_formats = {}
@@ -3462,10 +3459,12 @@ class DevicesApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -3588,8 +3587,7 @@ class DevicesApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `webrtc_stream_update_or_create`")  # noqa: E501
 
         collection_formats = {}
@@ -3613,10 +3611,12 @@ class DevicesApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501

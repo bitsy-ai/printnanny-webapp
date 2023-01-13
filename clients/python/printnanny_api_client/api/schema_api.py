@@ -134,7 +134,7 @@ class SchemaApi(object):
         path_params = {}
 
         query_params = []
-        if 'lang' in local_var_params and local_var_params['lang'] is not None:  # noqa: E501
+        if local_var_params.get('lang') is not None:  # noqa: E501
             query_params.append(('lang', local_var_params['lang']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))

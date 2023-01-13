@@ -17,11 +17,11 @@ pub struct Order {
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "djstripe_checkout_session")]
-    pub djstripe_checkout_session: Option<Box<crate::models::DjStripeCheckoutSession>>,
+    pub djstripe_checkout_session: Box<crate::models::DjStripeCheckoutSession>,
     #[serde(rename = "djstripe_customer")]
-    pub djstripe_customer: Option<Box<crate::models::DjStripeCustomer>>,
+    pub djstripe_customer: Box<crate::models::DjStripeCustomer>,
     #[serde(rename = "djstripe_payment_intent")]
-    pub djstripe_payment_intent: Option<Box<crate::models::DjStripePaymentIntent>>,
+    pub djstripe_payment_intent: Box<crate::models::DjStripePaymentIntent>,
     #[serde(rename = "email")]
     pub email: String,
     #[serde(rename = "id")]
@@ -50,12 +50,12 @@ pub struct Order {
 
 impl Order {
     /// Djstripe's representation of Stripe Checkout model is missing a number of fields, like subtotal amount and shipping/tax charges  stripe_checkout_session_data is the raw JSON returned by stripe.checkout.Session.retrieve
-    pub fn new(created_dt: String, djstripe_checkout_session: Option<crate::models::DjStripeCheckoutSession>, djstripe_customer: Option<crate::models::DjStripeCustomer>, djstripe_payment_intent: Option<crate::models::DjStripePaymentIntent>, email: String, id: String, is_shippable: bool, is_subscription: bool, last_status: crate::models::OrderStatus, products: Vec<crate::models::Product>, status_history: Vec<crate::models::OrderStatus>, stripe_checkout_redirect_url: String, stripe_checkout_session_data: ::std::collections::HashMap<String, serde_json::Value>, receipt_url: Option<String>, portal_url: Option<String>) -> Order {
+    pub fn new(created_dt: String, djstripe_checkout_session: crate::models::DjStripeCheckoutSession, djstripe_customer: crate::models::DjStripeCustomer, djstripe_payment_intent: crate::models::DjStripePaymentIntent, email: String, id: String, is_shippable: bool, is_subscription: bool, last_status: crate::models::OrderStatus, products: Vec<crate::models::Product>, status_history: Vec<crate::models::OrderStatus>, stripe_checkout_redirect_url: String, stripe_checkout_session_data: ::std::collections::HashMap<String, serde_json::Value>, receipt_url: Option<String>, portal_url: Option<String>) -> Order {
         Order {
             created_dt,
-            djstripe_checkout_session: djstripe_checkout_session.map(Box::new),
-            djstripe_customer: djstripe_customer.map(Box::new),
-            djstripe_payment_intent: djstripe_payment_intent.map(Box::new),
+            djstripe_checkout_session: Box::new(djstripe_checkout_session),
+            djstripe_customer: Box::new(djstripe_customer),
+            djstripe_payment_intent: Box::new(djstripe_payment_intent),
             email,
             id,
             is_shippable,

@@ -164,7 +164,8 @@ class DjStripeCustomer(object):
             self.phone = phone
         self.preferred_locales = preferred_locales
         self.shipping = shipping
-        self.tax_exempt = tax_exempt
+        if tax_exempt is not None:
+            self.tax_exempt = tax_exempt
         self.date_purged = date_purged
         self.djstripe_owner_account = djstripe_owner_account
         self.default_source = default_source

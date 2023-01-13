@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 **shipping** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Shipping information for the charge | [optional]
 **statement_descriptor** | Option<**String**> | For card charges, use statement_descriptor_suffix instead. Otherwise, you can use this value as the complete description of a charge on your customers' statements. Must contain at least one letter, maximum 22 characters. | [optional]
 **statement_descriptor_suffix** | Option<**String**> | Provides information about the charge that customers see on their statements. Concatenated with the prefix (shortened descriptor) or statement descriptor that's set on the account to form the complete statement descriptor. Maximum 22 characters for the concatenated descriptor. | [optional]
-**status** | Option<[**crate::models::StripeSourceCodeVerificationStatus**](StripeSourceCodeVerificationStatus.md)> | The status of the payment. | 
+**status** | [**crate::models::StripeSourceCodeVerificationStatus**](StripeSourceCodeVerificationStatus.md) | The status of the payment. | 
 **transfer_data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | An optional dictionary including the account to automatically transfer to as part of a destination charge. | [optional]
 **transfer_group** | Option<**String**> | A string that identifies this transaction as part of a group. | [optional]
 **djstripe_owner_account** | Option<**String**> | The Stripe Account this object belongs to. | [optional]

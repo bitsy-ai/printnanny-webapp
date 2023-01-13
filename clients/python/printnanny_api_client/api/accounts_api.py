@@ -129,8 +129,7 @@ class AccountsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'email_auth_request' is set
-        if self.api_client.client_side_validation and ('email_auth_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['email_auth_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('email_auth_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `email_auth_request` when calling `accounts2fa_auth_email_create`")  # noqa: E501
 
         collection_formats = {}
@@ -152,10 +151,12 @@ class AccountsApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -273,8 +274,7 @@ class AccountsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'callback_token_auth_request' is set
-        if self.api_client.client_side_validation and ('callback_token_auth_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['callback_token_auth_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('callback_token_auth_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `callback_token_auth_request` when calling `accounts2fa_auth_token_create`")  # noqa: E501
 
         collection_formats = {}
@@ -296,10 +296,12 @@ class AccountsApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -417,8 +419,7 @@ class AccountsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'email_waitlist_request' is set
-        if self.api_client.client_side_validation and ('email_waitlist_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['email_waitlist_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('email_waitlist_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `email_waitlist_request` when calling `accounts_email_waitlist_create`")  # noqa: E501
 
         collection_formats = {}
@@ -440,10 +441,12 @@ class AccountsApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -561,8 +564,7 @@ class AccountsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'login_request' is set
-        if self.api_client.client_side_validation and ('login_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['login_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('login_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `login_request` when calling `accounts_login_create`")  # noqa: E501
 
         collection_formats = {}
@@ -584,10 +586,12 @@ class AccountsApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -832,8 +836,7 @@ class AccountsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'password_change_request' is set
-        if self.api_client.client_side_validation and ('password_change_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['password_change_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('password_change_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `password_change_request` when calling `accounts_password_change_create`")  # noqa: E501
 
         collection_formats = {}
@@ -855,10 +858,12 @@ class AccountsApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -976,8 +981,7 @@ class AccountsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'password_reset_confirm_request' is set
-        if self.api_client.client_side_validation and ('password_reset_confirm_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['password_reset_confirm_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('password_reset_confirm_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `password_reset_confirm_request` when calling `accounts_password_reset_confirm_create`")  # noqa: E501
 
         collection_formats = {}
@@ -999,10 +1003,12 @@ class AccountsApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -1120,8 +1126,7 @@ class AccountsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'password_reset_request' is set
-        if self.api_client.client_side_validation and ('password_reset_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['password_reset_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('password_reset_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `password_reset_request` when calling `accounts_password_reset_create`")  # noqa: E501
 
         collection_formats = {}
@@ -1143,10 +1148,12 @@ class AccountsApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -1262,8 +1269,7 @@ class AccountsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'register_request' is set
-        if self.api_client.client_side_validation and ('register_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['register_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('register_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `register_request` when calling `accounts_registration_create`")  # noqa: E501
 
         collection_formats = {}
@@ -1285,10 +1291,12 @@ class AccountsApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -1404,8 +1412,7 @@ class AccountsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'resend_email_verification_request' is set
-        if self.api_client.client_side_validation and ('resend_email_verification_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['resend_email_verification_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('resend_email_verification_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `resend_email_verification_request` when calling `accounts_registration_resend_email_create`")  # noqa: E501
 
         collection_formats = {}
@@ -1427,10 +1434,12 @@ class AccountsApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -1546,8 +1555,7 @@ class AccountsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'verify_email_request' is set
-        if self.api_client.client_side_validation and ('verify_email_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['verify_email_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('verify_email_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `verify_email_request` when calling `accounts_registration_verify_email_create`")  # noqa: E501
 
         collection_formats = {}
@@ -1569,10 +1577,12 @@ class AccountsApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -1836,10 +1846,12 @@ class AccountsApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'PATCH', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -2084,8 +2096,7 @@ class AccountsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'user_request' is set
-        if self.api_client.client_side_validation and ('user_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['user_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('user_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `user_request` when calling `accounts_user_update`")  # noqa: E501
 
         collection_formats = {}
@@ -2107,10 +2118,12 @@ class AccountsApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501

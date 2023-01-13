@@ -142,20 +142,16 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'hostname' is set
-        if self.api_client.client_side_validation and ('hostname' not in local_var_params or  # noqa: E501
-                                                        local_var_params['hostname'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('hostname') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `hostname` when calling `octoprint_backups_create`")  # noqa: E501
         # verify the required parameter 'name' is set
-        if self.api_client.client_side_validation and ('name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('name') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `name` when calling `octoprint_backups_create`")  # noqa: E501
         # verify the required parameter 'octoprint_version' is set
-        if self.api_client.client_side_validation and ('octoprint_version' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octoprint_version'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('octoprint_version') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `octoprint_version` when calling `octoprint_backups_create`")  # noqa: E501
         # verify the required parameter 'file' is set
-        if self.api_client.client_side_validation and ('file' not in local_var_params or  # noqa: E501
-                                                        local_var_params['file'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('file') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `file` when calling `octoprint_backups_create`")  # noqa: E501
 
         if self.api_client.client_side_validation and ('hostname' in local_var_params and  # noqa: E501
@@ -201,10 +197,12 @@ class OctoprintApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -330,7 +328,7 @@ class OctoprintApi(object):
         path_params = {}
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
@@ -461,8 +459,7 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `octoprint_backups_retrieve`")  # noqa: E501
 
         collection_formats = {}
@@ -602,8 +599,7 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'octo_print_server_request' is set
-        if self.api_client.client_side_validation and ('octo_print_server_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_print_server_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('octo_print_server_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `octo_print_server_request` when calling `octoprint_create`")  # noqa: E501
 
         collection_formats = {}
@@ -625,10 +621,12 @@ class OctoprintApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -770,10 +768,12 @@ class OctoprintApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -901,7 +901,7 @@ class OctoprintApi(object):
         path_params = {}
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
@@ -1034,8 +1034,7 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `octoprint_events_retrieve`")  # noqa: E501
 
         collection_formats = {}
@@ -1185,16 +1184,13 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'name' is set
-        if self.api_client.client_side_validation and ('name' not in local_var_params or  # noqa: E501
-                                                        local_var_params['name'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('name') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `name` when calling `octoprint_gcode_files_create`")  # noqa: E501
         # verify the required parameter 'file' is set
-        if self.api_client.client_side_validation and ('file' not in local_var_params or  # noqa: E501
-                                                        local_var_params['file'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('file') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `file` when calling `octoprint_gcode_files_create`")  # noqa: E501
         # verify the required parameter 'hash' is set
-        if self.api_client.client_side_validation and ('hash' not in local_var_params or  # noqa: E501
-                                                        local_var_params['hash'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('hash') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `hash` when calling `octoprint_gcode_files_create`")  # noqa: E501
 
         if self.api_client.client_side_validation and ('name' in local_var_params and  # noqa: E501
@@ -1232,10 +1228,12 @@ class OctoprintApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -1361,7 +1359,7 @@ class OctoprintApi(object):
         path_params = {}
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
@@ -1492,8 +1490,7 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `octoprint_gcode_files_retrieve`")  # noqa: E501
 
         collection_formats = {}
@@ -1638,7 +1635,7 @@ class OctoprintApi(object):
         path_params = {}
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
@@ -1774,8 +1771,7 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `octoprint_partial_update`")  # noqa: E501
 
         collection_formats = {}
@@ -1799,10 +1795,12 @@ class OctoprintApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'PATCH', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -1918,8 +1916,7 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'octo_printer_profile_request' is set
-        if self.api_client.client_side_validation and ('octo_printer_profile_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_printer_profile_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('octo_printer_profile_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `octo_printer_profile_request` when calling `octoprint_printer_profiles_create`")  # noqa: E501
 
         collection_formats = {}
@@ -1941,10 +1938,12 @@ class OctoprintApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -2070,7 +2069,7 @@ class OctoprintApi(object):
         path_params = {}
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
@@ -2206,8 +2205,7 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `octoprint_printer_profiles_partial_update`")  # noqa: E501
 
         collection_formats = {}
@@ -2231,10 +2229,12 @@ class OctoprintApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'PATCH', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -2355,12 +2355,10 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `octoprint_printer_profiles_update`")  # noqa: E501
         # verify the required parameter 'octo_printer_profile_request' is set
-        if self.api_client.client_side_validation and ('octo_printer_profile_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_printer_profile_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('octo_printer_profile_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `octo_printer_profile_request` when calling `octoprint_printer_profiles_update`")  # noqa: E501
 
         collection_formats = {}
@@ -2384,10 +2382,12 @@ class OctoprintApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -2508,8 +2508,7 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'octo_printer_profile_request' is set
-        if self.api_client.client_side_validation and ('octo_printer_profile_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_printer_profile_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('octo_printer_profile_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `octo_printer_profile_request` when calling `octoprint_profile_update_or_create`")  # noqa: E501
 
         collection_formats = {}
@@ -2531,10 +2530,12 @@ class OctoprintApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -2651,8 +2652,7 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'octo_print_server_request' is set
-        if self.api_client.client_side_validation and ('octo_print_server_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_print_server_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('octo_print_server_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `octo_print_server_request` when calling `octoprint_server_update_or_create`")  # noqa: E501
 
         collection_formats = {}
@@ -2674,10 +2674,12 @@ class OctoprintApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -2794,8 +2796,7 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'octo_print_settings_request' is set
-        if self.api_client.client_side_validation and ('octo_print_settings_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_print_settings_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('octo_print_settings_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `octo_print_settings_request` when calling `octoprint_settings_create`")  # noqa: E501
 
         collection_formats = {}
@@ -2817,10 +2818,12 @@ class OctoprintApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -2946,7 +2949,7 @@ class OctoprintApi(object):
         path_params = {}
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
@@ -3082,8 +3085,7 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `octoprint_settings_partial_update`")  # noqa: E501
 
         collection_formats = {}
@@ -3107,10 +3109,12 @@ class OctoprintApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'PATCH', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -3231,12 +3235,10 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `octoprint_settings_update`")  # noqa: E501
         # verify the required parameter 'octo_print_settings_request' is set
-        if self.api_client.client_side_validation and ('octo_print_settings_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_print_settings_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('octo_print_settings_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `octo_print_settings_request` when calling `octoprint_settings_update`")  # noqa: E501
 
         collection_formats = {}
@@ -3260,10 +3262,12 @@ class OctoprintApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -3384,8 +3388,7 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'octo_print_settings_request' is set
-        if self.api_client.client_side_validation and ('octo_print_settings_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_print_settings_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('octo_print_settings_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `octo_print_settings_request` when calling `octoprint_settings_update_or_create`")  # noqa: E501
 
         collection_formats = {}
@@ -3407,10 +3410,12 @@ class OctoprintApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -3532,12 +3537,10 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `octoprint_update`")  # noqa: E501
         # verify the required parameter 'octo_print_server_request' is set
-        if self.api_client.client_side_validation and ('octo_print_server_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_print_server_request'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('octo_print_server_request') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `octo_print_server_request` when calling `octoprint_update`")  # noqa: E501
 
         collection_formats = {}
@@ -3561,10 +3564,12 @@ class OctoprintApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'PUT', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -3690,8 +3695,7 @@ class OctoprintApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `pis_octoprint_list`")  # noqa: E501
 
         collection_formats = {}
@@ -3701,7 +3705,7 @@ class OctoprintApi(object):
             path_params['pi_id'] = local_var_params['pi_id']  # noqa: E501
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))

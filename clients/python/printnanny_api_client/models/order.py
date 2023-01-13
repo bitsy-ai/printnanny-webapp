@@ -157,6 +157,8 @@ class Order(object):
         :param djstripe_checkout_session: The djstripe_checkout_session of this Order.  # noqa: E501
         :type djstripe_checkout_session: DjStripeCheckoutSession
         """
+        if self.local_vars_configuration.client_side_validation and djstripe_checkout_session is None:  # noqa: E501
+            raise ValueError("Invalid value for `djstripe_checkout_session`, must not be `None`")  # noqa: E501
 
         self._djstripe_checkout_session = djstripe_checkout_session
 
@@ -178,6 +180,8 @@ class Order(object):
         :param djstripe_customer: The djstripe_customer of this Order.  # noqa: E501
         :type djstripe_customer: DjStripeCustomer
         """
+        if self.local_vars_configuration.client_side_validation and djstripe_customer is None:  # noqa: E501
+            raise ValueError("Invalid value for `djstripe_customer`, must not be `None`")  # noqa: E501
 
         self._djstripe_customer = djstripe_customer
 
@@ -199,6 +203,8 @@ class Order(object):
         :param djstripe_payment_intent: The djstripe_payment_intent of this Order.  # noqa: E501
         :type djstripe_payment_intent: DjStripePaymentIntent
         """
+        if self.local_vars_configuration.client_side_validation and djstripe_payment_intent is None:  # noqa: E501
+            raise ValueError("Invalid value for `djstripe_payment_intent`, must not be `None`")  # noqa: E501
 
         self._djstripe_payment_intent = djstripe_payment_intent
 

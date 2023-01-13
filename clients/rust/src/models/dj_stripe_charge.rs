@@ -103,7 +103,7 @@ pub struct DjStripeCharge {
     pub statement_descriptor_suffix: Option<String>,
     /// The status of the payment.
     #[serde(rename = "status")]
-    pub status: Option<Box<crate::models::StripeSourceCodeVerificationStatus>>,
+    pub status: Box<crate::models::StripeSourceCodeVerificationStatus>,
     /// An optional dictionary including the account to automatically transfer to as part of a destination charge.
     #[serde(rename = "transfer_data", skip_serializing_if = "Option::is_none")]
     pub transfer_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
@@ -149,7 +149,7 @@ pub struct DjStripeCharge {
 }
 
 impl DjStripeCharge {
-    pub fn new(djstripe_id: i32, failure_code: crate::models::StripeApiErrorCode, djstripe_created: String, djstripe_updated: String, id: String, amount: String, amount_refunded: String, currency: String, status: Option<crate::models::StripeSourceCodeVerificationStatus>) -> DjStripeCharge {
+    pub fn new(djstripe_id: i32, failure_code: crate::models::StripeApiErrorCode, djstripe_created: String, djstripe_updated: String, id: String, amount: String, amount_refunded: String, currency: String, status: crate::models::StripeSourceCodeVerificationStatus) -> DjStripeCharge {
         DjStripeCharge {
             djstripe_id,
             failure_code,
@@ -182,7 +182,7 @@ impl DjStripeCharge {
             shipping: None,
             statement_descriptor: None,
             statement_descriptor_suffix: None,
-            status: status.map(Box::new),
+            status: Box::new(status),
             transfer_data: None,
             transfer_group: None,
             djstripe_owner_account: None,

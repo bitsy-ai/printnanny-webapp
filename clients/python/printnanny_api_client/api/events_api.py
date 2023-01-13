@@ -148,10 +148,12 @@ class EventsApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -279,7 +281,7 @@ class EventsApi(object):
         path_params = {}
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
@@ -412,8 +414,7 @@ class EventsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `octoprint_events_retrieve`")  # noqa: E501
 
         collection_formats = {}
@@ -560,7 +561,7 @@ class EventsApi(object):
         path_params = {}
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
@@ -712,10 +713,12 @@ class EventsApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -843,7 +846,7 @@ class EventsApi(object):
         path_params = {}
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
@@ -981,8 +984,7 @@ class EventsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `pis_events_commands_list`")  # noqa: E501
 
         collection_formats = {}
@@ -992,7 +994,7 @@ class EventsApi(object):
             path_params['pi_id'] = local_var_params['pi_id']  # noqa: E501
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
@@ -1144,10 +1146,12 @@ class EventsApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -1275,8 +1279,7 @@ class EventsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `pis_events_list`")  # noqa: E501
 
         collection_formats = {}
@@ -1286,7 +1289,7 @@ class EventsApi(object):
             path_params['pi_id'] = local_var_params['pi_id']  # noqa: E501
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
@@ -1419,8 +1422,7 @@ class EventsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `pis_events_retrieve`")  # noqa: E501
 
         collection_formats = {}
@@ -1567,8 +1569,7 @@ class EventsApi(object):
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'pi_id' is set
-        if self.api_client.client_side_validation and ('pi_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['pi_id'] is None):  # noqa: E501
+        if self.api_client.client_side_validation and local_var_params.get('pi_id') is None:  # noqa: E501
             raise ApiValueError("Missing the required parameter `pi_id` when calling `pis_events_status_list`")  # noqa: E501
 
         collection_formats = {}
@@ -1578,7 +1579,7 @@ class EventsApi(object):
             path_params['pi_id'] = local_var_params['pi_id']  # noqa: E501
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
@@ -1730,10 +1731,12 @@ class EventsApi(object):
             ['application/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = local_var_params.get('_content_type',
+        content_types_list = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
                 ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
                 'POST', body_params))  # noqa: E501
+        if content_types_list:
+                header_params['Content-Type'] = content_types_list
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
@@ -1861,7 +1864,7 @@ class EventsApi(object):
         path_params = {}
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))

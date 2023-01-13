@@ -12,22 +12,19 @@
 /// 
 #[derive(Clone, Copy, clap::ValueEnum, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum PiCamCommandSubjectPatternEnum {
-    #[serde(rename = "pi.{pi_id}.command.cam")]
-    PiPiIdCommandCam,
 
 }
 
 impl ToString for PiCamCommandSubjectPatternEnum {
     fn to_string(&self) -> String {
         match self {
-            Self::PiPiIdCommandCam => String::from("pi.{pi_id}.command.cam"),
         }
     }
 }
 
 impl Default for PiCamCommandSubjectPatternEnum {
     fn default() -> PiCamCommandSubjectPatternEnum {
-        Self::PiPiIdCommandCam
+        Self::
     }
 }
 

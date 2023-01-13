@@ -373,6 +373,8 @@ class DjStripeProduct(object):
         :param type: The type of this DjStripeProduct.  # noqa: E501
         :type type: StripeProductType
         """
+        if self.local_vars_configuration.client_side_validation and type is None:  # noqa: E501
+            raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
 
         self._type = type
 

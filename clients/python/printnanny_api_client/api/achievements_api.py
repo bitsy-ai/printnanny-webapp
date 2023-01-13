@@ -132,7 +132,7 @@ class AchievementsApi(object):
         path_params = {}
 
         query_params = []
-        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+        if local_var_params.get('page') is not None:  # noqa: E501
             query_params.append(('page', local_var_params['page']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))

@@ -53,7 +53,7 @@ pub struct DjStripePrice {
     pub recurring: Option<::std::collections::HashMap<String, serde_json::Value>>,
     /// Whether the price is for a one-time purchase or a recurring (subscription) purchase.
     #[serde(rename = "type")]
-    pub _type: Option<Box<crate::models::StripePriceType>>,
+    pub _type: Box<crate::models::StripePriceType>,
     /// The unit amount in cents to be charged, represented as a whole integer if possible. Null if a sub-cent precision is required.
     #[serde(rename = "unit_amount", skip_serializing_if = "Option::is_none")]
     pub unit_amount: Option<i64>,
@@ -78,7 +78,7 @@ pub struct DjStripePrice {
 }
 
 impl DjStripePrice {
-    pub fn new(djstripe_id: i32, billing_scheme: crate::models::StripeBillingScheme, human_readable_price: String, tiers_mode: crate::models::StripePriceTiersMode, djstripe_created: String, djstripe_updated: String, id: String, active: bool, currency: String, _type: Option<crate::models::StripePriceType>, product: String) -> DjStripePrice {
+    pub fn new(djstripe_id: i32, billing_scheme: crate::models::StripeBillingScheme, human_readable_price: String, tiers_mode: crate::models::StripePriceTiersMode, djstripe_created: String, djstripe_updated: String, id: String, active: bool, currency: String, _type: crate::models::StripePriceType, product: String) -> DjStripePrice {
         DjStripePrice {
             djstripe_id,
             billing_scheme,
@@ -95,7 +95,7 @@ impl DjStripePrice {
             currency,
             nickname: None,
             recurring: None,
-            _type: _type.map(Box::new),
+            _type: Box::new(_type),
             unit_amount: None,
             unit_amount_decimal: None,
             lookup_key: None,

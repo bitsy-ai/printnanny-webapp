@@ -12,22 +12,19 @@
 /// 
 #[derive(Clone, Copy, clap::ValueEnum, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum PiSoftwareUpdateCommandSubjectPatternEnum {
-    #[serde(rename = "pi.{pi_id}.command.swupdate")]
-    PiPiIdCommandSwupdate,
 
 }
 
 impl ToString for PiSoftwareUpdateCommandSubjectPatternEnum {
     fn to_string(&self) -> String {
         match self {
-            Self::PiPiIdCommandSwupdate => String::from("pi.{pi_id}.command.swupdate"),
         }
     }
 }
 
 impl Default for PiSoftwareUpdateCommandSubjectPatternEnum {
     fn default() -> PiSoftwareUpdateCommandSubjectPatternEnum {
-        Self::PiPiIdCommandSwupdate
+        Self::
     }
 }
 

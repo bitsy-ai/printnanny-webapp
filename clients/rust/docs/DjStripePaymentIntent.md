@@ -18,9 +18,9 @@ Name | Type | Description | Notes
 **amount_capturable** | **i64** | Amount (in cents) that can be captured from this PaymentIntent. | 
 **amount_received** | **i64** | Amount (in cents) that was collected by this PaymentIntent. | 
 **canceled_at** | Option<**String**> | Populated when status is canceled, this is the time at which the PaymentIntent was canceled. Measured in seconds since the Unix epoch. | [optional]
-**capture_method** | Option<[**crate::models::StripeConfirmationMethod**](StripeConfirmationMethod.md)> | Capture method of this PaymentIntent, one of automatic or manual. | 
+**capture_method** | [**crate::models::StripeConfirmationMethod**](StripeConfirmationMethod.md) | Capture method of this PaymentIntent, one of automatic or manual. | 
 **client_secret** | **String** | The client secret of this PaymentIntent. Used for client-side retrieval using a publishable key. | 
-**confirmation_method** | Option<[**crate::models::StripeConfirmationMethod**](StripeConfirmationMethod.md)> | Confirmation method of this PaymentIntent, one of manual or automatic. | 
+**confirmation_method** | [**crate::models::StripeConfirmationMethod**](StripeConfirmationMethod.md) | Confirmation method of this PaymentIntent, one of manual or automatic. | 
 **currency** | **String** | Three-letter ISO currency code | 
 **description** | Option<**String**> | An arbitrary string attached to the object. Often useful for displaying to users. | [optional]
 **last_payment_error** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | The payment error encountered in the previous PaymentIntent confirmation. | [optional]
@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 **receipt_email** | Option<**String**> | Email address that the receipt for the resulting payment will be sent to. | [optional]
 **shipping** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Shipping information for this PaymentIntent. | [optional]
 **statement_descriptor** | Option<**String**> | For non-card charges, you can use this value as the complete description that appears on your customers' statements. Must contain at least one letter, maximum 22 characters. | [optional]
-**status** | Option<[**crate::models::StripePaymentIntentStatus**](StripePaymentIntentStatus.md)> | Status of this PaymentIntent, one of requires_payment_method, requires_confirmation, requires_action, processing, requires_capture, canceled, or succeeded. You can read more about PaymentIntent statuses here. | 
+**status** | [**crate::models::StripePaymentIntentStatus**](StripePaymentIntentStatus.md) | Status of this PaymentIntent, one of requires_payment_method, requires_confirmation, requires_action, processing, requires_capture, canceled, or succeeded. You can read more about PaymentIntent statuses here. | 
 **transfer_data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | The data with which to automatically create a Transfer when the payment is finalized. See the PaymentIntents Connect usage guide for details. | [optional]
 **transfer_group** | Option<**String**> | A string that identifies the resulting payment as part of a group. See the PaymentIntents Connect usage guide for details. | [optional]
 **djstripe_owner_account** | Option<**String**> | The Stripe Account this object belongs to. | [optional]

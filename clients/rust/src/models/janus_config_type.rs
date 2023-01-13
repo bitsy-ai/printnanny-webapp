@@ -12,25 +12,19 @@
 /// 
 #[derive(Clone, Copy, clap::ValueEnum, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum JanusConfigType {
-    #[serde(rename = "cloud")]
-    Cloud,
-    #[serde(rename = "edge")]
-    Edge,
 
 }
 
 impl ToString for JanusConfigType {
     fn to_string(&self) -> String {
         match self {
-            Self::Cloud => String::from("cloud"),
-            Self::Edge => String::from("edge"),
         }
     }
 }
 
 impl Default for JanusConfigType {
     fn default() -> JanusConfigType {
-        Self::Cloud
+        Self::
     }
 }
 

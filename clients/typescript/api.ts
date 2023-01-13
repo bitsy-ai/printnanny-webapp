@@ -5441,49 +5441,49 @@ export interface PiUrls {
  * @type PolymorphicOctoPrintEvent
  * @export
  */
-export type PolymorphicOctoPrintEvent = OctoPrintGcodeEvent | OctoPrintPrintJobStatus | OctoPrintPrinterStatus | OctoPrintServerStatus;
+export type PolymorphicOctoPrintEvent = { subject_pattern: 'pi.{pi_id}.octoprint.gcode' } & OctoPrintGcodeEvent | { subject_pattern: 'pi.{pi_id}.octoprint.print_job' } & OctoPrintPrintJobStatus | { subject_pattern: 'pi.{pi_id}.octoprint.printer' } & OctoPrintPrinterStatus | { subject_pattern: 'pi.{pi_id}.octoprint.server' } & OctoPrintServerStatus;
 
 /**
  * @type PolymorphicOctoPrintEventRequest
  * @export
  */
-export type PolymorphicOctoPrintEventRequest = OctoPrintGcodeEventRequest | OctoPrintPrintJobStatusRequest | OctoPrintPrinterStatusRequest | OctoPrintServerStatusRequest;
+export type PolymorphicOctoPrintEventRequest = { subject_pattern: 'pi.{pi_id}.octoprint.gcode' } & OctoPrintGcodeEventRequest | { subject_pattern: 'pi.{pi_id}.octoprint.print_job' } & OctoPrintPrintJobStatusRequest | { subject_pattern: 'pi.{pi_id}.octoprint.printer' } & OctoPrintPrinterStatusRequest | { subject_pattern: 'pi.{pi_id}.octoprint.server' } & OctoPrintServerStatusRequest;
 
 /**
  * @type PolymorphicPiCommand
  * @export
  */
-export type PolymorphicPiCommand = PiBootCommand | PiCamCommand | PiSoftwareUpdateCommand;
+export type PolymorphicPiCommand = { subject_pattern: 'PiBootCommand' } & PiBootCommand | { subject_pattern: 'PiCamCommand' } & PiCamCommand | { subject_pattern: 'PiSoftwareUpdateCommand' } & PiSoftwareUpdateCommand;
 
 /**
  * @type PolymorphicPiCommandRequest
  * @export
  */
-export type PolymorphicPiCommandRequest = PiBootCommandRequest | PiCamCommandRequest | PiSoftwareUpdateCommandRequest;
+export type PolymorphicPiCommandRequest = { subject_pattern: 'PiBootCommand' } & PiBootCommandRequest | { subject_pattern: 'PiCamCommand' } & PiCamCommandRequest | { subject_pattern: 'PiSoftwareUpdateCommand' } & PiSoftwareUpdateCommandRequest;
 
 /**
  * @type PolymorphicPiEvent
  * @export
  */
-export type PolymorphicPiEvent = PiBootCommand | PiBootStatus | PiCamCommand | PiCamStatus | PiSoftwareUpdateCommand | PiSoftwareUpdateStatus;
+export type PolymorphicPiEvent = { subject_pattern: 'pi.{pi_id}.command.boot' } & PiBootCommand | { subject_pattern: 'pi.{pi_id}.command.cam' } & PiCamCommand | { subject_pattern: 'pi.{pi_id}.command.swupdate' } & PiSoftwareUpdateCommand | { subject_pattern: 'pi.{pi_id}.status.boot' } & PiBootStatus | { subject_pattern: 'pi.{pi_id}.status.cam' } & PiCamStatus | { subject_pattern: 'pi.{pi_id}.status.swupdate' } & PiSoftwareUpdateStatus;
 
 /**
  * @type PolymorphicPiEventRequest
  * @export
  */
-export type PolymorphicPiEventRequest = PiBootCommandRequest | PiBootStatusRequest | PiCamCommandRequest | PiCamStatusRequest | PiSoftwareUpdateCommandRequest | PiSoftwareUpdateStatusRequest;
+export type PolymorphicPiEventRequest = { subject_pattern: 'pi.{pi_id}.command.boot' } & PiBootCommandRequest | { subject_pattern: 'pi.{pi_id}.command.cam' } & PiCamCommandRequest | { subject_pattern: 'pi.{pi_id}.command.swupdate' } & PiSoftwareUpdateCommandRequest | { subject_pattern: 'pi.{pi_id}.status.boot' } & PiBootStatusRequest | { subject_pattern: 'pi.{pi_id}.status.cam' } & PiCamStatusRequest | { subject_pattern: 'pi.{pi_id}.status.swupdate' } & PiSoftwareUpdateStatusRequest;
 
 /**
  * @type PolymorphicPiStatus
  * @export
  */
-export type PolymorphicPiStatus = PiBootStatus | PiCamStatus | PiSoftwareUpdateStatus;
+export type PolymorphicPiStatus = { subject_pattern: 'PiBootStatus' } & PiBootStatus | { subject_pattern: 'PiCamStatus' } & PiCamStatus | { subject_pattern: 'PiSoftwareUpdateStatus' } & PiSoftwareUpdateStatus;
 
 /**
  * @type PolymorphicPiStatusRequest
  * @export
  */
-export type PolymorphicPiStatusRequest = PiBootStatusRequest | PiCamStatusRequest | PiSoftwareUpdateStatusRequest;
+export type PolymorphicPiStatusRequest = { subject_pattern: 'PiBootStatus' } & PiBootStatusRequest | { subject_pattern: 'PiCamStatus' } & PiCamStatusRequest | { subject_pattern: 'PiSoftwareUpdateStatus' } & PiSoftwareUpdateStatusRequest;
 
 /**
  * 
@@ -8399,9 +8399,9 @@ export const CrashReportsApiAxiosParamCreator = function (configuration?: Config
          * @param {string} [description] 
          * @param {string} [email] 
          * @param {string} [osVersion] 
-         * @param {any} [osLogs] 
+         * @param {File} [osLogs] 
          * @param {string} [browserVersion] 
-         * @param {any} [browserLogs] 
+         * @param {File} [browserLogs] 
          * @param {string} [serial] 
          * @param {string} [posthogSession] 
          * @param {CrashReportStatusEnum} [status] 
@@ -8411,7 +8411,7 @@ export const CrashReportsApiAxiosParamCreator = function (configuration?: Config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        crashReportsCreate: async (description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        crashReportsCreate: async (description?: string, email?: string, osVersion?: string, osLogs?: File, browserVersion?: string, browserLogs?: File, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/crash-reports/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8539,9 +8539,9 @@ export const CrashReportsApiAxiosParamCreator = function (configuration?: Config
          * @param {string} [description] 
          * @param {string} [email] 
          * @param {string} [osVersion] 
-         * @param {any} [osLogs] 
+         * @param {File} [osLogs] 
          * @param {string} [browserVersion] 
-         * @param {any} [browserLogs] 
+         * @param {File} [browserLogs] 
          * @param {string} [serial] 
          * @param {string} [posthogSession] 
          * @param {CrashReportStatusEnum} [status] 
@@ -8551,7 +8551,7 @@ export const CrashReportsApiAxiosParamCreator = function (configuration?: Config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        crashReportsPartialUpdate: async (id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        crashReportsPartialUpdate: async (id: string, description?: string, email?: string, osVersion?: string, osLogs?: File, browserVersion?: string, browserLogs?: File, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('crashReportsPartialUpdate', 'id', id)
             const localVarPath = `/api/crash-reports/{id}/`
@@ -8681,9 +8681,9 @@ export const CrashReportsApiAxiosParamCreator = function (configuration?: Config
          * @param {string} [description] 
          * @param {string} [email] 
          * @param {string} [osVersion] 
-         * @param {any} [osLogs] 
+         * @param {File} [osLogs] 
          * @param {string} [browserVersion] 
-         * @param {any} [browserLogs] 
+         * @param {File} [browserLogs] 
          * @param {string} [serial] 
          * @param {string} [posthogSession] 
          * @param {CrashReportStatusEnum} [status] 
@@ -8693,7 +8693,7 @@ export const CrashReportsApiAxiosParamCreator = function (configuration?: Config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        crashReportsUpdate: async (id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        crashReportsUpdate: async (id: string, description?: string, email?: string, osVersion?: string, osLogs?: File, browserVersion?: string, browserLogs?: File, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('crashReportsUpdate', 'id', id)
             const localVarPath = `/api/crash-reports/{id}/`
@@ -8783,11 +8783,11 @@ export const CrashReportsApiAxiosParamCreator = function (configuration?: Config
          * @param {string} startDt 
          * @param {string} name 
          * @param {string} [endDt] 
-         * @param {any} [mjrRecording] 
+         * @param {File} [mjrRecording] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        videoRecordingsCreate: async (startDt: string, name: string, endDt?: string, mjrRecording?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        videoRecordingsCreate: async (startDt: string, name: string, endDt?: string, mjrRecording?: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'startDt' is not null or undefined
             assertParamExists('videoRecordingsCreate', 'startDt', startDt)
             // verify required parameter 'name' is not null or undefined
@@ -8887,11 +8887,11 @@ export const CrashReportsApiAxiosParamCreator = function (configuration?: Config
          * @param {string} [startDt] 
          * @param {string} [endDt] 
          * @param {string} [name] 
-         * @param {any} [mjrRecording] 
+         * @param {File} [mjrRecording] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        videoRecordingsPartialUpdate: async (id: number, startDt?: string, endDt?: string, name?: string, mjrRecording?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        videoRecordingsPartialUpdate: async (id: number, startDt?: string, endDt?: string, name?: string, mjrRecording?: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('videoRecordingsPartialUpdate', 'id', id)
             const localVarPath = `/api/video-recordings/{id}/`
@@ -8950,11 +8950,11 @@ export const CrashReportsApiAxiosParamCreator = function (configuration?: Config
          * @param {string} startDt 
          * @param {string} name 
          * @param {string} [endDt] 
-         * @param {any} [mjrRecording] 
+         * @param {File} [mjrRecording] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        videoRecordingsUpdate: async (id: number, startDt: string, name: string, endDt?: string, mjrRecording?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        videoRecordingsUpdate: async (id: number, startDt: string, name: string, endDt?: string, mjrRecording?: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('videoRecordingsUpdate', 'id', id)
             // verify required parameter 'startDt' is not null or undefined
@@ -9026,9 +9026,9 @@ export const CrashReportsApiFp = function(configuration?: Configuration) {
          * @param {string} [description] 
          * @param {string} [email] 
          * @param {string} [osVersion] 
-         * @param {any} [osLogs] 
+         * @param {File} [osLogs] 
          * @param {string} [browserVersion] 
-         * @param {any} [browserLogs] 
+         * @param {File} [browserLogs] 
          * @param {string} [serial] 
          * @param {string} [posthogSession] 
          * @param {CrashReportStatusEnum} [status] 
@@ -9038,7 +9038,7 @@ export const CrashReportsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async crashReportsCreate(description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CrashReport>> {
+        async crashReportsCreate(description?: string, email?: string, osVersion?: string, osLogs?: File, browserVersion?: string, browserLogs?: File, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CrashReport>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.crashReportsCreate(description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9058,9 +9058,9 @@ export const CrashReportsApiFp = function(configuration?: Configuration) {
          * @param {string} [description] 
          * @param {string} [email] 
          * @param {string} [osVersion] 
-         * @param {any} [osLogs] 
+         * @param {File} [osLogs] 
          * @param {string} [browserVersion] 
-         * @param {any} [browserLogs] 
+         * @param {File} [browserLogs] 
          * @param {string} [serial] 
          * @param {string} [posthogSession] 
          * @param {CrashReportStatusEnum} [status] 
@@ -9070,7 +9070,7 @@ export const CrashReportsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async crashReportsPartialUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CrashReport>> {
+        async crashReportsPartialUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: File, browserVersion?: string, browserLogs?: File, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CrashReport>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.crashReportsPartialUpdate(id, description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9090,9 +9090,9 @@ export const CrashReportsApiFp = function(configuration?: Configuration) {
          * @param {string} [description] 
          * @param {string} [email] 
          * @param {string} [osVersion] 
-         * @param {any} [osLogs] 
+         * @param {File} [osLogs] 
          * @param {string} [browserVersion] 
-         * @param {any} [browserLogs] 
+         * @param {File} [browserLogs] 
          * @param {string} [serial] 
          * @param {string} [posthogSession] 
          * @param {CrashReportStatusEnum} [status] 
@@ -9102,7 +9102,7 @@ export const CrashReportsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async crashReportsUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CrashReport>> {
+        async crashReportsUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: File, browserVersion?: string, browserLogs?: File, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CrashReport>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.crashReportsUpdate(id, description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9111,11 +9111,11 @@ export const CrashReportsApiFp = function(configuration?: Configuration) {
          * @param {string} startDt 
          * @param {string} name 
          * @param {string} [endDt] 
-         * @param {any} [mjrRecording] 
+         * @param {File} [mjrRecording] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async videoRecordingsCreate(startDt: string, name: string, endDt?: string, mjrRecording?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoRecording>> {
+        async videoRecordingsCreate(startDt: string, name: string, endDt?: string, mjrRecording?: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoRecording>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.videoRecordingsCreate(startDt, name, endDt, mjrRecording, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9135,11 +9135,11 @@ export const CrashReportsApiFp = function(configuration?: Configuration) {
          * @param {string} [startDt] 
          * @param {string} [endDt] 
          * @param {string} [name] 
-         * @param {any} [mjrRecording] 
+         * @param {File} [mjrRecording] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async videoRecordingsPartialUpdate(id: number, startDt?: string, endDt?: string, name?: string, mjrRecording?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoRecording>> {
+        async videoRecordingsPartialUpdate(id: number, startDt?: string, endDt?: string, name?: string, mjrRecording?: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoRecording>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.videoRecordingsPartialUpdate(id, startDt, endDt, name, mjrRecording, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9149,11 +9149,11 @@ export const CrashReportsApiFp = function(configuration?: Configuration) {
          * @param {string} startDt 
          * @param {string} name 
          * @param {string} [endDt] 
-         * @param {any} [mjrRecording] 
+         * @param {File} [mjrRecording] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async videoRecordingsUpdate(id: number, startDt: string, name: string, endDt?: string, mjrRecording?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoRecording>> {
+        async videoRecordingsUpdate(id: number, startDt: string, name: string, endDt?: string, mjrRecording?: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoRecording>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.videoRecordingsUpdate(id, startDt, name, endDt, mjrRecording, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9172,9 +9172,9 @@ export const CrashReportsApiFactory = function (configuration?: Configuration, b
          * @param {string} [description] 
          * @param {string} [email] 
          * @param {string} [osVersion] 
-         * @param {any} [osLogs] 
+         * @param {File} [osLogs] 
          * @param {string} [browserVersion] 
-         * @param {any} [browserLogs] 
+         * @param {File} [browserLogs] 
          * @param {string} [serial] 
          * @param {string} [posthogSession] 
          * @param {CrashReportStatusEnum} [status] 
@@ -9184,7 +9184,7 @@ export const CrashReportsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        crashReportsCreate(description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: any): AxiosPromise<CrashReport> {
+        crashReportsCreate(description?: string, email?: string, osVersion?: string, osLogs?: File, browserVersion?: string, browserLogs?: File, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: any): AxiosPromise<CrashReport> {
             return localVarFp.crashReportsCreate(description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options).then((request) => request(axios, basePath));
         },
         /**
@@ -9202,9 +9202,9 @@ export const CrashReportsApiFactory = function (configuration?: Configuration, b
          * @param {string} [description] 
          * @param {string} [email] 
          * @param {string} [osVersion] 
-         * @param {any} [osLogs] 
+         * @param {File} [osLogs] 
          * @param {string} [browserVersion] 
-         * @param {any} [browserLogs] 
+         * @param {File} [browserLogs] 
          * @param {string} [serial] 
          * @param {string} [posthogSession] 
          * @param {CrashReportStatusEnum} [status] 
@@ -9214,7 +9214,7 @@ export const CrashReportsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        crashReportsPartialUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: any): AxiosPromise<CrashReport> {
+        crashReportsPartialUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: File, browserVersion?: string, browserLogs?: File, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: any): AxiosPromise<CrashReport> {
             return localVarFp.crashReportsPartialUpdate(id, description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options).then((request) => request(axios, basePath));
         },
         /**
@@ -9232,9 +9232,9 @@ export const CrashReportsApiFactory = function (configuration?: Configuration, b
          * @param {string} [description] 
          * @param {string} [email] 
          * @param {string} [osVersion] 
-         * @param {any} [osLogs] 
+         * @param {File} [osLogs] 
          * @param {string} [browserVersion] 
-         * @param {any} [browserLogs] 
+         * @param {File} [browserLogs] 
          * @param {string} [serial] 
          * @param {string} [posthogSession] 
          * @param {CrashReportStatusEnum} [status] 
@@ -9244,7 +9244,7 @@ export const CrashReportsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        crashReportsUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: any): AxiosPromise<CrashReport> {
+        crashReportsUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: File, browserVersion?: string, browserLogs?: File, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: any): AxiosPromise<CrashReport> {
             return localVarFp.crashReportsUpdate(id, description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options).then((request) => request(axios, basePath));
         },
         /**
@@ -9252,11 +9252,11 @@ export const CrashReportsApiFactory = function (configuration?: Configuration, b
          * @param {string} startDt 
          * @param {string} name 
          * @param {string} [endDt] 
-         * @param {any} [mjrRecording] 
+         * @param {File} [mjrRecording] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        videoRecordingsCreate(startDt: string, name: string, endDt?: string, mjrRecording?: any, options?: any): AxiosPromise<VideoRecording> {
+        videoRecordingsCreate(startDt: string, name: string, endDt?: string, mjrRecording?: File, options?: any): AxiosPromise<VideoRecording> {
             return localVarFp.videoRecordingsCreate(startDt, name, endDt, mjrRecording, options).then((request) => request(axios, basePath));
         },
         /**
@@ -9274,11 +9274,11 @@ export const CrashReportsApiFactory = function (configuration?: Configuration, b
          * @param {string} [startDt] 
          * @param {string} [endDt] 
          * @param {string} [name] 
-         * @param {any} [mjrRecording] 
+         * @param {File} [mjrRecording] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        videoRecordingsPartialUpdate(id: number, startDt?: string, endDt?: string, name?: string, mjrRecording?: any, options?: any): AxiosPromise<VideoRecording> {
+        videoRecordingsPartialUpdate(id: number, startDt?: string, endDt?: string, name?: string, mjrRecording?: File, options?: any): AxiosPromise<VideoRecording> {
             return localVarFp.videoRecordingsPartialUpdate(id, startDt, endDt, name, mjrRecording, options).then((request) => request(axios, basePath));
         },
         /**
@@ -9287,11 +9287,11 @@ export const CrashReportsApiFactory = function (configuration?: Configuration, b
          * @param {string} startDt 
          * @param {string} name 
          * @param {string} [endDt] 
-         * @param {any} [mjrRecording] 
+         * @param {File} [mjrRecording] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        videoRecordingsUpdate(id: number, startDt: string, name: string, endDt?: string, mjrRecording?: any, options?: any): AxiosPromise<VideoRecording> {
+        videoRecordingsUpdate(id: number, startDt: string, name: string, endDt?: string, mjrRecording?: File, options?: any): AxiosPromise<VideoRecording> {
             return localVarFp.videoRecordingsUpdate(id, startDt, name, endDt, mjrRecording, options).then((request) => request(axios, basePath));
         },
     };
@@ -9308,9 +9308,9 @@ export interface CrashReportsApiInterface {
      * @param {string} [description] 
      * @param {string} [email] 
      * @param {string} [osVersion] 
-     * @param {any} [osLogs] 
+     * @param {File} [osLogs] 
      * @param {string} [browserVersion] 
-     * @param {any} [browserLogs] 
+     * @param {File} [browserLogs] 
      * @param {string} [serial] 
      * @param {string} [posthogSession] 
      * @param {CrashReportStatusEnum} [status] 
@@ -9321,7 +9321,7 @@ export interface CrashReportsApiInterface {
      * @throws {RequiredError}
      * @memberof CrashReportsApiInterface
      */
-    crashReportsCreate(description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): AxiosPromise<CrashReport>;
+    crashReportsCreate(description?: string, email?: string, osVersion?: string, osLogs?: File, browserVersion?: string, browserLogs?: File, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): AxiosPromise<CrashReport>;
 
     /**
      * 
@@ -9338,9 +9338,9 @@ export interface CrashReportsApiInterface {
      * @param {string} [description] 
      * @param {string} [email] 
      * @param {string} [osVersion] 
-     * @param {any} [osLogs] 
+     * @param {File} [osLogs] 
      * @param {string} [browserVersion] 
-     * @param {any} [browserLogs] 
+     * @param {File} [browserLogs] 
      * @param {string} [serial] 
      * @param {string} [posthogSession] 
      * @param {CrashReportStatusEnum} [status] 
@@ -9351,7 +9351,7 @@ export interface CrashReportsApiInterface {
      * @throws {RequiredError}
      * @memberof CrashReportsApiInterface
      */
-    crashReportsPartialUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): AxiosPromise<CrashReport>;
+    crashReportsPartialUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: File, browserVersion?: string, browserLogs?: File, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): AxiosPromise<CrashReport>;
 
     /**
      * 
@@ -9368,9 +9368,9 @@ export interface CrashReportsApiInterface {
      * @param {string} [description] 
      * @param {string} [email] 
      * @param {string} [osVersion] 
-     * @param {any} [osLogs] 
+     * @param {File} [osLogs] 
      * @param {string} [browserVersion] 
-     * @param {any} [browserLogs] 
+     * @param {File} [browserLogs] 
      * @param {string} [serial] 
      * @param {string} [posthogSession] 
      * @param {CrashReportStatusEnum} [status] 
@@ -9381,19 +9381,19 @@ export interface CrashReportsApiInterface {
      * @throws {RequiredError}
      * @memberof CrashReportsApiInterface
      */
-    crashReportsUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): AxiosPromise<CrashReport>;
+    crashReportsUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: File, browserVersion?: string, browserLogs?: File, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig): AxiosPromise<CrashReport>;
 
     /**
      * 
      * @param {string} startDt 
      * @param {string} name 
      * @param {string} [endDt] 
-     * @param {any} [mjrRecording] 
+     * @param {File} [mjrRecording] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CrashReportsApiInterface
      */
-    videoRecordingsCreate(startDt: string, name: string, endDt?: string, mjrRecording?: any, options?: AxiosRequestConfig): AxiosPromise<VideoRecording>;
+    videoRecordingsCreate(startDt: string, name: string, endDt?: string, mjrRecording?: File, options?: AxiosRequestConfig): AxiosPromise<VideoRecording>;
 
     /**
      * 
@@ -9410,12 +9410,12 @@ export interface CrashReportsApiInterface {
      * @param {string} [startDt] 
      * @param {string} [endDt] 
      * @param {string} [name] 
-     * @param {any} [mjrRecording] 
+     * @param {File} [mjrRecording] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CrashReportsApiInterface
      */
-    videoRecordingsPartialUpdate(id: number, startDt?: string, endDt?: string, name?: string, mjrRecording?: any, options?: AxiosRequestConfig): AxiosPromise<VideoRecording>;
+    videoRecordingsPartialUpdate(id: number, startDt?: string, endDt?: string, name?: string, mjrRecording?: File, options?: AxiosRequestConfig): AxiosPromise<VideoRecording>;
 
     /**
      * 
@@ -9423,12 +9423,12 @@ export interface CrashReportsApiInterface {
      * @param {string} startDt 
      * @param {string} name 
      * @param {string} [endDt] 
-     * @param {any} [mjrRecording] 
+     * @param {File} [mjrRecording] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CrashReportsApiInterface
      */
-    videoRecordingsUpdate(id: number, startDt: string, name: string, endDt?: string, mjrRecording?: any, options?: AxiosRequestConfig): AxiosPromise<VideoRecording>;
+    videoRecordingsUpdate(id: number, startDt: string, name: string, endDt?: string, mjrRecording?: File, options?: AxiosRequestConfig): AxiosPromise<VideoRecording>;
 
 }
 
@@ -9444,9 +9444,9 @@ export class CrashReportsApi extends BaseAPI implements CrashReportsApiInterface
      * @param {string} [description] 
      * @param {string} [email] 
      * @param {string} [osVersion] 
-     * @param {any} [osLogs] 
+     * @param {File} [osLogs] 
      * @param {string} [browserVersion] 
-     * @param {any} [browserLogs] 
+     * @param {File} [browserLogs] 
      * @param {string} [serial] 
      * @param {string} [posthogSession] 
      * @param {CrashReportStatusEnum} [status] 
@@ -9457,7 +9457,7 @@ export class CrashReportsApi extends BaseAPI implements CrashReportsApiInterface
      * @throws {RequiredError}
      * @memberof CrashReportsApi
      */
-    public crashReportsCreate(description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig) {
+    public crashReportsCreate(description?: string, email?: string, osVersion?: string, osLogs?: File, browserVersion?: string, browserLogs?: File, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig) {
         return CrashReportsApiFp(this.configuration).crashReportsCreate(description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -9478,9 +9478,9 @@ export class CrashReportsApi extends BaseAPI implements CrashReportsApiInterface
      * @param {string} [description] 
      * @param {string} [email] 
      * @param {string} [osVersion] 
-     * @param {any} [osLogs] 
+     * @param {File} [osLogs] 
      * @param {string} [browserVersion] 
-     * @param {any} [browserLogs] 
+     * @param {File} [browserLogs] 
      * @param {string} [serial] 
      * @param {string} [posthogSession] 
      * @param {CrashReportStatusEnum} [status] 
@@ -9491,7 +9491,7 @@ export class CrashReportsApi extends BaseAPI implements CrashReportsApiInterface
      * @throws {RequiredError}
      * @memberof CrashReportsApi
      */
-    public crashReportsPartialUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig) {
+    public crashReportsPartialUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: File, browserVersion?: string, browserLogs?: File, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig) {
         return CrashReportsApiFp(this.configuration).crashReportsPartialUpdate(id, description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -9512,9 +9512,9 @@ export class CrashReportsApi extends BaseAPI implements CrashReportsApiInterface
      * @param {string} [description] 
      * @param {string} [email] 
      * @param {string} [osVersion] 
-     * @param {any} [osLogs] 
+     * @param {File} [osLogs] 
      * @param {string} [browserVersion] 
-     * @param {any} [browserLogs] 
+     * @param {File} [browserLogs] 
      * @param {string} [serial] 
      * @param {string} [posthogSession] 
      * @param {CrashReportStatusEnum} [status] 
@@ -9525,7 +9525,7 @@ export class CrashReportsApi extends BaseAPI implements CrashReportsApiInterface
      * @throws {RequiredError}
      * @memberof CrashReportsApi
      */
-    public crashReportsUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig) {
+    public crashReportsUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: File, browserVersion?: string, browserLogs?: File, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, user?: number, pi?: number, options?: AxiosRequestConfig) {
         return CrashReportsApiFp(this.configuration).crashReportsUpdate(id, description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, user, pi, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -9534,12 +9534,12 @@ export class CrashReportsApi extends BaseAPI implements CrashReportsApiInterface
      * @param {string} startDt 
      * @param {string} name 
      * @param {string} [endDt] 
-     * @param {any} [mjrRecording] 
+     * @param {File} [mjrRecording] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CrashReportsApi
      */
-    public videoRecordingsCreate(startDt: string, name: string, endDt?: string, mjrRecording?: any, options?: AxiosRequestConfig) {
+    public videoRecordingsCreate(startDt: string, name: string, endDt?: string, mjrRecording?: File, options?: AxiosRequestConfig) {
         return CrashReportsApiFp(this.configuration).videoRecordingsCreate(startDt, name, endDt, mjrRecording, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -9560,12 +9560,12 @@ export class CrashReportsApi extends BaseAPI implements CrashReportsApiInterface
      * @param {string} [startDt] 
      * @param {string} [endDt] 
      * @param {string} [name] 
-     * @param {any} [mjrRecording] 
+     * @param {File} [mjrRecording] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CrashReportsApi
      */
-    public videoRecordingsPartialUpdate(id: number, startDt?: string, endDt?: string, name?: string, mjrRecording?: any, options?: AxiosRequestConfig) {
+    public videoRecordingsPartialUpdate(id: number, startDt?: string, endDt?: string, name?: string, mjrRecording?: File, options?: AxiosRequestConfig) {
         return CrashReportsApiFp(this.configuration).videoRecordingsPartialUpdate(id, startDt, endDt, name, mjrRecording, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -9575,12 +9575,12 @@ export class CrashReportsApi extends BaseAPI implements CrashReportsApiInterface
      * @param {string} startDt 
      * @param {string} name 
      * @param {string} [endDt] 
-     * @param {any} [mjrRecording] 
+     * @param {File} [mjrRecording] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CrashReportsApi
      */
-    public videoRecordingsUpdate(id: number, startDt: string, name: string, endDt?: string, mjrRecording?: any, options?: AxiosRequestConfig) {
+    public videoRecordingsUpdate(id: number, startDt: string, name: string, endDt?: string, mjrRecording?: File, options?: AxiosRequestConfig) {
         return CrashReportsApiFp(this.configuration).videoRecordingsUpdate(id, startDt, name, endDt, mjrRecording, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -10704,7 +10704,7 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async pisLicenseZipRetrieve(piId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+        async pisLicenseZipRetrieve(piId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<File>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.pisLicenseZipRetrieve(piId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -10966,7 +10966,7 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pisLicenseZipRetrieve(piId: number, options?: any): AxiosPromise<any> {
+        pisLicenseZipRetrieve(piId: number, options?: any): AxiosPromise<File> {
             return localVarFp.pisLicenseZipRetrieve(piId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -11211,7 +11211,7 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    pisLicenseZipRetrieve(piId: number, options?: AxiosRequestConfig): AxiosPromise<any>;
+    pisLicenseZipRetrieve(piId: number, options?: AxiosRequestConfig): AxiosPromise<File>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
@@ -13264,11 +13264,11 @@ export const OctoprintApiAxiosParamCreator = function (configuration?: Configura
          * @param {string} hostname 
          * @param {string} name 
          * @param {string} octoprintVersion 
-         * @param {any} file 
+         * @param {File} file 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintBackupsCreate: async (hostname: string, name: string, octoprintVersion: string, file: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        octoprintBackupsCreate: async (hostname: string, name: string, octoprintVersion: string, file: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'hostname' is not null or undefined
             assertParamExists('octoprintBackupsCreate', 'hostname', hostname)
             // verify required parameter 'name' is not null or undefined
@@ -13567,12 +13567,12 @@ export const OctoprintApiAxiosParamCreator = function (configuration?: Configura
         /**
          * 
          * @param {string} name 
-         * @param {any} file 
+         * @param {File} file 
          * @param {string} hash 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintGcodeFilesCreate: async (name: string, file: any, hash: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        octoprintGcodeFilesCreate: async (name: string, file: File, hash: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'name' is not null or undefined
             assertParamExists('octoprintGcodeFilesCreate', 'name', name)
             // verify required parameter 'file' is not null or undefined
@@ -14351,11 +14351,11 @@ export const OctoprintApiFp = function(configuration?: Configuration) {
          * @param {string} hostname 
          * @param {string} name 
          * @param {string} octoprintVersion 
-         * @param {any} file 
+         * @param {File} file 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintBackupsCreate(hostname: string, name: string, octoprintVersion: string, file: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintBackup>> {
+        async octoprintBackupsCreate(hostname: string, name: string, octoprintVersion: string, file: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintBackup>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintBackupsCreate(hostname, name, octoprintVersion, file, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -14422,12 +14422,12 @@ export const OctoprintApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} name 
-         * @param {any} file 
+         * @param {File} file 
          * @param {string} hash 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintGcodeFilesCreate(name: string, file: any, hash: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
+        async octoprintGcodeFilesCreate(name: string, file: File, hash: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintGcodeFilesCreate(name, file, hash, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -14623,11 +14623,11 @@ export const OctoprintApiFactory = function (configuration?: Configuration, base
          * @param {string} hostname 
          * @param {string} name 
          * @param {string} octoprintVersion 
-         * @param {any} file 
+         * @param {File} file 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintBackupsCreate(hostname: string, name: string, octoprintVersion: string, file: any, options?: any): AxiosPromise<OctoPrintBackup> {
+        octoprintBackupsCreate(hostname: string, name: string, octoprintVersion: string, file: File, options?: any): AxiosPromise<OctoPrintBackup> {
             return localVarFp.octoprintBackupsCreate(hostname, name, octoprintVersion, file, options).then((request) => request(axios, basePath));
         },
         /**
@@ -14687,12 +14687,12 @@ export const OctoprintApiFactory = function (configuration?: Configuration, base
         /**
          * 
          * @param {string} name 
-         * @param {any} file 
+         * @param {File} file 
          * @param {string} hash 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintGcodeFilesCreate(name: string, file: any, hash: string, options?: any): AxiosPromise<GcodeFile> {
+        octoprintGcodeFilesCreate(name: string, file: File, hash: string, options?: any): AxiosPromise<GcodeFile> {
             return localVarFp.octoprintGcodeFilesCreate(name, file, hash, options).then((request) => request(axios, basePath));
         },
         /**
@@ -14869,12 +14869,12 @@ export interface OctoprintApiInterface {
      * @param {string} hostname 
      * @param {string} name 
      * @param {string} octoprintVersion 
-     * @param {any} file 
+     * @param {File} file 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintApiInterface
      */
-    octoprintBackupsCreate(hostname: string, name: string, octoprintVersion: string, file: any, options?: AxiosRequestConfig): AxiosPromise<OctoPrintBackup>;
+    octoprintBackupsCreate(hostname: string, name: string, octoprintVersion: string, file: File, options?: AxiosRequestConfig): AxiosPromise<OctoPrintBackup>;
 
     /**
      * 
@@ -14933,13 +14933,13 @@ export interface OctoprintApiInterface {
     /**
      * 
      * @param {string} name 
-     * @param {any} file 
+     * @param {File} file 
      * @param {string} hash 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintApiInterface
      */
-    octoprintGcodeFilesCreate(name: string, file: any, hash: string, options?: AxiosRequestConfig): AxiosPromise<GcodeFile>;
+    octoprintGcodeFilesCreate(name: string, file: File, hash: string, options?: AxiosRequestConfig): AxiosPromise<GcodeFile>;
 
     /**
      * 
@@ -15115,12 +15115,12 @@ export class OctoprintApi extends BaseAPI implements OctoprintApiInterface {
      * @param {string} hostname 
      * @param {string} name 
      * @param {string} octoprintVersion 
-     * @param {any} file 
+     * @param {File} file 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintApi
      */
-    public octoprintBackupsCreate(hostname: string, name: string, octoprintVersion: string, file: any, options?: AxiosRequestConfig) {
+    public octoprintBackupsCreate(hostname: string, name: string, octoprintVersion: string, file: File, options?: AxiosRequestConfig) {
         return OctoprintApiFp(this.configuration).octoprintBackupsCreate(hostname, name, octoprintVersion, file, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -15193,13 +15193,13 @@ export class OctoprintApi extends BaseAPI implements OctoprintApiInterface {
     /**
      * 
      * @param {string} name 
-     * @param {any} file 
+     * @param {File} file 
      * @param {string} hash 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OctoprintApi
      */
-    public octoprintGcodeFilesCreate(name: string, file: any, hash: string, options?: AxiosRequestConfig) {
+    public octoprintGcodeFilesCreate(name: string, file: File, hash: string, options?: AxiosRequestConfig) {
         return OctoprintApiFp(this.configuration).octoprintGcodeFilesCreate(name, file, hash, options).then((request) => request(this.axios, this.basePath));
     }
 

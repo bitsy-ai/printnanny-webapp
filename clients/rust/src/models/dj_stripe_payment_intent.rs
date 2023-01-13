@@ -50,13 +50,13 @@ pub struct DjStripePaymentIntent {
     pub canceled_at: Option<String>,
     /// Capture method of this PaymentIntent, one of automatic or manual.
     #[serde(rename = "capture_method")]
-    pub capture_method: Option<Box<crate::models::StripeConfirmationMethod>>,
+    pub capture_method: Box<crate::models::StripeConfirmationMethod>,
     /// The client secret of this PaymentIntent. Used for client-side retrieval using a publishable key.
     #[serde(rename = "client_secret")]
     pub client_secret: String,
     /// Confirmation method of this PaymentIntent, one of manual or automatic.
     #[serde(rename = "confirmation_method")]
-    pub confirmation_method: Option<Box<crate::models::StripeConfirmationMethod>>,
+    pub confirmation_method: Box<crate::models::StripeConfirmationMethod>,
     /// Three-letter ISO currency code
     #[serde(rename = "currency")]
     pub currency: String,
@@ -83,7 +83,7 @@ pub struct DjStripePaymentIntent {
     pub statement_descriptor: Option<String>,
     /// Status of this PaymentIntent, one of requires_payment_method, requires_confirmation, requires_action, processing, requires_capture, canceled, or succeeded. You can read more about PaymentIntent statuses here.
     #[serde(rename = "status")]
-    pub status: Option<Box<crate::models::StripePaymentIntentStatus>>,
+    pub status: Box<crate::models::StripePaymentIntentStatus>,
     /// The data with which to automatically create a Transfer when the payment is finalized. See the PaymentIntents Connect usage guide for details.
     #[serde(rename = "transfer_data", skip_serializing_if = "Option::is_none")]
     pub transfer_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
@@ -105,7 +105,7 @@ pub struct DjStripePaymentIntent {
 }
 
 impl DjStripePaymentIntent {
-    pub fn new(djstripe_id: i32, cancellation_reason: crate::models::StripePaymentIntentCancellationReason, charges: Vec<crate::models::DjStripeCharge>, setup_future_usage: crate::models::StripeIntentUsage, djstripe_created: String, djstripe_updated: String, id: String, amount: i64, amount_capturable: i64, amount_received: i64, capture_method: Option<crate::models::StripeConfirmationMethod>, client_secret: String, confirmation_method: Option<crate::models::StripeConfirmationMethod>, currency: String, payment_method_types: ::std::collections::HashMap<String, serde_json::Value>, status: Option<crate::models::StripePaymentIntentStatus>) -> DjStripePaymentIntent {
+    pub fn new(djstripe_id: i32, cancellation_reason: crate::models::StripePaymentIntentCancellationReason, charges: Vec<crate::models::DjStripeCharge>, setup_future_usage: crate::models::StripeIntentUsage, djstripe_created: String, djstripe_updated: String, id: String, amount: i64, amount_capturable: i64, amount_received: i64, capture_method: crate::models::StripeConfirmationMethod, client_secret: String, confirmation_method: crate::models::StripeConfirmationMethod, currency: String, payment_method_types: ::std::collections::HashMap<String, serde_json::Value>, status: crate::models::StripePaymentIntentStatus) -> DjStripePaymentIntent {
         DjStripePaymentIntent {
             djstripe_id,
             cancellation_reason,
@@ -121,9 +121,9 @@ impl DjStripePaymentIntent {
             amount_capturable,
             amount_received,
             canceled_at: None,
-            capture_method: capture_method.map(Box::new),
+            capture_method: Box::new(capture_method),
             client_secret,
-            confirmation_method: confirmation_method.map(Box::new),
+            confirmation_method: Box::new(confirmation_method),
             currency,
             description: None,
             last_payment_error: None,
@@ -132,7 +132,7 @@ impl DjStripePaymentIntent {
             receipt_email: None,
             shipping: None,
             statement_descriptor: None,
-            status: status.map(Box::new),
+            status: Box::new(status),
             transfer_data: None,
             transfer_group: None,
             djstripe_owner_account: None,

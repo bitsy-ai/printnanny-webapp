@@ -1026,6 +1026,8 @@ class DjStripeCharge(object):
         :param status: The status of this DjStripeCharge.  # noqa: E501
         :type status: StripeSourceCodeVerificationStatus
         """
+        if self.local_vars_configuration.client_side_validation and status is None:  # noqa: E501
+            raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
 
         self._status = status
 

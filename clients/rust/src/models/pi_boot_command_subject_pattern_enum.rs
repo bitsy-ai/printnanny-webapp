@@ -12,22 +12,19 @@
 /// 
 #[derive(Clone, Copy, clap::ValueEnum, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum PiBootCommandSubjectPatternEnum {
-    #[serde(rename = "pi.{pi_id}.command.boot")]
-    PiPiIdCommandBoot,
 
 }
 
 impl ToString for PiBootCommandSubjectPatternEnum {
     fn to_string(&self) -> String {
         match self {
-            Self::PiPiIdCommandBoot => String::from("pi.{pi_id}.command.boot"),
         }
     }
 }
 
 impl Default for PiBootCommandSubjectPatternEnum {
     fn default() -> PiBootCommandSubjectPatternEnum {
-        Self::PiPiIdCommandBoot
+        Self::
     }
 }
 

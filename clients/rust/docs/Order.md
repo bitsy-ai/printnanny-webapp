@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_dt** | **String** |  | [readonly]
-**djstripe_checkout_session** | Option<[**crate::models::DjStripeCheckoutSession**](DjStripeCheckoutSession.md)> |  | [readonly]
-**djstripe_customer** | Option<[**crate::models::DjStripeCustomer**](DjStripeCustomer.md)> |  | [readonly]
-**djstripe_payment_intent** | Option<[**crate::models::DjStripePaymentIntent**](DjStripePaymentIntent.md)> |  | [readonly]
+**djstripe_checkout_session** | [**crate::models::DjStripeCheckoutSession**](DjStripeCheckoutSession.md) |  | [readonly]
+**djstripe_customer** | [**crate::models::DjStripeCustomer**](DjStripeCustomer.md) |  | [readonly]
+**djstripe_payment_intent** | [**crate::models::DjStripePaymentIntent**](DjStripePaymentIntent.md) |  | [readonly]
 **email** | **String** |  | 
 **id** | **String** |  | [readonly]
 **is_shippable** | **bool** |  | [readonly]
