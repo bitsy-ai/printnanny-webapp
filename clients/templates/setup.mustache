@@ -18,7 +18,7 @@ VERSION = "{{packageVersion}}"
 
 REQUIRES = ["urllib3 >= 1.25.3", "six >= 1.10", "python-dateutil", "protobuf"]
 {{#asyncio}}
-REQUIRES.append("aiohttp >= 3.7.0")
+REQUIRES.append("aiohttp >= 3.7.0,<3.8")
 {{/asyncio}}
 {{#tornado}}
 REQUIRES.append("tornado>=4.2,<5")
