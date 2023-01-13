@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **printnanny_plugin_version** | Option<**String**> |  | [optional]
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]
+**api_key** | Option<**String**> |  | [optional]
 **user** | **i32** |  | [readonly]
 **pi** | **i32** |  | 
 
