@@ -56,6 +56,7 @@ class OctoPrintServer(SafeDeleteModel):
 
     created_dt = models.DateTimeField(auto_now_add=True)
     updated_dt = models.DateTimeField(auto_now=True)
+    api_key = models.CharField(max_length=255, null=True)
 
     @property
     def base_path(self) -> str:
