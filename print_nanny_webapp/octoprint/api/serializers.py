@@ -54,7 +54,7 @@ class OctoPrintSettingsSerializer(serializers.ModelSerializer):
 
 class OctoPrintServerSerializer(serializers.ModelSerializer):
     settings = OctoPrintSettingsSerializer(read_only=True)
-
+    base_url = serializers.CharField()
     base_path = serializers.CharField()
     venv_path = serializers.CharField()
     pip_path = serializers.CharField()
@@ -63,7 +63,7 @@ class OctoPrintServerSerializer(serializers.ModelSerializer):
     class Meta:
         model = OctoPrintServer
         exclude = ("deleted",)
-        read_only_fields = ("user", "base_path")
+        read_only_fields = ("user", "base_path", "base_url")
 
     def update_or_create(
         self, validated_data: Dict[Any, Any], device_id: int, user_id: int

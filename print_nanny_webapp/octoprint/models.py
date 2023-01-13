@@ -59,6 +59,10 @@ class OctoPrintServer(SafeDeleteModel):
     api_key = models.CharField(max_length=255, null=True)
 
     @property
+    def base_url(self) -> str:
+        return self.pi.urls["octoprint"]
+
+    @property
     def base_path(self) -> str:
         return "/home/printnanny/.octoprint/"
 
