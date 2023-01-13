@@ -13,7 +13,6 @@ from rest_framework.mixins import (
 )
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
 
 from print_nanny_webapp.moonraker.models import MoonrakerServer
 from print_nanny_webapp.moonraker.api.serializers import MoonrakerServerSerializer
@@ -23,6 +22,36 @@ from print_nanny_webapp.utils.api.views import (
     generic_update_errors,
     generic_get_errors,
 )
+
+##
+# OctoPrintServer (by device param)
+##
+@extend_schema_view(
+    list=extend_schema(
+        tags=["moonraker"],
+        parameters=[
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses={
+            200: MoonrakerServerSerializer(),
+        }
+        | generic_list_errors,
+    ),
+)
+class OctoPrintServerByDeviceViewSet(
+    GenericViewSet,
+    ListModelMixin,
+):
+    serializer_class = MoonrakerServerSerializer
+    queryset = MoonrakerServer.objects.all()
+    lookup_field = "id"
+
+    def get_queryset(self, *_args, device_id=None, **_kwargs):
+        return self.queryset.filter(device=device_id)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
 
 ##
 # MoonrakerServer (no device filter)
@@ -63,6 +92,7 @@ class MoonrakerServerViewSet(
     GenericViewSet,
     CreateModelMixin,
     ListModelMixin,
+    RetrieveModelMixin,
     UpdateModelMixin,
 ):
     serializer_class = MoonrakerServerSerializer

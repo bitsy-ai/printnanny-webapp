@@ -28,6 +28,7 @@ class OctoPrintServer(SafeDeleteModel):
         index_together = (
             ("created_dt", "user", "pi", "updated_dt"),
             (
+                "printnanny_plugin_version",
                 "octoprint_version",
                 "pip_version",
                 "python_version",
@@ -51,6 +52,7 @@ class OctoPrintServer(SafeDeleteModel):
     octoprint_version = models.CharField(max_length=32, default="")
     pip_version = models.CharField(max_length=32, default="")
     python_version = models.CharField(max_length=32, default="")
+    printnanny_plugin_version = models.CharField(max_length=64, default="")
 
     created_dt = models.DateTimeField(auto_now_add=True)
     updated_dt = models.DateTimeField(auto_now=True)
