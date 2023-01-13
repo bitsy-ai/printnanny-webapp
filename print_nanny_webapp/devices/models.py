@@ -33,6 +33,8 @@ def get_random_string_32():
 
 
 class PiUrls(TypedDict):
+    klipper: str
+    moonraker_api: str
     mission_control: str
     octoprint: str
     swupdate: str
@@ -80,6 +82,7 @@ class Pi(SafeDeleteModel):
 
     @property
     def mdns_urls(self) -> PiUrls:
+        moonraker_api = f"http://{self.mdns_hostname}/mainsail/api/"  # moonraker api is served by nginx @ /mainsail/api/ because mainsail doesn't allow us to configure a base url for moonraker services
         mission_control = f"http://{self.mdns_hostname}/"
         swupdate = f"http://{self.mdns_hostname}/update/"
         octoprint = f"http://{self.mdns_hostname}{settings.OCTOPRINT_URL}"
@@ -89,10 +92,12 @@ class Pi(SafeDeleteModel):
             octoprint=octoprint,
             syncthing=syncthing,
             mission_control=mission_control,
+            moonraker_api=moonraker_api,
         )
 
     @property
     def shortname_urls(self) -> PiUrls:
+        moonraker_api = f"http://{self.hostname}/mainsail/api/"  # moonraker api is served by nginx @ /mainsail/api/ because mainsail doesn't allow us to configure a base url for moonraker services
         mission_control = f"http://{self.hostname}/"
         swupdate = f"http://{self.hostname}/update/"
         octoprint = f"http://{self.hostname}{settings.OCTOPRINT_URL}"
@@ -102,6 +107,7 @@ class Pi(SafeDeleteModel):
             octoprint=octoprint,
             syncthing=syncthing,
             mission_control=mission_control,
+            moonraker_api=moonraker_api,
         )
 
     @property

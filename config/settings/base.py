@@ -98,6 +98,7 @@ LOCAL_APPS = [
     "print_nanny_webapp.users.apps.UsersConfig",
     "print_nanny_webapp.surveys.apps.SurveysConfig",
     "print_nanny_webapp.octoprint.apps.OctoprintConfig",
+    "print_nanny_webapp.moonraker.apps.MoonrakerConfig",
     "print_nanny_webapp.shop.apps.ShopConfig",
     "print_nanny_webapp.videos.apps.VideosConfig",
     "print_nanny_webapp.events.apps.EventsConfig",  # Gated at the bottom
