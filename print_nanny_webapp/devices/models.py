@@ -33,7 +33,6 @@ def get_random_string_32():
 
 
 class PiUrls(TypedDict):
-    klipper: str
     moonraker_api: str
     mission_control: str
     octoprint: str
