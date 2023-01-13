@@ -7,7 +7,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="printnanny-api-client",
-    version="0.122.3",
+    version="0.123.0",
     description="A client library for accessing printnanny-api-client",
     long_description=long_description,
     long_description_content_type="text/markdown",
