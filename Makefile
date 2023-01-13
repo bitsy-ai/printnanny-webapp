@@ -438,8 +438,8 @@ python-protobuf:
 # 		-c $(PWD)/clients/python.yaml \
 
 python-client: clean-python-client
-	cd clients && openapi-python-client generate --url http://localhost:8000/api/schema/ --config python.yaml --meta-setup
-	mv printnanny-api-client python
+	openapi-python-client generate --url http://localhost:8000/api/schema/ --config clients/python.yaml --meta setup
+	mv printnanny-api-client clients/python
 
 clean-pyc: ## remove Python file artifacts
 	find . -name '*.pyc' -exec rm -f {} \;
