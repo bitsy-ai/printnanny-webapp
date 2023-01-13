@@ -14,6 +14,11 @@ class MoonrakerServerSerializer(serializers.ModelSerializer):
     pip_path = serializers.CharField(read_only=True)
     python_path = serializers.CharField(read_only=True)
 
+    class Meta:
+        model = MoonrakerServer
+        exclude = ("deleted",)
+        read_only_fields = ("user", "base_path", "base_url")
+
     def update_or_create(
         self, validated_data: Dict[Any, Any], device_id: int, user_id: int
     ) -> Tuple[MoonrakerServer, bool]:

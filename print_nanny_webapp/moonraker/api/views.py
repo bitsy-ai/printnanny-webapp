@@ -24,7 +24,7 @@ from print_nanny_webapp.utils.api.views import (
 )
 
 ##
-# OctoPrintServer (by device param)
+# MoonrakerServer (by device param)
 ##
 @extend_schema_view(
     list=extend_schema(
@@ -38,7 +38,7 @@ from print_nanny_webapp.utils.api.views import (
         | generic_list_errors,
     ),
 )
-class OctoPrintServerByDeviceViewSet(
+class MoonrakerServerByDeviceViewSet(
     GenericViewSet,
     ListModelMixin,
 ):
@@ -58,7 +58,7 @@ class OctoPrintServerByDeviceViewSet(
 ##
 @extend_schema_view(
     list=extend_schema(
-        tags=["Mmonraker"],
+        tags=["moonraker"],
         responses={
             200: MoonrakerServerSerializer(many=True),
         }

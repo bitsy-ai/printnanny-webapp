@@ -38,6 +38,10 @@ from print_nanny_webapp.octoprint.api.views import (
 )
 from print_nanny_webapp.users.api.views import EmailWaitlistViewSet, UserNkeyView
 from print_nanny_webapp.videos.api.views import VideoRecordingViewSet
+from print_nanny_webapp.moonraker.api.views import (
+    MoonrakerServerViewSet,
+    MoonrakerServerByDeviceViewSet,
+)
 
 
 router = DefaultRouter()
@@ -47,6 +51,8 @@ router.register("pis", PiViewSet)
 
 router.register("crash-reports", CrashReportViewSet, "crash-reports")
 router.register("video-recordings", VideoRecordingViewSet, "video-recordings")
+router.register("moonraker", MoonrakerServerViewSet, "moonraker")
+
 
 # octoprint endpoints (PrintNanny os data model)
 
@@ -97,10 +103,16 @@ pi_router.register(r"webrtc-streams", WebrtcStreamViewSet, basename="janus-strea
 
 pi_router.register(r"system-info", SystemInfoViewSet, basename="system-info")
 pi_router.register(
-    r"octoprint",
+    r"octoprint-server",
     OctoPrintServerByDeviceViewSet,
-    basename="octoprints",
+    basename="pi-octoprint-server",
 )
+pi_router.register(
+    r"moonraker-server",
+    MoonrakerServerByDeviceViewSet,
+    basename="pi-moonraer-server",
+)
+
 
 router.register("achievements", AchievementViewSet)
 
