@@ -1,3 +1,24 @@
 ---
-project_name_override: printnanny-api-client
-package_name_override: printnanny_api_client
+library: asyncio
+packageName: printnanny_api_client
+packageVersion: "0.122.3"
+templateDir: clients/templates
+infoName: "Leigh Johnson"
+infoEmail: "leigh@print-nanny.com"
+license: "AGPL"
+files:
+  # api_client.mustache:
+  #   templateType: SupportingFiles
+  #   destinationFilename: printnanny_api_client/api_client.py
+  requirements.mustache:
+    templateType: SupportingFiles
+    destinationFilename: requirements.txt
+  setup.mustache:
+    templateType: SupportingFiles
+    destinationFilename: setup.py
+  MANIFEST.mustache:
+    templateType: SupportingFiles
+    destinationFilename: MANIFEST.in
+  py.typed.mustache:
+    templateType: SupportingFiles
+    destinationFilename: printnanny_api_client/py.typed
