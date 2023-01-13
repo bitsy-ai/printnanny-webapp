@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**base_url** | **str** |  | 
 **base_path** | **str** |  | 
 **venv_path** | **str** |  | 
 **pip_path** | **str** |  | 

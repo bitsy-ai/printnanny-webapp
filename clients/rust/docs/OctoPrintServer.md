@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
 **settings** | Option<[**crate::models::OctoPrintSettings**](OctoPrintSettings.md)> |  | [readonly]
+**base_url** | **String** |  | 
 **base_path** | **String** |  | 
 **venv_path** | **String** |  | 
 **pip_path** | **String** |  | 

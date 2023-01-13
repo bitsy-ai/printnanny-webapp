@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**moonraker_api** | **str** |  | 
 **mission_control** | **str** |  | 
 **octoprint** | **str** |  | 
 **swupdate** | **str** |  | 

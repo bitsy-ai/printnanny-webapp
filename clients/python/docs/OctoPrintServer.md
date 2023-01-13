@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **settings** | [**OctoPrintSettings**](OctoPrintSettings.md) |  | [readonly] 
+**base_url** | **str** |  | 
 **base_path** | **str** |  | 
 **venv_path** | **str** |  | 
 **pip_path** | **str** |  | 

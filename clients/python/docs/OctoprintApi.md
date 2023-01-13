@@ -28,7 +28,7 @@ Method | HTTP request | Description
 [**octoprint_settings_update**](OctoprintApi.md#octoprint_settings_update) | **PUT** /api/octoprint/settings/{id}/ | 
 [**octoprint_settings_update_or_create**](OctoprintApi.md#octoprint_settings_update_or_create) | **POST** /api/octoprint/settings/update-or-create/ | 
 [**octoprint_update**](OctoprintApi.md#octoprint_update) | **PUT** /api/octoprint/{id}/ | 
-[**pis_octoprint_list**](OctoprintApi.md#pis_octoprint_list) | **GET** /api/pis/{pi_id}/octoprint/ | 
+[**pis_octoprint_server_list**](OctoprintApi.md#pis_octoprint_server_list) | **GET** /api/pis/{pi_id}/octoprint-server/ | 
 
 
 # **octoprint_backups_create**
@@ -2965,8 +2965,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **pis_octoprint_list**
-> PaginatedOctoPrintServerList pis_octoprint_list(pi_id, page=page)
+# **pis_octoprint_server_list**
+> PaginatedOctoPrintServerList pis_octoprint_server_list(pi_id, page=page)
 
 
 
@@ -3009,10 +3009,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.pis_octoprint_list(pi_id, page=page)
+        api_response = api_instance.pis_octoprint_server_list(pi_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling OctoprintApi->pis_octoprint_list: %s\n" % e)
+        print("Exception when calling OctoprintApi->pis_octoprint_server_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -3052,10 +3052,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.pis_octoprint_list(pi_id, page=page)
+        api_response = api_instance.pis_octoprint_server_list(pi_id, page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling OctoprintApi->pis_octoprint_list: %s\n" % e)
+        print("Exception when calling OctoprintApi->pis_octoprint_server_list: %s\n" % e)
 ```
 
 ### Parameters

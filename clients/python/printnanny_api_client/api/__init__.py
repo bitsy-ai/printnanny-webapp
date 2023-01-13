@@ -10,6 +10,7 @@ from printnanny_api_client.api.crash_reports_api import CrashReportsApi
 from printnanny_api_client.api.devices_api import DevicesApi
 from printnanny_api_client.api.events_api import EventsApi
 from printnanny_api_client.api.janus_api import JanusApi
+from printnanny_api_client.api.moonraker_api import MoonrakerApi
 from printnanny_api_client.api.octoprint_api import OctoprintApi
 from printnanny_api_client.api.pis_api import PisApi
 from printnanny_api_client.api.schema_api import SchemaApi

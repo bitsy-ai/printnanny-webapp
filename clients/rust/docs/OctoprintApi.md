@@ -28,7 +28,7 @@ Method | HTTP request | Description
 [**octoprint_settings_update**](OctoprintApi.md#octoprint_settings_update) | **PUT** /api/octoprint/settings/{id}/ | 
 [**octoprint_settings_update_or_create**](OctoprintApi.md#octoprint_settings_update_or_create) | **POST** /api/octoprint/settings/update-or-create/ | 
 [**octoprint_update**](OctoprintApi.md#octoprint_update) | **PUT** /api/octoprint/{id}/ | 
-[**pis_octoprint_list**](OctoprintApi.md#pis_octoprint_list) | **GET** /api/pis/{pi_id}/octoprint/ | 
+[**pis_octoprint_server_list**](OctoprintApi.md#pis_octoprint_server_list) | **GET** /api/pis/{pi_id}/octoprint-server/ | 
 
 
 
@@ -721,9 +721,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## pis_octoprint_list
+## pis_octoprint_server_list
 
-> crate::models::PaginatedOctoPrintServerList pis_octoprint_list(pi_id, page)
+> crate::models::PaginatedOctoPrintServerList pis_octoprint_server_list(pi_id, page)
 
 
 ### Parameters

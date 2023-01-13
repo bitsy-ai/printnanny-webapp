@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**base_url** | **String** |  | 
 **base_path** | **String** |  | 
 **venv_path** | **String** |  | 
 **pip_path** | **String** |  | 

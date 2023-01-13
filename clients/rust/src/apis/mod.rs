@@ -68,6 +68,7 @@ pub mod crash_reports_api;
 pub mod devices_api;
 pub mod events_api;
 pub mod janus_api;
+pub mod moonraker_api;
 pub mod octoprint_api;
 pub mod pis_api;
 pub mod schema_api;

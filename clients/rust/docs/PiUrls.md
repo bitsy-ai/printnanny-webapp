@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**moonraker_api** | **String** |  | 
 **mission_control** | **String** |  | 
 **octoprint** | **String** |  | 
 **swupdate** | **String** |  | 

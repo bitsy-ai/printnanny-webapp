@@ -34,6 +34,9 @@ docs/GcodeFile.md
 docs/JanusApi.md
 docs/JanusConfigType.md
 docs/LoginRequest.md
+docs/MoonrakerApi.md
+docs/MoonrakerServer.md
+docs/MoonrakerServerRequest.md
 docs/NatsOrganization.md
 docs/NatsOrganizationRequest.md
 docs/NatsOrganizationUser.md
@@ -73,6 +76,7 @@ docs/PaginatedAchievementList.md
 docs/PaginatedCrashReportList.md
 docs/PaginatedEmailAlertSettingsList.md
 docs/PaginatedGcodeFileList.md
+docs/PaginatedMoonrakerServerList.md
 docs/PaginatedOctoPrintBackupList.md
 docs/PaginatedOctoPrintServerList.md
 docs/PaginatedOctoPrintSettingsList.md
@@ -90,6 +94,7 @@ docs/PasswordChangeRequest.md
 docs/PasswordResetConfirmRequest.md
 docs/PasswordResetRequest.md
 docs/PatchedEmailAlertSettingsRequest.md
+docs/PatchedMoonrakerServerRequest.md
 docs/PatchedNetworkSettingsRequest.md
 docs/PatchedOctoPrintServerRequest.md
 docs/PatchedOctoPrintSettingsRequest.md
@@ -181,6 +186,7 @@ src/apis/devices_api.rs
 src/apis/events_api.rs
 src/apis/janus_api.rs
 src/apis/mod.rs
+src/apis/moonraker_api.rs
 src/apis/octoprint_api.rs
 src/apis/pis_api.rs
 src/apis/schema_api.rs
@@ -213,6 +219,8 @@ src/models/gcode_file.rs
 src/models/janus_config_type.rs
 src/models/login_request.rs
 src/models/mod.rs
+src/models/moonraker_server.rs
+src/models/moonraker_server_request.rs
 src/models/nats_organization.rs
 src/models/nats_organization_request.rs
 src/models/nats_organization_user.rs
@@ -251,6 +259,7 @@ src/models/paginated_achievement_list.rs
 src/models/paginated_crash_report_list.rs
 src/models/paginated_email_alert_settings_list.rs
 src/models/paginated_gcode_file_list.rs
+src/models/paginated_moonraker_server_list.rs
 src/models/paginated_octo_print_backup_list.rs
 src/models/paginated_octo_print_server_list.rs
 src/models/paginated_octo_print_settings_list.rs
@@ -268,6 +277,7 @@ src/models/password_change_request.rs
 src/models/password_reset_confirm_request.rs
 src/models/password_reset_request.rs
 src/models/patched_email_alert_settings_request.rs
+src/models/patched_moonraker_server_request.rs
 src/models/patched_network_settings_request.rs
 src/models/patched_octo_print_server_request.rs
 src/models/patched_octo_print_settings_request.rs
