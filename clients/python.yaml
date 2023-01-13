@@ -7,9 +7,6 @@ infoName: "Leigh Johnson"
 infoEmail: "leigh@print-nanny.com"
 license: "AGPL"
 files:
-  # api_client.mustache:
-  #   templateType: SupportingFiles
-  #   destinationFilename: printnanny_api_client/api_client.py
   requirements.mustache:
     templateType: SupportingFiles
     destinationFilename: requirements.txt
