@@ -63,7 +63,8 @@
           <div class="mt-10">
             <button
               type="button"
-              class="flex w-full items-center block justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+              disabled
+              class="flex w-full items-center block justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white focus:outline-none disabled:opacity-25"
               @click="onClick"
             >
               Sold Out
