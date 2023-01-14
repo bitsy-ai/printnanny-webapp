@@ -60,8 +60,17 @@
           </div>
 
           <p class="mt-6 text-gray-500">{{ product.description }}</p>
-
+          <div class="mt-10">
+            <button
+              type="button"
+              class="flex w-full items-center block justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+              @click="onClick"
+            >
+              Sold Out
+            </button>
+          </div>
           <!-- prompt for email address if user is not logged in -->
+          <!-- DISABLED SDWIRE, SOLD OUT
           <div v-if="!accountStore.isAuthenticated" class="mt-10">
             <p class="text-sm my-2">
               Enter your email address or
@@ -130,6 +139,7 @@
               </span>
             </button>
           </div>
+          -->
 
           <div class="mt-10 border-t border-gray-200 pt-10">
             <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
