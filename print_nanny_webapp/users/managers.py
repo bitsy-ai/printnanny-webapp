@@ -6,17 +6,6 @@ from django.db import models
 logger = logging.getLogger(__name__)
 
 
-class InviteRequestManager(models.Manager):
-    def create(self, **kwargs):
-        from .tasks import create_ghost_member
-
-        instance = super().create(**kwargs)
-        task = create_ghost_member(instance.to_ghost_member())
-        logger.info(f"Submitted create_ghost_member with task.id={task.id}")
-
-        return instance
-
-
 class CustomUserManager(BaseUserManager):
     """
     Custom user model manager where email is the unique identifiers
@@ -40,7 +29,6 @@ class CustomUserManager(BaseUserManager):
         """
         Create and save a SuperUser with the given email and password.
         """
-        from .tasks import create_ghost_member
 
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
