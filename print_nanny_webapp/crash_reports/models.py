@@ -23,20 +23,58 @@ class CrashReport(SafeDeleteModel):
     created_dt = models.DateTimeField(auto_now_add=True)
     updated_dt = models.DateTimeField(auto_now=True)
 
-    description = models.TextField(null=True)
-    email = models.EmailField(null=True)
+    description = models.TextField(
+        null=True,
+        blank=True,
+    )
+    email = models.EmailField(
+        null=True,
+        blank=True,
+    )
     user = models.ForeignKey(
-        UserModel, null=True, on_delete=models.CASCADE, related_name="crash_reports"
+        UserModel,
+        null=True,
+        on_delete=models.CASCADE,
+        related_name="crash_reports",
+        blank=True,
     )
     pi = models.ForeignKey(
-        "devices.Pi", null=True, on_delete=models.CASCADE, related_name="crash_reports"
+        "devices.Pi",
+        null=True,
+        on_delete=models.CASCADE,
+        related_name="crash_reports",
+        blank=True,
     )
-    os_version = models.CharField(null=True, max_length=255)
-    os_logs = models.FileField(upload_to=crash_report_filepath, null=True)
-    browser_version = models.CharField(null=True, max_length=255)
-    browser_logs = models.FileField(upload_to=crash_report_filepath, null=True)
-    serial = models.CharField(max_length=255, null=True)
-    posthog_session = models.CharField(max_length=255, null=True)
+    os_version = models.CharField(
+        null=True,
+        max_length=255,
+        blank=True,
+    )
+    os_logs = models.FileField(
+        upload_to=crash_report_filepath,
+        null=True,
+        blank=True,
+    )
+    browser_version = models.CharField(
+        null=True,
+        max_length=255,
+        blank=True,
+    )
+    browser_logs = models.FileField(
+        upload_to=crash_report_filepath,
+        null=True,
+        blank=True,
+    )
+    serial = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+    posthog_session = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+    )
 
     def get_admin_url(self):
         content_type = ContentType.objects.get_for_model(self.__class__)
@@ -50,4 +88,7 @@ class CrashReport(SafeDeleteModel):
         choices=CrashReportStatusType.choices,
         default=CrashReportStatusType.INVESTIGATING,
     )
-    support_comment = models.TextField(null=True)
+    support_comment = models.TextField(
+        null=True,
+        blank=True,
+    )
