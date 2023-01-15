@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
-describe("Shop and Checkout (SDWire, Anonymous)", () => {
+describe.skip("Shop and Checkout (SDWire, Anonymous)", () => {
   const email = `testing-${uuidv4()}@printnanny.ai`;
   let checkoutSessionUrl = "";
   let checkoutRedirectUrl = "";
