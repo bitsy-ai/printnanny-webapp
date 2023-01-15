@@ -12,4 +12,4 @@ class CrashReportSerializer(serializers.ModelSerializer):
     class Meta:
         model = CrashReport
         exclude = ("deleted",)
-        read_only_fields = ("id", "url")
+        read_only_fields = ("id", "url", "user")
