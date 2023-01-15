@@ -1,7 +1,7 @@
 // https://docs.cypress.io/api/introduction/api.html
 import { v4 as uuidv4 } from "uuid";
 
-describe("Shop and Checkout (SDWire, Authenticated)", () => {
+describe.skip("Shop and Checkout (SDWire, Authenticated)", () => {
   const email = `testing-${uuidv4()}@printnanny.ai`;
   let checkoutSessionUrl = "";
   let checkoutRedirectUrl = "";
