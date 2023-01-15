@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## crash_reports_create
 
-> crate::models::CrashReport crash_reports_create(description, email, os_version, os_logs, browser_version, browser_logs, serial, posthog_session, status, support_comment, user, pi)
+> crate::models::CrashReport crash_reports_create(description, email, os_version, os_logs, browser_version, browser_logs, serial, posthog_session, status, support_comment, pi)
 
 
 ### Parameters
@@ -36,7 +36,6 @@ Name | Type | Description  | Required | Notes
 **posthog_session** | Option<**String**> |  |  |
 **status** | Option<[**crate::models::CrashReportStatusEnum**](CrashReportStatusEnum.md)> |  |  |
 **support_comment** | Option<**String**> |  |  |
-**user** | Option<**i32**> |  |  |
 **pi** | Option<**i32**> |  |  |
 
 ### Return type
@@ -85,7 +84,7 @@ Name | Type | Description  | Required | Notes
 
 ## crash_reports_partial_update
 
-> crate::models::CrashReport crash_reports_partial_update(id, description, email, os_version, os_logs, browser_version, browser_logs, serial, posthog_session, status, support_comment, user, pi)
+> crate::models::CrashReport crash_reports_partial_update(id, description, email, os_version, os_logs, browser_version, browser_logs, serial, posthog_session, status, support_comment, pi)
 
 
 ### Parameters
@@ -104,7 +103,6 @@ Name | Type | Description  | Required | Notes
 **posthog_session** | Option<**String**> |  |  |
 **status** | Option<[**crate::models::CrashReportStatusEnum**](CrashReportStatusEnum.md)> |  |  |
 **support_comment** | Option<**String**> |  |  |
-**user** | Option<**i32**> |  |  |
 **pi** | Option<**i32**> |  |  |
 
 ### Return type
@@ -153,7 +151,7 @@ Name | Type | Description  | Required | Notes
 
 ## crash_reports_update
 
-> crate::models::CrashReport crash_reports_update(id, description, email, os_version, os_logs, browser_version, browser_logs, serial, posthog_session, status, support_comment, user, pi)
+> crate::models::CrashReport crash_reports_update(id, description, email, os_version, os_logs, browser_version, browser_logs, serial, posthog_session, status, support_comment, pi)
 
 
 ### Parameters
@@ -172,7 +170,6 @@ Name | Type | Description  | Required | Notes
 **posthog_session** | Option<**String**> |  |  |
 **status** | Option<[**crate::models::CrashReportStatusEnum**](CrashReportStatusEnum.md)> |  |  |
 **support_comment** | Option<**String**> |  |  |
-**user** | Option<**i32**> |  |  |
 **pi** | Option<**i32**> |  |  |
 
 ### Return type

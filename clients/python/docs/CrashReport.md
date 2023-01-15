@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **posthog_session** | **str** |  | [optional] 
 **status** | [**CrashReportStatusEnum**](CrashReportStatusEnum.md) |  | [optional] 
 **support_comment** | **str** |  | [optional] 
-**user** | **int** |  | [optional] 
+**user** | **int** |  | [readonly] 
 **pi** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

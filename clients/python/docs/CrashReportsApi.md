@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 
 # **crash_reports_create**
-> CrashReport crash_reports_create(description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, user=user, pi=pi)
+> CrashReport crash_reports_create(description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, pi=pi)
 
 
 
@@ -65,11 +65,10 @@ serial = 'serial_example' # str |  (optional)
 posthog_session = 'posthog_session_example' # str |  (optional)
 status = printnanny_api_client.CrashReportStatusEnum() # CrashReportStatusEnum |  (optional)
 support_comment = 'support_comment_example' # str |  (optional)
-user = 56 # int |  (optional)
 pi = 56 # int |  (optional)
 
     try:
-        api_response = api_instance.crash_reports_create(description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, user=user, pi=pi)
+        api_response = api_instance.crash_reports_create(description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, pi=pi)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CrashReportsApi->crash_reports_create: %s\n" % e)
@@ -118,11 +117,10 @@ serial = 'serial_example' # str |  (optional)
 posthog_session = 'posthog_session_example' # str |  (optional)
 status = printnanny_api_client.CrashReportStatusEnum() # CrashReportStatusEnum |  (optional)
 support_comment = 'support_comment_example' # str |  (optional)
-user = 56 # int |  (optional)
 pi = 56 # int |  (optional)
 
     try:
-        api_response = api_instance.crash_reports_create(description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, user=user, pi=pi)
+        api_response = api_instance.crash_reports_create(description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, pi=pi)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CrashReportsApi->crash_reports_create: %s\n" % e)
@@ -142,7 +140,6 @@ Name | Type | Description  | Notes
  **posthog_session** | **str**|  | [optional] 
  **status** | [**CrashReportStatusEnum**](CrashReportStatusEnum.md)|  | [optional] 
  **support_comment** | **str**|  | [optional] 
- **user** | **int**|  | [optional] 
  **pi** | **int**|  | [optional] 
 
 ### Return type
@@ -292,7 +289,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **crash_reports_partial_update**
-> CrashReport crash_reports_partial_update(id, description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, user=user, pi=pi)
+> CrashReport crash_reports_partial_update(id, description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, pi=pi)
 
 
 
@@ -342,11 +339,10 @@ serial = 'serial_example' # str |  (optional)
 posthog_session = 'posthog_session_example' # str |  (optional)
 status = printnanny_api_client.CrashReportStatusEnum() # CrashReportStatusEnum |  (optional)
 support_comment = 'support_comment_example' # str |  (optional)
-user = 56 # int |  (optional)
 pi = 56 # int |  (optional)
 
     try:
-        api_response = api_instance.crash_reports_partial_update(id, description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, user=user, pi=pi)
+        api_response = api_instance.crash_reports_partial_update(id, description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, pi=pi)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CrashReportsApi->crash_reports_partial_update: %s\n" % e)
@@ -396,11 +392,10 @@ serial = 'serial_example' # str |  (optional)
 posthog_session = 'posthog_session_example' # str |  (optional)
 status = printnanny_api_client.CrashReportStatusEnum() # CrashReportStatusEnum |  (optional)
 support_comment = 'support_comment_example' # str |  (optional)
-user = 56 # int |  (optional)
 pi = 56 # int |  (optional)
 
     try:
-        api_response = api_instance.crash_reports_partial_update(id, description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, user=user, pi=pi)
+        api_response = api_instance.crash_reports_partial_update(id, description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, pi=pi)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CrashReportsApi->crash_reports_partial_update: %s\n" % e)
@@ -421,7 +416,6 @@ Name | Type | Description  | Notes
  **posthog_session** | **str**|  | [optional] 
  **status** | [**CrashReportStatusEnum**](CrashReportStatusEnum.md)|  | [optional] 
  **support_comment** | **str**|  | [optional] 
- **user** | **int**|  | [optional] 
  **pi** | **int**|  | [optional] 
 
 ### Return type
@@ -567,7 +561,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **crash_reports_update**
-> CrashReport crash_reports_update(id, description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, user=user, pi=pi)
+> CrashReport crash_reports_update(id, description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, pi=pi)
 
 
 
@@ -617,11 +611,10 @@ serial = 'serial_example' # str |  (optional)
 posthog_session = 'posthog_session_example' # str |  (optional)
 status = printnanny_api_client.CrashReportStatusEnum() # CrashReportStatusEnum |  (optional)
 support_comment = 'support_comment_example' # str |  (optional)
-user = 56 # int |  (optional)
 pi = 56 # int |  (optional)
 
     try:
-        api_response = api_instance.crash_reports_update(id, description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, user=user, pi=pi)
+        api_response = api_instance.crash_reports_update(id, description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, pi=pi)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CrashReportsApi->crash_reports_update: %s\n" % e)
@@ -671,11 +664,10 @@ serial = 'serial_example' # str |  (optional)
 posthog_session = 'posthog_session_example' # str |  (optional)
 status = printnanny_api_client.CrashReportStatusEnum() # CrashReportStatusEnum |  (optional)
 support_comment = 'support_comment_example' # str |  (optional)
-user = 56 # int |  (optional)
 pi = 56 # int |  (optional)
 
     try:
-        api_response = api_instance.crash_reports_update(id, description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, user=user, pi=pi)
+        api_response = api_instance.crash_reports_update(id, description=description, email=email, os_version=os_version, os_logs=os_logs, browser_version=browser_version, browser_logs=browser_logs, serial=serial, posthog_session=posthog_session, status=status, support_comment=support_comment, pi=pi)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CrashReportsApi->crash_reports_update: %s\n" % e)
@@ -696,7 +688,6 @@ Name | Type | Description  | Notes
  **posthog_session** | **str**|  | [optional] 
  **status** | [**CrashReportStatusEnum**](CrashReportStatusEnum.md)|  | [optional] 
  **support_comment** | **str**|  | [optional] 
- **user** | **int**|  | [optional] 
  **pi** | **int**|  | [optional] 
 
 ### Return type
