@@ -194,9 +194,9 @@ class PiSerializer(serializers.ModelSerializer):
     )
 
     hostname = serializers.CharField(required=True)
-    favorite = serializers.CharField(required=True)
+    favorite = serializers.BooleanField(required=True)
     sbc = serializers.CharField(required=True)
-    setup_finished = serializers.CharField(required=True)
+    setup_finished = serializers.BooleanField(required=True)
 
     nats_app = PiNatsAppSerializer(read_only=True)
 
