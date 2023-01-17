@@ -149,7 +149,6 @@ docs/Product.md
 docs/RegisterRequest.md
 docs/ResendEmailVerificationRequest.md
 docs/RestAuthDetail.md
-docs/SbcEnum.md
 docs/SchemaApi.md
 docs/SettingsApi.md
 docs/ShopApi.md
@@ -333,7 +332,6 @@ printnanny_api_client/models/product.py
 printnanny_api_client/models/register_request.py
 printnanny_api_client/models/resend_email_verification_request.py
 printnanny_api_client/models/rest_auth_detail.py
-printnanny_api_client/models/sbc_enum.py
 printnanny_api_client/models/stripe_api_error_code.py
 printnanny_api_client/models/stripe_billing_scheme.py
 printnanny_api_client/models/stripe_confirmation_method.py
@@ -509,7 +507,6 @@ test/test_product.py
 test/test_register_request.py
 test/test_resend_email_verification_request.py
 test/test_rest_auth_detail.py
-test/test_sbc_enum.py
 test/test_schema_api.py
 test/test_settings_api.py
 test/test_shop_api.py
