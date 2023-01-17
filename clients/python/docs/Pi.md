@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 **webrtc_cloud** | [**WebrtcStream**](WebrtcStream.md) |  | [readonly] 
 **octoprint_server** | [**OctoPrintServer**](OctoPrintServer.md) |  | [readonly] 
 **hostname** | **str** |  | 
-**favorite** | **str** |  | 
+**favorite** | **bool** |  | 
 **sbc** | **str** |  | 
-**setup_finished** | **str** |  | 
+**setup_finished** | **bool** |  | 
 **nats_app** | [**PiNatsApp**](PiNatsApp.md) |  | [readonly] 
 **urls** | [**PiUrls**](PiUrls.md) |  | 
 **shortname_urls** | [**PiUrls**](PiUrls.md) |  | 

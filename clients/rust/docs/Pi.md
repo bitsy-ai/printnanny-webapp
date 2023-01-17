@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 **webrtc_cloud** | Option<[**crate::models::WebrtcStream**](WebrtcStream.md)> |  | [readonly]
 **octoprint_server** | Option<[**crate::models::OctoPrintServer**](OctoPrintServer.md)> |  | [readonly]
 **hostname** | **String** |  | 
-**favorite** | **String** |  | 
+**favorite** | **bool** |  | 
 **sbc** | **String** |  | 
-**setup_finished** | **String** |  | 
+**setup_finished** | **bool** |  | 
 **nats_app** | Option<[**crate::models::PiNatsApp**](PiNatsApp.md)> |  | [readonly]
 **urls** | [**crate::models::PiUrls**](Pi_urls.md) |  | 
 **shortname_urls** | [**crate::models::PiUrls**](Pi_urls.md) |  | 
