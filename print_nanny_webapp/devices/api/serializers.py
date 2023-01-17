@@ -193,6 +193,11 @@ class PiSerializer(serializers.ModelSerializer):
         read_only=True,
     )
 
+    hostname = serializers.CharField(required=True)
+    favorite = serializers.CharField(required=True)
+    sbc = serializers.CharField(required=True)
+    setup_finished = serializers.CharField(required=True)
+
     nats_app = PiNatsAppSerializer(read_only=True)
 
     urls = serializers.SerializerMethodField(read_only=True)

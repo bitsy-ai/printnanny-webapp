@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**sbc** | Option<[**crate::models::SbcEnum**](SbcEnum.md)> |  | [optional]
-**hostname** | Option<**String**> | Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension) | [optional]
-**favorite** | Option<**bool**> |  | [optional]
-**setup_finished** | Option<**bool**> |  | [optional]
+**hostname** | Option<**String**> |  | [optional]
+**favorite** | Option<**String**> |  | [optional]
+**sbc** | Option<**String**> |  | [optional]
+**setup_finished** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

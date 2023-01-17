@@ -289,7 +289,6 @@ Class | Method | HTTP request | Description
  - [RegisterRequest](docs/RegisterRequest.md)
  - [ResendEmailVerificationRequest](docs/ResendEmailVerificationRequest.md)
  - [RestAuthDetail](docs/RestAuthDetail.md)
- - [SbcEnum](docs/SbcEnum.md)
  - [StripeApiErrorCode](docs/StripeApiErrorCode.md)
  - [StripeBillingScheme](docs/StripeBillingScheme.md)
  - [StripeConfirmationMethod](docs/StripeConfirmationMethod.md)

@@ -29,6 +29,14 @@ pub struct Pi {
     pub webrtc_cloud: Option<Box<crate::models::WebrtcStream>>,
     #[serde(rename = "octoprint_server")]
     pub octoprint_server: Option<Box<crate::models::OctoPrintServer>>,
+    #[serde(rename = "hostname")]
+    pub hostname: String,
+    #[serde(rename = "favorite")]
+    pub favorite: String,
+    #[serde(rename = "sbc")]
+    pub sbc: String,
+    #[serde(rename = "setup_finished")]
+    pub setup_finished: String,
     #[serde(rename = "nats_app")]
     pub nats_app: Option<Box<crate::models::PiNatsApp>>,
     #[serde(rename = "urls")]
@@ -37,21 +45,12 @@ pub struct Pi {
     pub shortname_urls: Box<crate::models::PiUrls>,
     #[serde(rename = "mdns_urls")]
     pub mdns_urls: Box<crate::models::PiUrls>,
-    #[serde(rename = "sbc", skip_serializing_if = "Option::is_none")]
-    pub sbc: Option<crate::models::SbcEnum>,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
-    /// Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)
-    #[serde(rename = "hostname", skip_serializing_if = "Option::is_none")]
-    pub hostname: Option<String>,
-    #[serde(rename = "favorite", skip_serializing_if = "Option::is_none")]
-    pub favorite: Option<bool>,
-    #[serde(rename = "setup_finished", skip_serializing_if = "Option::is_none")]
-    pub setup_finished: Option<bool>,
 }
 
 impl Pi {
-    pub fn new(id: i32, last_boot: Option<String>, network_settings: Option<crate::models::NetworkSettings>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, webrtc_edge: Option<crate::models::WebrtcStream>, webrtc_cloud: Option<crate::models::WebrtcStream>, octoprint_server: Option<crate::models::OctoPrintServer>, nats_app: Option<crate::models::PiNatsApp>, urls: crate::models::PiUrls, shortname_urls: crate::models::PiUrls, mdns_urls: crate::models::PiUrls, created_dt: String) -> Pi {
+    pub fn new(id: i32, last_boot: Option<String>, network_settings: Option<crate::models::NetworkSettings>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, webrtc_edge: Option<crate::models::WebrtcStream>, webrtc_cloud: Option<crate::models::WebrtcStream>, octoprint_server: Option<crate::models::OctoPrintServer>, hostname: String, favorite: String, sbc: String, setup_finished: String, nats_app: Option<crate::models::PiNatsApp>, urls: crate::models::PiUrls, shortname_urls: crate::models::PiUrls, mdns_urls: crate::models::PiUrls, created_dt: String) -> Pi {
         Pi {
             id,
             last_boot,
@@ -61,15 +60,15 @@ impl Pi {
             webrtc_edge: webrtc_edge.map(Box::new),
             webrtc_cloud: webrtc_cloud.map(Box::new),
             octoprint_server: octoprint_server.map(Box::new),
+            hostname,
+            favorite,
+            sbc,
+            setup_finished,
             nats_app: nats_app.map(Box::new),
             urls: Box::new(urls),
             shortname_urls: Box::new(shortname_urls),
             mdns_urls: Box::new(mdns_urls),
-            sbc: None,
             created_dt,
-            hostname: None,
-            favorite: None,
-            setup_finished: None,
         }
     }
 }

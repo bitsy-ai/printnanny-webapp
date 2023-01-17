@@ -391,7 +391,7 @@ pub async fn network_settings_update(configuration: &configuration::Configuratio
 }
 
 /// A device (Raspberry Pi) running Print Nanny OS
-pub async fn pi_update_or_create(configuration: &configuration::Configuration, pi_request: Option<crate::models::PiRequest>) -> Result<crate::models::Pi, Error<PiUpdateOrCreateError>> {
+pub async fn pi_update_or_create(configuration: &configuration::Configuration, pi_request: crate::models::PiRequest) -> Result<crate::models::Pi, Error<PiUpdateOrCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -423,7 +423,7 @@ pub async fn pi_update_or_create(configuration: &configuration::Configuration, p
 }
 
 /// A device (Raspberry Pi) running Print Nanny OS
-pub async fn pis_create(configuration: &configuration::Configuration, pi_request: Option<crate::models::PiRequest>) -> Result<crate::models::Pi, Error<PisCreateError>> {
+pub async fn pis_create(configuration: &configuration::Configuration, pi_request: crate::models::PiRequest) -> Result<crate::models::Pi, Error<PisCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -770,7 +770,7 @@ pub async fn pis_system_info_update(configuration: &configuration::Configuration
 }
 
 /// A device (Raspberry Pi) running Print Nanny OS
-pub async fn pis_update(configuration: &configuration::Configuration, id: i32, pi_request: Option<crate::models::PiRequest>) -> Result<crate::models::Pi, Error<PisUpdateError>> {
+pub async fn pis_update(configuration: &configuration::Configuration, id: i32, pi_request: crate::models::PiRequest) -> Result<crate::models::Pi, Error<PisUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

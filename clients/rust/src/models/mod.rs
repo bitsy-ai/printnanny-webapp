@@ -268,8 +268,6 @@ pub mod resend_email_verification_request;
 pub use self::resend_email_verification_request::ResendEmailVerificationRequest;
 pub mod rest_auth_detail;
 pub use self::rest_auth_detail::RestAuthDetail;
-pub mod sbc_enum;
-pub use self::sbc_enum::SbcEnum;
 pub mod stripe_api_error_code;
 pub use self::stripe_api_error_code::StripeApiErrorCode;
 pub mod stripe_billing_scheme;
