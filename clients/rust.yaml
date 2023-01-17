@@ -1,5 +1,5 @@
 ---
 packageName: printnanny-api-client
-packageVersion: "0.124.3"
+packageVersion: "0.124.4"
 appDescription: "Official Rust PrintNanny API Client"
 deriveClapValueEnum: true
