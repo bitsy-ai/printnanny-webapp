@@ -18,13 +18,13 @@ pub struct PiRequest {
     #[serde(rename = "favorite")]
     pub favorite: bool,
     #[serde(rename = "sbc")]
-    pub sbc: String,
+    pub sbc: crate::models::SbcEnum,
     #[serde(rename = "setup_finished")]
     pub setup_finished: bool,
 }
 
 impl PiRequest {
-    pub fn new(hostname: String, favorite: bool, sbc: String, setup_finished: bool) -> PiRequest {
+    pub fn new(hostname: String, favorite: bool, sbc: crate::models::SbcEnum, setup_finished: bool) -> PiRequest {
         PiRequest {
             hostname,
             favorite,

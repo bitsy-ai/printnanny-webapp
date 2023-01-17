@@ -34,7 +34,7 @@ pub struct Pi {
     #[serde(rename = "favorite")]
     pub favorite: bool,
     #[serde(rename = "sbc")]
-    pub sbc: String,
+    pub sbc: crate::models::SbcEnum,
     #[serde(rename = "setup_finished")]
     pub setup_finished: bool,
     #[serde(rename = "nats_app")]
@@ -50,7 +50,7 @@ pub struct Pi {
 }
 
 impl Pi {
-    pub fn new(id: i32, last_boot: Option<String>, network_settings: Option<crate::models::NetworkSettings>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, webrtc_edge: Option<crate::models::WebrtcStream>, webrtc_cloud: Option<crate::models::WebrtcStream>, octoprint_server: Option<crate::models::OctoPrintServer>, hostname: String, favorite: bool, sbc: String, setup_finished: bool, nats_app: Option<crate::models::PiNatsApp>, urls: crate::models::PiUrls, shortname_urls: crate::models::PiUrls, mdns_urls: crate::models::PiUrls, created_dt: String) -> Pi {
+    pub fn new(id: i32, last_boot: Option<String>, network_settings: Option<crate::models::NetworkSettings>, user: Option<crate::models::User>, system_info: Option<crate::models::SystemInfo>, webrtc_edge: Option<crate::models::WebrtcStream>, webrtc_cloud: Option<crate::models::WebrtcStream>, octoprint_server: Option<crate::models::OctoPrintServer>, hostname: String, favorite: bool, sbc: crate::models::SbcEnum, setup_finished: bool, nats_app: Option<crate::models::PiNatsApp>, urls: crate::models::PiUrls, shortname_urls: crate::models::PiUrls, mdns_urls: crate::models::PiUrls, created_dt: String) -> Pi {
         Pi {
             id,
             last_boot,

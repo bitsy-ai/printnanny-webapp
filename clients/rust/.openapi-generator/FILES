@@ -148,6 +148,7 @@ docs/Product.md
 docs/RegisterRequest.md
 docs/ResendEmailVerificationRequest.md
 docs/RestAuthDetail.md
+docs/SbcEnum.md
 docs/SchemaApi.md
 docs/SettingsApi.md
 docs/ShopApi.md
@@ -329,6 +330,7 @@ src/models/product.rs
 src/models/register_request.rs
 src/models/resend_email_verification_request.rs
 src/models/rest_auth_detail.rs
+src/models/sbc_enum.rs
 src/models/stripe_api_error_code.rs
 src/models/stripe_billing_scheme.rs
 src/models/stripe_confirmation_method.rs
