@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **octoprint_server** | [**OctoPrintServer**](OctoPrintServer.md) |  | [readonly] 
 **hostname** | **str** |  | 
 **favorite** | **bool** |  | 
-**sbc** | **str** |  | 
+**sbc** | [**SbcEnum**](SbcEnum.md) |  | 
 **setup_finished** | **bool** |  | 
 **nats_app** | [**PiNatsApp**](PiNatsApp.md) |  | [readonly] 
 **urls** | [**PiUrls**](PiUrls.md) |  | 
