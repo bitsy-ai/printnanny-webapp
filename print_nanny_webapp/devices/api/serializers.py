@@ -14,9 +14,7 @@ from print_nanny_webapp.devices.models import (
     WebrtcStream,
     SystemInfo,
 )
-from print_nanny_webapp.devices.enum import (
-    JanusConfigType,
-)
+from print_nanny_webapp.devices.enum import JanusConfigType, SingleBoardComputerType
 from print_nanny_webapp.users.api.serializers import UserSerializer
 from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
 from print_nanny_webapp.octoprint.api.serializers import OctoPrintServerSerializer
@@ -195,7 +193,9 @@ class PiSerializer(serializers.ModelSerializer):
 
     hostname = serializers.CharField(required=True)
     favorite = serializers.BooleanField(required=True)
-    sbc = serializers.CharField(required=True)
+    sbc = serializers.ChoiceField(
+        required=True, choices=SingleBoardComputerType.choices
+    )
     setup_finished = serializers.BooleanField(required=True)
 
     nats_app = PiNatsAppSerializer(read_only=True)
