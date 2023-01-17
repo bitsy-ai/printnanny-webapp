@@ -13,24 +13,23 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PiRequest {
-    #[serde(rename = "sbc", skip_serializing_if = "Option::is_none")]
-    pub sbc: Option<crate::models::SbcEnum>,
-    /// Please enter the hostname you set in the Raspberry Pi Imager's Advanced Options menu (without .local extension)
-    #[serde(rename = "hostname", skip_serializing_if = "Option::is_none")]
-    pub hostname: Option<String>,
-    #[serde(rename = "favorite", skip_serializing_if = "Option::is_none")]
-    pub favorite: Option<bool>,
-    #[serde(rename = "setup_finished", skip_serializing_if = "Option::is_none")]
-    pub setup_finished: Option<bool>,
+    #[serde(rename = "hostname")]
+    pub hostname: String,
+    #[serde(rename = "favorite")]
+    pub favorite: String,
+    #[serde(rename = "sbc")]
+    pub sbc: String,
+    #[serde(rename = "setup_finished")]
+    pub setup_finished: String,
 }
 
 impl PiRequest {
-    pub fn new() -> PiRequest {
+    pub fn new(hostname: String, favorite: String, sbc: String, setup_finished: String) -> PiRequest {
         PiRequest {
-            sbc: None,
-            hostname: None,
-            favorite: None,
-            setup_finished: None,
+            hostname,
+            favorite,
+            sbc,
+            setup_finished,
         }
     }
 }
