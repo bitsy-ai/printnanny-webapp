@@ -18,7 +18,7 @@ pub struct PatchedPiRequest {
     #[serde(rename = "favorite", skip_serializing_if = "Option::is_none")]
     pub favorite: Option<bool>,
     #[serde(rename = "sbc", skip_serializing_if = "Option::is_none")]
-    pub sbc: Option<String>,
+    pub sbc: Option<crate::models::SbcEnum>,
     #[serde(rename = "setup_finished", skip_serializing_if = "Option::is_none")]
     pub setup_finished: Option<bool>,
 }

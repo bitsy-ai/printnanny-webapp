@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **octoprint_server** | Option<[**crate::models::OctoPrintServer**](OctoPrintServer.md)> |  | [readonly]
 **hostname** | **String** |  | 
 **favorite** | **bool** |  | 
-**sbc** | **String** |  | 
+**sbc** | [**crate::models::SbcEnum**](SbcEnum.md) |  | 
 **setup_finished** | **bool** |  | 
 **nats_app** | Option<[**crate::models::PiNatsApp**](PiNatsApp.md)> |  | [readonly]
 **urls** | [**crate::models::PiUrls**](Pi_urls.md) |  | 
