@@ -11,6 +11,7 @@ docs/AchievementsApi.md
 docs/AlertsApi.md
 docs/CallbackTokenAuth.md
 docs/CallbackTokenAuthRequest.md
+docs/CloudSyncStatusEnum.md
 docs/CrashReport.md
 docs/CrashReportStatusEnum.md
 docs/CrashReportsApi.md
@@ -146,6 +147,7 @@ docs/PolymorphicPiStatus.md
 docs/PolymorphicPiStatusRequest.md
 docs/PreferredDnsType.md
 docs/Product.md
+docs/RecordingStatusEnum.md
 docs/RegisterRequest.md
 docs/ResendEmailVerificationRequest.md
 docs/RestAuthDetail.md
@@ -202,6 +204,7 @@ printnanny_api_client/models/achievement.py
 printnanny_api_client/models/achievement_type_enum.py
 printnanny_api_client/models/callback_token_auth.py
 printnanny_api_client/models/callback_token_auth_request.py
+printnanny_api_client/models/cloud_sync_status_enum.py
 printnanny_api_client/models/crash_report.py
 printnanny_api_client/models/crash_report_status_enum.py
 printnanny_api_client/models/dj_stripe_charge.py
@@ -330,6 +333,7 @@ printnanny_api_client/models/polymorphic_pi_status.py
 printnanny_api_client/models/polymorphic_pi_status_request.py
 printnanny_api_client/models/preferred_dns_type.py
 printnanny_api_client/models/product.py
+printnanny_api_client/models/recording_status_enum.py
 printnanny_api_client/models/register_request.py
 printnanny_api_client/models/resend_email_verification_request.py
 printnanny_api_client/models/rest_auth_detail.py
@@ -371,6 +375,7 @@ test/test_achievements_api.py
 test/test_alerts_api.py
 test/test_callback_token_auth.py
 test/test_callback_token_auth_request.py
+test/test_cloud_sync_status_enum.py
 test/test_crash_report.py
 test/test_crash_report_status_enum.py
 test/test_crash_reports_api.py
@@ -506,6 +511,7 @@ test/test_polymorphic_pi_status.py
 test/test_polymorphic_pi_status_request.py
 test/test_preferred_dns_type.py
 test/test_product.py
+test/test_recording_status_enum.py
 test/test_register_request.py
 test/test_resend_email_verification_request.py
 test/test_rest_auth_detail.py

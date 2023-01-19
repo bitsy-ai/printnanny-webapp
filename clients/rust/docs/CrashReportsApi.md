@@ -190,7 +190,7 @@ Name | Type | Description  | Required | Notes
 
 ## video_recordings_create
 
-> crate::models::VideoRecording video_recordings_create(start_dt, name, end_dt, mjr_recording)
+> crate::models::VideoRecording video_recordings_create(recording_start, recording_end, recording_status, cloud_sync_start, cloud_sync_end, cloud_sync_status, gcode_file_name, mp4_file)
 
 
 ### Parameters
@@ -198,10 +198,14 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**start_dt** | **String** |  | [required] |
-**name** | **String** |  | [required] |
-**end_dt** | Option<**String**> |  |  |
-**mjr_recording** | Option<**std::path::PathBuf**> |  |  |
+**recording_start** | Option<**String**> |  |  |
+**recording_end** | Option<**String**> |  |  |
+**recording_status** | Option<[**crate::models::RecordingStatusEnum**](RecordingStatusEnum.md)> |  |  |
+**cloud_sync_start** | Option<**String**> |  |  |
+**cloud_sync_end** | Option<**String**> |  |  |
+**cloud_sync_status** | Option<[**crate::models::CloudSyncStatusEnum**](CloudSyncStatusEnum.md)> |  |  |
+**gcode_file_name** | Option<**String**> |  |  |
+**mp4_file** | Option<**std::path::PathBuf**> |  |  |
 
 ### Return type
 
@@ -249,7 +253,7 @@ Name | Type | Description  | Required | Notes
 
 ## video_recordings_partial_update
 
-> crate::models::VideoRecording video_recordings_partial_update(id, start_dt, end_dt, name, mjr_recording)
+> crate::models::VideoRecording video_recordings_partial_update(id, recording_start, recording_end, recording_status, cloud_sync_start, cloud_sync_end, cloud_sync_status, gcode_file_name, mp4_file)
 
 
 ### Parameters
@@ -257,11 +261,15 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this video recording. | [required] |
-**start_dt** | Option<**String**> |  |  |
-**end_dt** | Option<**String**> |  |  |
-**name** | Option<**String**> |  |  |
-**mjr_recording** | Option<**std::path::PathBuf**> |  |  |
+**id** | **String** | A UUID string identifying this video recording. | [required] |
+**recording_start** | Option<**String**> |  |  |
+**recording_end** | Option<**String**> |  |  |
+**recording_status** | Option<[**crate::models::RecordingStatusEnum**](RecordingStatusEnum.md)> |  |  |
+**cloud_sync_start** | Option<**String**> |  |  |
+**cloud_sync_end** | Option<**String**> |  |  |
+**cloud_sync_status** | Option<[**crate::models::CloudSyncStatusEnum**](CloudSyncStatusEnum.md)> |  |  |
+**gcode_file_name** | Option<**String**> |  |  |
+**mp4_file** | Option<**std::path::PathBuf**> |  |  |
 
 ### Return type
 
@@ -281,7 +289,7 @@ Name | Type | Description  | Required | Notes
 
 ## video_recordings_update
 
-> crate::models::VideoRecording video_recordings_update(id, start_dt, name, end_dt, mjr_recording)
+> crate::models::VideoRecording video_recordings_update(id, recording_start, recording_end, recording_status, cloud_sync_start, cloud_sync_end, cloud_sync_status, gcode_file_name, mp4_file)
 
 
 ### Parameters
@@ -289,11 +297,15 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this video recording. | [required] |
-**start_dt** | **String** |  | [required] |
-**name** | **String** |  | [required] |
-**end_dt** | Option<**String**> |  |  |
-**mjr_recording** | Option<**std::path::PathBuf**> |  |  |
+**id** | **String** | A UUID string identifying this video recording. | [required] |
+**recording_start** | Option<**String**> |  |  |
+**recording_end** | Option<**String**> |  |  |
+**recording_status** | Option<[**crate::models::RecordingStatusEnum**](RecordingStatusEnum.md)> |  |  |
+**cloud_sync_start** | Option<**String**> |  |  |
+**cloud_sync_end** | Option<**String**> |  |  |
+**cloud_sync_status** | Option<[**crate::models::CloudSyncStatusEnum**](CloudSyncStatusEnum.md)> |  |  |
+**gcode_file_name** | Option<**String**> |  |  |
+**mp4_file** | Option<**std::path::PathBuf**> |  |  |
 
 ### Return type
 

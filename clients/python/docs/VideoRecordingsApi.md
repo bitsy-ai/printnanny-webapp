@@ -47,7 +47,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.VideoRecordingsApi(api_client)
-    id = 56 # int | A unique integer value identifying this video recording.
+    id = 'id_example' # str | A UUID string identifying this video recording.
 
     try:
         api_response = api_instance.video_recordings_retrieve(id)
@@ -89,7 +89,7 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.VideoRecordingsApi(api_client)
-    id = 56 # int | A unique integer value identifying this video recording.
+    id = 'id_example' # str | A UUID string identifying this video recording.
 
     try:
         api_response = api_instance.video_recordings_retrieve(id)
@@ -102,7 +102,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this video recording. | 
+ **id** | **str**| A UUID string identifying this video recording. | 
 
 ### Return type
 

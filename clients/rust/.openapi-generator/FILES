@@ -10,6 +10,7 @@ docs/AchievementsApi.md
 docs/AlertsApi.md
 docs/CallbackTokenAuth.md
 docs/CallbackTokenAuthRequest.md
+docs/CloudSyncStatusEnum.md
 docs/CrashReport.md
 docs/CrashReportStatusEnum.md
 docs/CrashReportsApi.md
@@ -145,6 +146,7 @@ docs/PolymorphicPiStatus.md
 docs/PolymorphicPiStatusRequest.md
 docs/PreferredDnsType.md
 docs/Product.md
+docs/RecordingStatusEnum.md
 docs/RegisterRequest.md
 docs/ResendEmailVerificationRequest.md
 docs/RestAuthDetail.md
@@ -198,6 +200,7 @@ src/models/achievement.rs
 src/models/achievement_type_enum.rs
 src/models/callback_token_auth.rs
 src/models/callback_token_auth_request.rs
+src/models/cloud_sync_status_enum.rs
 src/models/crash_report.rs
 src/models/crash_report_status_enum.rs
 src/models/dj_stripe_charge.rs
@@ -327,6 +330,7 @@ src/models/polymorphic_pi_status.rs
 src/models/polymorphic_pi_status_request.rs
 src/models/preferred_dns_type.rs
 src/models/product.rs
+src/models/recording_status_enum.rs
 src/models/register_request.rs
 src/models/resend_email_verification_request.rs
 src/models/rest_auth_detail.rs

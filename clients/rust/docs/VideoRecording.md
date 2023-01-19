@@ -4,12 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **i32** |  | [readonly]
-**mjr_upload_url** | **String** |  | [readonly]
-**start_dt** | **String** |  | 
-**end_dt** | Option<**String**> |  | [optional]
-**name** | **String** |  | 
-**mjr_recording** | Option<**String**> |  | [optional]
+**id** | **String** |  | [readonly]
+**mp4_upload_url** | **String** |  | [readonly]
+**recording_start** | Option<**String**> |  | [optional]
+**recording_end** | Option<**String**> |  | [optional]
+**recording_status** | Option<[**crate::models::RecordingStatusEnum**](RecordingStatusEnum.md)> |  | [optional]
+**cloud_sync_start** | Option<**String**> |  | [optional]
+**cloud_sync_end** | Option<**String**> |  | [optional]
+**cloud_sync_status** | Option<[**crate::models::CloudSyncStatusEnum**](CloudSyncStatusEnum.md)> |  | [optional]
+**gcode_file_name** | Option<**String**> |  | [optional]
+**mp4_file** | Option<**String**> |  | [optional]
 **user** | **i32** |  | [readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

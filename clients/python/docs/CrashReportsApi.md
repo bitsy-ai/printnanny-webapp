@@ -716,7 +716,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **video_recordings_create**
-> VideoRecording video_recordings_create(start_dt, name, end_dt=end_dt, mjr_recording=mjr_recording)
+> VideoRecording video_recordings_create(recording_start=recording_start, recording_end=recording_end, recording_status=recording_status, cloud_sync_start=cloud_sync_start, cloud_sync_end=cloud_sync_end, cloud_sync_status=cloud_sync_status, gcode_file_name=gcode_file_name, mp4_file=mp4_file)
 
 
 
@@ -755,13 +755,17 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.CrashReportsApi(api_client)
-    start_dt = '2013-10-20T19:20:30+01:00' # datetime | 
-name = 'name_example' # str | 
-end_dt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-mjr_recording = '/path/to/file' # file |  (optional)
+    recording_start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+recording_end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+recording_status = printnanny_api_client.RecordingStatusEnum() # RecordingStatusEnum |  (optional)
+cloud_sync_start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+cloud_sync_end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+cloud_sync_status = printnanny_api_client.CloudSyncStatusEnum() # CloudSyncStatusEnum |  (optional)
+gcode_file_name = 'gcode_file_name_example' # str |  (optional)
+mp4_file = '/path/to/file' # file |  (optional)
 
     try:
-        api_response = api_instance.video_recordings_create(start_dt, name, end_dt=end_dt, mjr_recording=mjr_recording)
+        api_response = api_instance.video_recordings_create(recording_start=recording_start, recording_end=recording_end, recording_status=recording_status, cloud_sync_start=cloud_sync_start, cloud_sync_end=cloud_sync_end, cloud_sync_status=cloud_sync_status, gcode_file_name=gcode_file_name, mp4_file=mp4_file)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CrashReportsApi->video_recordings_create: %s\n" % e)
@@ -800,13 +804,17 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.CrashReportsApi(api_client)
-    start_dt = '2013-10-20T19:20:30+01:00' # datetime | 
-name = 'name_example' # str | 
-end_dt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-mjr_recording = '/path/to/file' # file |  (optional)
+    recording_start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+recording_end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+recording_status = printnanny_api_client.RecordingStatusEnum() # RecordingStatusEnum |  (optional)
+cloud_sync_start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+cloud_sync_end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+cloud_sync_status = printnanny_api_client.CloudSyncStatusEnum() # CloudSyncStatusEnum |  (optional)
+gcode_file_name = 'gcode_file_name_example' # str |  (optional)
+mp4_file = '/path/to/file' # file |  (optional)
 
     try:
-        api_response = api_instance.video_recordings_create(start_dt, name, end_dt=end_dt, mjr_recording=mjr_recording)
+        api_response = api_instance.video_recordings_create(recording_start=recording_start, recording_end=recording_end, recording_status=recording_status, cloud_sync_start=cloud_sync_start, cloud_sync_end=cloud_sync_end, cloud_sync_status=cloud_sync_status, gcode_file_name=gcode_file_name, mp4_file=mp4_file)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CrashReportsApi->video_recordings_create: %s\n" % e)
@@ -816,10 +824,14 @@ mjr_recording = '/path/to/file' # file |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start_dt** | **datetime**|  | 
- **name** | **str**|  | 
- **end_dt** | **datetime**|  | [optional] 
- **mjr_recording** | **file**|  | [optional] 
+ **recording_start** | **datetime**|  | [optional] 
+ **recording_end** | **datetime**|  | [optional] 
+ **recording_status** | [**RecordingStatusEnum**](RecordingStatusEnum.md)|  | [optional] 
+ **cloud_sync_start** | **datetime**|  | [optional] 
+ **cloud_sync_end** | **datetime**|  | [optional] 
+ **cloud_sync_status** | [**CloudSyncStatusEnum**](CloudSyncStatusEnum.md)|  | [optional] 
+ **gcode_file_name** | **str**|  | [optional] 
+ **mp4_file** | **file**|  | [optional] 
 
 ### Return type
 
@@ -968,7 +980,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **video_recordings_partial_update**
-> VideoRecording video_recordings_partial_update(id, start_dt=start_dt, end_dt=end_dt, name=name, mjr_recording=mjr_recording)
+> VideoRecording video_recordings_partial_update(id, recording_start=recording_start, recording_end=recording_end, recording_status=recording_status, cloud_sync_start=cloud_sync_start, cloud_sync_end=cloud_sync_end, cloud_sync_status=cloud_sync_status, gcode_file_name=gcode_file_name, mp4_file=mp4_file)
 
 
 
@@ -1007,14 +1019,18 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.CrashReportsApi(api_client)
-    id = 56 # int | A unique integer value identifying this video recording.
-start_dt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-end_dt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-name = 'name_example' # str |  (optional)
-mjr_recording = '/path/to/file' # file |  (optional)
+    id = 'id_example' # str | A UUID string identifying this video recording.
+recording_start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+recording_end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+recording_status = printnanny_api_client.RecordingStatusEnum() # RecordingStatusEnum |  (optional)
+cloud_sync_start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+cloud_sync_end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+cloud_sync_status = printnanny_api_client.CloudSyncStatusEnum() # CloudSyncStatusEnum |  (optional)
+gcode_file_name = 'gcode_file_name_example' # str |  (optional)
+mp4_file = '/path/to/file' # file |  (optional)
 
     try:
-        api_response = api_instance.video_recordings_partial_update(id, start_dt=start_dt, end_dt=end_dt, name=name, mjr_recording=mjr_recording)
+        api_response = api_instance.video_recordings_partial_update(id, recording_start=recording_start, recording_end=recording_end, recording_status=recording_status, cloud_sync_start=cloud_sync_start, cloud_sync_end=cloud_sync_end, cloud_sync_status=cloud_sync_status, gcode_file_name=gcode_file_name, mp4_file=mp4_file)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CrashReportsApi->video_recordings_partial_update: %s\n" % e)
@@ -1053,14 +1069,18 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.CrashReportsApi(api_client)
-    id = 56 # int | A unique integer value identifying this video recording.
-start_dt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-end_dt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-name = 'name_example' # str |  (optional)
-mjr_recording = '/path/to/file' # file |  (optional)
+    id = 'id_example' # str | A UUID string identifying this video recording.
+recording_start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+recording_end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+recording_status = printnanny_api_client.RecordingStatusEnum() # RecordingStatusEnum |  (optional)
+cloud_sync_start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+cloud_sync_end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+cloud_sync_status = printnanny_api_client.CloudSyncStatusEnum() # CloudSyncStatusEnum |  (optional)
+gcode_file_name = 'gcode_file_name_example' # str |  (optional)
+mp4_file = '/path/to/file' # file |  (optional)
 
     try:
-        api_response = api_instance.video_recordings_partial_update(id, start_dt=start_dt, end_dt=end_dt, name=name, mjr_recording=mjr_recording)
+        api_response = api_instance.video_recordings_partial_update(id, recording_start=recording_start, recording_end=recording_end, recording_status=recording_status, cloud_sync_start=cloud_sync_start, cloud_sync_end=cloud_sync_end, cloud_sync_status=cloud_sync_status, gcode_file_name=gcode_file_name, mp4_file=mp4_file)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CrashReportsApi->video_recordings_partial_update: %s\n" % e)
@@ -1070,11 +1090,15 @@ mjr_recording = '/path/to/file' # file |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this video recording. | 
- **start_dt** | **datetime**|  | [optional] 
- **end_dt** | **datetime**|  | [optional] 
- **name** | **str**|  | [optional] 
- **mjr_recording** | **file**|  | [optional] 
+ **id** | **str**| A UUID string identifying this video recording. | 
+ **recording_start** | **datetime**|  | [optional] 
+ **recording_end** | **datetime**|  | [optional] 
+ **recording_status** | [**RecordingStatusEnum**](RecordingStatusEnum.md)|  | [optional] 
+ **cloud_sync_start** | **datetime**|  | [optional] 
+ **cloud_sync_end** | **datetime**|  | [optional] 
+ **cloud_sync_status** | [**CloudSyncStatusEnum**](CloudSyncStatusEnum.md)|  | [optional] 
+ **gcode_file_name** | **str**|  | [optional] 
+ **mp4_file** | **file**|  | [optional] 
 
 ### Return type
 
@@ -1102,7 +1126,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **video_recordings_update**
-> VideoRecording video_recordings_update(id, start_dt, name, end_dt=end_dt, mjr_recording=mjr_recording)
+> VideoRecording video_recordings_update(id, recording_start=recording_start, recording_end=recording_end, recording_status=recording_status, cloud_sync_start=cloud_sync_start, cloud_sync_end=cloud_sync_end, cloud_sync_status=cloud_sync_status, gcode_file_name=gcode_file_name, mp4_file=mp4_file)
 
 
 
@@ -1141,14 +1165,18 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.CrashReportsApi(api_client)
-    id = 56 # int | A unique integer value identifying this video recording.
-start_dt = '2013-10-20T19:20:30+01:00' # datetime | 
-name = 'name_example' # str | 
-end_dt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-mjr_recording = '/path/to/file' # file |  (optional)
+    id = 'id_example' # str | A UUID string identifying this video recording.
+recording_start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+recording_end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+recording_status = printnanny_api_client.RecordingStatusEnum() # RecordingStatusEnum |  (optional)
+cloud_sync_start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+cloud_sync_end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+cloud_sync_status = printnanny_api_client.CloudSyncStatusEnum() # CloudSyncStatusEnum |  (optional)
+gcode_file_name = 'gcode_file_name_example' # str |  (optional)
+mp4_file = '/path/to/file' # file |  (optional)
 
     try:
-        api_response = api_instance.video_recordings_update(id, start_dt, name, end_dt=end_dt, mjr_recording=mjr_recording)
+        api_response = api_instance.video_recordings_update(id, recording_start=recording_start, recording_end=recording_end, recording_status=recording_status, cloud_sync_start=cloud_sync_start, cloud_sync_end=cloud_sync_end, cloud_sync_status=cloud_sync_status, gcode_file_name=gcode_file_name, mp4_file=mp4_file)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CrashReportsApi->video_recordings_update: %s\n" % e)
@@ -1187,14 +1215,18 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.CrashReportsApi(api_client)
-    id = 56 # int | A unique integer value identifying this video recording.
-start_dt = '2013-10-20T19:20:30+01:00' # datetime | 
-name = 'name_example' # str | 
-end_dt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-mjr_recording = '/path/to/file' # file |  (optional)
+    id = 'id_example' # str | A UUID string identifying this video recording.
+recording_start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+recording_end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+recording_status = printnanny_api_client.RecordingStatusEnum() # RecordingStatusEnum |  (optional)
+cloud_sync_start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+cloud_sync_end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+cloud_sync_status = printnanny_api_client.CloudSyncStatusEnum() # CloudSyncStatusEnum |  (optional)
+gcode_file_name = 'gcode_file_name_example' # str |  (optional)
+mp4_file = '/path/to/file' # file |  (optional)
 
     try:
-        api_response = api_instance.video_recordings_update(id, start_dt, name, end_dt=end_dt, mjr_recording=mjr_recording)
+        api_response = api_instance.video_recordings_update(id, recording_start=recording_start, recording_end=recording_end, recording_status=recording_status, cloud_sync_start=cloud_sync_start, cloud_sync_end=cloud_sync_end, cloud_sync_status=cloud_sync_status, gcode_file_name=gcode_file_name, mp4_file=mp4_file)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CrashReportsApi->video_recordings_update: %s\n" % e)
@@ -1204,11 +1236,15 @@ mjr_recording = '/path/to/file' # file |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this video recording. | 
- **start_dt** | **datetime**|  | 
- **name** | **str**|  | 
- **end_dt** | **datetime**|  | [optional] 
- **mjr_recording** | **file**|  | [optional] 
+ **id** | **str**| A UUID string identifying this video recording. | 
+ **recording_start** | **datetime**|  | [optional] 
+ **recording_end** | **datetime**|  | [optional] 
+ **recording_status** | [**RecordingStatusEnum**](RecordingStatusEnum.md)|  | [optional] 
+ **cloud_sync_start** | **datetime**|  | [optional] 
+ **cloud_sync_end** | **datetime**|  | [optional] 
+ **cloud_sync_status** | [**CloudSyncStatusEnum**](CloudSyncStatusEnum.md)|  | [optional] 
+ **gcode_file_name** | **str**|  | [optional] 
+ **mp4_file** | **file**|  | [optional] 
 
 ### Return type
 

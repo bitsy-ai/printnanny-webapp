@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this video recording. | [required] |
+**id** | **String** | A UUID string identifying this video recording. | [required] |
 
 ### Return type
 
