@@ -1,15 +1,18 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from safedelete.models import SafeDeleteModel, SafeDeleteManager
+from safedelete.models import SafeDeleteModel
+from uuid import uuid4
+
+from .enum import VideoRecordingStatus
 
 # Create your models here.
 
 User = get_user_model()
 
 
-def mjr_recording_filepath(instance, filename):
-    path = instance.start_dt.strftime("uploads/mjr_recording/%Y/%m/%d")
-    return f"{path}/{instance.id}/{filename}"
+def mp4_filepath(instance, filename):
+    path = instance.start_dt.strftime("uploads/video_recordings/mp4/%Y/%m/%d")
+    return f"{path}/{instance.id}.mp4"
 
 
 class VideoRecording(SafeDeleteModel):
@@ -17,16 +20,29 @@ class VideoRecording(SafeDeleteModel):
     A video recording
     """
 
-    start_dt = models.DateTimeField()
-    end_dt = models.DateTimeField(null=True)
+    id = models.UUIDField(primary_key=True, default=uuid4)
+
+    recording_start = models.DateTimeField(null=True)
+    recording_end = models.DateTimeField(null=True)
+    recording_status = models.CharField(
+        max_length=32,
+        choices=VideoRecordingStatus.choices,
+        default=VideoRecordingStatus.PENDING,
+    )
+
+    cloud_sync_start = models.DateTimeField(null=True)
+    cloud_sync_end = models.DateTimeField(null=True)
+    cloud_sync_status = models.CharField(
+        max_length=32,
+        choices=VideoRecordingStatus.choices,
+        default=VideoRecordingStatus.PENDING,
+    )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
-    # mjr is a Janus recording format, which is basically a stream of RTP packets: https://janus.conf.meetecho.com/docs/recordplay.html
-    mjr_recording = models.FileField(upload_to=mjr_recording_filepath, null=True)
 
-    def mjr_upload_url(self):
-        if self.mjr_recording.name is None:
-            name = mjr_recording_filepath(self, self.name)
-            return self.mjr_recording.storage.upload_url(name)
-        return self.mjr_recording.storage.upload_url(self.mjr_recording.name)
+    gcode_file_name = models.CharField(max_length=255, null=True)
+    mp4_file = models.FileField(upload_to=mp4_filepath, null=True)
+
+    def mp4_upload_url(self):
+        name = mp4_filepath(self, None)
+        return self.mp4_file.storage.upload_url(name)

@@ -35,7 +35,6 @@ class Migration(migrations.Migration):
                     "mjr_recording",
                     models.FileField(
                         null=True,
-                        upload_to=print_nanny_webapp.videos.models.mjr_recording_filepath,
                     ),
                 ),
                 (
