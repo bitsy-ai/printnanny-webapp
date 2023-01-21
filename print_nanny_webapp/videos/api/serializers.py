@@ -1,3 +1,4 @@
+from typing import Tuple
 from rest_framework import serializers
 
 from print_nanny_webapp.videos.models import VideoRecording
@@ -12,4 +13,14 @@ class VideoRecordingSerializer(serializers.ModelSerializer):
     class Meta:
         model = VideoRecording
         exclude = ("deleted",)
-        read_only_fields = ("id", "mp4_upload_url", "user")
+        read_only_fields = ("mp4_upload_url", "user")
+
+    def get_or_create(
+        self,
+        pk,
+        user,
+        validated_data,
+    ) -> Tuple[VideoRecording, bool]:
+        return VideoRecording.objects.get_or_create(
+            id=pk, user=user, defaults=validated_data
+        )

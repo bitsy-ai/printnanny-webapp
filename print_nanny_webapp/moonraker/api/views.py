@@ -4,7 +4,6 @@ from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiPara
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.decorators import action
 from rest_framework import parsers
-from rest_framework.decorators import action
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
