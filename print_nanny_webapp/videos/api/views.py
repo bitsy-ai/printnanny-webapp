@@ -86,22 +86,22 @@ class VideoRecordingViewSet(
         serializer.save(user=self.request.user)
 
     @extend_schema(
-        operation_id="video_recordings_get_or_create",
+        operation_id="video_recordings_update_or_create",
         tags=["videos"],
         responses={
             200: VideoRecordingSerializer,
-            201: VideoRecordingSerializer,
+            202: VideoRecordingSerializer,
         }
         | generic_create_errors
         | generic_get_errors,
     )
-    @action(methods=["post"], detail=False, url_path="get-or-create")
-    def get_or_create(self, request):
+    @action(methods=["post"], detail=False, url_path="update-or-create")
+    def update_or_create(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         validated_data = serializer.validated_data
         pk = validated_data.pop("id")
-        instance, created = serializer.get_or_create(  # type: ignore[attr-defined]
+        instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
             pk, request.user.id, serializer.validated_data
         )
         response_serializer = self.get_serializer(instance)

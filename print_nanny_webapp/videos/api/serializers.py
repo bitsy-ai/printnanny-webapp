@@ -15,12 +15,12 @@ class VideoRecordingSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
         read_only_fields = ("mp4_upload_url", "user")
 
-    def get_or_create(
+    def update_or_create(
         self,
         pk,
         user,
         validated_data,
     ) -> Tuple[VideoRecording, bool]:
-        return VideoRecording.objects.get_or_create(
+        return VideoRecording.objects.filter(id=pk, user=user).update_or_create(
             id=pk, user=user, defaults=validated_data
         )
