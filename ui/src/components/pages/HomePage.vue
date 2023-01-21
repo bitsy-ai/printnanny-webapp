@@ -46,10 +46,12 @@
               class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0"
             >
               <video
-                autoplay="true"
+                id="hero-video"
                 muted="true"
                 loop="true"
                 controls="true"
+                preload="metadata"
+                autoplay="true"
                 class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none drop-shadow-2xl"
               >
                 <source
@@ -89,6 +91,9 @@
             <p class="pt-6 max-w-prose mx-auto text-xl text-gray-500">
               Get notified or <strong>automatically pause</strong> if print job
               doesn't pass quality control.
+            </p>
+            <p class="pt-6 max-w-prose mx-auto text-xl text-gray-500">
+              Tap/click videos 👇 to see PrintNanny in action.
             </p>
           </div>
         </Transition>
@@ -360,6 +365,7 @@
   </main>
 </template>
 <script setup lang="ts">
+import { onMounted } from "vue";
 import {
   CogIcon,
   RefreshIcon,
@@ -373,6 +379,12 @@ import DemoQualityAlert from "@/components/demo/DemoQualityAlert.vue";
 import googleIoImg from "@/assets/press/google-io.png";
 import tfEverywhereImg from "@/assets/press/tensorflow-everywhere-na.png";
 import WaitlistForm from "@/components/forms/WaitlistForm.vue";
+
+onMounted(() => {
+  const el = document.querySelector("video#hero-video") as HTMLVideoElement;
+  el.playbackRate = 0.5;
+  el.play();
+});
 
 const releases = [
   {

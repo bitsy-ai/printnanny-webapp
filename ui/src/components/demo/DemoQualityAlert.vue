@@ -1,6 +1,13 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+
 const show = ref(true);
+onMounted(() => {
+  const el1 = document.querySelector("video#demo-video-1") as HTMLVideoElement;
+  el1.playbackRate = 0.5;
+  const el2 = document.querySelector("video#demo-video-2") as HTMLVideoElement;
+  el2.playbackRate = 0.5;
+});
 </script>
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
@@ -43,12 +50,12 @@ const show = ref(true);
       </div>
       <div class="px-4 py-5 sm:p-6">
         <video
+          id="demo-video-1"
           muted="true"
           loop="true"
           controls="true"
           class="w-full"
-          autoplay="false"
-          preload="none"
+          preload="metadata"
         >
           <source
             src="https://cdn.printnanny.ai/www/demo-video-1.mp4"
@@ -95,12 +102,12 @@ const show = ref(true);
       </div>
       <div class="px-4 py-5 sm:p-6">
         <video
+          id="demo-video-2"
           muted="true"
           loop="true"
           controls="true"
           class="w-full"
-          autoplay="false"
-          preload="none"
+          preload="metadata"
         >
           <source
             src="https://cdn.printnanny.ai/www/demo-video-3.mp4"
