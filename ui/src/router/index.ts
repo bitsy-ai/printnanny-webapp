@@ -9,6 +9,7 @@ import swagRoutes from "./swag";
 import settingsRoutes from "./settings";
 import homeRoutes from "./home";
 import shopRoutes from "./shop";
+import videoRoutes from "./videos";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -19,6 +20,7 @@ const router = createRouter({
     ...swagRoutes,
     ...settingsRoutes,
     ...shopRoutes,
+    ...videoRoutes,
   ],
 });
 

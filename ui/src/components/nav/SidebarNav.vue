@@ -3,7 +3,12 @@
   <nav class="px-3 mt-6">
     <div class="space-y-1">
       <!-- Primary app navigation -->
-
+      <h3
+        id="desktop-teams-headline"
+        class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider"
+      >
+        PrintNanny Cloud
+      </h3>
       <router-link
         v-for="item in app_nav"
         :key="item.name"
@@ -45,8 +50,14 @@
         <a
           v-for="item in help_nav"
           :key="item.name"
-          target="_blank"
           :href="item.href"
+          :class="[
+          item.current()
+            ? 'bg-gray-200 text-gray-900'
+            : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50',
+          'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
+        ]"
+        :aria-current="item.current() ? 'page' : undefined"
           class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50"
         >
           <component
@@ -89,8 +100,33 @@
         id="badges-headline"
         class="pt-4 px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider"
       >
-        Achievements
+        Achievements & Swag
       </h3>
+
+      <router-link
+        v-for="item in swag_nav"
+        :key="item.name"
+        :to="item.link"
+        :class="[
+          item.current()
+            ? 'bg-gray-200 text-gray-900'
+            : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50',
+          'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
+        ]"
+        :aria-current="item.current() ? 'page' : undefined"
+      >
+        <component
+          :is="item.icon"
+          :class="[
+            item.current()
+              ? 'text-gray-500'
+              : 'text-gray-400 group-hover:text-gray-500',
+            'mr-3 flex-shrink-0 h-6 w-6',
+          ]"
+          aria-hidden="true"
+        />
+        {{ item.name }}
+      </router-link>
       <div
         class="mt-1 space-y-1"
         role="group"
@@ -123,6 +159,7 @@ import {
   SupportIcon,
 } from "@heroicons/vue/outline";
 import { useAchievementsStore } from "@/stores/achievements";
+import { VideoCameraIcon } from "@heroicons/vue/solid";
 
 const achievementStore = useAchievementsStore();
 achievementStore.fetchAchievements();
@@ -137,16 +174,10 @@ const app_nav = [
     current: () => router.currentRoute.value.name == "devices",
   },
   {
-    name: "Crash Reports",
-    link: { name: "crash-reports" },
-    icon: SupportIcon,
-    current: () => router.currentRoute.value.name == "crash-reports",
-  },
-  {
-    name: "Member Swag",
-    link: { name: "swag" },
-    icon: SparklesIcon,
-    current: () => router.currentRoute.value.path.includes("swag"),
+    name: "Videos",
+    link: { name: "videos" },
+    icon: VideoCameraIcon,
+    current: () => router.currentRoute.value.name == "videos",
   },
   {
     name: "Settings",
@@ -156,34 +187,55 @@ const app_nav = [
   },
 ];
 
+const swag_nav = [  {
+    name: "Member Swag",
+    link: { name: "swag" },
+    icon: SparklesIcon,
+    current: () => router.currentRoute.value.path.includes("swag"),
+  },]
+
 // external hrefs
 const help_nav = [
+  {
+    name: "Crash Reports",
+    href: "/crash-reports/",
+    icon: SupportIcon,
+    current: () => router.currentRoute.value.name == "crash-reports",
+  },
   {
     name: "Quick Start",
     href: "https://printnanny.ai/docs/category/quick-start/",
     icon: QuestionMarkCircleIcon,
+    current: () => false
+
   },
   {
     name: "API Docs",
     href: import.meta.env.VITE_PRINTNANNY_API_REDOCS_URL,
     icon: CodeIcon,
+    current: () => false
+
   },
   {
     name: "Report Issue",
     href: "https://github.com/bitsy-ai/printnanny-os/issues/new/choose",
     icon: ExclamationIcon,
+    current: () => false
+
   },
   {
     name: "Join Discord",
     href: "https://discord.gg/sf23bk2hPr",
     icon: ChatIcon,
+    current: () => false
+
   },
 ];
 
 const misc_nav = [
   {
     name: "Latest Release",
-    href: "https://printnanny.ai/docs/release-history/0.2.0-beryl-kirkstone/",
+    href: import.meta.env.VITE_PRINTNANNY_OS_LATEST_RELEASE_URL,
     icon: DocumentDownloadIcon,
   },
   {
