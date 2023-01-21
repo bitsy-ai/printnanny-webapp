@@ -175,7 +175,7 @@ docs/User.md
 docs/UserRequest.md
 docs/VerifyEmailRequest.md
 docs/VideoRecording.md
-docs/VideoRecordingsApi.md
+docs/VideosApi.md
 docs/WebrtcStream.md
 docs/WebrtcStreamRequest.md
 git_push.sh
@@ -194,7 +194,7 @@ src/apis/pis_api.rs
 src/apis/schema_api.rs
 src/apis/settings_api.rs
 src/apis/shop_api.rs
-src/apis/video_recordings_api.rs
+src/apis/videos_api.rs
 src/lib.rs
 src/models/achievement.rs
 src/models/achievement_type_enum.rs

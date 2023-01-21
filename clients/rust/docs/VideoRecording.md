@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | [readonly]
+**id** | Option<**String**> |  | [optional]
 **mp4_upload_url** | **String** |  | [readonly]
 **recording_start** | Option<**String**> |  | [optional]
 **recording_end** | Option<**String**> |  | [optional]

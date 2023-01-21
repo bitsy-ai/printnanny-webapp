@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [readonly] 
+**id** | **str** |  | [optional] 
 **mp4_upload_url** | **str** |  | [readonly] 
 **recording_start** | **datetime** |  | [optional] 
 **recording_end** | **datetime** |  | [optional] 

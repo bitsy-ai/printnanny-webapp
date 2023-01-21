@@ -176,7 +176,7 @@ docs/User.md
 docs/UserRequest.md
 docs/VerifyEmailRequest.md
 docs/VideoRecording.md
-docs/VideoRecordingsApi.md
+docs/VideosApi.md
 docs/WebrtcStream.md
 docs/WebrtcStreamRequest.md
 git_push.sh
@@ -195,7 +195,7 @@ printnanny_api_client/api/pis_api.py
 printnanny_api_client/api/schema_api.py
 printnanny_api_client/api/settings_api.py
 printnanny_api_client/api/shop_api.py
-printnanny_api_client/api/video_recordings_api.py
+printnanny_api_client/api/videos_api.py
 printnanny_api_client/api_client.py
 printnanny_api_client/configuration.py
 printnanny_api_client/exceptions.py
@@ -540,7 +540,7 @@ test/test_user.py
 test/test_user_request.py
 test/test_verify_email_request.py
 test/test_video_recording.py
-test/test_video_recordings_api.py
+test/test_videos_api.py
 test/test_webrtc_stream.py
 test/test_webrtc_stream_request.py
 tox.ini
