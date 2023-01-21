@@ -47,7 +47,8 @@ const show = ref(true);
           loop="true"
           controls="true"
           class="w-full"
-          autoplay="true"
+          autoplay="false"
+          preload="none"
         >
           <source
             src="https://cdn.printnanny.ai/www/demo-video-1.mp4"
@@ -98,7 +99,8 @@ const show = ref(true);
           loop="true"
           controls="true"
           class="w-full"
-          autoplay="true"
+          autoplay="false"
+          preload="none"
         >
           <source
             src="https://cdn.printnanny.ai/www/demo-video-3.mp4"
