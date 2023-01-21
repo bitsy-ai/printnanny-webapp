@@ -22,7 +22,7 @@ export default [
           default: VideoList,
           TopBar: PageTitle,
         },
-        meta: { title: "Manage Network" },
+        meta: { title: "Timelapse Videos" },
       },
     ],
   },
