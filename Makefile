@@ -98,7 +98,7 @@ mypy:
 	docker-compose -f local.yml run -e DJANGO_SETTINGS_MODULE=config.settings.test --rm django mypy
 
 token:
-	@echo $(PRINT_NANNY_TOKEN)
+	${DJANGO_ADMIN_CMD} drf_create_token $(DJANGO_SUPERUSER_EMAIL)
 
 octoprint-wait:
 	OCTOPRINT_URL=$(OCTOPRINT_URL) \
