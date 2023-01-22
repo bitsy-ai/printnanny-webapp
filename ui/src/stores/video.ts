@@ -12,18 +12,21 @@ export const useVideoStore = defineStore({
     videos: [] as Array<api.VideoRecording>,
   }),
   getters: {
-    showEmpty: (state) => state.loading == false && toRaw(state.videos).length === 0
+    showEmpty: (state) =>
+      state.loading == false && toRaw(state.videos).length === 0,
   },
   actions: {
     async load(): Promise<Array<VideoRecording> | undefined> {
       this.$patch({ loading: true });
       const accountStore = useAccountStore();
-      const res = await accountStore.videosApi.videoRecordingsList().catch(handleApiError);
+      const res = await accountStore.videosApi
+        .videoRecordingsList()
+        .catch(handleApiError);
       console.debug("videoRecordingsList: ", res);
       if (res?.data.results) {
         this.$patch({
           loading: false,
-          videos: res.data.results
+          videos: res.data.results,
         });
         return res.data.results;
       } else {
@@ -31,10 +34,9 @@ export const useVideoStore = defineStore({
           loading: false,
         });
       }
-
-    }
-  }
-})
+    },
+  },
+});
 
 if (import.meta.hot) {
   import.meta.hot.accept(acceptHMRUpdate(useVideoStore, import.meta.hot));

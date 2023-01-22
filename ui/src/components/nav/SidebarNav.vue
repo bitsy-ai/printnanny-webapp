@@ -52,12 +52,12 @@
           :key="item.name"
           :href="item.href"
           :class="[
-          item.current()
-            ? 'bg-gray-200 text-gray-900'
-            : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50',
-          'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
-        ]"
-        :aria-current="item.current() ? 'page' : undefined"
+            item.current()
+              ? 'bg-gray-200 text-gray-900'
+              : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50',
+            'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
+          ]"
+          :aria-current="item.current() ? 'page' : undefined"
           class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50"
         >
           <component
@@ -187,12 +187,14 @@ const app_nav = [
   },
 ];
 
-const swag_nav = [  {
+const swag_nav = [
+  {
     name: "Member Swag",
     link: { name: "swag" },
     icon: SparklesIcon,
     current: () => router.currentRoute.value.path.includes("swag"),
-  },]
+  },
+];
 
 // external hrefs
 const help_nav = [
@@ -206,29 +208,25 @@ const help_nav = [
     name: "Quick Start",
     href: "https://printnanny.ai/docs/category/quick-start/",
     icon: QuestionMarkCircleIcon,
-    current: () => false
-
+    current: () => false,
   },
   {
     name: "API Docs",
     href: import.meta.env.VITE_PRINTNANNY_API_REDOCS_URL,
     icon: CodeIcon,
-    current: () => false
-
+    current: () => false,
   },
   {
     name: "Report Issue",
     href: "https://github.com/bitsy-ai/printnanny-os/issues/new/choose",
     icon: ExclamationIcon,
-    current: () => false
-
+    current: () => false,
   },
   {
     name: "Join Discord",
     href: "https://discord.gg/sf23bk2hPr",
     icon: ChatIcon,
-    current: () => false
-
+    current: () => false,
   },
 ];
 

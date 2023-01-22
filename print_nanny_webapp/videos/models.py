@@ -21,8 +21,6 @@ class VideoRecording(SafeDeleteModel):
     """
 
     id = models.UUIDField(primary_key=True, default=uuid4)
-    created_dt = models.DateTimeField(auto_now_add=True)
-
     recording_start = models.DateTimeField(null=True)
     recording_end = models.DateTimeField(null=True)
     recording_status = models.CharField(

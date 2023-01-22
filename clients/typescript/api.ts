@@ -6661,6 +6661,18 @@ export interface VideoRecording {
      * @type {string}
      * @memberof VideoRecording
      */
+    'mp4_size': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoRecording
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoRecording
+     */
     'recording_start'?: string | null;
     /**
      * 

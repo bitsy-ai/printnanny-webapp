@@ -43,7 +43,7 @@ const help_nav = [
     name: "Quick Start",
     href: "https://printnanny.ai/docs/category/quick-start/",
     icon: QuestionMarkCircleIcon,
-    current: () => false
+    current: () => false,
   },
   {
     name: "Report Issue",
@@ -54,8 +54,7 @@ const help_nav = [
     name: "Join Discord",
     href: "https://discord.gg/sf23bk2hPr",
     icon: ChatIcon,
-    current: () => false
-
+    current: () => false,
   },
 ];
 
@@ -64,15 +63,13 @@ const misc_nav = [
     name: "Latest Release",
     href: import.meta.env.VITE_PRINTNANNY_OS_LATEST_RELEASE_URL,
     icon: DocumentDownloadIcon,
-    current: () => false
-
+    current: () => false,
   },
   {
     name: "In Development",
     href: "https://github.com/bitsy-ai/printnanny-os/milestones",
     icon: MapIcon,
-    current: () => false
-
+    current: () => false,
   },
 ];
 </script>
@@ -122,11 +119,11 @@ const misc_nav = [
             :key="item.name"
             :href="item.href"
             :class="[
-            item.current
-              ? 'bg-gray-100 text-gray-900'
-              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50',
-            'group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md',
-          ]"
+              item.current
+                ? 'bg-gray-100 text-gray-900'
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50',
+              'group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md',
+            ]"
             class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50"
           >
             <component
