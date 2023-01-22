@@ -102,7 +102,7 @@ class VideoRecordingViewSet(
         validated_data = serializer.validated_data
         pk = validated_data.pop("id")
         instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
-            pk, request.user.id, serializer.validated_data
+            pk, request.user, serializer.validated_data
         )
         response_serializer = self.get_serializer(instance)
         if created:
