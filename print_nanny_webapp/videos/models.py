@@ -11,7 +11,7 @@ User = get_user_model()
 
 
 def mp4_filepath(instance, filename):
-    path = instance.start_dt.strftime("uploads/video_recordings/mp4/%Y/%m/%d")
+    path = instance.created_dt.strftime("uploads/video_recordings/mp4/%Y/%m/%d")
     return f"{path}/{instance.id}.mp4"
 
 
@@ -21,7 +21,6 @@ class VideoRecording(SafeDeleteModel):
     """
 
     id = models.UUIDField(primary_key=True, default=uuid4)
-
     recording_start = models.DateTimeField(null=True)
     recording_end = models.DateTimeField(null=True)
     recording_status = models.CharField(
@@ -46,3 +45,8 @@ class VideoRecording(SafeDeleteModel):
     def mp4_upload_url(self):
         name = mp4_filepath(self, None)
         return self.mp4_file.storage.upload_url(name)
+
+    def mp4_size(self):
+        if self.mp4_file is not None:
+            name = mp4_filepath(self, None)
+            return self.mp4_file.storage.size(name)
