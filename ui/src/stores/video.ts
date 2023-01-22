@@ -35,3 +35,7 @@ export const useVideoStore = defineStore({
     }
   }
 })
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useVideoStore, import.meta.hot));
+}

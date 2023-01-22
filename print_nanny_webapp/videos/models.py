@@ -47,3 +47,8 @@ class VideoRecording(SafeDeleteModel):
     def mp4_upload_url(self):
         name = mp4_filepath(self, None)
         return self.mp4_file.storage.upload_url(name)
+
+    def mp4_size(self):
+        if self.mp4_file is not None:
+            name = mp4_filepath(self, None)
+            return self.mp4_file.storage.size(name)
