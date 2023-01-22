@@ -1,8 +1,9 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.utils import timezone
+
 from safedelete.models import SafeDeleteModel
 from uuid import uuid4
-
 from .enum import VideoRecordingStatus
 
 # Create your models here.
@@ -11,7 +12,7 @@ User = get_user_model()
 
 
 def mp4_filepath(instance, filename):
-    path = instance.created_dt.strftime("uploads/video_recordings/mp4/%Y/%m/%d")
+    path = timezone.now().strftime("uploads/video_recordings/mp4/%Y/%m/%d")
     return f"{path}/{instance.id}.mp4"
 
 
