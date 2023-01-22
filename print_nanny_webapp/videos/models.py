@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 
+import google.api_core.exceptions
+
 from safedelete.models import SafeDeleteModel
 from uuid import uuid4
 from .enum import VideoRecordingStatus
@@ -50,4 +52,7 @@ class VideoRecording(SafeDeleteModel):
     def mp4_size(self):
         if self.mp4_file is not None:
             name = mp4_filepath(self, None)
-            return self.mp4_file.storage.size(name)
+            try:
+                return self.mp4_file.storage.size(name)
+            except google.api_core.exceptions.NotFound:
+                return 0
