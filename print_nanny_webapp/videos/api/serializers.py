@@ -29,11 +29,11 @@ class VideoRecordingSerializer(serializers.ModelSerializer):
 
         try:
             obj = VideoRecording.objects.get(id=pk, user=user)
-            for key, value in validated_data:
+            for key, value in validated_data.items():
                 setattr(obj, key, value)
             obj.save()
-            return obj, False
+            return (obj, False)
         except VideoRecording.DoesNotExist:
             obj = VideoRecording(id=pk, user=user, **validated_data)
             obj.save()
-            return obj, True
+            return (obj, True)
