@@ -91,13 +91,13 @@ class VideoRecordingViewSet(
     )
     @action(methods=["post"], detail=True, url_path="update-or-create")
     @csrf_exempt
-    def update_or_create(self, request, pk=None):
+    def update_or_create(self, request, id=None):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         validated_data = serializer.validated_data
         validated_data.pop("id")
         instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
-            pk, request.user, validated_data
+            id, request.user, validated_data
         )
         response_serializer = self.get_serializer(instance)
         if created:
