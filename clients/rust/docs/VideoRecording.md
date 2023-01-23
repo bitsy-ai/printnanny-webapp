@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [readonly]
 **mp4_upload_url** | **String** |  | [readonly]
-**mp4_size** | Option<**String**> |  | [readonly]
+**mp4_size** | Option<**i32**> |  | [readonly]
 **recording_start** | Option<**String**> |  | [optional]
 **recording_end** | Option<**String**> |  | [optional]
 **recording_status** | Option<[**crate::models::RecordingStatusEnum**](RecordingStatusEnum.md)> |  | [optional]

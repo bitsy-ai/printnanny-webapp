@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [readonly] 
 **mp4_upload_url** | **str** |  | [readonly] 
-**mp4_size** | **str** |  | [readonly] 
+**mp4_size** | **int** |  | [readonly] 
 **recording_start** | **datetime** |  | [optional] 
 **recording_end** | **datetime** |  | [optional] 
 **recording_status** | [**RecordingStatusEnum**](RecordingStatusEnum.md) |  | [optional] 
