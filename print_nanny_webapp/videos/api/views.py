@@ -78,10 +78,6 @@ class VideoRecordingViewSet(
     lookup_field = "id"
     queryset = VideoRecording.objects.all()
 
-    parser_classes = [
-        parsers.MultiPartParser,
-    ]
-
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
@@ -95,12 +91,12 @@ class VideoRecordingViewSet(
         | generic_create_errors
         | generic_get_errors,
     )
-    @action(methods=["post"], detail=False, url_path="update-or-create")
-    def update_or_create(self, request):
+    @action(methods=["post"], detail=True, url_path="update-or-create")
+    def update_or_create(self, request, pk=None):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         validated_data = serializer.validated_data
-        pk = validated_data.pop("id")
+        validated_data.pop("id")
         instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
             pk, request.user, validated_data
         )
