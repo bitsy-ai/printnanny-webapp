@@ -26,6 +26,14 @@ class VideoRecordingSerializer(serializers.ModelSerializer):
         user,
         validated_data,
     ) -> Tuple[VideoRecording, bool]:
-        return VideoRecording.objects.filter(id=pk, user=user).update_or_create(
-            id=pk, user=user, defaults=validated_data
-        )
+
+        try:
+            obj = VideoRecording.objects.get(id=pk, user=user)
+            for key, value in validated_data:
+                setattr(obj, key, value)
+            obj.save()
+            return obj, False
+        except VideoRecording.DoesNotExist:
+            obj = VideoRecording(id=pk, user=user, **validated_data)
+            obj.save()
+            return obj, True
