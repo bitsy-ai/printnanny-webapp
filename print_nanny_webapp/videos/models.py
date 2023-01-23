@@ -56,3 +56,4 @@ class VideoRecording(SafeDeleteModel):
                 return self.mp4_file.storage.size(name)
             except google.api_core.exceptions.NotFound:
                 return 0
+        return 0
