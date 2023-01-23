@@ -368,7 +368,6 @@ class SystemInfoViewSet(
             # 400: PrinterProfileSerializer,
             200: SystemInfoSerializer,
             201: SystemInfoSerializer,
-            202: SystemInfoSerializer,
         },
     )
     @action(methods=["post"], detail=False, url_path="update-or-create")
