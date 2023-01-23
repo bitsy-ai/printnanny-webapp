@@ -2,10 +2,9 @@ import logging
 
 from drf_spectacular.utils import extend_schema_view, extend_schema
 
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import (
     ListModelMixin,
@@ -13,7 +12,6 @@ from rest_framework.mixins import (
     UpdateModelMixin,
     CreateModelMixin,
 )
-from rest_framework import parsers
 from rest_framework import status
 
 
@@ -86,12 +84,13 @@ class VideoRecordingViewSet(
         tags=["videos"],
         responses={
             200: VideoRecordingSerializer,
-            202: VideoRecordingSerializer,
+            201: VideoRecordingSerializer,
         }
         | generic_create_errors
         | generic_get_errors,
     )
     @action(methods=["post"], detail=True, url_path="update-or-create")
+    @csrf_exempt
     def update_or_create(self, request, pk=None):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
