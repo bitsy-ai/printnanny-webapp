@@ -12,7 +12,7 @@ class VideoRecordingSerializer(serializers.ModelSerializer):
 
     mp4_size = serializers.SerializerMethodField()
 
-    def get_mp4_size(self, obj) -> Optional[str]:
+    def get_mp4_size(self, obj) -> Optional[int]:
         return obj.mp4_size()
 
     class Meta:
