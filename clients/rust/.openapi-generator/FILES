@@ -103,6 +103,7 @@ docs/PatchedOctoPrinterProfileRequest.md
 docs/PatchedPiRequest.md
 docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
+docs/PatchedVideoRecordingRequest.md
 docs/PatchedWebrtcStreamRequest.md
 docs/Pi.md
 docs/PiBootCommand.md
@@ -175,6 +176,7 @@ docs/User.md
 docs/UserRequest.md
 docs/VerifyEmailRequest.md
 docs/VideoRecording.md
+docs/VideoRecordingRequest.md
 docs/VideosApi.md
 docs/WebrtcStream.md
 docs/WebrtcStreamRequest.md
@@ -288,6 +290,7 @@ src/models/patched_octo_printer_profile_request.rs
 src/models/patched_pi_request.rs
 src/models/patched_system_info_request.rs
 src/models/patched_user_request.rs
+src/models/patched_video_recording_request.rs
 src/models/patched_webrtc_stream_request.rs
 src/models/pi.rs
 src/models/pi_boot_command.rs
@@ -356,5 +359,6 @@ src/models/user.rs
 src/models/user_request.rs
 src/models/verify_email_request.rs
 src/models/video_recording.rs
+src/models/video_recording_request.rs
 src/models/webrtc_stream.rs
 src/models/webrtc_stream_request.rs

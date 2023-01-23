@@ -104,6 +104,7 @@ docs/PatchedOctoPrinterProfileRequest.md
 docs/PatchedPiRequest.md
 docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
+docs/PatchedVideoRecordingRequest.md
 docs/PatchedWebrtcStreamRequest.md
 docs/Pi.md
 docs/PiBootCommand.md
@@ -176,6 +177,7 @@ docs/User.md
 docs/UserRequest.md
 docs/VerifyEmailRequest.md
 docs/VideoRecording.md
+docs/VideoRecordingRequest.md
 docs/VideosApi.md
 docs/WebrtcStream.md
 docs/WebrtcStreamRequest.md
@@ -291,6 +293,7 @@ printnanny_api_client/models/patched_octo_printer_profile_request.py
 printnanny_api_client/models/patched_pi_request.py
 printnanny_api_client/models/patched_system_info_request.py
 printnanny_api_client/models/patched_user_request.py
+printnanny_api_client/models/patched_video_recording_request.py
 printnanny_api_client/models/patched_webrtc_stream_request.py
 printnanny_api_client/models/pi.py
 printnanny_api_client/models/pi_boot_command.py
@@ -359,6 +362,7 @@ printnanny_api_client/models/user.py
 printnanny_api_client/models/user_request.py
 printnanny_api_client/models/verify_email_request.py
 printnanny_api_client/models/video_recording.py
+printnanny_api_client/models/video_recording_request.py
 printnanny_api_client/models/webrtc_stream.py
 printnanny_api_client/models/webrtc_stream_request.py
 printnanny_api_client/py.typed
@@ -468,6 +472,7 @@ test/test_patched_octo_printer_profile_request.py
 test/test_patched_pi_request.py
 test/test_patched_system_info_request.py
 test/test_patched_user_request.py
+test/test_patched_video_recording_request.py
 test/test_patched_webrtc_stream_request.py
 test/test_pi.py
 test/test_pi_boot_command.py
@@ -540,6 +545,7 @@ test/test_user.py
 test/test_user_request.py
 test/test_verify_email_request.py
 test/test_video_recording.py
+test/test_video_recording_request.py
 test/test_videos_api.py
 test/test_webrtc_stream.py
 test/test_webrtc_stream_request.py
