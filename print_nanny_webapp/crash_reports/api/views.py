@@ -82,6 +82,6 @@ class CrashReportViewSet(
 
     # restrict queryset results to authenticated user
     def get_queryset(self):
-        if self.request.user.IsAuthenticated:
+        if self.request.user.is_authenticated:
             return CrashReport.objects.filter(self.request.user)
         return CrashReport.objects.none()
