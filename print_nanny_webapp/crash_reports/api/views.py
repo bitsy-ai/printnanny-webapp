@@ -1,6 +1,7 @@
 import logging
 
 from drf_spectacular.utils import extend_schema_view, extend_schema
+from django_filters.rest_framework import DjangoFilterBackend
 
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.permissions import AllowAny
@@ -64,11 +65,12 @@ class CrashReportViewSet(
 ):
     serializer_class = CrashReportSerializer
     lookup_field = "id"
-    queryset = CrashReport.objects.all()
 
     parser_classes = [
         parsers.MultiPartParser,
     ]
+    # omit OwnerOrUserFilterBackend, which is a DEFAULT_FILTER_BACKENDS
+    filter_backends = [DjangoFilterBackend]
 
     # allow write actions from un-authenticated requests, but required authentication to read
     def get_permissions(self):
@@ -77,3 +79,9 @@ class CrashReportViewSet(
                 AllowAny(),
             ]
         return [IsAuthenticated()]
+
+    # restrict queryset results to authenticated user
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return CrashReport.objects.filter(self.request.user)
+        return CrashReport.objects.none()
