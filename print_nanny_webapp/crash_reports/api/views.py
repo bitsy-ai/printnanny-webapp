@@ -65,7 +65,7 @@ class CrashReportViewSet(
 ):
     serializer_class = CrashReportSerializer
     lookup_field = "id"
-
+    queryset = CrashReport.objects.all()
     parser_classes = [
         parsers.MultiPartParser,
     ]
