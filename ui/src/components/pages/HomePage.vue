@@ -388,7 +388,7 @@ onMounted(() => {
 
 const releases = [
   {
-    date: "Upcoming",
+    date: "23 Jan, 2023",
     description: "JPEG snapshots. Timelapse videos. Backup camera recordings to PrintNanny Cloud.",
     name: "v0.6.0 (Feldspar)",
     href: "https://printnanny.ai/docs/release-history/0.6.x-feldspar-langdale/",
