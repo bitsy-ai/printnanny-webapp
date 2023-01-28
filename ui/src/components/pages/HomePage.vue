@@ -389,10 +389,10 @@ onMounted(() => {
 const releases = [
   {
     date: "Upcoming",
-    description: "See what's on the roadmap for January/February 2023.",
-    name: "v0.6.0 (January 2023)",
-    href: "https://github.com/bitsy-ai/printnanny-os/milestone/6",
-    linkText: "Roadmap &rarr;",
+    description: "JPEG snapshots. Timelapse videos. Backup camera recordings to PrintNanny Cloud.",
+    name: "v0.6.0 (Feldspar)",
+    href: "https://printnanny.ai/docs/release-history/0.6.x-feldspar-langdale/",
+    linkText: "Release Notes &rarr;",
   },
   {
     date: "27 Dec, 2022",
