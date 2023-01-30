@@ -19,6 +19,9 @@ def crash_report_filepath(instance, filename):
 class CrashReport(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
+    class Meta:
+        ordering = ["-created_dt"]
+
     id = models.UUIDField(primary_key=True, default=uuid4)
     created_dt = models.DateTimeField(auto_now_add=True)
     updated_dt = models.DateTimeField(auto_now=True)
