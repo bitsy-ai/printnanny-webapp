@@ -216,9 +216,9 @@ class PiNatsAppManager(SafeDeleteManager, NatsOrganizationAppManager):
             raise ValueError("PiNatsApp.pi is required, but received None value")
 
         # is there already an org/org user associated with Pi owner?
-        created, (
+        _created, (
             org,
-            org_owner,
+            _org_owner,
             org_user,
         ) = get_or_create_org_owner_units_for_authenticated_user(pi.user)
 
