@@ -6,7 +6,6 @@
 #
 aiohttp==3.7.4.post0
     # via
-    #   -r /requirements/production.in
     #   discord-py
     #   printnanny-api-client
 aioredis==1.3.1
@@ -158,7 +157,7 @@ django-loginas==0.3.10
     # via -r /requirements/production.in
 django-model-utils==4.2.0
     # via -r /requirements/production.in
-django-nats-nkeys[drf]==0.9.7
+django-nats-nkeys[drf]==0.9.8
     # via -r /requirements/production.in
 django-organizations==2.0.2
     # via django-nats-nkeys
@@ -324,7 +323,7 @@ plotly==5.6.0
     # via -r /requirements/production.in
 posthog==1.4.5
     # via -r /requirements/production.in
-printnanny-api-client==0.117.1
+printnanny-api-client==0.124.9
     # via -r /requirements/production.in
 priority==1.3.0
     # via twisted
