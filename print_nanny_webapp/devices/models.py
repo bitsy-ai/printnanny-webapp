@@ -13,9 +13,6 @@ from django_nats_nkeys.models import (
     NatsOrganizationAppManager,
     AbstractNatsOrganizationApp,
 )
-from django_nats_nkeys.services import (
-    get_or_create_org_owner_units_for_authenticated_user,
-)
 from print_nanny_webapp.devices.utils import (
     get_available_data_rtp_port,
     get_available_video_rtp_port,
@@ -211,6 +208,10 @@ class Pi(SafeDeleteModel):
 
 class PiNatsAppManager(SafeDeleteManager, NatsOrganizationAppManager):
     def create(self, **kwargs):
+        from django_nats_nkeys.services import (
+            get_or_create_org_owner_units_for_authenticated_user,
+        )
+
         pi = kwargs.get("pi")
         if pi is None:
             raise ValueError("PiNatsApp.pi is required, but received None value")
