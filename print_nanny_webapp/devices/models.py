@@ -230,7 +230,7 @@ class PiNatsAppManager(SafeDeleteManager, NatsOrganizationAppManager):
         if organization_user is None:
             organization_user = org_user
         return super().create(
-            organization=organization, organization_user=organization_user**kwargs
+            organization=organization, organization_user=organization_user, **kwargs
         )
 
 
