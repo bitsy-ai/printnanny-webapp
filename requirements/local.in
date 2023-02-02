@@ -1,4 +1,5 @@
 argon2-cffi
+async-timeout==3.0.1
 channels
 channels-redis
 coolname
@@ -19,7 +20,7 @@ django-health-check
 django-invitations
 django-loginas
 django-model-utils
-django-nats-nkeys[drf]>=0.9.7
+django-nats-nkeys[drf]>=0.9.8
 django-polymorphic
 django-prometheus
 django-qr-code
@@ -49,7 +50,7 @@ psycopg2
 pyarrow
 qrcode[pil]
 scikit-image
-twisted>=21.7 # https://github.com/django/channels/issues/1639
+twisted[http2,tls]>=21.7 # https://github.com/django/channels/issues/1639
 uvicorn[standard]
 websockets==10.1 # https://github.com/aaugustin/websockets/issues/1138#issuecomment-1059138857
 whitenoise

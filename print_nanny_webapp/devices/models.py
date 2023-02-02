@@ -13,6 +13,7 @@ from django_nats_nkeys.models import (
     NatsOrganizationAppManager,
     AbstractNatsOrganizationApp,
 )
+from django_nats_nkeys.services import get_or_create_org_owner_units_for_authenticated_user
 from print_nanny_webapp.devices.utils import (
     get_available_data_rtp_port,
     get_available_video_rtp_port,
@@ -207,7 +208,20 @@ class Pi(SafeDeleteModel):
 
 
 class PiNatsAppManager(SafeDeleteManager, NatsOrganizationAppManager):
-    pass
+    def create(self, **kwargs):
+        pi = kwargs.get("pi")
+        if pi is None:
+            raise ValueError("PiNatsApp.pi is required, but received None value")
+        
+        # is there already an org/org user associated with Pi owner?
+        created, (org, org_owner, org_user) = 
+
+
+
+        organization = kwargs.pop("organization", None)
+        # if organization is not 
+        organization_user = kwargs.pop("organization_user", None)
+
 
 
 # add Pi foreign key reference to NatsApp
