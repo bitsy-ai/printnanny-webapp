@@ -229,6 +229,9 @@ class PiNatsAppManager(SafeDeleteManager, NatsOrganizationAppManager):
         organization_user = kwargs.pop("organization_user", None)
         if organization_user is None:
             organization_user = org_user
+        return super().create(
+            organization=organization, organization_user=organization_user**kwargs
+        )
 
 
 # add Pi foreign key reference to NatsApp
