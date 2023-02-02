@@ -169,7 +169,11 @@ class Pi(SafeDeleteModel):
 
     @property
     def nats_app(self):
-        return self.nats_apps.first()
+        result = self.nats_apps.first()
+        # if no active nats app is associated with this Pi, create one
+        if result is None:
+            result = PiNatsApp.objects.create(pi=self)
+        return result
 
     @property
     def system_info(self):
