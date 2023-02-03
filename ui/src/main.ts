@@ -19,9 +19,9 @@ app.use(pinia);
 
 // initialize posthog in production only
 if (
-  !window.location.href.includes("127.0.0.1") &&
-  !window.location.href.includes("localhost")
+  window.location.href.includes("printnanny.ai")
 ) {
+  console.log("Initializing Posthog")
   posthog.init(import.meta.env.VITE_POSTHOG_CLIENT_KEY, {
     api_host: import.meta.env.VITE_POSTHOG_API_URL,
   });

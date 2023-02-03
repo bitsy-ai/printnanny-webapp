@@ -23,4 +23,7 @@ export default defineConfig({
       bundler: "vite",
     },
   },
+  env: {
+    "NODE_ENV": test
+  }
 });
