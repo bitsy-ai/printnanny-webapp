@@ -135,3 +135,14 @@ def send_fn_founding_member_jan_2023_offer(
         limit=limit,
         tags=("marketing", "founding_member", "2023-01"),
     )
+
+
+def send_fn_founding_member_feb_2023_offer(
+    campaign: Campaign, filter_fn=filter_email_waitlist_not_subscribed, limit=10
+) -> AnymailMessage:
+    return send_fn_founding_member_offer(
+        campaign,
+        filter_fn=filter_fn,
+        limit=limit,
+        tags=("marketing", "founding_member", "2023-02"),
+    )
