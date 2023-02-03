@@ -15,6 +15,22 @@ logger = logging.getLogger(__name__)
 User = get_user_model()
 
 
+class CloudLicense(SafeDeleteModel):
+    id = models.UUIDField(primary_key=True, default=uuid4)
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    pi = models.ForeignKey("devices.Pi", on_delete=models.CASCADE, null=True)
+
+    # djstripe Customer model
+    stripe_customer = models.ForeignKey("djstripe.Customer", on_delete=models.CASCADE)
+    # djstripe Subscription model
+    stripe_subscription = models.ForeignKey(
+        "djstripe.Subscription", on_delete=models.CASCADE
+    )
+
+
 class ProductManager(SafeDeleteManager):
     def create(self, **kwargs):
 
