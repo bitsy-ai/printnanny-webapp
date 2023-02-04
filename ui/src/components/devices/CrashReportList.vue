@@ -5,8 +5,14 @@ import CrashReportModal from "@/components/devices/CrashReportModal.vue";
 import CrashReportActionMenu from "./CrashReportActionMenu.vue";
 import DeviceActionMenu from "./DeviceActionMenu.vue";
 import DeviceFavorites from "./DeviceFavorites.vue";
-import { ExclamationTriangleIcon, LifebuoyIcon } from "@heroicons/vue/24/outline";
-import { ArrowTopRightOnSquareIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
+import {
+  ExclamationTriangleIcon,
+  LifebuoyIcon,
+} from "@heroicons/vue/24/outline";
+import {
+  ArrowTopRightOnSquareIcon,
+  ChevronRightIcon,
+} from "@heroicons/vue/24/solid";
 import { useCrashReportStore } from "@/stores/crash-reports";
 
 const store = useCrashReportStore();

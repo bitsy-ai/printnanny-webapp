@@ -17,9 +17,16 @@
           class="w-full rounded bg-white"
           preload="metadata"
         >
-          <source :src="video.mp4_file" type="video/mp4" v-if="video.mp4_file"/>
+          <source
+            v-if="video.mp4_file"
+            :src="video.mp4_file"
+            type="video/mp4"
+          />
         </video>
-        <p class="text-center text-sm text-gray-700 mt-2" v-if="video.recording_start">
+        <p
+          v-if="video.recording_start"
+          class="text-center text-sm text-gray-700 mt-2"
+        >
           Created {{ moment(video.recording_start).fromNow() }}
         </p>
       </div>
