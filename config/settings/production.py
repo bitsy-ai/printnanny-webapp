@@ -279,4 +279,3 @@ GHOST_MEMBER_LABELS = [
 
 # django-vite
 # ------------------------------------------------------------------------------
-STATICFILES_DIRS = [str(ROOT_DIR / "ui/dist/")]

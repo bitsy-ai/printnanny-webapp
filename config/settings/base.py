@@ -175,7 +175,7 @@ STATIC_URL = env("DJANGO_STATIC_URL", default="/ui/")
 BASE_URL = env("DJANGO_BASE_URL", default="/")
 WS_BASE_URL = env("DJANGO_WS_URL", default="/ws")
 
-STATICFILES_DIRS = [str(ROOT_DIR / "ui/")]
+STATICFILES_DIRS = [str(ROOT_DIR / "ui/dist/")]
 STATIC_ROOT = str(ROOT_DIR / "staticfiles")
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [

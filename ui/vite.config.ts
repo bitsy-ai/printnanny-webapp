@@ -49,7 +49,7 @@ export default defineConfig(({ _command, mode }) => {
       },
     },
     build: {
-      outDir: "ui/dist",
+      outDir: "dist",
       manifest: true,
       rollupOptions: {
         input: 'src/main.ts'
