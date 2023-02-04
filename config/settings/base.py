@@ -175,7 +175,6 @@ STATIC_URL = env("DJANGO_STATIC_URL", default="/ui/")
 BASE_URL = env("DJANGO_BASE_URL", default="/")
 WS_BASE_URL = env("DJANGO_WS_URL", default="/ws")
 
-# @TODO rm these staticfiles dirs
 STATICFILES_DIRS = [str(ROOT_DIR / "ui/")]
 STATIC_ROOT = str(ROOT_DIR / "staticfiles")
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
@@ -830,6 +829,7 @@ NATS_NSC_RETRY_MODE = "IDEMPOTENT"
 
 # django-vite
 # ------------------------------------------------------------------------------
+DJANGO_VITE_STATIC_URL_PREFIX = ""
 INSTALLED_APPS += ["django_vite"]
 DJANGO_VITE_ASSETS_PATH = str(ROOT_DIR / "ui")
 

@@ -123,6 +123,7 @@ ADMIN_URL = env("DJANGO_ADMIN_URL")
 #     "js": ["compressor.filters.jsmin.JSMinFilter"],
 # }
 
+
 # LOGGING
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#logging
@@ -275,3 +276,7 @@ GHOST_MEMBER_LABELS = [
     DEFAULT_GHOST_LABEL,
     GhostLabel(name="PrintNanny Waitlist", slug="printnanny_waitlist"),
 ]
+
+# django-vite
+# ------------------------------------------------------------------------------
+STATICFILES_DIRS = [str(ROOT_DIR / "ui/dist/")]
