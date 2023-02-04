@@ -23,7 +23,7 @@ VERSION = "0.124.9"
 # http://pypi.python.org/pypi/setuptools
 
 REQUIRES = ["urllib3 >= 1.25.3", "six >= 1.10", "python-dateutil", "protobuf"]
-REQUIRES.append("aiohttp >= 3.7.0,<3.8")
+REQUIRES.append("aiohttp >= 3.8.0,<3.9")
 setup(
     name=NAME,
     version=VERSION,
@@ -38,5 +38,5 @@ setup(
     license="AGPLv3",
     long_description="""\
     Official API client library for printnanny.ai  # noqa: E501
-    """
+    """,
 )
