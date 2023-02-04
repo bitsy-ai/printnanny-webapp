@@ -3,7 +3,7 @@ import moment from "moment";
 
 import * as api from "printnanny-api-client";
 import { defineStore, acceptHMRUpdate } from "pinia";
-import { ExclamationIcon } from "@heroicons/vue/outline";
+import { ExclamationTriangleIcon } from "@heroicons/vue/24/outline";
 import Janode from "janode";
 import StreamingPlugin from "janode/plugins/streaming";
 
@@ -244,7 +244,7 @@ export const useWebrtcStore = defineStore({
           message:
             "Connection to PrintNanny Cloud is slow. Video may appear choppy.",
           header: "Slow connection detected",
-          icon: ExclamationIcon,
+          icon: ExclamationTriangleIcon,
           actions: actions,
         } as UiAlert;
         alertStore.push(alert);
@@ -276,8 +276,7 @@ export const useWebrtcStore = defineStore({
         StreamingPlugin.EVENT.STREAMING_STATUS,
         (evtdata: any) => {
           console.log(
-            `${
-              streamingHandle.name
+            `${streamingHandle.name
             } streaming handle event status ${JSON.stringify(evtdata)}`
           );
         }

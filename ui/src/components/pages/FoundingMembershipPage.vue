@@ -285,7 +285,7 @@ import {
   TabPanel,
   TabPanels,
 } from "@headlessui/vue";
-import { HeartIcon, MinusIcon, PlusIcon } from "@heroicons/vue/outline";
+import { HeartIcon, MinusIcon, PlusIcon } from "@heroicons/vue/24/outline";
 import { useAccountStore } from "@/stores/account";
 import { useShopStore } from "@/stores/shop";
 import CustomSpinner from "@/components/util/CustomSpinner.vue";

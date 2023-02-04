@@ -368,12 +368,12 @@
 import { onMounted } from "vue";
 import {
   CogIcon,
-  RefreshIcon,
+  ArrowPathIcon,
   FolderOpenIcon,
-  GlobeIcon,
+  GlobeAltIcon,
   VideoCameraIcon,
-  DesktopComputerIcon,
-} from "@heroicons/vue/outline";
+  ComputerDesktopIcon,
+} from "@heroicons/vue/24/outline";
 import DemoQualityAlert from "@/components/demo/DemoQualityAlert.vue";
 
 import googleIoImg from "@/assets/press/google-io.png";
@@ -423,7 +423,7 @@ const features = [
     name: "Raspberry Pi",
     description:
       "Raspberry Pi 4 is fully supported, with Raspberry Pi 3 and Rock Pi in development.",
-    icon: DesktopComputerIcon,
+    icon: ComputerDesktopIcon,
   },
   {
     name: "Cloud File Sync",
@@ -435,7 +435,7 @@ const features = [
     name: "Simple Queues",
     description:
       "Keep track of finished inventory. Re-queue failed jobs on the next available printer.",
-    icon: RefreshIcon,
+    icon: ArrowPathIcon,
   },
   {
     name: "Share Camera Feed",
@@ -453,7 +453,7 @@ const features = [
     name: "Access from Anywhere",
     description:
       "Connect to a secure Tailscale VPN to control your PrintNanny devices from anywhere.",
-    icon: GlobeIcon,
+    icon: GlobeAltIcon,
   },
 ];
 const blogPosts = [

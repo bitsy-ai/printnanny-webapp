@@ -31,7 +31,7 @@ import moment from "moment";
 import { onMounted } from "vue";
 import { useVideoStore } from "@/stores/video";
 import TableEmpty from "@/components/devices/TableEmpty.vue";
-import { VideoCameraIcon } from "@heroicons/vue/solid";
+import { VideoCameraIcon } from "@heroicons/vue/24/solid";
 
 const store = useVideoStore();
 onMounted(async () => {

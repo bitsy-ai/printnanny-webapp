@@ -5,7 +5,7 @@ import type { Pi } from "printnanny-api-client";
 import { handleApiError } from "@/utils/api";
 import { useAccountStore } from "./account";
 import type { TableActionLink } from "@/types";
-import { ExternalLinkIcon, TrashIcon } from "@heroicons/vue/solid";
+import { ArrowTopRightOnSquareIcon, TrashIcon } from "@heroicons/vue/24/solid";
 
 export function buildDeviceActions(
   pi: Pi,
@@ -15,22 +15,22 @@ export function buildDeviceActions(
     {
       href: pi.urls.mission_control,
       name: "PrintNanny OS",
-      icon: ExternalLinkIcon,
+      icon: ArrowTopRightOnSquareIcon,
     },
     {
       href: pi.urls.octoprint,
       name: "OctoPrint",
-      icon: ExternalLinkIcon,
+      icon: ArrowTopRightOnSquareIcon,
     },
     {
       href: pi.urls.syncthing,
       name: "Syncthing",
-      icon: ExternalLinkIcon,
+      icon: ArrowTopRightOnSquareIcon,
     },
     {
       href: pi.urls.swupdate,
       name: "Software Update",
-      icon: ExternalLinkIcon,
+      icon: ArrowTopRightOnSquareIcon,
     },
   ];
 

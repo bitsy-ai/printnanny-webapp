@@ -1,6 +1,6 @@
 <template>
   <span>
-    <RefreshIcon
+    <ArrowPathIcon
       v-if="loading"
       class="animate-spin h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
       aria-hidden="true"

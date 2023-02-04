@@ -148,18 +148,18 @@ import { RouterLink, useRouter } from "vue-router";
 import {
   HomeIcon,
   QuestionMarkCircleIcon,
-  DocumentDownloadIcon,
-  ExclamationIcon,
-  ChatIcon,
+  DocumentArrowDownIcon,
+  ExclamationTriangleIcon,
+  ChatBubbleOvalLeftIcon,
   MapIcon,
   CogIcon,
   SparklesIcon,
-  CodeIcon,
+  CommandLineIcon,
   TerminalIcon,
-  SupportIcon,
-} from "@heroicons/vue/outline";
+  LifebuoyIcon,
+} from "@heroicons/vue/24/outline";
 import { useAchievementsStore } from "@/stores/achievements";
-import { VideoCameraIcon } from "@heroicons/vue/solid";
+import { VideoCameraIcon } from "@heroicons/vue/24/solid";
 
 const achievementStore = useAchievementsStore();
 achievementStore.fetchAchievements();
@@ -201,7 +201,7 @@ const help_nav = [
   {
     name: "Crash Reports",
     href: "/crash-reports/",
-    icon: SupportIcon,
+    icon: LifebuoyIcon,
     current: () => router.currentRoute.value.name == "crash-reports",
   },
   {
@@ -213,19 +213,19 @@ const help_nav = [
   {
     name: "API Docs",
     href: import.meta.env.VITE_PRINTNANNY_API_REDOCS_URL,
-    icon: CodeIcon,
+    icon: CommandLineIcon,
     current: () => false,
   },
   {
     name: "Report Issue",
     href: "https://github.com/bitsy-ai/printnanny-os/issues/new/choose",
-    icon: ExclamationIcon,
+    icon: ExclamationTriangleIcon,
     current: () => false,
   },
   {
     name: "Join Discord",
     href: "https://discord.gg/sf23bk2hPr",
-    icon: ChatIcon,
+    icon: ChatBubbleOvalLeftIcon,
     current: () => false,
   },
 ];
@@ -234,7 +234,7 @@ const misc_nav = [
   {
     name: "Latest Release",
     href: import.meta.env.VITE_PRINTNANNY_OS_LATEST_RELEASE_URL,
-    icon: DocumentDownloadIcon,
+    icon: DocumentArrowDownIcon,
   },
   {
     name: "In Development",

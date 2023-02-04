@@ -38,7 +38,7 @@
                   @click="store.closeReport"
                 >
                   <span class="sr-only">Close</span>
-                  <XIcon class="h-6 w-6" aria-hidden="true" />
+                  <XMarkIcon class="h-6 w-6" aria-hidden="true" />
                 </button>
               </div>
               <div class="sm:flex sm:items-start">
@@ -73,7 +73,7 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import { XIcon } from "@heroicons/vue/outline";
+import { XMarkIcon } from "@heroicons/vue/24/outline";
 import type { PropType } from "vue";
 import type { CrashReport } from "printnanny-api-client";
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
-import { LockClosedIcon, RefreshIcon } from "@heroicons/vue/solid";
+import { LockClosedIcon, ArrowPathIcon } from "@heroicons/vue/24/solid";
 import { useAccountStore } from "@/stores/account";
 import { Field, ErrorMessage, Form } from "vee-validate";
 import { ref, reactive } from "vue";
@@ -82,7 +82,7 @@ async function onSubmit(values: any) {
               class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
               aria-hidden="true"
             />
-            <RefreshIcon
+            <ArrowPathIcon
               v-if="state.loading"
               class="animate-spin h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
               aria-hidden="true"

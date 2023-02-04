@@ -6,12 +6,12 @@ import {
   ChevronRightIcon,
   HeartIcon,
   TrashIcon,
-  ExternalLinkIcon,
-} from "@heroicons/vue/solid";
+  ArrowTopRightOnSquareIcon,
+} from "@heroicons/vue/24/solid";
 import TableEmpty from "./TableEmpty.vue";
 import DeviceActionMenu from "./DeviceActionMenu.vue";
 import DeviceFavorites from "./DeviceFavorites.vue";
-import { ExclamationIcon } from "@heroicons/vue/outline";
+import { ExclamationTriangleIcon } from "@heroicons/vue/24/outline";
 import type { Pi, PatchedPiRequest } from "printnanny-api-client";
 
 const deviceStore = useDeviceStore();
@@ -125,7 +125,7 @@ const pis = await deviceStore.fetchDevices();
                     <span
                       class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-yellow-100 text-yellow-800 hover:bg-yellow-200"
                     >
-                      <ExclamationIcon
+                      <ExclamationTriangleIcon
                         class="mr-1 w-5 h-5 text-yellow-800 text-yellow-800"
                       />
                       Finish Setup
@@ -135,7 +135,7 @@ const pis = await deviceStore.fetchDevices();
                     <span
                       class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-emerald-100 text-emerald-800 hover:bg-emerald-200"
                     >
-                      <ExternalLinkIcon
+                      <ArrowTopRightOnSquareIcon
                         class="mr-1 w-5 h-5 text-emerald-800 text-emerald-800"
                       />
                       PrintNanny OS

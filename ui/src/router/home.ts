@@ -26,6 +26,13 @@ export default [
         },
       },
       {
+        path: "pricing",
+        name: "pricing",
+        components: {
+          default: () => import("@/components/shop/PriceTable.vue"),
+        },
+      },
+      {
         path: "account-verify-email",
         name: "account-verify-email",
         components: {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, useRouter } from "vue-router";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
-import { CogIcon, CreditCardIcon, BellIcon } from "@heroicons/vue/solid";
+import { CogIcon, CreditCardIcon, BellIcon } from "@heroicons/vue/24/solid";
 
 const router = useRouter();
 

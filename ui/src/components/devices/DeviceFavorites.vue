@@ -36,7 +36,7 @@
 </template>
 <script setup lang="ts">
 import moment from "moment";
-import { HeartIcon } from "@heroicons/vue/solid";
+import { HeartIcon } from "@heroicons/vue/24/solid";
 import { useDeviceStore, buildDeviceActions } from "@/stores/devices";
 import DeviceActionMenu from "@/components/devices/DeviceActionMenu.vue";
 const deviceStore = useDeviceStore();

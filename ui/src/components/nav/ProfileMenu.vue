@@ -17,7 +17,7 @@
               }}</span>
             </span>
           </span>
-          <SelectorIcon
+          <ChevronUpDownIcon
             class="flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500"
             aria-hidden="true"
           />
@@ -86,7 +86,8 @@
 <script setup lang="ts">
 import { RouterLink, useRouter } from "vue-router";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
-import { CreditCardIcon, BellIcon, SelectorIcon } from "@heroicons/vue/solid";
+import { ChevronUpDownIcon } from "@heroicons/vue/20/solid";
+import { CreditCardIcon, BellIcon } from "@heroicons/vue/24/solid";
 
 import { useAccountStore } from "@/stores/account";
 const account = useAccountStore();

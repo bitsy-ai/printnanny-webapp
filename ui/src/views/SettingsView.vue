@@ -4,7 +4,7 @@ import AlertSettingsForm from "@/components/forms/AlertSettingsForm.vue";
 import NetworkSettingsForm from "@/components/forms/NetworkSettingsForm.vue";
 import { RouterLink, useRouter } from "vue-router";
 
-import { CreditCardIcon, BellIcon, WifiIcon } from "@heroicons/vue/outline";
+import { CreditCardIcon, BellIcon, WifiIcon } from "@heroicons/vue/24/outline";
 const router = useRouter();
 
 const navigation = [
