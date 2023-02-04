@@ -3,6 +3,7 @@ Base settings to build other settings files upon.
 """
 from pathlib import Path
 from typing import List, Tuple
+import re
 
 import socket
 import environ
@@ -831,3 +832,16 @@ NATS_NSC_RETRY_MODE = "IDEMPOTENT"
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ["django_vite"]
 DJANGO_VITE_ASSETS_PATH = str(ROOT_DIR / "ui")
+
+# ref: https://github.com/MrBin99/django-vite#notes
+# Vite generates files with 8 hash digits
+# http://whitenoise.evans.io/en/stable/django.html#WHITENOISE_IMMUTABLE_FILE_TEST
+
+
+def immutable_file_test(path, url):
+    # Match filename with 12 hex digits before the extension
+    # e.g. app.db8f2edc0c8a.js
+    return re.match(r"^.+\.[0-9a-f]{8,12}\..+$", url)
+
+
+WHITENOISE_IMMUTABLE_FILE_TEST = immutable_file_test
