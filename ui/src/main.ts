@@ -1,3 +1,5 @@
+// Add this at the beginning of your app entry.
+import 'vite/modulepreload-polyfill';
 import { createApp, markRaw } from "vue";
 import { createPinia } from "pinia";
 import router from "./router";

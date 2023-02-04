@@ -1,10 +1,9 @@
 argon2-cffi
-async-timeout==3.0.1
 channels
 channels-redis
 coolname
 dj-rest-auth
-dj-stripe
+dj-stripe<2.7
 django-allauth
 django-anymail[mailgun]
 django-compressor
@@ -31,6 +30,7 @@ django-storages[google]
 django-stubs[compatible-mypy]>=1.12.0
 django>=3.2.16,<4
 djangorestframework
+django_vite
 drf-nested-routers
 drf-spectacular>=0.23.1
 drfpasswordless
@@ -45,12 +45,12 @@ nats-py[nkeys]
 pandas
 plotly
 posthog
-printnanny-api-client>=0.125.0
 psycopg2
 pyarrow
+pydantic==1.10.2 # required by django-qr-code until https://github.com/dprog-philippe-docourt/django-qr-code/pull/44 is merged
 qrcode[pil]
 scikit-image
 twisted[http2,tls]>=21.7 # https://github.com/django/channels/issues/1639
 uvicorn[standard]
-websockets==10.1 # https://github.com/aaugustin/websockets/issues/1138#issuecomment-1059138857
+websockets #==10.1 # https://github.com/aaugustin/websockets/issues/1138#issuecomment-1059138857
 whitenoise

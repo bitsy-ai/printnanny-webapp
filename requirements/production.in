@@ -38,6 +38,7 @@ djangorestframework
 drfpasswordless
 drf-spectacular>=0.23.1
 drf-nested-routers
+django_vite
 flatbuffers
 google-cloud-core
 google-cloud-monitoring
@@ -56,5 +57,4 @@ scikit-image
 twisted[http2,tls]>=21.7 # https://github.com/django/channels/issues/1639
 uvicorn[standard]
 whitenoise
-printnanny-api-client>=0.125.0
-websockets==10.1 # https://github.com/aaugustin/websockets/issues/1138#issuecomment-1059138857
+websockets #==10.1 # https://github.com/aaugustin/websockets/issues/1138#issuecomment-1059138857
