@@ -9,6 +9,12 @@
   <link rel="icon" href="https://cdn.printnanny.ai/www/favicon.svg" type="image/svg+xml">
   <link rel="icon" type="image/png" href="https://cdn.printnanny.ai/www/favicon.png">
   <title>PrintNanny</title>
+  <script>
+    {% if flag_enabled('MONTHLY_SUB') %}
+    window.FF__MONTHLY_SUB = true;
+    {% endif %}
+
+  </script>
 </head>
 
 <body>

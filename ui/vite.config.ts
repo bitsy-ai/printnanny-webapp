@@ -39,6 +39,12 @@ export default defineConfig(({ _command, mode }) => {
       host: "0.0.0.0",
       // cors: false,
       proxy: {
+        "index.html": {
+          target: env.VITE_PRINTNANNY_API_URL,
+          changeOrigin: true,
+          secure: false,
+          ws: true,
+        },
         "/api": {
           target: env.VITE_PRINTNANNY_API_URL,
           changeOrigin: true,

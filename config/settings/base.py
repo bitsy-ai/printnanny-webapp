@@ -636,7 +636,10 @@ INSTALLED_APPS += ["safedelete"]
 INSTALLED_APPS += ["flags"]
 
 FLAGS = {
-    "PARTNER_3DGEEKS_ENABLED": [{"condition": "parameter", "value": "3dgeeks_enabled="}]
+    "PARTNER_3DGEEKS_ENABLED": [
+        {"condition": "parameter", "value": "3dgeeks_enabled="}
+    ],
+    "MONTHLY_SUB": [{"condition": "parameter", "value": "monthly_sub="}],
 }
 
 # 3D Geeks Integration settings
@@ -823,3 +826,5 @@ NATS_NKEYS_OPERATOR_NAME = env(
     "NATS_NKEYS_OPERATOR_NAME", default="PrintNannyDjangoOperator"
 )
 NATS_NSC_RETRY_MODE = "IDEMPOTENT"
+
+# django-vite
