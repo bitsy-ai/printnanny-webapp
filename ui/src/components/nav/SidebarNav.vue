@@ -155,7 +155,6 @@ import {
   CogIcon,
   SparklesIcon,
   CommandLineIcon,
-  TerminalIcon,
   LifebuoyIcon,
 } from "@heroicons/vue/24/outline";
 import { useAchievementsStore } from "@/stores/achievements";
