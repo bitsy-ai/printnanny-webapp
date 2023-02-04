@@ -48,7 +48,7 @@ COPY ./compose/production/django/nsc-init.sh /nsc-init
 RUN chmod +x /nsc-init
 
 COPY . /app
-RUN echo "/app" > /usr/local/lib/python3.9/site-packages/print_nanny_webapp.pth
+RUN echo "/app" > /usr/local/lib/python3.10/site-packages/print_nanny_webapp.pth
 
 WORKDIR /app
 
