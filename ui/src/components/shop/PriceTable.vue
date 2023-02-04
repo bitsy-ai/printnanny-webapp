@@ -12,13 +12,13 @@
       >
         <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">
           <span class="block lg:inline">Simple pricing, </span>
-          <span class="block lg:inline">no hidden fees</span>
+          <span class="block lg:inline">no hidden costs</span>
         </h1>
         <p class="mt-4 text-xl text-indigo-100">
           Flexible pay-as-you-go monthly plans.
         </p>
         <p class="mt-4 text-xl text-indigo-100">
-          Unlimited annual plans that scale with your business.
+          Unlimited annual plans for rapid-scaling businesses.
         </p>
       </div>
 
@@ -29,23 +29,25 @@
         <div class="flex rounded-lg bg-indigo-700 p-0.5">
           <button
             type="button"
-            @click="() => showMonthly = false"
             :class="[
-                showMonthly == false ? 'text-indigo-700 bg-white border-indigo-700 hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700' :'text-indigo-200 hover:bg-indigo-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700',
-
+              showMonthly == false
+                ? 'text-indigo-700 bg-white border-indigo-700 hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
+                : 'text-indigo-200 hover:bg-indigo-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700',
             ]"
             class="relative whitespace-nowrap rounded-md py-2 px-6 text-sm font-medium shadow-sm"
+            @click="() => (showMonthly = false)"
           >
             Yearly billing
           </button>
           <button
-            @click="() => showMonthly = true"
             :class="[
-                showMonthly == true ? 'text-indigo-700 bg-white hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700' :'text-indigo-200 hover:bg-indigo-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700',
-
+              showMonthly == true
+                ? 'text-indigo-700 bg-white hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
+                : 'text-indigo-200 hover:bg-indigo-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700',
             ]"
             type="button"
             class="relative ml-0.5 whitespace-nowrap rounded-md border border-transparent py-2 px-6 text-sm font-medium"
+            @click="() => (showMonthly = true)"
           >
             Monthly billing
           </button>
@@ -130,7 +132,7 @@
                       'text-4xl font-bold tracking-tight',
                     ]"
                   >
-                    ${{ Math.round(plan.priceYearly/12) }}
+                    ${{ Math.round(plan.priceYearly / 12) }}
                   </p>
                   <div class="ml-4">
                     <p
@@ -201,10 +203,10 @@
 
     <!-- Feature comparison (up to lg) -->
     <section aria-labelledby="mobile-comparison-heading" class="lg:hidden">
-        <h1 class="text-4xl font-bold tracking-tight text-gray-800 sm:text-6xl">
-            <span class="block lg:inline">Money-back guarantee</span>
-            <span class="block lg:inline">no hidden fees</span>
-        </h1>
+      <h1 class="text-4xl font-bold tracking-tight text-gray-800 sm:text-6xl">
+        <span class="block lg:inline">Money-back guarantee</span>
+        <span class="block lg:inline">no hidden fees</span>
+      </h1>
       <h2 id="mobile-comparison-heading" class="sr-only">Feature comparison</h2>
 
       <div class="mx-auto max-w-2xl space-y-16 py-16 px-6">
@@ -660,9 +662,9 @@ const plans = [
     priceYearly: "99.99",
     mainFeatures: [
       { id: 1, value: "Up to 3 active printers" },
-      { id: 2, value: "5 GB cloud storage" },
+      { id: 2, value: "10 GB cloud storage" },
       { id: 3, value: "Email alerts" },
-      { id: 4, value: 'Money-back guarantee' },
+      { id: 4, value: "Money-back guarantee" },
     ],
   },
   {
@@ -678,7 +680,7 @@ const plans = [
       { id: 2, value: "Unlimited cloud storage" },
       { id: 3, value: "API Access" },
       // { id: 4, value: 'Alpha access to e-commerce integrations' },
-      { id: 5, value: 'Money-back guarantee' },
+      { id: 5, value: "Money-back guarantee" },
     ],
   },
   {
@@ -715,7 +717,6 @@ const plans = [
       { id: 2, value: "Single Sign-on" },
       { id: 3, value: "K-12 and Higher Education" },
       { id: 4, value: "On-prem installation option" },
-
     ],
   },
 ];
@@ -778,7 +779,7 @@ const features = [
   {
     title: "Cloud Storage",
     tiers: [
-      { title: "starter", value: "5 GB" },
+      { title: "starter", value: "10 GB" },
       { title: "popular", featured: true, value: "Unlimited Storage" },
       { title: "oem", value: "Unlimited Storage" },
       { title: "education", value: "Unlimited Storage" },
