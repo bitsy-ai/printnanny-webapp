@@ -1,3 +1,7 @@
+{% load django_vite %}
+{% load feature_flags %}
+{% flag_enabled 'MONTHLY_SUB' as FF__MONTHLY_SUB %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,11 +14,14 @@
   <link rel="icon" type="image/png" href="https://cdn.printnanny.ai/www/favicon.png">
   <title>PrintNanny</title>
   <script>
-    {% if flag_enabled('MONTHLY_SUB') %}
+    {% if FF__MONTHLY_SUB %}
     window.FF__MONTHLY_SUB = true;
+    {% else %}
+    window.FF__MONTHLY_SUB = false;
     {% endif %}
-
   </script>
+  {% vite_hmr_client %}
+  {% vite_asset 'src/main.ts' %}
 </head>
 
 <body>

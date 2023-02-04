@@ -175,7 +175,7 @@ BASE_URL = env("DJANGO_BASE_URL", default="/")
 WS_BASE_URL = env("DJANGO_WS_URL", default="/ws")
 
 # @TODO rm these staticfiles dirs
-STATICFILES_DIRS = [str(ROOT_DIR / "ui/dist/")]
+STATICFILES_DIRS = [str(ROOT_DIR / "ui/")]
 STATIC_ROOT = str(ROOT_DIR / "staticfiles")
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
@@ -639,7 +639,7 @@ FLAGS = {
     "PARTNER_3DGEEKS_ENABLED": [
         {"condition": "parameter", "value": "3dgeeks_enabled="}
     ],
-    "MONTHLY_SUB": [{"condition": "parameter", "value": "monthly_sub="}],
+    "MONTHLY_SUB": [{"condition": "parameter", "value": "monthly_sub=true"}],
 }
 
 # 3D Geeks Integration settings
@@ -828,3 +828,6 @@ NATS_NKEYS_OPERATOR_NAME = env(
 NATS_NSC_RETRY_MODE = "IDEMPOTENT"
 
 # django-vite
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ["django_vite"]
+DJANGO_VITE_ASSETS_PATH = str(ROOT_DIR / "ui")

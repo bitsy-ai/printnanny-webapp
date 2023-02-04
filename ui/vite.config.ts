@@ -31,6 +31,7 @@ process.env.VITE_PRINTNANNY_API_VERSION = versionStr;
 export default defineConfig(({ _command, mode }) => {
   const env = loadEnv(mode, process.cwd());
   return {
+    base: '/ui/',
     server: {
       fs: {
         // Allow serving files from one level up to the project root
@@ -39,18 +40,19 @@ export default defineConfig(({ _command, mode }) => {
       host: "0.0.0.0",
       // cors: false,
       proxy: {
-        "index.html": {
-          target: env.VITE_PRINTNANNY_API_URL,
-          changeOrigin: true,
-          secure: false,
-          ws: true,
-        },
         "/api": {
           target: env.VITE_PRINTNANNY_API_URL,
           changeOrigin: true,
           secure: false,
           ws: true,
         },
+      },
+    },
+    build: {
+      outDir: "ui/dist",
+      manifest: true,
+      rollupOptions: {
+        input: 'src/main.ts'
       },
     },
     envDir: ".env",
