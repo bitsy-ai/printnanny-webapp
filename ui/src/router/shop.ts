@@ -19,6 +19,15 @@ export default [
         meta: { title: "Shop" },
       },
       {
+        path: "checkout/:sku/:price",
+        name: "checkout-v2",
+        components: {
+          default: () => import("@/components/shop/PriceTableCheckoutSession.vue")
+        },
+        meta: { title: "Checkout" },
+        props: { default: true }
+      },
+      {
         path: "founding-membership",
         name: "shop-founding-membership",
         components: {

@@ -17401,6 +17401,46 @@ export const ShopApiAxiosParamCreator = function (configuration?: Configuration)
     return {
         /**
          * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cloudPlansRetrieve: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/shop/products/cloud-plans/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} stripeCheckoutSessionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17531,6 +17571,16 @@ export const ShopApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cloudPlansRetrieve(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedProductList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cloudPlansRetrieve(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {string} stripeCheckoutSessionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17571,6 +17621,15 @@ export const ShopApiFactory = function (configuration?: Configuration, basePath?
     return {
         /**
          * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cloudPlansRetrieve(page?: number, options?: any): AxiosPromise<PaginatedProductList> {
+            return localVarFp.cloudPlansRetrieve(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} stripeCheckoutSessionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17607,6 +17666,15 @@ export const ShopApiFactory = function (configuration?: Configuration, basePath?
 export interface ShopApiInterface {
     /**
      * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ShopApiInterface
+     */
+    cloudPlansRetrieve(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedProductList>;
+
+    /**
+     * 
      * @param {string} stripeCheckoutSessionId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -17641,6 +17709,17 @@ export interface ShopApiInterface {
  * @extends {BaseAPI}
  */
 export class ShopApi extends BaseAPI implements ShopApiInterface {
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ShopApi
+     */
+    public cloudPlansRetrieve(page?: number, options?: AxiosRequestConfig) {
+        return ShopApiFp(this.configuration).cloudPlansRetrieve(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {string} stripeCheckoutSessionId 
