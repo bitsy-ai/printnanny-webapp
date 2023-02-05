@@ -273,6 +273,7 @@ const shop = useShopStore();
 
 async function onClick(values: any) {
   const productData = shop.getCloudPlanBySku(props.sku);
+  console.log("form submitted", values, productData)
 
   if (values && values.email !== undefined && productData !== undefined) {
     await shop.createCheckoutSession(values.email, [

@@ -268,6 +268,7 @@
                 </div>
                 <a
                   :href="plan.href"
+                  :id="`${plan.sku}-${showBilling}`"
                   :class="[
                     plan.featured
                       ? 'bg-indigo-600 text-white hover:bg-indigo-700'
@@ -316,7 +317,7 @@
 
     <!-- Toggle -->
     <h2 class="sr-only">Plans</h2>
-    <div class="relative mt-12 flex justify-center sm:mt-16">
+    <div class="relative m-12 flex justify-center md:mb-0">
       <div class="flex rounded-lg bg-indigo-700 p-0.5">
         <button
           type="button"
@@ -363,14 +364,9 @@
     </div>
 
     <!-- Feature comparison (up to lg) -->
-    <section aria-labelledby="mobile-comparison-heading" class="lg:hidden">
-      <h1 class="text-4xl font-bold tracking-tight text-gray-800 sm:text-6xl">
-        <span class="block lg:inline">Money-back guarantee</span>
-        <span class="block lg:inline">no hidden fees</span>
-      </h1>
+    <section aria-labelledby="mobile-comparison-heading" class="lg:hidden mb-8">
       <h2 id="mobile-comparison-heading" class="sr-only">Feature comparison</h2>
-
-      <div class="mx-auto max-w-2xl space-y-16 py-16 px-6">
+      <div class="mx-auto max-w-2xl md:space-y-16 md:py-16 px-6">
         <div
           v-for="(plan, mobilePlanIndex) in simplePlans"
           :key="mobilePlanIndex"

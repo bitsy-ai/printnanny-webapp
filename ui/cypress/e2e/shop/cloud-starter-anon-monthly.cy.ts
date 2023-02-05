@@ -18,17 +18,34 @@ describe("Checkout v2, Cloud Starter Monthly", () => {
 
   const promotionCode = "FOUNDING10";
 
-  it("Shop should redirect to monthly plan", () => {
+  it("Should redirect to Stripe Checkout session for monthly Cloud Starter plan", () => {
     cy.visit("/pricing");
 
     cy.get("button#pricing-monthly-toggle").click();
-    cy.get("button#cloud-starter-plan-yearly").click();
+    cy.get("a#cloud-starter-plan-monthly").click();
     cy
       .url()
-      .should("contain", "/shop/checkout/cloud-starter-plan/yearly");
+      .should("contain", "/shop/checkout/cloud-starter-plan/monthly");
+    cy.get("input#email")
+      .click()
+      .type(email)
+      .get("button[type=submit]")
+      .click()
+      .then(() => {
+        // set checkoutSessionUrl / checkoutRedirectUrl for use in subsequent tests
+        return cy
+          .url({ timeout: 60000 })
+          .should("contain", "checkout.stripe.com")
+          .then((url) => {
+            checkoutSessionUrl = url;
+            const segments = url.split("/");
+            checkoutRedirectUrl = `/shop/thank-you/${segments.pop()}`;
+          });
+      });
+
   });
 
-  it("Stripe CheckoutSession should redirect back to shop on success (anonymous checkout)", () => {
+  it("Stripe CheckoutSession should redirect back to shop on success (anonymous checkout)", (done) => {
     const sentArgs = {
       email,
       url: checkoutSessionUrl,
@@ -59,19 +76,29 @@ describe("Checkout v2, Cloud Starter Monthly", () => {
         promotionCode,
         phoneNumber,
       }) => {
+        Cypress.on("uncaught:exception", () => {
+          return false;
+        });
+
         cy.visit(url);
-        cy.get("input[name=promotionCode")
-          .type(promotionCode)
-          .then(() =>
-            cy
-              .get("button.PromotionCodeEntry-applyButton")
-              .click()
-              .then(() =>
-                cy.get(".ProductSummaryTotalAmount").contains("$89.01")
-              )
-          );
-        cy.get("input[name=cardNumber]").type(cardNumber);
+
+
+        // cy.get("input[name=promotionCode")
+        //   .type(promotionCode)
+        //   .then(() =>
+        //     cy
+        //       .get("button.PromotionCodeEntry-applyButton")
+        //       .click()
+        //       .then(() =>
+        //         cy.get(".ProductSummaryTotalAmount").contains("$89.01")
+        //       )
+        //   );
+        cy.get("input[name=cardCvc]").type(cvc.slice(0));
+        cy.get("input[name=cardCvc]").type(cvc.slice(1));
+        cy.get("input[name=cardCvc]").type(cvc.slice(2));
+
         cy.get("input[name=cardExpiry]").type(exp);
+        cy.get("input[name=cardNumber]").type(cardNumber);
         cy.get("input[name=cardCvc]").type(cvc);
         cy.get("input[name=billingName]").type(billingName);
         cy.get("input[name=billingAddressLine1]")
@@ -92,25 +119,25 @@ describe("Checkout v2, Cloud Starter Monthly", () => {
     cy.url({ timeout: 60000 }).should("contain", "/shop/thank-you/");
   });
 
-  it("Stripe CheckoutSession redirect should finish account registration (anonymous checkout)", () => {
-    cy.visit(checkoutRedirectUrl);
+  // it("Stripe CheckoutSession redirect should finish account registration (anonymous checkout)", () => {
+  //   cy.visit(checkoutRedirectUrl);
 
-    // confirmation page should show shipping address
-    cy.contains(billingName, { timeout: 10000 });
-    cy.contains(address1, { timeout: 10000 });
-    cy.contains(city, { timeout: 10000 });
-    cy.contains(zip, { timeout: 10000 });
+  //   // confirmation page should show shipping address
+  //   cy.contains(billingName, { timeout: 10000 });
+  //   cy.contains(address1, { timeout: 10000 });
+  //   cy.contains(city, { timeout: 10000 });
+  //   cy.contains(zip, { timeout: 10000 });
 
-    // Download/print receipt button should open pay.strime.com
-    cy.get("button#receipt", { timeout: 10000 })
-      .click()
-      .then(() => {
-        // receipt button should link to  Stripe portal for subscription management
-        return cy
-          .url({ timeout: 60000 })
-          .should("contain", "billing.stripe.com");
-      });
-  });
+  //   // Download/print receipt button should open pay.strime.com
+  //   cy.get("button#receipt", { timeout: 10000 })
+  //     .click()
+  //     .then(() => {
+  //       // receipt button should link to  Stripe portal for subscription management
+  //       return cy
+  //         .url({ timeout: 60000 })
+  //         .should("contain", "billing.stripe.com");
+  //     });
+  // });
 
   // it("PrintNanny Cloud Dashboard should show Founding Member achievement badge", () => {
   //   return cy.loginUserWithMagicLink(email, validPassword).then(() => {

@@ -35,7 +35,7 @@ export const useShopStore = defineStore({
       const res = await account.shopApi.cloudPlansRetrieve();
       console.debug("Fetched cloud plans", res.data);
       if (res.data) {
-        this.$patch({ products: res.data.results });
+        this.$patch({ cloudPlans: res.data.results });
         return res.data.results;
       }
     },

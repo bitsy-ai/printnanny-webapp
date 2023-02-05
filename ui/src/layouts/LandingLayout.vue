@@ -66,7 +66,7 @@
       <StickyAlerts />
 
       <!-- Main content area -->
-      <div class="flex-1 flex flex-col justify-center shadow bg-gradient-to-r from-indigo-500 to-violet-600">
+      <div class="flex-1 flex flex-col justify-center shadow bg-white">
 
         <RouterView v-slot="{ Component }">
         <template v-if="Component">
@@ -86,7 +86,7 @@
 
                 <!-- loading state -->
                 <template #fallback>
-                  <p>Loading ...</p>
+                  <p class="text-center font-medium text-lg">Loading ...</p>
                 </template>
               </Suspense>
             </KeepAlive>
