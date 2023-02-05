@@ -42,7 +42,7 @@ describe("Checkout v2, Cloud Starter Monthly", () => {
       });
   });
 
-  it("Stripe CheckoutSession should redirect back to shop on success (anonymous checkout)", (done) => {
+  it("Stripe CheckoutSession should redirect back to shop on success (anonymous checkout)", () => {
     const sentArgs = {
       email,
       url: checkoutSessionUrl,
