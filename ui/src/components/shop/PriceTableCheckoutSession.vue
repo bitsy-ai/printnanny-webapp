@@ -83,7 +83,9 @@
                       'text-4xl font-bold tracking-tight',
                     ]"
                   >
-                    ${{ Math.round(plan?.priceYearly / 12) }}
+                    ${{
+                      Math.round(parseFloat(plan?.priceYearly as string) / 12)
+                    }}
                   </p>
                   <div class="ml-4">
                     <p
