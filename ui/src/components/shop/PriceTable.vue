@@ -21,51 +21,6 @@
           Unlimited annual plans for rapid-scaling businesses.
         </p>
       </div>
-
-      <h2 class="sr-only">Plans</h2>
-
-      <!-- Toggle -->
-      <div class="relative mt-12 flex justify-center sm:mt-16">
-        <div class="flex rounded-lg bg-indigo-700 p-0.5">
-          <button
-            type="button"
-            :class="[
-              showBilling == 'yearly'
-                ? 'text-indigo-700 bg-white border-indigo-700 hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
-                : 'text-indigo-200 hover:bg-indigo-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700',
-            ]"
-            class="relative whitespace-nowrap rounded-md py-2 px-6 text-sm font-medium shadow-sm"
-            @click="() => (showBilling = 'yearly')"
-          >
-            Yearly billing
-          </button>
-          <button
-            :class="[
-              showBilling == 'monthly'
-                ? 'text-indigo-700 bg-white hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
-                : 'text-indigo-200 hover:bg-indigo-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700',
-            ]"
-            type="button"
-            class="relative ml-0.5 whitespace-nowrap rounded-md border border-transparent py-2 px-6 text-sm font-medium"
-            @click="() => (showBilling = 'monthly')"
-          >
-            Monthly billing
-          </button>
-          <button
-            :class="[
-              showBilling == 'invoice'
-                ? 'text-indigo-700 bg-white hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
-                : 'text-indigo-200 hover:bg-indigo-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700',
-            ]"
-            type="button"
-            class="relative ml-0.5 whitespace-nowrap rounded-md border border-transparent py-2 px-6 text-sm font-medium"
-            @click="() => (showBilling = 'invoice')"
-          >
-            Invoice billing
-          </button>
-        </div>
-      </div>
-
       <!-- Cards -->
       <div
         class="relative mx-auto mt-8 max-w-2xl px-6 pb-8 sm:mt-12 lg:max-w-6xl lg:px-8 lg:pb-4"
@@ -217,7 +172,7 @@
           </div>
         </div>
 
-        <!-- invoice billing tiers -->
+        <!-- main features -->
         <div
           v-else
           class="relative space-y-6 lg:grid lg:grid-cols-3 lg:space-y-0"
@@ -358,6 +313,49 @@
       </div>
     </div>
 
+    <!-- Toggle -->
+    <h2 class="sr-only">Plans</h2>
+    <div class="relative mt-12 flex justify-center sm:mt-16">
+      <div class="flex rounded-lg bg-indigo-700 p-0.5">
+        <button
+          type="button"
+          :class="[
+            showBilling == 'yearly'
+              ? 'text-indigo-700 bg-white border-indigo-700 hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
+              : 'text-indigo-200 hover:bg-indigo-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700',
+          ]"
+          class="relative whitespace-nowrap rounded-md py-2 px-6 text-sm font-medium shadow-sm"
+          @click="() => (showBilling = 'yearly')"
+        >
+          Yearly billing
+        </button>
+        <button
+          :class="[
+            showBilling == 'monthly'
+              ? 'text-indigo-700 bg-white hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
+              : 'text-indigo-200 hover:bg-indigo-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700',
+          ]"
+          type="button"
+          class="relative ml-0.5 whitespace-nowrap rounded-md border border-transparent py-2 px-6 text-sm font-medium"
+          @click="() => (showBilling = 'monthly')"
+        >
+          Monthly billing
+        </button>
+        <button
+          :class="[
+            showBilling == 'invoice'
+              ? 'text-indigo-700 bg-white hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
+              : 'text-indigo-200 hover:bg-indigo-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700',
+          ]"
+          type="button"
+          class="relative ml-0.5 whitespace-nowrap rounded-md border border-transparent py-2 px-6 text-sm font-medium"
+          @click="() => (showBilling = 'invoice')"
+        >
+          Invoice billing
+        </button>
+      </div>
+    </div>
+
     <!-- Feature comparison (up to lg) -->
     <section aria-labelledby="mobile-comparison-heading" class="lg:hidden">
       <h1 class="text-4xl font-bold tracking-tight text-gray-800 sm:text-6xl">
@@ -368,7 +366,7 @@
 
       <div class="mx-auto max-w-2xl space-y-16 py-16 px-6">
         <div
-          v-for="(plan, mobilePlanIndex) in plans"
+          v-for="(plan, mobilePlanIndex) in simplePlans"
           :key="mobilePlanIndex"
           class="border-t border-gray-200"
         >
@@ -549,7 +547,9 @@
 
           <!-- enterprise plus -->
 
-          <h4 class="mt-10 text-sm font-bold text-gray-900">Enterprise features</h4>
+          <h4 class="mt-10 text-sm font-bold text-gray-900">
+            Enterprise features
+          </h4>
 
           <div class="relative mt-6">
             <!-- Fake card background -->
@@ -692,7 +692,7 @@
     <section aria-labelledby="comparison-heading" class="hidden lg:block">
       <h2 id="comparison-heading" class="sr-only">Feature comparison</h2>
 
-      <div class="mx-auto max-w-8xl py-24 px-8">
+      <div class="mx-auto max-w-8xl py-16 px-8">
         <div class="flex w-full items-stretch border-t border-gray-200">
           <div class="-mt-px flex w-1/4 items-end py-6 pr-4">
             <h3 class="mt-auto text-sm font-bold text-gray-900">
@@ -700,7 +700,7 @@
             </h3>
           </div>
           <div
-            v-for="(plan, planIdx) in plans"
+            v-for="(plan, planIdx) in simplePlans"
             :key="plan.title"
             aria-hidden="true"
             :class="[
@@ -733,21 +733,15 @@
             class="pointer-events-none absolute inset-0 flex items-stretch"
             aria-hidden="true"
           >
-            <div class="w-1/6 pr-4" />
-            <div class="w-1/6 px-4">
+            <div class="w-1/4 pr-4" />
+            <div class="w-1/4 px-4">
               <div class="h-full w-full rounded-lg bg-white shadow" />
             </div>
-            <div class="w-1/6 px-4">
+            <div class="w-1/4 px-4">
               <div class="h-full w-full rounded-lg bg-white shadow-md" />
             </div>
-            <div class="w-1/6 pl-4">
-              <div class="h-full w-full rounded-lg bg-white shadow" />
-            </div>
-            <div class="w-1/6 pl-4">
-              <div class="h-full w-full rounded-lg bg-white shadow" />
-            </div>
-            <div class="w-1/6 pl-4">
-              <div class="h-full w-full rounded-lg bg-white shadow" />
+            <div class="w-1/4 px-4">
+              <div class="h-full w-full rounded-lg bg-white shadow-md" />
             </div>
           </div>
 
@@ -760,7 +754,7 @@
                 <th scope="col">
                   <span class="sr-only">Feature</span>
                 </th>
-                <th v-for="plan in plans" :key="plan.title" scope="col">
+                <th v-for="plan in simplePlans" :key="plan.title" scope="col">
                   <span class="sr-only">{{ plan.title }} plan</span>
                 </th>
               </tr>
@@ -769,7 +763,7 @@
               <tr v-for="feature in features" :key="feature.title">
                 <th
                   scope="row"
-                  class="w-1/6 py-3 pr-4 text-left text-sm font-medium text-gray-600"
+                  class="w-1/4 py-3 pr-4 text-left text-sm font-medium text-gray-600"
                 >
                   {{ feature.title }}
                 </th>
@@ -778,7 +772,7 @@
                   :key="tier.title"
                   :class="[
                     tierIdx === feature.tiers.length - 1 ? 'pl-4' : 'px-4',
-                    'relative w-1/6 py-0 text-center',
+                    'relative w-1/4 py-0 text-center',
                   ]"
                 >
                   <span class="relative h-full w-full py-3">
@@ -793,7 +787,10 @@
                     <template v-else>
                       <CheckIcon
                         v-if="tier.value === true"
-                        class="mx-auto h-5 w-5 text-indigo-600"
+                        :class="[
+                          tier.featured ? 'text-indigo-600' : 'text-gray-900',
+                          'mx-auto h-5 w-5',
+                        ]"
                         aria-hidden="true"
                       />
                       <XMarkIcon
@@ -816,30 +813,20 @@
             class="pointer-events-none absolute inset-0 flex items-stretch"
             aria-hidden="true"
           >
-            <div class="w-1/6 pr-4" />
-            <div class="w-1/6 px-4">
+            <div class="w-1/4 pr-4" />
+            <div
+              v-for="plan in simplePlans"
+              :key="plan.title"
+              class="w-1/4 px-4"
+            >
               <div
-                class="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5"
-              />
-            </div>
-            <div class="w-1/6 px-4">
-              <div
-                class="h-full w-full rounded-lg ring-2 ring-indigo-600 ring-opacity-100"
-              />
-            </div>
-            <div class="w-1/6 pl-4">
-              <div
-                class="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5"
-              />
-            </div>
-            <div class="w-1/6 pl-4">
-              <div
-                class="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5"
-              />
-            </div>
-            <div class="w-1/6 pl-4">
-              <div
-                class="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5"
+                :class="[
+                  plan.featured
+                    ? 'ring-2 ring-indigo-600 ring-opacity-100'
+                    : 'ring-1 ring-black ring-opacity-5',
+                  'h-full w-full rounded-lg ',
+                ]"
+                class="ring-1 ring-black ring-opacity-5"
               />
             </div>
           </div>
@@ -855,20 +842,14 @@
             class="pointer-events-none absolute inset-0 flex items-stretch"
             aria-hidden="true"
           >
-            <div class="w-1/6 pr-4" />
-            <div class="w-1/6 px-4">
+            <div class="w-1/4 pr-4" />
+            <div class="w-1/4 px-4">
               <div class="h-full w-full rounded-lg bg-white shadow" />
             </div>
-            <div class="w-1/6 px-4">
+            <div class="w-1/4 px-4">
               <div class="h-full w-full rounded-lg bg-white shadow-md" />
             </div>
-            <div class="w-1/6 pl-4">
-              <div class="h-full w-full rounded-lg bg-white shadow" />
-            </div>
-            <div class="w-1/6 pl-4">
-              <div class="h-full w-full rounded-lg bg-white shadow" />
-            </div>
-            <div class="w-1/6 pl-4">
+            <div class="w-1/4 pl-4">
               <div class="h-full w-full rounded-lg bg-white shadow" />
             </div>
           </div>
@@ -882,7 +863,7 @@
                 <th scope="col">
                   <span class="sr-only">Perk</span>
                 </th>
-                <th v-for="plan in plans" :key="plan.title" scope="col">
+                <th v-for="plan in simplePlans" :key="plan.title" scope="col">
                   <span class="sr-only">{{ plan.title }} plan</span>
                 </th>
               </tr>
@@ -891,7 +872,7 @@
               <tr v-for="item in hardwareAndSoftware" :key="item.title">
                 <th
                   scope="row"
-                  class="w-1/6 py-3 pr-4 text-left text-sm font-medium text-gray-600"
+                  class="w-1/4 py-3 pr-4 text-left text-sm font-medium text-gray-600"
                 >
                   {{ item.title }}
                 </th>
@@ -900,7 +881,7 @@
                   :key="tier.title"
                   :class="[
                     tierIdx === item.tiers.length - 1 ? 'pl-4' : 'px-4',
-                    'relative w-1/6 py-0 text-center',
+                    'relative w-1/4 py-0 text-center',
                   ]"
                 >
                   <span class="relative h-full w-full py-3">
@@ -938,30 +919,24 @@
             class="pointer-events-none absolute inset-0 flex items-stretch"
             aria-hidden="true"
           >
-            <div class="w-1/6 pr-4" />
-            <div class="w-1/6 px-4">
+            <div class="w-1/4 pr-4" />
+            <div
+              v-for="plan in simplePlans"
+              :key="plan.title"
+              class="w-1/4 px-4"
+            >
               <div
-                class="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5"
-              />
-            </div>
-            <div class="w-1/6 px-4">
-              <div
-                class="h-full w-full rounded-lg ring-2 ring-indigo-600 ring-opacity-100"
-              />
-            </div>
-            <div class="w-1/6 pl-4">
-              <div
-                class="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5"
-              />
-            </div>
-            <div class="w-1/6 pl-4">
-              <div
-                class="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5"
+                :class="[
+                  plan.featured
+                    ? 'ring-2 ring-indigo-600 ring-opacity-100'
+                    : 'ring-1 ring-black ring-opacity-5',
+                  'h-full w-full rounded-lg ',
+                ]"
+                class="ring-1 ring-black ring-opacity-5"
               />
             </div>
           </div>
         </div>
-
 
         <h3 class="mt-10 text-sm font-bold text-gray-900">
           Business & Enterprise
@@ -973,20 +948,14 @@
             class="pointer-events-none absolute inset-0 flex items-stretch"
             aria-hidden="true"
           >
-            <div class="w-1/6 pr-4" />
-            <div class="w-1/6 px-4">
+            <div class="w-1/4 pr-4" />
+            <div class="w-1/4 px-4">
               <div class="h-full w-full rounded-lg bg-white shadow" />
             </div>
-            <div class="w-1/6 px-4">
+            <div class="w-1/4 px-4">
               <div class="h-full w-full rounded-lg bg-white shadow-md" />
             </div>
-            <div class="w-1/6 pl-4">
-              <div class="h-full w-full rounded-lg bg-white shadow" />
-            </div>
-            <div class="w-1/6 pl-4">
-              <div class="h-full w-full rounded-lg bg-white shadow" />
-            </div>
-            <div class="w-1/6 pl-4">
+            <div class="w-1/4 pl-4">
               <div class="h-full w-full rounded-lg bg-white shadow" />
             </div>
           </div>
@@ -1009,7 +978,7 @@
               <tr v-for="item in enterprisePlus" :key="item.title">
                 <th
                   scope="row"
-                  class="w-1/6 py-3 pr-4 text-left text-sm font-medium text-gray-600"
+                  class="w-1/4 py-3 pr-4 text-left text-sm font-medium text-gray-600"
                 >
                   {{ item.title }}
                 </th>
@@ -1018,7 +987,7 @@
                   :key="tier.title"
                   :class="[
                     tierIdx === item.tiers.length - 1 ? 'pl-4' : 'px-4',
-                    'relative w-1/6 py-0 text-center',
+                    'relative w-1/4 py-0 text-center',
                   ]"
                 >
                   <span class="relative h-full w-full py-3">
@@ -1056,130 +1025,20 @@
             class="pointer-events-none absolute inset-0 flex items-stretch"
             aria-hidden="true"
           >
-            <div class="w-1/6 pr-4" />
-            <div class="w-1/6 px-4">
+            <div class="w-1/4 pr-4" />
+            <div
+              v-for="plan in simplePlans"
+              :key="plan.title"
+              class="w-1/4 px-4"
+            >
               <div
-                class="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5"
-              />
-            </div>
-            <div class="w-1/6 px-4">
-              <div
-                class="h-full w-full rounded-lg ring-2 ring-indigo-600 ring-opacity-100"
-              />
-            </div>
-            <div class="w-1/6 pl-4">
-              <div
-                class="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5"
-              />
-            </div>
-            <div class="w-1/6 pl-4">
-              <div
-                class="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5"
-              />
-            </div>
-          </div>
-        </div>
-
-        <h3 class="mt-10 text-sm font-bold text-gray-900">Other perks</h3>
-
-        <div class="relative mt-6">
-          <!-- Fake card backgrounds -->
-          <div
-            class="pointer-events-none absolute inset-0 flex items-stretch"
-            aria-hidden="true"
-          >
-            <div class="w-1/6 pr-4" />
-            <div class="w-1/6 px-4">
-              <div class="h-full w-full rounded-lg bg-white shadow" />
-            </div>
-            <div class="w-1/6 px-4">
-              <div class="h-full w-full rounded-lg bg-white shadow-md" />
-            </div>
-            <div class="w-1/6 pl-4">
-              <div class="h-full w-full rounded-lg bg-white shadow" />
-            </div>
-            <div class="w-1/6 pl-4">
-              <div class="h-full w-full rounded-lg bg-white shadow" />
-            </div>
-            <div class="w-1/6 pl-4">
-              <div class="h-full w-full rounded-lg bg-white shadow" />
-            </div>
-          </div>
-
-          <table class="relative w-full">
-            <caption class="sr-only">
-              Perk comparison
-            </caption>
-            <thead>
-              <tr class="text-left">
-                <th scope="col">
-                  <span class="sr-only">Perk</span>
-                </th>
-                <th v-for="plan in plans" :key="plan.title" scope="col">
-                  <span class="sr-only">{{ plan.title }} plan</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-100">
-              <tr v-for="perk in perks" :key="perk.title">
-                <th
-                  scope="row"
-                  class="w-1/6 py-3 pr-4 text-left text-sm font-medium text-gray-600"
-                >
-                  {{ perk.title }}
-                </th>
-                <td
-                  v-for="(tier, tierIdx) in perk.tiers"
-                  :key="tier.title"
-                  :class="[
-                    tierIdx === perk.tiers.length - 1 ? 'pl-4' : 'px-4',
-                    'relative w-1/6 py-0 text-center',
-                  ]"
-                >
-                  <span class="relative h-full w-full py-3">
-                    <CheckIcon
-                      v-if="tier.value === true"
-                      class="mx-auto h-5 w-5 text-indigo-600"
-                      aria-hidden="true"
-                    />
-                    <XMarkIcon
-                      v-else
-                      class="mx-auto h-5 w-5 text-gray-400"
-                      aria-hidden="true"
-                    />
-                    <span class="sr-only">{{
-                      tier.value === true ? "Yes" : "No"
-                    }}</span>
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Fake card borders -->
-          <div
-            class="pointer-events-none absolute inset-0 flex items-stretch"
-            aria-hidden="true"
-          >
-            <div class="w-1/6 pr-4" />
-            <div class="w-1/6 px-4">
-              <div
-                class="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5"
-              />
-            </div>
-            <div class="w-1/6 px-4">
-              <div
-                class="h-full w-full rounded-lg ring-2 ring-indigo-600 ring-opacity-100"
-              />
-            </div>
-            <div class="w-1/6 pl-4">
-              <div
-                class="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5"
-              />
-            </div>
-            <div class="w-1/6 pl-4">
-              <div
-                class="h-full w-full rounded-lg ring-1 ring-black ring-opacity-5"
+                :class="[
+                  plan.featured
+                    ? 'ring-2 ring-indigo-600 ring-opacity-100'
+                    : 'ring-1 ring-black ring-opacity-5',
+                  'h-full w-full rounded-lg ',
+                ]"
+                class="ring-1 ring-black ring-opacity-5"
               />
             </div>
           </div>
@@ -1190,12 +1049,12 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { CheckIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 
 const showBilling = ref("yearly");
 
-const plans = [
+const plans = ref([
   {
     href: "",
     cta: "Try Starter Risk-Free",
@@ -1215,8 +1074,8 @@ const plans = [
     title: "Scale",
     cta: "Try Scale Risk-Free",
     href: "",
-    featured: true,
-    description: "The best tools to scale a 3D printing service business.",
+    featured: computed(() => showBilling.value !== "invoice"),
+    description: "The best tools to scale a 3D printing business",
     priceMonthly: "19.99",
     priceYearly: "199.99",
     mainFeatures: [
@@ -1231,9 +1090,11 @@ const plans = [
     title: "Enterprise",
     href: "",
     cta: "Get a Quote",
-    featured: false,
-    description: "Quality control and automation for a digital warehouse",
-    priceOnRequest: "Customized for additive manufacturing operations.",
+    featured: computed(() => showBilling.value === "invoice"),
+    description:
+      "Customized for additive manufacturing operations and digital warehouses.",
+    priceOnRequest:
+      "Customized for additive manufacturing operations and digital warehouses.",
     //   priceMonthly: 12,
     //   priceYearly: 140,
     mainFeatures: [
@@ -1278,36 +1139,74 @@ const plans = [
       { id: 4, value: "On-prem installation option" },
     ],
   },
-];
-const features = [
+]);
+
+const simplePlans = ref(
+  plans.value.slice(0, 2).concat({
+    title: "Enterprise, OEM, Education",
+    href: "",
+    cta: "Get a Quote",
+    featured: computed(() => showBilling.value === "invoice"),
+    description: "",
+    priceOnRequest: "Schools, libraries, research labs, and makerspaces.",
+    //   priceMonthly: 12,
+    //   priceYearly: 140,
+    mainFeatures: [
+      { id: 1, value: "Permission controls" },
+      { id: 2, value: "Single Sign-on" },
+      { id: 3, value: "K-12 and Higher Education" },
+      { id: 4, value: "On-prem installation option" },
+    ],
+  })
+);
+
+const features = ref([
   {
     title: "AI-powered quality monitoring",
     tiers: [
       { title: "starter", value: true },
-      { title: "popular", featured: true, value: true },
-      { title: "enterprise", value: true },
-      { title: "oem", value: true },
-      { title: "education", value: true },
+      {
+        title: "popular",
+        featured: computed(() => showBilling.value != "invoice"),
+        value: true,
+      },
+      {
+        title: "enterprise",
+        featured: computed(() => showBilling.value === "invoice"),
+        value: true,
+      },
     ],
   },
   {
     title: "High-quality camera stream",
     tiers: [
       { title: "starter", value: true },
-      { title: "popular", featured: true, value: true },
-      { title: "enterprise", value: true },
-      { title: "oem", value: true },
-      { title: "education", value: true },
+      {
+        title: "popular",
+        featured: computed(() => showBilling.value != "invoice"),
+        value: true,
+      },
+      {
+        title: "enterprise",
+        featured: computed(() => showBilling.value === "invoice"),
+        value: true,
+      },
     ],
   },
   {
     title: "Remote Access (Tailscale VPN)",
     tiers: [
       { title: "starter", value: true },
-      { title: "popular", featured: true, value: true },
-      { title: "enterprise", value: true },
-      { title: "oem", value: true },
-      { title: "education", value: true },
+      {
+        title: "popular",
+        featured: computed(() => showBilling.value != "invoice"),
+        value: true,
+      },
+      {
+        title: "enterprise",
+        featured: computed(() => showBilling.value === "invoice"),
+        value: true,
+      },
     ],
   },
 
@@ -1315,21 +1214,32 @@ const features = [
     title: "Cloud Storage",
     tiers: [
       { title: "starter", value: "10 GB" },
-      { title: "popular", featured: true, value: "Unlimited Storage" },
-      { title: "enterprise", value: "Unlimited Storage" },
-      { title: "oem", value: "Unlimited Storage" },
-
-      { title: "education", value: "Unlimited Storage" },
+      {
+        title: "popular",
+        featured: computed(() => showBilling.value != "invoice"),
+        value: "Unlimited Storage",
+      },
+      {
+        title: "enterprise",
+        featured: computed(() => showBilling.value === "invoice"),
+        value: "Unlimited Storage",
+      },
     ],
   },
   {
     title: "Number of Printers",
     tiers: [
       { title: "starter", value: "Up to 3 printers" },
-      { title: "popular", featured: true, value: "Unlimited Printers" },
-      { title: "enterprise", value: "Unlimited Printers" },
-      { title: "oem", value: "Unlimited Printers" },
-      { title: "education", value: "Unlimited Printers" },
+      {
+        title: "popular",
+        featured: computed(() => showBilling.value != "invoice"),
+        value: "Unlimited Printers",
+      },
+      {
+        title: "enterprise",
+        featured: computed(() => showBilling.value === "invoice"),
+        value: "Unlimited Printers",
+      },
     ],
   },
   {
@@ -1338,174 +1248,157 @@ const features = [
       { title: "starter", value: true },
       { title: "popular", featured: true, value: true },
       { title: "enterprise", value: true },
-
-      { title: "oem", value: true },
-      { title: "education", value: true },
     ],
   },
-  // {
-  //   title: 'Invoicing',
-  //   tiers: [
-  //     { title: 'starter', value: '3 invoices' },
-  //     { title: 'popular', featured: true, value: 'Unlimited invoices' },
-  //     { title: 'oem', value: '10 invoices' },
-  //     { title: 'education', value: true },
+]);
 
-  //   ],
-  // },
-  // {
-  //   title: 'Exclusive offers',
-  //   tiers: [
-  //     { title: 'starter', value: false },
-  //     { title: 'popular', featured: true, value: true },
-  //     { title: 'oem', value: true },
-  //     { title: 'education', value: true },
-
-  //   ],
-  // },
-  // {
-  //   title: '6 months free advisor',
-  //   tiers: [
-  //     { title: 'starter', value: false },
-  //     { title: 'popular', featured: true, value: true },
-  //     { title: 'oem', value: true },
-  //     { title: 'education', value: true },
-
-  //   ],
-  // },
-  // {
-  //   title: 'Mobile and web access',
-  //   tiers: [
-  //     { title: 'starter', value: false },
-  //     { title: 'popular', featured: true, value: true },
-  //     { title: 'oem', value: false },
-  //     { title: 'education', value: true },
-
-  //   ],
-  // },
-];
-
-const hardwareAndSoftware = [
+const hardwareAndSoftware = ref([
   {
     title: "Supported hardware",
     tiers: [
       { title: "starter", value: "Raspberry Pi 4" },
-      { title: "popular", value: "Raspberry Pi 4" },
-      { title: "enterprise", value: "Rock Pi, Orange Pi" },
-      { title: "oem", value: "Rock Pi, Orange Pi" },
-      { title: "education", value: "Rock Pi, Orange Pi" },
+      {
+        title: "popular",
+        featured: computed(() => showBilling.value != "invoice"),
+        value: "Raspberry Pi 4",
+      },
+      {
+        title: "enterprise",
+        featured: computed(() => showBilling.value === "invoice"),
+        value: "Raspberry Pi 4, Rock Pi, Orange Pi",
+      },
     ],
   },
   {
     title: "Over-the-air updates",
     tiers: [
       { title: "starter", value: true },
-      { title: "popular", featured: true, value: true },
-      { title: "enterprise", value: true },
-
-      { title: "oem", value: true },
-      { title: "education", value: true },
+      {
+        title: "popular",
+        featured: computed(() => showBilling.value != "invoice"),
+        value: true,
+      },
+      {
+        title: "enterprise",
+        featured: computed(() => showBilling.value === "invoice"),
+        value: true,
+      },
     ],
   },
   {
     title: "OctoPrint",
     tiers: [
       { title: "starter", value: true },
-      { title: "popular", featured: true, value: true },
-      { title: "enterprise", value: true },
-
-      { title: "oem", value: true },
-      { title: "education", value: true },
+      {
+        title: "popular",
+        featured: computed(() => showBilling.value != "invoice"),
+        value: true,
+      },
+      {
+        title: "enterprise",
+        featured: computed(() => showBilling.value === "invoice"),
+        value: true,
+      },
     ],
   },
   {
     title: "Mainsail / Klipper / Moonraker",
     tiers: [
       { title: "starter", value: true },
-      { title: "popular", featured: true, value: true },
-      { title: "enterprise", value: true },
-
-      { title: "oem", value: true },
-      { title: "education", value: true },
+      {
+        title: "popular",
+        featured: computed(() => showBilling.value != "invoice"),
+        value: true,
+      },
+      {
+        title: "enterprise",
+        featured: computed(() => showBilling.value === "invoice"),
+        value: true,
+      },
     ],
   },
   {
     title: "Hardware included",
     tiers: [
       { title: "starter", value: false },
-      { title: "popular", value: false },
-      { title: "enterprise", value: true },
-      { title: "oem", value: true },
-      { title: "education", value: true },
+      {
+        title: "popular",
+        featured: computed(() => showBilling.value != "invoice"),
+        value: false,
+      },
+      {
+        title: "enterprise",
+        featured: computed(() => showBilling.value === "invoice"),
+        value: true,
+      },
     ],
   },
-];
+]);
 
-const enterprisePlus = [
+const enterprisePlus = ref([
   {
     title: "Multi-accounts",
     tiers: [
       { title: "starter", value: "1 account user" },
-      { title: "popular", featured: true, value: "Up to 10 accounts" },
-      { title: "enterprise", value: "Unlimited accounts" },
-      { title: "oem", value: "Unlimited accounts" },
-      { title: "education", value: "Unlimited accounts" },
+      {
+        title: "popular",
+        featured: computed(() => showBilling.value != "invoice"),
+        value: "Up to 10 accounts",
+      },
+      {
+        title: "enterprise",
+        featured: computed(() => showBilling.value === "invoice"),
+        value: "Unlimited accounts",
+      },
     ],
   },
   {
     title: "Permission Controls",
     tiers: [
       { title: "starter", value: false },
-      { title: "popular", featured: true, value: false },
-      { title: "enterprise", value: "Role-based access-control" },
-      { title: "oem", value: "Role-based access-control" },
-      { title: "education", value: "Role-based access-control" },
+      {
+        title: "popular",
+        featured: computed(() => showBilling.value != "invoice"),
+        value: false,
+      },
+      {
+        title: "enterprise",
+        featured: computed(() => showBilling.value === "invoice"),
+        value: "Role-based access-control",
+      },
     ],
   },
   {
     title: "Custom OS Image",
     tiers: [
       { title: "starter", value: false },
-      { title: "popular", featured: true, value: false },
-      { title: "enterprise", value: true },
-      { title: "oem", value: true },
-      { title: "education", value: true },
+      {
+        title: "popular",
+        featured: computed(() => showBilling.value != "invoice"),
+        value: false,
+      },
+      {
+        title: "enterprise",
+        featured: computed(() => showBilling.value === "invoice"),
+        value: true,
+      },
     ],
   },
   {
     title: "Custom Software Integrations",
     tiers: [
       { title: "starter", value: false },
-      { title: "popular", featured: true, value: false },
-      { title: "enterprise", value: true },
-      { title: "oem", value: true },
-      { title: "education", value: true },
+      {
+        title: "popular",
+        featured: computed(() => showBilling.value != "invoice"),
+        value: false,
+      },
+      {
+        title: "enterprise",
+        featured: computed(() => showBilling.value === "invoice"),
+        value: true,
+      },
     ],
   },
-];
-
-const perks = [
-  {
-    title: "Chat/email",
-    tiers: [
-      { title: "starter", value: true },
-      { title: "popular", featured: true, value: true },
-      { title: "enterprise", value: true },
-
-      { title: "oem", value: true },
-      { title: "education", value: true },
-    ],
-  },
-  {
-    title: "Email notifications",
-    tiers: [
-      { title: "starter", value: true },
-      { title: "popular", featured: true, value: true },
-      { title: "enterprise", value: true },
-
-      { title: "oem", value: true },
-      { title: "education", value: true },
-    ],
-  },
-];
+]);
 </script>
