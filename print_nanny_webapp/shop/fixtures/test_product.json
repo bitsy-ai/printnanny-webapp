@@ -1,6 +1,32 @@
 [
 	{
 		"model": "shop.product",
+		"pk": "656c6cdf-46b1-4d0e-a2b4-64675455c8af",
+		"fields": {
+			"deleted": null,
+			"created_dt": "2022-09-01T01:44:33.203Z",
+			"updated_dt": "2022-09-01T01:44:33.203Z",
+			"sku": "sdwire-1-4-rev1",
+			"unit_label": "board",
+			"name": "PrintNanny SDWire",
+			"description": "SDWire connects a device-under-test to a host computer, enabling flashing/re-imaging an SD card with no moving parts.",
+			"statement_descriptor": "PrintNanny SDWire",
+			"slug": "sdwire",
+			"images": [
+				"/images/sdwire/SDWire-3D-back-v1.4-r1.jpg",
+				"/images/sdwire/SDWire-3D-front-v1.4-r1.jpg"
+			],
+			"is_active": true,
+			"is_shippable": true,
+			"is_preorder": true,
+			"is_subscription": false,
+			"stripe_price_lookup_key": "sdwire_preorder",
+			"stripe_product_id": "prod_MLKNaRKpwL6oIr",
+			"djstripe_product": 1
+		}
+	},
+	{
+		"model": "shop.product",
 		"pk": "25cd8cff-7da7-416f-a6a3-89aff5d1ea3e",
 		"fields": {
 			"deleted": null,
@@ -20,75 +46,6 @@
 			"stripe_price_lookup_key": "founding-membership",
 			"stripe_product_id": "prod_JkZA3TjMF6g2HA",
 			"djstripe_product": 2
-		}
-	},
-	{
-		"model": "shop.product",
-		"pk": "35596e1f-553f-4255-b01c-57ad5d4913e5",
-		"fields": {
-			"deleted": null,
-			"created_dt": "2023-02-05T01:54:53.393Z",
-			"updated_dt": "2023-02-05T01:54:53.393Z",
-			"sku": "cloud-starter-plan",
-			"slug": "cloud-starter-plan",
-			"unit_label": "membership",
-			"name": "Cloud Starter",
-			"description": "Connect up to 3 printers",
-			"statement_descriptor": "PrintNanny Cloud Starter",
-			"images": "[\"placeholder\"]",
-			"is_active": true,
-			"is_shippable": false,
-			"is_preorder": false,
-			"is_subscription": true,
-			"stripe_price_lookup_key": "starter",
-			"stripe_product_id": "prod_NITqAttqXx5JjJ",
-			"djstripe_product": 3
-		}
-	},
-	{
-		"model": "shop.product",
-		"pk": "656c6cdf-46b1-4d0e-a2b4-64675455c8af",
-		"fields": {
-			"deleted": null,
-			"created_dt": "2022-09-01T01:44:33.203Z",
-			"updated_dt": "2022-09-01T01:44:33.203Z",
-			"sku": "sdwire-1-4-rev1",
-			"slug": "sdwire",
-			"unit_label": "board",
-			"name": "PrintNanny SDWire",
-			"description": "SDWire connects a device-under-test to a host computer, enabling flashing/re-imaging an SD card with no moving parts.",
-			"statement_descriptor": "PrintNanny SDWire",
-			"images": "[\"/images/sdwire/SDWire-3D-back-v1.4-r1.jpg\", \"/images/sdwire/SDWire-3D-front-v1.4-r1.jpg\"]",
-			"is_active": true,
-			"is_shippable": true,
-			"is_preorder": true,
-			"is_subscription": false,
-			"stripe_price_lookup_key": "sdwire_preorder",
-			"stripe_product_id": "prod_MLKNaRKpwL6oIr",
-			"djstripe_product": 1
-		}
-	},
-	{
-		"model": "shop.product",
-		"pk": "c5d9d0d2-b626-41e1-a307-4b7f4f3e6594",
-		"fields": {
-			"deleted": null,
-			"created_dt": "2023-02-05T01:56:20.194Z",
-			"updated_dt": "2023-02-05T01:57:31.489Z",
-			"sku": "cloud-scaler-plan",
-			"slug": "cloud-scaler-plan",
-			"unit_label": "membership",
-			"name": "Cloud Scaler",
-			"description": "Connect unlimited printers",
-			"statement_descriptor": "PrintNanny Cloud Scaler",
-			"images": "[\"placeholder\"]",
-			"is_active": true,
-			"is_shippable": false,
-			"is_preorder": false,
-			"is_subscription": true,
-			"stripe_price_lookup_key": "scaler",
-			"stripe_product_id": "prod_NIXYlyaLbcpYxB",
-			"djstripe_product": 1
 		}
 	}
 ]
