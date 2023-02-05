@@ -629,8 +629,8 @@ STRIPE_STARTER_YEARLY_PLAN_ID = env(
 )
 
 STRIPE_SCALER_PLAN_NAME = env("STRIPE_SCALER_PLAN_NAME", default="Cloud Scaler")
-STRIPE_SCALER_YEARLY_PLAN_ID = env(
-    "STRIPE_SCALER_YEARLY_PLAN_ID", default="scaler_monthly"
+STRIPE_SCALER_MONTHLY_PLAN_ID = env(
+    "STRIPE_SCALER_MONTHLY_PLAN_ID", default="scaler_monthly"
 )
 STRIPE_SCALER_YEARLY_PLAN_ID = env(
     "STRIPE_SCALER_YEARLY_PLAN_ID", default="scaler_yearly"
