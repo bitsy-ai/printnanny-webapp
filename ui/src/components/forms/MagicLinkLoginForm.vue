@@ -30,7 +30,7 @@ async function onSubmit(values: any) {
 </script>
 <template>
   <div
-    class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-indigo-20"
+    class="flex-1 flex items-center justify-center p-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 md:w-1/2 m:0 md:mx-auto rounded bg-white shadow-md "
   >
     <div class="max-w-md w-full space-y-8">
       <div>

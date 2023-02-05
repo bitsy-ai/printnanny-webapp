@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-white">
-    <div class="relative overflow-hidden">
+  <div class="bg-white  min-h-screen items-stretch flex flex-col">
+    <div class="flex-1 flex flex-col">
       <Transition
         enter-active-class="duration-300 ease-out"
         enter-from-class="transform opacity-0"
@@ -66,7 +66,9 @@
       <StickyAlerts />
 
       <!-- Main content area -->
-      <RouterView v-slot="{ Component }">
+      <div class="flex-1 flex flex-col justify-center shadow bg-gradient-to-r from-indigo-500 to-violet-600">
+
+        <RouterView v-slot="{ Component }">
         <template v-if="Component">
           <Transition
             enter-active-class="duration-300 ease-out"
@@ -91,6 +93,8 @@
           </Transition>
         </template>
       </RouterView>
+      </div>
+
       <FooterNav />
     </div>
   </div>
