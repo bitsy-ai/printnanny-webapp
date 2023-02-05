@@ -44,7 +44,7 @@ def sync_stripe_customer_by_id(stripe_customer_id: str) -> DjStripeCustomer:
     return customer
 
 
-def build_stripe_checkout_session_kwargs(
+def build_stripe_checkout_session_kwargs_v1(
     request: HttpRequest, email: str, order_id: str, product: Product
 ) -> Dict[Any, Any]:
     """
@@ -209,7 +209,7 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
     order_id = uuid4()
 
     # try to get Stripe customer from Django user authentication, email lookup, or supply needed parameters to create new Stripe Customer
-    extra_kwargs = build_stripe_checkout_session_kwargs(
+    extra_kwargs = build_stripe_checkout_session_kwargs_v1(
         request, email, str(order_id), product
     )
 
