@@ -128,6 +128,7 @@
                 </div>
                 <a
                   :href="plan.href"
+                  :id="`${plan.sku}-${showBilling}`"
                   :class="[
                     plan.featured
                       ? 'bg-indigo-600 text-white hover:bg-indigo-700'
@@ -319,6 +320,7 @@
       <div class="flex rounded-lg bg-indigo-700 p-0.5">
         <button
           type="button"
+          id="pricing-yearly-toggle"
           :class="[
             showBilling == 'yearly'
               ? 'text-indigo-700 bg-white border-indigo-700 hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
@@ -330,6 +332,8 @@
           Yearly billing
         </button>
         <button
+          id="pricing-monthly-toggle"
+
           :class="[
             showBilling == 'monthly'
               ? 'text-indigo-700 bg-white hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
@@ -342,6 +346,8 @@
           Monthly billing
         </button>
         <button
+            id="pricing-invoice-toggle"
+
           :class="[
             showBilling == 'invoice'
               ? 'text-indigo-700 bg-white hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
