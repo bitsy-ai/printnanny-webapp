@@ -15,7 +15,7 @@
         :actions="alert.actions"
       >
         <template v-if="alert.error" #icon>
-          <ExclamationIcon class="h-6 w-6 text-red-400" />
+          <ExclamationTriangleIcon class="h-6 w-6 text-red-400" />
         </template>
       </SimpleAlert>
     </div>
@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import { useAlertStore } from "@/stores/alerts";
-import { ExclamationIcon } from "@heroicons/vue/outline";
+import { ExclamationTriangleIcon } from "@heroicons/vue/24/outline";
 import SimpleAlert from "./SimpleAlert.vue";
 
 const alertStore = useAlertStore();

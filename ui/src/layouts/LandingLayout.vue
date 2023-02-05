@@ -31,7 +31,7 @@
                       class="bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white"
                     >
                       <span class="sr-only">Open main menu</span>
-                      <MenuIcon class="h-6 w-6" aria-hidden="true" />
+                      <Bars3Icon class="h-6 w-6" aria-hidden="true" />
                     </PopoverButton>
                   </div>
                 </div>
@@ -96,7 +96,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { MenuIcon } from "@heroicons/vue/outline";
+import { Bars3Icon } from "@heroicons/vue/24/outline";
 import LoginNav from "@/components/nav/LoginNav.vue";
 import { Popover, PopoverButton } from "@headlessui/vue";
 import FlyoutMenu from "@/components/nav/FlyoutMenu.vue";

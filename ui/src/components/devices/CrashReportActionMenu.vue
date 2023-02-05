@@ -32,7 +32,7 @@
               ]"
               @click="openReport"
             >
-              <DownloadIcon
+              <FolderArrowDownIcon
                 class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
                 aria-hidden="true"
               />
@@ -49,7 +49,7 @@
 
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
-import { DownloadIcon, ChevronDownIcon } from "@heroicons/vue/solid";
+import { FolderArrowDownIcon, ChevronDownIcon } from "@heroicons/vue/24/solid";
 import { useCrashReportStore } from "@/stores/crash-reports";
 import type { PropType } from "vue";
 import type { CrashReport } from "printnanny-api-client";

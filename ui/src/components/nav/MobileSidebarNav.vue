@@ -4,12 +4,12 @@ import { useAchievementsStore } from "@/stores/achievements";
 import {
   HomeIcon,
   QuestionMarkCircleIcon,
-  DocumentDownloadIcon,
-  ExclamationIcon,
-  ChatIcon,
+  DocumentArrowDownIcon,
+  ExclamationTriangleIcon,
+  ChatBubbleOvalLeftIcon,
   MapIcon,
   CogIcon,
-} from "@heroicons/vue/outline";
+} from "@heroicons/vue/24/outline";
 
 const router = useRouter();
 
@@ -48,12 +48,12 @@ const help_nav = [
   {
     name: "Report Issue",
     href: "https://github.com/bitsy-ai/printnanny-os/issues/new/choose",
-    icon: ExclamationIcon,
+    icon: ExclamationTriangleIcon,
   },
   {
     name: "Join Discord",
     href: "https://discord.gg/sf23bk2hPr",
-    icon: ChatIcon,
+    icon: ChatBubbleOvalLeftIcon,
     current: () => false,
   },
 ];
@@ -62,7 +62,7 @@ const misc_nav = [
   {
     name: "Latest Release",
     href: import.meta.env.VITE_PRINTNANNY_OS_LATEST_RELEASE_URL,
-    icon: DocumentDownloadIcon,
+    icon: DocumentArrowDownIcon,
     current: () => false,
   },
   {

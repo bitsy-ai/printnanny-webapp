@@ -6,7 +6,10 @@
         class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
         aria-hidden="true"
       >
-        <SearchIcon class="mr-3 h-4 w-4 text-gray-400" aria-hidden="true" />
+        <MagnifyingGlassIcon
+          class="mr-3 h-4 w-4 text-gray-400"
+          aria-hidden="true"
+        />
       </div>
       <input
         id="search"
@@ -19,5 +22,5 @@
   </div>
 </template>
 <script setup lang="ts">
-import { SearchIcon } from "@heroicons/vue/solid";
+import { MagnifyingGlassIcon } from "@heroicons/vue/24/solid";
 </script>

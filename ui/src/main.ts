@@ -1,5 +1,5 @@
 // Add this at the beginning of your app entry.
-import 'vite/modulepreload-polyfill';
+import "vite/modulepreload-polyfill";
 import { createApp, markRaw } from "vue";
 import { createPinia } from "pinia";
 import router from "./router";
@@ -20,10 +20,8 @@ pinia.use(({ store }) => {
 app.use(pinia);
 
 // initialize posthog in production only
-if (
-  window.location.href.includes("printnanny.ai")
-) {
-  console.log("Initializing Posthog")
+if (window.location.href.includes("printnanny.ai")) {
+  console.log("Initializing Posthog");
   posthog.init(import.meta.env.VITE_POSTHOG_CLIENT_KEY, {
     api_host: import.meta.env.VITE_POSTHOG_API_URL,
   });

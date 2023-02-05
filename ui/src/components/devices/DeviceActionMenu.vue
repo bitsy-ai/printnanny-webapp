@@ -153,9 +153,9 @@ import {
   ChevronDownIcon,
   HeartIcon,
   TrashIcon,
-  ExternalLinkIcon,
-} from "@heroicons/vue/solid";
-import { ExclamationIcon } from "@heroicons/vue/outline";
+  ArrowTopRightOnSquareIcon,
+} from "@heroicons/vue/24/solid";
+import { ExclamationTriangleIcon } from "@heroicons/vue/24/outline";
 import { useDeviceStore, buildDeviceActions } from "@/stores/devices";
 import type { TableActionLink } from "@/types";
 

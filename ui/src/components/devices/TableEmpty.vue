@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
-import { PlusIcon, PrinterIcon } from "@heroicons/vue/solid";
+import { PlusIcon, PrinterIcon } from "@heroicons/vue/24/solid";
 defineProps({
   icon: {
     default: PrinterIcon,

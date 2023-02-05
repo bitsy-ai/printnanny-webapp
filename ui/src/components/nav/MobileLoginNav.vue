@@ -25,7 +25,7 @@
               class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-600"
             >
               <span class="sr-only">Close menu</span>
-              <XIcon class="h-6 w-6" aria-hidden="true" />
+              <XMarkIcon class="h-6 w-6" aria-hidden="true" />
             </PopoverButton>
           </div>
         </div>
@@ -66,7 +66,7 @@
 import type { FlyoutMenuLink } from "@/types/links";
 import type { PropType } from "vue";
 import { PopoverButton, PopoverPanel } from "@headlessui/vue";
-import { XIcon } from "@heroicons/vue/outline";
+import { XMarkIcon } from "@heroicons/vue/24/outline";
 
 import FlyoutMenu from "@/components/nav/FlyoutMenu.vue";
 

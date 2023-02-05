@@ -36,7 +36,7 @@
               @click="show = false"
             >
               <span class="sr-only">Dismiss</span>
-              <XIcon class="h-5 w-5" aria-hidden="true" />
+              <XMarkIcon class="h-5 w-5" aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -45,7 +45,7 @@
   </transition>
 </template>
 <script setup lang="ts">
-import { XIcon } from "@heroicons/vue/solid";
+import { XMarkIcon } from "@heroicons/vue/24/solid";
 import { ref } from "vue";
 import AlertActionFooter from "./AlertActionFooter.vue";
 import type { AlertAction } from "@/types";

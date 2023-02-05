@@ -47,7 +47,7 @@
           class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
           aria-hidden="true"
         />
-        <RefreshIcon
+        <ArrowPathIcon
           v-if="state.loading"
           class="animate-spin h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
           aria-hidden="true"
@@ -70,9 +70,9 @@
 </template>
 <script setup lang="ts">
 import { ref, reactive, computed } from "vue";
-import { LockClosedIcon, RefreshIcon } from "@heroicons/vue/solid";
+import { LockClosedIcon, ArrowPathIcon } from "@heroicons/vue/24/solid";
 import { RouterLink } from "vue-router";
-import { CheckCircleIcon } from "@heroicons/vue/solid";
+import { CheckCircleIcon } from "@heroicons/vue/24/solid";
 import type * as api from "printnanny-api-client";
 import * as yup from "yup";
 import { Field, ErrorMessage, Form } from "vee-validate";

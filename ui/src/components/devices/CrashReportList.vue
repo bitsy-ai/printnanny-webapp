@@ -5,8 +5,14 @@ import CrashReportModal from "@/components/devices/CrashReportModal.vue";
 import CrashReportActionMenu from "./CrashReportActionMenu.vue";
 import DeviceActionMenu from "./DeviceActionMenu.vue";
 import DeviceFavorites from "./DeviceFavorites.vue";
-import { ExclamationIcon, SupportIcon } from "@heroicons/vue/outline";
-import { ExternalLinkIcon, ChevronRightIcon } from "@heroicons/vue/solid";
+import {
+  ExclamationTriangleIcon,
+  LifebuoyIcon,
+} from "@heroicons/vue/24/outline";
+import {
+  ArrowTopRightOnSquareIcon,
+  ChevronRightIcon,
+} from "@heroicons/vue/24/solid";
 import { useCrashReportStore } from "@/stores/crash-reports";
 
 const store = useCrashReportStore();
@@ -76,7 +82,7 @@ const crashReports = await store.fetchCrashReports();
           <tbody class="bg-white divide-y divide-gray-100">
             <TableEmpty
               v-if="store.showEmpty"
-              :icon="SupportIcon"
+              :icon="LifebuoyIcon"
               header="No crash reports found"
             />
             <tr

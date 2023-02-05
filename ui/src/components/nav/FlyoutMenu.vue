@@ -65,7 +65,7 @@
 
 <script setup lang="ts">
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
-import { ChevronDownIcon } from "@heroicons/vue/solid";
+import { ChevronDownIcon } from "@heroicons/vue/24/solid";
 import type { PropType } from "vue";
 import { RouterLink } from "vue-router";
 import type { FlyoutMenuLink } from "@/types/links";

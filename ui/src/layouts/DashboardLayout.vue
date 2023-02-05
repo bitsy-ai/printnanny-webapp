@@ -52,7 +52,7 @@
                           @click="sidebarOpen = false"
                         >
                           <span class="sr-only">Close sidebar</span>
-                          <XIcon
+                          <XMarkIcon
                             class="h-6 w-6 text-white"
                             aria-hidden="true"
                           />
@@ -103,7 +103,7 @@
                 @click="sidebarOpen = true"
               >
                 <span class="sr-only">Open sidebar</span>
-                <MenuAlt1Icon class="h-6 w-6" aria-hidden="true" />
+                <XMarkIcon class="h-6 w-6" aria-hidden="true" />
               </button>
               <div class="flex-1 flex justify-between px-4 sm:px-6 lg:px-8">
                 <div class="flex-1 flex">
@@ -175,7 +175,7 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import { MenuAlt1Icon, XIcon } from "@heroicons/vue/outline";
+import { XMarkIcon } from "@heroicons/vue/24/outline";
 import ProfileMenu from "@/components/nav/ProfileMenu.vue";
 import SidebarNav from "@/components/nav/SidebarNav.vue";
 import MobileProfileMenu from "@/components/nav/MobileProfileMenu.vue";
