@@ -27,9 +27,7 @@
           class="absolute inset-0 top-4 bottom-6 left-8 right-8 hidden rounded-tl-lg rounded-tr-lg bg-indigo-800 lg:block"
         />
         <!-- monthly / annual billing tiers -->
-        <div
-          class="relative space-y-6 lg:grid lg:grid-cols-2 lg:space-y-0"
-        >
+        <div class="relative space-y-6 lg:grid lg:grid-cols-2 lg:space-y-0">
           <div
             :class="[
               plan?.featured
@@ -50,10 +48,7 @@
               <div
                 class="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between lg:flex-col lg:items-start"
               >
-                <div
-                  v-if="price == 'monthly'"
-                  class="mt-3 flex items-center"
-                >
+                <div v-if="price == 'monthly'" class="mt-3 flex items-center">
                   <p
                     :class="[
                       plan?.featured ? 'text-indigo-600' : 'text-white',
@@ -146,7 +141,7 @@
 
           <div
             :class="[
-               'bg-indigo-700 lg:bg-transparent flex flex-col justify-around space-y-6',
+              'bg-indigo-700 lg:bg-transparent flex flex-col justify-around space-y-6',
               'pt-6 px-6 pb-3 rounded-lg lg:px-8 lg:pt-12',
             ]"
           >
@@ -155,55 +150,54 @@
               :validation-schema="schema"
               @submit="onClick"
             >
-            <h1 class="text-2xl font-bold tracking-tight text-white text-center">
-                    <span class="block lg:inline">Enter your email addrees</span>
-            </h1>
-                <div class="w-full">
-                  <label for="email" class="sr-only">Email address</label>
-                  <Field
-                    id="email"
-                    name="email"
-                    type="email"
-                    autocomplete="email"
-                    class="border block w-full px-4 py-3 rounded-md text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-                    placeholder="Email address"
-                    rules="required"
-                  />
-                  <error-message
-                    class="text-white  text-sm font-medium"
-                    name="email"
-                  ></error-message>
-                </div>
-                <div class="">
-                  <button
-                    id="checkout-submit"
-                    type="submit"
-                    class="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white text-2xl font-bold tracking-tight text-white text-center hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-                  >
-                    <CustomSpinner
-                      v-if="shop.loading"
-                      color="indigo"
-                      class="mr-2"
-                    ></CustomSpinner>
-                    <span v-if="!shop.loading">
-                      Checkout with Stripe
-                    </span>
-                    <span v-if="shop.loading">
-                      Redirecting to Stripe Checkout
-                    </span>
-                  </button>
-                </div>
-        </Form>
+              <h1
+                class="text-2xl font-bold tracking-tight text-white text-center"
+              >
+                <span class="block lg:inline">Enter your email addrees</span>
+              </h1>
+              <div class="w-full">
+                <label for="email" class="sr-only">Email address</label>
+                <Field
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  class="border block w-full px-4 py-3 rounded-md text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                  placeholder="Email address"
+                  rules="required"
+                />
+                <error-message
+                  class="text-white text-sm font-medium"
+                  name="email"
+                ></error-message>
+              </div>
+              <div class="">
+                <button
+                  id="checkout-submit"
+                  type="submit"
+                  class="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white text-2xl font-bold tracking-tight text-white text-center hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                >
+                  <CustomSpinner
+                    v-if="shop.loading"
+                    color="indigo"
+                    class="mr-2"
+                  ></CustomSpinner>
+                  <span v-if="!shop.loading"> Checkout with Stripe </span>
+                  <span v-if="shop.loading">
+                    Redirecting to Stripe Checkout
+                  </span>
+                </button>
+              </div>
+            </Form>
           </div>
         </div>
-
       </div>
     </div>
-    </div>
+  </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref } from "vue"
-import { useShopStore } from '@/stores/shop';
+import { onMounted, ref } from "vue";
+import { useShopStore } from "@/stores/shop";
 import * as yup from "yup";
 import { Field, ErrorMessage, Form } from "vee-validate";
 import { CheckIcon, XMarkIcon } from "@heroicons/vue/24/solid";
@@ -211,14 +205,14 @@ import { CheckIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 import CustomSpinner from "@/components/util/CustomSpinner.vue";
 
 const props = defineProps({
-    sku: {
-        type: String,
-        required: true
-    },
-    price: {
-        type: String,
-        required: true
-    }
+  sku: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: String,
+    required: true,
+  },
 });
 
 const plans = [
@@ -253,14 +247,13 @@ const plans = [
       { id: 5, value: "Money-back guarantee" },
     ],
   },
-]
+];
 
-const plan = plans.find(v => v.sku === props.sku)
+const plan = plans.find((v) => v.sku === props.sku);
 
-onMounted(async () =>{
-    await shop.fetchCloudPlans();
-})
-
+onMounted(async () => {
+  await shop.fetchCloudPlans();
+});
 
 // define a validation schema
 const schema = yup.object({
@@ -269,11 +262,9 @@ const schema = yup.object({
 
 const shop = useShopStore();
 
-
-
 async function onClick(values: any) {
   const productData = shop.getCloudPlanBySku(props.sku);
-  console.log("form submitted", values, productData)
+  console.log("form submitted", values, productData);
 
   if (values && values.email !== undefined && productData !== undefined) {
     await shop.createCheckoutSession(values.email, [
@@ -281,6 +272,4 @@ async function onClick(values: any) {
     ] as Array<string>);
   }
 }
-
-
 </script>

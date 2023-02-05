@@ -12,13 +12,17 @@ export const useShopStore = defineStore({
     order: undefined as undefined | api.Order,
   }),
   getters: {
-    starterPlan: (state) => { state.cloudPlans.find((p) => p.sku === "cloud-starter-plan") },
-    scalerPlan: (state) => { state.cloudPlans.find((p) => p.sku === "cloud-starter-plan") },
+    starterPlan: (state) => {
+      state.cloudPlans.find((p) => p.sku === "cloud-starter-plan");
+    },
+    scalerPlan: (state) => {
+      state.cloudPlans.find((p) => p.sku === "cloud-starter-plan");
+    },
   },
   actions: {
     // older shop view
     getCloudPlanBySku(sku: string) {
-      return this.cloudPlans.find(v => v.sku === sku)
+      return this.cloudPlans.find((v) => v.sku === sku);
     },
     async fetchProducts() {
       const account = useAccountStore();

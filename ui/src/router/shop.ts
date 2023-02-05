@@ -22,10 +22,11 @@ export default [
         path: "checkout/:sku/:price",
         name: "checkout-v2",
         components: {
-          default: () => import("@/components/shop/PriceTableCheckoutSession.vue")
+          default: () =>
+            import("@/components/shop/PriceTableCheckoutSession.vue"),
         },
         meta: { title: "Checkout" },
-        props: { default: true }
+        props: { default: true },
       },
       {
         path: "founding-membership",

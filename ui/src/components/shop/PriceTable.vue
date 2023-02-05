@@ -127,8 +127,8 @@
                   </div>
                 </div>
                 <a
-                  :href="plan.href"
                   :id="`${plan.sku}-${showBilling}`"
+                  :href="plan.href"
                   :class="[
                     plan.featured
                       ? 'bg-indigo-600 text-white hover:bg-indigo-700'
@@ -267,8 +267,8 @@
                   </div>
                 </div>
                 <a
-                  :href="plan.href"
                   :id="`${plan.sku}-${showBilling}`"
+                  :href="plan.href"
                   :class="[
                     plan.featured
                       ? 'bg-indigo-600 text-white hover:bg-indigo-700'
@@ -320,8 +320,8 @@
     <div class="relative m-12 flex justify-center md:mb-0">
       <div class="flex rounded-lg bg-indigo-700 p-0.5">
         <button
-          type="button"
           id="pricing-yearly-toggle"
+          type="button"
           :class="[
             showBilling == 'yearly'
               ? 'text-indigo-700 bg-white border-indigo-700 hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
@@ -334,7 +334,6 @@
         </button>
         <button
           id="pricing-monthly-toggle"
-
           :class="[
             showBilling == 'monthly'
               ? 'text-indigo-700 bg-white hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
@@ -347,8 +346,7 @@
           Monthly billing
         </button>
         <button
-            id="pricing-invoice-toggle"
-
+          id="pricing-invoice-toggle"
           :class="[
             showBilling == 'invoice'
               ? 'text-indigo-700 bg-white hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
@@ -990,13 +988,15 @@ import { useShopStore } from "@/stores/shop";
 const showBilling = ref("yearly");
 const shop = useShopStore();
 
-onMounted(async () =>{
-    await shop.fetchCloudPlans();
-})
+onMounted(async () => {
+  await shop.fetchCloudPlans();
+});
 
 const plans = ref([
   {
-    href: computed(() => "/shop/checkout/cloud-starter-plan/" + showBilling.value),
+    href: computed(
+      () => "/shop/checkout/cloud-starter-plan/" + showBilling.value
+    ),
     cta: "Try Starter Risk-Free",
     title: "Starter",
     sku: "cloud-starter-plan",
@@ -1015,7 +1015,9 @@ const plans = ref([
     title: "Scale",
     cta: "Try Scale Risk-Free",
     sku: "cloud-scaler-plan",
-    href: computed(() => "/shop/checkout/cloud-starter-plan/" + showBilling.value),
+    href: computed(
+      () => "/shop/checkout/cloud-starter-plan/" + showBilling.value
+    ),
     featured: computed(() => showBilling.value !== "invoice"),
     description: "The best tools to scale a 3D printing business.",
     priceMonthly: "19.99",

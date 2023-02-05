@@ -23,9 +23,7 @@ describe("Checkout v2, Cloud Starter Monthly", () => {
 
     cy.get("button#pricing-monthly-toggle").click();
     cy.get("a#cloud-starter-plan-monthly").click();
-    cy
-      .url()
-      .should("contain", "/shop/checkout/cloud-starter-plan/monthly");
+    cy.url().should("contain", "/shop/checkout/cloud-starter-plan/monthly");
     cy.get("input#email")
       .click()
       .type(email)
@@ -42,7 +40,6 @@ describe("Checkout v2, Cloud Starter Monthly", () => {
             checkoutRedirectUrl = `/shop/thank-you/${segments.pop()}`;
           });
       });
-
   });
 
   it("Stripe CheckoutSession should redirect back to shop on success (anonymous checkout)", (done) => {
@@ -81,7 +78,6 @@ describe("Checkout v2, Cloud Starter Monthly", () => {
         });
 
         cy.visit(url);
-
 
         // cy.get("input[name=promotionCode")
         //   .type(promotionCode)

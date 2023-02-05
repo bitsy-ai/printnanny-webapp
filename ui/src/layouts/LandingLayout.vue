@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white  min-h-screen items-stretch flex flex-col">
+  <div class="bg-white min-h-screen items-stretch flex flex-col">
     <div class="flex-1 flex flex-col">
       <Transition
         enter-active-class="duration-300 ease-out"
@@ -67,32 +67,31 @@
 
       <!-- Main content area -->
       <div class="flex-1 flex flex-col justify-center shadow bg-white">
-
         <RouterView v-slot="{ Component }">
-        <template v-if="Component">
-          <Transition
-            enter-active-class="duration-300 ease-out"
-            enter-from-class="transform opacity-0"
-            enter-to-class="opacity-100"
-            leave-active-class="duration-200 ease-in"
-            leave-from-class="opacity-100"
-            leave-to-class="transform opacity-0"
-            appear
-          >
-            <KeepAlive>
-              <Suspense>
-                <!-- main content -->
-                <component :is="Component"></component>
+          <template v-if="Component">
+            <Transition
+              enter-active-class="duration-300 ease-out"
+              enter-from-class="transform opacity-0"
+              enter-to-class="opacity-100"
+              leave-active-class="duration-200 ease-in"
+              leave-from-class="opacity-100"
+              leave-to-class="transform opacity-0"
+              appear
+            >
+              <KeepAlive>
+                <Suspense>
+                  <!-- main content -->
+                  <component :is="Component"></component>
 
-                <!-- loading state -->
-                <template #fallback>
-                  <p class="text-center font-medium text-lg">Loading ...</p>
-                </template>
-              </Suspense>
-            </KeepAlive>
-          </Transition>
-        </template>
-      </RouterView>
+                  <!-- loading state -->
+                  <template #fallback>
+                    <p class="text-center font-medium text-lg">Loading ...</p>
+                  </template>
+                </Suspense>
+              </KeepAlive>
+            </Transition>
+          </template>
+        </RouterView>
       </div>
 
       <FooterNav />
