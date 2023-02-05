@@ -8,7 +8,10 @@ from rest_framework.mixins import (
     ListModelMixin,
 )
 from rest_framework import status
+from rest_framework.decorators import action
 
+from django.db.models import Q
+from django.conf import settings
 
 from print_nanny_webapp.shop.api.serializers import (
     ProductSerializer,
@@ -34,6 +37,26 @@ class ProductsViewSet(GenericViewSet, ListModelMixin):
     # omit OwnerOrUserFilterBackend, which is a DEFAULT_FILTER_BACKENDS
     filter_backends = [DjangoFilterBackend]
     permission_classes = (AllowAny,)
+
+    @extend_schema(
+        tags=["shop"],
+        operation_id="cloud_plans_retrieve",
+        responses={200: ProductSerializer(many=True)} | generic_get_errors,
+    )
+    @action(methods=["get"], detail=False, url_path="cloud-plans")
+    def cloud_plans(self, request, pi_id=None):
+        queryset = Product.objects.filter(
+            Q(name=settings.STRIPE_STARTER_PLAN_NAME)
+            | Q(name=settings.STRIPE_SCALER_PLAN_NAME)
+        ).all()
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 @extend_schema_view(

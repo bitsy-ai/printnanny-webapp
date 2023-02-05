@@ -7,7 +7,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.postgres.fields import ArrayField
 from djstripe.models import Product as DjstripeProduct
-from safedelete.models import SafeDeleteModel, SafeDeleteManager
+from safedelete.models import SafeDeleteModel, SafeDeleteManager, SOFT_DELETE
 from print_nanny_webapp.shop.enum import OrderStatusType
 
 logger = logging.getLogger(__name__)
@@ -46,6 +46,8 @@ class Product(SafeDeleteModel):
     """
     Product listed for sale in PrintNanny's shop. Can be a physical (shippable) good, one-time electronic service, or recurring electronic subscription
     """
+
+    _safedelete_policy = SOFT_DELETE
 
     objects = ProductManager()
 

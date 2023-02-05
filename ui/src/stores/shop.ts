@@ -11,10 +11,20 @@ export const useShopStore = defineStore({
     order: undefined as undefined | api.Order,
   }),
   actions: {
+    // older shop view
     async fetchProducts() {
       const account = useAccountStore();
       const res = await account.shopApi.shopProductsList();
       console.debug("Fetched products", res.data);
+      if (res.data) {
+        this.$patch({ products: res.data.results });
+        return res.data.results;
+      }
+    },
+    async fetchPlans() {
+      const account = useAccountStore();
+      const res = await account.shopApi.shopProductsList();
+      console.debug("Fetched plans", res.data);
       if (res.data) {
         this.$patch({ products: res.data.results });
         return res.data.results;
