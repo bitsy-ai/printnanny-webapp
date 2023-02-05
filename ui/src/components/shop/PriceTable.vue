@@ -1147,7 +1147,8 @@ const simplePlans = ref(
     href: "",
     cta: "Get a Quote",
     featured: computed(() => showBilling.value === "invoice"),
-    description: "Invoice billing available for enterprise, OEM manufacturers, and K-12/higher education.",
+    description:
+      "Invoice billing available for enterprise, OEM manufacturers, and K-12/higher education.",
     priceOnRequest: "",
     mainFeatures: [
       { id: 1, value: "Permission controls" },
