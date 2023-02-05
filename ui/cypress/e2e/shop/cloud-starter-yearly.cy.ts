@@ -18,12 +18,12 @@ describe("Checkout v2, Cloud Starter Monthly", () => {
 
   const promotionCode = "FOUNDING10";
 
-  it("Should redirect to Stripe Checkout session for monthly Cloud Starter plan", () => {
+  it("Should redirect to Stripe Checkout session for yearly Cloud Starter plan", () => {
     cy.visit("/pricing");
 
-    cy.get("button#pricing-monthly-toggle").click();
-    cy.get("a#cloud-starter-plan-monthly").click();
-    cy.url().should("contain", "/shop/checkout/cloud-starter-plan/monthly");
+    cy.get("button#pricing-yearly-toggle").click();
+    cy.get("a#cloud-starter-plan-yearly").click();
+    cy.url().should("contain", "/shop/checkout/cloud-starter-plan/yearly");
     cy.get("input#email")
       .click()
       .type(email)
@@ -58,6 +58,9 @@ describe("Checkout v2, Cloud Starter Monthly", () => {
       phoneNumber,
     };
     // cy.origin allows use to make cross-origin requests, with limitations
+    Cypress.on("uncaught:exception", (err) => {
+      if (err.message.includes("paymentRequest Element didn't mount normally")) { return false }
+    });
     cy.origin(
       "https://checkout.stripe.com",
       { args: sentArgs },
@@ -73,8 +76,8 @@ describe("Checkout v2, Cloud Starter Monthly", () => {
         promotionCode,
         phoneNumber,
       }) => {
-        Cypress.on("uncaught:exception", () => {
-          return false;
+        Cypress.on("uncaught:exception", (err) => {
+          if (err.message.includes("paymentRequest Element didn't mount normally")) { return false }
         });
 
         cy.visit(url);
@@ -95,7 +98,6 @@ describe("Checkout v2, Cloud Starter Monthly", () => {
 
         cy.get("input[name=cardExpiry]").type(exp);
         cy.get("input[name=cardNumber]").type(cardNumber);
-        cy.get("input[name=cardCvc]").type(cvc);
         cy.get("input[name=billingName]").type(billingName);
         cy.get("input[name=billingAddressLine1]")
           .type(address1)

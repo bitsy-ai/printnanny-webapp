@@ -42,7 +42,7 @@ describe("Checkout v2, Cloud Starter Monthly", () => {
       });
   });
 
-  it("Stripe CheckoutSession should redirect back to shop on success (anonymous checkout)", (done) => {
+  it("Stripe CheckoutSession should redirect back to shop on success (anonymous checkout)", () => {
     const sentArgs = {
       email,
       url: checkoutSessionUrl,
@@ -58,6 +58,9 @@ describe("Checkout v2, Cloud Starter Monthly", () => {
       phoneNumber,
     };
     // cy.origin allows use to make cross-origin requests, with limitations
+    Cypress.on("uncaught:exception", (err) => {
+      if (err.message.includes("paymentRequest Element didn't mount normally")) { return false }
+    });
     cy.origin(
       "https://checkout.stripe.com",
       { args: sentArgs },
@@ -73,42 +76,31 @@ describe("Checkout v2, Cloud Starter Monthly", () => {
         promotionCode,
         phoneNumber,
       }) => {
-        Cypress.on("uncaught:exception", () => {
-          return false;
+        Cypress.on("uncaught:exception", (err) => {
+          if (err.message.includes("paymentRequest Element didn't mount normally")) { return false }
         });
 
-        cy.visit(url);
+        cy.visit(url).then(() => {
+          cy.get("input[name=cardCvc]").type(cvc.slice(0));
+          cy.get("input[name=cardCvc]").type(cvc.slice(1));
+          cy.get("input[name=cardCvc]").type(cvc.slice(2));
 
-        // cy.get("input[name=promotionCode")
-        //   .type(promotionCode)
-        //   .then(() =>
-        //     cy
-        //       .get("button.PromotionCodeEntry-applyButton")
-        //       .click()
-        //       .then(() =>
-        //         cy.get(".ProductSummaryTotalAmount").contains("$89.01")
-        //       )
-        //   );
-        cy.get("input[name=cardCvc]").type(cvc.slice(0));
-        cy.get("input[name=cardCvc]").type(cvc.slice(1));
-        cy.get("input[name=cardCvc]").type(cvc.slice(2));
+          cy.get("input[name=cardExpiry]").type(exp);
+          cy.get("input[name=cardNumber]").type(cardNumber);
+          cy.get("input[name=billingName]").type(billingName);
+          cy.get("input[name=billingAddressLine1]")
+            .type(address1)
+            .type("{enter}");
+          cy.get("input[name=billingLocality]").type(city);
+          cy.get("input[name=billingPostalCode]").type(zip).type("{enter}");
+          cy.get("input[name=enableStripePass]").check();
 
-        cy.get("input[name=cardExpiry]").type(exp);
-        cy.get("input[name=cardNumber]").type(cardNumber);
-        cy.get("input[name=cardCvc]").type(cvc);
-        cy.get("input[name=billingName]").type(billingName);
-        cy.get("input[name=billingAddressLine1]")
-          .type(address1)
-          .type("{enter}");
-        cy.get("input[name=billingLocality]").type(city);
-        cy.get("input[name=billingPostalCode]").type(zip).type("{enter}");
-        cy.get("input[name=enableStripePass]").check();
-
-        cy.get("input[name=phoneNumber]").type(phoneNumber);
-        cy.get("button[type=submit]", { timeout: 60000 })
-          .should("have.class", "SubmitButton--complete")
-          .click()
-          .contains("Processing");
+          cy.get("input[name=phoneNumber]").type(phoneNumber);
+          cy.get("button[type=submit]", { timeout: 60000 })
+            .should("have.class", "SubmitButton--complete")
+            .click()
+            .contains("Processing");
+        });
       }
     );
 
@@ -136,23 +128,24 @@ describe("Checkout v2, Cloud Starter Monthly", () => {
   });
 
   it("Should log into cloud dashboard", () => {
-    return cy.loginUserWithMagicLink(email, validPassword).then(() => {
-      return cy.visit(checkoutRedirectUrl).then(() => {
-        return cy
-          .get("a#nav-dashboard", { timeout: 10000 })
-          .click()
-          .then(() =>
-            cy
-              .url({ timeout: 2000 })
-              .should("contain", "/devices")
-              .then(() => {
-                cy.get("button#pn-navmenu-button", { timeout: 10000 }).click();
-                cy.get(".pn-achievement-badge", { timeout: 10000 }).contains(
-                  "FoundingMember"
-                );
-              })
-          );
-      });
-    });
+    cy.session(email, () => {
+      cy.loginUserWithMagicLink(email);
+      cy.visit(checkoutRedirectUrl);
+      cy
+        .get("a#nav-dashboard", { timeout: 10000 })
+        .click()
+        .then(() =>
+          cy
+            .url({ timeout: 2000 })
+            .should("contain", "/devices")
+            .then(() => {
+              cy.get("button#pn-navmenu-button", { timeout: 10000 }).click();
+              cy.get(".pn-achievement-badge", { timeout: 10000 }).contains(
+                "Cloud Scaler"
+              );
+            })
+        );
+    })
+
   });
 });

@@ -1016,7 +1016,7 @@ const plans = ref([
     cta: "Try Scale Risk-Free",
     sku: "cloud-scaler-plan",
     href: computed(
-      () => "/shop/checkout/cloud-starter-plan/" + showBilling.value
+      () => "/shop/checkout/cloud-scaler-plan/" + showBilling.value
     ),
     featured: computed(() => showBilling.value !== "invoice"),
     description: "The best tools to scale a 3D printing business.",

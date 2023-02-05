@@ -621,7 +621,20 @@ DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
 STRIPE_PORTAL_URL = env("STRIPE_PORTAL_URL", default="")
 
 STRIPE_STARTER_PLAN_NAME = env("STRIPE_STARTER_PLAN_NAME", default="Cloud Starter")
-STRIPE_SCALER_PLAN_NAME = env("STRIPE_Scaler_PLAN_NAME", default="Cloud Scaler")
+STRIPE_STARTER_MONTHLY_PLAN_ID = env(
+    "STRIPE_STARTER_MONTHLY_PLAN_ID", default="starter_monthly"
+)
+STRIPE_STARTER_YEARLY_PLAN_ID = env(
+    "STRIPE_STARTER_YEARLY_PLAN_ID", default="starter_yearly"
+)
+
+STRIPE_SCALER_PLAN_NAME = env("STRIPE_SCALER_PLAN_NAME", default="Cloud Scaler")
+STRIPE_SCALER_YEARLY_PLAN_ID = env(
+    "STRIPE_SCALER_YEARLY_PLAN_ID", default="scaler_monthly"
+)
+STRIPE_SCALER_YEARLY_PLAN_ID = env(
+    "STRIPE_SCALER_YEARLY_PLAN_ID", default="scaler_yearly"
+)
 
 
 FREE_BETA_TESTER_IDS = range(0, 102)
