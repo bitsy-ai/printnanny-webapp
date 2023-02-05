@@ -1075,7 +1075,7 @@ const plans = ref([
     cta: "Try Scale Risk-Free",
     href: "",
     featured: computed(() => showBilling.value !== "invoice"),
-    description: "The best tools to scale a 3D printing business",
+    description: "The best tools to scale a 3D printing business.",
     priceMonthly: "19.99",
     priceYearly: "199.99",
     mainFeatures: [
@@ -1147,10 +1147,8 @@ const simplePlans = ref(
     href: "",
     cta: "Get a Quote",
     featured: computed(() => showBilling.value === "invoice"),
-    description: "",
-    priceOnRequest: "Schools, libraries, research labs, and makerspaces.",
-    //   priceMonthly: 12,
-    //   priceYearly: 140,
+    description: "Invoice billing available for enterprise, OEM manufacturers, and K-12/higher education.",
+    priceOnRequest: "",
     mainFeatures: [
       { id: 1, value: "Permission controls" },
       { id: 2, value: "Single Sign-on" },
