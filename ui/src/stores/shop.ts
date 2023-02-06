@@ -24,7 +24,9 @@ export const useShopStore = defineStore({
       return this.cloudPlans.find((v) => v.sku === sku);
     },
     getCloudPlanPriceByFreq(product: api.Product, freq: string) {
-      return product.prices.find((p: any) => freq.includes(p.recurring.interval))
+      return product.prices.find((p: any) =>
+        freq.includes(p.recurring.interval)
+      );
     },
     async fetchProducts() {
       const account = useAccountStore();

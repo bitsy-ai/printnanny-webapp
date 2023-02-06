@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 
 describe("Checkout v2, Cloud starter Monthly", () => {
   const email = `testing-${uuidv4()}@printnanny.ai`;
-  let checkoutRedirectUrl = "";
+  const checkoutRedirectUrl = "";
 
   const billingName = "Wile E Coyote";
   const address1 = "747 Howard St";
@@ -27,7 +27,8 @@ describe("Checkout v2, Cloud starter Monthly", () => {
       .click()
       .type(email)
       .get("button[type=submit]")
-      .click().then(() => {
+      .click()
+      .then(() => {
         const sentArgs = {
           email,
           checkoutRedirectUrl,
@@ -40,7 +41,7 @@ describe("Checkout v2, Cloud starter Monthly", () => {
           exp,
           promotionCode,
           phoneNumber,
-          price
+          price,
         };
         cy.origin(
           "https://checkout.stripe.com",
@@ -55,11 +56,13 @@ describe("Checkout v2, Cloud starter Monthly", () => {
             exp,
             promotionCode,
             phoneNumber,
-            price
+            price,
           }) => {
             cy.on("uncaught:exception", (err) => {
               if (
-                err.message.includes("paymentRequest Element didn't mount normally")
+                err.message.includes(
+                  "paymentRequest Element didn't mount normally"
+                )
               ) {
                 return false;
               }
@@ -115,12 +118,11 @@ describe("Checkout v2, Cloud starter Monthly", () => {
         );
     });
   });
-
 });
 
 describe("Checkout v2, Cloud starter Yearly", () => {
   const email = `testing-${uuidv4()}@printnanny.ai`;
-  let checkoutRedirectUrl = "";
+  const checkoutRedirectUrl = "";
 
   const price = "$99.99";
   const billingName = "Wile E Coyote";
@@ -145,7 +147,8 @@ describe("Checkout v2, Cloud starter Yearly", () => {
       .click()
       .type(email)
       .get("button[type=submit]")
-      .click().then(() => {
+      .click()
+      .then(() => {
         const sentArgs = {
           email,
           checkoutRedirectUrl,
@@ -158,7 +161,7 @@ describe("Checkout v2, Cloud starter Yearly", () => {
           exp,
           promotionCode,
           phoneNumber,
-          price
+          price,
         };
         cy.origin(
           "https://checkout.stripe.com",
@@ -173,11 +176,13 @@ describe("Checkout v2, Cloud starter Yearly", () => {
             exp,
             promotionCode,
             phoneNumber,
-            price
+            price,
           }) => {
             cy.on("uncaught:exception", (err) => {
               if (
-                err.message.includes("paymentRequest Element didn't mount normally")
+                err.message.includes(
+                  "paymentRequest Element didn't mount normally"
+                )
               ) {
                 return false;
               }
@@ -232,5 +237,4 @@ describe("Checkout v2, Cloud starter Yearly", () => {
         );
     });
   });
-
 });

@@ -338,7 +338,7 @@ async function onClick(values: any) {
     };
     alertStore.push(alert);
   }
-  new Error("SDWire checkout is not implemetned for checkout system v2")
+  new Error("SDWire checkout is not implemetned for checkout system v2");
   // if (values && values.email !== undefined && productData !== undefined) {
   //   await shopStore.createCheckoutSession(values.email, [
   //     productData.id,

@@ -269,17 +269,20 @@ const shop = useShopStore();
 
 async function onClick(values: any) {
   const productData = shop.getCloudPlanBySku(props.sku);
-  if (productData === undefined){
-    new Error("Failed to fetch Stripe product data")
+  if (productData === undefined) {
+    new Error("Failed to fetch Stripe product data");
   }
-  const priceData = shop.getCloudPlanPriceByFreq(productData as api.Product, props.price);
+  const priceData = shop.getCloudPlanPriceByFreq(
+    productData as api.Product,
+    props.price
+  );
 
   // get the price matching selecting billing frequency (monthly or annual)
   console.log("form submitted", values, productData);
 
   if (values && values.email !== undefined && productData !== undefined) {
     await shop.createCheckoutSession(values.email, [
-      {product: productData.id, price: priceData?.id}
+      { product: productData.id, price: priceData?.id },
     ] as Array<api.OrderItem>);
   }
 }
