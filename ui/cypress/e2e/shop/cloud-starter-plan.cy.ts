@@ -65,7 +65,8 @@ describe("Checkout v2, Cloud starter Monthly", () => {
               }
             });
 
-            cy.contains(price);
+            cy.get("#ProductSummary-totalAmount").contains(price);
+            cy.get("ProductSummary-totalAmount").contains("month");
             cy.get("input[name=cardCvc]").type(cvc.slice(0));
             cy.get("input[name=cardCvc]").type(cvc.slice(1));
             cy.get("input[name=cardCvc]").type(cvc.slice(2));
@@ -181,7 +182,8 @@ describe("Checkout v2, Cloud starter Yearly", () => {
                 return false;
               }
             });
-            cy.contains(price);
+            cy.get("#ProductSummary-totalAmount").contains(price);
+            cy.get("ProductSummary-totalAmount").contains("yearly");
             cy.get("input[name=cardCvc]").type(cvc.slice(0));
             cy.get("input[name=cardCvc]").type(cvc.slice(1));
             cy.get("input[name=cardCvc]").type(cvc.slice(2));
