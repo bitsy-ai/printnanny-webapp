@@ -226,7 +226,7 @@ ci-up:
 	docker-compose -f test.yml up
 
 ci-pytest:
-	. .envs/.test/.env.sh && docker-compose -f test.yml run --rm django pytest
+	docker-compose -f test.yml run --rm django pytest
 
 sandbox-config:
 	GIT_SHA=$(GIT_SHA) \
