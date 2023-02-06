@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
-describe("Checkout v2, Cloud Starter Monthly", () => {
+describe("Checkout v2, Cloud Scaler Monthly", () => {
   const email = `testing-${uuidv4()}@printnanny.ai`;
   let checkoutSessionUrl = "";
   let checkoutRedirectUrl = "";

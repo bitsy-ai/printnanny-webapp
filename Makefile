@@ -104,38 +104,11 @@ octoprint-wait:
 	OCTOPRINT_URL=$(OCTOPRINT_URL) \
 		k8s/sandbox/octoprint-wait.sh
 
-cypress-open: octoprint-wait
-	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
-	CYPRESS_PRINT_NANNY_RELEASE_CHANNEL=$(PRINT_NANNY_RELEASE_CHANNEL) \
-	CYPRESS_OCTOPRINT_USERPASS=$(OCTOPRINT_USERPASS) \
-	CYPRESS_PRINT_NANNY_URL=$(PRINT_NANNY_URL) \
-	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
-	CYPRESS_DJANGO_SUPERUSER_EMAIL=$(DJANGO_SUPERUSER_EMAIL) \
-	CYPRESS_DJANGO_SUPERUSER_PASSWORD=$(DJANGO_SUPERUSER_PASSWORD) \
-	CYPRESS_PRINT_NANNY_TOKEN=$(PRINT_NANNY_TOKEN) \
-	node_modules/.bin/cypress open
+cypress-ci-run: 
+	cd ui && npm run cypress:run
 
-cypress-run: octoprint-wait
-	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
-	CYPRESS_PRINT_NANNY_RELEASE_CHANNEL=$(PRINT_NANNY_RELEASE_CHANNEL) \
-	CYPRESS_OCTOPRINT_USERPASS=$(OCTOPRINT_USERPASS) \
-	CYPRESS_PRINT_NANNY_URL=$(PRINT_NANNY_URL) \
-	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
-	CYPRESS_DJANGO_SUPERUSER_EMAIL=$(DJANGO_SUPERUSER_EMAIL) \
-	CYPRESS_DJANGO_SUPERUSER_PASSWORD=$(DJANGO_SUPERUSER_PASSWORD) \
-	CYPRESS_PRINT_NANNY_TOKEN=$(PRINT_NANNY_TOKEN) \
-	node_modules/.bin/cypress run
-
-cypress-ci: octoprint-wait
-	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
-	CYPRESS_PRINT_NANNY_RELEASE_CHANNEL=$(PRINT_NANNY_RELEASE_CHANNEL) \
-	CYPRESS_OCTOPRINT_USERPASS=$(OCTOPRINT_USERPASS) \
-	CYPRESS_PRINT_NANNY_URL=$(PRINT_NANNY_URL) \
-	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
-	CYPRESS_DJANGO_SUPERUSER_EMAIL=$(DJANGO_SUPERUSER_EMAIL) \
-	CYPRESS_DJANGO_SUPERUSER_PASSWORD=$(DJANGO_SUPERUSER_PASSWORD) \
-	CYPRESS_PRINT_NANNY_TOKEN=$(PRINT_NANNY_TOKEN) \
-	node_modules/.bin/cypress run --record
+cypress-ci-open: 
+	cd ui && npm run cypress:open
 
 sandbox-logs:
 	kubectl logs --all-containers -l branch=$(GIT_BRANCH)
@@ -225,12 +198,16 @@ cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(GCP_PROJECT)
 
 ci-callback-token:
-	. .envs/.test/.env.sh && docker-compose -f test.yml run --rm django python manage.py drfpasswordless_callback_token $(ARGS)
+	DJANGO_SUPERUSER_PASSWORD=$(DJANGO_SUPERUSER_PASSWORD) \
+	DJANGO_SUPERUSER_EMAIL=$(DJANGO_SUPERUSER_EMAIL) \
+	docker-compose -f test.yml run --rm django python manage.py drfpasswordless_callback_token $(ARGS)
 
-ci-image-build:
-	DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f test.yml build
+ci-clean:
+	rm -rf ui/dist
+	docker-compose -f test.yml stop
+	docker-compose -f test.yml rm
 
-ci-webapp:
+ci-webapp: ci-clean
 	mkdir -p ui/dist
 	make ci-up &
 	cd clients/typescript && npm install && npm run build
@@ -240,15 +217,16 @@ ci-webapp:
 	npm run ci-collectstatic
 	docker-compose -f ../test.yml restart nats
 	docker-compose -f ../test.yml run --rm django python manage.py initrobots --name=firehose
-	docker-compose -f ../test.yml restart firehose	
+	docker-compose -f ../test.yml restart firehose
+
 
 ci-up:
-	. .envs/.test/.env.sh && docker-compose -f test.yml up
+	DJANGO_SUPERUSER_PASSWORD=$(DJANGO_SUPERUSER_PASSWORD) \
+	DJANGO_SUPERUSER_EMAIL=$(DJANGO_SUPERUSER_EMAIL) \
+	docker-compose -f test.yml up
 
 ci-pytest:
 	. .envs/.test/.env.sh && docker-compose -f test.yml run --rm django pytest
-
-
 
 sandbox-config:
 	GIT_SHA=$(GIT_SHA) \
