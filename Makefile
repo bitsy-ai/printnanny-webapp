@@ -230,11 +230,25 @@ ci-callback-token:
 ci-image-build:
 	DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f test.yml build
 
+ci-webapp:
+	mkdir -p ui/dist
+	make ci-up &
+	cd clients/typescript && npm install && npm run build
+	cd ../../ui && npm install && npm run ci-test-build
+	./node_modules/.bin/cypress info
+	npm run ci-webapp-wait
+	npm run ci-collectstatic
+	docker-compose -f ../test.yml restart nats
+	docker-compose -f ../test.yml run --rm django python manage.py initrobots --name=firehose
+	docker-compose -f ../test.yml restart firehose	
+
 ci-up:
-	docker-compose -f test.yml up
+	. .envs/.test/.env.sh && docker-compose -f test.yml up
 
 ci-pytest:
-	docker-compose -f test.yml run --rm django pytest
+	. .envs/.test/.env.sh && docker-compose -f test.yml run --rm django pytest
+
+
 
 sandbox-config:
 	GIT_SHA=$(GIT_SHA) \

@@ -52,5 +52,57 @@
             "statement_descriptor": "PrintNanny Membership",
             "unit_label": ""
         }
+    },
+    {
+        "model": "djstripe.product",
+        "pk": 3,
+        "fields": {
+            "djstripe_created": "2022-09-18T01:48:21.026Z",
+            "djstripe_updated": "2022-09-18T21:09:42.538Z",
+            "id": "prod_NITqAttqXx5JjJ",
+            "djstripe_owner_account": "acct_1I7fake",
+            "livemode": false,
+            "created": "2021-06-27T19:52:57Z",
+            "metadata": {},
+            "description": "",
+            "name": "Cloud Starter",
+            "type": "service",
+            "active": true,
+            "attributes": [],
+            "caption": "",
+            "deactivate_on": null,
+            "images": [],
+            "package_dimensions": null,
+            "shippable": null,
+            "url": "",
+            "statement_descriptor": "Cloud Starter",
+            "unit_label": ""
+        }
+    },
+    {
+        "model": "djstripe.product",
+        "pk": 4,
+        "fields": {
+            "djstripe_created": "2022-09-18T01:48:21.026Z",
+            "djstripe_updated": "2022-09-18T21:09:42.538Z",
+            "id": "prod_NIXYlyaLbcpYxB",
+            "djstripe_owner_account": "acct_1I7fake",
+            "livemode": false,
+            "created": "2021-06-27T19:52:57Z",
+            "metadata": {},
+            "description": "",
+            "name": "Cloud Scaler",
+            "type": "service",
+            "active": true,
+            "attributes": [],
+            "caption": "",
+            "deactivate_on": null,
+            "images": [],
+            "package_dimensions": null,
+            "shippable": null,
+            "url": "",
+            "statement_descriptor": "Cloud Scaler",
+            "unit_label": ""
+        }
     }
 ]

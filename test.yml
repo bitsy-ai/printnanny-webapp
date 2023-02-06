@@ -10,7 +10,7 @@ services:
   janus:
     hostname: janus
     image: bitsyai/janus:1.0.4
-    container_name: printnanny_janus
+    container_name: printnanny_janus_test
     ports:
       - "8188:8188"
       - "7188:7188"
@@ -23,9 +23,10 @@ services:
       - ./compose/local/janus/etc:/etc/janus
   django: &django # enables use of pdb
     hostname: django
-    # network_mode: "host"
-    image: bitsyai/printnanny-webapp:${PRINTNANNY_WEBAPP_TAG}
-    container_name: printnanny_webapp_django
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    container_name: printnanny_webapp_django_test
     depends_on:
       - postgres
       - nats
@@ -63,7 +64,7 @@ services:
       - /start
   mailhog:
     image: mailhog/mailhog:v1.0.0
-    container_name: printnanny_webapp_local_mailhog
+    container_name: printnanny_webapp_local_mailhog_test
     ports:
       - "8025:8025"
 
@@ -73,8 +74,10 @@ services:
       - django
       - postgres
       - nats
-    image: bitsyai/printnanny-webapp:${PRINTNANNY_WEBAPP_TAG}
-    container_name: printnanny_webapp_firehose
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    container_name: printnanny_webapp_firehose_test
     environment:
       DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
       DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
@@ -103,7 +106,7 @@ services:
   postgres:
     hostname: postgres
     image: postgres:12.3
-    container_name: printnanny_webapp_postgres
+    container_name: printnanny_webapp_postgres_test
     volumes:
       - local_postgres_data:/var/lib/postgresql/data:z
       - local_postgres_data_backups:/backups:z
@@ -118,14 +121,14 @@ services:
     build:
       context: .
       dockerfile: ./compose/local/redis/Dockerfile
-    container_name: printnanny_webapp_redis
+    container_name: printnanny_webapp_redis_test
     ports:
       - "6379:6379"
 
   nats:
     hostname: nats
     image: nats:2.8-alpine
-    container_name: printnanny_webapp_nats
+    container_name: printnanny_webapp_nats_test
     volumes:
       - .nats/:/etc/nats
     command:

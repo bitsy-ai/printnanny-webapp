@@ -12,6 +12,7 @@ from config.settings.base import env
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 DEBUG = True
+DJANGO_VITE_DEV_MODE = DEBUG
 SECRET_KEY = env(
     "DJANGO_SECRET_KEY",
     default="nF2tDTEGAdjzk2DNx9pfikPNgyiPILVSRJ7Ek9tRoYhvTapZUlq8d4f03sxLg5pP",
@@ -23,6 +24,7 @@ TEST_RUNNER = "django.test.runner.DiscoverRunner"
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
+    "0.0.0.0",
 ]
 
 # CACHES
