@@ -183,7 +183,7 @@ describe("Checkout v2, Cloud Scaler Yearly", () => {
               }
             });
             cy.get("#ProductSummary-totalAmount").contains(price);
-            cy.get("#ProductSummary-totalAmount").contains("yearly");
+            cy.get("#ProductSummary-totalAmount").contains("year");
             cy.get("input[name=cardCvc]").type(cvc.slice(0));
             cy.get("input[name=cardCvc]").type(cvc.slice(1));
             cy.get("input[name=cardCvc]").type(cvc.slice(2));
