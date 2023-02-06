@@ -170,11 +170,6 @@ def build_stripe_checkout_session_kwargs_v1(
             line_items=[
                 {
                     "price": price_id,
-                    "adjustable_quantity": {
-                        "enabled": True,
-                        "minimum": 1,
-                        "maximum": 10,
-                    },
                     "quantity": 1,
                 }
             ],
@@ -221,11 +216,9 @@ def create_stripe_checkout_session(
     )
 
 
-def create_order(
-    request: HttpRequest, product: Product, price: DjStripePrice, email: str
-):
+def create_order(request: HttpRequest, product: Product, price_id: str, email: str):
     checkout_session_res, order_id = create_stripe_checkout_session(
-        request, product, price.id, email
+        request, product, price_id, email
     )
     checkout_session_redirect = checkout_session_res.url
     checkout_session = DjStripeCheckoutSession.sync_from_stripe_data(

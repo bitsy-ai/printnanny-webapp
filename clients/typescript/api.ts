@@ -3345,10 +3345,10 @@ export interface OrderItem {
     'product': string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof OrderItem
      */
-    'price': number;
+    'price': string;
 }
 /**
  * 
@@ -3364,10 +3364,10 @@ export interface OrderItemRequest {
     'product': string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof OrderItemRequest
      */
-    'price': number;
+    'price': string;
 }
 /**
  * 

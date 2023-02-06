@@ -201,6 +201,7 @@
 import { onMounted, ref } from "vue";
 import { useShopStore } from "@/stores/shop";
 import * as yup from "yup";
+import type * as api from "printnanny-api-client";
 import { Field, ErrorMessage, Form } from "vee-validate";
 import { CheckIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 
@@ -268,12 +269,18 @@ const shop = useShopStore();
 
 async function onClick(values: any) {
   const productData = shop.getCloudPlanBySku(props.sku);
+  if (productData === undefined){
+    new Error("Failed to fetch Stripe product data")
+  }
+  const priceData = shop.getCloudPlanPriceByFreq(productData as api.Product, props.price);
+
+  // get the price matching selecting billing frequency (monthly or annual)
   console.log("form submitted", values, productData);
 
   if (values && values.email !== undefined && productData !== undefined) {
     await shop.createCheckoutSession(values.email, [
-      productData.id,
-    ] as Array<string>);
+      {product: productData.id, price: priceData?.id}
+    ] as Array<api.OrderItem>);
   }
 }
 </script>

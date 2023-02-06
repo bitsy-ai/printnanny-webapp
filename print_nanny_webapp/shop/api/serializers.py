@@ -92,9 +92,7 @@ class OrderItemSerializer(serializers.Serializer):
     product = serializers.PrimaryKeyRelatedField(  # type: ignore[var-annotated]
         queryset=Product.objects.all()
     )
-    price = serializers.PrimaryKeyRelatedField(  # type: ignore[var-annotated]
-        queryset=DjStripePrice.objects.all()
-    )
+    price = serializers.CharField()
 
 
 class OrderCheckoutSerializer(serializers.ModelSerializer):
@@ -124,8 +122,10 @@ class OrderCheckoutSerializer(serializers.ModelSerializer):
                 f"Checkout for more than 1 product is not implemented (received {len(items)})"
             )
 
-        item = items[0]
-        return create_order(request, item.product, item.price.id, email)
+        item_data = items[0]
+        product = item_data["product"]
+        price_id = item_data["price"]
+        return create_order(request, product, price_id, email)
 
 
 class OrderStatusSerializer(serializers.ModelSerializer):
