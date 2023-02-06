@@ -109,7 +109,7 @@ describe("Checkout v2, Cloud starter Monthly", () => {
             .then(() => {
               cy.get("button#pn-navmenu-button", { timeout: 10000 }).click();
               cy.get(".pn-achievement-badge", { timeout: 10000 }).contains(
-                "Cloud starter"
+                "Cloud Starter"
               );
             })
         );
@@ -226,7 +226,7 @@ describe("Checkout v2, Cloud starter Yearly", () => {
             .then(() => {
               cy.get("button#pn-navmenu-button", { timeout: 10000 }).click();
               cy.get(".pn-achievement-badge", { timeout: 10000 }).contains(
-                "Cloud starter"
+                "Cloud Starter"
               );
             })
         );
