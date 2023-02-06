@@ -117,7 +117,7 @@ jobs:
           sudo apt install microsoft-edge-stable
       - name: Setup webapp
         run: |
-          ci-webapp
+          make ci-webapp
       - name: Cypress
         timeout-minutes: 8
         # enable to log verbose cypress output
