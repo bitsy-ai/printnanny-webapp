@@ -1,7 +1,7 @@
 import { defineConfig } from "cypress";
 
 export default defineConfig({
-  projectId: "amsn8j",
+  projectId: "7zcv7a",
   chromeWebSecurity: false,
   modifyObstructiveCode: true,
   experimentalModifyObstructiveThirdPartyCode: true,
