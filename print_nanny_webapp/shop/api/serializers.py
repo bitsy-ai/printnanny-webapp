@@ -88,19 +88,26 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class OrderItemSerializer(serializers.Serializer):
+    product = serializers.PrimaryKeyRelatedField(  # type: ignore[var-annotated]
+        queryset=Product.objects.all()
+    )
+    price = serializers.PrimaryKeyRelatedField(  # type: ignore[var-annotated]
+        queryset=DjStripePrice.objects.all()
+    )
+
+
 class OrderCheckoutSerializer(serializers.ModelSerializer):
     # provided by client to initialize Stripe checkout session
     email = serializers.EmailField()
-    products = serializers.PrimaryKeyRelatedField(  # type: ignore[var-annotated]
-        many=True, queryset=Product.objects.all()
-    )
+    items = OrderItemSerializer(many=True)
     stripe_checkout_redirect_url = serializers.CharField(read_only=True)
     stripe_checkout_session_id = serializers.CharField(read_only=True)
 
     class Meta:
         model = Order
         fields = (
-            "products",
+            "items",
             "email",
             "stripe_checkout_redirect_url",
             "stripe_checkout_session_id",
@@ -109,16 +116,16 @@ class OrderCheckoutSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         request = self.context["request"]
         email = validated_data["email"]
-        products = validated_data["products"]
-        if len(products) == 0:
+        items = validated_data["items"]
+        if len(items) == 0:
             raise ValueError("Expected at least 1 product")
-        if len(products) > 1:
+        if len(items) > 1:
             raise NotImplementedError(
-                f"Checkout for more than 1 product is not implemented (received {len(products)})"
+                f"Checkout for more than 1 product is not implemented (received {len(items)})"
             )
 
-        product = products[0]
-        return create_order(request, product, email)
+        item = items[0]
+        return create_order(request, item.product, item.price.id, email)
 
 
 class OrderStatusSerializer(serializers.ModelSerializer):

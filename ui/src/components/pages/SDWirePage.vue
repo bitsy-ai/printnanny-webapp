@@ -338,19 +338,20 @@ async function onClick(values: any) {
     };
     alertStore.push(alert);
   }
-  if (values && values.email !== undefined && productData !== undefined) {
-    await shopStore.createCheckoutSession(values.email, [
-      productData.id,
-    ] as Array<string>);
-  } else if (
-    accountStore.isAuthenticated &&
-    accountStore.user !== undefined &&
-    productData !== undefined
-  ) {
-    await shopStore.createCheckoutSession(accountStore.user?.email, [
-      productData.id,
-    ] as Array<string>);
-  }
+  new Error("SDWire checkout is not implemetned for checkout system v2")
+  // if (values && values.email !== undefined && productData !== undefined) {
+  //   await shopStore.createCheckoutSession(values.email, [
+  //     productData.id,
+  //   ] as Array<string>);
+  // } else if (
+  //   accountStore.isAuthenticated &&
+  //   accountStore.user !== undefined &&
+  //   productData !== undefined
+  // ) {
+  //   await shopStore.createCheckoutSession(accountStore.user?.email, [
+  //     productData.id,
+  //   ] as Array<string>);
+  // }
 }
 const faqs = [
   {

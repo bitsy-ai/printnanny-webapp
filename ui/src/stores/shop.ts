@@ -20,9 +20,11 @@ export const useShopStore = defineStore({
     },
   },
   actions: {
-    // older shop view
     getCloudPlanBySku(sku: string) {
       return this.cloudPlans.find((v) => v.sku === sku);
+    },
+    getCloudPlanPriceByFreq(product: api.Product, freq: string) {
+      return product.prices.find((p: any) => freq.includes(p.recurring.interval))
     },
     async fetchProducts() {
       const account = useAccountStore();
@@ -43,11 +45,11 @@ export const useShopStore = defineStore({
         return res.data.results;
       }
     },
-    async createCheckoutSession(email: string, products: Array<string>) {
+    async createCheckoutSession(email: string, items: Array<api.OrderItem>) {
       const account = useAccountStore();
       this.$patch({ loading: true });
       const req = {
-        products: products,
+        items,
         email: email,
       } as api.OrderCheckoutRequest;
 

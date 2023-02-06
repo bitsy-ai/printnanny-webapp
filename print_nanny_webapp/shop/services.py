@@ -7,6 +7,7 @@ from djstripe.models.core import (
     Customer as DjStripeCustomer,
     PaymentIntent as DjStripePaymentIntent,
     Charge as DjStripeCharge,
+    Price as DjStripePrice,
 )
 from djstripe.models import Subscription as DjStripeSubscription
 from djstripe.settings import djstripe_settings
@@ -45,7 +46,7 @@ def sync_stripe_customer_by_id(stripe_customer_id: str) -> DjStripeCustomer:
 
 
 def build_stripe_checkout_session_kwargs_v1(
-    request: HttpRequest, email: str, order_id: str, product: Product
+    request: HttpRequest, email: str, order_id: str, price_id: str, product: Product
 ) -> Dict[Any, Any]:
     """
     Looks up customer (by email) to associate Stripe Checkout Session with an existing customer
@@ -112,9 +113,6 @@ def build_stripe_checkout_session_kwargs_v1(
                 # see: https://stripe.com/docs/api/checkout/sessions/create#create_checkout_session-customer_creation
                 extra_kwargs["customer_creation"] = "always"
     # end Stripe Customer kwargs
-
-    # begin Price, Line item, product kwargs
-    price_id = product.prices.filter(active=True).first().id
 
     if product.is_shippable:
         payment_kwargs = dict(
@@ -197,7 +195,9 @@ def build_stripe_checkout_session_kwargs_v1(
     return extra_kwargs
 
 
-def create_stripe_checkout_session(request: HttpRequest, product: Product, email: str):
+def create_stripe_checkout_session(
+    request: HttpRequest, product: Product, price_id: str, email: str
+):
     """
     Attempt to create a Stripe checkout session for product_name
 
@@ -210,7 +210,7 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
 
     # try to get Stripe customer from Django user authentication, email lookup, or supply needed parameters to create new Stripe Customer
     extra_kwargs = build_stripe_checkout_session_kwargs_v1(
-        request, email, str(order_id), product
+        request, email, str(order_id), price_id, product
     )
 
     return (
@@ -221,9 +221,11 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
     )
 
 
-def create_order(request: HttpRequest, product: Product, email: str):
+def create_order(
+    request: HttpRequest, product: Product, price: DjStripePrice, email: str
+):
     checkout_session_res, order_id = create_stripe_checkout_session(
-        request, product, email
+        request, product, price.id, email
     )
     checkout_session_redirect = checkout_session_res.url
     checkout_session = DjStripeCheckoutSession.sync_from_stripe_data(

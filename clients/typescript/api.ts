@@ -60,7 +60,9 @@ export interface Achievement {
 
 export const AchievementTypeEnum = {
     FreeBeta: 'FreeBeta',
-    FoundingMember: 'FoundingMember'
+    FoundingMember: 'FoundingMember',
+    CloudStarter: 'Cloud Starter',
+    CloudScaler: 'Cloud Scaler'
 } as const;
 
 export type AchievementTypeEnum = typeof AchievementTypeEnum[keyof typeof AchievementTypeEnum];
@@ -3287,10 +3289,10 @@ export interface Order {
 export interface OrderCheckout {
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<OrderItem>}
      * @memberof OrderCheckout
      */
-    'products': Array<string>;
+    'items': Array<OrderItem>;
     /**
      * 
      * @type {string}
@@ -3318,16 +3320,54 @@ export interface OrderCheckout {
 export interface OrderCheckoutRequest {
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<OrderItemRequest>}
      * @memberof OrderCheckoutRequest
      */
-    'products': Array<string>;
+    'items': Array<OrderItemRequest>;
     /**
      * 
      * @type {string}
      * @memberof OrderCheckoutRequest
      */
     'email': string;
+}
+/**
+ * 
+ * @export
+ * @interface OrderItem
+ */
+export interface OrderItem {
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderItem
+     */
+    'product': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof OrderItem
+     */
+    'price': number;
+}
+/**
+ * 
+ * @export
+ * @interface OrderItemRequest
+ */
+export interface OrderItemRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderItemRequest
+     */
+    'product': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof OrderItemRequest
+     */
+    'price': number;
 }
 /**
  * 

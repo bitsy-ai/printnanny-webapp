@@ -273,6 +273,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import * as yup from "yup";
+import type * as api from "printnanny-api-client";
+
 import { Field, ErrorMessage, Form } from "vee-validate";
 
 import {
@@ -306,19 +308,19 @@ const products = await shopStore.fetchProducts();
 const productData = products?.find((p) => p.slug == "founding-membership");
 
 async function onClick(values: any) {
-  if (values && values.email !== undefined && productData !== undefined) {
-    await shopStore.createCheckoutSession(values.email, [
-      productData.id,
-    ] as Array<string>);
-  } else if (
-    accountStore.isAuthenticated &&
-    accountStore.user !== undefined &&
-    productData !== undefined
-  ) {
-    await shopStore.createCheckoutSession(accountStore.user?.email, [
-      productData.id,
-    ] as Array<string>);
-  }
+  // if (values && values.email !== undefined && productData !== undefined) {
+  //   await shopStore.createCheckoutSession(values.email, [
+  //     { product: productData.id, price: "" },
+  //   ] as Array<api.OrderItem>);
+  // } else if (
+  //   accountStore.isAuthenticated &&
+  //   accountStore.user !== undefined &&
+  //   productData !== undefined
+  // ) {
+  //   await shopStore.createCheckoutSession(accountStore.user?.email, [
+  //   { product: productData.id, price: "" },
+  //   ] as Array<api.OrderItem>);
+  // }
 }
 
 const timeline = {
