@@ -4,7 +4,7 @@
   "scripts": {
     "prebuild": "npm run api-client-build",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
+    "cypress:run": "cypress run --e2e --headed",
     "dev": "vite --mode dev",
     "ci-webapp": "cd ../ && make ci-up",
     "ci-webapp-wait": "wait-on http://localhost:8000",
