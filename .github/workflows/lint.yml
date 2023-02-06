@@ -28,6 +28,7 @@ jobs:
       REDIS_URL: "redis://redis:6379/0"
       MAILGUN_API_KEY: ""
       MAILGUN_WEBHOOK_SIGNING_KEY: ""
+      MAILGUN_DOMAIN: ""
       DISCORD_TOKEN: ""
       LOGLEVEL: debug
     # Steps represent a sequence of tasks that will be executed as part of the job
