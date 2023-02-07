@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { useAccountStore } from "@/stores/account";
-import posthog from "posthog-js";
 import { posthogPageview } from "@/utils/posthog";
 
 import crashReportRoutes from "./crash-reports";

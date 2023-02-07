@@ -28,7 +28,9 @@
                       alt="PrintNanny"
                     />
                   </a>
-                  <div class="-mr-2 flex md:hidden align-self-end justify-self-end">
+                  <div
+                    class="-mr-2 flex md:hidden align-self-end justify-self-end"
+                  >
                     <PopoverButton
                       class="bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white"
                     >

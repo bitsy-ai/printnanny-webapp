@@ -31,21 +31,21 @@
         </div>
         <div class="pt-5 pb-6">
           <FullWidthFlyoutMenu
-              id="products-flyout"
-              :links="productLinks"
-              :footer="productFooterLinks"
-              menu-text="Products"
-            />
-            <SimpleFlyoutMenu
-              id="learn-more-flyout"
-              :links="learnMoreLinks"
-              menu-text="Learn More"
-            />
-            <SimpleFlyoutMenu
-              id="community-flyout"
-              :links="communityLinks"
-              menu-text="Join the Community"
-            />
+            id="products-flyout"
+            :links="productLinks"
+            :footer="productFooterLinks"
+            menu-text="Products"
+          />
+          <SimpleFlyoutMenu
+            id="learn-more-flyout"
+            :links="learnMoreLinks"
+            menu-text="Learn More"
+          />
+          <SimpleFlyoutMenu
+            id="community-flyout"
+            :links="communityLinks"
+            menu-text="Join the Community"
+          />
           <div class="mt-6 px-5">
             <p
               class="text-center text-base font-medium md:text-gray-500 text-white"
@@ -65,7 +65,11 @@
 </template>
 
 <script setup lang="ts">
-import type { SimpleFlyoutMenuLink, FullWidthFlyoutMenuLink, FullWidthFlyoutMenuFooterLink } from "@/types/links";
+import type {
+  SimpleFlyoutMenuLink,
+  FullWidthFlyoutMenuLink,
+  FullWidthFlyoutMenuFooterLink,
+} from "@/types/links";
 import type { PropType } from "vue";
 import { PopoverButton, PopoverPanel } from "@headlessui/vue";
 import { XMarkIcon } from "@heroicons/vue/24/outline";
@@ -79,7 +83,7 @@ defineProps({
   },
   productFooterLinks: {
     type: Object as PropType<Array<FullWidthFlyoutMenuFooterLink>>,
-      required: true
+    required: true,
   },
   communityLinks: {
     type: Object as PropType<Array<SimpleFlyoutMenuLink>>,
