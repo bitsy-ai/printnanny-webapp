@@ -210,7 +210,7 @@ ci-clean:
 ci-ui-test:
 	mkdir -p ui/dist
 	cd clients/typescript && npm install && npm run build
-	cd ui && npm install
+	cd ui && npm install && npm run dev-build
 	cd ui && npm run dev &
 
 ci-webapp: ci-clean
