@@ -219,13 +219,13 @@
         <h2
           class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
         >
-          Ready to get started?
+          Scale your 3D Printer Farm
         </h2>
-        <router-link :to="{ name: 'shop-founding-membership' }">
+        <router-link id="hero-pricing" :to="{ name: 'pricing' }">
           <button
-            class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+            class="w-full md:w-1/3 m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
           >
-            Become a Founding Member
+            Get Started for $9.99/month
           </button>
         </router-link>
 
@@ -364,6 +364,7 @@ import DemoQualityAlert from "@/components/demo/DemoQualityAlert.vue";
 import googleIoImg from "@/assets/press/google-io.png";
 import tfEverywhereImg from "@/assets/press/tensorflow-everywhere-na.png";
 import WaitlistForm from "@/components/forms/WaitlistForm.vue";
+import { LockOpenIcon } from "@heroicons/vue/24/solid";
 
 onMounted(() => {
   const el = document.querySelector("video#hero-video") as HTMLVideoElement;
@@ -408,7 +409,7 @@ const features = [
   {
     name: "Raspberry Pi",
     description:
-      "Raspberry Pi 4 is fully supported, with Raspberry Pi 3 and Rock Pi in development.",
+      "Raspberry Pi 4 is fully supported, with Orange Pi and Rock Pi in development.",
     icon: ComputerDesktopIcon,
   },
   {
@@ -417,16 +418,17 @@ const features = [
       "Like DropBox, but focused on taming model revisions, slicer settings, and gcode macros. Powered by SyncThing.",
     icon: FolderOpenIcon,
   },
+  // TODO
+  // {
+  //   name: "Simple Queues",
+  //   description:
+  //     "Keep track of finished inventory. Re-queue failed jobs on the next available printer.",
+  //   icon: ArrowPathIcon,
+  // },
   {
-    name: "Simple Queues",
+    name: "Live Camera Feed",
     description:
-      "Keep track of finished inventory. Re-queue failed jobs on the next available printer.",
-    icon: ArrowPathIcon,
-  },
-  {
-    name: "Share Camera Feed",
-    description:
-      "Securely share live camera stream with employees, friends, and family.",
+      "AI-powered monitoring that runs on your Pi, 24/7. No metered usage or hidden costs.",
     icon: VideoCameraIcon,
   },
   {
@@ -440,6 +442,12 @@ const features = [
     description:
       "Connect to a secure Tailscale VPN to control your PrintNanny devices from anywhere.",
     icon: GlobeAltIcon,
+  },
+  {
+    name: "100% Open Source",
+    description:
+      "Every line of code released under AGPLv3. Contributions back to OctoPrint, AsyncAPI, and Mainsail ecosystems.",
+    icon: LockOpenIcon,
   },
 ];
 const blogPosts = [
