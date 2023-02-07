@@ -215,10 +215,10 @@ ci-ui-test:
 
 ci-webapp: ci-clean
 	make ci-up &
-# cd ui && npm install && npm run ci-webapp-wait
-# docker-compose -f test.yml restart nats
-# docker-compose -f test.yml run --rm django python manage.py initrobots --name=firehose
-# docker-compose -f test.yml restart firehose
+	cd ui && npm install && npm run ci-webapp-wait
+	docker-compose -f test.yml restart nats
+	docker-compose -f test.yml run --rm django python manage.py initrobots --name=firehose
+	docker-compose -f test.yml restart firehose
 
 
 ci-up:
