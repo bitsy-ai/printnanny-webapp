@@ -1036,7 +1036,7 @@ const plans = ref([
   },
   {
     title: "Enterprise",
-    href: "",
+    href: import.meta.env.VITE_ENTERPRISE_CLOUD_QUOTE_FORM,
     cta: "Get a Quote",
     featured: computed(() => showBilling.value === "invoice"),
     description:
@@ -1055,7 +1055,7 @@ const plans = ref([
   },
   {
     title: "OEM",
-    href: "",
+    href: import.meta.env.VITE_OEM_QUOTE_FORM,
     cta: "Get a Quote",
     featured: false,
     description: "Customized for manufacturers of 3D printers.",
@@ -1073,7 +1073,7 @@ const plans = ref([
   },
   {
     title: "Education",
-    href: "",
+    href: import.meta.env.VITE_EDU_QUOTE_FORM,
     cta: "Get a Quote",
     featured: false,
     description: "Schools, libraries, research labs, and makerspaces.",

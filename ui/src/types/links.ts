@@ -18,13 +18,13 @@ export type FullWidthFlyoutMenuLink = {
   href?: string;
   routerLink?: RouteLocationRaw;
   icon: FunctionalComponent<HTMLAttributes & VNodeProps>;
-}
+};
 
 export type FullWidthFlyoutMenuFooterLink = {
-  name: string,
-  href: string,
+  name: string;
+  href: string;
   icon: FunctionalComponent<HTMLAttributes & VNodeProps>;
-}
+};
 
 export type TableActionLink = {
   name: string;
@@ -33,6 +33,4 @@ export type TableActionLink = {
   routerLink?: RouteLocationRaw;
   slot?: FunctionalComponent<HTMLAttributes & VNodeProps>;
   icon: FunctionalComponent<HTMLAttributes & VNodeProps>;
-
 };
-
