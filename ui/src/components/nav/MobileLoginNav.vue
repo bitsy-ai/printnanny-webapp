@@ -33,17 +33,21 @@
           <span class="text-white font-medium text-base px-4"
             >Tap to expand sections 👇</span
           >
-          <FlyoutMenu
+          <SimpleFlyoutMenu
             id="learn-more-flyout"
             :links="learnMoreLinks"
             menu-text="Learn More"
           />
-          <FlyoutMenu
+          <SimpleFlyoutMenu
             id="community-flyout"
             :links="communityLinks"
             menu-text="Join the Community"
           />
-          <FlyoutMenu id="shop-flyout" :links="shopLinks" menu-text="Shop" />
+          <SimpleFlyoutMenu
+            id="shop-flyout"
+            :links="shopLinks"
+            menu-text="Shop"
+          />
           <div class="mt-6 px-5">
             <p
               class="text-center text-base font-medium md:text-gray-500 text-white"
@@ -63,24 +67,24 @@
 </template>
 
 <script setup lang="ts">
-import type { FlyoutMenuLink } from "@/types/links";
+import type { SimpleSimpleFlyoutMenuLink } from "@/types/links";
 import type { PropType } from "vue";
 import { PopoverButton, PopoverPanel } from "@headlessui/vue";
 import { XMarkIcon } from "@heroicons/vue/24/outline";
 
-import FlyoutMenu from "@/components/nav/FlyoutMenu.vue";
+import SimpleFlyoutMenu from "@/components/nav/SimpleFlyoutMenu.vue";
 
 defineProps({
   shopLinks: {
-    type: Object as PropType<Array<FlyoutMenuLink>>,
+    type: Object as PropType<Array<SimpleSimpleFlyoutMenuLink>>,
     required: true,
   },
   communityLinks: {
-    type: Object as PropType<Array<FlyoutMenuLink>>,
+    type: Object as PropType<Array<SimpleSimpleFlyoutMenuLink>>,
     required: true,
   },
   learnMoreLinks: {
-    type: Object as PropType<Array<FlyoutMenuLink>>,
+    type: Object as PropType<Array<SimpleSimpleFlyoutMenuLink>>,
     required: true,
   },
 });

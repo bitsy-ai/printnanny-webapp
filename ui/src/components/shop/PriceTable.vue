@@ -20,7 +20,10 @@
         <p class="my-4 text-xl text-indigo-100">
           Unlimited annual plans for rapid-scaling businesses.
         </p>
-        <img src="@/assets/logo/logo-square-white.svg" class="h-40 hidden md:flex m-auto"/>
+        <img
+          src="@/assets/logo/logo-square-white.svg"
+          class="h-40 hidden md:flex m-auto"
+        />
       </div>
       <!-- Cards -->
       <div

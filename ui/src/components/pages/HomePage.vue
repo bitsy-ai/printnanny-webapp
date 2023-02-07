@@ -10,28 +10,24 @@
               <h1
                 class="col-span-3 tracking-tight font-extrabold text-white text-4xl xl:text-6xl"
               >
-              <span
+                <span
                   class="block pb-2 block bg-clip-text rounded-md shadow bg-gradient-to-r text-white sm:pb-2"
                   >Stop Babysitting</span
                 >
                 <span
-                  class="pb-2 bg-clip-text  rounded-md shadow bg-gradient-to-r text-white sm:pb-2"
+                  class="pb-2 bg-clip-text rounded-md shadow bg-gradient-to-r text-white sm:pb-2"
                   >your 3D Print Farm</span
                 >
-
               </h1>
 
               <p class="pt-6 max-w-prose mx-auto text-xl text-white">
                 AI-powered monitoring and automation for 3D printers.
               </p>
-              <router-link
-                id="hero-pricing"
-                :to="{ name: 'pricing' }"
-              >
+              <router-link id="hero-pricing" :to="{ name: 'pricing' }">
                 <button
                   class="transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                 >
-                  Get Started
+                  Get Started for $9.99/month
                 </button>
               </router-link>
             </div>
@@ -96,11 +92,11 @@
         <div class="mt-12">
           <DemoQualityAlert></DemoQualityAlert>
         </div>
-        <router-link :to="{ name: 'shop-founding-membership' }">
+        <router-link id="hero-pricing" :to="{ name: 'pricing' }">
           <button
-            class="text-white text-3xl font-extrabold tracking-tight sm:text-4xl inline-flex justify-center transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+            class="w-36 m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
           >
-            Get Access Now
+            Get Started
           </button>
         </router-link>
       </div>

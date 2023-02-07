@@ -1,7 +1,7 @@
 import type { RouteLocationRaw } from "vue-router";
 import type { FunctionalComponent, HTMLAttributes, VNodeProps } from "vue";
 
-export type FlyoutMenuLink = {
+export type SimpleFlyoutMenuLink = {
   name: string;
   description: string;
   blank?: boolean;
@@ -9,9 +9,24 @@ export type FlyoutMenuLink = {
   routerLink?: RouteLocationRaw;
 };
 
+export type FullWidthFlyoutMenuLink = {
+  name: string;
+  description: string;
+  cta: string;
+  blank?: boolean;
+  href?: string;
+  routerLink?: RouteLocationRaw;
+  icon: FunctionalComponent<HTMLAttributes & VNodeProps>;
+};
+
+export type FullWidthFlyoutMenuFooterLink = {
+  name: string;
+  href: string;
+  icon: FunctionalComponent<HTMLAttributes & VNodeProps>;
+};
+
 export type TableActionLink = {
   name: string;
-  icon?: FunctionalComponent<HTMLAttributes & VNodeProps>;
   click?: () => void;
   href?: string;
   routerLink?: RouteLocationRaw;

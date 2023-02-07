@@ -68,7 +68,7 @@ import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/24/solid";
 import type { PropType } from "vue";
 import { RouterLink } from "vue-router";
-import type { FlyoutMenuLink } from "@/types/links";
+import type { SimpleFlyoutMenuLink } from "@/types/links";
 
 defineProps({
   menuText: {
@@ -76,7 +76,7 @@ defineProps({
     default: "Learn More",
   },
   links: {
-    type: Object as PropType<Array<FlyoutMenuLink>>,
+    type: Object as PropType<Array<SimpleFlyoutMenuLink>>,
     required: true,
   },
 });
