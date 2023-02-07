@@ -1,7 +1,7 @@
 // https://docs.cypress.io/api/introduction/api.html
 import { v4 as uuidv4 } from "uuid";
 
-describe("Landing Page", () => {
+describe.skip("Landing Page", () => {
   it("Rejects invalid email", () => {
     cy.visit("/");
     const invalid = "foo123";

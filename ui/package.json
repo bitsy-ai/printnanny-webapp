@@ -9,7 +9,6 @@
     "ci-webapp": "cd ../ && make ci-up",
     "ci-webapp-wait": "wait-on http://localhost:8000",
     "api-client-build": "cd ../clients/typescript && npm install && npm run build",
-    "ci-test-build": "vite build --base=/ui/ --mode dev",
     "ci-collectstatic": "cd .. && make ci-collectstatic",
     "dev-build": "vite build --base=/ui/ --mode dev && cd .. && make collectstatic",
     "build": "run-p lint type-check build-only",
