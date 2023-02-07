@@ -68,7 +68,7 @@
                 </div>
               </div>
             </a>
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 m-auto py-6">
+            <div class="md:grid grid-cols-2 sm:grid-cols-3 gap-4 m-auto py-6 hidden">
               <h2
                 class="col-span-3 font-extrabold text-gray-900 tracking-tight sm:text-2xl"
               >

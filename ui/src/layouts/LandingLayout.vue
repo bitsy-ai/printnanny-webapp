@@ -18,7 +18,7 @@
             >
               <div class="flex items-center flex-1">
                 <div
-                  class="flex items-center justify-items-center w-full md:w-auto"
+                  class="grid grid-cols-3 items-center justify-items-center w-full md:w-auto"
                 >
                   <a href="/">
                     <span class="sr-only">Workflow</span>
@@ -28,7 +28,7 @@
                       alt="PrintNanny"
                     />
                   </a>
-                  <div class="-mr-2 flex items-center md:hidden">
+                  <div class="-mr-2 flex md:hidden align-self-end justify-self-end">
                     <PopoverButton
                       class="bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white"
                     >
@@ -60,7 +60,8 @@
             </nav>
           </div>
           <MobileLoginNav
-            :shop-links="productLinks"
+            :product-links="productLinks"
+            :product-footer-links="productFooterLinks"
             :community-links="communityLinks"
             :learn-more-links="learnMoreLinks"
           />

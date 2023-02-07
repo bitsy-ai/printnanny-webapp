@@ -93,7 +93,7 @@ const footerNavigation = {
             alt="PrintNanny"
           />
           <p class="text-gray-500 text-base">
-            PrintNanny is the personal assistant for your 3D printer.
+            The AI-powered assistant for your 3D print farm.
           </p>
           <div class="flex space-x-6">
             <a
