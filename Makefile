@@ -222,7 +222,7 @@ ci-webapp: ci-clean
 ci-up:
 	DJANGO_SUPERUSER_PASSWORD=$(DJANGO_SUPERUSER_PASSWORD) \
 	DJANGO_SUPERUSER_EMAIL=$(DJANGO_SUPERUSER_EMAIL) \
-	docker-compose -f test.yml up
+	docker-compose -f test.yml up ---detach --wait
 
 ci-pytest:
 	docker-compose -f test.yml run --rm django pytest
