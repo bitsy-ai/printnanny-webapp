@@ -44,5 +44,51 @@
             "stripe_product_id": "prod_MLKNaRKpwL6oIr",
             "djstripe_product": 1
         }
+    },
+    {
+        "model": "shop.product",
+        "pk": "35596e1f-553f-4255-b01c-57ad5d4913e5",
+        "fields": {
+            "deleted": null,
+            "created_dt": "2023-02-05T01:54:53.393Z",
+            "updated_dt": "2023-02-05T01:54:53.393Z",
+            "sku": "cloud-starter-plan",
+            "slug": "cloud-starter-plan",
+            "unit_label": "membership",
+            "name": "Cloud Starter",
+            "description": "Connect up to 3 printers",
+            "statement_descriptor": "PrintNanny Cloud Starter",
+            "images": "[\"placeholder\"]",
+            "is_active": true,
+            "is_shippable": false,
+            "is_preorder": false,
+            "is_subscription": true,
+            "stripe_price_lookup_key": "starter",
+            "stripe_product_id": "prod_NITqAttqXx5JjJ",
+            "djstripe_product": 3
+        }
+    },
+    {
+        "model": "shop.product",
+        "pk": "c5d9d0d2-b626-41e1-a307-4b7f4f3e6594",
+        "fields": {
+            "deleted": null,
+            "created_dt": "2023-02-05T01:56:20.194Z",
+            "updated_dt": "2023-02-05T01:57:31.489Z",
+            "sku": "cloud-scaler-plan",
+            "slug": "cloud-scaler-plan",
+            "unit_label": "membership",
+            "name": "Cloud Scaler",
+            "description": "Connect unlimited printers",
+            "statement_descriptor": "PrintNanny Cloud Scaler",
+            "images": "[\"placeholder\"]",
+            "is_active": true,
+            "is_shippable": false,
+            "is_preorder": false,
+            "is_subscription": true,
+            "stripe_price_lookup_key": "scaler",
+            "stripe_product_id": "prod_NIXYlyaLbcpYxB",
+            "djstripe_product": 4
+        }
     }
 ]

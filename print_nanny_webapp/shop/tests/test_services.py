@@ -10,7 +10,7 @@ from django.contrib.auth import get_user_model
 from djstripe.models import Customer
 
 from print_nanny_webapp.shop.services import (
-    build_stripe_checkout_session_kwargs,
+    build_stripe_checkout_session_kwargs_v1,
 )
 from print_nanny_webapp.shop.models import Product
 
@@ -52,8 +52,11 @@ class TestShopServices(TestCase):
         order_id = str(uuid4())
 
         product = Product.objects.filter(is_shippable=True).first()
+        price_id = product.djstripe_product.prices.first().id
 
-        kwargs = build_stripe_checkout_session_kwargs(request, email, order_id, product)
+        kwargs = build_stripe_checkout_session_kwargs_v1(
+            request, email, order_id, price_id, product
+        )
         assert kwargs.get("customer_email") == email
         assert kwargs.get("customer_creation") == "always"
         assert kwargs.get("mode") == "payment"
@@ -67,8 +70,11 @@ class TestShopServices(TestCase):
         order_id = str(uuid4())
 
         product = Product.objects.filter(is_subscription=True).first()
+        price_id = product.djstripe_product.prices.first().id
 
-        kwargs = build_stripe_checkout_session_kwargs(request, email, order_id, product)
+        kwargs = build_stripe_checkout_session_kwargs_v1(
+            request, email, order_id, price_id, product
+        )
         assert kwargs.get("customer_email") == email
         assert kwargs.get("customer_creation") is None
         assert kwargs.get("mode") == "subscription"
@@ -105,9 +111,12 @@ class TestShopServices(TestCase):
         customer.subscriber = user
         customer.save()
         product = Product.objects.filter(is_shippable=True).first()
+        price_id = product.djstripe_product.prices.first().id
 
         # extra kwargs should include Stripe customer id, which will be passed to checkout session for continuity
-        kwargs = build_stripe_checkout_session_kwargs(request, email, order_id, product)
+        kwargs = build_stripe_checkout_session_kwargs_v1(
+            request, email, order_id, price_id, product
+        )
         assert kwargs["customer"] == customer.id
         assert kwargs["client_reference_id"] == user.id
         assert kwargs.get("mode") == "payment"
@@ -145,9 +154,12 @@ class TestShopServices(TestCase):
         customer.subscriber = user
         customer.save()
         product = Product.objects.filter(is_subscription=True).first()
+        price_id = product.djstripe_product.prices.first().id
 
         # extra kwargs should include Stripe customer id, which will be passed to checkout session for continuity
-        kwargs = build_stripe_checkout_session_kwargs(request, email, order_id, product)
+        kwargs = build_stripe_checkout_session_kwargs_v1(
+            request, email, order_id, price_id, product
+        )
         assert kwargs["customer"] == customer.id
         assert kwargs["client_reference_id"] == user.id
         assert kwargs.get("mode") == "subscription"
@@ -186,9 +198,12 @@ class TestShopServices(TestCase):
         customer.save()
         order_id = str(uuid4())
         product = Product.objects.filter(is_shippable=True).first()
+        price_id = product.djstripe_product.prices.first().id
 
         # extra kwargs should include Stripe customer id, which will be passed to checkout session for continuity
-        kwargs = build_stripe_checkout_session_kwargs(request, email, order_id, product)
+        kwargs = build_stripe_checkout_session_kwargs_v1(
+            request, email, order_id, price_id, product
+        )
         assert kwargs["customer"] == customer.id
         assert kwargs["client_reference_id"] == user.id
         assert kwargs.get("mode") == "payment"
@@ -228,9 +243,12 @@ class TestShopServices(TestCase):
         customer.save()
         order_id = str(uuid4())
         product = Product.objects.filter(is_subscription=True).first()
+        price_id = product.djstripe_product.prices.first().id
 
         # extra kwargs should include Stripe customer id, which will be passed to checkout session for continuity
-        kwargs = build_stripe_checkout_session_kwargs(request, email, order_id, product)
+        kwargs = build_stripe_checkout_session_kwargs_v1(
+            request, email, order_id, price_id, product
+        )
         assert kwargs["customer"] == customer.id
         assert kwargs["client_reference_id"] == user.id
         assert kwargs.get("mode") == "subscription"

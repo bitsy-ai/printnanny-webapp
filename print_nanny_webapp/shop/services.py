@@ -7,6 +7,7 @@ from djstripe.models.core import (
     Customer as DjStripeCustomer,
     PaymentIntent as DjStripePaymentIntent,
     Charge as DjStripeCharge,
+    Price as DjStripePrice,
 )
 from djstripe.models import Subscription as DjStripeSubscription
 from djstripe.settings import djstripe_settings
@@ -44,8 +45,8 @@ def sync_stripe_customer_by_id(stripe_customer_id: str) -> DjStripeCustomer:
     return customer
 
 
-def build_stripe_checkout_session_kwargs(
-    request: HttpRequest, email: str, order_id: str, product: Product
+def build_stripe_checkout_session_kwargs_v1(
+    request: HttpRequest, email: str, order_id: str, price_id: str, product: Product
 ) -> Dict[Any, Any]:
     """
     Looks up customer (by email) to associate Stripe Checkout Session with an existing customer
@@ -113,9 +114,6 @@ def build_stripe_checkout_session_kwargs(
                 extra_kwargs["customer_creation"] = "always"
     # end Stripe Customer kwargs
 
-    # begin Price, Line item, product kwargs
-    price_id = product.prices.filter(active=True).first().id
-
     if product.is_shippable:
         payment_kwargs = dict(
             payment_method_types=["card"],
@@ -172,11 +170,6 @@ def build_stripe_checkout_session_kwargs(
             line_items=[
                 {
                     "price": price_id,
-                    "adjustable_quantity": {
-                        "enabled": True,
-                        "minimum": 1,
-                        "maximum": 10,
-                    },
                     "quantity": 1,
                 }
             ],
@@ -197,7 +190,9 @@ def build_stripe_checkout_session_kwargs(
     return extra_kwargs
 
 
-def create_stripe_checkout_session(request: HttpRequest, product: Product, email: str):
+def create_stripe_checkout_session(
+    request: HttpRequest, product: Product, price_id: str, email: str
+):
     """
     Attempt to create a Stripe checkout session for product_name
 
@@ -209,8 +204,8 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
     order_id = uuid4()
 
     # try to get Stripe customer from Django user authentication, email lookup, or supply needed parameters to create new Stripe Customer
-    extra_kwargs = build_stripe_checkout_session_kwargs(
-        request, email, str(order_id), product
+    extra_kwargs = build_stripe_checkout_session_kwargs_v1(
+        request, email, str(order_id), price_id, product
     )
 
     return (
@@ -221,9 +216,9 @@ def create_stripe_checkout_session(request: HttpRequest, product: Product, email
     )
 
 
-def create_order(request: HttpRequest, product: Product, email: str):
+def create_order(request: HttpRequest, product: Product, price_id: str, email: str):
     checkout_session_res, order_id = create_stripe_checkout_session(
-        request, product, email
+        request, product, price_id, email
     )
     checkout_session_redirect = checkout_session_res.url
     checkout_session = DjStripeCheckoutSession.sync_from_stripe_data(

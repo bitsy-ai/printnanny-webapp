@@ -4,8 +4,12 @@
 #
 #    pip-compile --output-file=requirements/local.txt requirements/local.in
 #
+aiohttp==3.8.3
+    # via -r requirements/local.in
 aioredis==1.3.1
     # via channels-redis
+aiosignal==1.3.1
+    # via aiohttp
 anyio==3.5.0
     # via watchgod
 argon2-cffi==21.3.0
@@ -21,10 +25,12 @@ asgiref==3.5.0
     #   uvicorn
 async-timeout==4.0.2
     # via
+    #   aiohttp
     #   aioredis
     #   redis
 attrs==21.4.0
     # via
+    #   aiohttp
     #   automat
     #   jsonschema
     #   service-identity
@@ -50,7 +56,9 @@ channels==3.0.4
 channels-redis==3.4.0
     # via -r requirements/local.in
 charset-normalizer==2.0.12
-    # via requests
+    # via
+    #   aiohttp
+    #   requests
 click==8.0.4
     # via uvicorn
 constantly==15.1.0
@@ -188,6 +196,10 @@ ed25519==1.5
     # via nkeys
 flatbuffers==2.0
     # via -r requirements/local.in
+frozenlist==1.3.3
+    # via
+    #   aiohttp
+    #   aiosignal
 google-api-core[grpc]==2.7.1
     # via
     #   google-cloud-core
@@ -246,6 +258,7 @@ idna==3.3
     #   hyperlink
     #   requests
     #   twisted
+    #   yarl
 imageio==2.16.1
     # via
     #   -r requirements/local.in
@@ -266,6 +279,10 @@ monotonic==1.6
     # via posthog
 msgpack==1.0.3
     # via channels-redis
+multidict==6.0.4
+    # via
+    #   aiohttp
+    #   yarl
 mypy==0.942
     # via django-stubs
 mypy-extensions==0.4.3
@@ -462,6 +479,8 @@ wrapt==1.14.0
     # via
     #   deprecated
     #   honeycomb-beeline
+yarl==1.8.2
+    # via aiohttp
 zope-interface==5.4.0
     # via twisted
 

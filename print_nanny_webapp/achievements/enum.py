@@ -11,3 +11,5 @@ class AchievementType(models.TextChoices):
         "FoundingMember",
         "Supported PrintNanny by pre-ordering an annual subscription",
     )
+    CLOUD_STARTER = ("Cloud Starter", "Subscribed to PrintNanny Cloud Starter plan")
+    CLOUD_SCALER = ("Cloud Scaler", "Subscribed to PrintNanny Cloud Scaler plan")

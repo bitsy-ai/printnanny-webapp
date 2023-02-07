@@ -127,6 +127,7 @@
                   </div>
                 </div>
                 <a
+                  :id="`${plan.sku}-${showBilling}`"
                   :href="plan.href"
                   :class="[
                     plan.featured
@@ -266,6 +267,7 @@
                   </div>
                 </div>
                 <a
+                  :id="`${plan.sku}-${showBilling}`"
                   :href="plan.href"
                   :class="[
                     plan.featured
@@ -315,33 +317,36 @@
 
     <!-- Toggle -->
     <h2 class="sr-only">Plans</h2>
-    <div class="relative mt-12 flex justify-center sm:mt-16">
+    <div class="relative m-12 flex justify-center md:mb-0">
       <div class="flex rounded-lg bg-indigo-700 p-0.5">
         <button
+          id="pricing-monthly-toggle"
           type="button"
           :class="[
-            showBilling == 'yearly'
+            showBilling == 'monthly'
               ? 'text-indigo-700 bg-white border-indigo-700 hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
               : 'text-indigo-200 hover:bg-indigo-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700',
           ]"
           class="relative whitespace-nowrap rounded-md py-2 px-6 text-sm font-medium shadow-sm"
-          @click="() => (showBilling = 'yearly')"
-        >
-          Yearly billing
-        </button>
-        <button
-          :class="[
-            showBilling == 'monthly'
-              ? 'text-indigo-700 bg-white hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
-              : 'text-indigo-200 hover:bg-indigo-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700',
-          ]"
-          type="button"
-          class="relative ml-0.5 whitespace-nowrap rounded-md border border-transparent py-2 px-6 text-sm font-medium"
           @click="() => (showBilling = 'monthly')"
         >
           Monthly billing
         </button>
         <button
+          id="pricing-yearly-toggle"
+          :class="[
+            showBilling == 'yearly'
+              ? 'text-indigo-700 bg-white hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
+              : 'text-indigo-200 hover:bg-indigo-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700',
+          ]"
+          type="button"
+          class="relative ml-0.5 whitespace-nowrap rounded-md border border-transparent py-2 px-6 text-sm font-medium"
+          @click="() => (showBilling = 'yearly')"
+        >
+          Yearly billing
+        </button>
+        <button
+          id="pricing-invoice-toggle"
           :class="[
             showBilling == 'invoice'
               ? 'text-indigo-700 bg-white hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
@@ -357,14 +362,9 @@
     </div>
 
     <!-- Feature comparison (up to lg) -->
-    <section aria-labelledby="mobile-comparison-heading" class="lg:hidden">
-      <h1 class="text-4xl font-bold tracking-tight text-gray-800 sm:text-6xl">
-        <span class="block lg:inline">Money-back guarantee</span>
-        <span class="block lg:inline">no hidden fees</span>
-      </h1>
+    <section aria-labelledby="mobile-comparison-heading" class="lg:hidden mb-8">
       <h2 id="mobile-comparison-heading" class="sr-only">Feature comparison</h2>
-
-      <div class="mx-auto max-w-2xl space-y-16 py-16 px-6">
+      <div class="mx-auto max-w-2xl md:space-y-16 md:py-16 px-6">
         <div
           v-for="(plan, mobilePlanIndex) in simplePlans"
           :key="mobilePlanIndex"
@@ -595,74 +595,6 @@
                     />
                     <span class="sr-only">{{
                       item.tiers[mobilePlanIndex].value === true ? "Yes" : "No"
-                    }}</span>
-                  </dd>
-                </div>
-              </dl>
-            </div>
-
-            <!-- Fake card border -->
-            <div
-              aria-hidden="true"
-              class="pointer-events-none absolute inset-0 hidden sm:block"
-            >
-              <div
-                :class="[
-                  plan.featured
-                    ? 'ring-2 ring-indigo-600'
-                    : 'ring-1 ring-black ring-opacity-5',
-                  'absolute right-0 w-1/2 h-full rounded-lg',
-                ]"
-              />
-            </div>
-          </div>
-
-          <h4 class="mt-10 text-sm font-bold text-gray-900">Support</h4>
-
-          <div class="relative mt-6">
-            <!-- Fake card background -->
-            <div
-              aria-hidden="true"
-              class="pointer-events-none absolute inset-0 hidden sm:block"
-            >
-              <div
-                :class="[
-                  plan.featured ? 'shadow-md' : 'shadow',
-                  'absolute right-0 w-1/2 h-full bg-white rounded-lg',
-                ]"
-              />
-            </div>
-
-            <div
-              :class="[
-                plan.featured
-                  ? 'ring-2 ring-indigo-600 shadow-md'
-                  : 'ring-1 ring-black ring-opacity-5 shadow',
-                'relative py-3 px-4 bg-white rounded-lg sm:p-0 sm:bg-transparent sm:rounded-none sm:ring-0 sm:shadow-none',
-              ]"
-            >
-              <dl class="divide-y divide-gray-200">
-                <div
-                  v-for="perk in perks"
-                  :key="perk.title"
-                  class="flex justify-between py-3 sm:grid sm:grid-cols-2"
-                >
-                  <dt class="text-sm font-medium text-gray-600 sm:pr-4">
-                    {{ perk.title }}
-                  </dt>
-                  <dd class="text-center sm:px-4">
-                    <CheckIcon
-                      v-if="perk.tiers[mobilePlanIndex].value === true"
-                      class="mx-auto h-5 w-5 text-indigo-600"
-                      aria-hidden="true"
-                    />
-                    <XMarkIcon
-                      v-else
-                      class="mx-auto h-5 w-5 text-gray-400"
-                      aria-hidden="true"
-                    />
-                    <span class="sr-only">{{
-                      perk.tiers[mobilePlanIndex].value === true ? "Yes" : "No"
                     }}</span>
                   </dd>
                 </div>
@@ -1049,16 +981,25 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { CheckIcon, XMarkIcon } from "@heroicons/vue/24/solid";
+import { useShopStore } from "@/stores/shop";
 
 const showBilling = ref("yearly");
+const shop = useShopStore();
+
+onMounted(async () => {
+  await shop.fetchCloudPlans();
+});
 
 const plans = ref([
   {
-    href: "",
+    href: computed(
+      () => "/shop/checkout/cloud-starter-plan/" + showBilling.value
+    ),
     cta: "Try Starter Risk-Free",
     title: "Starter",
+    sku: "cloud-starter-plan",
     featured: false,
     description: "Perfect for hobbyists and makers.",
     priceMonthly: "9.99",
@@ -1073,7 +1014,10 @@ const plans = ref([
   {
     title: "Scale",
     cta: "Try Scale Risk-Free",
-    href: "",
+    sku: "cloud-scaler-plan",
+    href: computed(
+      () => "/shop/checkout/cloud-scaler-plan/" + showBilling.value
+    ),
     featured: computed(() => showBilling.value !== "invoice"),
     description: "The best tools to scale a 3D printing business.",
     priceMonthly: "19.99",
@@ -1338,7 +1282,7 @@ const enterprisePlus = ref([
   {
     title: "Multi-accounts",
     tiers: [
-      { title: "starter", value: "1 account user" },
+      { title: "starter", value: "1 account" },
       {
         title: "popular",
         featured: computed(() => showBilling.value != "invoice"),

@@ -78,7 +78,7 @@ const footerNavigation = {
 </script>
 <template>
   <footer
-    class="flex-auto bg-gray-900 justify-self-end"
+    class="flex bg-gray-900 justify-self-end"
     aria-labelledby="footer-heading"
   >
     <h2 id="footer-heading" class="sr-only">Footer</h2>
