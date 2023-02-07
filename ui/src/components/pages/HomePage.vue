@@ -8,34 +8,30 @@
           >
             <div class="lg:py-12">
               <h1
-                class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl"
+                class="col-span-3 tracking-tight font-extrabold text-white text-4xl xl:text-6xl"
               >
-                <span
-                  class="block pb-2 block bg-clip-text text-transparent rounded-md shadow bg-gradient-to-r from-indigo-400 to-violet-500 sm:pb-2"
+              <span
+                  class="block pb-2 block bg-clip-text rounded-md shadow bg-gradient-to-r text-white sm:pb-2"
                   >Stop Babysitting</span
                 >
                 <span
-                  class="pb-2 bg-clip-text text-transparent rounded-md shadow bg-gradient-to-r from-indigo-400 to-violet-500 sm:pb-2"
-                  >your 3D Printer</span
+                  class="pb-2 bg-clip-text  rounded-md shadow bg-gradient-to-r text-white sm:pb-2"
+                  >your 3D Print Farm</span
                 >
-                👀
+
               </h1>
+
               <p class="pt-6 max-w-prose mx-auto text-xl text-white">
-                Get an AI-powered personal assistant <br />to automate the
-                tedious parts of 3D printing.
+                AI-powered monitoring and automation for 3D printers.
               </p>
-              <div class="mt-10 sm:mt-12">
-                <WaitlistForm />
-              </div>
               <router-link
-                id="skip-the-waitlist"
-                :to="{ name: 'shop-founding-membership' }"
+                id="hero-pricing"
+                :to="{ name: 'pricing' }"
               >
                 <button
-                  class="transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r from-red-500 to-violet-600 text-white font-medium hover:from-red-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                  class="transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                 >
-                  Want to skip the waitlist?<br />
-                  Founding Members get early access.
+                  Get Started
                 </button>
               </router-link>
             </div>
@@ -304,13 +300,6 @@
             class="my-12 text-white text-3xl font-extrabold tracking-tight sm:text-4xl bg-indigo-500 w-full m-auto md:w-1/2 block hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
           >
             Join Discord
-          </a>
-          <a
-            href="https://printnanny.ai/docs/faq/founding-membership/"
-            target="_blank"
-            class="my-12 text-white text-3xl font-extrabold tracking-tight sm:text-4xl bg-indigo-500 w-full m-auto md:w-1/2 block hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
-          >
-            Founding Member FAQ
           </a>
         </div>
 

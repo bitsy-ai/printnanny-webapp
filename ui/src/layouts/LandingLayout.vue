@@ -49,7 +49,7 @@
                   <FlyoutMenu
                     id="shop-flyout"
                     :links="shopLinks"
-                    menu-text="Shop"
+                    menu-text="Pricing"
                   />
                 </div>
               </div>
@@ -111,9 +111,9 @@ import type { FlyoutMenuLink } from "@/types/links";
 
 const shopLinks = [
   {
-    name: "Founding Membership",
-    routerLink: { name: "shop-founding-membership" },
-    description: "Get early access to PrintNanny",
+    name: "PrintNanny Cloud",
+    routerLink: { name: "pricing" },
+    description: "Flexible plans with no hidden costs.",
   } as FlyoutMenuLink,
   {
     name: "PrintNanny SDWire",
@@ -149,13 +149,6 @@ const learnMoreLinks = [
     name: "Quick Start",
     description: "Setup PrintNanny OS in 15 minutes.",
     href: "https://printnanny.ai/docs/category/quick-start/",
-    blank: true,
-  } as FlyoutMenuLink,
-  {
-    name: "Founding Member FAQ",
-    description:
-      "Founding Members get unlimited access to PrintNanny at a flat rate.",
-    href: "https://printnanny.ai/docs/faq/founding-membership/",
     blank: true,
   } as FlyoutMenuLink,
   {

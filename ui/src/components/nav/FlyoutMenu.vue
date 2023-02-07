@@ -26,7 +26,7 @@
       leave-to-class="opacity-0 translate-y-1"
     >
       <PopoverPanel
-        class="absolute left-1/2 z-10 mt-3 w-screen max-w-xs -translate-x-1/2 transform px-2 sm:px-0"
+        class="absolute z-10 mt-3 w-screen max-w-xs -translate-x-1/3 transform px-2 sm:px-0"
       >
         <div
           class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5"
