@@ -208,10 +208,11 @@ ci-clean:
 	docker-compose -f test.yml rm
 
 ci-ui-test:
+	mkdir -p ui/dist
 	cd clients/typescript && npm install && npm run build
 	cd ui && npm install && npm run dev &
 
-ci-webapp: ci-clean
+ci-webapp: ci-clean ci-ui-test
 	make ci-up &
 	cd ui && npm install && npm run ci-webapp-wait
 	docker-compose -f test.yml restart nats
