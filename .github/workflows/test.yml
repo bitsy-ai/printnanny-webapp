@@ -117,6 +117,7 @@ jobs:
           sudo apt install microsoft-edge-stable
       - name: Webapp
         run: |
+          make ci-ui-test
           make ci-webapp
       - name: Cypres e2e
         run: |
