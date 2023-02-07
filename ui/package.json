@@ -73,6 +73,7 @@
     "vite": "^2.9.14",
     "vite-plugin-radar": "^0.5.0",
     "vitest": "^0.18.0",
-    "vue-tsc": "^0.38.4"
+    "vue-tsc": "^0.38.4",
+    "wait-on": "^7.0.1"
   }
 }

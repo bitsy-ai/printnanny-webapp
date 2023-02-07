@@ -207,11 +207,12 @@ ci-clean:
 	docker-compose -f test.yml stop
 	docker-compose -f test.yml rm
 
-ci-webapp: ci-clean
-	mkdir -p ui/dist
-	make ci-up &
+ci-ui-test:
 	cd clients/typescript && npm install && npm run build
 	cd ui && npm install && npm run dev &
+
+ci-webapp: ci-clean
+	make ci-up &
 	cd ui && npm run ci-webapp-wait
 	docker-compose -f test.yml restart nats
 	docker-compose -f test.yml run --rm django python manage.py initrobots --name=firehose
