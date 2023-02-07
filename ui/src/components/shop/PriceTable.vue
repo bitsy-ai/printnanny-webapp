@@ -320,30 +320,30 @@
     <div class="relative m-12 flex justify-center md:mb-0">
       <div class="flex rounded-lg bg-indigo-700 p-0.5">
         <button
-          id="pricing-yearly-toggle"
+          id="pricing-monthly-toggle"
           type="button"
           :class="[
-            showBilling == 'yearly'
+            showBilling == 'monthly'
               ? 'text-indigo-700 bg-white border-indigo-700 hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
               : 'text-indigo-200 hover:bg-indigo-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700',
           ]"
           class="relative whitespace-nowrap rounded-md py-2 px-6 text-sm font-medium shadow-sm"
-          @click="() => (showBilling = 'yearly')"
+          @click="() => (showBilling = 'monthly')"
         >
-          Yearly billing
+          Monthly billing
         </button>
         <button
-          id="pricing-monthly-toggle"
+          id="pricing-yearly-toggle"
           :class="[
-            showBilling == 'monthly'
+            showBilling == 'yearly'
               ? 'text-indigo-700 bg-white hover:bg-indigo-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700'
               : 'text-indigo-200 hover:bg-indigo-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-700',
           ]"
           type="button"
           class="relative ml-0.5 whitespace-nowrap rounded-md border border-transparent py-2 px-6 text-sm font-medium"
-          @click="() => (showBilling = 'monthly')"
+          @click="() => (showBilling = 'yearly')"
         >
-          Monthly billing
+          Yearly billing
         </button>
         <button
           id="pricing-invoice-toggle"

@@ -211,8 +211,8 @@ ci-webapp: ci-clean
 	mkdir -p ui/dist
 	make ci-up &
 	cd clients/typescript && npm install && npm run build
-	cd ui && npm install && npm run ci-test-build && ./node_modules/.bin/cypress info
-	cd ui && npm run ci-webapp-wait && npm run ci-collectstatic
+	cd ui && npm install && npm run dev &
+	cd ui && npm run ci-webapp-wait
 	docker-compose -f test.yml restart nats
 	docker-compose -f test.yml run --rm django python manage.py initrobots --name=firehose
 	docker-compose -f test.yml restart firehose
