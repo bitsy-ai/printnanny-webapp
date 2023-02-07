@@ -13,22 +13,23 @@ function handleApiError(e: Error | AxiosError) {
 
   if (axios.isAxiosError(e)) {
     const container = { message: "", error_uuid: "" };
+    let data = e.response?.data as any;
     if (
-      e.response?.data.non_field_errors &&
-      e.response?.data.non_field_errors.length > 0
+      data.non_field_errors &&
+      data?.non_field_errors.length > 0
     ) {
-      message = e.response.data.non_field_errors.join("\n");
-      container["message"] = e.response.data.non_field_errors.join("\n");
-    } else if (e.response?.data.detail) {
-      container["message"] = e.response.data.detail;
-    } else if (e.response?.data.error) {
-      container["message"] = e.response.data.error;
+      message = data.non_field_errors.join("\n");
+      container["message"] = data.non_field_errors.join("\n");
+    } else if (data.detail) {
+      container["message"] = data.detail;
+    } else if (data.error) {
+      container["message"] = data.error;
     } else {
-      container["message"] = e.response?.data;
+      container["message"] = data;
     }
 
-    if (e.response?.data?.error_uuid) {
-      container["error_uuid"] = e.response?.data?.error_uuid;
+    if (data.error_uuid) {
+      container["error_uuid"] = data.error_uuid;
     }
     message = JSON.stringify(container, null, 2);
   }
