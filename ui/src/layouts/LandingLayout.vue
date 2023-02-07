@@ -132,7 +132,7 @@ const productLinks = [
   {
     name: "PrintNanny Cloud",
     id: "nav-cloud-pricing-flyout",
-    routerLink: { name: "pricing" },
+    href: "/pricing",
     description: "Flexible plans with no hidden costs.",
     cta: "Get started",
     icon: CloudIcon,
@@ -140,7 +140,7 @@ const productLinks = [
   {
     name: "PrintNanny SDWire",
     id: "nav-sdwire-flyout",
-    routerLink: { name: "shop-sdwire" },
+    href: "/shop/sdwire",
     description:
       "10x faster gcode transfer to SD cards. \n Compatible with OctoPrint-SDWire plugin.",
     cta: "Learn more",
@@ -149,7 +149,7 @@ const productLinks = [
   {
     name: "PrintNanny OS",
     id: "nav-os-flyout",
-    routerLink: { name: "shop-sdwire" },
+    href: "https://printnanny.ai/docs/category/release-history/",
     description: "Quick install for Raspberry Pi.",
     cta: "Release history",
     icon: CpuChipIcon,
