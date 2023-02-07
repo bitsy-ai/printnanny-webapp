@@ -18,7 +18,7 @@
             >
               <div class="flex items-center flex-1">
                 <div
-                  class="grid grid-cols-3 items-center justify-items-center w-full md:w-auto"
+                  class="grid grid-cols-2 items-center justify-items-center w-full md:w-auto"
                 >
                   <a href="/">
                     <span class="sr-only">Workflow</span>
