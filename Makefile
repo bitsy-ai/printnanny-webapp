@@ -208,10 +208,13 @@ ci-clean:
 	docker-compose -f test.yml rm
 
 ci-ui-test:
+	mkdir -p ui/dist
 	cd clients/typescript && npm install && npm run build
-	cd ui && npm install && npm run dev &
+	cd ui && npm install && npm run dev-build
+	cd ui && npm run dev &
 
 ci-webapp: ci-clean
+	mkdir -p ui/dist
 	make ci-up &
 	cd ui && npm install && npm run ci-webapp-wait
 	docker-compose -f test.yml restart nats
@@ -222,7 +225,7 @@ ci-webapp: ci-clean
 ci-up:
 	DJANGO_SUPERUSER_PASSWORD=$(DJANGO_SUPERUSER_PASSWORD) \
 	DJANGO_SUPERUSER_EMAIL=$(DJANGO_SUPERUSER_EMAIL) \
-	docker-compose -f test.yml up ---detach --wait
+	docker-compose -f test.yml up
 
 ci-pytest:
 	docker-compose -f test.yml run --rm django pytest
