@@ -13,11 +13,13 @@
         <Popover as="header" class="relative">
           <div class="bg-gray-900 py-6">
             <nav
-              class="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6"
+              class="relative w-full flex items-center justify-items-center px-4 sm:px-6 md:px-16 lg:px-24"
               aria-label="Global"
             >
               <div class="flex items-center flex-1">
-                <div class="flex items-center justify-between w-full md:w-auto">
+                <div
+                  class="grid grid-cols-3 items-center justify-items-center w-full md:w-auto"
+                >
                   <a href="/">
                     <span class="sr-only">Workflow</span>
                     <img
@@ -26,7 +28,9 @@
                       alt="PrintNanny"
                     />
                   </a>
-                  <div class="-mr-2 flex items-center md:hidden">
+                  <div
+                    class="-mr-2 flex md:hidden align-self-end justify-self-end"
+                  >
                     <PopoverButton
                       class="bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white"
                     >
@@ -36,20 +40,21 @@
                   </div>
                 </div>
                 <div class="hidden space-x-8 md:flex md:ml-10">
-                  <FlyoutMenu
+                  <FullWidthFlyoutMenu
+                    id="products-flyout"
+                    :links="productLinks"
+                    :footer="productFooterLinks"
+                    menu-text="Products"
+                  />
+                  <SimpleFlyoutMenu
                     id="learn-more-flyout"
                     :links="learnMoreLinks"
                     menu-text="Learn More"
                   />
-                  <FlyoutMenu
+                  <SimpleFlyoutMenu
                     id="community-flyout"
                     :links="communityLinks"
                     menu-text="Join the Community"
-                  />
-                  <FlyoutMenu
-                    id="shop-flyout"
-                    :links="shopLinks"
-                    menu-text="Shop"
                   />
                 </div>
               </div>
@@ -57,7 +62,8 @@
             </nav>
           </div>
           <MobileLoginNav
-            :shop-links="shopLinks"
+            :product-links="productLinks"
+            :product-footer-links="productFooterLinks"
             :community-links="communityLinks"
             :learn-more-links="learnMoreLinks"
           />
@@ -99,28 +105,74 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Bars3Icon } from "@heroicons/vue/24/outline";
+import {
+  Bars3Icon,
+  CloudIcon,
+  CpuChipIcon,
+  BoltIcon,
+  FaceSmileIcon,
+  WrenchScrewdriverIcon,
+  AcademicCapIcon,
+} from "@heroicons/vue/24/outline";
 import LoginNav from "@/components/nav/LoginNav.vue";
 import { Popover, PopoverButton } from "@headlessui/vue";
-import FlyoutMenu from "@/components/nav/FlyoutMenu.vue";
+import SimpleFlyoutMenu from "@/components/nav/SimpleFlyoutMenu.vue";
+import FullWidthFlyoutMenu from "@/components/nav/FullWidthFlyoutMenu.vue";
 import StickyAlerts from "../components/alerts/StickyAlerts.vue";
 import FooterNav from "@/components/nav/FooterNav.vue";
 import MobileLoginNav from "@/components/nav/MobileLoginNav.vue";
 
-import type { FlyoutMenuLink } from "@/types/links";
+import type {
+  SimpleFlyoutMenuLink,
+  FullWidthFlyoutMenuLink,
+  FullWidthFlyoutMenuFooterLink,
+} from "@/types/links";
 
-const shopLinks = [
+const productLinks = [
   {
-    name: "Founding Membership",
-    routerLink: { name: "shop-founding-membership" },
-    description: "Get early access to PrintNanny",
-  } as FlyoutMenuLink,
+    name: "PrintNanny Cloud",
+    id: "nav-cloud-pricing-flyout",
+    routerLink: { name: "pricing" },
+    description: "Flexible plans with no hidden costs.",
+    cta: "Get started",
+    icon: CloudIcon,
+  } as FullWidthFlyoutMenuLink,
   {
     name: "PrintNanny SDWire",
+    id: "nav-sdwire-flyout",
     routerLink: { name: "shop-sdwire" },
-    description: "Compatible with OctoPrint-SDWire",
-  } as FlyoutMenuLink,
+    description:
+      "10x faster gcode transfer to SD cards. \n Compatible with OctoPrint-SDWire plugin.",
+    cta: "Learn more",
+    icon: BoltIcon,
+  } as FullWidthFlyoutMenuLink,
+  {
+    name: "PrintNanny OS",
+    id: "nav-os-flyout",
+    routerLink: { name: "shop-sdwire" },
+    description: "Quick install for Raspberry Pi.",
+    cta: "Release history",
+    icon: CpuChipIcon,
+  } as FullWidthFlyoutMenuLink,
 ];
+
+const productFooterLinks = [
+  {
+    name: "Flexible Plans for Hobbyists",
+    href: "/pricing",
+    icon: FaceSmileIcon,
+  },
+  {
+    name: "Custom Software for OEM & Enterprise",
+    href: "/pricing",
+    icon: WrenchScrewdriverIcon,
+  },
+  {
+    name: "Single-sign On for Education",
+    href: "/pricing",
+    icon: AcademicCapIcon,
+  },
+] as Array<FullWidthFlyoutMenuFooterLink>;
 
 const communityLinks = [
   {
@@ -129,7 +181,7 @@ const communityLinks = [
       "Share your latest project. Hang out with friendly makers from around the world.",
     href: "https://discord.gg/sf23bk2hPr",
     blank: true,
-  } as FlyoutMenuLink,
+  } as SimpleFlyoutMenuLink,
   {
     name: "Star the Github project",
     description: "Show your support. 🌟",
@@ -150,33 +202,26 @@ const learnMoreLinks = [
     description: "Setup PrintNanny OS in 15 minutes.",
     href: "https://printnanny.ai/docs/category/quick-start/",
     blank: true,
-  } as FlyoutMenuLink,
-  {
-    name: "Founding Member FAQ",
-    description:
-      "Founding Members get unlimited access to PrintNanny at a flat rate.",
-    href: "https://printnanny.ai/docs/faq/founding-membership/",
-    blank: true,
-  } as FlyoutMenuLink,
+  } as SimpleFlyoutMenuLink,
   {
     name: "How do I update PrintNanny?",
     description:
       "No-hassle updates with a web UI. Automated backup & recovery mode.",
     href: "https://printnanny.ai/docs/update-printnanny-os/",
     blank: true,
-  } as FlyoutMenuLink,
+  } as SimpleFlyoutMenuLink,
   {
     name: "Roadmap & Milestones",
     description: "See what's in store for upcoming PrintNanny OS releases",
     href: "https://github.com/bitsy-ai/printnanny-os/milestones",
     blank: true,
-  } as FlyoutMenuLink,
+  } as SimpleFlyoutMenuLink,
 
   {
     name: "API Documentation",
     description:
       "Customize your workflow. Clients available in Typescript, Python, and Rust.",
     href: "/api/schema/redoc/",
-  } as FlyoutMenuLink,
+  } as SimpleFlyoutMenuLink,
 ];
 </script>

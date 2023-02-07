@@ -9,10 +9,10 @@
   >
     <PopoverPanel
       focus
-      class="absolute top-0 inset-x-0 p-2 transition transform origin-top md:hidden"
+      class="z-20 absolute top-0 inset-x-0 transition transform origin-top md:hidden"
     >
       <div
-        class="rounded-lg shadow-md bg-gradient-to-r from-gray-800 to-gray-900 ring-1 ring-black ring-opacity-5 overflow-hidden"
+        class="h-screen p-4 rounded-lg shadow-md bg-gray-900 ring-1 ring-black ring-opacity-5 overflow-hidden"
       >
         <div class="px-5 pt-4 flex items-center justify-between">
           <img
@@ -30,20 +30,22 @@
           </div>
         </div>
         <div class="pt-5 pb-6">
-          <span class="text-white font-medium text-base px-4"
-            >Tap to expand sections 👇</span
-          >
-          <FlyoutMenu
+          <FullWidthFlyoutMenu
+            id="products-flyout"
+            :links="productLinks"
+            :footer="productFooterLinks"
+            menu-text="Products"
+          />
+          <SimpleFlyoutMenu
             id="learn-more-flyout"
             :links="learnMoreLinks"
             menu-text="Learn More"
           />
-          <FlyoutMenu
+          <SimpleFlyoutMenu
             id="community-flyout"
             :links="communityLinks"
             menu-text="Join the Community"
           />
-          <FlyoutMenu id="shop-flyout" :links="shopLinks" menu-text="Shop" />
           <div class="mt-6 px-5">
             <p
               class="text-center text-base font-medium md:text-gray-500 text-white"
@@ -63,24 +65,32 @@
 </template>
 
 <script setup lang="ts">
-import type { FlyoutMenuLink } from "@/types/links";
+import type {
+  SimpleFlyoutMenuLink,
+  FullWidthFlyoutMenuLink,
+  FullWidthFlyoutMenuFooterLink,
+} from "@/types/links";
 import type { PropType } from "vue";
 import { PopoverButton, PopoverPanel } from "@headlessui/vue";
 import { XMarkIcon } from "@heroicons/vue/24/outline";
-
-import FlyoutMenu from "@/components/nav/FlyoutMenu.vue";
+import FullWidthFlyoutMenu from "@/components/nav/FullWidthFlyoutMenu.vue";
+import SimpleFlyoutMenu from "@/components/nav/SimpleFlyoutMenu.vue";
 
 defineProps({
-  shopLinks: {
-    type: Object as PropType<Array<FlyoutMenuLink>>,
+  productLinks: {
+    type: Object as PropType<Array<FullWidthFlyoutMenuLink>>,
+    required: true,
+  },
+  productFooterLinks: {
+    type: Object as PropType<Array<FullWidthFlyoutMenuFooterLink>>,
     required: true,
   },
   communityLinks: {
-    type: Object as PropType<Array<FlyoutMenuLink>>,
+    type: Object as PropType<Array<SimpleFlyoutMenuLink>>,
     required: true,
   },
   learnMoreLinks: {
-    type: Object as PropType<Array<FlyoutMenuLink>>,
+    type: Object as PropType<Array<SimpleFlyoutMenuLink>>,
     required: true,
   },
 });

@@ -13,11 +13,8 @@ function handleApiError(e: Error | AxiosError) {
 
   if (axios.isAxiosError(e)) {
     const container = { message: "", error_uuid: "" };
-    let data = e.response?.data as any;
-    if (
-      data.non_field_errors &&
-      data?.non_field_errors.length > 0
-    ) {
+    const data = e.response?.data as any;
+    if (data.non_field_errors && data?.non_field_errors.length > 0) {
       message = data.non_field_errors.join("\n");
       container["message"] = data.non_field_errors.join("\n");
     } else if (data.detail) {
