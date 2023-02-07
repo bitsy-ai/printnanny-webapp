@@ -115,10 +115,12 @@ jobs:
           sudo rm microsoft.gpg
           sudo apt update
           sudo apt install microsoft-edge-stable
-      - name: Cypres e2e
+      - name: Webapp
         run: |
           make ci-ui-test
           make ci-webapp
+      - name: Cypres e2e
+        run: |
           cd ui && npm run test:e2e:ci -- --browser ${{ matrix.browser }}
   pytest:
     needs: docker-image
