@@ -37,7 +37,6 @@ services:
       - local_file_data:/tmp:z
       # prevent host machine .venv and node_modules from being included in container
       # idea from: https://stackoverflow.com/questions/29181032/add-a-volume-to-docker-but-exclude-a-sub-folder
-      - /app/node_modules
       - /app/.venv
       - local_nsc_data:/var/lib/nats/nsc:z
     environment:

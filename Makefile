@@ -214,6 +214,7 @@ ci-ui-test:
 	cd ui && npm run dev &
 
 ci-webapp: ci-clean
+	mkdir -p ui/dist
 	make ci-up &
 	cd ui && npm install && npm run ci-webapp-wait
 	docker-compose -f test.yml restart nats
