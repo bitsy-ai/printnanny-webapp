@@ -168,7 +168,7 @@ const productFooterLinks = [
     icon: WrenchScrewdriverIcon,
   },
   {
-    name: "Single-sign On for Education",
+    name: "K-12 & Higher Education",
     href: "/pricing",
     icon: AcademicCapIcon,
   },
