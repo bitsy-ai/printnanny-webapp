@@ -42,7 +42,7 @@
 			"is_subscription": true,
 			"stripe_price_lookup_key": "starter",
 			"stripe_product_id": "prod_NITqAttqXx5JjJ",
-			"djstripe_product": 4
+			"djstripe_product": 3
 		}
 	},
 	{
