@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**products** | **list[str]** |  | 
+**items** | [**list[OrderItem]**](OrderItem.md) |  | 
 **email** | **str** |  | 
 **stripe_checkout_redirect_url** | **str** |  | [readonly] 
 **stripe_checkout_session_id** | **str** |  | [readonly] 

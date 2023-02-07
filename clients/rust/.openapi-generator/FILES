@@ -71,6 +71,8 @@ docs/OctoprintApi.md
 docs/Order.md
 docs/OrderCheckout.md
 docs/OrderCheckoutRequest.md
+docs/OrderItem.md
+docs/OrderItemRequest.md
 docs/OrderStatus.md
 docs/OrderStatusType.md
 docs/PaginatedAchievementList.md
@@ -258,6 +260,8 @@ src/models/octo_printer_profile_request.rs
 src/models/order.rs
 src/models/order_checkout.rs
 src/models/order_checkout_request.rs
+src/models/order_item.rs
+src/models/order_item_request.rs
 src/models/order_status.rs
 src/models/order_status_type.rs
 src/models/paginated_achievement_list.rs

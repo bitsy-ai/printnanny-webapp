@@ -72,6 +72,8 @@ docs/OctoprintApi.md
 docs/Order.md
 docs/OrderCheckout.md
 docs/OrderCheckoutRequest.md
+docs/OrderItem.md
+docs/OrderItemRequest.md
 docs/OrderStatus.md
 docs/OrderStatusType.md
 docs/PaginatedAchievementList.md
@@ -261,6 +263,8 @@ printnanny_api_client/models/octo_printer_profile_request.py
 printnanny_api_client/models/order.py
 printnanny_api_client/models/order_checkout.py
 printnanny_api_client/models/order_checkout_request.py
+printnanny_api_client/models/order_item.py
+printnanny_api_client/models/order_item_request.py
 printnanny_api_client/models/order_status.py
 printnanny_api_client/models/order_status_type.py
 printnanny_api_client/models/paginated_achievement_list.py
@@ -440,6 +444,8 @@ test/test_octoprint_api.py
 test/test_order.py
 test/test_order_checkout.py
 test/test_order_checkout_request.py
+test/test_order_item.py
+test/test_order_item_request.py
 test/test_order_status.py
 test/test_order_status_type.py
 test/test_paginated_achievement_list.py

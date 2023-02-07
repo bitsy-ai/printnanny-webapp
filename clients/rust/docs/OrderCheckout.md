@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**products** | **Vec<String>** |  | 
+**items** | [**Vec<crate::models::OrderItem>**](OrderItem.md) |  | 
 **email** | **String** |  | 
 **stripe_checkout_redirect_url** | **String** |  | [readonly]
 **stripe_checkout_session_id** | **String** |  | [readonly]
