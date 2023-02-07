@@ -1290,7 +1290,7 @@ const enterprisePlus = ref([
       {
         title: "popular",
         featured: computed(() => showBilling.value != "invoice"),
-        value: "Up to 10 accounts",
+        value: "1 account",
       },
       {
         title: "enterprise",
