@@ -43,6 +43,15 @@ describe("Checkout v2, Cloud starter Monthly", () => {
           phoneNumber,
           price,
         };
+        cy.on("uncaught:exception", (err) => {
+          if (
+            err.message.includes(
+              "paymentRequest Element didn't mount normally"
+            )
+          ) {
+            return false;
+          }
+        });
         cy.origin(
           "https://checkout.stripe.com",
           { args: sentArgs },
@@ -163,6 +172,15 @@ describe("Checkout v2, Cloud starter Yearly", () => {
           phoneNumber,
           price,
         };
+        cy.on("uncaught:exception", (err) => {
+          if (
+            err.message.includes(
+              "paymentRequest Element didn't mount normally"
+            )
+          ) {
+            return false;
+          }
+        });
         cy.origin(
           "https://checkout.stripe.com",
           { args: sentArgs },
