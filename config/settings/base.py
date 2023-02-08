@@ -308,15 +308,6 @@ INSTALLED_APPS += ["anymail"]  # noqa F405
 # https://anymail.readthedocs.io/en/stable/esps/mailgun/
 EMAIL_HOST = env("EMAIL_HOST", default="mailhog")
 EMAIL_PORT = 1025
-ANYMAIL = {
-    "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
-    "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
-    "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
-    "MAILGUN_WEBHOOK_SIGNING_KEY": env("MAILGUN_WEBHOOK_SIGNING_KEY"),
-    # TODO: Basic auth headers used with PSK are getting stripped at L7 or L4 LB
-    # since webhook requests are already signed, we can disable basic auth - but it'd be good to figure out what's stripping this header
-    # "WEBHOOK_SECRET": env("ANYMAIL_WEBHOOK_SECRET", default="debug:debug"),
-}
 
 # Discord
 # ------------------------------------------------------------------------------
@@ -618,24 +609,17 @@ STRIPE_LIVE_PUBLIC_KEY = env("STRIPE_LIVE_PUBLIC_KEY", default="pk_live_x")
 STRIPE_LIVE_SECRET_KEY = env("STRIPE_LIVE_SECRET_KEY", default="sk_live_x")
 DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
 
-STRIPE_PORTAL_URL = env("STRIPE_PORTAL_URL", default="")
-
-STRIPE_STARTER_PLAN_NAME = env("STRIPE_STARTER_PLAN_NAME", default="Cloud Starter")
-STRIPE_STARTER_MONTHLY_PLAN_ID = env(
-    "STRIPE_STARTER_MONTHLY_PLAN_ID", default="starter_monthly"
-)
-STRIPE_STARTER_YEARLY_PLAN_ID = env(
-    "STRIPE_STARTER_YEARLY_PLAN_ID", default="starter_yearly"
+STRIPE_PORTAL_URL = env(
+    "STRIPE_PORTAL_URL",
+    default="https://billing.stripe.com/p/login/test_aEU02ufgd2l26TSbII",
 )
 
-STRIPE_SCALER_PLAN_NAME = env("STRIPE_SCALER_PLAN_NAME", default="Cloud Scaler")
-STRIPE_SCALER_MONTHLY_PLAN_ID = env(
-    "STRIPE_SCALER_MONTHLY_PLAN_ID", default="scaler_monthly"
+STRIPE_STARTER_PRODUCT_ID = env(
+    "STRIPE_STARTER_PRODUCT_ID", default="prod_NITqAttqXx5JjJ"
 )
-STRIPE_SCALER_YEARLY_PLAN_ID = env(
-    "STRIPE_SCALER_YEARLY_PLAN_ID", default="scaler_yearly"
+STRIPE_SCALER_PRODUCT_ID = env(
+    "STRIPE_SCALER_PRODUCT_ID", default="prod_NIXYlyaLbcpYxB"
 )
-
 
 FREE_BETA_TESTER_IDS = range(0, 102)
 PAID_BETA_LAUNCH_TIMESTAMP = 1628528400  # 10 AM PDT 2021-08-09

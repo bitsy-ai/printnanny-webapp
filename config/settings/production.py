@@ -20,6 +20,15 @@ ALLOWED_HOSTS = env.list(
 
 # Anymail
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+ANYMAIL = {
+    "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
+    "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
+    "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
+    "MAILGUN_WEBHOOK_SIGNING_KEY": env("MAILGUN_WEBHOOK_SIGNING_KEY"),
+    # TODO: Basic auth headers used with PSK are getting stripped at L7 or L4 LB
+    # since webhook requests are already signed, we can disable basic auth - but it'd be good to figure out what's stripping this header
+    # "WEBHOOK_SECRET": env("ANYMAIL_WEBHOOK_SECRET", default="debug:debug"),
+}
 
 
 # posthog
@@ -232,6 +241,17 @@ DEBUG = False
 # dj-stripe
 # ------------------------------------------------------------------------------
 STRIPE_LIVE_MODE = True
+STRIPE_STARTER_PRODUCT_ID = env(
+    "STRIPE_STARTER_PRODUCT_ID", default="prod_NJKFEljTzEuDff"
+)
+STRIPE_SCALER_PRODUCT_ID = env(
+    "STRIPE_SCALER_PRODUCT_ID", default="prod_NJKFYsIwRIZwDb"
+)
+STRIPE_PORTAL_URL = env(
+    "STRIPE_PORTAL_URL",
+    default="https://billing.stripe.com/p/login/00g4gC9wu9fu9O07ss",
+)
+
 
 # CORS
 # see also: corsheaders.middleware.CorsMiddleware
