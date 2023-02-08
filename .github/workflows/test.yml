@@ -87,7 +87,7 @@ jobs:
       PRINTNANNY_WEBAPP_TAG: sha-${{ github.sha }}
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         browser:
           # Firefox doesn't support an equivalent of Chrome's --disable-web-security
