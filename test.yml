@@ -43,15 +43,11 @@ services:
       DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
       DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
       DJANGO_SETTINGS_MODULE: config.settings.test
-      MAILGUN_DOMAIN: ${MAILGUN_DOMAIN}
-      MAILGUN_API_KEY: ${MAILGUN_API_KEY}
       NKEYS_PATH: /var/lib/nats/nsc/keys
       NSC_HOME: /var/lib/nats/nsc
       NSC_STORE: /var/lib/nats/nsc/stores
       STRIPE_TEST_PUBLIC_KEY: $STRIPE_TEST_PUBLIC_KEY}
       STRIPE_TEST_SECRET_KEY: ${STRIPE_TEST_SECRET_KEY}
-      STRIPE_PORTAL_URL: ${STRIPE_PORTAL_URL}
-      MAILGUN_WEBHOOK_SIGNING_KEY: ${MAILGUN_WEBHOOK_SIGNING_KEY}
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
@@ -80,16 +76,12 @@ services:
     environment:
       DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
       DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
-      MAILGUN_DOMAIN: ${MAILGUN_DOMAIN}
-      MAILGUN_API_KEY: ${MAILGUN_API_KEY}
       NKEYS_PATH: /var/lib/nats/nsc/keys
       NSC_HOME: /var/lib/nats/nsc
       NSC_STORE: /var/lib/nats/nsc/stores
       DJANGO_SETTINGS_MODULE: config.settings.test
       STRIPE_TEST_PUBLIC_KEY: ${STRIPE_TEST_PUBLIC_KEY}
       STRIPE_TEST_SECRET_KEY: ${STRIPE_TEST_SECRET_KEY}
-      STRIPE_PORTAL_URL: ${STRIPE_PORTAL_URL}
-      MAILGUN_WEBHOOK_SIGNING_KEY: ${MAILGUN_WEBHOOK_SIGNING_KEY}
 
     env_file:
       - ./.envs/.local/.django
