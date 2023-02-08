@@ -38,10 +38,7 @@ def check_achievements(user):
                         user,
                     )
 
-            elif (
-                subscription.plan.id == settings.STRIPE_STARTER_MONTHLY_PLAN_ID
-                or subscription.plan.id == settings.STRIPE_STARTER_YEARLY_PLAN_ID
-            ):
+            elif subscription.plan.product.id == settings.STRIPE_STARTER_PRODUCT_ID:
                 obj, created = Achievement.objects.get_or_create(
                     user=user, type=AchievementType.CLOUD_STARTER
                 )
@@ -51,10 +48,7 @@ def check_achievements(user):
                         obj,
                         user,
                     )
-            elif (
-                subscription.plan.id == settings.STRIPE_SCALER_MONTHLY_PLAN_ID
-                or subscription.plan.id == settings.STRIPE_SCALER_YEARLY_PLAN_ID
-            ):
+            elif subscription.plan.product.id == settings.STRIPE_SCALER_PRODUCT_ID:
                 obj, created = Achievement.objects.get_or_create(
                     user=user, type=AchievementType.CLOUD_SCALER
                 )

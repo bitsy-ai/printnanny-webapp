@@ -46,8 +46,10 @@ class ProductsViewSet(GenericViewSet, ListModelMixin):
     @action(methods=["get"], detail=False, url_path="cloud-plans")
     def cloud_plans(self, request, pi_id=None):
         queryset = Product.objects.filter(
-            Q(name=settings.STRIPE_STARTER_PLAN_NAME)
-            | Q(name=settings.STRIPE_SCALER_PLAN_NAME)
+            stripe_product_id__in=[
+                settings.STRIPE_STARTER_PRODUCT_ID,
+                settings.STRIPE_SCALER_PRODUCT_ID,
+            ]
         ).all()
 
         page = self.paginate_queryset(queryset)
