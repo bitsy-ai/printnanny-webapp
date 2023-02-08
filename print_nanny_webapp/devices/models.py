@@ -172,7 +172,7 @@ class Pi(SafeDeleteModel):
         result = self.nats_apps.first()
         # if no active nats app is associated with this Pi, create one
         if result is None:
-            result = PiNatsApp.objects.create(pi=self)
+            result = PiNatsApp.objects.create_nsc(pi=self)
         return result
 
     @property

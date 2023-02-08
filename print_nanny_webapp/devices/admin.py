@@ -1,5 +1,5 @@
 from django.contrib import admin
-from print_nanny_webapp.devices.models import Pi, WebrtcStream
+from print_nanny_webapp.devices.models import Pi, WebrtcStream, PiNatsApp
 
 
 @admin.register(Pi)
@@ -22,3 +22,9 @@ class WebrtcStreamAdmin(admin.ModelAdmin):
     @admin.display(ordering="pi__hostname", description="Pi Hostname")
     def pi_hostname(self, obj):
         return obj.pi.hostname
+
+
+@admin.register(PiNatsApp)
+class PiNatsAppAdmin(admin.ModelAdmin):
+    list_display = ("pi", "app_name", "json", "bearer")
+    model = PiNatsApp
