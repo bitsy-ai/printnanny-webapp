@@ -232,6 +232,12 @@ DEBUG = False
 # dj-stripe
 # ------------------------------------------------------------------------------
 STRIPE_LIVE_MODE = True
+STRIPE_STARTER_PRODUCT_ID = env(
+    "STRIPE_STARTER_PRODUCT_ID", default="prod_NJKFEljTzEuDff"
+)
+STRIPE_SCALER_PRODUCT_ID = env(
+    "STRIPE_SCALER_PRODUCT_ID", default="prod_NJKFYsIwRIZwDb"
+)
 
 # CORS
 # see also: corsheaders.middleware.CorsMiddleware
