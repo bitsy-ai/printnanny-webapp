@@ -38,7 +38,7 @@ spec:
 
             # Replace DB_PORT with the port the proxy should listen on
             # Defaults: MySQL: 3306, Postgres: 5432, SQLServer: 1433
-            - "-instances=print-nanny:us-central1:CLOUD_SQL_POSTGRES_INSTANCE=tcp:5432"
+            - "-instances=print-nanny:us-central1:print-nanny=tcp:5432"
           securityContext:
             # The default Cloud SQL proxy image runs as the
             # "nonroot" user and group (uid: 65532) by default.
