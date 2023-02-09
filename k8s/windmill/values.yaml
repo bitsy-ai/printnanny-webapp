@@ -9,8 +9,6 @@ windmill:
   workerReplicas: 1
   # -- replicas for the lsp containers used by the frontend
   lspReplicas: 1
-  # -- Postgres URI, pods will crashloop if database is unreachable, sets DATABASE_URL environment variable in frontend and worker container
-  databaseUrl: postgres://postgres:changeme@postgres/windmill?sslmode=disable
   # -- domain as shown in browser, change to https etc based on your endpoint/ingress configuration, sets BASE_URL environment variable in frontend and worker container
   baseUrl: https://flow.printnanny.ai
   # -- used internally by the app, should match the service for the frontend deployment, sets BASE_INTERNAL_URL environment variable in frontend and worker container
