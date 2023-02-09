@@ -1,8 +1,8 @@
 cloudsqlproxy:
-  instance: print-nanny
+  instance: postgres14
   region: us-central1
-  project: print-nanny
-  serviceAccount: cloudsql-client
+  project: project-name
+  serviceAccount: service-account-name
 
 postgres:
   # -- enabled included Postgres container for demo purposes only

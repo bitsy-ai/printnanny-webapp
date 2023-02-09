@@ -557,7 +557,7 @@ dev-config: $(TMPDIR)
 		--port=8000
 
 windmill-install:
-	helm install printnanny-windmill k8s/windmill/windmill-helm-charts/ \
+	helm install printnanny-windmill k8s/windmill/windmill-helm-charts/charts/windmill \
 		-f k8s/windmill/values.yaml \
 		--namespace=live \
 		--create-namespace \

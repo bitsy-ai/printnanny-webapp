@@ -1,3 +1,9 @@
+cloudsqlproxy:
+  instance: postgres14
+  region: us-central1
+  project: print-nanny
+  serviceAccount: cloudsql-client
+
 postgres:
   # -- disable demo postgres deployment
   enabled: disabled
