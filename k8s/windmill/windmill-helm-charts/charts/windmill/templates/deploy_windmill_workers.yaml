@@ -1,0 +1,136 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: windmill-workers
+spec:
+  replicas: {{ .Values.windmill.workerReplicas }}
+  strategy: 
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: windmill-worker
+  template:
+    metadata:
+      labels: 
+        app: windmill-worker
+        container: windmill-worker
+    spec:
+      containers:
+      - name: windmill-worker
+       {{ if  not .Values.windmill.disableNsJail }}
+       #because nsjail requires privileged access
+        securityContext:
+          privileged: true
+        {{end}}
+        {{ if .Values.enterprise.enabled }}
+        image: ghcr.io/windmill-labs/windmill-ee
+        {{ else }}
+        image: ghcr.io/windmill-labs/windmill:main
+        {{ end }}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        - containerPort: 8001
+        env:
+        - name : "METRICS_ADDR"
+          value: "true"
+        - name: "DATABASE_URL"
+          value: "{{ .Values.windmill.databaseUrl }}"
+        - name: "BASE_URL"
+          value: "{{ .Values.windmill.baseUrl }}"
+        - name: "BASE_INTERNAL_URL"
+          value: "{{ .Values.windmill.baseInternalUrl }}"
+        - name: "RUST_LOG"
+          value: "{{ .Values.windmill.rustLog }}"
+        - name: "NUM_WORKERS"
+          value: "{{ .Values.windmill.numWorkers }}"
+        - name: "DISABLE_SERVER"
+          value: "true"
+        - name: "RUST_BACKTRACE"
+          value: "{{ .Values.windmill.rustBacktrace }}"
+        - name: "DISABLE_NUSER"
+          value: "{{ .Values.windmill.disableNuser }}"
+        - name: "DENO_PATH"
+          value: "{{ .Values.windmill.denoPath }}"
+        - name: "PYTHON_PATH"
+          value: "{{ .Values.windmill.pythonPath }}"
+        - name: "NSJAIL_PATH"
+          value: "{{ .Values.windmill.nsjailPath }}"
+        - name: "DISABLE_NSJAIL"
+          value: "{{ .Values.windmill.disableNsjail }}"
+        - name: "JSON_FMT"
+          value: "true"
+        {{ if .Values.windmill.enterpriseEnabled }}
+        - name: "S3_CACHE_BUCKET"
+          value: "{{ .Values.enterprise.s3CacheBucket }}"
+        - name: "LICENSE_KEY"
+          value: "{{ .Values.enterprise.licenseKey }}"
+        - name: "RCLONE_S3_PROVIDER"
+          value: "AWS"
+        {{ end }}
+      securityContext:
+        runAsUser: 0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: windmill-workers
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: windmill-worker
+    container: windmill-worker
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: windmill-worker-metrics
+spec:
+  clusterIP: None
+  ports:
+  - port: 8001
+    name: metrics
+    protocol: TCP
+  selector:
+    app: windmill-worker
+    container: windmill-worker
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: windmill
+# spec:
+#   externalTrafficPolicy: Cluster
+#   ports:
+#   - port: 80
+#     name: http
+#     protocol: TCP
+#     targetPort: 8000
+#     nodePort: 30080
+#   # - port: 443
+#   #   name: https
+#   #   protocol: TCP
+#   #   targetPort: 443
+#   #   nodePort: 30081
+#   selector:
+#     app: windmill
+#     container: caddy
+#   sessionAffinity: None
+#   type: NodePort
+# status:
+#   loadBalancer: {}
