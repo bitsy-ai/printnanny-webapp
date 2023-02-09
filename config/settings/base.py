@@ -387,6 +387,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
         "print_nanny_webapp.users.authentication.BearerTokenAuthentication",
+        "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.IsAuthenticated",
@@ -846,3 +847,15 @@ def immutable_file_test(path, url):
 
 
 WHITENOISE_IMMUTABLE_FILE_TEST = immutable_file_test
+
+# django-oauth-toolkit
+# https://github.com/jazzband/django-oauth-toolkit
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ["oauth2_provider"]
+OAUTH2_PROVIDER = {
+    "SCOPES": {
+        "read": "Read scope",
+        "write": "Write scope",
+        "devices": "Manage devices connected to PrintNanny OS",
+    }
+}
