@@ -21,6 +21,7 @@ django-invitations
 django-loginas
 django-model-utils
 django-nats-nkeys[drf]>=0.9.9
+django-oauth-toolkit
 django-polymorphic
 django-prometheus
 django-qr-code
