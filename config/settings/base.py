@@ -846,3 +846,8 @@ def immutable_file_test(path, url):
 
 
 WHITENOISE_IMMUTABLE_FILE_TEST = immutable_file_test
+
+# django-oauth-toolkit
+# https://github.com/jazzband/django-oauth-toolkit
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ["oauth2_provider"]

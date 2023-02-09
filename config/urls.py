@@ -34,6 +34,10 @@ urlpatterns = [
 
 urlpatterns += (path("stripe/", include("djstripe.urls", namespace="djstripe")),)
 
+urlpatterns += [
+    path("o/", include("oauth2_provider.urls", namespace="oauth2_provider")),
+]
+
 
 if settings.DEBUG:
     # Static file serving when using Gunicorn + Uvicorn for local web socket development
