@@ -1,0 +1,53 @@
+cloudsqlproxy:
+  instance: postgres14
+  region: us-central1
+  project: print-nanny
+  serviceAccount: cloudsql-client
+
+postgres:
+  # -- disable demo postgres deployment
+  enabled: disabled
+
+windmill:
+  # -- replica for the application frontend
+  frontendReplicas: 1
+  # -- replicas for the workers, jobs are executed on the workers
+  workerReplicas: 1
+  # -- replicas for the lsp containers used by the frontend
+  lspReplicas: 1
+  # -- domain as shown in browser, change to https etc based on your endpoint/ingress configuration, sets BASE_URL environment variable in frontend and worker container
+  baseUrl: https://flow.printnanny.ai
+  # -- used internally by the app, should match the service for the frontend deployment, sets BASE_INTERNAL_URL environment variable in frontend and worker container
+  baseInternalUrl: http://windmill-app:8000
+  # -- rust log level, set to debug for more information etc, sets RUST_LOG environment variable in frontend and worker container
+  rustLog: info
+  # -- workers per worker container, default and recommended is 1 to isolate one process per container, sets NUM_WORKER environment variable for worker container.  Frontend container has 0 NUM_WORKERS by default
+  numWorkers: 1
+  # -- rust back trace information enabled, sets RUST_BACKTRACE environment variable in frontend and worker container
+  rustBacktrace: 1
+  # -- deno binary built into Windmill image, should not be changed. Sets DENO_PATH environment variable in frontend and worker container
+  denoPath: /usr/bin/deno
+  # -- python binary built into Windmill image, should not be changed. Sets PYTHON_PATH environment variable in frontend and worker container
+  pythonPath: /usr/local/bin/python3
+  # -- enables/disables nsjail which provide isolation in untrusted environment is disabled by default. Sets DISABLE_NJSAIL environment variable in worker container
+  disableNsjail: true
+  # -- nsjail user . Sets DISABLE_NUSER environment variable in worker container
+  disableNuser: true
+  # -- nsjail binary. Sets NSJAIL_PATH environment variable in worker container
+  nsjailPath: nsjail
+  # -- Oauth configuration for logins etc
+  # oauthConfig: |
+  #   {
+  #     "github": {
+  #         "id": "asdfasdf",
+  #         "secret": "asdfasdfasdf"
+  #     }
+  #    }
+
+enterprise:
+  # -- enable Windmill Enterprise , requires license key.
+  enabled: false
+  # -- S3 bucket to use for dependency cache. Sets S3_CACHE_BUCKET environment variable in worker container
+  s3CacheBucket: mybucketname
+  # -- Windmill provided Enterprise license key. Sets LICENSE_KEY environment variable in frontend and worker container.
+  licenseKey: 123456F

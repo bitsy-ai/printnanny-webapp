@@ -30,6 +30,7 @@ spec:
       - download.printnanny.ai
       - api.printnanny.ai
       - www.printnanny.ai
+      - flow.printnanny.ai
       {% endif %}
       - {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
       - janus.{{ PRINTNANNY_NAMESPACE }}.printnanny.ai
@@ -188,7 +189,27 @@ spec:
                 name: metabase
                 port:
                   number: 80
+    - host: flow.printnanny.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: windmill-app
+                port:
+                  number: 8000
     {% endif %}
+    - host: flow.{{ PRINTNANNY_NAMESPACE }}.printnanny.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: windmill-app
+                port:
+                  number: 8000
     - host: {{ PRINTNANNY_NAMESPACE }}.printnanny.ai
       http:
         paths:
