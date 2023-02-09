@@ -1,3 +1,9 @@
+cloudsqlproxy:
+  instance: print-nanny
+  region: us-central1
+  project: print-nanny
+  serviceAccount: cloudsql-client
+
 postgres:
   # -- enabled included Postgres container for demo purposes only
   enabled: true
@@ -7,7 +13,7 @@ postgres:
   password: changeme
 
 windmill:
-  # -- replica for the application frontend 
+  # -- replica for the application frontend
   frontendReplicas: 3
   # -- replicas for the workers, jobs are executed on the workers
   workerReplicas: 3
@@ -37,19 +43,17 @@ windmill:
   nsjailPath: nsjail
   # -- Oauth configuration for logins etc
   oauthConfig: |
-      {
-        "github": {
-            "id": "asdfasdf",
-            "secret": "asdfasdfasdf"
-        }
-       }
-
+    {
+      "github": {
+          "id": "asdfasdf",
+          "secret": "asdfasdfasdf"
+      }
+     }
 
 enterprise:
-  # -- enable Windmill Enterprise , requires license key. 
+  # -- enable Windmill Enterprise , requires license key.
   enabled: false
   # -- S3 bucket to use for dependency cache. Sets S3_CACHE_BUCKET environment variable in worker container
   s3CacheBucket: mybucketname
   # -- Windmill provided Enterprise license key. Sets LICENSE_KEY environment variable in frontend and worker container.
   licenseKey: 123456F
-
