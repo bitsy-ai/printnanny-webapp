@@ -31,7 +31,7 @@ spec:
         container: windmill-app
     spec:
       serviceAccountName: "{{ .Values.cloudsqlproxy.serviceAccount }}"
-      terminationGracePeriodSeconds: 40
+      terminationGracePeriodSeconds: 30
       containers:
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
