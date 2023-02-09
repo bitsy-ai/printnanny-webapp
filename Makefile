@@ -556,6 +556,13 @@ dev-config: $(TMPDIR)
 		--out=$(PRINTNANNY_CONFIG_DEV) \
 		--port=8000
 
+windmill-install:
+	helm install printnanny-windmill windmill/windmill \
+		-f k8s/windmill/values.yaml \
+		--namespace=live \
+		--create-namespace \
+		--set windmill.databaseUrl=${WINDMILL_DATABASE_URL}
+
 nats-install:
 	helm install --create-namespace --namespace nats -f k8s/nats/values.yaml \
 		printnanny-nats nats/nats \
