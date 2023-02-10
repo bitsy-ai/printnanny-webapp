@@ -9,6 +9,8 @@ postgres:
   enabled: disabled
 
 windmill:
+  # enableOauth
+  enableOauth: true
   # -- replica for the application frontend
   frontendReplicas: 1
   # -- replicas for the workers, jobs are executed on the workers

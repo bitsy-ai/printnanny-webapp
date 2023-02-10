@@ -391,11 +391,10 @@ REST_FRAMEWORK = {
         "print_nanny_webapp.users.authentication.BearerTokenAuthentication",
         "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
     ),
-    # TODO - re-enable
-    # "DEFAULT_PERMISSION_CLASSES": (
-    #     "rest_framework.permissions.IsAuthenticated",
-    #     "print_nanny_webapp.utils.api.permissions.IsObjectOwner",
-    # ),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticated",
+        "print_nanny_webapp.utils.api.permissions.IsObjectOwner",
+    ),
     "DEFAULT_FILTER_BACKENDS": [
         "django_filters.rest_framework.DjangoFilterBackend",
         "print_nanny_webapp.utils.api.filters.OwnerOrUserFilterBackend",
