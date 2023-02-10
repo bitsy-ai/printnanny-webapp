@@ -10,7 +10,7 @@ CLUSTER ?= www-sandbox
 ZONE ?= us-central1-c
 
 PRINTNANNY_NAMESPACE ?= beta
-PRINT_NANNY_URL ?= http://localhost:8000/
+PRINT_NANNY_URL ?= http://localhost:8080/
 PRINT_NANNY_API_URL ?= ${PRINT_NANNY_URL}api/
 OCTOPRINT_URL ?= http://localhost:5005/
 PRINT_NANNY_USER ?= ${USER}
@@ -151,6 +151,10 @@ local-clean:
 
 .envs/.local/key.json:
 	gcloud iam service-accounts keys create .envs/.local/key.json --iam-account=owner-service-account@printnanny-sandbox.iam.gserviceaccount.com
+
+.envs/.local/oidc.key:
+	openssl genrsa -out oidc.key 4096
+
 
 local-creds: .envs/.local/key.json
 	echo "Mounted Google Cloud Platform service account key from .envs/.local/key.json with id $(shell cat .envs/.local/key.json | jq .private_key_id)"
@@ -368,10 +372,10 @@ clean-rust-client:
 
 ts-client: clean-ts-client
 	java -jar $(OPENAPI_GENERATOR_CLI_JAR) validate \
-		-i http://localhost:8000/api/schema/ --recommend
+		-i http://localhost:8080/api/schema/ --recommend
 
 	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  generate \
-		-i http://localhost:8000/api/schema/ \
+		-i http://localhost:8080/api/schema/ \
 		-g typescript-axios \
 		-o $(PWD)/clients/typescript \
 		-c $(PWD)/clients/typescript.yaml
@@ -385,11 +389,11 @@ ts-build:
 rust-client: clean-rust-client openapi-custom-rust-codegen
 	java -cp "$(OPENAPI_CUSTOM_RUST_GENERATOR_JAR):$(OPENAPI_GENERATOR_CLI_JAR)" \
 		org.openapitools.codegen.OpenAPIGenerator validate \
-		-i http://localhost:8000/api/schema/ --recommend 
+		-i http://localhost:8080/api/schema/ --recommend 
 
 	java -cp "$(OPENAPI_CUSTOM_RUST_GENERATOR_JAR):$(OPENAPI_GENERATOR_CLI_JAR)" \
 		org.openapitools.codegen.OpenAPIGenerator generate \
-		-i http://localhost:8000/api/schema/ \
+		-i http://localhost:8080/api/schema/ \
 		-g custom-rust-client \
 		-o $(PWD)/clients/rust \
 		-c $(PWD)/clients/rust.yaml
@@ -423,16 +427,16 @@ python-protobuf:
 
 python-client: clean-python-client # python-flatbuffer python-protobuf
 	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  validate \
-		-i http://localhost:8000/api/schema/ --recommend
+		-i http://localhost:8080/api/schema/ --recommend
 
 	java -jar $(HOME)/projects/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar  generate \
-		-i http://localhost:8000/api/schema/ \
+		-i http://localhost:8080/api/schema/ \
 		-g python-legacy \
 		-o $(PWD)/clients/python \
 		-c $(PWD)/clients/python.yaml \
 
 # python-client: clean-python-client
-# 	openapi-python-client generate --url http://localhost:8000/api/schema/ --config clients/python.yaml --meta setup
+# 	openapi-python-client generate --url http://localhost:8080/api/schema/ --config clients/python.yaml --meta setup
 # 	mv printnanny-api-client clients/python
 
 clean-pyc: ## remove Python file artifacts
@@ -472,7 +476,7 @@ test:
 	docker-compose -f local.yml run --rm django pytest
 
 stripe-local-webhooks:
-	stripe listen --forward-to localhost:8000/stripe/webhook/
+	stripe listen --forward-to localhost:8080/stripe/webhook/
 
 djstripe-sync-local:
 	docker-compose -f local.yml run --rm django python manage.py djstripe_sync_models
