@@ -123,8 +123,7 @@ jobs:
       METABASE_DB_USER: ${{ secrets.METABASE_DB_USER }}
       NATS_SERVER_URI: nats://nats.live.printnanny.ai:4222
       NATS_WS_URI: wss://nats.live.printnanny.ai:8443
-      OIDC_RSA_PRIVATE_KEY: |
-        ${{ secrets.OIDC_RSA_PRIVATE_KEY }}
+      OIDC_RSA_PRIVATE_KEY: ${{ secrets.OIDC_RSA_PRIVATE_KEY }}
       POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
       POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
       PRINTNANNY_DJANGO_IMAGE: us.gcr.io/print-nanny/print_nanny_webapp:latest
