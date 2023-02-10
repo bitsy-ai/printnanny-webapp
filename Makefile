@@ -565,7 +565,8 @@ windmill-install:
 		-f k8s/windmill/values.yaml \
 		--namespace=live \
 		--create-namespace \
-		--set windmill.databaseUrl=${WINDMILL_DATABASE_URL}
+		--set windmill.databaseUrl=${WINDMILL_DATABASE_URL} \
+		--set windmill.oauthConfig=${WINDMILL_OAUTH_CONFIG}
 
 nats-install:
 	helm install --create-namespace --namespace nats -f k8s/nats/values.yaml \
