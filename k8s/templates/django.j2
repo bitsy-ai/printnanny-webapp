@@ -86,10 +86,10 @@ spec:
               name: webapp
         env:
           - name: OIDC_RSA_PRIVATE_KEY
-          valueFrom:
-            secretKeyRef:
-              name: oidc-rsa-private-key
-              key: oidc.key
+            valueFrom:
+              secretKeyRef:
+                name: oidc-rsa-private-key
+                key: oidc.key
         volumeMounts:
         - name: django-operator-nkeys
           readOnly: true
