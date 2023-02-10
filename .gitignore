@@ -303,6 +303,7 @@ print_nanny_webapp/media/
 .envs/.local/.env
 .envs/.production/
 .envs/.sandbox
+compose/production/windmill/oauth.json
 # !.envs/.local/.postgres
 k8s/prod/configmap.yml
 

@@ -566,7 +566,14 @@ windmill-install:
 		--namespace=live \
 		--create-namespace \
 		--set windmill.databaseUrl=${WINDMILL_DATABASE_URL} \
-		--set windmill.oauthConfig=${WINDMILL_OAUTH_CONFIG}
+		--set windmill.oauthConfig=$(shell cat compose/production/windmill/oauth.json)
+
+windmill-upgrade-values:
+	helm upgrade printnanny-windmill --debug --install k8s/windmill/windmill-helm-charts/charts/windmill \
+		-f k8s/windmill/values.yaml \
+		--namespace=live \
+		--set windmill.databaseUrl=${WINDMILL_DATABASE_URL}
+
 
 nats-install:
 	helm install --create-namespace --namespace nats -f k8s/nats/values.yaml \
