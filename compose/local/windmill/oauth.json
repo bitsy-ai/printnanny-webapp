@@ -1,0 +1,25 @@
+{
+    "printnanny": {
+        "id": "b3swBkCJ0C8aYK4mvvHL3fqxd87PFBfz05NUyC2O",
+        "secret": "jeu3QITiuJnUuqfRgkwHKcXfQ58j7MKIXf6vXQUDbvatd3LcrmAagoJMKsO2lou8wOFJDu63DLO8OLyEgbvDLogt6npGRnzSjuXvBMJOrFrp5CKSVSp3ILth7kZTv8P9",
+        "login_config": {
+            "auth_url": "http://localhost:8080/o/authorize/",
+            "token_url": "http://django:8080/o/token/",
+            "userinfo_url": "http://django:8080/o/userinfo/",
+            "scopes": [
+                "openid",
+                "profile",
+                "email"
+            ]
+        },
+        "connect_config": {
+            "auth_url": "http://localhost:8080/o/authorize/",
+            "token_url": "http://django:8080/o/token/",
+            "scopes": [
+                "openid",
+                "profile",
+                "email"
+            ]
+        }
+    }
+}

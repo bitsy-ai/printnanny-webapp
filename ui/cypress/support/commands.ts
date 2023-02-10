@@ -38,7 +38,7 @@
 import * as api from "printnanny-api-client";
 
 const ApiConfig = new api.Configuration({
-  basePath: "http://localhost:8000",
+  basePath: "http://localhost:8080",
   baseOptions: {
     xsrfCookieName: "csrftoken",
     xsrfHeaderName: "X-CSRFTOKEN",

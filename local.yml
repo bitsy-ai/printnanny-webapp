@@ -1,13 +1,16 @@
 version: "3"
 
 volumes:
-  local_postgres_data: {}
-  local_postgres_data_backups: {}
+  local_postgres14_data: {}
+  local_postgres14_data_backups: {}
+  local_postgres12_data: {}
+  local_postgres12_data_backups: {}
   local_prometheus_data: {}
   local_file_data: {}
   local_octoprint_data: {}
   local_nsc_data: {}
   local_jetstream_data: {}
+  local_windmill_worker_dependency_cache: null
 services:
   janus:
     hostname: janus
@@ -40,7 +43,7 @@ services:
     image: printnanny_webapp_local_django
     container_name: printnanny_webapp_django
     depends_on:
-      - postgres
+      - postgres12
       - prometheus
       - cloud-nats
       - janus
@@ -66,7 +69,7 @@ services:
       - ./.envs/.local/.postgres
       - ./.envs/.local/.secrets
     ports:
-      - "8000:8000"
+      - "8080:8080"
       - "8001:8001"
 
     command:
@@ -75,7 +78,7 @@ services:
   firehose: &firehose
     hostname: firehose
     depends_on:
-      - postgres
+      - postgres12
       - cloud-nats
     build:
       context: .
@@ -101,20 +104,32 @@ services:
       - python
       - -m
       - print_nanny_webapp.events.streams.firehose
-  postgres:
-    hostname: postgres
+  postgres12:
+    hostname: postgres12
     image: postgres:12.3
-    container_name: printnanny_webapp_postgres
+    container_name: printnanny_webapp_postgres12
     volumes:
-      - local_postgres_data:/var/lib/postgresql/data:z
-      - local_postgres_data_backups:/backups:z
+      - local_postgres12_data:/var/lib/postgresql/data:z
+      - local_postgres12_data_backups:/backups:z
     env_file:
       - ./.envs/.local/.postgres
     ports:
       - "5432:5432"
 
+  postgres14:
+    hostname: postgres14
+    image: postgres:14.6
+    container_name: printnanny_webapp_postgres14
+    volumes:
+      - ./compose/local/windmill/init-db-as-superuser.sql:/docker-entrypoint-initdb.d/init-db-as-superuser.sql
+      - local_postgres14_data:/var/lib/postgresql/data:z
+      - local_postgres14_data_backups:/backups:z
+    env_file:
+      - ./.envs/.local/.windmill
+    ports:
+      - "5433:5432"
+
   redis:
-    # network_mode: "host"
     hostname: redis
     build:
       context: .
@@ -128,7 +143,6 @@ services:
     image: prom/prometheus
     ports:
       - 9000:9090
-    # network_mode: "host"
 
     volumes:
       - ./prometheus:/etc/prometheus
@@ -150,19 +164,47 @@ services:
       - "4222:4222"
       - "8443:8443"
       - "1883:1883"
-  # events:
-  #   container_name: printnanny_webapp_octoprint_events
-  #   <<: *django
-  #   ports: []
-  #   command:
-  #     - python
-  #     - manage.py
-  #     - shell
-  #     - < printnanny_webapp/telemetry/subscribers/octoprint_events.py
-  # alerts:
-  #   container_name: printnanny_webapp_alerts
-  #   <<: *django
-  #   ports: []
-  #   command:
-  #     - python
-  #     - printnanny_webapp/alerts/subscribers/alerts.py
+
+  windmill_server:
+    image: ghcr.io/windmill-labs/windmill:main
+    deploy:
+      replicas: 1
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.envs/.local/.windmill
+    environment:
+      - RUST_LOG=debug
+      ## You can set the number of workers to > 0 and not need any separate worker service
+      - NUM_WORKERS=0
+      - DISABLE_SERVER=false
+      - METRICS_ADDR=false
+    depends_on:
+      - postgres14
+      - django
+    volumes:
+      - ./compose/local/windmill/oauth.json/:/usr/src/app/oauth.json
+
+  windmill_worker:
+    image: ghcr.io/windmill-labs/windmill:main
+    deploy:
+      replicas: 1
+    restart: unless-stopped
+    env_file:
+      - ./.envs/.local/.windmill
+    environment:
+      - RUST_LOG=debug
+      - NUM_WORKERS=1
+      - DISABLE_SERVER=true
+      - KEEP_JOB_DIR=true
+      - DENO_PATH=/usr/bin/deno
+      - PYTHON_PATH=/usr/local/bin/python3
+      - METRICS_ADDR=false
+    depends_on:
+      - postgres14
+      - django
+
+    volumes:
+      - local_windmill_worker_dependency_cache:/tmp/windmill/cache
+      - ./compose/local/windmill/oauth.json/:/usr/src/app/oauth.json

@@ -119,6 +119,7 @@ MIGRATION_MODULES = {"sites": "print_nanny_webapp.contrib.sites.migrations"}
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends
 AUTHENTICATION_BACKENDS = [
+    "oauth2_provider.backends.OAuth2Backend",
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
@@ -154,14 +155,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
     "django_prometheus.middleware.PrometheusBeforeMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "print_nanny_webapp.utils.middleware.DomainRedirectMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "oauth2_provider.middleware.OAuth2TokenMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -389,10 +391,11 @@ REST_FRAMEWORK = {
         "print_nanny_webapp.users.authentication.BearerTokenAuthentication",
         "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
     ),
-    "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.IsAuthenticated",
-        "print_nanny_webapp.utils.api.permissions.IsObjectOwner",
-    ),
+    # TODO - re-enable
+    # "DEFAULT_PERMISSION_CLASSES": (
+    #     "rest_framework.permissions.IsAuthenticated",
+    #     "print_nanny_webapp.utils.api.permissions.IsObjectOwner",
+    # ),
     "DEFAULT_FILTER_BACKENDS": [
         "django_filters.rest_framework.DjangoFilterBackend",
         "print_nanny_webapp.utils.api.filters.OwnerOrUserFilterBackend",
@@ -701,9 +704,10 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:3001",
-    "http://localhost:8000",
+    "http://localhost:8080",
+    "http://django:8080",
     "http://127.0.0.1:8000",
-    f"http://{socket.gethostname()}:8000",
+    f"http://{socket.gethostname()}:8080",
     f"http://{socket.gethostname()}:3000",
 ]
 
@@ -856,11 +860,13 @@ OAUTH2_PROVIDER = {
     "OIDC_ENABLED": True,
     "OIDC_RSA_PRIVATE_KEY": os.environ.get("OIDC_RSA_PRIVATE_KEY"),
     # https://django-oauth-toolkit.readthedocs.io/en/latest/oidc.html#rotating-the-rsa-private-key
-    "OIDC_RSA_PRIVATE_KEYS_INACTIVE": [],
+    # "OIDC_RSA_PRIVATE_KEYS_INACTIVE": [],
     # https://django-oauth-toolkit.readthedocs.io/en/latest/oidc.html#customizing-the-oidc-responses
-    "OAUTH2_VALIDATOR_CLASS": "print_nanny_webapp.oauth2_validators.CustomOAuth2Validator",
+    "OAUTH2_VALIDATOR_CLASS": "print_nanny_webapp.oauth2_provider.oauth2_validators.CustomOAuth2Validator",
     "SCOPES": {
         "openid": "OpenID Connect scope",
+        "profile": "User profile scope",
+        "email": "User email scope",
         "alerts:read": "Read scope for alert resources",
         "alerts:write": "Write scope for alert resources",
         "read": "Read scope",
@@ -868,4 +874,5 @@ OAUTH2_PROVIDER = {
         "devices:read": "Read scope for Raspberry Pi and printer resources",
         "devices:write": "Write scope for Raspberry Pi and printer resources",
     },
+    "PKCE_REQUIRED": False,
 }
