@@ -297,6 +297,7 @@ print_nanny_webapp/media/
 # .envs/*
 .password
 .token
+.envs/.local/oidc.key
 .envs/.local/.secrets
 .envs/.local/key.json
 .envs/.local/.env

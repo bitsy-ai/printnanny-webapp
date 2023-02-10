@@ -853,9 +853,14 @@ WHITENOISE_IMMUTABLE_FILE_TEST = immutable_file_test
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ["oauth2_provider"]
 OAUTH2_PROVIDER = {
+    "OIDC_ENABLED": True,
+    "OIDC_RSA_PRIVATE_KEY": os.environ.get("OIDC_RSA_PRIVATE_KEY"),
+    # https://django-oauth-toolkit.readthedocs.io/en/latest/oidc.html#rotating-the-rsa-private-key
+    "OIDC_RSA_PRIVATE_KEYS_INACTIVE": [],
     "SCOPES": {
+        "openid": "OpenID Connect scope",
         "read": "Read scope",
         "write": "Write scope",
         "devices": "Manage devices connected to PrintNanny OS",
-    }
+    },
 }
