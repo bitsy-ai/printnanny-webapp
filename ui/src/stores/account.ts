@@ -10,7 +10,7 @@ export const useAccountStore = defineStore({
   id: "accounts",
   // persist option provided by: https://github.com/prazdevs/pinia-plugin-persistedstate
   persist: {
-    storage: localStorage,
+    storage: sessionStorage
   },
   state: () => ({
     email: undefined as undefined | string,
@@ -161,7 +161,7 @@ export const useAccountStore = defineStore({
     async twoFactorStage2(email: string, token: string): Promise<boolean> {
       const req = { email, token } as api.CallbackTokenAuthRequest;
       const res = await this.accountsApi
-        .accounts2faAuthTokenCreate(req)
+        .accounts2faAuthSessionCreate(req) // accounts2faAuthSessionCreate returns a bearer token as well as setting a session authentication cookie
         .catch(handleApiError);
       console.debug("accounts2faAuthTokenCreate response: ", res);
       const ok = res !== undefined && res.status === 200;

@@ -7,6 +7,7 @@ from drfpasswordless.views import (
     ObtainMobileCallbackToken,
     ObtainAuthTokenFromCallbackToken,
 )
+from .views import ObtainAuthTokenAndSessionCookieFromCallbackToken
 
 app_name = "drfpasswordless"
 
@@ -14,17 +15,18 @@ app_name = "drfpasswordless"
 # Enable these if contact-point validation is needed: https://github.com/aaronn/django-rest-framework-passwordless#contact-point-validation
 
 urlpatterns = [
-    # exchange short-term 2fa code for long-term auth token
+    # exchange short-term 2fa code for bearer auth token
     path(
         api_settings.PASSWORDLESS_AUTH_PREFIX + "token/",
         ObtainAuthTokenFromCallbackToken.as_view(),
         name="auth_token",
     ),
-    # path(
-    #     api_settings.PASSWORDLESS_VERIFY_PREFIX,
-    #     VerifyAliasFromCallbackToken.as_view(),
-    #     name="verify_token",
-    # ),
+    # exchange short-term 2fa code for bearer auth token and authenticated session cookie
+    path(
+        api_settings.PASSWORDLESS_AUTH_PREFIX + "session/",
+        ObtainAuthTokenAndSessionCookieFromCallbackToken.as_view(),
+        name="auth_session",
+    ),
 ]
 
 # PASSWORDLESS_AUTH_TYPES contains EMAIL
@@ -41,6 +43,7 @@ if "EMAIL" in api_settings.PASSWORDLESS_AUTH_TYPES:
         #     name="verify_email",
         # ),
     ]
+
 
 if "MOBILE" in api_settings.PASSWORDLESS_AUTH_TYPES:
     urlpatterns += [

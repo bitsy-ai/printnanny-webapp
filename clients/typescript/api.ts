@@ -7074,6 +7074,47 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
+         * Persist a user id and a backend in the request. This way a user doesn\'t have to reauthenticate on every request. Note that data set during the anonymous session is retained when the user logs in.
+         * @param {CallbackTokenAuthRequest} callbackTokenAuthRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accounts2faAuthSessionCreate: async (callbackTokenAuthRequest: CallbackTokenAuthRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'callbackTokenAuthRequest' is not null or undefined
+            assertParamExists('accounts2faAuthSessionCreate', 'callbackTokenAuthRequest', callbackTokenAuthRequest)
+            const localVarPath = `/accounts/2fa-auth/session/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(callbackTokenAuthRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * This is a duplicate of rest_framework\'s own ObtainAuthToken method. Instead, this returns an Auth Token based on our callback token and source.
          * @param {CallbackTokenAuthRequest} callbackTokenAuthRequest 
          * @param {*} [options] Override http request option.
@@ -7648,6 +7689,16 @@ export const AccountsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Persist a user id and a backend in the request. This way a user doesn\'t have to reauthenticate on every request. Note that data set during the anonymous session is retained when the user logs in.
+         * @param {CallbackTokenAuthRequest} callbackTokenAuthRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accounts2faAuthSessionCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CallbackTokenAuth>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accounts2faAuthSessionCreate(callbackTokenAuthRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * This is a duplicate of rest_framework\'s own ObtainAuthToken method. Instead, this returns an Auth Token based on our callback token and source.
          * @param {CallbackTokenAuthRequest} callbackTokenAuthRequest 
          * @param {*} [options] Override http request option.
@@ -7804,6 +7855,15 @@ export const AccountsApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.accounts2faAuthEmailCreate(emailAuthRequest, options).then((request) => request(axios, basePath));
         },
         /**
+         * Persist a user id and a backend in the request. This way a user doesn\'t have to reauthenticate on every request. Note that data set during the anonymous session is retained when the user logs in.
+         * @param {CallbackTokenAuthRequest} callbackTokenAuthRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accounts2faAuthSessionCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): AxiosPromise<CallbackTokenAuth> {
+            return localVarFp.accounts2faAuthSessionCreate(callbackTokenAuthRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
          * This is a duplicate of rest_framework\'s own ObtainAuthToken method. Instead, this returns an Auth Token based on our callback token and source.
          * @param {CallbackTokenAuthRequest} callbackTokenAuthRequest 
          * @param {*} [options] Override http request option.
@@ -7943,6 +8003,15 @@ export interface AccountsApiInterface {
      * @memberof AccountsApiInterface
      */
     accounts2faAuthEmailCreate(emailAuthRequest: EmailAuthRequest, options?: AxiosRequestConfig): AxiosPromise<EmailAuth>;
+
+    /**
+     * Persist a user id and a backend in the request. This way a user doesn\'t have to reauthenticate on every request. Note that data set during the anonymous session is retained when the user logs in.
+     * @param {CallbackTokenAuthRequest} callbackTokenAuthRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApiInterface
+     */
+    accounts2faAuthSessionCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: AxiosRequestConfig): AxiosPromise<CallbackTokenAuth>;
 
     /**
      * This is a duplicate of rest_framework\'s own ObtainAuthToken method. Instead, this returns an Auth Token based on our callback token and source.
@@ -8085,6 +8154,17 @@ export class AccountsApi extends BaseAPI implements AccountsApiInterface {
      */
     public accounts2faAuthEmailCreate(emailAuthRequest: EmailAuthRequest, options?: AxiosRequestConfig) {
         return AccountsApiFp(this.configuration).accounts2faAuthEmailCreate(emailAuthRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Persist a user id and a backend in the request. This way a user doesn\'t have to reauthenticate on every request. Note that data set during the anonymous session is retained when the user logs in.
+     * @param {CallbackTokenAuthRequest} callbackTokenAuthRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public accounts2faAuthSessionCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: AxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).accounts2faAuthSessionCreate(callbackTokenAuthRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
