@@ -152,6 +152,10 @@ local-clean:
 .envs/.local/key.json:
 	gcloud iam service-accounts keys create .envs/.local/key.json --iam-account=owner-service-account@printnanny-sandbox.iam.gserviceaccount.com
 
+.envs/.local/oidc.key:
+	openssl genrsa -out oidc.key 4096
+
+
 local-creds: .envs/.local/key.json
 	echo "Mounted Google Cloud Platform service account key from .envs/.local/key.json with id $(shell cat .envs/.local/key.json | jq .private_key_id)"
 

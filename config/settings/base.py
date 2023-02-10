@@ -857,10 +857,15 @@ OAUTH2_PROVIDER = {
     "OIDC_RSA_PRIVATE_KEY": os.environ.get("OIDC_RSA_PRIVATE_KEY"),
     # https://django-oauth-toolkit.readthedocs.io/en/latest/oidc.html#rotating-the-rsa-private-key
     "OIDC_RSA_PRIVATE_KEYS_INACTIVE": [],
+    # https://django-oauth-toolkit.readthedocs.io/en/latest/oidc.html#customizing-the-oidc-responses
+    "OAUTH2_VALIDATOR_CLASS": "print_nanny_webapp.oauth2_validators.CustomOAuth2Validator",
     "SCOPES": {
         "openid": "OpenID Connect scope",
+        "alerts:read": "Read scope for alert resources",
+        "alerts:write": "Write scope for alert resources",
         "read": "Read scope",
         "write": "Write scope",
-        "devices": "Manage devices connected to PrintNanny OS",
+        "devices:read": "Read scope for Raspberry Pi and printer resources",
+        "devices:write": "Write scope for Raspberry Pi and printer resources",
     },
 }
