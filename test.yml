@@ -28,7 +28,7 @@ services:
       dockerfile: ./compose/local/django/Dockerfile
     container_name: printnanny_webapp_django_test
     depends_on:
-      - postgres
+      - postgres12
       - nats
       - janus
       - mailhog
@@ -67,7 +67,7 @@ services:
     hostname: firehose
     depends_on:
       - django
-      - postgres
+      - postgres12
       - nats
     build:
       context: .
@@ -94,8 +94,8 @@ services:
       - python
       - -m
       - print_nanny_webapp.events.streams.firehose
-  postgres:
-    hostname: postgres
+  postgres12:
+    hostname: postgres12
     image: postgres:12.3
     container_name: printnanny_webapp_postgres_test
     volumes:
