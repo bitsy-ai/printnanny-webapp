@@ -14,8 +14,8 @@ PRINT_NANNY_URL ?= http://localhost:8080/
 PRINT_NANNY_API_URL ?= ${PRINT_NANNY_URL}api/
 OCTOPRINT_URL ?= http://localhost:5005/
 PRINT_NANNY_USER ?= ${USER}
-DJANGO_SUPERUSER_EMAIL ?= ${USER}@print-nanny.com
-DJANGO_SUPERUSER_PASSWORD ?= $(shell test -f .password && cat .password || (makepasswd --chars=42 > .password && cat .password) )
+DJANGO_SUPERUSER_EMAIL ?= admin@printnanny.ai
+DJANGO_SUPERUSER_PASSWORD ?= debug1234
 DJANGO_ADMIN_CMD ?= docker-compose -f local.yml run --rm django python manage.py
 NEBULA_VERSION ?= v1.4.0
 PRINT_NANNY_TOKEN ?= $(shell test -f .token && cat .token || (${DJANGO_ADMIN_CMD} drf_create_token $(DJANGO_SUPERUSER_EMAIL) | tail -n 1 | awk '{print $$3}'> .token && cat .token))
