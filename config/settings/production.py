@@ -287,7 +287,7 @@ NATS_MQTT_BROKER_PORT = env("NATS_MQTT_BROKER_PORT", default=1883)
 # django-ghost
 # sync EmailWaitlist with Ghost newsletter list
 INSTALLED_APPS += ["django_ghost"]
-GHOST_API_URL = env("GHOST_API_URL", default="https://bitsy.ai")
+GHOST_API_URL = env("GHOST_API_URL", default="https://printnanny.ai/blog")
 GHOST_NEWSLETTER_IDS = env.list("GHOST_NEWSLETTER_IDS", default=[])
 GHOST_ADMIN_API_APP_ID = env("GHOST_ADMIN_API_APP_ID")
 GHOST_ADMIN_API_APP_SECRET = env("GHOST_ADMIN_API_APP_SECRET")
