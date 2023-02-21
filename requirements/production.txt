@@ -152,7 +152,7 @@ django-filter==21.1
     # via -r requirements/production.in
 django-flags==5.0.9
     # via -r requirements/production.in
-django-ghost==0.2.11
+django-ghost==0.2.12
     # via -r requirements/production.in
 django-health-check==3.16.5
     # via -r requirements/production.in
