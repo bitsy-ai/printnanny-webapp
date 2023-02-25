@@ -45,9 +45,7 @@ describe("Checkout v2, Cloud starter Monthly", () => {
         };
         cy.on("uncaught:exception", (err) => {
           if (
-            err.message.includes(
-              "paymentRequest Element didn't mount normally"
-            )
+            err.message.includes("paymentRequest Element didn't mount normally")
           ) {
             return false;
           }
@@ -174,9 +172,7 @@ describe("Checkout v2, Cloud starter Yearly", () => {
         };
         cy.on("uncaught:exception", (err) => {
           if (
-            err.message.includes(
-              "paymentRequest Element didn't mount normally"
-            )
+            err.message.includes("paymentRequest Element didn't mount normally")
           ) {
             return false;
           }
