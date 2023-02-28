@@ -9,9 +9,9 @@ class VideoRecordingAdmin(admin.ModelAdmin):
         "user",
         "recording_start",
         "recording_end",
-        "recording_status",
-        "cloud_sync_start",
-        "cloud_sync_end",
-        "cloud_sync_status",
+        "capture_done",
+        "cloud_sync_done",
+        "combine_done",
+        "user",
     )
     model = VideoRecording
