@@ -4,15 +4,14 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [readonly] 
+**id** | **str** |  | [optional] 
 **mp4_upload_url** | **str** |  | [readonly] 
 **mp4_size** | **int** |  | [readonly] 
+**capture_done** | **bool** |  | [optional] 
+**cloud_sync_done** | **bool** |  | [optional] 
+**combine_done** | **bool** |  | [optional] 
 **recording_start** | **datetime** |  | [optional] 
 **recording_end** | **datetime** |  | [optional] 
-**recording_status** | [**RecordingStatusEnum**](RecordingStatusEnum.md) |  | [optional] 
-**cloud_sync_start** | **datetime** |  | [optional] 
-**cloud_sync_end** | **datetime** |  | [optional] 
-**cloud_sync_status** | [**CloudSyncStatusEnum**](CloudSyncStatusEnum.md) |  | [optional] 
 **gcode_file_name** | **str** |  | [optional] 
 **mp4_file** | **str** |  | [readonly] 
 **user** | **int** |  | [readonly] 

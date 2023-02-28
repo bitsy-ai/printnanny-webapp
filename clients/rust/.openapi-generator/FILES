@@ -10,7 +10,6 @@ docs/AchievementsApi.md
 docs/AlertsApi.md
 docs/CallbackTokenAuth.md
 docs/CallbackTokenAuthRequest.md
-docs/CloudSyncStatusEnum.md
 docs/CrashReport.md
 docs/CrashReportStatusEnum.md
 docs/CrashReportsApi.md
@@ -92,6 +91,7 @@ docs/PaginatedPolymorphicPiStatusList.md
 docs/PaginatedProductList.md
 docs/PaginatedSystemInfoList.md
 docs/PaginatedVideoRecordingList.md
+docs/PaginatedVideoRecordingPartList.md
 docs/PaginatedWebrtcStreamList.md
 docs/PasswordChangeRequest.md
 docs/PasswordResetConfirmRequest.md
@@ -105,6 +105,7 @@ docs/PatchedOctoPrinterProfileRequest.md
 docs/PatchedPiRequest.md
 docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
+docs/PatchedVideoRecordingPartRequest.md
 docs/PatchedVideoRecordingRequest.md
 docs/PatchedWebrtcStreamRequest.md
 docs/Pi.md
@@ -149,7 +150,6 @@ docs/PolymorphicPiStatus.md
 docs/PolymorphicPiStatusRequest.md
 docs/PreferredDnsType.md
 docs/Product.md
-docs/RecordingStatusEnum.md
 docs/RegisterRequest.md
 docs/ResendEmailVerificationRequest.md
 docs/RestAuthDetail.md
@@ -178,6 +178,8 @@ docs/User.md
 docs/UserRequest.md
 docs/VerifyEmailRequest.md
 docs/VideoRecording.md
+docs/VideoRecordingPart.md
+docs/VideoRecordingPartRequest.md
 docs/VideoRecordingRequest.md
 docs/VideosApi.md
 docs/WebrtcStream.md
@@ -204,7 +206,6 @@ src/models/achievement.rs
 src/models/achievement_type_enum.rs
 src/models/callback_token_auth.rs
 src/models/callback_token_auth_request.rs
-src/models/cloud_sync_status_enum.rs
 src/models/crash_report.rs
 src/models/crash_report_status_enum.rs
 src/models/dj_stripe_charge.rs
@@ -281,6 +282,7 @@ src/models/paginated_polymorphic_pi_status_list.rs
 src/models/paginated_product_list.rs
 src/models/paginated_system_info_list.rs
 src/models/paginated_video_recording_list.rs
+src/models/paginated_video_recording_part_list.rs
 src/models/paginated_webrtc_stream_list.rs
 src/models/password_change_request.rs
 src/models/password_reset_confirm_request.rs
@@ -294,6 +296,7 @@ src/models/patched_octo_printer_profile_request.rs
 src/models/patched_pi_request.rs
 src/models/patched_system_info_request.rs
 src/models/patched_user_request.rs
+src/models/patched_video_recording_part_request.rs
 src/models/patched_video_recording_request.rs
 src/models/patched_webrtc_stream_request.rs
 src/models/pi.rs
@@ -337,7 +340,6 @@ src/models/polymorphic_pi_status.rs
 src/models/polymorphic_pi_status_request.rs
 src/models/preferred_dns_type.rs
 src/models/product.rs
-src/models/recording_status_enum.rs
 src/models/register_request.rs
 src/models/resend_email_verification_request.rs
 src/models/rest_auth_detail.rs
@@ -363,6 +365,8 @@ src/models/user.rs
 src/models/user_request.rs
 src/models/verify_email_request.rs
 src/models/video_recording.rs
+src/models/video_recording_part.rs
+src/models/video_recording_part_request.rs
 src/models/video_recording_request.rs
 src/models/webrtc_stream.rs
 src/models/webrtc_stream_request.rs

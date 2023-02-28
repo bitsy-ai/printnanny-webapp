@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**accounts2fa_auth_email_create**](AccountsApi.md#accounts2fa_auth_email_create) | **POST** /accounts/2fa-auth/email/ | 
+[**accounts2fa_auth_session_create**](AccountsApi.md#accounts2fa_auth_session_create) | **POST** /accounts/2fa-auth/session/ | 
 [**accounts2fa_auth_token_create**](AccountsApi.md#accounts2fa_auth_token_create) | **POST** /accounts/2fa-auth/token/ | 
 [**accounts_email_waitlist_create**](AccountsApi.md#accounts_email_waitlist_create) | **POST** /api/accounts/email-waitlist/ | 
 [**accounts_login_create**](AccountsApi.md#accounts_login_create) | **POST** /api/accounts/login/ | 
@@ -39,6 +40,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::EmailAuth**](EmailAuth.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## accounts2fa_auth_session_create
+
+> crate::models::CallbackTokenAuth accounts2fa_auth_session_create(callback_token_auth_request)
+
+
+Persist a user id and a backend in the request. This way a user doesn't have to reauthenticate on every request. Note that data set during the anonymous session is retained when the user logs in.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**callback_token_auth_request** | [**CallbackTokenAuthRequest**](CallbackTokenAuthRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::CallbackTokenAuth**](CallbackTokenAuth.md)
 
 ### Authorization
 

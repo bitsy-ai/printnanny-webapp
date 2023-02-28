@@ -11,7 +11,6 @@ docs/AchievementsApi.md
 docs/AlertsApi.md
 docs/CallbackTokenAuth.md
 docs/CallbackTokenAuthRequest.md
-docs/CloudSyncStatusEnum.md
 docs/CrashReport.md
 docs/CrashReportStatusEnum.md
 docs/CrashReportsApi.md
@@ -93,6 +92,7 @@ docs/PaginatedPolymorphicPiStatusList.md
 docs/PaginatedProductList.md
 docs/PaginatedSystemInfoList.md
 docs/PaginatedVideoRecordingList.md
+docs/PaginatedVideoRecordingPartList.md
 docs/PaginatedWebrtcStreamList.md
 docs/PasswordChangeRequest.md
 docs/PasswordResetConfirmRequest.md
@@ -106,6 +106,7 @@ docs/PatchedOctoPrinterProfileRequest.md
 docs/PatchedPiRequest.md
 docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
+docs/PatchedVideoRecordingPartRequest.md
 docs/PatchedVideoRecordingRequest.md
 docs/PatchedWebrtcStreamRequest.md
 docs/Pi.md
@@ -150,7 +151,6 @@ docs/PolymorphicPiStatus.md
 docs/PolymorphicPiStatusRequest.md
 docs/PreferredDnsType.md
 docs/Product.md
-docs/RecordingStatusEnum.md
 docs/RegisterRequest.md
 docs/ResendEmailVerificationRequest.md
 docs/RestAuthDetail.md
@@ -179,6 +179,8 @@ docs/User.md
 docs/UserRequest.md
 docs/VerifyEmailRequest.md
 docs/VideoRecording.md
+docs/VideoRecordingPart.md
+docs/VideoRecordingPartRequest.md
 docs/VideoRecordingRequest.md
 docs/VideosApi.md
 docs/WebrtcStream.md
@@ -208,7 +210,6 @@ printnanny_api_client/models/achievement.py
 printnanny_api_client/models/achievement_type_enum.py
 printnanny_api_client/models/callback_token_auth.py
 printnanny_api_client/models/callback_token_auth_request.py
-printnanny_api_client/models/cloud_sync_status_enum.py
 printnanny_api_client/models/crash_report.py
 printnanny_api_client/models/crash_report_status_enum.py
 printnanny_api_client/models/dj_stripe_charge.py
@@ -284,6 +285,7 @@ printnanny_api_client/models/paginated_polymorphic_pi_status_list.py
 printnanny_api_client/models/paginated_product_list.py
 printnanny_api_client/models/paginated_system_info_list.py
 printnanny_api_client/models/paginated_video_recording_list.py
+printnanny_api_client/models/paginated_video_recording_part_list.py
 printnanny_api_client/models/paginated_webrtc_stream_list.py
 printnanny_api_client/models/password_change_request.py
 printnanny_api_client/models/password_reset_confirm_request.py
@@ -297,6 +299,7 @@ printnanny_api_client/models/patched_octo_printer_profile_request.py
 printnanny_api_client/models/patched_pi_request.py
 printnanny_api_client/models/patched_system_info_request.py
 printnanny_api_client/models/patched_user_request.py
+printnanny_api_client/models/patched_video_recording_part_request.py
 printnanny_api_client/models/patched_video_recording_request.py
 printnanny_api_client/models/patched_webrtc_stream_request.py
 printnanny_api_client/models/pi.py
@@ -340,7 +343,6 @@ printnanny_api_client/models/polymorphic_pi_status.py
 printnanny_api_client/models/polymorphic_pi_status_request.py
 printnanny_api_client/models/preferred_dns_type.py
 printnanny_api_client/models/product.py
-printnanny_api_client/models/recording_status_enum.py
 printnanny_api_client/models/register_request.py
 printnanny_api_client/models/resend_email_verification_request.py
 printnanny_api_client/models/rest_auth_detail.py
@@ -366,6 +368,8 @@ printnanny_api_client/models/user.py
 printnanny_api_client/models/user_request.py
 printnanny_api_client/models/verify_email_request.py
 printnanny_api_client/models/video_recording.py
+printnanny_api_client/models/video_recording_part.py
+printnanny_api_client/models/video_recording_part_request.py
 printnanny_api_client/models/video_recording_request.py
 printnanny_api_client/models/webrtc_stream.py
 printnanny_api_client/models/webrtc_stream_request.py
@@ -383,7 +387,6 @@ test/test_achievements_api.py
 test/test_alerts_api.py
 test/test_callback_token_auth.py
 test/test_callback_token_auth_request.py
-test/test_cloud_sync_status_enum.py
 test/test_crash_report.py
 test/test_crash_report_status_enum.py
 test/test_crash_reports_api.py
@@ -465,6 +468,7 @@ test/test_paginated_polymorphic_pi_status_list.py
 test/test_paginated_product_list.py
 test/test_paginated_system_info_list.py
 test/test_paginated_video_recording_list.py
+test/test_paginated_video_recording_part_list.py
 test/test_paginated_webrtc_stream_list.py
 test/test_password_change_request.py
 test/test_password_reset_confirm_request.py
@@ -478,6 +482,7 @@ test/test_patched_octo_printer_profile_request.py
 test/test_patched_pi_request.py
 test/test_patched_system_info_request.py
 test/test_patched_user_request.py
+test/test_patched_video_recording_part_request.py
 test/test_patched_video_recording_request.py
 test/test_patched_webrtc_stream_request.py
 test/test_pi.py
@@ -522,7 +527,6 @@ test/test_polymorphic_pi_status.py
 test/test_polymorphic_pi_status_request.py
 test/test_preferred_dns_type.py
 test/test_product.py
-test/test_recording_status_enum.py
 test/test_register_request.py
 test/test_resend_email_verification_request.py
 test/test_rest_auth_detail.py
@@ -551,6 +555,8 @@ test/test_user.py
 test/test_user_request.py
 test/test_verify_email_request.py
 test/test_video_recording.py
+test/test_video_recording_part.py
+test/test_video_recording_part_request.py
 test/test_video_recording_request.py
 test/test_videos_api.py
 test/test_webrtc_stream.py
