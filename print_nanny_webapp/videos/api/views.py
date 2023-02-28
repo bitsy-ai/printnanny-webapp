@@ -157,11 +157,11 @@ class VideoRecordingPartViewSet(
     queryset = VideoRecordingPart.objects.all()
 
     @extend_schema(
-        operation_id="video_recordings_update_or_create",
+        operation_id="video_recording_parts_update_or_create",
         tags=["videos"],
         responses={
-            200: VideoRecordingSerializer,
-            201: VideoRecordingSerializer,
+            200: VideoRecordingPartSerializer,
+            201: VideoRecordingPartSerializer,
         }
         | generic_create_errors
         | generic_get_errors,

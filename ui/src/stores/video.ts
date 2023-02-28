@@ -20,7 +20,7 @@ export const useVideoStore = defineStore({
       this.$patch({ loading: true });
       const accountStore = useAccountStore();
       const res = await accountStore.videosApi
-        .videoRecordingsList()
+        .videosList()
         .catch(handleApiError);
       console.debug("videoRecordingsList: ", res);
       if (res?.data.results) {

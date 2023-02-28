@@ -18196,11 +18196,11 @@ export const VideosApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        videoRecordingsUpdateOrCreate: async (id: string, videoRecordingPartRequest: VideoRecordingPartRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        videoRecordingPartsUpdateOrCreate: async (id: string, videoRecordingPartRequest: VideoRecordingPartRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('videoRecordingsUpdateOrCreate', 'id', id)
+            assertParamExists('videoRecordingPartsUpdateOrCreate', 'id', id)
             // verify required parameter 'videoRecordingPartRequest' is not null or undefined
-            assertParamExists('videoRecordingsUpdateOrCreate', 'videoRecordingPartRequest', videoRecordingPartRequest)
+            assertParamExists('videoRecordingPartsUpdateOrCreate', 'videoRecordingPartRequest', videoRecordingPartRequest)
             const localVarPath = `/api/video-parts/{id}/update-or-create/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -18241,9 +18241,9 @@ export const VideosApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        videoRecordingsUpdateOrCreate2: async (id: string, videoRecordingRequest?: VideoRecordingRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        videoRecordingsUpdateOrCreate: async (id: string, videoRecordingRequest?: VideoRecordingRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('videoRecordingsUpdateOrCreate2', 'id', id)
+            assertParamExists('videoRecordingsUpdateOrCreate', 'id', id)
             const localVarPath = `/api/videos/{id}/update-or-create/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -18550,8 +18550,8 @@ export const VideosApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async videoRecordingsUpdateOrCreate(id: string, videoRecordingPartRequest: VideoRecordingPartRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoRecording>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.videoRecordingsUpdateOrCreate(id, videoRecordingPartRequest, options);
+        async videoRecordingPartsUpdateOrCreate(id: string, videoRecordingPartRequest: VideoRecordingPartRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoRecordingPart>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.videoRecordingPartsUpdateOrCreate(id, videoRecordingPartRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -18561,8 +18561,8 @@ export const VideosApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async videoRecordingsUpdateOrCreate2(id: string, videoRecordingRequest?: VideoRecordingRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoRecording>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.videoRecordingsUpdateOrCreate2(id, videoRecordingRequest, options);
+        async videoRecordingsUpdateOrCreate(id: string, videoRecordingRequest?: VideoRecordingRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoRecording>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.videoRecordingsUpdateOrCreate(id, videoRecordingRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -18681,8 +18681,8 @@ export const VideosApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        videoRecordingsUpdateOrCreate(id: string, videoRecordingPartRequest: VideoRecordingPartRequest, options?: any): AxiosPromise<VideoRecording> {
-            return localVarFp.videoRecordingsUpdateOrCreate(id, videoRecordingPartRequest, options).then((request) => request(axios, basePath));
+        videoRecordingPartsUpdateOrCreate(id: string, videoRecordingPartRequest: VideoRecordingPartRequest, options?: any): AxiosPromise<VideoRecordingPart> {
+            return localVarFp.videoRecordingPartsUpdateOrCreate(id, videoRecordingPartRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -18691,8 +18691,8 @@ export const VideosApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        videoRecordingsUpdateOrCreate2(id: string, videoRecordingRequest?: VideoRecordingRequest, options?: any): AxiosPromise<VideoRecording> {
-            return localVarFp.videoRecordingsUpdateOrCreate2(id, videoRecordingRequest, options).then((request) => request(axios, basePath));
+        videoRecordingsUpdateOrCreate(id: string, videoRecordingRequest?: VideoRecordingRequest, options?: any): AxiosPromise<VideoRecording> {
+            return localVarFp.videoRecordingsUpdateOrCreate(id, videoRecordingRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -18805,7 +18805,7 @@ export interface VideosApiInterface {
      * @throws {RequiredError}
      * @memberof VideosApiInterface
      */
-    videoRecordingsUpdateOrCreate(id: string, videoRecordingPartRequest: VideoRecordingPartRequest, options?: AxiosRequestConfig): AxiosPromise<VideoRecording>;
+    videoRecordingPartsUpdateOrCreate(id: string, videoRecordingPartRequest: VideoRecordingPartRequest, options?: AxiosRequestConfig): AxiosPromise<VideoRecordingPart>;
 
     /**
      * 
@@ -18815,7 +18815,7 @@ export interface VideosApiInterface {
      * @throws {RequiredError}
      * @memberof VideosApiInterface
      */
-    videoRecordingsUpdateOrCreate2(id: string, videoRecordingRequest?: VideoRecordingRequest, options?: AxiosRequestConfig): AxiosPromise<VideoRecording>;
+    videoRecordingsUpdateOrCreate(id: string, videoRecordingRequest?: VideoRecordingRequest, options?: AxiosRequestConfig): AxiosPromise<VideoRecording>;
 
     /**
      * 
@@ -18938,8 +18938,8 @@ export class VideosApi extends BaseAPI implements VideosApiInterface {
      * @throws {RequiredError}
      * @memberof VideosApi
      */
-    public videoRecordingsUpdateOrCreate(id: string, videoRecordingPartRequest: VideoRecordingPartRequest, options?: AxiosRequestConfig) {
-        return VideosApiFp(this.configuration).videoRecordingsUpdateOrCreate(id, videoRecordingPartRequest, options).then((request) => request(this.axios, this.basePath));
+    public videoRecordingPartsUpdateOrCreate(id: string, videoRecordingPartRequest: VideoRecordingPartRequest, options?: AxiosRequestConfig) {
+        return VideosApiFp(this.configuration).videoRecordingPartsUpdateOrCreate(id, videoRecordingPartRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -18950,8 +18950,8 @@ export class VideosApi extends BaseAPI implements VideosApiInterface {
      * @throws {RequiredError}
      * @memberof VideosApi
      */
-    public videoRecordingsUpdateOrCreate2(id: string, videoRecordingRequest?: VideoRecordingRequest, options?: AxiosRequestConfig) {
-        return VideosApiFp(this.configuration).videoRecordingsUpdateOrCreate2(id, videoRecordingRequest, options).then((request) => request(this.axios, this.basePath));
+    public videoRecordingsUpdateOrCreate(id: string, videoRecordingRequest?: VideoRecordingRequest, options?: AxiosRequestConfig) {
+        return VideosApiFp(this.configuration).videoRecordingsUpdateOrCreate(id, videoRecordingRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
