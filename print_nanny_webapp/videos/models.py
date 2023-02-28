@@ -13,9 +13,14 @@ from .enum import VideoRecordingStatus
 User = get_user_model()
 
 
-def mp4_filepath(instance, filename):
+def final_mp4_filepath(instance, filename):
     path = timezone.now().strftime("uploads/video_recordings/mp4/%Y/%m/%d")
-    return f"{path}/{instance.id}.mp4"
+    return f"{path}/{instance.id}/final.mp4"
+
+
+def part_mp4_filepath(instance, filename):
+    path = timezone.now().strftime("uploads/video_recordings/mp4/%Y/%m/%d")
+    return f"{path}/{instance.id}/part_{instance.part}.mp4"
 
 
 class VideoRecording(SafeDeleteModel):
@@ -24,34 +29,47 @@ class VideoRecording(SafeDeleteModel):
     """
 
     id = models.UUIDField(primary_key=True, default=uuid4)
+    capture_done = models.BooleanField(default=False)
+    cloud_sync_done = models.BooleanField(default=False)
+    combine_done = models.BooleanField(default=False)
+
     recording_start = models.DateTimeField(null=True)
     recording_end = models.DateTimeField(null=True)
-    recording_status = models.CharField(
-        max_length=32,
-        choices=VideoRecordingStatus.choices,
-        default=VideoRecordingStatus.PENDING,
-    )
-
-    cloud_sync_start = models.DateTimeField(null=True)
-    cloud_sync_end = models.DateTimeField(null=True)
-    cloud_sync_status = models.CharField(
-        max_length=32,
-        choices=VideoRecordingStatus.choices,
-        default=VideoRecordingStatus.PENDING,
-    )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     gcode_file_name = models.CharField(max_length=255, null=True)
-    mp4_file = models.FileField(upload_to=mp4_filepath, null=True)
+    mp4_file = models.FileField(upload_to=final_mp4_filepath, null=True)
 
     def mp4_upload_url(self):
-        name = mp4_filepath(self, None)
+        name = final_mp4_filepath(self, None)
         return self.mp4_file.storage.upload_url(name)
 
     def mp4_size(self) -> int:
         if self.mp4_file is not None:
-            name = mp4_filepath(self, None)
+            name = final_mp4_filepath(self, None)
+            try:
+                return self.mp4_file.storage.size(name)
+            except google.api_core.exceptions.NotFound:
+                return 0
+        return 0
+
+
+class VideoRecordingPart(SafeDeleteModel):
+    id = models.CharField(primary_key=True, max_length=255)
+    part = models.IntegerField()
+    size = models.BigIntegerField()
+    mp4_file = models.FileField(upload_to=part_mp4_filepath, null=True)
+
+    video_recording = models.ForeignKey(VideoRecording, on_delete=models.CASCADE)
+
+    def mp4_upload_url(self):
+        name = part_mp4_filepath(self, None)
+        return self.mp4_file.storage.upload_url(name)
+
+    def mp4_size(self) -> int:
+        if self.mp4_file is not None:
+            name = part_mp4_filepath(self, None)
             try:
                 return self.mp4_file.storage.size(name)
             except google.api_core.exceptions.NotFound:

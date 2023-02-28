@@ -64,7 +64,7 @@ class Migration(migrations.Migration):
             model_name="videorecording",
             name="mp4_file",
             field=models.FileField(
-                null=True, upload_to=print_nanny_webapp.videos.models.mp4_filepath
+                null=True, upload_to=print_nanny_webapp.videos.models.final_mp4_filepath
             ),
         ),
         migrations.AddField(
