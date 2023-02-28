@@ -9,8 +9,8 @@ Method | HTTP request | Description
 [**video_parts_partial_update**](VideosApi.md#video_parts_partial_update) | **PATCH** /api/video-parts/{id}/ | 
 [**video_parts_retrieve**](VideosApi.md#video_parts_retrieve) | **GET** /api/video-parts/{id}/ | 
 [**video_parts_update**](VideosApi.md#video_parts_update) | **PUT** /api/video-parts/{id}/ | 
-[**video_recordings_update_or_create**](VideosApi.md#video_recordings_update_or_create) | **POST** /api/video-parts/{id}/update-or-create/ | 
-[**video_recordings_update_or_create2**](VideosApi.md#video_recordings_update_or_create2) | **POST** /api/videos/{id}/update-or-create/ | 
+[**video_recording_parts_update_or_create**](VideosApi.md#video_recording_parts_update_or_create) | **POST** /api/video-parts/{id}/update-or-create/ | 
+[**video_recordings_update_or_create**](VideosApi.md#video_recordings_update_or_create) | **POST** /api/videos/{id}/update-or-create/ | 
 [**videos_create**](VideosApi.md#videos_create) | **POST** /api/videos/ | 
 [**videos_list**](VideosApi.md#videos_list) | **GET** /api/videos/ | 
 [**videos_partial_update**](VideosApi.md#videos_partial_update) | **PATCH** /api/videos/{id}/ | 
@@ -633,8 +633,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **video_recordings_update_or_create**
-> VideoRecording video_recordings_update_or_create(id, video_recording_part_request)
+# **video_recording_parts_update_or_create**
+> VideoRecordingPart video_recording_parts_update_or_create(id, video_recording_part_request)
 
 
 
@@ -677,10 +677,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 video_recording_part_request = printnanny_api_client.VideoRecordingPartRequest() # VideoRecordingPartRequest | 
 
     try:
-        api_response = api_instance.video_recordings_update_or_create(id, video_recording_part_request)
+        api_response = api_instance.video_recording_parts_update_or_create(id, video_recording_part_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling VideosApi->video_recordings_update_or_create: %s\n" % e)
+        print("Exception when calling VideosApi->video_recording_parts_update_or_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -720,10 +720,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 video_recording_part_request = printnanny_api_client.VideoRecordingPartRequest() # VideoRecordingPartRequest | 
 
     try:
-        api_response = api_instance.video_recordings_update_or_create(id, video_recording_part_request)
+        api_response = api_instance.video_recording_parts_update_or_create(id, video_recording_part_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling VideosApi->video_recordings_update_or_create: %s\n" % e)
+        print("Exception when calling VideosApi->video_recording_parts_update_or_create: %s\n" % e)
 ```
 
 ### Parameters
@@ -735,7 +735,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VideoRecording**](VideoRecording.md)
+[**VideoRecordingPart**](VideoRecordingPart.md)
 
 ### Authorization
 
@@ -760,8 +760,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **video_recordings_update_or_create2**
-> VideoRecording video_recordings_update_or_create2(id, video_recording_request=video_recording_request)
+# **video_recordings_update_or_create**
+> VideoRecording video_recordings_update_or_create(id, video_recording_request=video_recording_request)
 
 
 
@@ -804,10 +804,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 video_recording_request = printnanny_api_client.VideoRecordingRequest() # VideoRecordingRequest |  (optional)
 
     try:
-        api_response = api_instance.video_recordings_update_or_create2(id, video_recording_request=video_recording_request)
+        api_response = api_instance.video_recordings_update_or_create(id, video_recording_request=video_recording_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling VideosApi->video_recordings_update_or_create2: %s\n" % e)
+        print("Exception when calling VideosApi->video_recordings_update_or_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -847,10 +847,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 video_recording_request = printnanny_api_client.VideoRecordingRequest() # VideoRecordingRequest |  (optional)
 
     try:
-        api_response = api_instance.video_recordings_update_or_create2(id, video_recording_request=video_recording_request)
+        api_response = api_instance.video_recordings_update_or_create(id, video_recording_request=video_recording_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling VideosApi->video_recordings_update_or_create2: %s\n" % e)
+        print("Exception when calling VideosApi->video_recordings_update_or_create: %s\n" % e)
 ```
 
 ### Parameters

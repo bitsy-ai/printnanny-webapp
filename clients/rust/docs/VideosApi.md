@@ -9,8 +9,8 @@ Method | HTTP request | Description
 [**video_parts_partial_update**](VideosApi.md#video_parts_partial_update) | **PATCH** /api/video-parts/{id}/ | 
 [**video_parts_retrieve**](VideosApi.md#video_parts_retrieve) | **GET** /api/video-parts/{id}/ | 
 [**video_parts_update**](VideosApi.md#video_parts_update) | **PUT** /api/video-parts/{id}/ | 
-[**video_recordings_update_or_create**](VideosApi.md#video_recordings_update_or_create) | **POST** /api/video-parts/{id}/update-or-create/ | 
-[**video_recordings_update_or_create2**](VideosApi.md#video_recordings_update_or_create2) | **POST** /api/videos/{id}/update-or-create/ | 
+[**video_recording_parts_update_or_create**](VideosApi.md#video_recording_parts_update_or_create) | **POST** /api/video-parts/{id}/update-or-create/ | 
+[**video_recordings_update_or_create**](VideosApi.md#video_recordings_update_or_create) | **POST** /api/videos/{id}/update-or-create/ | 
 [**videos_create**](VideosApi.md#videos_create) | **POST** /api/videos/ | 
 [**videos_list**](VideosApi.md#videos_list) | **GET** /api/videos/ | 
 [**videos_partial_update**](VideosApi.md#videos_partial_update) | **PATCH** /api/videos/{id}/ | 
@@ -161,9 +161,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## video_recordings_update_or_create
+## video_recording_parts_update_or_create
 
-> crate::models::VideoRecording video_recordings_update_or_create(id, video_recording_part_request)
+> crate::models::VideoRecordingPart video_recording_parts_update_or_create(id, video_recording_part_request)
 
 
 ### Parameters
@@ -176,7 +176,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::VideoRecording**](VideoRecording.md)
+[**crate::models::VideoRecordingPart**](VideoRecordingPart.md)
 
 ### Authorization
 
@@ -190,9 +190,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## video_recordings_update_or_create2
+## video_recordings_update_or_create
 
-> crate::models::VideoRecording video_recordings_update_or_create2(id, video_recording_request)
+> crate::models::VideoRecording video_recordings_update_or_create(id, video_recording_request)
 
 
 ### Parameters
