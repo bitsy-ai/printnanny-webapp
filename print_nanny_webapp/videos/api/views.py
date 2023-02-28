@@ -15,8 +15,11 @@ from rest_framework.mixins import (
 from rest_framework import status
 
 
-from print_nanny_webapp.videos.models import VideoRecording
-from print_nanny_webapp.videos.api.serializers import VideoRecordingSerializer
+from print_nanny_webapp.videos.models import VideoRecording, VideoRecordingPart
+from print_nanny_webapp.videos.api.serializers import (
+    VideoRecordingSerializer,
+    VideoRecordingPartSerializer,
+)
 from print_nanny_webapp.utils.api.views import (
     generic_get_errors,
     generic_create_errors,
@@ -97,6 +100,80 @@ class VideoRecordingViewSet(
         validated_data = serializer.validated_data
         instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
             id, request.user, validated_data
+        )
+        response_serializer = self.get_serializer(instance)
+        if created:
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+        return Response(response_serializer.data, status=status.HTTP_200_OK)
+
+
+@extend_schema_view(
+    create=extend_schema(
+        tags=["videos"],
+        request=VideoRecordingPartSerializer,
+        responses={201: VideoRecordingPartSerializer} | generic_create_errors,
+    ),
+    list=extend_schema(
+        tags=["videos"],
+        responses={
+            200: VideoRecordingPartSerializer(many=True),
+        }
+        | generic_list_errors,
+    ),
+    update=extend_schema(
+        tags=["videos"],
+        request=VideoRecordingPartSerializer,
+        responses={
+            202: VideoRecordingPartSerializer,
+        }
+        | generic_update_errors,
+    ),
+    partial_update=extend_schema(
+        tags=["videos"],
+        request=VideoRecordingPartSerializer,
+        responses={
+            202: VideoRecordingPartSerializer,
+        }
+        | generic_update_errors,
+    ),
+    retrieve=extend_schema(
+        tags=["videos"],
+        request=VideoRecordingPartSerializer,
+        responses={
+            200: VideoRecordingPartSerializer,
+        }
+        | generic_get_errors,
+    ),
+)
+class VideoRecordingPartViewSet(
+    GenericViewSet,
+    CreateModelMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+):
+    serializer_class = VideoRecordingPartSerializer
+    lookup_field = "id"
+    queryset = VideoRecordingPart.objects.all()
+
+    @extend_schema(
+        operation_id="video_recordings_update_or_create",
+        tags=["videos"],
+        responses={
+            200: VideoRecordingSerializer,
+            201: VideoRecordingSerializer,
+        }
+        | generic_create_errors
+        | generic_get_errors,
+    )
+    @action(methods=["post"], detail=True, url_path="update-or-create")
+    @csrf_exempt
+    def update_or_create(self, request, id=None):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        validated_data = serializer.validated_data
+        instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
+            id, validated_data
         )
         response_serializer = self.get_serializer(instance)
         if created:
