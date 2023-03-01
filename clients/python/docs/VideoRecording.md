@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **id** | **str** |  | [optional] 
 **mp4_upload_url** | **str** |  | [readonly] 
 **mp4_size** | **int** |  | [readonly] 
-**capture_done** | **bool** |  | [optional] 
 **cloud_sync_done** | **bool** |  | [optional] 
 **combine_done** | **bool** |  | [optional] 
 **recording_start** | **datetime** |  | [optional] 

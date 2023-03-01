@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | Option<**String**> |  | [optional]
-**capture_done** | Option<**bool**> |  | [optional]
 **cloud_sync_done** | Option<**bool**> |  | [optional]
 **combine_done** | Option<**bool**> |  | [optional]
 **recording_start** | Option<**String**> |  | [optional]

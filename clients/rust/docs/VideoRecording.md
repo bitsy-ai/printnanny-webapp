@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **id** | Option<**String**> |  | [optional]
 **mp4_upload_url** | **String** |  | [readonly]
 **mp4_size** | Option<**i32**> |  | [readonly]
-**capture_done** | Option<**bool**> |  | [optional]
 **cloud_sync_done** | Option<**bool**> |  | [optional]
 **combine_done** | Option<**bool**> |  | [optional]
 **recording_start** | Option<**String**> |  | [optional]
