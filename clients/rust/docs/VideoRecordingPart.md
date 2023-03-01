@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **part** | **i32** |  | 
 **size** | **i64** |  | 
 **mp4_file** | Option<**String**> |  | [readonly]
+**sync_start** | Option<**String**> |  | [optional]
+**sync_end** | Option<**String**> |  | [optional]
 **video_recording** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
