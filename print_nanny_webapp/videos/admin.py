@@ -9,7 +9,6 @@ class VideoRecordingAdmin(admin.ModelAdmin):
         "user",
         "recording_start",
         "recording_end",
-        "capture_done",
         "cloud_sync_done",
         "combine_done",
         "user",

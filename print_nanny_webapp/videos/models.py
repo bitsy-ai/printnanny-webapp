@@ -29,7 +29,6 @@ class VideoRecording(SafeDeleteModel):
     """
 
     id = models.UUIDField(primary_key=True, default=uuid4)
-    capture_done = models.BooleanField(default=False)
     cloud_sync_done = models.BooleanField(default=False)
     combine_done = models.BooleanField(default=False)
 
