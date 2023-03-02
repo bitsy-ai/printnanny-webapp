@@ -56,8 +56,18 @@ class VideoRecording(SafeDeleteModel):
 
 class VideoRecordingPart(SafeDeleteModel):
     id = models.CharField(primary_key=True, max_length=255)
-    part = models.IntegerField()
     size = models.BigIntegerField()
+
+    buffer_index = models.BigIntegerField()
+    buffer_ts = models.BigIntegerField()
+    buffer_streamtime = models.BigIntegerField()
+    buffer_runningtime = models.BigIntegerField()
+    buffer_duration = models.BigIntegerField()
+    buffer_offset = models.BigIntegerField()
+    buffer_offset_end = models.BigIntegerField()
+
+    file_name = models.CharField(max_length=255)
+
     mp4_file = models.FileField(upload_to=part_mp4_filepath, null=True)
     sync_start = models.DateTimeField(null=True)
     sync_end = models.DateTimeField(null=True)
