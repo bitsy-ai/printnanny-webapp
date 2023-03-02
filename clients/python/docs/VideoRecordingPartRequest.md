@@ -5,8 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | 
-**part** | **int** |  | 
 **size** | **int** |  | 
+**buffer_index** | **int** |  | 
+**buffer_ts** | **int** |  | 
+**buffer_streamtime** | **int** |  | 
+**buffer_runningtime** | **int** |  | 
+**buffer_duration** | **int** |  | 
+**buffer_offset** | **int** |  | 
+**buffer_offset_end** | **int** |  | 
+**file_name** | **str** |  | 
 **sync_start** | **datetime** |  | [optional] 
 **sync_end** | **datetime** |  | [optional] 
 **video_recording** | **str** |  | 

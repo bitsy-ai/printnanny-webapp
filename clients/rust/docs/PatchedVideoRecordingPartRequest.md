@@ -5,8 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | Option<**String**> |  | [optional]
-**part** | Option<**i32**> |  | [optional]
 **size** | Option<**i64**> |  | [optional]
+**buffer_index** | Option<**i64**> |  | [optional]
+**buffer_ts** | Option<**i64**> |  | [optional]
+**buffer_streamtime** | Option<**i64**> |  | [optional]
+**buffer_runningtime** | Option<**i64**> |  | [optional]
+**buffer_duration** | Option<**i64**> |  | [optional]
+**buffer_offset** | Option<**i64**> |  | [optional]
+**buffer_offset_end** | Option<**i64**> |  | [optional]
+**file_name** | Option<**String**> |  | [optional]
 **sync_start** | Option<**String**> |  | [optional]
 **sync_end** | Option<**String**> |  | [optional]
 **video_recording** | Option<**String**> |  | [optional]
