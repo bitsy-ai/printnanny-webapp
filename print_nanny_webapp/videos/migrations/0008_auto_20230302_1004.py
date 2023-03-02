@@ -6,60 +6,60 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('videos', '0007_remove_videorecording_capture_done'),
+        ("videos", "0007_remove_videorecording_capture_done"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='videorecordingpart',
-            name='part',
+            model_name="videorecordingpart",
+            name="part",
         ),
         migrations.AddField(
-            model_name='videorecordingpart',
-            name='buffer_duration',
+            model_name="videorecordingpart",
+            name="buffer_duration",
             field=models.BigIntegerField(default=0),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='videorecordingpart',
-            name='buffer_index',
+            model_name="videorecordingpart",
+            name="buffer_index",
             field=models.BigIntegerField(default=0),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='videorecordingpart',
-            name='buffer_offset',
+            model_name="videorecordingpart",
+            name="buffer_offset",
             field=models.BigIntegerField(default=0),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='videorecordingpart',
-            name='buffer_offset_end',
+            model_name="videorecordingpart",
+            name="buffer_offset_end",
             field=models.BigIntegerField(default=0),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='videorecordingpart',
-            name='buffer_runningtime',
+            model_name="videorecordingpart",
+            name="buffer_runningtime",
             field=models.BigIntegerField(default=0),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='videorecordingpart',
-            name='buffer_streamtime',
+            model_name="videorecordingpart",
+            name="buffer_streamtime",
             field=models.BigIntegerField(default=0),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='videorecordingpart',
-            name='buffer_ts',
+            model_name="videorecordingpart",
+            name="buffer_ts",
             field=models.BigIntegerField(default=0),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='videorecordingpart',
-            name='file_name',
-            field=models.CharField(default='migrationdefault', max_length=255),
+            model_name="videorecordingpart",
+            name="file_name",
+            field=models.CharField(default="migrationdefault", max_length=255),
             preserve_default=False,
         ),
     ]
