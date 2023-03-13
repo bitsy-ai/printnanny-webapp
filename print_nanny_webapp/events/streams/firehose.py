@@ -116,4 +116,5 @@ async def main():
 
 
 if __name__ == "__main__":
+    logger.info("Initializing firehose event app")
     asyncio.run(main())
