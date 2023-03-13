@@ -32,7 +32,7 @@ services:
     container_name: printnanny_webapp_local_mailhog
     ports:
       - "8025:8025"
-  django: &django # enables use of pdb
+  django: &django
     hostname: django
     stdin_open: true
     tty: true
@@ -177,7 +177,7 @@ services:
     environment:
       - RUST_LOG=debug
       ## You can set the number of workers to > 0 and not need any separate worker service
-      - NUM_WORKERS=0
+      - NUM_WORKERS=1
       - DISABLE_SERVER=false
       - METRICS_ADDR=false
     depends_on:
