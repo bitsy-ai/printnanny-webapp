@@ -6,3 +6,7 @@ POSTGRES_PASSWORD=debug
 DATABASE_URL=postgres://windmill:debug@postgres14:5432/windmill
 BASE_URL=http://localhost:8000
 BASE_INTERNAL_URL=http://localhost:8000
+RUST_LOG=debug
+NUM_WORKERS=1
+DISABLE_SERVER=false
+METRICS_ADDR=false
