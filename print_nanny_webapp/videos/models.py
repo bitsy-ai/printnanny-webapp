@@ -59,12 +59,7 @@ class VideoRecordingPart(SafeDeleteModel):
     size = models.BigIntegerField()
 
     buffer_index = models.BigIntegerField()
-    buffer_ts = models.BigIntegerField()
-    buffer_streamtime = models.BigIntegerField()
     buffer_runningtime = models.BigIntegerField()
-    buffer_duration = models.BigIntegerField()
-    buffer_offset = models.BigIntegerField()
-    buffer_offset_end = models.BigIntegerField()
 
     file_name = models.CharField(max_length=255)
 
