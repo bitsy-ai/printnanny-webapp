@@ -8,12 +8,7 @@ Name | Type | Description | Notes
 **mp4_upload_url** | **str** |  | [readonly] 
 **size** | **int** |  | 
 **buffer_index** | **int** |  | 
-**buffer_ts** | **int** |  | 
-**buffer_streamtime** | **int** |  | 
 **buffer_runningtime** | **int** |  | 
-**buffer_duration** | **int** |  | 
-**buffer_offset** | **int** |  | 
-**buffer_offset_end** | **int** |  | 
 **file_name** | **str** |  | 
 **mp4_file** | **str** |  | [readonly] 
 **sync_start** | **datetime** |  | [optional] 

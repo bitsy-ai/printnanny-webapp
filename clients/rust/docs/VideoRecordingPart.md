@@ -8,12 +8,7 @@ Name | Type | Description | Notes
 **mp4_upload_url** | **String** |  | [readonly]
 **size** | **i64** |  | 
 **buffer_index** | **i64** |  | 
-**buffer_ts** | **i64** |  | 
-**buffer_streamtime** | **i64** |  | 
 **buffer_runningtime** | **i64** |  | 
-**buffer_duration** | **i64** |  | 
-**buffer_offset** | **i64** |  | 
-**buffer_offset_end** | **i64** |  | 
 **file_name** | **String** |  | 
 **mp4_file** | Option<**String**> |  | [readonly]
 **sync_start** | Option<**String**> |  | [optional]
