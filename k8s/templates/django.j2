@@ -115,7 +115,7 @@ spec:
         - name: nsc
           mountPath: "/var/lib/nats/nsc"
         - name: firehose-nkey
-          mountPath: /app/.production/.firehose
+          mountPath: /app/.envs/.production/.firehose
           readOnly: true
       - name: videos
         image: {{ PRINTNANNY_DJANGO_IMAGE }}

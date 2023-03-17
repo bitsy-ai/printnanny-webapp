@@ -30,6 +30,4 @@ then
     echo "User already exists: $DJANGO_SUPERUSER_EMAIL"
 fi
 
-python manage.py initrobots --name=firehose || echo "Firehose robot already exists"
-
 uvicorn config.asgi:application --host 0.0.0.0 --port 8080 --reload --reload-dir print_nanny_webapp --timeout-keep-alive "$TIMEOUT_KEEP_ALIVE"

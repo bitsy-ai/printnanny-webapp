@@ -171,8 +171,7 @@ down:
 robots-init:
 	docker-compose -f local.yml exec django python manage.py init_natsrobots
 
-nsc-init:
-	docker-compose -f local.yml exec django python manage.py nsc_init --name=PrintNannyDjangoOperator || echo "DjangoOperator already created" && docker-compose -f local.yml restart nats
+nsc-initrobots:
 	docker-compose -f local.yml exec django python manage.py initrobots --name=firehose
 
 local-up: local-image-build local-creds
