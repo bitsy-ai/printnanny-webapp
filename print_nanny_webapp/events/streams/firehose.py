@@ -90,9 +90,7 @@ async def main():
         app.__dict__,
     )
 
-    nats_creds = await database_sync_to_async(nsc_generate_creds)(
-        NATS_ROBOT_ACCOUNT_NAME, app_name=app.app_name
-    )
+    nats_creds = nsc_generate_creds(NATS_ROBOT_ACCOUNT_NAME, app_name=app.app_name)
     logger.info("Generated NKEY credential for app=%s", NATS_ROBOT_ACCOUNT_NAME)
 
     with tempfile.NamedTemporaryFile() as f:
