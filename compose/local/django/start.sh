@@ -7,7 +7,7 @@ set -o nounset
 python manage.py collectstatic --noinput
 python manage.py migrate
 # initialize nsc operator and robot account(s)
-python manage.py nsc_init || echo "DjangoOperator already created"
+python manage.py nsc_init --name=PrintNannyDjangoOperator || echo "DjangoOperator already created"
 
 # initialize stripe product/shop models
 python manage.py djstripe_sync_models Product

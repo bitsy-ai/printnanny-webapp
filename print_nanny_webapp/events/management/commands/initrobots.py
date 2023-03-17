@@ -46,6 +46,6 @@ class Command(BaseCommand):
         name = kwargs.get("name")
         account = get_robot_acccount(name)
         app = get_robot_app(account, name)
-        nsc_push()
+        nsc_push(account.name)
 
         logger.info("NatsRobotApp initialized %s", app.json)
