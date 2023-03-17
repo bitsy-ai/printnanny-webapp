@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 PERIOD = 30  # run task every n seconds
 FINALIZE_TIME_LIMIT = 20  # time limit on outstanding finalize tasks (minutes)
 django.setup()
-VideoRecordings = apps.get_model("videos", "VideoRecordings")
+VideoRecordings = apps.get_model("videos", "VideoRecording")
 
 
 def get_video_recordings_ready_for_finalization():
