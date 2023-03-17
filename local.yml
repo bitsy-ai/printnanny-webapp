@@ -104,6 +104,35 @@ services:
       - python
       - -m
       - print_nanny_webapp.events.streams.firehose
+
+  videos: &videos
+    hostname: videos
+    depends_on:
+      - postgres12
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    image: printnanny_webapp_local_django
+    container_name: printnanny_webapp_videos
+    environment:
+      DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
+      DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
+      NKEYS_PATH: /var/lib/nats/nsc/keys
+      NSC_HOME: /var/lib/nats/nsc
+      NSC_STORE: /var/lib/nats/nsc/stores
+      DJANGO_SETTINGS_MODULE: config.settings.local
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
+      - ./.envs/.local/.secrets
+    volumes:
+      - .:/app:z
+      - local_nsc_data:/var/lib/nats/nsc:z
+    command:
+      - python
+      - -m
+      - print_nanny_webapp.videos.tasks.finalize_video_recordings
+
   postgres12:
     hostname: postgres12
     image: postgres:12.3
