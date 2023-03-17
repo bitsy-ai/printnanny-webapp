@@ -102,6 +102,9 @@ async def main():
     else:
         creds_filename = settings.NATS_FIREHOSE_NKEY
 
+    logger.info(
+        "Attempting to connect to %s using %s", settings.NATS_SERVER_URI, creds_filename
+    )
     nc = await nats.connect(
         servers=[settings.NATS_SERVER_URI],
         user_credentials=creds_filename,
