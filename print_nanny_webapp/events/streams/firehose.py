@@ -33,7 +33,7 @@ def get_robot_app(account):
         app_name=NATS_ROBOT_ACCOUNT_NAME,
         account=account,
     )
-    logger.info("Fetched NatsRobotApp id=%s name=%s", app.id, app.name)
+    logger.info("Fetched NatsRobotApp id=%s name=%s", app.id, app.app_name)
     return app
 
 
