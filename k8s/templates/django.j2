@@ -41,6 +41,9 @@ spec:
         secret:
           secretName: django-operator-nkeys
           defaultMode: 0400
+      - name: firehose-nkey
+        secret:
+          secretName: printnanny-firehose
       - name: nsc
         persistentVolumeClaim:
           claimName: "django-nats-nkey-nfs"
@@ -111,6 +114,9 @@ spec:
           mountPath: "/etc/django-operator-nkeys"
         - name: nsc
           mountPath: "/var/lib/nats/nsc"
+        - name: firehose-nkey
+          mountPath: /app/.envs/.production/.firehose
+          readOnly: true
       - name: videos
         image: {{ PRINTNANNY_DJANGO_IMAGE }}
         command:

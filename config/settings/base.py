@@ -875,3 +875,11 @@ OAUTH2_PROVIDER = {
     },
     "PKCE_REQUIRED": False,
 }
+
+# firehose NATS app
+# ------------------------------------------------------------------------------
+NATS_FIREHOSE_ACCOUNT_NAME = "firehose"
+NATS_FIREHOSE_SUBJECT = "pi.>"
+NATS_FIREHOSE_NKEY = env(
+    "NATS_FIREHOSE_NKEY", default="/app/.envs/.local/.firehose/nkey"
+)

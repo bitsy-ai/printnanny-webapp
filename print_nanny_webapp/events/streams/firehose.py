@@ -13,8 +13,6 @@ from django.apps import apps
 
 logger = logging.getLogger(__name__)
 
-NATS_ROBOT_ACCOUNT_NAME = "firehose"
-
 django.setup()
 # settings.configure()
 NatsRobotAccount = apps.get_model("django_nats_nkeys.NatsRobotAccount")
@@ -23,7 +21,7 @@ NatsRobotApp = apps.get_model("django_nats_nkeys.NatsRobotApp")
 
 @database_sync_to_async
 def get_robot_acccount():
-    result = NatsRobotAccount.objects.get(name=NATS_ROBOT_ACCOUNT_NAME)
+    result = NatsRobotAccount.objects.get(name=settings.NATS_FIREHOSE_ACCOUNT_NAME)
     logger.info("Fetched NatsRobotAccount with id=%s name=%s", result.id, result.name)
     return result
 
@@ -31,7 +29,7 @@ def get_robot_acccount():
 @database_sync_to_async
 def get_robot_app(account):
     app = NatsRobotApp.objects.get(
-        app_name=NATS_ROBOT_ACCOUNT_NAME,
+        app_name=settings.NATS_FIREHOSE_ACCOUNT_NAME,
         account=account,
     )
     logger.info("Fetched NatsRobotApp id=%s name=%s", app.id, app.app_name)
@@ -46,13 +44,13 @@ async def init_robot_app():
     except NatsRobotAccount.DoesNotExist:
         logger.error(
             "NatsRobotAccount.DoesNotExist %s",
-            NATS_ROBOT_ACCOUNT_NAME,
+            settings.NATS_FIREHOSE_ACCOUNT_NAME,
         )
         return
     except NatsRobotApp.DoesNotExist:
         logger.error(
             "NatsRobotApp.DoesNotExist %s",
-            NATS_ROBOT_ACCOUNT_NAME,
+            settings.NATS_FIREHOSE_ACCOUNT_NAME,
         )
         return
 
@@ -75,7 +73,6 @@ def handle_pi_event(msg):
 
 
 async def main():
-    from django_nats_nkeys.services import nsc_pull
     from django_nats_nkeys.services import nsc_generate_creds
 
     app = await init_robot_app()
@@ -86,35 +83,39 @@ async def main():
 
     logger.info(
         "Initializing worker subscribed to %s using app identity %s",
-        NATS_ROBOT_ACCOUNT_NAME,
+        settings.NATS_FIREHOSE_ACCOUNT_NAME,
         app.__dict__,
     )
 
-    nats_creds = nsc_generate_creds(NATS_ROBOT_ACCOUNT_NAME, app_name=app.app_name)
-    logger.info("Generated NKEY credential for app=%s", NATS_ROBOT_ACCOUNT_NAME)
-
-    with tempfile.NamedTemporaryFile() as f:
-        logger.info("Attempting to write NKEY credential to %s", f.name)
-        f.write(nats_creds.encode("utf-8"))
-        f.flush()
-        logger.info("Success! Wrote NKEY credential to %s", f.name)
-        logger.info("Attempting to connect to NATS server %s", settings.NATS_SERVER_URI)
-        nc = await nats.connect(
-            settings.NATS_SERVER_URI,
-            user_credentials=f.name,
-            allow_reconnect=True,
-            verbose=True,
+    if settings.NATS_FIREHOSE_NKEY is None:
+        credential = nsc_generate_creds(
+            settings.NATS_FIREHOSE_ACCOUNT_NAME, app_name=app.app_name
         )
-
         logger.info(
-            "Success! Initialized Nats connection to %s", settings.NATS_SERVER_URI
+            "Generated NKEY credential for app=%s", settings.NATS_FIREHOSE_ACCOUNT_NAME
         )
-        sub = await nc.subscribe("pi.>")
+        f = tempfile.NamedTemporaryFile()
+        logger.info("Attempting to write NKEY credential to %s", f.name)
+        f.write(credential.encode("utf-8"))
+        f.flush()
+        creds_filename = f.name
+    else:
+        creds_filename = settings.NATS_FIREHOSE_NKEY
 
-        logger.info("Subscribed to pi.>")
+    nc = await nats.connect(
+        settings.NATS_SERVER_URI,
+        user_credentials=creds_filename,
+        allow_reconnect=True,
+        verbose=True,
+    )
 
-        async for msg in sub.messages:
-            await handle_pi_event(msg)
+    logger.info("Success! Initialized Nats connection to %s", settings.NATS_SERVER_URI)
+    sub = await nc.subscribe(settings.NATS_FIREHOSE_SUBJECT)
+
+    logger.info("Subscribed to %s", settings.NATS_FIREHOSE_SUBJECT)
+
+    async for msg in sub.messages:
+        await handle_pi_event(msg)
 
 
 if __name__ == "__main__":
