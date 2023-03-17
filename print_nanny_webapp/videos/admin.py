@@ -10,7 +10,6 @@ class VideoRecordingAdmin(admin.ModelAdmin):
         "recording_start",
         "recording_end",
         "cloud_sync_done",
-        "combine_done",
         "user",
     )
     model = VideoRecording

@@ -3,6 +3,8 @@ import logging
 from drf_spectacular.utils import extend_schema_view, extend_schema
 
 from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import get_object_or_404
+
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.viewsets import GenericViewSet
@@ -85,6 +87,7 @@ class VideoRecordingViewSet(
     @extend_schema(
         operation_id="video_recordings_update_or_create",
         tags=["videos"],
+        request=VideoRecordingSerializer,
         responses={
             200: VideoRecordingSerializer,
             201: VideoRecordingSerializer,
