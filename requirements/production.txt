@@ -162,7 +162,7 @@ django-loginas==0.3.10
     # via -r requirements/production.in
 django-model-utils==4.2.0
     # via -r requirements/production.in
-django-nats-nkeys[drf]==0.9.9
+django-nats-nkeys[drf]==0.9.10
     # via -r requirements/production.in
 django-oauth-toolkit==2.2.0
     # via -r requirements/production.in
