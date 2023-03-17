@@ -108,7 +108,6 @@ async def main():
     nc = await nats.connect(
         servers=[settings.NATS_SERVER_URI],
         user_credentials=creds_filename,
-        allow_reconnect=True,
     )
 
     logger.info("Success! Initialized Nats connection to %s", settings.NATS_SERVER_URI)
