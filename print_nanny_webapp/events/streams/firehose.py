@@ -73,16 +73,9 @@ def handle_pi_event(msg):
         logger.error("Error serializing event %s", serializer.errors)
 
 
-@database_sync_to_async
-def get_creds(app):
-    from django_nats_nkeys.services import nsc_generate_creds
-
-    creds = nsc_generate_creds(app.account.name, app_name=app.app_name)
-    return creds
-
-
 async def main():
     from django_nats_nkeys.services import nsc_pull
+    from django_nats_nkeys.services import nsc_generate_creds
 
     app = await init_robot_app()
     nsc_pull(force=True)
@@ -92,7 +85,7 @@ async def main():
         app,
     )
 
-    nats_creds = await get_creds(app)
+    nats_creds = nsc_generate_creds(app.account.name, app_name=app.app_name)
     logger.info("Generated NKEY credential for app=%s", NATS_ROBOT_ACCOUNT_NAME)
 
     with tempfile.NamedTemporaryFile() as f:
