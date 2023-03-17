@@ -21,16 +21,20 @@ NatsRobotApp = apps.get_model("django_nats_nkeys.NatsRobotApp")
 
 
 @database_sync_to_async
-def get_robot_acccount(wait=10):
-    return NatsRobotAccount.objects.get(name=NATS_ROBOT_ACCOUNT_NAME)
+def get_robot_acccount():
+    result = NatsRobotAccount.objects.get(name=NATS_ROBOT_ACCOUNT_NAME)
+    logger.info("Fetched NatsRobotAccount with id=%s name=%s", result.id, result.name)
+    return result
 
 
 @database_sync_to_async
-def get_robot_app(account, wait=10):
-    return NatsRobotApp.objects.get(
+def get_robot_app(account):
+    app = NatsRobotApp.objects.get(
         app_name=NATS_ROBOT_ACCOUNT_NAME,
         account=account,
     )
+    logger.info("Fetched NatsRobotApp id=%s name=%s", app.id, app.name)
+    return app
 
 
 async def init_robot_app():
@@ -39,21 +43,17 @@ async def init_robot_app():
         app = await get_robot_app(account)
         return app
     except NatsRobotAccount.DoesNotExist:
-        logger.warning(
-            "NatsRobotAccount.DoesNotExist %s - retrying in %i seconds",
+        logger.error(
+            "NatsRobotAccount.DoesNotExist %s",
             NATS_ROBOT_ACCOUNT_NAME,
-            10,
         )
-        await asyncio.sleep(10)
-        return await init_robot_app()
+        return
     except NatsRobotApp.DoesNotExist:
-        logger.warning(
-            "NatsRobotApp.DoesNotExist %s - retrying in %i seconds",
+        logger.error(
+            "NatsRobotApp.DoesNotExist %s",
             NATS_ROBOT_ACCOUNT_NAME,
-            10,
         )
-        await asyncio.sleep(10)
-        return await init_robot_app()
+        return
 
 
 @database_sync_to_async
@@ -78,6 +78,11 @@ async def main():
     from django_nats_nkeys.services import nsc_generate_creds
 
     app = await init_robot_app()
+
+    if app is None:
+        logger.error("Failed to get NatsRobotApp, exiting")
+        exit(1)
+
     nsc_pull(force=True)
     logger.info(
         "Initializing worker subscribed to %s using app identity %s",
