@@ -93,11 +93,14 @@ async def main():
     )
 
     nats_creds = await get_creds(app)
+    logger.info("Generated NKEY credential for app=%s", NATS_ROBOT_ACCOUNT_NAME)
 
     with tempfile.NamedTemporaryFile() as f:
+        logger.info("Attempting to write NKEY credential to %s", f.name)
         f.write(nats_creds.encode("utf-8"))
         f.flush()
-        logger.info("Wrote credentials to %s", f.name)
+        logger.info("Success! Wrote NKEY credential to %s", f.name)
+        logger.info("Attempting to connect to NATS server %s", settings.NATS_SERVER_URI)
         nc = await nats.connect(
             settings.NATS_SERVER_URI,
             user_credentials=f.name,
@@ -105,8 +108,9 @@ async def main():
             verbose=True,
         )
 
-        logger.info("Initialized Nats connection to %s", settings.NATS_SERVER_URI)
-
+        logger.info(
+            "Success! Initialized Nats connection to %s", settings.NATS_SERVER_URI
+        )
         sub = await nc.subscribe("pi.>")
 
         logger.info("Subscribed to pi.>")
