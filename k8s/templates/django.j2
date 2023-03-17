@@ -111,6 +111,21 @@ spec:
           mountPath: "/etc/django-operator-nkeys"
         - name: nsc
           mountPath: "/var/lib/nats/nsc"
+      - name: videos
+        image: {{ PRINTNANNY_DJANGO_IMAGE }}
+        command:
+          - python
+          - -m
+          - print_nanny_webapp.videos.tasks.finalize_video_recordings
+        envFrom:
+          - configMapRef:
+              name: webapp
+        volumeMounts:
+        - name: django-operator-nkeys
+          readOnly: true
+          mountPath: "/etc/django-operator-nkeys"
+        - name: nsc
+          mountPath: "/var/lib/nats/nsc"
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!
