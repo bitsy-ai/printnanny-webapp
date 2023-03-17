@@ -1,6 +1,6 @@
 import logging
 import asyncio
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 import django
 
@@ -9,11 +9,11 @@ from django.apps import apps
 from django.db.models import Q
 from asgiref.sync import sync_to_async
 
+django.setup()
 logger = logging.getLogger(__name__)
 
 PERIOD = 30  # run task every n seconds
 FINALIZE_TIME_LIMIT = 20  # time limit on outstanding finalize tasks (minutes)
-django.setup()
 VideoRecordings = apps.get_model("videos", "VideoRecording")
 
 

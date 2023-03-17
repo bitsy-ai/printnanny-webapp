@@ -11,10 +11,12 @@ import django
 from django.conf import settings
 from django.apps import apps
 
-logger = logging.getLogger(__name__)
 
 django.setup()
-# settings.configure()
+
+
+logger = logging.getLogger(__name__)
+
 NatsRobotAccount = apps.get_model("django_nats_nkeys.NatsRobotAccount")
 NatsRobotApp = apps.get_model("django_nats_nkeys.NatsRobotApp")
 
