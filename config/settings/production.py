@@ -300,5 +300,5 @@ GHOST_MEMBER_LABELS = [
 # firehose NATS app
 # ------------------------------------------------------------------------------
 NATS_FIREHOSE_NKEY = env(
-    "NATS_FIREHOSE_NKEY", default="/app/.envs./.production/.firehose/nkey"
+    "NATS_FIREHOSE_NKEY", default="/app/.envs/.production/.firehose/nkey"
 )
