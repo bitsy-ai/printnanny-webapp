@@ -2,6 +2,7 @@ import logging
 import tempfile
 import json
 import asyncio
+import sys
 
 import nats
 from channels.db import database_sync_to_async
@@ -81,9 +82,8 @@ async def main():
 
     if app is None:
         logger.error("Failed to get NatsRobotApp, exiting")
-        exit(1)
+        sys.exit(1)
 
-    nsc_pull(force=True)
     logger.info(
         "Initializing worker subscribed to %s using app identity %s",
         NATS_ROBOT_ACCOUNT_NAME,
