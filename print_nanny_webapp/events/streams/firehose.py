@@ -103,10 +103,9 @@ async def main():
         creds_filename = settings.NATS_FIREHOSE_NKEY
 
     nc = await nats.connect(
-        settings.NATS_SERVER_URI,
+        servers=[settings.NATS_SERVER_URI],
         user_credentials=creds_filename,
         allow_reconnect=True,
-        verbose=True,
     )
 
     logger.info("Success! Initialized Nats connection to %s", settings.NATS_SERVER_URI)
