@@ -297,5 +297,8 @@ GHOST_MEMBER_LABELS = [
     GhostLabel(name="PrintNanny Waitlist", slug="printnanny_waitlist"),
 ]
 
-# django-vite
+# firehose NATS app
 # ------------------------------------------------------------------------------
+NATS_FIREHOSE_NKEY = env(
+    "NATS_FIREHOSE_NKEY", default="/app/.production/.firehose/nkey"
+)
