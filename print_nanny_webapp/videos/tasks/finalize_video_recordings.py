@@ -3,6 +3,8 @@ import asyncio
 from datetime import datetime, timedelta
 
 import django
+
+from django.utils import timezone
 from django.apps import apps
 from django.db.models import Q
 from asgiref.sync import sync_to_async
@@ -16,7 +18,7 @@ VideoRecordings = apps.get_model("videos", "VideoRecording")
 
 
 def get_video_recordings_ready_for_finalization():
-    time_threshold = datetime.now() - timedelta(minutes=FINALIZE_TIME_LIMIT)
+    time_threshold = timezone.now() - timedelta(minutes=FINALIZE_TIME_LIMIT)
     # return all VideoRecordings where finalization hasn't been started, or that have execeeded FINALIZE_TIME_LIMIT since being started
     return VideoRecordings.objects.filter(
         Q(recording_start=None, cloud_sync_done=True)
@@ -29,7 +31,9 @@ async def finalize_video_recordings():
         get_video_recordings_ready_for_finalization, thread_sensitive=True
     )
     recordings = await get_recordings()
-    logger.info("Found %s VideoRecordings ready for finalization", recordings.count)
+    get_count = sync_to_async(recordings.count)
+    count = await get_count()
+    logger.info("Found %i VideoRecordings ready for finalization", count)
 
 
 async def run_periodically(interval, periodic_function):
