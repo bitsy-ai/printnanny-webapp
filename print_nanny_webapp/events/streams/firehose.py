@@ -59,7 +59,7 @@ async def init_robot_app():
 @database_sync_to_async
 def handle_pi_event(msg):
     data = json.loads(msg.data.decode("utf-8"))
-    logger.debug(
+    logger.info(
         "Received NATS msg %s",
         msg,
     )
