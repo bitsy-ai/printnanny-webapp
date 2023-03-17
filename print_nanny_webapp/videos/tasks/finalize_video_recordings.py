@@ -33,7 +33,8 @@ async def finalize_video_recordings():
     recordings = await get_recordings()
     get_count = sync_to_async(recordings.count)
     count = await get_count()
-    logger.info("Found %i VideoRecordings ready for finalization", count)
+    if count > 0:
+        logger.info("Found %i VideoRecordings ready for finalization", count)
 
 
 async def run_periodically(interval, periodic_function):
