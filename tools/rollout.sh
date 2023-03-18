@@ -11,7 +11,7 @@ docker tag "print_nanny_webapp:${GIT_SHA}" \
 docker push "us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:latest"
 docker push "us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}"
 
-kubectl  -n "$PRINTNANNY_NAMESPACE" set image deployment/django "django=us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA} firehose=us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA} videos=us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}" --record
+kubectl  -n "$PRINTNANNY_NAMESPACE" set image deployment/django "django=us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}" "firehose=us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}" "videos=us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}" --record
 ATTEMPTS=0
 MAX_ATTEMPTS=30
 SLEEP=10
