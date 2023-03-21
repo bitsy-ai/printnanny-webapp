@@ -259,13 +259,13 @@ nats:
   #  # https://docs.nats.io/nats-server/configuration/securing_nats/tls
   #
 
-  # tls:
-  #   allowNonTLS: false
-  #   secret:
-  #     name: nats-client-tls
-  #   ca: "ca.crt"
-  #   cert: "tls.crt"
-  #   key: "tls.key"
+  tls:
+    allowNonTLS: false
+    secret:
+      name: nats-client-tls
+    # ca: "ca.crt" # signed by LetsEncrypt CA
+    cert: "tls.crt"
+    key: "tls.key"
 
 mqtt:
   enabled: true
@@ -286,7 +286,8 @@ mqtt:
   #
   tls:
     secret:
-      name: nats-mqtt-tls
+      name: nats-client-tls
+    # ca: "ca.crt" # Signed by LetsEncrypt CA
     cert: "tls.crt"
     key: "tls.key"
 
@@ -386,7 +387,7 @@ cluster:
 # https://docs.nats.io/nats-server/configuration/leafnodes
 #
 leafnodes:
-  enabled: false
+  enabled: true
   port: 7422
   noAdvertise: true
   # remotes:
@@ -404,12 +405,12 @@ leafnodes:
   #
 
   #
-  # tls:
-  #   secret:
-  #     name: nats-client-tls
-  #   ca: "ca.crt"
-  #   cert: "tls.crt"
-  #   key: "tls.key"
+  tls:
+    secret:
+      name: nats-client-tls
+    # ca: "ca.crt" # Signed by LetsEncrypt CA
+    cert: "tls.crt"
+    key: "tls.key"
 
 # Gateway connections to create a super cluster
 #
@@ -449,12 +450,12 @@ gateway:
   #  # https://docs.nats.io/nats-server/configuration/securing_nats/tls
   #
   # see cert.yaml for certificate chain info
-  tls:
-    secret:
-      name: nats-server-tls
-    ca: "ca.crt"
-    cert: "tls.crt"
-    key: "tls.key"
+  # tls:
+  #   secret:
+  #     name: nats-server-tls
+  #   ca: "ca.crt"
+  #   cert: "tls.crt"
+  #   key: "tls.key"
 
 # In case of both external access and advertisements being
 # enabled, an initializer container will be used to gather
@@ -642,7 +643,8 @@ websocket:
   noTLS: false
   tls:
     secret:
-      name: nats-ws-tls
+      name: nats-client-tls
+    # ca: "tls.ca" # Signed by LetsEncrypt CA
     cert: "tls.crt"
     key: "tls.key"
   # This will optionally specify what host:port for websocket
