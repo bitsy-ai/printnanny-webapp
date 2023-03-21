@@ -25,3 +25,7 @@ spec:
       port: 1883
       protocol: TCP
       targetPort: 1883
+    - name: leafnodes
+      port: 7422
+      protocol: TCP
+      targetPort: 7422
