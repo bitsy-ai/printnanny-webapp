@@ -278,7 +278,7 @@ posthog.project_api_key = env("POSTHOG_API_KEY")
 posthog.debug = False
 
 # django-nats-nkeys
-NATS_SERVER_URI = env("NATS_SERVER_URI", default="nats://nats.live.printnanny.ai:4222")
+NATS_SERVER_URI = env("NATS_SERVER_URI", default="tls://nats.live.printnanny.ai:4222")
 NATS_WS_URI = env("NATS_WS_URI", default="wss://nats.live.printnanny.ai:8443")
 NATS_MQTT_BROKER_HOST = env("NATS_MQTT_BROKER_HOST", default="mqtt.live.printnanny.ai")
 NATS_MQTT_BROKER_PORT = env("NATS_MQTT_BROKER_PORT", default=1883)
