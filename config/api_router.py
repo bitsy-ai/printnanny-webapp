@@ -34,7 +34,6 @@ from print_nanny_webapp.octoprint.api.views import (
     OctoPrintSettingsViewSet,
     OctoPrinterProfileViewSet,
     OctoPrintServerByDeviceViewSet,
-    AllOctoPrintEventsViewSet,
 )
 from print_nanny_webapp.users.api.views import EmailWaitlistViewSet, UserNkeyView
 from print_nanny_webapp.videos.api.views import (
