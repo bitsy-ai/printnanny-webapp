@@ -4,9 +4,6 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**octoprint_events_create**](EventsApi.md#octoprint_events_create) | **POST** /api/octoprint/events/ | 
-[**octoprint_events_list**](EventsApi.md#octoprint_events_list) | **GET** /api/octoprint/events/ | 
-[**octoprint_events_retrieve**](EventsApi.md#octoprint_events_retrieve) | **GET** /api/octoprint/events/{id}/ | 
 [**pis_all_events_list**](EventsApi.md#pis_all_events_list) | **GET** /api/pis/events | 
 [**pis_commands_create**](EventsApi.md#pis_commands_create) | **POST** /api/pis/commands | 
 [**pis_commands_list**](EventsApi.md#pis_commands_list) | **GET** /api/pis/commands | 
@@ -18,96 +15,6 @@ Method | HTTP request | Description
 [**pis_status_create**](EventsApi.md#pis_status_create) | **POST** /api/pis/status | 
 [**pis_status_list**](EventsApi.md#pis_status_list) | **GET** /api/pis/status | 
 
-
-
-## octoprint_events_create
-
-> crate::models::PolymorphicOctoPrintEvent octoprint_events_create(polymorphic_octo_print_event_request)
-
-
-Interact with all events inheriting from BasePiEvent
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**polymorphic_octo_print_event_request** | Option<[**PolymorphicOctoPrintEventRequest**](PolymorphicOctoPrintEventRequest.md)> |  |  |
-
-### Return type
-
-[**crate::models::PolymorphicOctoPrintEvent**](PolymorphicOctoPrintEvent.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## octoprint_events_list
-
-> crate::models::PaginatedPolymorphicOctoPrintEventList octoprint_events_list(page)
-
-
-Interact with all events inheriting from BasePiEvent
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**page** | Option<**i32**> | A page number within the paginated result set. |  |
-
-### Return type
-
-[**crate::models::PaginatedPolymorphicOctoPrintEventList**](PaginatedPolymorphicOctoPrintEventList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## octoprint_events_retrieve
-
-> crate::models::PolymorphicOctoPrintEvent octoprint_events_retrieve(id)
-
-
-Interact with all events inheriting from BasePiEvent
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | A UUID string identifying this base octo print event. | [required] |
-
-### Return type
-
-[**crate::models::PolymorphicOctoPrintEvent**](PolymorphicOctoPrintEvent.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## pis_all_events_list
