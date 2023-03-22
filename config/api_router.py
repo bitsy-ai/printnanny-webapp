@@ -152,12 +152,6 @@ router.register(
 )
 
 router.register(
-    r"octoprint/events",
-    AllOctoPrintEventsViewSet,
-    basename="octoprint-events",
-)
-
-router.register(
     r"alert-settings/email",
     EmailAlertSettingsViewSet,
     basename="email-alert-settings",
