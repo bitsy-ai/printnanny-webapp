@@ -18,7 +18,6 @@ class VideoRecordingAdmin(admin.ModelAdmin):
 class VideoRecordingPartAdmin(admin.ModelAdmin):
     list_display = (
         "id",
-        "user",
         "buffer_index",
         "video_recording",
         "sync_start",
