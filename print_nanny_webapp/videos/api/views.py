@@ -96,7 +96,6 @@ class VideoRecordingViewSet(
         | generic_get_errors,
     )
     @action(methods=["post"], detail=True, url_path="update-or-create")
-    @csrf_exempt
     def update_or_create(self, request, id=None):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -170,7 +169,6 @@ class VideoRecordingPartViewSet(
         | generic_get_errors,
     )
     @action(methods=["post"], detail=True, url_path="update-or-create")
-    @csrf_exempt
     def update_or_create(self, request, id=None):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
