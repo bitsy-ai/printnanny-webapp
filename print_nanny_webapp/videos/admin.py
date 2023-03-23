@@ -1,5 +1,5 @@
 from django.contrib import admin
-from print_nanny_webapp.videos.models import VideoRecording
+from print_nanny_webapp.videos.models import VideoRecording, VideoRecordingPart
 
 # Register your models here.
 @admin.register(VideoRecording)
@@ -10,6 +10,18 @@ class VideoRecordingAdmin(admin.ModelAdmin):
         "recording_start",
         "recording_end",
         "cloud_sync_done",
-        "user",
     )
     model = VideoRecording
+
+
+@admin.register(VideoRecordingPart)
+class VideoRecordingPartAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "user",
+        "buffer_index",
+        "video_recording",
+        "sync_start",
+        "sync_end",
+    )
+    model = VideoRecordingPart
