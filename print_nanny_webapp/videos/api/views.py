@@ -168,13 +168,14 @@ class VideoRecordingPartViewSet(
         | generic_create_errors
         | generic_get_errors,
     )
-    @action(methods=["post"], detail=True, url_path="update-or-create")
-    def update_or_create(self, request, id=None):
+    @action(methods=["post"], detail=False, url_path="update-or-create")
+    def update_or_create(self, request, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         validated_data = serializer.validated_data
+        pk = validated_data.pop("id")
         instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
-            id, validated_data
+            pk, validated_data
         )
         response_serializer = self.get_serializer(instance)
         if created:
