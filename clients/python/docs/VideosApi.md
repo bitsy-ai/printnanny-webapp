@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**video_parts_partial_update**](VideosApi.md#video_parts_partial_update) | **PATCH** /api/video-parts/{id}/ | 
 [**video_parts_retrieve**](VideosApi.md#video_parts_retrieve) | **GET** /api/video-parts/{id}/ | 
 [**video_parts_update**](VideosApi.md#video_parts_update) | **PUT** /api/video-parts/{id}/ | 
-[**video_recording_parts_update_or_create**](VideosApi.md#video_recording_parts_update_or_create) | **POST** /api/video-parts/{id}/update-or-create/ | 
+[**video_recording_parts_update_or_create**](VideosApi.md#video_recording_parts_update_or_create) | **POST** /api/video-parts/update-or-create/ | 
 [**video_recordings_update_or_create**](VideosApi.md#video_recordings_update_or_create) | **POST** /api/videos/{id}/update-or-create/ | 
 [**videos_create**](VideosApi.md#videos_create) | **POST** /api/videos/ | 
 [**videos_list**](VideosApi.md#videos_list) | **GET** /api/videos/ | 
@@ -634,7 +634,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **video_recording_parts_update_or_create**
-> VideoRecordingPart video_recording_parts_update_or_create(id, video_recording_part_request)
+> VideoRecordingPart video_recording_parts_update_or_create(video_recording_part_request)
 
 
 
@@ -673,11 +673,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.VideosApi(api_client)
-    id = 'id_example' # str | A unique value identifying this video recording part.
-video_recording_part_request = printnanny_api_client.VideoRecordingPartRequest() # VideoRecordingPartRequest | 
+    video_recording_part_request = printnanny_api_client.VideoRecordingPartRequest() # VideoRecordingPartRequest | 
 
     try:
-        api_response = api_instance.video_recording_parts_update_or_create(id, video_recording_part_request)
+        api_response = api_instance.video_recording_parts_update_or_create(video_recording_part_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling VideosApi->video_recording_parts_update_or_create: %s\n" % e)
@@ -716,11 +715,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.VideosApi(api_client)
-    id = 'id_example' # str | A unique value identifying this video recording part.
-video_recording_part_request = printnanny_api_client.VideoRecordingPartRequest() # VideoRecordingPartRequest | 
+    video_recording_part_request = printnanny_api_client.VideoRecordingPartRequest() # VideoRecordingPartRequest | 
 
     try:
-        api_response = api_instance.video_recording_parts_update_or_create(id, video_recording_part_request)
+        api_response = api_instance.video_recording_parts_update_or_create(video_recording_part_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling VideosApi->video_recording_parts_update_or_create: %s\n" % e)
@@ -730,7 +728,6 @@ video_recording_part_request = printnanny_api_client.VideoRecordingPartRequest()
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| A unique value identifying this video recording part. | 
  **video_recording_part_request** | [**VideoRecordingPartRequest**](VideoRecordingPartRequest.md)|  | 
 
 ### Return type

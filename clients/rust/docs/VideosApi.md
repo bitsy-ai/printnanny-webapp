@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**video_parts_partial_update**](VideosApi.md#video_parts_partial_update) | **PATCH** /api/video-parts/{id}/ | 
 [**video_parts_retrieve**](VideosApi.md#video_parts_retrieve) | **GET** /api/video-parts/{id}/ | 
 [**video_parts_update**](VideosApi.md#video_parts_update) | **PUT** /api/video-parts/{id}/ | 
-[**video_recording_parts_update_or_create**](VideosApi.md#video_recording_parts_update_or_create) | **POST** /api/video-parts/{id}/update-or-create/ | 
+[**video_recording_parts_update_or_create**](VideosApi.md#video_recording_parts_update_or_create) | **POST** /api/video-parts/update-or-create/ | 
 [**video_recordings_update_or_create**](VideosApi.md#video_recordings_update_or_create) | **POST** /api/videos/{id}/update-or-create/ | 
 [**videos_create**](VideosApi.md#videos_create) | **POST** /api/videos/ | 
 [**videos_list**](VideosApi.md#videos_list) | **GET** /api/videos/ | 
@@ -163,7 +163,7 @@ Name | Type | Description  | Required | Notes
 
 ## video_recording_parts_update_or_create
 
-> crate::models::VideoRecordingPart video_recording_parts_update_or_create(id, video_recording_part_request)
+> crate::models::VideoRecordingPart video_recording_parts_update_or_create(video_recording_part_request)
 
 
 ### Parameters
@@ -171,7 +171,6 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | A unique value identifying this video recording part. | [required] |
 **video_recording_part_request** | [**VideoRecordingPartRequest**](VideoRecordingPartRequest.md) |  | [required] |
 
 ### Return type
