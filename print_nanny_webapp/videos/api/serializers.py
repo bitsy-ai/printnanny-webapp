@@ -70,6 +70,5 @@ class VideoRecordingPartSerializer(serializers.ModelSerializer):
             obj.save()
             return (obj, False)
         except VideoRecordingPart.DoesNotExist:
-            obj = VideoRecordingPart(id=pk, **validated_data)
-            obj.save()
+            obj = VideoRecordingPart.objects.create(id=pk, **validated_data)
             return (obj, True)
