@@ -20,7 +20,7 @@ def final_mp4_filepath(instance, filename):
 
 def part_mp4_filepath(instance, filename):
     path = timezone.now().strftime("uploads/video_recordings/mp4/%Y/%m/%d")
-    return f"{path}/{instance.id}/part_{instance.part}.mp4"
+    return f"{path}/{instance.video_recording.id}/{instance.buffer_index}.mp4"
 
 
 class VideoRecording(SafeDeleteModel):
