@@ -51,21 +51,20 @@ class VideoRecordingPartSerializer(serializers.ModelSerializer):
     class Meta:
         model = VideoRecordingPart
         exclude = ("deleted",)
-        read_only_fields = ("mp4_upload_url", "mp4_size", "mp4_file", "user")
+        read_only_fields = ("mp4_upload_url", "mp4_size", "mp4_file")
 
     def update_or_create(
         self,
         pk,
         validated_data,
-        user,
     ) -> Tuple[VideoRecording, bool]:
 
         try:
-            obj = VideoRecordingPart.objects.get(id=pk, user=user)
+            obj = VideoRecordingPart.objects.get(id=pk)
             for key, value in validated_data.items():
                 setattr(obj, key, value)
             obj.save()
             return (obj, False)
         except VideoRecordingPart.DoesNotExist:
-            obj = VideoRecordingPart.objects.create(id=pk, user=user, **validated_data)
+            obj = VideoRecordingPart.objects.create(id=pk, **validated_data)
             return (obj, True)

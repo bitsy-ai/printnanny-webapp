@@ -175,12 +175,9 @@ class VideoRecordingPartViewSet(
         validated_data = serializer.validated_data
         pk = validated_data.pop("id")
         instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
-            pk, validated_data, request.user
+            pk, validated_data
         )
         response_serializer = self.get_serializer(instance)
         if created:
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
         return Response(response_serializer.data, status=status.HTTP_200_OK)
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
