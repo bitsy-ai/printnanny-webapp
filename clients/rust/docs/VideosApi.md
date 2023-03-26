@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## video_parts_create
 
-> crate::models::VideoRecordingPart video_parts_create(id, size, buffer_index, buffer_runningtime, file_name, video_recording, mp4_file, sync_start)
+> crate::models::VideoRecordingPart video_parts_create(id, size, buffer_index, buffer_runningtime, file_name, mp4_file, sync_start, video_recording)
 
 
 ### Parameters
@@ -31,9 +31,9 @@ Name | Type | Description  | Required | Notes
 **buffer_index** | **i64** |  | [required] |
 **buffer_runningtime** | **i64** |  | [required] |
 **file_name** | **String** |  | [required] |
+**mp4_file** | **std::path::PathBuf** |  | [required] |
+**sync_start** | **String** |  | [required] |
 **video_recording** | **String** |  | [required] |
-**mp4_file** | Option<**std::path::PathBuf**> |  |  |
-**sync_start** | Option<**String**> |  |  |
 
 ### Return type
 

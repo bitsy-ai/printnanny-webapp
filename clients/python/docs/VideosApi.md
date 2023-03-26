@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 
 # **video_parts_create**
-> VideoRecordingPart video_parts_create(id, size, buffer_index, buffer_runningtime, file_name, video_recording, mp4_file=mp4_file, sync_start=sync_start)
+> VideoRecordingPart video_parts_create(id, size, buffer_index, buffer_runningtime, file_name, mp4_file, sync_start, video_recording)
 
 
 
@@ -60,12 +60,12 @@ size = 56 # int |
 buffer_index = 56 # int | 
 buffer_runningtime = 56 # int | 
 file_name = 'file_name_example' # str | 
+mp4_file = '/path/to/file' # file | 
+sync_start = '2013-10-20T19:20:30+01:00' # datetime | 
 video_recording = 'video_recording_example' # str | 
-mp4_file = '/path/to/file' # file |  (optional)
-sync_start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
-        api_response = api_instance.video_parts_create(id, size, buffer_index, buffer_runningtime, file_name, video_recording, mp4_file=mp4_file, sync_start=sync_start)
+        api_response = api_instance.video_parts_create(id, size, buffer_index, buffer_runningtime, file_name, mp4_file, sync_start, video_recording)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling VideosApi->video_parts_create: %s\n" % e)
@@ -109,12 +109,12 @@ size = 56 # int |
 buffer_index = 56 # int | 
 buffer_runningtime = 56 # int | 
 file_name = 'file_name_example' # str | 
+mp4_file = '/path/to/file' # file | 
+sync_start = '2013-10-20T19:20:30+01:00' # datetime | 
 video_recording = 'video_recording_example' # str | 
-mp4_file = '/path/to/file' # file |  (optional)
-sync_start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
-        api_response = api_instance.video_parts_create(id, size, buffer_index, buffer_runningtime, file_name, video_recording, mp4_file=mp4_file, sync_start=sync_start)
+        api_response = api_instance.video_parts_create(id, size, buffer_index, buffer_runningtime, file_name, mp4_file, sync_start, video_recording)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling VideosApi->video_parts_create: %s\n" % e)
@@ -129,9 +129,9 @@ Name | Type | Description  | Notes
  **buffer_index** | **int**|  | 
  **buffer_runningtime** | **int**|  | 
  **file_name** | **str**|  | 
+ **mp4_file** | **file**|  | 
+ **sync_start** | **datetime**|  | 
  **video_recording** | **str**|  | 
- **mp4_file** | **file**|  | [optional] 
- **sync_start** | **datetime**|  | [optional] 
 
 ### Return type
 

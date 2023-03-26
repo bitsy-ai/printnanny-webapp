@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **buffer_index** | **int** |  | 
 **buffer_runningtime** | **int** |  | 
 **file_name** | **str** |  | 
-**mp4_file** | **str** |  | [optional] 
-**sync_start** | **datetime** |  | [optional] 
+**mp4_file** | **str** |  | 
+**sync_start** | **datetime** |  | 
 **sync_end** | **datetime** |  | [readonly] 
 **video_recording** | **str** |  | 
 **user** | **int** |  | [readonly] 

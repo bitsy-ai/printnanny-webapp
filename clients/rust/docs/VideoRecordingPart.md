@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **buffer_index** | **i64** |  | 
 **buffer_runningtime** | **i64** |  | 
 **file_name** | **String** |  | 
-**mp4_file** | Option<**String**> |  | [optional]
-**sync_start** | Option<**String**> |  | [optional]
+**mp4_file** | **String** |  | 
+**sync_start** | **String** |  | 
 **sync_end** | **String** |  | [readonly]
 **video_recording** | **String** |  | 
 **user** | **i32** |  | [readonly]
