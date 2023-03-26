@@ -40,32 +40,10 @@ class VideoRecordingSerializer(serializers.ModelSerializer):
 
 
 class VideoRecordingPartSerializer(serializers.ModelSerializer):
-    mp4_upload_url = serializers.SerializerMethodField()
-
-    def get_mp4_upload_url(self, obj) -> str:
-        return obj.mp4_upload_url()
-
     def get_mp4_size(self, obj) -> Optional[int]:
         return obj.mp4_size()
 
     class Meta:
         model = VideoRecordingPart
         exclude = ("deleted",)
-        read_only_fields = ("mp4_upload_url", "mp4_size", "mp4_file", "user")
-
-    def update_or_create(
-        self,
-        pk,
-        validated_data,
-        user,
-    ) -> Tuple[VideoRecording, bool]:
-
-        try:
-            obj = VideoRecordingPart.objects.get(id=pk, user=user)
-            for key, value in validated_data.items():
-                setattr(obj, key, value)
-            obj.save()
-            return (obj, False)
-        except VideoRecordingPart.DoesNotExist:
-            obj = VideoRecordingPart.objects.create(id=pk, user=user, **validated_data)
-            return (obj, True)
+        read_only_fields = ("mp4_size", "user", "sync_end")
