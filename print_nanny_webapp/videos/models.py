@@ -65,9 +65,9 @@ class VideoRecordingPart(SafeDeleteModel):
 
     file_name = models.CharField(max_length=255)
 
-    mp4_file = models.FileField(upload_to=part_mp4_filepath, null=True)
-    sync_start = models.DateTimeField(null=True)
-    sync_end = models.DateTimeField(null=True, auto_now_add=True)
+    mp4_file = models.FileField(upload_to=part_mp4_filepath)
+    sync_start = models.DateTimeField()
+    sync_end = models.DateTimeField(auto_now_add=True)
 
     video_recording = models.ForeignKey(VideoRecording, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
