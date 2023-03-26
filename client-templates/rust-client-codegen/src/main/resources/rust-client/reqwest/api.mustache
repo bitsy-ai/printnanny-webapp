@@ -208,7 +208,7 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration: 
     {{#supportAsync}}
     {{#required}}
     let local_var_param_value = {{{paramName}}};
-    let kind = infer::get_from_path(&local_var_param_value)?.unwrap();
+    let kind = infer::get_from_path(&local_var_param_value)?.unwrap_or_else(|| "application/octet-stream");
     let filebytes = tokio::fs::read(&local_var_param_value).await?;
     let file_part = reqwest::multipart::Part::bytes(filebytes)
         .file_name(local_var_param_value.display().to_string())
@@ -217,7 +217,7 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration: 
     {{/required}}
     {{^required}}
     if let Some(local_var_param_value) = {{{paramName}}} {
-        let kind = infer::get_from_path(&local_var_param_value)?.unwrap();
+        let kind = infer::get_from_path(&local_var_param_value)?.unwrap_or_else(|| "application/octet-stream");
         let filebytes = tokio::fs::read(&local_var_param_value).await?;
         let file_part = reqwest::multipart::Part::bytes(filebytes)
             .file_name(local_var_param_value.display().to_string())
