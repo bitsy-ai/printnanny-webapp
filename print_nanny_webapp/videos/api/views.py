@@ -14,7 +14,7 @@ from rest_framework.mixins import (
     UpdateModelMixin,
     CreateModelMixin,
 )
-from rest_framework import status
+from rest_framework import status, parsers
 
 
 from print_nanny_webapp.videos.models import VideoRecording, VideoRecordingPart
@@ -122,22 +122,6 @@ class VideoRecordingViewSet(
         }
         | generic_list_errors,
     ),
-    update=extend_schema(
-        tags=["videos"],
-        request=VideoRecordingPartSerializer,
-        responses={
-            202: VideoRecordingPartSerializer,
-        }
-        | generic_update_errors,
-    ),
-    partial_update=extend_schema(
-        tags=["videos"],
-        request=VideoRecordingPartSerializer,
-        responses={
-            202: VideoRecordingPartSerializer,
-        }
-        | generic_update_errors,
-    ),
     retrieve=extend_schema(
         tags=["videos"],
         request=VideoRecordingPartSerializer,
@@ -152,35 +136,13 @@ class VideoRecordingPartViewSet(
     CreateModelMixin,
     ListModelMixin,
     RetrieveModelMixin,
-    UpdateModelMixin,
 ):
     serializer_class = VideoRecordingPartSerializer
     lookup_field = "id"
     queryset = VideoRecordingPart.objects.all()
-
-    @extend_schema(
-        operation_id="video_recording_parts_update_or_create",
-        tags=["videos"],
-        responses={
-            200: VideoRecordingPartSerializer,
-            201: VideoRecordingPartSerializer,
-        }
-        | generic_create_errors
-        | generic_get_errors,
-    )
-    @action(methods=["post"], detail=False, url_path="update-or-create")
-    def update_or_create(self, request, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        validated_data = serializer.validated_data
-        pk = validated_data.pop("id")
-        instance, created = serializer.update_or_create(  # type: ignore[attr-defined]
-            pk, validated_data, request.user
-        )
-        response_serializer = self.get_serializer(instance)
-        if created:
-            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
-        return Response(response_serializer.data, status=status.HTTP_200_OK)
+    parser_classes = [
+        parsers.MultiPartParser,
+    ]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
