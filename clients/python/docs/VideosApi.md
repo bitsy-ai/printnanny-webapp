@@ -6,10 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**video_parts_create**](VideosApi.md#video_parts_create) | **POST** /api/video-parts/ | 
 [**video_parts_list**](VideosApi.md#video_parts_list) | **GET** /api/video-parts/ | 
-[**video_parts_partial_update**](VideosApi.md#video_parts_partial_update) | **PATCH** /api/video-parts/{id}/ | 
 [**video_parts_retrieve**](VideosApi.md#video_parts_retrieve) | **GET** /api/video-parts/{id}/ | 
-[**video_parts_update**](VideosApi.md#video_parts_update) | **PUT** /api/video-parts/{id}/ | 
-[**video_recording_parts_update_or_create**](VideosApi.md#video_recording_parts_update_or_create) | **POST** /api/video-parts/update-or-create/ | 
 [**video_recordings_update_or_create**](VideosApi.md#video_recordings_update_or_create) | **POST** /api/videos/{id}/update-or-create/ | 
 [**videos_create**](VideosApi.md#videos_create) | **POST** /api/videos/ | 
 [**videos_list**](VideosApi.md#videos_list) | **GET** /api/videos/ | 
@@ -19,7 +16,7 @@ Method | HTTP request | Description
 
 
 # **video_parts_create**
-> VideoRecordingPart video_parts_create(video_recording_part_request)
+> VideoRecordingPart video_parts_create(id, size, buffer_index, buffer_runningtime, file_name, video_recording, mp4_file=mp4_file, sync_start=sync_start)
 
 
 
@@ -58,10 +55,17 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.VideosApi(api_client)
-    video_recording_part_request = printnanny_api_client.VideoRecordingPartRequest() # VideoRecordingPartRequest | 
+    id = 'id_example' # str | 
+size = 56 # int | 
+buffer_index = 56 # int | 
+buffer_runningtime = 56 # int | 
+file_name = 'file_name_example' # str | 
+video_recording = 'video_recording_example' # str | 
+mp4_file = '/path/to/file' # file |  (optional)
+sync_start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
-        api_response = api_instance.video_parts_create(video_recording_part_request)
+        api_response = api_instance.video_parts_create(id, size, buffer_index, buffer_runningtime, file_name, video_recording, mp4_file=mp4_file, sync_start=sync_start)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling VideosApi->video_parts_create: %s\n" % e)
@@ -100,10 +104,17 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.VideosApi(api_client)
-    video_recording_part_request = printnanny_api_client.VideoRecordingPartRequest() # VideoRecordingPartRequest | 
+    id = 'id_example' # str | 
+size = 56 # int | 
+buffer_index = 56 # int | 
+buffer_runningtime = 56 # int | 
+file_name = 'file_name_example' # str | 
+video_recording = 'video_recording_example' # str | 
+mp4_file = '/path/to/file' # file |  (optional)
+sync_start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
-        api_response = api_instance.video_parts_create(video_recording_part_request)
+        api_response = api_instance.video_parts_create(id, size, buffer_index, buffer_runningtime, file_name, video_recording, mp4_file=mp4_file, sync_start=sync_start)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling VideosApi->video_parts_create: %s\n" % e)
@@ -113,7 +124,14 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **video_recording_part_request** | [**VideoRecordingPartRequest**](VideoRecordingPartRequest.md)|  | 
+ **id** | **str**|  | 
+ **size** | **int**|  | 
+ **buffer_index** | **int**|  | 
+ **buffer_runningtime** | **int**|  | 
+ **file_name** | **str**|  | 
+ **video_recording** | **str**|  | 
+ **mp4_file** | **file**|  | [optional] 
+ **sync_start** | **datetime**|  | [optional] 
 
 ### Return type
 
@@ -125,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -261,131 +279,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **video_parts_partial_update**
-> VideoRecordingPart video_parts_partial_update(id, patched_video_recording_part_request=patched_video_recording_part_request)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.VideosApi(api_client)
-    id = 'id_example' # str | A unique value identifying this video recording part.
-patched_video_recording_part_request = printnanny_api_client.PatchedVideoRecordingPartRequest() # PatchedVideoRecordingPartRequest |  (optional)
-
-    try:
-        api_response = api_instance.video_parts_partial_update(id, patched_video_recording_part_request=patched_video_recording_part_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling VideosApi->video_parts_partial_update: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.VideosApi(api_client)
-    id = 'id_example' # str | A unique value identifying this video recording part.
-patched_video_recording_part_request = printnanny_api_client.PatchedVideoRecordingPartRequest() # PatchedVideoRecordingPartRequest |  (optional)
-
-    try:
-        api_response = api_instance.video_parts_partial_update(id, patched_video_recording_part_request=patched_video_recording_part_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling VideosApi->video_parts_partial_update: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| A unique value identifying this video recording part. | 
- **patched_video_recording_part_request** | [**PatchedVideoRecordingPartRequest**](PatchedVideoRecordingPartRequest.md)|  | [optional] 
-
-### Return type
-
-[**VideoRecordingPart**](VideoRecordingPart.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**202** |  |  -  |
-**409** |  |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **video_parts_retrieve**
 > VideoRecordingPart video_parts_retrieve(id)
 
@@ -505,255 +398,6 @@ Name | Type | Description  | Notes
 **401** |  |  -  |
 **403** |  |  -  |
 **500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **video_parts_update**
-> VideoRecordingPart video_parts_update(id, video_recording_part_request)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.VideosApi(api_client)
-    id = 'id_example' # str | A unique value identifying this video recording part.
-video_recording_part_request = printnanny_api_client.VideoRecordingPartRequest() # VideoRecordingPartRequest | 
-
-    try:
-        api_response = api_instance.video_parts_update(id, video_recording_part_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling VideosApi->video_parts_update: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.VideosApi(api_client)
-    id = 'id_example' # str | A unique value identifying this video recording part.
-video_recording_part_request = printnanny_api_client.VideoRecordingPartRequest() # VideoRecordingPartRequest | 
-
-    try:
-        api_response = api_instance.video_parts_update(id, video_recording_part_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling VideosApi->video_parts_update: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| A unique value identifying this video recording part. | 
- **video_recording_part_request** | [**VideoRecordingPartRequest**](VideoRecordingPartRequest.md)|  | 
-
-### Return type
-
-[**VideoRecordingPart**](VideoRecordingPart.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**202** |  |  -  |
-**409** |  |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**500** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **video_recording_parts_update_or_create**
-> VideoRecordingPart video_recording_parts_update_or_create(video_recording_part_request)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.VideosApi(api_client)
-    video_recording_part_request = printnanny_api_client.VideoRecordingPartRequest() # VideoRecordingPartRequest | 
-
-    try:
-        api_response = api_instance.video_recording_parts_update_or_create(video_recording_part_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling VideosApi->video_recording_parts_update_or_create: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import printnanny_api_client
-from printnanny_api_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = printnanny_api_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = printnanny_api_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with printnanny_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = printnanny_api_client.VideosApi(api_client)
-    video_recording_part_request = printnanny_api_client.VideoRecordingPartRequest() # VideoRecordingPartRequest | 
-
-    try:
-        api_response = api_instance.video_recording_parts_update_or_create(video_recording_part_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling VideosApi->video_recording_parts_update_or_create: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **video_recording_part_request** | [**VideoRecordingPartRequest**](VideoRecordingPartRequest.md)|  | 
-
-### Return type
-
-[**VideoRecordingPart**](VideoRecordingPart.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-**201** |  |  -  |
-**409** |  |  -  |
-**400** |  |  -  |
-**401** |  |  -  |
-**403** |  |  -  |
-**500** |  |  -  |
-**404** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

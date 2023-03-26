@@ -6,10 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**video_parts_create**](VideosApi.md#video_parts_create) | **POST** /api/video-parts/ | 
 [**video_parts_list**](VideosApi.md#video_parts_list) | **GET** /api/video-parts/ | 
-[**video_parts_partial_update**](VideosApi.md#video_parts_partial_update) | **PATCH** /api/video-parts/{id}/ | 
 [**video_parts_retrieve**](VideosApi.md#video_parts_retrieve) | **GET** /api/video-parts/{id}/ | 
-[**video_parts_update**](VideosApi.md#video_parts_update) | **PUT** /api/video-parts/{id}/ | 
-[**video_recording_parts_update_or_create**](VideosApi.md#video_recording_parts_update_or_create) | **POST** /api/video-parts/update-or-create/ | 
 [**video_recordings_update_or_create**](VideosApi.md#video_recordings_update_or_create) | **POST** /api/videos/{id}/update-or-create/ | 
 [**videos_create**](VideosApi.md#videos_create) | **POST** /api/videos/ | 
 [**videos_list**](VideosApi.md#videos_list) | **GET** /api/videos/ | 
@@ -21,7 +18,7 @@ Method | HTTP request | Description
 
 ## video_parts_create
 
-> crate::models::VideoRecordingPart video_parts_create(video_recording_part_request)
+> crate::models::VideoRecordingPart video_parts_create(id, size, buffer_index, buffer_runningtime, file_name, video_recording, mp4_file, sync_start)
 
 
 ### Parameters
@@ -29,7 +26,14 @@ Method | HTTP request | Description
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**video_recording_part_request** | [**VideoRecordingPartRequest**](VideoRecordingPartRequest.md) |  | [required] |
+**id** | **String** |  | [required] |
+**size** | **i64** |  | [required] |
+**buffer_index** | **i64** |  | [required] |
+**buffer_runningtime** | **i64** |  | [required] |
+**file_name** | **String** |  | [required] |
+**video_recording** | **String** |  | [required] |
+**mp4_file** | Option<**std::path::PathBuf**> |  |  |
+**sync_start** | Option<**String**> |  |  |
 
 ### Return type
 
@@ -41,7 +45,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -75,35 +79,6 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## video_parts_partial_update
-
-> crate::models::VideoRecordingPart video_parts_partial_update(id, patched_video_recording_part_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | A unique value identifying this video recording part. | [required] |
-**patched_video_recording_part_request** | Option<[**PatchedVideoRecordingPartRequest**](PatchedVideoRecordingPartRequest.md)> |  |  |
-
-### Return type
-
-[**crate::models::VideoRecordingPart**](VideoRecordingPart.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## video_parts_retrieve
 
 > crate::models::VideoRecordingPart video_parts_retrieve(id)
@@ -127,63 +102,6 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## video_parts_update
-
-> crate::models::VideoRecordingPart video_parts_update(id, video_recording_part_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | A unique value identifying this video recording part. | [required] |
-**video_recording_part_request** | [**VideoRecordingPartRequest**](VideoRecordingPartRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::VideoRecordingPart**](VideoRecordingPart.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## video_recording_parts_update_or_create
-
-> crate::models::VideoRecordingPart video_recording_parts_update_or_create(video_recording_part_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**video_recording_part_request** | [**VideoRecordingPartRequest**](VideoRecordingPartRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::VideoRecordingPart**](VideoRecordingPart.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

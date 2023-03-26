@@ -5,14 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | 
-**mp4_upload_url** | **String** |  | [readonly]
 **size** | **i64** |  | 
 **buffer_index** | **i64** |  | 
 **buffer_runningtime** | **i64** |  | 
 **file_name** | **String** |  | 
-**mp4_file** | Option<**String**> |  | [readonly]
+**mp4_file** | Option<**String**> |  | [optional]
 **sync_start** | Option<**String**> |  | [optional]
-**sync_end** | Option<**String**> |  | [optional]
+**sync_end** | **String** |  | [readonly]
 **video_recording** | **String** |  | 
 **user** | **i32** |  | [readonly]
 

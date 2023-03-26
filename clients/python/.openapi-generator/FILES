@@ -87,7 +87,6 @@ docs/PatchedOctoPrinterProfileRequest.md
 docs/PatchedPiRequest.md
 docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
-docs/PatchedVideoRecordingPartRequest.md
 docs/PatchedVideoRecordingRequest.md
 docs/PatchedWebrtcStreamRequest.md
 docs/Pi.md
@@ -159,7 +158,6 @@ docs/UserRequest.md
 docs/VerifyEmailRequest.md
 docs/VideoRecording.md
 docs/VideoRecordingPart.md
-docs/VideoRecordingPartRequest.md
 docs/VideoRecordingRequest.md
 docs/VideosApi.md
 docs/WebrtcStream.md
@@ -259,7 +257,6 @@ printnanny_api_client/models/patched_octo_printer_profile_request.py
 printnanny_api_client/models/patched_pi_request.py
 printnanny_api_client/models/patched_system_info_request.py
 printnanny_api_client/models/patched_user_request.py
-printnanny_api_client/models/patched_video_recording_part_request.py
 printnanny_api_client/models/patched_video_recording_request.py
 printnanny_api_client/models/patched_webrtc_stream_request.py
 printnanny_api_client/models/pi.py
@@ -327,7 +324,6 @@ printnanny_api_client/models/user_request.py
 printnanny_api_client/models/verify_email_request.py
 printnanny_api_client/models/video_recording.py
 printnanny_api_client/models/video_recording_part.py
-printnanny_api_client/models/video_recording_part_request.py
 printnanny_api_client/models/video_recording_request.py
 printnanny_api_client/models/webrtc_stream.py
 printnanny_api_client/models/webrtc_stream_request.py
@@ -421,7 +417,6 @@ test/test_patched_octo_printer_profile_request.py
 test/test_patched_pi_request.py
 test/test_patched_system_info_request.py
 test/test_patched_user_request.py
-test/test_patched_video_recording_part_request.py
 test/test_patched_video_recording_request.py
 test/test_patched_webrtc_stream_request.py
 test/test_pi.py
@@ -493,7 +488,6 @@ test/test_user_request.py
 test/test_verify_email_request.py
 test/test_video_recording.py
 test/test_video_recording_part.py
-test/test_video_recording_part_request.py
 test/test_video_recording_request.py
 test/test_videos_api.py
 test/test_webrtc_stream.py

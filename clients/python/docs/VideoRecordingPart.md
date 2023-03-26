@@ -5,14 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | 
-**mp4_upload_url** | **str** |  | [readonly] 
 **size** | **int** |  | 
 **buffer_index** | **int** |  | 
 **buffer_runningtime** | **int** |  | 
 **file_name** | **str** |  | 
-**mp4_file** | **str** |  | [readonly] 
+**mp4_file** | **str** |  | [optional] 
 **sync_start** | **datetime** |  | [optional] 
-**sync_end** | **datetime** |  | [optional] 
+**sync_end** | **datetime** |  | [readonly] 
 **video_recording** | **str** |  | 
 **user** | **int** |  | [readonly] 
 
