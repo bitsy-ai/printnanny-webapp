@@ -96,22 +96,22 @@ pub async fn crash_reports_create(configuration: &configuration::Configuration, 
         local_var_form = local_var_form.text("os_version", local_var_param_value.to_string());
     }
     if let Some(local_var_param_value) = os_logs {
-        let kind = infer::get_from_path(&local_var_param_value)?.unwrap_or_else(|| "application/octet-stream");
+        let kind = infer::get_from_path(&local_var_param_value)?.map(|v| v.mime_type().to_string()).unwrap_or_else(|| "application/octet-stream".to_string());
         let filebytes = tokio::fs::read(&local_var_param_value).await?;
         let file_part = reqwest::multipart::Part::bytes(filebytes)
             .file_name(local_var_param_value.display().to_string())
-            .mime_str(kind.mime_type())?;
+            .mime_str(&kind)?;
         local_var_form = local_var_form.part("os_logs", file_part);
     }
     if let Some(local_var_param_value) = browser_version {
         local_var_form = local_var_form.text("browser_version", local_var_param_value.to_string());
     }
     if let Some(local_var_param_value) = browser_logs {
-        let kind = infer::get_from_path(&local_var_param_value)?.unwrap_or_else(|| "application/octet-stream");
+        let kind = infer::get_from_path(&local_var_param_value)?.map(|v| v.mime_type().to_string()).unwrap_or_else(|| "application/octet-stream".to_string());
         let filebytes = tokio::fs::read(&local_var_param_value).await?;
         let file_part = reqwest::multipart::Part::bytes(filebytes)
             .file_name(local_var_param_value.display().to_string())
-            .mime_str(kind.mime_type())?;
+            .mime_str(&kind)?;
         local_var_form = local_var_form.part("browser_logs", file_part);
     }
     if let Some(local_var_param_value) = serial {
@@ -204,22 +204,22 @@ pub async fn crash_reports_partial_update(configuration: &configuration::Configu
         local_var_form = local_var_form.text("os_version", local_var_param_value.to_string());
     }
     if let Some(local_var_param_value) = os_logs {
-        let kind = infer::get_from_path(&local_var_param_value)?.unwrap_or_else(|| "application/octet-stream");
+        let kind = infer::get_from_path(&local_var_param_value)?.map(|v| v.mime_type().to_string()).unwrap_or_else(|| "application/octet-stream".to_string());
         let filebytes = tokio::fs::read(&local_var_param_value).await?;
         let file_part = reqwest::multipart::Part::bytes(filebytes)
             .file_name(local_var_param_value.display().to_string())
-            .mime_str(kind.mime_type())?;
+            .mime_str(&kind)?;
         local_var_form = local_var_form.part("os_logs", file_part);
     }
     if let Some(local_var_param_value) = browser_version {
         local_var_form = local_var_form.text("browser_version", local_var_param_value.to_string());
     }
     if let Some(local_var_param_value) = browser_logs {
-        let kind = infer::get_from_path(&local_var_param_value)?.unwrap_or_else(|| "application/octet-stream");
+        let kind = infer::get_from_path(&local_var_param_value)?.map(|v| v.mime_type().to_string()).unwrap_or_else(|| "application/octet-stream".to_string());
         let filebytes = tokio::fs::read(&local_var_param_value).await?;
         let file_part = reqwest::multipart::Part::bytes(filebytes)
             .file_name(local_var_param_value.display().to_string())
-            .mime_str(kind.mime_type())?;
+            .mime_str(&kind)?;
         local_var_form = local_var_form.part("browser_logs", file_part);
     }
     if let Some(local_var_param_value) = serial {
@@ -309,22 +309,22 @@ pub async fn crash_reports_update(configuration: &configuration::Configuration, 
         local_var_form = local_var_form.text("os_version", local_var_param_value.to_string());
     }
     if let Some(local_var_param_value) = os_logs {
-        let kind = infer::get_from_path(&local_var_param_value)?.unwrap_or_else(|| "application/octet-stream");
+        let kind = infer::get_from_path(&local_var_param_value)?.map(|v| v.mime_type().to_string()).unwrap_or_else(|| "application/octet-stream".to_string());
         let filebytes = tokio::fs::read(&local_var_param_value).await?;
         let file_part = reqwest::multipart::Part::bytes(filebytes)
             .file_name(local_var_param_value.display().to_string())
-            .mime_str(kind.mime_type())?;
+            .mime_str(&kind)?;
         local_var_form = local_var_form.part("os_logs", file_part);
     }
     if let Some(local_var_param_value) = browser_version {
         local_var_form = local_var_form.text("browser_version", local_var_param_value.to_string());
     }
     if let Some(local_var_param_value) = browser_logs {
-        let kind = infer::get_from_path(&local_var_param_value)?.unwrap_or_else(|| "application/octet-stream");
+        let kind = infer::get_from_path(&local_var_param_value)?.map(|v| v.mime_type().to_string()).unwrap_or_else(|| "application/octet-stream".to_string());
         let filebytes = tokio::fs::read(&local_var_param_value).await?;
         let file_part = reqwest::multipart::Part::bytes(filebytes)
             .file_name(local_var_param_value.display().to_string())
-            .mime_str(kind.mime_type())?;
+            .mime_str(&kind)?;
         local_var_form = local_var_form.part("browser_logs", file_part);
     }
     if let Some(local_var_param_value) = serial {

@@ -145,11 +145,11 @@ pub async fn video_parts_create(configuration: &configuration::Configuration, id
     local_var_form = local_var_form.text("buffer_runningtime", buffer_runningtime.to_string());
     local_var_form = local_var_form.text("file_name", file_name.to_string());
     let local_var_param_value = mp4_file;
-    let kind = infer::get_from_path(&local_var_param_value)?.unwrap_or_else(|| "application/octet-stream");
+    let kind = infer::get_from_path(&local_var_param_value)?.map(|v| v.mime_type().to_string()).unwrap_or_else(|| "application/octet-stream".to_string());
     let filebytes = tokio::fs::read(&local_var_param_value).await?;
     let file_part = reqwest::multipart::Part::bytes(filebytes)
         .file_name(local_var_param_value.display().to_string())
-        .mime_str(kind.mime_type())?;
+        .mime_str(&kind)?;
     local_var_form = local_var_form.part("mp4_file", file_part);
     local_var_form = local_var_form.text("sync_start", sync_start.to_string());
     local_var_form = local_var_form.text("video_recording", video_recording.to_string());
