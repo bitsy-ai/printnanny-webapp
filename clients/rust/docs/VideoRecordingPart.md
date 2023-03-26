@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **sync_start** | Option<**String**> |  | [optional]
 **sync_end** | Option<**String**> |  | [optional]
 **video_recording** | **String** |  | 
+**user** | **i32** |  | [readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
