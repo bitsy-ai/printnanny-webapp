@@ -5,59 +5,7 @@ from print_nanny_webapp.octoprint.models import (
     OctoPrinterProfile,
     OctoPrintSettings,
     GcodeFile,
-    OctoPrintServerStatus,
-    OctoPrintPrinterStatus,
-    OctoPrintPrintJobStatus,
-    OctoPrintGcodeEvent,
 )
-
-
-@admin.register(OctoPrintServerStatus)
-class OctoPrintServerStatusAdmin(admin.ModelAdmin):
-    list_display = (
-        "event_type",
-        "pi",
-        "subject_pattern",
-        "octoprint_server",
-        "created_dt",
-    )
-    model = OctoPrintServerStatus
-
-
-@admin.register(OctoPrintGcodeEvent)
-class OctoPrintGcodeEventAdmin(admin.ModelAdmin):
-    list_display = (
-        "event_type",
-        "pi",
-        "subject_pattern",
-        "octoprint_server",
-        "created_dt",
-    )
-    model = OctoPrintGcodeEvent
-
-
-@admin.register(OctoPrintPrinterStatus)
-class OctoPrintPrinterStatusAdmin(admin.ModelAdmin):
-    list_display = (
-        "event_type",
-        "pi",
-        "subject_pattern",
-        "octoprint_server",
-        "created_dt",
-    )
-    model = OctoPrintPrinterStatus
-
-
-@admin.register(OctoPrintPrintJobStatus)
-class OctoPrintPrintJobStatusAdmin(admin.ModelAdmin):
-    list_display = (
-        "event_type",
-        "pi",
-        "subject_pattern",
-        "octoprint_server",
-        "created_dt",
-    )
-    model = OctoPrintPrintJobStatus
 
 
 @admin.register(OctoPrintBackup)

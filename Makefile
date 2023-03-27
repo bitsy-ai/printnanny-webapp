@@ -439,10 +439,13 @@ python-client: clean-python-client # python-flatbuffer python-protobuf
 # 	mv printnanny-api-client clients/python
 
 clean-pyc: ## remove Python file artifacts
-	find . -name '*.pyc' -exec rm -f {} \;
-	find . -name '*.pyo' -exec rm -f {} \;
-	find . -name '*~' -exec rm -f {} \;
-
+	find . -name '*.pyc' -exec rm -f {} +
+	find . -name '*.pyo' -exec rm -f {} +
+	find . -name '*~' -exec rm -f {} +
+	find . -name '__pycache__' -exec rm -fr {} +
+	rm -fr .eggs/
+	find . -name '*.egg-info' -exec rm -fr {} +
+	find . -name '*.egg' -exec rm -rf {} +
 
 sdist: python-client ## builds source package
 	cd clients/python && python3 setup.py sdist && ls -l dist

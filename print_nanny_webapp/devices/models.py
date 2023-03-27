@@ -127,9 +127,10 @@ class Pi(SafeDeleteModel):
 
     @property
     def octoprint_settings(self) -> OctoPrintSettings:
-        return OctoPrintSettings.objects.get_or_create(
+        obj, _ = OctoPrintSettings.objects.get_or_create(
             octoprint_server=self.octoprint_server
         )
+        return obj
 
     @property
     def alert_settings(self):
@@ -190,20 +191,8 @@ class Pi(SafeDeleteModel):
         return None
 
     @property
-    def public_key(self):
-        return self.public_keys.first()
-
-    @property
     def cloudiot_name(self):
         return f"pi-id-{self.id}"
-
-    @property
-    def cloudiot_device(self):
-        return self.cloudiot_devices.first()
-
-    @property
-    def cloudiot(self):
-        return self.cloudiot_device
 
 
 class PiNatsAppManager(SafeDeleteManager, NatsOrganizationAppManager):

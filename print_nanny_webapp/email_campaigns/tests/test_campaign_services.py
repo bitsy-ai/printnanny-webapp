@@ -58,9 +58,7 @@ class CampaignTestCase(TestCase):
             "john.doe3@example.com",
         ]
         password = "testing1234"
-        User.objects.create(  # type: ignore[has-type]
-            email=emails[0], password=password, is_superuser=False
-        )
+        User.objects.create(email=emails[0], password=password, is_superuser=False)
         for email in emails[1:]:
             EmailWaitlist.objects.create(email=email)
 
@@ -69,7 +67,7 @@ class CampaignTestCase(TestCase):
 
         for email, recipient in msg.anymail_status.recipients.items():
             try:
-                user = User.objects.get(email=email)  # type: ignore[has-type]
+                user = User.objects.get(email=email)
                 sent_log = EmailMessage.objects.get(
                     campaign=campaign,
                     message_id=msg.anymail_status.message_id,

@@ -180,8 +180,8 @@ class Order(SafeDeleteModel):
         return self.orderstatus_set.first()
 
     @property
-    def status_history(self) -> List[OrderStatus]:
-        return self.orderstatus_set
+    def status_history(self) -> models.QuerySet[OrderStatus]:
+        return self.orderstatus_set.all()
 
     @property
     def is_subscription(self) -> bool:

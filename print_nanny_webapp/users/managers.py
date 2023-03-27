@@ -1,7 +1,6 @@
 import logging
 from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import gettext_lazy as _
-from django.db import models
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +20,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(_("The Email must be set"))
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
-        user.set_password(password)
+        user.set_password(password)  # type: ignore[attr-defined]
         user.save()
         return user
 
