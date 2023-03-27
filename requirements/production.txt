@@ -259,9 +259,7 @@ idna==3.4
     #   twisted
     #   yarl
 imageio==2.27.0
-    # via
-    #   -r requirements/production.in
-    #   scikit-image
+    # via -r requirements/production.in
 imageio-ffmpeg==0.4.8
     # via -r requirements/production.in
 incremental==22.10.0
@@ -274,8 +272,6 @@ jsonschema==4.17.3
     # via drf-spectacular
 jwcrypto==1.4.2
     # via django-oauth-toolkit
-lazy-loader==0.2
-    # via scikit-image
 libhoney==2.3.0
     # via honeycomb-beeline
 monotonic==1.6
@@ -294,8 +290,6 @@ nats-py[nkeys]==2.2.0
     # via
     #   -r requirements/production.in
     #   django-nats-nkeys
-networkx==3.0
-    # via scikit-image
 nkeys==0.1.0
     # via nats-py
 numpy==1.24.2
@@ -303,25 +297,18 @@ numpy==1.24.2
     #   imageio
     #   pandas
     #   pyarrow
-    #   pywavelets
-    #   scikit-image
-    #   scipy
-    #   tifffile
 oauthlib==3.2.2
     # via
     #   django-oauth-toolkit
     #   requests-oauthlib
 packaging==23.0
-    # via
-    #   django-allow-cidr
-    #   scikit-image
+    # via django-allow-cidr
 pandas==1.5.3
     # via -r requirements/production.in
 pillow==9.4.0
     # via
     #   imageio
     #   qrcode
-    #   scikit-image
 plotly==5.13.1
     # via -r requirements/production.in
 posthog==2.4.0
@@ -382,8 +369,6 @@ pytz==2023.2
     #   django-qr-code
     #   djangorestframework
     #   pandas
-pywavelets==1.4.1
-    # via scikit-image
 pyyaml==6.0
     # via
     #   drf-spectacular
@@ -414,10 +399,6 @@ rjsmin==1.2.1
     # via django-compressor
 rsa==4.9
     # via google-auth
-scikit-image==0.20.0
-    # via -r requirements/production.in
-scipy==1.10.1
-    # via scikit-image
 segno==1.5.2
     # via django-qr-code
 service-identity==21.1.0
@@ -443,8 +424,6 @@ stripe==4.2.0
     # via dj-stripe
 tenacity==8.2.2
     # via plotly
-tifffile==2023.3.21
-    # via scikit-image
 tomli==2.0.1
     # via
     #   django-stubs
