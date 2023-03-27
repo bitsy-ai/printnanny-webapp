@@ -17,7 +17,7 @@ class VideoRecordingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = VideoRecording
-        exclude = ("deleted",)
+        exclude = ("deleted", "deleted_by_cascade")
         read_only_fields = ("mp4_upload_url", "user", "mp4_size", "mp4_file")
 
     def update_or_create(

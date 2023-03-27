@@ -16,7 +16,7 @@ class MoonrakerServerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MoonrakerServer
-        exclude = ("deleted",)
+        exclude = ("deleted", "deleted_by_cascade")
         read_only_fields = ("user", "base_path", "base_url")
 
     def update_or_create(

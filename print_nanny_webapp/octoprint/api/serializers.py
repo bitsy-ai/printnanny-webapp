@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class OctoPrinterProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = OctoPrinterProfile
-        exclude = ("deleted",)
+        exclude = ("deleted", "deleted_by_cascade")
         read_only_fields = ("user",)
 
     def update_or_create(self, validated_data, user):
@@ -36,14 +36,14 @@ class OctoPrinterProfileSerializer(serializers.ModelSerializer):
 class GcodeFileSerializer(serializers.ModelSerializer):
     class Meta:
         model = GcodeFile
-        exclude = ("deleted",)
+        exclude = ("deleted", "deleted_by_cascade")
         read_only_fields = ("user",)
 
 
 class OctoPrintSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = OctoPrintSettings
-        exclude = ("deleted",)
+        exclude = ("deleted", "deleted_by_cascade")
         read_only_fields = ("user",)
 
     def update_or_create(self, validated_data, user):
@@ -62,7 +62,7 @@ class OctoPrintServerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OctoPrintServer
-        exclude = ("deleted",)
+        exclude = ("deleted", "deleted_by_cascade")
         read_only_fields = ("user", "base_path", "base_url")
 
     def update_or_create(
@@ -84,8 +84,8 @@ class OctoPrintServerSerializer(serializers.ModelSerializer):
 class OctoPrintBackupSerializer(serializers.ModelSerializer):
     class Meta:
         model = OctoPrintBackup
-        fields = "__all__"
         read_only_fields = ("user",)
+        exclude = ("deleted", "deleted_by_cascade")
 
 
 class OctoPrintPrinterStatusSerializer(serializers.ModelSerializer):
@@ -95,7 +95,7 @@ class OctoPrintPrinterStatusSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OctoPrintPrinterStatus
-        exclude = ("deleted", "polymorphic_ctype")
+        exclude = ("deleted", "deleted_by_cascade", "polymorphic_ctype")
 
 
 class OctoPrintPrintJobPayloadSerializer(serializers.Serializer):
@@ -121,7 +121,7 @@ class OctoPrintPrintJobStatusSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OctoPrintPrintJobStatus
-        exclude = ("deleted", "polymorphic_ctype")
+        exclude = ("deleted", "deleted_by_cascade", "polymorphic_ctype")
 
 
 class OctoPrintServerStatusSerializer(serializers.ModelSerializer):
@@ -131,7 +131,7 @@ class OctoPrintServerStatusSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OctoPrintServerStatus
-        exclude = ("deleted", "polymorphic_ctype")
+        exclude = ("deleted", "deleted_by_cascade", "polymorphic_ctype")
 
 
 class OctoPrintGcodeEventSerializer(serializers.ModelSerializer):
@@ -141,7 +141,7 @@ class OctoPrintGcodeEventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OctoPrintGcodeEvent
-        exclude = ("deleted", "polymorphic_ctype")
+        exclude = ("deleted", "deleted_by_cascade", "polymorphic_ctype")
 
 
 class PolymorphicOctoPrintEventSerializer(PolymorphicSerializer):

@@ -37,7 +37,7 @@ class Int64Field(serializers.Field):
 class NetworkSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = NetworkSettings
-        exclude = ("deleted",)
+        exclude = ("deleted", "deleted_by_cascade")
 
 
 class WebrtcStreamSerializer(serializers.ModelSerializer):
@@ -143,7 +143,7 @@ class SystemInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = SystemInfo
 
-        exclude = ("deleted",)
+        exclude = ("deleted", "deleted_by_cascade")
 
     def update_or_create(self, validated_data, pi):
         return SystemInfo.objects.filter(pi=pi).update_or_create(
@@ -218,7 +218,7 @@ class PiSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pi
         depth = 1
-        exclude = ("deleted",)
+        exclude = ("deleted", "deleted_by_cascade")
 
     def update_or_create(self, validated_data, user_id, hostname):
         return Pi.objects.filter(user_id=user_id, hostname=hostname).update_or_create(
