@@ -3,6 +3,7 @@ from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiPara
 from django.apps import apps
 
 
+from rest_framework import status, parsers
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import (
     ListModelMixin,
@@ -128,6 +129,9 @@ class PrintJobAlertViewSet(
     serializer_class = PrintJobAlertSerializer
     queryset = PrintJobAlert.objects.all()
     lookup_field = "id"
+    parser_classes = [
+        parsers.MultiPartParser,
+    ]
 
     def get_queryset(self, *args, **kwargs):
         result = self.queryset.filter(user_id=self.request.user.id)
