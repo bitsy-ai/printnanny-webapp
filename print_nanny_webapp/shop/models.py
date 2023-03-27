@@ -154,16 +154,25 @@ class Order(SafeDeleteModel):
 
     # relationship created when handling checkout.session.completed
     djstripe_customer = models.ForeignKey(
-        "djstripe.Customer", on_delete=models.CASCADE, null=True
+        "djstripe.Customer",
+        on_delete=models.CASCADE,
+        null=True,
+        related_name="shop_order",
     )
     # relationship created when handling checkout.session.completed
     djstripe_payment_intent = models.ForeignKey(
-        "djstripe.PaymentIntent", on_delete=models.CASCADE, null=True
+        "djstripe.PaymentIntent",
+        on_delete=models.CASCADE,
+        null=True,
+        related_name="shop_order",
     )
 
     # relationship created when handling checkout.session.complete (if subscription)
     djstripe_subscription = models.ForeignKey(
-        "djstripe.Subscription", on_delete=models.CASCADE, null=True
+        "djstripe.Subscription",
+        on_delete=models.CASCADE,
+        null=True,
+        related_name="shop_order",
     )
     # will be null if order is created while not logged in, but can be reconciled
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)

@@ -27,7 +27,7 @@ urlpatterns = [
     # django-loginas urls must be defined before admin.site.urls
     path(settings.ADMIN_URL, include("loginas.urls")),
     path(settings.ADMIN_URL, admin.site.urls),
-    path("accounts/", include("allauth.urls")),
+    path("accounts/allauth", include("allauth.urls")),
     path("", include("qr_code.urls", namespace="qr_code")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
@@ -52,7 +52,7 @@ urlpatterns += [
     path("api/", include("config.api_router")),
     # OpenAPI Schema
     path("api/schema/", SpectacularJSONAPIView.as_view(), name="schema"),
-    path("api/accounts/", include("dj_rest_auth.urls")),
+    path("api/accounts/auth/", include("dj_rest_auth.urls")),
     path("api/accounts/registration/", include("dj_rest_auth.registration.urls")),
     # OpenAPI UIs
     path(

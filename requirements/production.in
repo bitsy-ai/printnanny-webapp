@@ -6,7 +6,7 @@ coolname
 discord.py
 dj-stripe
 dj-rest-auth
-django>=3.2.16,<4
+django
 dj_rest_auth
 django-allauth
 django-allow-cidr
@@ -20,8 +20,8 @@ django-environ
 django-extensions
 django-filter
 django-flags
-django-ghost>=0.2.14
-django-nats-nkeys[drf]>=0.9.10
+django-ghost
+django-nats-nkeys[drf]
 django-health-check
 django-model-utils
 django-nats-nkeys
@@ -37,7 +37,7 @@ django-storages[google]
 django-stubs
 djangorestframework
 drfpasswordless
-drf-spectacular>=0.23.1
+drf-spectacular
 drf-nested-routers
 django_vite
 flatbuffers
@@ -55,7 +55,7 @@ psycopg2
 pyarrow
 qrcode[pil]
 scikit-image
-twisted[http2,tls]>=21.7 # https://github.com/django/channels/issues/1639
+twisted[http2,tls]
 uvicorn[standard]
 whitenoise
-websockets #==10.1 # https://github.com/aaugustin/websockets/issues/1138#issuecomment-1059138857
+websockets
