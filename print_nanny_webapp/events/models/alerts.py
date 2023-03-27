@@ -22,7 +22,7 @@ class BaseAlertSettings(models.Model):
     event_types = ChoiceArrayField(
         models.CharField(choices=AlertEventType.choices, max_length=255),
         blank=True,
-        default=list(
+        default=lambda: list(
             [
                 AlertEventType.PRINT_QUALITY,
                 AlertEventType.PRINT_DONE,
