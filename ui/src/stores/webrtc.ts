@@ -10,7 +10,6 @@ import StreamingPlugin from "janode/plugins/streaming";
 import type { UiAlert, AlertAction } from "@/types";
 import { handleApiError } from "@/utils/api";
 import type { WebrtcStream } from "printnanny-api-client";
-import { useEventStore } from "./events";
 import { useAlertStore } from "./alerts";
 import { useAccountStore } from "./account";
 
@@ -68,18 +67,6 @@ export const useWebrtcStore = defineStore({
           .getTracks()
           .forEach((stream) => stream.stop());
         videoEl.srcObject = null;
-      }
-      if (this.stream !== undefined) {
-        const eventsStore = useEventStore();
-        const req = {
-          id: uuid4(),
-          created_dt: moment.utc().toISOString(),
-          subject_pattern: api.PiCamCommandSubjectPatternEnum.PiPiIdCommandCam,
-          event_type: api.PiCamCommandType.CamStop,
-          pi: this.stream.pi,
-        } as api.PiCamCommandRequest;
-
-        await eventsStore.publish_command(req);
       }
     },
 
