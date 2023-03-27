@@ -9,6 +9,11 @@ Method | HTTP request | Description
 [**alert_settings_email_partial_update**](AlertsApi.md#alert_settings_email_partial_update) | **PATCH** /api/alert-settings/email/{id}/ | 
 [**alert_settings_email_retrieve**](AlertsApi.md#alert_settings_email_retrieve) | **GET** /api/alert-settings/email/{id}/ | 
 [**alert_settings_email_update**](AlertsApi.md#alert_settings_email_update) | **PUT** /api/alert-settings/email/{id}/ | 
+[**alerts_print_job_create**](AlertsApi.md#alerts_print_job_create) | **POST** /api/alerts/print-job/ | 
+[**alerts_print_job_list**](AlertsApi.md#alerts_print_job_list) | **GET** /api/alerts/print-job/ | 
+[**alerts_print_job_partial_update**](AlertsApi.md#alerts_print_job_partial_update) | **PATCH** /api/alerts/print-job/{id}/ | 
+[**alerts_print_job_retrieve**](AlertsApi.md#alerts_print_job_retrieve) | **GET** /api/alerts/print-job/{id}/ | 
+[**alerts_print_job_update**](AlertsApi.md#alerts_print_job_update) | **PUT** /api/alerts/print-job/{id}/ | 
 
 
 # **alert_settings_email_create**
@@ -493,6 +498,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+**404** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -607,6 +617,657 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **alerts_print_job_create**
+> PrintJobAlert alerts_print_job_create(event_type, event_source, pi, email_message_id=email_message_id, image=image)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.AlertsApi(api_client)
+    event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum | 
+event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum | 
+pi = 56 # int | 
+email_message_id = 'email_message_id_example' # str |  (optional)
+image = '/path/to/file' # file |  (optional)
+
+    try:
+        api_response = api_instance.alerts_print_job_create(event_type, event_source, pi, email_message_id=email_message_id, image=image)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AlertsApi->alerts_print_job_create: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.AlertsApi(api_client)
+    event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum | 
+event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum | 
+pi = 56 # int | 
+email_message_id = 'email_message_id_example' # str |  (optional)
+image = '/path/to/file' # file |  (optional)
+
+    try:
+        api_response = api_instance.alerts_print_job_create(event_type, event_source, pi, email_message_id=email_message_id, image=image)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AlertsApi->alerts_print_job_create: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **event_type** | [**EventTypeEnum**](EventTypeEnum.md)|  | 
+ **event_source** | [**EventSourceEnum**](EventSourceEnum.md)|  | 
+ **pi** | **int**|  | 
+ **email_message_id** | **str**|  | [optional] 
+ **image** | **file**|  | [optional] 
+
+### Return type
+
+[**PrintJobAlert**](PrintJobAlert.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **alerts_print_job_list**
+> PaginatedPrintJobAlertList alerts_print_job_list(page=page)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.AlertsApi(api_client)
+    page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.alerts_print_job_list(page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AlertsApi->alerts_print_job_list: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.AlertsApi(api_client)
+    page = 56 # int | A page number within the paginated result set. (optional)
+
+    try:
+        api_response = api_instance.alerts_print_job_list(page=page)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AlertsApi->alerts_print_job_list: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int**| A page number within the paginated result set. | [optional] 
+
+### Return type
+
+[**PaginatedPrintJobAlertList**](PaginatedPrintJobAlertList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **alerts_print_job_partial_update**
+> PrintJobAlert alerts_print_job_partial_update(id, event_type=event_type, event_source=event_source, email_message_id=email_message_id, image=image, pi=pi)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.AlertsApi(api_client)
+    id = 'id_example' # str | A UUID string identifying this print job alert.
+event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum |  (optional)
+event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum |  (optional)
+email_message_id = 'email_message_id_example' # str |  (optional)
+image = '/path/to/file' # file |  (optional)
+pi = 56 # int |  (optional)
+
+    try:
+        api_response = api_instance.alerts_print_job_partial_update(id, event_type=event_type, event_source=event_source, email_message_id=email_message_id, image=image, pi=pi)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AlertsApi->alerts_print_job_partial_update: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.AlertsApi(api_client)
+    id = 'id_example' # str | A UUID string identifying this print job alert.
+event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum |  (optional)
+event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum |  (optional)
+email_message_id = 'email_message_id_example' # str |  (optional)
+image = '/path/to/file' # file |  (optional)
+pi = 56 # int |  (optional)
+
+    try:
+        api_response = api_instance.alerts_print_job_partial_update(id, event_type=event_type, event_source=event_source, email_message_id=email_message_id, image=image, pi=pi)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AlertsApi->alerts_print_job_partial_update: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| A UUID string identifying this print job alert. | 
+ **event_type** | [**EventTypeEnum**](EventTypeEnum.md)|  | [optional] 
+ **event_source** | [**EventSourceEnum**](EventSourceEnum.md)|  | [optional] 
+ **email_message_id** | **str**|  | [optional] 
+ **image** | **file**|  | [optional] 
+ **pi** | **int**|  | [optional] 
+
+### Return type
+
+[**PrintJobAlert**](PrintJobAlert.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**409** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **alerts_print_job_retrieve**
+> PrintJobAlert alerts_print_job_retrieve(id)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.AlertsApi(api_client)
+    id = 'id_example' # str | A UUID string identifying this print job alert.
+
+    try:
+        api_response = api_instance.alerts_print_job_retrieve(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AlertsApi->alerts_print_job_retrieve: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.AlertsApi(api_client)
+    id = 'id_example' # str | A UUID string identifying this print job alert.
+
+    try:
+        api_response = api_instance.alerts_print_job_retrieve(id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AlertsApi->alerts_print_job_retrieve: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| A UUID string identifying this print job alert. | 
+
+### Return type
+
+[**PrintJobAlert**](PrintJobAlert.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**404** |  |  -  |
+**400** |  |  -  |
+**401** |  |  -  |
+**403** |  |  -  |
+**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **alerts_print_job_update**
+> PrintJobAlert alerts_print_job_update(id, event_type, event_source, pi, email_message_id=email_message_id, image=image)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.AlertsApi(api_client)
+    id = 'id_example' # str | A UUID string identifying this print job alert.
+event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum | 
+event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum | 
+pi = 56 # int | 
+email_message_id = 'email_message_id_example' # str |  (optional)
+image = '/path/to/file' # file |  (optional)
+
+    try:
+        api_response = api_instance.alerts_print_job_update(id, event_type, event_source, pi, email_message_id=email_message_id, image=image)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AlertsApi->alerts_print_job_update: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import printnanny_api_client
+from printnanny_api_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = printnanny_api_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = printnanny_api_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with printnanny_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = printnanny_api_client.AlertsApi(api_client)
+    id = 'id_example' # str | A UUID string identifying this print job alert.
+event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum | 
+event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum | 
+pi = 56 # int | 
+email_message_id = 'email_message_id_example' # str |  (optional)
+image = '/path/to/file' # file |  (optional)
+
+    try:
+        api_response = api_instance.alerts_print_job_update(id, event_type, event_source, pi, email_message_id=email_message_id, image=image)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AlertsApi->alerts_print_job_update: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| A UUID string identifying this print job alert. | 
+ **event_type** | [**EventTypeEnum**](EventTypeEnum.md)|  | 
+ **event_source** | [**EventSourceEnum**](EventSourceEnum.md)|  | 
+ **pi** | **int**|  | 
+ **email_message_id** | **str**|  | [optional] 
+ **image** | **file**|  | [optional] 
+
+### Return type
+
+[**PrintJobAlert**](PrintJobAlert.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
