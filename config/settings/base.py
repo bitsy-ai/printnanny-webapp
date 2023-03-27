@@ -408,8 +408,8 @@ REST_FRAMEWORK = {
 
 # Your stuff...
 # ------------------------------------------------------------------------------
-
-API_VERSION = open("version.txt", "r").read()
+with open("version.txt", "r", encoding="utf-8") as f:
+    API_VERSION = f.read()
 
 # from djstripe.enums import SessionMode
 # import djstripe.fields
@@ -550,18 +550,6 @@ PROMETHEUS_EXPORT_MIGRATIONS = False
 INSTALLED_APPS += [
     "polymorphic",
 ]
-
-# django-invitations
-# ------------------------------------------------------------------------------
-INSTALLED_APPS += [
-    "invitations",
-]
-ACCOUNT_ADAPTER = "invitations.models.InvitationsAdapter"
-INVITATIONS_ADAPTER = ACCOUNT_ADAPTER
-INVITATIONS_INVITATION_ONLY = False
-INVITATIONS_INVITATION_EXPIRY = 30
-INVITATIONS_EMAIL_SUBJECT_PREFIX = "[PrintNanny]"
-INVITATIONS_ACCEPT_INVITE_AFTER_SIGNUP = True
 
 # channels
 # ------------------------------------------------------------------------------

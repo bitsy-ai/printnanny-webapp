@@ -23,7 +23,6 @@ django-flags
 django-ghost>=0.2.14
 django-nats-nkeys[drf]>=0.9.10
 django-health-check
-django-invitations
 django-model-utils
 django-nats-nkeys
 django-loginas

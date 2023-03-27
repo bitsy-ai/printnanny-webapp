@@ -6,7 +6,6 @@ from django.http import HttpRequest
 from django.contrib.auth import admin as auth_admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
-from invitations.utils import get_invitation_model
 
 from rest_framework.authtoken.models import Token
 
@@ -17,8 +16,6 @@ from print_nanny_webapp.users.forms import (
 )
 
 User = get_user_model()
-
-Invitation = get_invitation_model()
 
 # https://stackoverflow.com/a/39648244
 # Unregister the original Group admin.
@@ -128,18 +125,6 @@ class UserAdmin(auth_admin.UserAdmin):
     ]
 
 
-def send_beta_invite(
-    _modeladmin: admin.ModelAdmin,
-    request: HttpRequest,
-    queryset: QuerySet[Any],
-):
-    for invite_request in queryset:
-        invite = Invitation.create(invite_request.email)
-        invite.send_invitation(request)
-        invite_request.invited = True
-        invite_request.save()
-
-
 @admin.register(EmailWaitlist)
 class EmailWaitlistAdmin(admin.ModelAdmin):
 
@@ -149,5 +134,3 @@ class EmailWaitlistAdmin(admin.ModelAdmin):
         "email",
         "created_dt",
     )
-
-    actions = [send_beta_invite]

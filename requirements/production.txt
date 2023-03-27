@@ -156,8 +156,6 @@ django-ghost==0.2.14
     # via -r requirements/production.in
 django-health-check==3.16.5
     # via -r requirements/production.in
-django-invitations==1.9.3
-    # via -r requirements/production.in
 django-loginas==0.3.10
     # via -r requirements/production.in
 django-model-utils==4.2.0

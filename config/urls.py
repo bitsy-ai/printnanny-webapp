@@ -28,7 +28,6 @@ urlpatterns = [
     path(settings.ADMIN_URL, include("loginas.urls")),
     path(settings.ADMIN_URL, admin.site.urls),
     path("accounts/", include("allauth.urls")),
-    re_path(r"^invitations/", include("invitations.urls", namespace="invitations")),
     path("", include("qr_code.urls", namespace="qr_code")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
