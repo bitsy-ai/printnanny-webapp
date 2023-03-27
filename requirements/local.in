@@ -1,5 +1,6 @@
 aiohttp
 argon2-cffi
+celery
 channels
 channels-redis
 coolname
@@ -7,6 +8,7 @@ dj-rest-auth
 dj-stripe
 django-allauth
 django-anymail[mailgun]
+django-celery-beat
 django-compressor
 django-cors-headers
 django-coverage-plugin
