@@ -970,7 +970,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **accounts_auth_user_partial_update**
-> UserDetails accounts_auth_user_partial_update(patched_user_details_request=patched_user_details_request)
+> User accounts_auth_user_partial_update(patched_user_request=patched_user_request)
 
 
 
@@ -1011,10 +1011,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.AccountsApi(api_client)
-    patched_user_details_request = printnanny_api_client.PatchedUserDetailsRequest() # PatchedUserDetailsRequest |  (optional)
+    patched_user_request = printnanny_api_client.PatchedUserRequest() # PatchedUserRequest |  (optional)
 
     try:
-        api_response = api_instance.accounts_auth_user_partial_update(patched_user_details_request=patched_user_details_request)
+        api_response = api_instance.accounts_auth_user_partial_update(patched_user_request=patched_user_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AccountsApi->accounts_auth_user_partial_update: %s\n" % e)
@@ -1053,10 +1053,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.AccountsApi(api_client)
-    patched_user_details_request = printnanny_api_client.PatchedUserDetailsRequest() # PatchedUserDetailsRequest |  (optional)
+    patched_user_request = printnanny_api_client.PatchedUserRequest() # PatchedUserRequest |  (optional)
 
     try:
-        api_response = api_instance.accounts_auth_user_partial_update(patched_user_details_request=patched_user_details_request)
+        api_response = api_instance.accounts_auth_user_partial_update(patched_user_request=patched_user_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AccountsApi->accounts_auth_user_partial_update: %s\n" % e)
@@ -1066,11 +1066,11 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **patched_user_details_request** | [**PatchedUserDetailsRequest**](PatchedUserDetailsRequest.md)|  | [optional] 
+ **patched_user_request** | [**PatchedUserRequest**](PatchedUserRequest.md)|  | [optional] 
 
 ### Return type
 
-[**UserDetails**](UserDetails.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -1089,7 +1089,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **accounts_auth_user_retrieve**
-> UserDetails accounts_auth_user_retrieve()
+> User accounts_auth_user_retrieve()
 
 
 
@@ -1184,7 +1184,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**UserDetails**](UserDetails.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -1203,7 +1203,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **accounts_auth_user_update**
-> UserDetails accounts_auth_user_update(user_details_request=user_details_request)
+> User accounts_auth_user_update(user_request)
 
 
 
@@ -1244,10 +1244,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.AccountsApi(api_client)
-    user_details_request = printnanny_api_client.UserDetailsRequest() # UserDetailsRequest |  (optional)
+    user_request = printnanny_api_client.UserRequest() # UserRequest | 
 
     try:
-        api_response = api_instance.accounts_auth_user_update(user_details_request=user_details_request)
+        api_response = api_instance.accounts_auth_user_update(user_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AccountsApi->accounts_auth_user_update: %s\n" % e)
@@ -1286,10 +1286,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.AccountsApi(api_client)
-    user_details_request = printnanny_api_client.UserDetailsRequest() # UserDetailsRequest |  (optional)
+    user_request = printnanny_api_client.UserRequest() # UserRequest | 
 
     try:
-        api_response = api_instance.accounts_auth_user_update(user_details_request=user_details_request)
+        api_response = api_instance.accounts_auth_user_update(user_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AccountsApi->accounts_auth_user_update: %s\n" % e)
@@ -1299,11 +1299,11 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_details_request** | [**UserDetailsRequest**](UserDetailsRequest.md)|  | [optional] 
+ **user_request** | [**UserRequest**](UserRequest.md)|  | 
 
 ### Return type
 
-[**UserDetails**](UserDetails.md)
+[**User**](User.md)
 
 ### Authorization
 

@@ -262,7 +262,7 @@ Name | Type | Description  | Required | Notes
 
 ## accounts_auth_user_partial_update
 
-> crate::models::UserDetails accounts_auth_user_partial_update(patched_user_details_request)
+> crate::models::User accounts_auth_user_partial_update(patched_user_request)
 
 
 Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
@@ -272,11 +272,11 @@ Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default acc
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**patched_user_details_request** | Option<[**PatchedUserDetailsRequest**](PatchedUserDetailsRequest.md)> |  |  |
+**patched_user_request** | Option<[**PatchedUserRequest**](PatchedUserRequest.md)> |  |  |
 
 ### Return type
 
-[**crate::models::UserDetails**](UserDetails.md)
+[**crate::models::User**](User.md)
 
 ### Authorization
 
@@ -292,7 +292,7 @@ Name | Type | Description  | Required | Notes
 
 ## accounts_auth_user_retrieve
 
-> crate::models::UserDetails accounts_auth_user_retrieve()
+> crate::models::User accounts_auth_user_retrieve()
 
 
 Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
@@ -303,7 +303,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::UserDetails**](UserDetails.md)
+[**crate::models::User**](User.md)
 
 ### Authorization
 
@@ -319,7 +319,7 @@ This endpoint does not need any parameter.
 
 ## accounts_auth_user_update
 
-> crate::models::UserDetails accounts_auth_user_update(user_details_request)
+> crate::models::User accounts_auth_user_update(user_request)
 
 
 Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
@@ -329,11 +329,11 @@ Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default acc
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_details_request** | Option<[**UserDetailsRequest**](UserDetailsRequest.md)> |  |  |
+**user_request** | [**UserRequest**](UserRequest.md) |  | [required] |
 
 ### Return type
 
-[**crate::models::UserDetails**](UserDetails.md)
+[**crate::models::User**](User.md)
 
 ### Authorization
 

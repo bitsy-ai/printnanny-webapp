@@ -84,7 +84,7 @@ docs/PatchedOctoPrintSettingsRequest.md
 docs/PatchedOctoPrinterProfileRequest.md
 docs/PatchedPiRequest.md
 docs/PatchedSystemInfoRequest.md
-docs/PatchedUserDetailsRequest.md
+docs/PatchedUserRequest.md
 docs/PatchedVideoRecordingRequest.md
 docs/PatchedWebrtcStreamRequest.md
 docs/Pi.md
@@ -120,8 +120,6 @@ docs/SystemInfo.md
 docs/SystemInfoRequest.md
 docs/Token.md
 docs/User.md
-docs/UserDetails.md
-docs/UserDetailsRequest.md
 docs/UserRequest.md
 docs/VerifyEmailRequest.md
 docs/VideoRecording.md
@@ -220,7 +218,7 @@ src/models/patched_octo_print_settings_request.rs
 src/models/patched_octo_printer_profile_request.rs
 src/models/patched_pi_request.rs
 src/models/patched_system_info_request.rs
-src/models/patched_user_details_request.rs
+src/models/patched_user_request.rs
 src/models/patched_video_recording_request.rs
 src/models/patched_webrtc_stream_request.rs
 src/models/pi.rs
@@ -253,8 +251,6 @@ src/models/system_info.rs
 src/models/system_info_request.rs
 src/models/token.rs
 src/models/user.rs
-src/models/user_details.rs
-src/models/user_details_request.rs
 src/models/user_request.rs
 src/models/verify_email_request.rs
 src/models/video_recording.rs
