@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from print_nanny_webapp.utils.fields import ChoiceArrayField
+from django.utils import timezone
 
 from .enum import AlertEventType, EventSource
 
@@ -35,6 +36,11 @@ class EmailAlertSettings(BaseAlertSettings):
     pass
 
 
+def print_job_alert_filepath(instance, filename):
+    path = timezone.now().strftime("uploads/print_job_alerts/%Y/%m/%d")
+    return f"{path}/{instance.id}.jpg"
+
+
 class PrintJobAlert(models.Model):
     """
     User-facing print job notification alerts
@@ -59,3 +65,4 @@ class PrintJobAlert(models.Model):
 
     # unique identifier from email message provider, used to build associations on send status
     email_message_id = models.CharField(max_length=255, null=True)
+    image = models.FileField(upload_to=print_job_alert_filepath, null=True)

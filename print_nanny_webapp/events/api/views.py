@@ -10,18 +10,7 @@ from rest_framework.mixins import (
     CreateModelMixin,
     UpdateModelMixin,
 )
-from rest_framework.permissions import IsAuthenticated
-from print_nanny_webapp.events.models import BasePiEvent
-from print_nanny_webapp.events.models.alerts import EmailAlertSettings
-from print_nanny_webapp.events.models.pi import (
-    PiBootCommand,
-    PiBootStatus,
-    PiCamCommand,
-    PiCamStatus,
-    PiSoftwareUpdateCommand,
-    PiSoftwareUpdateStatus,
-)
-from print_nanny_webapp.events.services import nats_publish
+from print_nanny_webapp.events.models.alerts import EmailAlertSettings, PrintJobAlert
 from print_nanny_webapp.utils.api.views import (
     generic_get_errors,
     generic_create_errors,
@@ -29,10 +18,8 @@ from print_nanny_webapp.utils.api.views import (
     generic_update_errors,
 )
 from print_nanny_webapp.events.api.serializers import (
-    PolymorphicPiEventSerializer,
-    PolymorphicPiCommandSerializer,
-    PolymorphicPiStatusSerializer,
     EmailAlertSettingsSerializer,
+    PrintJobAlertSerializer,
 )
 
 Pi = apps.get_model("devices", "Pi")
@@ -43,6 +30,7 @@ logger = logging.getLogger(__name__)
 @extend_schema_view(
     retrieve=extend_schema(
         tags=["settings", "alerts"],
+        responses={200: EmailAlertSettingsSerializer(many=False)} | generic_get_errors,
     ),
     list=extend_schema(
         tags=["settings", "alerts"],
@@ -91,6 +79,59 @@ class EmailAlertSettingsViewSet(
         if result is None and self.request.user.is_authenticated:
             EmailAlertSettings.objects.create(user=self.request.user)
         return self.queryset.filter(user_id=self.request.user.id)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
+@extend_schema_view(
+    retrieve=extend_schema(
+        tags=["alerts"],
+        responses={200: PrintJobAlertSerializer(many=False)} | generic_get_errors,
+    ),
+    list=extend_schema(
+        tags=["alerts"],
+        responses={
+            200: PrintJobAlertSerializer(many=True),
+        }
+        | generic_list_errors,
+    ),
+    update=extend_schema(
+        tags=["alerts"],
+        request=PrintJobAlertSerializer,
+        responses={
+            202: PrintJobAlertSerializer,
+        }
+        | generic_update_errors,
+    ),
+    partial_update=extend_schema(
+        tags=["alerts"],
+        request=PrintJobAlertSerializer,
+        responses={
+            202: PrintJobAlertSerializer,
+        }
+        | generic_update_errors,
+    ),
+    create=extend_schema(
+        tags=["alerts"],
+        request=PrintJobAlertSerializer,
+        responses={201: PrintJobAlertSerializer} | generic_create_errors,
+    ),
+)
+class PrintJobAlertViewSet(
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    CreateModelMixin,
+    UpdateModelMixin,
+):
+    serializer_class = PrintJobAlertSerializer
+    queryset = PrintJobAlert.objects.all()
+    lookup_field = "id"
+
+    def get_queryset(self, *args, **kwargs):
+        result = self.queryset.filter(user_id=self.request.user.id)
+        return result
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

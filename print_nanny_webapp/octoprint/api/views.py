@@ -19,10 +19,8 @@ from print_nanny_webapp.octoprint.api.serializers import (
     GcodeFileSerializer,
     OctoPrintSettingsSerializer,
     OctoPrintServerSerializer,
-    PolymorphicOctoPrintEventSerializer,
 )
 from print_nanny_webapp.octoprint.models import (
-    BaseOctoPrintEvent,
     GcodeFile,
     OctoPrintBackup,
     OctoPrintSettings,
@@ -35,7 +33,6 @@ from print_nanny_webapp.utils.api.views import (
     generic_update_errors,
     generic_get_errors,
 )
-from print_nanny_webapp.events.services import nats_publish
 
 
 logger = logging.getLogger(__name__)
