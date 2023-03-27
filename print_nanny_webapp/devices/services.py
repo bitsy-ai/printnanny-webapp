@@ -299,14 +299,6 @@ def janus_streaming_get_or_create_mountpoint(stream: WebrtcStream):
     return stream
 
 
-def render_janus_env(device: Pi) -> str:
-    context = dict(
-        janus_admin_secret=device.active_license.janus_admin_secret,
-        janus_token=device.active_license.janus_token,
-    )
-    return render_to_string("janus.env.j2", context)
-
-
 def render_honeycomb_env() -> str:
     context = dict(
         honeycomb_dataset=settings.HONEYCOMB_DATASET,

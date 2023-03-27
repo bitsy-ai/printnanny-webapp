@@ -5,16 +5,7 @@ from django.db import models
 from django.db.models import UniqueConstraint
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 
-from print_nanny_webapp.events.models.enum import GcodeEventType
-from print_nanny_webapp.events.models.base import AbstractEvent
 from print_nanny_webapp.utils.fields import file_field_upload_to
-
-from print_nanny_webapp.octoprint.enum import (
-    OctoPrintPrintJobStatusType,
-    OctoPrintPrinterStatusType,
-    OctoPrintServerStatusType,
-    OctoprintEventSubjectPattern,
-)
 
 User = get_user_model()
 # A bit of data model history:
@@ -109,6 +100,9 @@ class OctoPrintSettings(SafeDeleteModel):
         max_length=64, default=settings.PRINTNANNY_OS_DEFAULT_BACKUP_SCHEDULE
     )
     updated_dt = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="octoprint_settings", null=True
+    )
 
 
 class GcodeFile(SafeDeleteModel):
@@ -201,66 +195,3 @@ class OctoPrinterProfile(SafeDeleteModel):
     volume_width = models.FloatField(null=True)
     created_dt = models.DateTimeField(auto_now_add=True)
     updated_dt = models.DateTimeField(auto_now=True)
-
-
-class AbstractOctoPrintEvent(AbstractEvent):
-    class Meta:
-        abstract = True
-        ordering = ["-created_dt"]
-        index_together = [["id", "pi", "octoprint_server", "created_dt"]]
-
-    subject_pattern = "pi.{pi_id}.octoprint"
-    octoprint_server = models.ForeignKey(OctoPrintServer, on_delete=models.CASCADE)
-    pi = models.ForeignKey("devices.Pi", on_delete=models.CASCADE)
-
-    @property
-    def subject(self):
-        return self.subject_pattern.format(pi_id=self.pi.id)
-
-
-class BaseOctoPrintEvent(AbstractOctoPrintEvent):
-    pass
-
-
-class OctoPrintServerStatus(BaseOctoPrintEvent):
-    class Meta:
-        index_together = ()
-
-    subject_pattern = OctoprintEventSubjectPattern.OctoPrintServerStatus
-    event_type = models.CharField(
-        max_length=32, choices=OctoPrintServerStatusType.choices, db_index=True
-    )
-
-
-class OctoPrintPrinterStatus(BaseOctoPrintEvent):
-    class Meta:
-        index_together = ()
-
-    subject_pattern = OctoprintEventSubjectPattern.OctoPrintPrinterStatus
-    event_type = models.CharField(
-        max_length=32, choices=OctoPrintPrinterStatusType.choices, db_index=True
-    )
-
-
-class OctoPrintPrintJobStatus(BaseOctoPrintEvent):
-    class Meta:
-        index_together = ()
-
-    subject_pattern = OctoprintEventSubjectPattern.OctoPrintPrintJobStatus
-    event_type = models.CharField(
-        max_length=32, choices=OctoPrintPrintJobStatusType.choices, db_index=True
-    )
-
-
-class OctoPrintGcodeEvent(BaseOctoPrintEvent):
-    """
-    Subset of OctoPrint Gcode Processing events: https://docs.octoprint.org/en/master/events/index.html?highlight=events#gcode-processing
-    """
-
-    class Meta:
-        index_together = ()
-
-    subject_pattern = OctoprintEventSubjectPattern.OctoPrintGcodeEvent
-    event_type = models.CharField(
-        max_length=32, choices=GcodeEventType.choices, db_index=True
-    )

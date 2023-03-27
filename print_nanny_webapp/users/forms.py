@@ -22,7 +22,7 @@ class GroupAdminForm(forms.ModelForm):
 
     # Add the users field.
     users = forms.ModelMultipleChoiceField(
-        queryset=User.objects.all(),  # type: ignore[has-type]
+        queryset=User.objects.all(),
         required=False,
         # Use the pretty 'filter_horizontal widget'.
         widget=FilteredSelectMultiple("users", False),

@@ -89,9 +89,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class OrderItemSerializer(serializers.Serializer):
-    product = serializers.PrimaryKeyRelatedField(  # type: ignore[var-annotated]
-        queryset=Product.objects.all()
-    )
+    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
     price = serializers.CharField()
 
 

@@ -3,8 +3,6 @@ name: Pytest and Cypress
 # Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [main, devel]
   pull_request:
     branches: [main, devel]
 
@@ -75,6 +73,7 @@ jobs:
           cache-to: type=gha
 
   cypress:
+    timeout-minutes: 20
     needs: docker-image
     environment: test
     env:

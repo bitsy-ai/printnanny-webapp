@@ -22,7 +22,7 @@ class Command(BaseCommand):
             raise CommandError(
                 f"Refusing to generate test printnanny.zip because settings.DEBUG={settings.DEBUG} (must be True)"
             )
-        user = User.objects.get(email=options["email"])  # type: ignore
+        user = User.objects.get(email=options["email"])
         self.stdout.write(f"Generating license.json with credentials for user={user}")
         device, created = Pi.objects.get_or_create(
             user=user, hostname=options["hostname"]

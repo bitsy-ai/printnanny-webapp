@@ -19,7 +19,7 @@ class Command(BaseCommand):
                 f"Refusing to fetch 2fa auth token because settings.DEBUG={settings.DEBUG} (must be True)"
             )
         email = options["email"]
-        user = User.objects.get(email=email)  # type: ignore[has-type]
+        user = User.objects.get(email=email)
         token = CallbackToken.objects.filter(user=user).order_by("-created_at").first()
         self.stdout.write(self.style.SUCCESS(f"Callback token for {email}:"))
         self.stdout.write(token.key)

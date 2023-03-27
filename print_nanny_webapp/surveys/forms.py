@@ -82,7 +82,7 @@ class RemoteAccessSurvey1Form(ModelForm):
         # check to see if provided email matches user
         if request.user.is_anonymous:
             email = self.cleaned_data["email"]
-            user = User.objects.filter(email=email).first()  # type: ignore
+            user = User.objects.filter(email=email).first()
         else:
             user = request.user
 
