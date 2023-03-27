@@ -57,8 +57,8 @@ const onSubmit = handleSubmit(async (values) => {
   await alertStore.updateEmailAlertSettings(values);
   const success = {
     color: "green",
-    message: "Saved email notification settings",
-    header: "Success!",
+    message: "Your changes will be applied next time you reboot your Raspberry Pi(s).",
+    header: "Success! Saved notification settings",
     actions: [],
     error: undefined,
   } as UiAlert;
