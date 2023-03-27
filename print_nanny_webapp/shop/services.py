@@ -234,9 +234,6 @@ def create_order(request: HttpRequest, product: Product, price_id: str, email: s
     )
     # associate product with order
     order.products.add(product)
-    # add stripe checkout redirect url to payload
-    order.stripe_checkout_redirect_url = checkout_session_redirect
-    order.stripe_checkout_session_id = checkout_session.id
 
     # create order status
     OrderStatus.objects.create(
@@ -314,7 +311,7 @@ def sync_stripe_order(stripe_checkout_session_id) -> Order:
     # if order.user is None, attempt to reconcile with existing user by email
     if order.user is None:
         try:
-            user = User.objects.get(email=order.email)  # type: ignore[has-type]
+            user = User.objects.get(email=order.email)
             order.user = user
         except User.DoesNotExist:
             # user will be prompted to create a password in checkout view

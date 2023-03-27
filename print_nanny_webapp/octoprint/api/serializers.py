@@ -64,8 +64,8 @@ class OctoPrintServerSerializer(serializers.ModelSerializer):
         self, validated_data: Dict[Any, Any], device_id: int, user_id: int
     ) -> Tuple[OctoPrintServer, bool]:
         instance, created = OctoPrintServer.objects.filter(
-            device=device_id, user=user_id
-        ).update_or_create(device=device_id, user=user_id, defaults=validated_data)
+            pi=device_id, user=user_id
+        ).update_or_create(pi=device_id, user=user_id, defaults=validated_data)
         logger.info("Saved %s created=%s", instance, created)
 
         if created:

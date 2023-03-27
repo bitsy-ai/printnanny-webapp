@@ -117,7 +117,7 @@ class WebrtcStreamSerializer(serializers.ModelSerializer):
             validated_data,
         )
         # get_or_create method requires fkey relationship be 1) instance or 2) use __id field syntax
-        pi = Pi.objects.get(pi_id=pi_id, config_type=config_type)
+        pi = Pi.objects.get(id=pi_id)
         return WebrtcStream.objects.get_or_create(
             pi=pi, config_type=config_type, defaults=validated_data
         )

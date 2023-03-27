@@ -67,7 +67,7 @@ def format_email(user) -> str:
 def format_merge_metadata(email: str) -> Dict[str, Optional[Union[str, int]]]:
     name = "Maker"
     try:
-        user = User.objects.get(email=email)  # type: ignore[has-type]
+        user = User.objects.get(email=email)
         if user.first_name:
             name = user.first_name
         return dict(user_id=str(user.id), name=name)
@@ -76,7 +76,7 @@ def format_merge_metadata(email: str) -> Dict[str, Optional[Union[str, int]]]:
 
 
 def filter_email_waitlist_not_subscribed(campaign: Campaign, limit=10):
-    already_subscribed = User.objects.all().values("email")  # type: ignore[has-type]
+    already_subscribed = User.objects.all().values("email")
     already_sent = EmailMessage.objects.filter(campaign=campaign).values("email")
     return (
         EmailWaitlist.objects.exclude(email__in=already_sent)

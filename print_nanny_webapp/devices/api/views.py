@@ -24,6 +24,9 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.renderers import BaseRenderer
+from rest_framework.exceptions import NotAuthenticated
+
+
 from print_nanny_webapp.utils.api.exceptions import AlreadyExists
 from print_nanny_webapp.utils.api.views import (
     generic_create_errors,
@@ -414,6 +417,8 @@ class PiLicenseZipViewset(
     def download_zip(
         self, request: Request, pi_id=None, *args: Any, **kwargs: Any
     ) -> HttpResponse:
+        if request.user.is_anonymous:
+            raise NotAuthenticated
         pi = get_object_or_404(Pi.objects.filter(id=pi_id, user=request.user))
 
         zip_content = build_license_zip(pi)

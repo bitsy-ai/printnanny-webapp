@@ -52,6 +52,7 @@ class TestShopServices(TestCase):
         order_id = str(uuid4())
 
         product = Product.objects.filter(is_shippable=True).first()
+        assert product is not None
         price_id = product.djstripe_product.prices.first().id
 
         kwargs = build_stripe_checkout_session_kwargs_v1(
@@ -70,6 +71,7 @@ class TestShopServices(TestCase):
         order_id = str(uuid4())
 
         product = Product.objects.filter(is_subscription=True).first()
+        assert product is not None
         price_id = product.djstripe_product.prices.first().id
 
         kwargs = build_stripe_checkout_session_kwargs_v1(
@@ -90,7 +92,7 @@ class TestShopServices(TestCase):
 
         email = "john.doe@example.com"
         # test provided email already associated with an existing stripe customer
-        user = User.objects.create(  # type: ignore[has-type]
+        user = User.objects.create(
             email=email, password="testing1234", is_superuser=False
         )
         order_id = str(uuid4())
@@ -110,6 +112,7 @@ class TestShopServices(TestCase):
         customer.subscriber = user
         customer.save()
         product = Product.objects.filter(is_shippable=True).first()
+        assert product is not None
         price_id = product.djstripe_product.prices.first().id
 
         # extra kwargs should include Stripe customer id, which will be passed to checkout session for continuity
@@ -132,7 +135,7 @@ class TestShopServices(TestCase):
 
         email = "john.doe@example.com"
         # test provided email already associated with an existing stripe customer
-        user = User.objects.create(  # type: ignore[has-type]
+        user = User.objects.create(
             email=email, password="testing1234", is_superuser=False
         )
         order_id = str(uuid4())
@@ -152,6 +155,7 @@ class TestShopServices(TestCase):
         customer.subscriber = user
         customer.save()
         product = Product.objects.filter(is_subscription=True).first()
+        assert product is not None
         price_id = product.djstripe_product.prices.first().id
 
         # extra kwargs should include Stripe customer id, which will be passed to checkout session for continuity
@@ -170,9 +174,7 @@ class TestShopServices(TestCase):
         email = "john.doe@example.com"
         password = "testing1234"
         # test provided email already associated with an existing stripe customer
-        user = User.objects.create(  # type: ignore[has-type]
-            email=email, password=password, is_superuser=False
-        )
+        user = User.objects.create(email=email, password=password, is_superuser=False)
         request.user = user
         # login user so self.client.session reflects
         # self.client.login sets up self.client.session to be usable
@@ -195,6 +197,8 @@ class TestShopServices(TestCase):
         customer.save()
         order_id = str(uuid4())
         product = Product.objects.filter(is_shippable=True).first()
+        assert product is not None
+
         price_id = product.djstripe_product.prices.first().id
 
         # extra kwargs should include Stripe customer id, which will be passed to checkout session for continuity
@@ -214,9 +218,7 @@ class TestShopServices(TestCase):
         email = "john.doe@example.com"
         password = "testing1234"
         # test provided email already associated with an existing stripe customer
-        user = User.objects.create(  # type: ignore[has-type]
-            email=email, password=password, is_superuser=False
-        )
+        user = User.objects.create(email=email, password=password, is_superuser=False)
         request.user = user
         # login user so self.client.session reflects
         # self.client.login sets up self.client.session to be usable
@@ -239,6 +241,8 @@ class TestShopServices(TestCase):
         customer.save()
         order_id = str(uuid4())
         product = Product.objects.filter(is_subscription=True).first()
+        assert product is not None
+
         price_id = product.djstripe_product.prices.first().id
 
         # extra kwargs should include Stripe customer id, which will be passed to checkout session for continuity

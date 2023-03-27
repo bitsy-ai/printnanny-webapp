@@ -120,19 +120,15 @@ class User(AbstractUser):
     is_staff = models.BooleanField(default=False)
     is_demo = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    date_joined = models.DateTimeField(default=timezone.now)
-    last_login = models.DateTimeField(default=timezone.now)  # type: ignore
-    first_name = models.CharField(blank=True, null=True, max_length=30)  # type: ignore
-    last_name = models.CharField(blank=True, null=True, max_length=30)  # type: ignore
     email = models.EmailField(_("email address"), unique=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS: List[str] = []
 
-    objects = CustomUserManager()  # type: ignore
+    objects = CustomUserManager()  # type: ignore[assignment]
 
     def to_ghost_member(self):
-        name = f"{self.first_name} {self.last_name}"  # type: ignore
+        name = f"{self.first_name} {self.last_name}"
         data: Dict[str, Union[str, bool]] = {
             "name": name,
             "email": self.email,
