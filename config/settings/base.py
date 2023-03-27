@@ -797,12 +797,11 @@ LOGINAS_USERNAME_FIELD = "email"
 # https://dj-rest-auth.readthedocs.io/en/latest/index.html
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ["dj_rest_auth", "dj_rest_auth.registration"]
-REST_AUTH_SERIALIZERS = {
+
+REST_AUTH = {
     "LOGIN_SERIALIZER": "print_nanny_webapp.dj_rest_auth.serializers.LoginSerializer",
     "USER_DETAILS_SERIALIZER": "print_nanny_webapp.users.api.serializers.UserSerializer",
-}
-REST_AUTH_REGISTER_SERIALIZERS = {
-    "REGISTER_SERIALIZER": "print_nanny_webapp.dj_rest_auth.serializers.RegisterSerializer"
+    "REGISTER_SERIALIZER": "print_nanny_webapp.dj_rest_auth.serializers.RegisterSerializer",
 }
 
 # django-nats-nkeys
