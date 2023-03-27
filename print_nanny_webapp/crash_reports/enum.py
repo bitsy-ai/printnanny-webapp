@@ -2,7 +2,6 @@ from django.db import models
 
 
 class CrashReportStatusType(models.TextChoices):
-
     INVESTIGATING = (
         "Investigating",
         "Your report is being investigated, thank you!",

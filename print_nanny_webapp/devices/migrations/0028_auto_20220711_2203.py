@@ -5,7 +5,6 @@ import print_nanny_webapp.devices.models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("devices", "0027_alter_devicesettings_octoprint_enabled"),
     ]

@@ -3,7 +3,7 @@ black
 twine
 pip-tools
 wheel
-django>3,<4
+django
 pytest-django
 pytest-dotenv
 pytest-mock
@@ -20,4 +20,4 @@ types-requests
 types-protobuf
 types-six
 types-toml
-protobuf<=3.20
+protobuf

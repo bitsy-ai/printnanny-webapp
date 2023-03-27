@@ -28,7 +28,6 @@ class EventSource(models.TextChoices):
 
 # Catch-all for all event types
 class TelemetryEventType(models.TextChoices):
-
     ##
     #   source: OctoprintPluginEventType
     ##
@@ -384,7 +383,6 @@ class OctoprintEventType(models.TextChoices):
 
 
 class RemoteCommandEventType(models.TextChoices):
-
     REMOTE_COMMAND_RECEIVED = (
         "remote_command_received",
         "Command was received by device",
@@ -402,7 +400,6 @@ class RemoteCommandEventType(models.TextChoices):
 
 
 class PrintJobEventType(models.TextChoices):
-
     # print job
     PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"
     PRINT_CANCELLING = "PrintCancelling", "PrintCancelling"

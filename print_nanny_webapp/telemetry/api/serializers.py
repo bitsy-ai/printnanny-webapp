@@ -106,7 +106,6 @@ class OctoprintPrinterDataSerializer(serializers.Serializer):
 
 
 class TelemetryEventSerializer(serializers.ModelSerializer):
-
     ts = serializers.FloatField(required=False)
     event_source = serializers.ChoiceField(
         choices=EventSource.choices,
@@ -158,7 +157,6 @@ class PrintJobEventSerializer(TelemetryEventSerializer):
 
 
 class OctoPrintEventSerializer(TelemetryEventSerializer):
-
     event_type = serializers.ChoiceField(
         choices=OctoprintEventType.choices, default=OctoprintEventType.STARTUP
     )
@@ -209,7 +207,6 @@ class RemoteCommandEventSerializer(TelemetryEventSerializer):
 
 
 class TelemetryEventPolymorphicSerializer(PolymorphicSerializer):
-
     model_serializer_mapping = {
         TelemetryEvent: TelemetryEventSerializer,
         RemoteCommandEvent: RemoteCommandEventSerializer,

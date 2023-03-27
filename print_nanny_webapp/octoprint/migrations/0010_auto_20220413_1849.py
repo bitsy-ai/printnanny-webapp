@@ -5,7 +5,6 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("octoprint", "0009_alter_octoprintsettings_octoprint_install"),
     ]

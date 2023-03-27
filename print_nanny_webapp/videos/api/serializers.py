@@ -26,7 +26,6 @@ class VideoRecordingSerializer(serializers.ModelSerializer):
         user,
         validated_data,
     ) -> Tuple[VideoRecording, bool]:
-
         try:
             obj = VideoRecording.objects.get(id=pk, user=user)
             for key, value in validated_data.items():

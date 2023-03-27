@@ -23,7 +23,6 @@ RemoteAccessSurvey1 = apps.get_model("surveys", "RemoteAccessSurvey1")
 
 @override_settings(EMAIL_BACKEND="anymail.backends.test.EmailBackend")
 class CampaignTestCase(TestCase):
-
     fixtures = [
         "/app/print_nanny_webapp/email_campaigns/fixtures/email_campaigns.json",
     ]
@@ -52,7 +51,6 @@ class CampaignTestCase(TestCase):
         )
 
     def test_send_fn_founding_member_november_2022_offer(self):
-
         # test mix of User accounts and EmailWaitlist without User
         emails = [
             "john.doe1@example.com",

@@ -6,7 +6,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("devices", "0024_alter_systeminfo_device"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),

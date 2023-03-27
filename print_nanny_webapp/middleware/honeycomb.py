@@ -4,11 +4,9 @@ from beeline.middleware.django import HoneyMiddlewareBase, HoneyDBWrapper
 
 
 class HoneyMiddlewareIgnoreHealthCheck(HoneyMiddlewareBase):
-
     ignored = ["health", "static"]
 
     def __call__(self, request):
-
         if any(
             [
                 ignored_path in request.get_full_path_info()

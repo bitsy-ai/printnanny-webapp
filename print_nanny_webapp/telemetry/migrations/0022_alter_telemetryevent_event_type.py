@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("telemetry", "0021_alter_telemetryevent_event_type"),
     ]

@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("remote_control", "0024_alter_printsession_print_job_status"),
     ]

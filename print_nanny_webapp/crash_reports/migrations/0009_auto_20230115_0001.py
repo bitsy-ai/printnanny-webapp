@@ -7,7 +7,6 @@ import print_nanny_webapp.crash_reports.models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("devices", "0059_webrtcstream_mountpoint"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),

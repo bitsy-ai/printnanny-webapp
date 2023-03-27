@@ -6,7 +6,6 @@ from django.http.response import HttpResponseRedirect, HttpResponseForbidden
 
 
 class MultiFormMixin(ContextMixin):
-
     form_classes: Dict[str, Any] = {}
     prefixes = {}
     success_urls = {}

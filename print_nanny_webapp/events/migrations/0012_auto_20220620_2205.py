@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("devices", "0024_alter_systeminfo_device"),
         ("octoprint", "0015_rename_octoprintinstall_octoprintserver"),

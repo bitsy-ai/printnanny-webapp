@@ -104,7 +104,6 @@ class TestShopServices(TestCase):
             "r",
             encoding="utf-8",
         ) as f:
-
             fixture_data = json.load(f)
 
         customer = Customer.sync_from_stripe_data(fixture_data)
@@ -147,7 +146,6 @@ class TestShopServices(TestCase):
             "r",
             encoding="utf-8",
         ) as f:
-
             fixture_data = json.load(f)
 
         customer = Customer.sync_from_stripe_data(fixture_data)
@@ -190,7 +188,6 @@ class TestShopServices(TestCase):
             "r",
             encoding="utf-8",
         ) as f:
-
             fixture_data = json.load(f)
 
         customer = Customer.sync_from_stripe_data(fixture_data)
@@ -235,7 +232,6 @@ class TestShopServices(TestCase):
             "r",
             encoding="utf-8",
         ) as f:
-
             fixture_data = json.load(f)
 
         customer = Customer.sync_from_stripe_data(fixture_data)

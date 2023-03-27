@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("alerts", "0004_alter_alertsettings_event_types"),
         ("telemetry", "0016_alter_printstatusevent_printer_state"),

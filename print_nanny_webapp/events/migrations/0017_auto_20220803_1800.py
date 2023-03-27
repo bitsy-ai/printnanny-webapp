@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("devices", "0037_auto_20220731_1857"),
         ("events", "0016_auto_20220801_1932"),

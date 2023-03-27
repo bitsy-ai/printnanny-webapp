@@ -33,7 +33,6 @@ class CloudLicense(SafeDeleteModel):
 
 class ProductManager(SafeDeleteManager):
     def create(self, **kwargs):
-
         stripe_product_id = kwargs.get("stripe_product_id")
         if stripe_product_id is None:
             raise ValueError("stripe_product_id is required")
@@ -99,7 +98,6 @@ class Product(SafeDeleteModel):
     djstripe_product = models.ForeignKey("djstripe.Product", on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
-
         stripe_product_id = kwargs.get("stripe_product_id")
         if stripe_product_id is None:
             super().save(*args, **kwargs)

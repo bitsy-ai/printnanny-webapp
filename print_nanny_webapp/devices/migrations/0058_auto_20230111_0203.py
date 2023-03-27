@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("devices", "0057_alter_systeminfo_os_build_id"),
     ]

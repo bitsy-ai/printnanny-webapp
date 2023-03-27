@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("remote_control", "0018_alter_printsession_created_dt"),
     ]

@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("telemetry", "0007_alter_octoprintevent_event_type"),
     ]

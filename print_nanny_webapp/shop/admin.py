@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from print_nanny_webapp.shop.models import InventoryItem, Product, Order
 
+
 # Register your models here.
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):

@@ -7,7 +7,6 @@ import print_nanny_webapp.videos.models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [

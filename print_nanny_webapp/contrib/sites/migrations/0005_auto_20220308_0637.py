@@ -28,7 +28,6 @@ def update_site_backward(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("sites", "0004_auto_20201113_1235"),
     ]

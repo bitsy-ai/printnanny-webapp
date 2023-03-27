@@ -88,7 +88,6 @@ class PiCamCommand(BasePiEvent):
     subject_pattern = PiEventSubjectPattern.PiCamCommand
 
     class Meta:
-
         index_together = ()
 
     event_type = models.CharField(
@@ -104,7 +103,6 @@ class PiCamStatus(BasePiEvent):
     subject_pattern = PiEventSubjectPattern.PiCamStatus
 
     class Meta:
-
         index_together = ()
 
     event_type = models.CharField(

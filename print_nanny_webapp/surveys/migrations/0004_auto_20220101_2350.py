@@ -5,7 +5,6 @@ import print_nanny_webapp.utils.fields
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("surveys", "0003_alter_remoteaccesssurvey1_user_scale"),
     ]

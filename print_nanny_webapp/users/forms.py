@@ -12,6 +12,7 @@ from print_nanny_webapp.users.models import User, InviteRequest, UserSettings
 
 logger = logging.getLogger(__name__)
 
+
 # https://stackoverflow.com/a/3964824
 # Create ModelForm based on the Group model.
 class GroupAdminForm(forms.ModelForm):
@@ -91,7 +92,6 @@ class UserChangeForm(admin_forms.UserChangeForm):
 
 
 class UserCreationForm(SignupForm):
-
     error_messages = {
         "password_mismatch": _("The two password fields didn’t match."),
         "duplicate_email": _("An account with this email already exists"),

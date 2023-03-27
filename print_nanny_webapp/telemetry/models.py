@@ -87,7 +87,6 @@ class PrintNannyPluginEvent(TelemetryEvent):
 
     @classmethod
     def strip_octoprint_prefix(self, event_type):
-
         return event_type.replace(self.octoprint_event_prefix, "")
 
 

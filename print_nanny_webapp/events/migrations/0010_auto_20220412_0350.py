@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("devices", "0014_auto_20220401_1652"),
         ("events", "0009_octoprintevent"),
