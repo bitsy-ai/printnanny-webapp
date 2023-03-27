@@ -7,7 +7,6 @@ import print_nanny_webapp.utils.fields
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ("surveys", "0001_initial"),

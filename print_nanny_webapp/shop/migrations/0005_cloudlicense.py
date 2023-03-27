@@ -7,7 +7,6 @@ import uuid
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("djstripe", "0010_alter_customer_balance"),
         ("devices", "0059_webrtcstream_mountpoint"),

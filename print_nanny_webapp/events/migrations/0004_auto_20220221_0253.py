@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("devices", "0005_auto_20220217_2202"),
         ("events", "0003_alter_webrtcevent_device"),

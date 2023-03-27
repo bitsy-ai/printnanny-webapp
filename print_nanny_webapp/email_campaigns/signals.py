@@ -13,10 +13,10 @@ logger = logging.getLogger(__name__)
 
 UserModel = get_user_model()
 
+
 # log sent emails
 @receiver(post_send)
 def log_sent_message(sender, message, status, esp_name, **_kwargs):
-
     merge_global_data = getattr(message, "merge_global_data", None)
 
     if merge_global_data is not None and merge_global_data != UNSET:

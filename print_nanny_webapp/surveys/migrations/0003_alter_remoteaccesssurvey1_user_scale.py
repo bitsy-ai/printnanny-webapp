@@ -5,7 +5,6 @@ import print_nanny_webapp.utils.fields
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("surveys", "0002_auto_20211228_0754"),
     ]

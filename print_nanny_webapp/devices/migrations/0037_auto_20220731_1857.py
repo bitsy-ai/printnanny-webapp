@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("django_nats_nkeys", "0001_initial"),
         ("devices", "0036_pi_setup_finished"),

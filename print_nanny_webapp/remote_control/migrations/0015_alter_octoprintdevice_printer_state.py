@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("remote_control", "0014_alter_octoprintdevice_printer_state"),
     ]

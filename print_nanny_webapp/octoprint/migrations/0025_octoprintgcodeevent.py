@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("octoprint", "0024_alter_baseoctoprintevent_payload"),
     ]

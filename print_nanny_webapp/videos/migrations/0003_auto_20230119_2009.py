@@ -6,7 +6,6 @@ import uuid
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("videos", "0002_alter_videorecording_end_dt"),
     ]

@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("telemetry", "0024_telemetryevent_print_nanny_beta_client_version"),
     ]

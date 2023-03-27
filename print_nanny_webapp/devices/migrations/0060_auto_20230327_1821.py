@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("devices", "0059_webrtcstream_mountpoint"),
     ]

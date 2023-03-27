@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("telemetry", "0015_alter_printstatusevent_printer_state"),
     ]

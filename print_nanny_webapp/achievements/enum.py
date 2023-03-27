@@ -2,7 +2,6 @@ from django.db import models
 
 
 class AchievementType(models.TextChoices):
-
     FREE_BETA = (
         "FreeBeta",
         "Participated in free beta program",

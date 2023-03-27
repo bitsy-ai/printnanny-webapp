@@ -8,7 +8,6 @@ def dummy_default_janus_stream_port():
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("devices", "0005_auto_20220217_2202"),
     ]

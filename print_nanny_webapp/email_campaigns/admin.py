@@ -6,6 +6,7 @@ from print_nanny_webapp.email_campaigns.models import (
     EmailMessage,
 )
 
+
 # Register your models here.
 @admin.register(Campaign)
 class CampaignAdmin(admin.ModelAdmin):

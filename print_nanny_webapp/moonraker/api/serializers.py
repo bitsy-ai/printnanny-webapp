@@ -22,7 +22,6 @@ class MoonrakerServerSerializer(serializers.ModelSerializer):
     def update_or_create(
         self, validated_data: Dict[Any, Any], device_id: int, user_id: int
     ) -> Tuple[MoonrakerServer, bool]:
-
         instance, created = MoonrakerServer.objects.filter(
             device=device_id, user=user_id
         ).update_or_create(device=device_id, user=user_id, defaults=validated_data)

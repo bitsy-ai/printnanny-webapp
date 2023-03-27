@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("octoprint", "0012_gcodefile_created_dt"),
     ]

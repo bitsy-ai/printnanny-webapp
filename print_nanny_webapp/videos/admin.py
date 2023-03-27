@@ -1,6 +1,7 @@
 from django.contrib import admin
 from print_nanny_webapp.videos.models import VideoRecording, VideoRecordingPart
 
+
 # Register your models here.
 @admin.register(VideoRecording)
 class VideoRecordingAdmin(admin.ModelAdmin):

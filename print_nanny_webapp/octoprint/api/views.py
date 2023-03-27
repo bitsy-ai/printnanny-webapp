@@ -37,6 +37,7 @@ from print_nanny_webapp.utils.api.views import (
 
 logger = logging.getLogger(__name__)
 
+
 ##
 # OctoPrintServer (by device param)
 ##

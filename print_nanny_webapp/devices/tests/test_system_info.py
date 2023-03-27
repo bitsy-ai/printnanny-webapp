@@ -34,7 +34,6 @@ class TestSystemInfoDiskUsage(TestCase):
         )
 
     def test_system_info_disk_usage_display(self):
-
         sysinfo = SystemInfo.objects.create(
             machine_id="test",
             model="test",

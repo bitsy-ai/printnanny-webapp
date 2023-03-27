@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("email_campaigns", "0003_auto_20221028_2140"),
     ]

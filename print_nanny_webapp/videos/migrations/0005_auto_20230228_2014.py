@@ -6,7 +6,6 @@ import print_nanny_webapp.videos.models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("videos", "0004_rename_uuid_videorecording_id"),
     ]

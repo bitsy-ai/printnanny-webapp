@@ -5,7 +5,6 @@ import print_nanny_webapp.events.models.alerts
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("events", "0033_auto_20230327_0058"),
     ]

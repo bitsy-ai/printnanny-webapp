@@ -5,7 +5,6 @@ import print_nanny_webapp.utils.fields
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("events", "0015_emailalertsettings_printjobalert"),
     ]

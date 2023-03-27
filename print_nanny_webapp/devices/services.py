@@ -413,7 +413,6 @@ def get_license_serializer(pi: Pi, request: HttpRequest) -> PrintNannyLicenseSer
 
 
 def build_license_zip(pi: Pi) -> bytes:
-
     nats_app = get_or_create_pi_nats_app(pi)
     nats_creds = nsc_generate_creds(
         nats_app.organization.name, app_name=nats_app.app_name

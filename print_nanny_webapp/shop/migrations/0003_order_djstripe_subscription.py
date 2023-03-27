@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("djstripe", "0010_alter_customer_balance"),
         ("shop", "0002_alter_orderstatus_status"),

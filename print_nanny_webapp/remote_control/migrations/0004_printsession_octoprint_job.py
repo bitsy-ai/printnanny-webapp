@@ -5,7 +5,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("remote_control", "0003_auto_20210510_0157"),
     ]

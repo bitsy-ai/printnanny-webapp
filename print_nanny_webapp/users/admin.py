@@ -21,6 +21,7 @@ User = get_user_model()
 # Unregister the original Group admin.
 admin.site.unregister(Group)
 
+
 # Create a new Group admin.
 class GroupAdmin(admin.ModelAdmin):
     # Use our custom form.
@@ -50,7 +51,6 @@ def add_free_beta_achievement(
     request: HttpRequest,
     queryset: QuerySet[Any],
 ):
-
     for user in queryset:
         Achievement.objects.create(user=user, type=AchievementType.FREE_BETA)
 
@@ -60,7 +60,6 @@ def add_free_founding_member_achievement(
     request: HttpRequest,
     queryset: QuerySet[Any],
 ):
-
     for user in queryset:
         Achievement.objects.create(user=user, type=AchievementType.FOUNDING_MEMBER)
 
@@ -127,7 +126,6 @@ class UserAdmin(auth_admin.UserAdmin):
 
 @admin.register(EmailWaitlist)
 class EmailWaitlistAdmin(admin.ModelAdmin):
-
     list_filter = ("email",)
 
     list_display = (

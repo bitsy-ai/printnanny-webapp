@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("crash_reports", "0004_crashreport_posthog_session"),
     ]

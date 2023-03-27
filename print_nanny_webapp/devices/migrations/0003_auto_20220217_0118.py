@@ -7,7 +7,6 @@ import print_nanny_webapp.devices.models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ("devices", "0002_device_setup_complete"),

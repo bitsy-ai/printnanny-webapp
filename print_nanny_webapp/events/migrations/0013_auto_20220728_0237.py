@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("devices", "0033_auto_20220728_0237"),
         ("octoprint", "0019_auto_20220728_0237"),

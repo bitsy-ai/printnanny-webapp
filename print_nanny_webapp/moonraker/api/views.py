@@ -22,6 +22,7 @@ from print_nanny_webapp.utils.api.views import (
     generic_get_errors,
 )
 
+
 ##
 # MoonrakerServer (by device param)
 ##

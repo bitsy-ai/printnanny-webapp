@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("events", "0012_auto_20220620_2205"),
         ("devices", "0029_remove_devicesettings_octoprint_enabled"),

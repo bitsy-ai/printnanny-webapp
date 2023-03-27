@@ -6,7 +6,6 @@ import print_nanny_webapp.videos.models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("videos", "0011_videorecordingpart_user"),
     ]

@@ -8,7 +8,6 @@ import print_nanny_webapp.utils.fields
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [

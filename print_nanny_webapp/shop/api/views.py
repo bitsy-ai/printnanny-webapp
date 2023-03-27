@@ -96,7 +96,6 @@ class OrderByStripeCheckoutSessionIdView(APIView):
 
     def get(self, _request, stripe_checkout_session_id=None):
         if stripe_checkout_session_id is not None:
-
             order = sync_stripe_order(stripe_checkout_session_id)
 
             # create order status

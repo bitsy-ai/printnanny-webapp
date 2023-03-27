@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("videos", "0007_remove_videorecording_capture_done"),
     ]

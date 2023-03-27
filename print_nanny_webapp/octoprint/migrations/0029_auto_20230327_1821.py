@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("octoprint", "0028_octoprintserver_api_key"),
     ]

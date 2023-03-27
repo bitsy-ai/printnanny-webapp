@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("email_campaigns", "0004_auto_20221029_0336"),
     ]

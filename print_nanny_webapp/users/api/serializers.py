@@ -29,7 +29,6 @@ class EmailWaitlistSerializer(serializers.ModelSerializer):
 
 
 class NatsOrganizationUserSerializer(serializers.ModelSerializer):
-
     creds = serializers.SerializerMethodField()
 
     def get_creds(self, obj) -> str:

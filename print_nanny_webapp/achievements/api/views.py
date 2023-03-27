@@ -23,7 +23,6 @@ class AchievementViewSet(
     GenericViewSet,
     ListModelMixin,
 ):
-
     serializer_class = AchievementSerializer
     queryset = Achievement.objects.all()
     lookup_field = "id"

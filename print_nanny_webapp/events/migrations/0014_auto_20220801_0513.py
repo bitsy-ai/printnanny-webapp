@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("devices", "0037_auto_20220731_1857"),
         ("contenttypes", "0002_remove_content_type_name"),

@@ -14,7 +14,6 @@ logging.getLogger("uvicorn.access").addFilter(ExcludeHealthEndpoint())
 
 
 class ThrottledAdminEmailHandler(AdminEmailHandler):
-
     PERIOD_LENGTH_IN_SECONDS = 600
     MAX_EMAILS_IN_PERIOD = 3
     COUNTER_CACHE_KEY = "email_admins_counter"

@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("alerts", "0008_auto_20220801_1541"),
         ("remote_control", "0026_octoprintdevice_print_nanny_beta_client_version"),

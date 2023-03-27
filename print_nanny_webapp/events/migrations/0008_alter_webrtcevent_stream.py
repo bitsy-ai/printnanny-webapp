@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("devices", "0012_auto_20220305_2030"),
         ("events", "0007_rename_mqtt_webrtcevent_send_mqtt"),

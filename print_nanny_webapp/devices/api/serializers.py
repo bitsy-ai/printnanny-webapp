@@ -124,7 +124,6 @@ class WebrtcStreamSerializer(serializers.ModelSerializer):
 
 
 class SystemInfoSerializer(serializers.ModelSerializer):
-
     bootfs_available = Int64Field(read_only=True)
     bootfs_available_pretty = serializers.CharField(read_only=True)
     bootfs_used_pretty = serializers.CharField(read_only=True)
@@ -152,7 +151,6 @@ class SystemInfoSerializer(serializers.ModelSerializer):
 
 
 class PiNatsAppSerializer(serializers.ModelSerializer):
-
     organization = NatsOrganizationSerializer()
 
     class Meta:
