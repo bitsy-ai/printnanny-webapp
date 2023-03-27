@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **djstripe_product** | [**DjStripeProduct**](DjStripeProduct.md) |  | 
 **prices** | [**list[DjStripePrice]**](DjStripePrice.md) |  | 
 **deleted** | **datetime** |  | [readonly] 
+**deleted_by_cascade** | **bool** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **updated_dt** | **datetime** |  | [readonly] 
 **sku** | **str** |  | 

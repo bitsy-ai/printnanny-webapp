@@ -1,5 +1,6 @@
 # SbcEnum
 
+* `rpi_4` - Raspberry Pi 4
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,5 +1,6 @@
 # StripeProductType
 
+* `good` - Good * `service` - Service
 
 ## Properties
 Name | Type | Description | Notes

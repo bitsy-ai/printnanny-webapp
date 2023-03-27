@@ -1,5 +1,6 @@
 # StripeSessionBillingAddressCollection
 
+* `auto` - Auto * `required` - Required
 
 ## Properties
 Name | Type | Description | Notes

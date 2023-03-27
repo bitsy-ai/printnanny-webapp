@@ -1,5 +1,6 @@
 # StripeSubmitTypeStatus
 
+* `auto` - Auto * `book` - Book * `donate` - donate * `pay` - pay
 
 ## Properties
 Name | Type | Description | Notes

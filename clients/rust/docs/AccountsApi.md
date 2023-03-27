@@ -7,19 +7,19 @@ Method | HTTP request | Description
 [**accounts2fa_auth_email_create**](AccountsApi.md#accounts2fa_auth_email_create) | **POST** /accounts/2fa-auth/email/ | 
 [**accounts2fa_auth_session_create**](AccountsApi.md#accounts2fa_auth_session_create) | **POST** /accounts/2fa-auth/session/ | 
 [**accounts2fa_auth_token_create**](AccountsApi.md#accounts2fa_auth_token_create) | **POST** /accounts/2fa-auth/token/ | 
+[**accounts_auth_login_create**](AccountsApi.md#accounts_auth_login_create) | **POST** /api/accounts/auth/login/ | 
+[**accounts_auth_logout_create**](AccountsApi.md#accounts_auth_logout_create) | **POST** /api/accounts/auth/logout/ | 
+[**accounts_auth_password_change_create**](AccountsApi.md#accounts_auth_password_change_create) | **POST** /api/accounts/auth/password/change/ | 
+[**accounts_auth_password_reset_confirm_create**](AccountsApi.md#accounts_auth_password_reset_confirm_create) | **POST** /api/accounts/auth/password/reset/confirm/ | 
+[**accounts_auth_password_reset_create**](AccountsApi.md#accounts_auth_password_reset_create) | **POST** /api/accounts/auth/password/reset/ | 
+[**accounts_auth_user_partial_update**](AccountsApi.md#accounts_auth_user_partial_update) | **PATCH** /api/accounts/auth/user/ | 
+[**accounts_auth_user_retrieve**](AccountsApi.md#accounts_auth_user_retrieve) | **GET** /api/accounts/auth/user/ | 
+[**accounts_auth_user_update**](AccountsApi.md#accounts_auth_user_update) | **PUT** /api/accounts/auth/user/ | 
 [**accounts_email_waitlist_create**](AccountsApi.md#accounts_email_waitlist_create) | **POST** /api/accounts/email-waitlist/ | 
-[**accounts_login_create**](AccountsApi.md#accounts_login_create) | **POST** /api/accounts/login/ | 
-[**accounts_logout_create**](AccountsApi.md#accounts_logout_create) | **POST** /api/accounts/logout/ | 
-[**accounts_password_change_create**](AccountsApi.md#accounts_password_change_create) | **POST** /api/accounts/password/change/ | 
-[**accounts_password_reset_confirm_create**](AccountsApi.md#accounts_password_reset_confirm_create) | **POST** /api/accounts/password/reset/confirm/ | 
-[**accounts_password_reset_create**](AccountsApi.md#accounts_password_reset_create) | **POST** /api/accounts/password/reset/ | 
 [**accounts_registration_create**](AccountsApi.md#accounts_registration_create) | **POST** /api/accounts/registration/ | 
 [**accounts_registration_resend_email_create**](AccountsApi.md#accounts_registration_resend_email_create) | **POST** /api/accounts/registration/resend-email/ | 
 [**accounts_registration_verify_email_create**](AccountsApi.md#accounts_registration_verify_email_create) | **POST** /api/accounts/registration/verify-email/ | 
 [**accounts_user_nkey_retrieve**](AccountsApi.md#accounts_user_nkey_retrieve) | **GET** /api/accounts/user/nkey | 
-[**accounts_user_partial_update**](AccountsApi.md#accounts_user_partial_update) | **PATCH** /api/accounts/user/ | 
-[**accounts_user_retrieve**](AccountsApi.md#accounts_user_retrieve) | **GET** /api/accounts/user/ | 
-[**accounts_user_update**](AccountsApi.md#accounts_user_update) | **PUT** /api/accounts/user/ | 
 
 
 
@@ -113,39 +113,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## accounts_email_waitlist_create
+## accounts_auth_login_create
 
-> crate::models::EmailWaitlist accounts_email_waitlist_create(email_waitlist_request)
-
-
-A device (Raspberry Pi) running Print Nanny OS
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**email_waitlist_request** | [**EmailWaitlistRequest**](EmailWaitlistRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::EmailWaitlist**](EmailWaitlist.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## accounts_login_create
-
-> crate::models::Token accounts_login_create(login_request)
+> crate::models::Token accounts_auth_login_create(login_request)
 
 
 Check the credentials and return the REST Token if the credentials are valid and authenticated. Calls Django Auth login method to register User ID in Django session framework  Accept the following POST parameters: username, password Return the REST Framework Token Object's key.
@@ -173,9 +143,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## accounts_logout_create
+## accounts_auth_logout_create
 
-> crate::models::RestAuthDetail accounts_logout_create()
+> crate::models::RestAuthDetail accounts_auth_logout_create()
 
 
 Calls Django logout method and delete the Token object assigned to the current User object.  Accepts/Returns nothing.
@@ -200,9 +170,9 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## accounts_password_change_create
+## accounts_auth_password_change_create
 
-> crate::models::RestAuthDetail accounts_password_change_create(password_change_request)
+> crate::models::RestAuthDetail accounts_auth_password_change_create(password_change_request)
 
 
 Calls Django Auth SetPasswordForm save method.  Accepts the following POST parameters: new_password1, new_password2 Returns the success/fail message.
@@ -230,9 +200,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## accounts_password_reset_confirm_create
+## accounts_auth_password_reset_confirm_create
 
-> crate::models::RestAuthDetail accounts_password_reset_confirm_create(password_reset_confirm_request)
+> crate::models::RestAuthDetail accounts_auth_password_reset_confirm_create(password_reset_confirm_request)
 
 
 Password reset e-mail link is confirmed, therefore this resets the user's password.  Accepts the following POST parameters: token, uid,     new_password1, new_password2 Returns the success/fail message.
@@ -260,9 +230,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## accounts_password_reset_create
+## accounts_auth_password_reset_create
 
-> crate::models::RestAuthDetail accounts_password_reset_create(password_reset_request)
+> crate::models::RestAuthDetail accounts_auth_password_reset_create(password_reset_request)
 
 
 Calls Django Auth PasswordResetForm save method.  Accepts the following POST parameters: email Returns the success/fail message.
@@ -277,6 +247,123 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::RestAuthDetail**](RestAuthDetail.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## accounts_auth_user_partial_update
+
+> crate::models::UserDetails accounts_auth_user_partial_update(patched_user_details_request)
+
+
+Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**patched_user_details_request** | Option<[**PatchedUserDetailsRequest**](PatchedUserDetailsRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::UserDetails**](UserDetails.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## accounts_auth_user_retrieve
+
+> crate::models::UserDetails accounts_auth_user_retrieve()
+
+
+Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**crate::models::UserDetails**](UserDetails.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## accounts_auth_user_update
+
+> crate::models::UserDetails accounts_auth_user_update(user_details_request)
+
+
+Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_details_request** | Option<[**UserDetailsRequest**](UserDetailsRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::UserDetails**](UserDetails.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## accounts_email_waitlist_create
+
+> crate::models::EmailWaitlist accounts_email_waitlist_create(email_waitlist_request)
+
+
+A device (Raspberry Pi) running Print Nanny OS
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**email_waitlist_request** | [**EmailWaitlistRequest**](EmailWaitlistRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::EmailWaitlist**](EmailWaitlist.md)
 
 ### Authorization
 
@@ -396,93 +483,6 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## accounts_user_partial_update
-
-> crate::models::User accounts_user_partial_update(patched_user_request)
-
-
-Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**patched_user_request** | Option<[**PatchedUserRequest**](PatchedUserRequest.md)> |  |  |
-
-### Return type
-
-[**crate::models::User**](User.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## accounts_user_retrieve
-
-> crate::models::User accounts_user_retrieve()
-
-
-Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**crate::models::User**](User.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## accounts_user_update
-
-> crate::models::User accounts_user_update(user_request)
-
-
-Reads and updates UserModel fields Accepts GET, PUT, PATCH methods.  Default accepted fields: username, first_name, last_name Default display fields: pk, username, email, first_name, last_name Read-only fields: pk, email  Returns UserModel fields.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**user_request** | [**UserRequest**](UserRequest.md) |  | [required] |
-
-### Return type
-
-[**crate::models::User**](User.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

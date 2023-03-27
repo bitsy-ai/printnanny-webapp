@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**username** | **str** |  | [optional] 
 **email** | **str** |  | 
 **password1** | **str** |  | 
 **password2** | **str** |  | 

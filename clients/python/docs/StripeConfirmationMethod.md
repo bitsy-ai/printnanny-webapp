@@ -1,5 +1,6 @@
 # StripeConfirmationMethod
 
+* `automatic` - Automatic * `manual` - Manual
 
 ## Properties
 Name | Type | Description | Notes

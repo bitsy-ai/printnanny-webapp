@@ -1,10 +1,11 @@
-# PatchedUserRequest
+# UserDetails
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | Option<**String**> |  | [optional]
+**pk** | **i32** |  | [readonly]
+**email** | **String** |  | [readonly]
 **first_name** | Option<**String**> |  | [optional]
 **last_name** | Option<**String**> |  | [optional]
 

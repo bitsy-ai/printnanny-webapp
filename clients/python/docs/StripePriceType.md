@@ -1,5 +1,6 @@
 # StripePriceType
 
+* `one_time` - One-time * `recurring` - Recurring
 
 ## Properties
 Name | Type | Description | Notes

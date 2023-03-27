@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 **shipping** | **dict(str, object)** | Shipping information for the charge | [optional] 
 **statement_descriptor** | **str** | For card charges, use statement_descriptor_suffix instead. Otherwise, you can use this value as the complete description of a charge on your customers&#39; statements. Must contain at least one letter, maximum 22 characters. | [optional] 
 **statement_descriptor_suffix** | **str** | Provides information about the charge that customers see on their statements. Concatenated with the prefix (shortened descriptor) or statement descriptor that&#39;s set on the account to form the complete statement descriptor. Maximum 22 characters for the concatenated descriptor. | [optional] 
-**status** | [**StripeSourceCodeVerificationStatus**](StripeSourceCodeVerificationStatus.md) | The status of the payment. | 
+**status** | [**StripeSourceCodeVerificationStatus**](StripeSourceCodeVerificationStatus.md) | The status of the payment.  * &#x60;failed&#x60; - Failed * &#x60;pending&#x60; - Pending * &#x60;succeeded&#x60; - Succeeded | 
 **transfer_data** | **dict(str, object)** | An optional dictionary including the account to automatically transfer to as part of a destination charge. | [optional] 
 **transfer_group** | **str** | A string that identifies this transaction as part of a group. | [optional] 
 **djstripe_owner_account** | **str** | The Stripe Account this object belongs to. | [optional] 

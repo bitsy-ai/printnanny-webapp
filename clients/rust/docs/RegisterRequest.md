@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**username** | Option<**String**> |  | [optional]
 **email** | **String** |  | 
 **password1** | **String** |  | 
 **password2** | **String** |  | 

@@ -1,5 +1,6 @@
 # CrashReportStatusEnum
 
+* `Investigating` - Your report is being investigated, thank you! * `Fixed` - A fix for your issue has been released. Please submit another crash report if the problem persists.
 
 ## Properties
 Name | Type | Description | Notes

@@ -5,7 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**deleted** | **String** |  | [readonly]
+**deleted** | Option<**String**> |  | [readonly]
+**deleted_by_cascade** | **bool** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **status** | [**crate::models::OrderStatusType**](OrderStatusType.md) |  | 
 **order** | **String** |  | 

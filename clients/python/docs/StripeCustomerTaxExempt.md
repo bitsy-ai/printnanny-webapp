@@ -1,5 +1,6 @@
 # StripeCustomerTaxExempt
 
+* `exempt` - Exempt * `none` - None * `reverse` - Reverse
 
 ## Properties
 Name | Type | Description | Notes

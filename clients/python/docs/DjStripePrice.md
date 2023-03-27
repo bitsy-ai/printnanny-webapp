@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **currency** | **str** | Three-letter ISO currency code | 
 **nickname** | **str** | A brief description of the plan, hidden from customers. | [optional] 
 **recurring** | **dict(str, object)** | The recurring components of a price such as &#x60;interval&#x60; and &#x60;usage_type&#x60;. | [optional] 
-**type** | [**StripePriceType**](StripePriceType.md) | Whether the price is for a one-time purchase or a recurring (subscription) purchase. | 
+**type** | [**StripePriceType**](StripePriceType.md) | Whether the price is for a one-time purchase or a recurring (subscription) purchase.  * &#x60;one_time&#x60; - One-time * &#x60;recurring&#x60; - Recurring | 
 **unit_amount** | **int** | The unit amount in cents to be charged, represented as a whole integer if possible. Null if a sub-cent precision is required. | [optional] 
 **unit_amount_decimal** | **str** | The unit amount in cents to be charged, represented as a decimal string with at most 12 decimal places. | [optional] 
 **lookup_key** | **str** | A lookup key used to retrieve prices dynamically from a static string. | [optional] 

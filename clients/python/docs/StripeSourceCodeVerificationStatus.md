@@ -1,5 +1,6 @@
 # StripeSourceCodeVerificationStatus
 
+* `failed` - Failed * `pending` - Pending * `succeeded` - Succeeded
 
 ## Properties
 Name | Type | Description | Notes

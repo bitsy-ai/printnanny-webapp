@@ -1,5 +1,6 @@
 # StripeBillingScheme
 
+* `per_unit` - Per-unit * `tiered` - Tiered
 
 ## Properties
 Name | Type | Description | Notes

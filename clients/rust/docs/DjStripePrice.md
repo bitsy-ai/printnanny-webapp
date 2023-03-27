@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **currency** | **String** | Three-letter ISO currency code | 
 **nickname** | Option<**String**> | A brief description of the plan, hidden from customers. | [optional]
 **recurring** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | The recurring components of a price such as `interval` and `usage_type`. | [optional]
-**_type** | Option<[**crate::models::StripePriceType**](StripePriceType.md)> | Whether the price is for a one-time purchase or a recurring (subscription) purchase. | 
+**_type** | Option<[**crate::models::StripePriceType**](StripePriceType.md)> | Whether the price is for a one-time purchase or a recurring (subscription) purchase.  * `one_time` - One-time * `recurring` - Recurring | 
 **unit_amount** | Option<**i64**> | The unit amount in cents to be charged, represented as a whole integer if possible. Null if a sub-cent precision is required. | [optional]
 **unit_amount_decimal** | Option<**String**> | The unit amount in cents to be charged, represented as a decimal string with at most 12 decimal places. | [optional]
 **lookup_key** | Option<**String**> | A lookup key used to retrieve prices dynamically from a static string. | [optional]

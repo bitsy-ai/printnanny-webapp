@@ -7,7 +7,8 @@ Name | Type | Description | Notes
 **id** | Option<**String**> |  | [optional]
 **djstripe_product** | [**crate::models::DjStripeProduct**](DjStripeProduct.md) |  | 
 **prices** | [**Vec<crate::models::DjStripePrice>**](DjStripePrice.md) |  | 
-**deleted** | **String** |  | [readonly]
+**deleted** | Option<**String**> |  | [readonly]
+**deleted_by_cascade** | **bool** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]
 **sku** | **String** |  | 

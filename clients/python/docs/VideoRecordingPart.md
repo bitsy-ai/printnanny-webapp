@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | 
+**deleted_by_cascade** | **bool** |  | [readonly] 
 **size** | **int** |  | 
 **buffer_index** | **int** |  | 
 **buffer_runningtime** | **int** |  | 

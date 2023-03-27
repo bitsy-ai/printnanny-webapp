@@ -1,5 +1,6 @@
 # JanusConfigType
 
+* `cloud` - Cloud WebRTC Gateway * `edge` - Edge WebRTC Gateway
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,5 +1,6 @@
 # StripePaymentIntentCancellationReason
 
+* `abandoned` - Abandoned * `automatic` - Automatic * `duplicate` - Duplicate * `failed_invoice` - Failed invoice * `fraudulent` - Fraudulent * `requested_by_customer` - Requested by Customer * `void_invoice` - Void invoice
 
 ## Properties
 Name | Type | Description | Notes

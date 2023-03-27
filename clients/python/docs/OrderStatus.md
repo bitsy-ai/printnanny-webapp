@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **deleted** | **datetime** |  | [readonly] 
+**deleted_by_cascade** | **bool** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **status** | [**OrderStatusType**](OrderStatusType.md) |  | 
 **order** | **str** |  | 

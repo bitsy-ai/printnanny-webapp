@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **auto_backup** | **str** |  | [optional] 
 **updated_dt** | **datetime** |  | [readonly] 
 **octoprint_server** | **int** |  | 
+**user** | **int** |  | [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

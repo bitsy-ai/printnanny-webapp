@@ -1,5 +1,6 @@
 # PreferredDnsType
 
+* `multicast` - Multicast DNS (mDNS) * `tailscale` - Tailscale Magic DNS
 
 ## Properties
 Name | Type | Description | Notes

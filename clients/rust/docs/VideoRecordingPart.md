@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | 
+**deleted_by_cascade** | **bool** |  | [readonly]
 **size** | **i64** |  | 
 **buffer_index** | **i64** |  | 
 **buffer_runningtime** | **i64** |  | 

@@ -1,5 +1,6 @@
 # StripeSessionMode
 
+* `payment` - Payment * `setup` - Setup * `subscription` - Subscription
 
 ## Properties
 Name | Type | Description | Notes

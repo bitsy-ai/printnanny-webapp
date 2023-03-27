@@ -1,5 +1,6 @@
 # StripeIntentUsage
 
+* `off_session` - Off session * `on_session` - On session
 
 ## Properties
 Name | Type | Description | Notes

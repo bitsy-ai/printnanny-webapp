@@ -1,5 +1,6 @@
 # StripePriceTiersMode
 
+* `graduated` - Graduated * `volume` - Volume-based
 
 ## Properties
 Name | Type | Description | Notes

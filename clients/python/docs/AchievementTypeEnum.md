@@ -1,5 +1,6 @@
 # AchievementTypeEnum
 
+* `FreeBeta` - Participated in free beta program * `FoundingMember` - Supported PrintNanny by pre-ordering an annual subscription * `Cloud Starter` - Subscribed to PrintNanny Cloud Starter plan * `Cloud Scaler` - Subscribed to PrintNanny Cloud Scaler plan
 
 ## Properties
 Name | Type | Description | Notes
