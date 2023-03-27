@@ -61,10 +61,6 @@ other_urls = [
         OrderByStripeCheckoutSessionIdView.as_view(),
         name="shop-checkout-success",
     ),
-    path("pis/status", AllPiStatusViewSet.as_view({"get": "list", "post": "create"})),
-    path(
-        "pis/commands", AllPiCommandsViewSet.as_view({"get": "list", "post": "create"})
-    ),
     path("accounts/user/nkey", UserNkeyView.as_view()),
     path(
         "network-settings/",
