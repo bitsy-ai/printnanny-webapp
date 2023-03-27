@@ -4,7 +4,7 @@ channels
 channels-redis
 coolname
 dj-rest-auth
-dj-stripe<2.7
+dj-stripe
 django-allauth
 django-anymail[mailgun]
 django-compressor
@@ -19,7 +19,7 @@ django-flags
 django-health-check
 django-loginas
 django-model-utils
-django-nats-nkeys[drf]>=0.9.10
+django-nats-nkeys[drf]
 django-oauth-toolkit
 django-polymorphic
 django-prometheus
@@ -28,12 +28,12 @@ django-redis
 django-rest-polymorphic
 django-safedelete
 django-storages[google]
-django-stubs[compatible-mypy]>=1.12.0
-django>=3.2.16,<4
+django-stubs[compatible-mypy]
+django
 djangorestframework
 django_vite
 drf-nested-routers
-drf-spectacular>=0.23.1
+drf-spectacular
 drfpasswordless
 flatbuffers
 google-cloud-core
@@ -51,7 +51,7 @@ pyarrow
 pydantic==1.10.2 # required by django-qr-code until https://github.com/dprog-philippe-docourt/django-qr-code/pull/44 is merged
 qrcode[pil]
 scikit-image
-twisted[http2,tls]>=21.7 # https://github.com/django/channels/issues/1639
+twisted[http2,tls]
 uvicorn[standard]
-websockets #==10.1 # https://github.com/aaugustin/websockets/issues/1138#issuecomment-1059138857
+websockets
 whitenoise
