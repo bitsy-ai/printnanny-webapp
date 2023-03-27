@@ -17,7 +17,6 @@ django-extensions
 django-filter
 django-flags
 django-health-check
-django-invitations
 django-loginas
 django-model-utils
 django-nats-nkeys[drf]>=0.9.10
