@@ -64,14 +64,6 @@ def handle_pi_event(msg):
         "Received NATS msg %s",
         msg,
     )
-    from print_nanny_webapp.events.api.serializers import PolymorphicPiEventSerializer
-
-    serializer = PolymorphicPiEventSerializer(data=data)
-    if serializer.is_valid():
-        obj = serializer.save()
-        logger.info("Saved obj %s", obj)
-    else:
-        logger.error("Error serializing event %s", serializer.errors)
 
 
 async def main():

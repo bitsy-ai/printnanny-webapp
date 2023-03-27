@@ -14,6 +14,7 @@ from print_nanny_webapp.devices.api.views import (
 )
 from print_nanny_webapp.events.api.views import (
     EmailAlertSettingsViewSet,
+    PrintJobAlertViewSet,
 )
 from print_nanny_webapp.shop.api.views import (
     ProductsViewSet,
@@ -137,6 +138,13 @@ router.register(
     EmailAlertSettingsViewSet,
     basename="email-alert-settings",
 )
+
+router.register(
+    r"alerts/print-job",
+    PrintJobAlertViewSet,
+    basename="print-job-alerts",
+)
+
 app_name = "api"
 
 urlpatterns = router.urls + pi_router.urls + other_urls
