@@ -73,6 +73,7 @@ jobs:
           cache-to: type=gha
 
   cypress:
+    timeout-minutes: 20
     needs: docker-image
     environment: test
     env:
