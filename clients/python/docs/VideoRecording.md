@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **cloud_sync_done** | **bool** |  | [optional] 
 **finalize_start** | **datetime** |  | [optional] 
 **finalize_end** | **datetime** |  | [optional] 
+**finalize_task_id** | **str** |  | [optional] 
 **recording_start** | **datetime** |  | [optional] 
 **recording_end** | **datetime** |  | [optional] 
 **gcode_file_name** | **str** |  | [optional] 
