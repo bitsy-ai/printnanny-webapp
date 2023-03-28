@@ -117,9 +117,9 @@ class VideoRecordingViewSet(
     )
     @action(methods=["post"], detail=True, url_path="finalize")
     def finalize(self, request, id=None):
-        serializer = VideoRecordingFinalizeSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        recording_end = serializer.validated_data["recording_end"]
+        request_serializer = VideoRecordingFinalizeSerializer(data=request.data)
+        request_serializer.is_valid(raise_exception=True)
+        recording_end = request_serializer.validated_data["recording_end"]
         video_recording = get_object_or_404(
             VideoRecording.objects.filter(id=id, user=request.user)
         )
@@ -129,8 +129,8 @@ class VideoRecordingViewSet(
         task = finalize_video_recording_task.delay(video_recording.id)
         video_recording.finalize_task_id = task.id
         video_recording.save()
-        serializer = self.get_serializer(video_recording)
-        return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        response_serializer = self.get_serializer(video_recording)
+        return Response(response_serializer.data, status=status.HTTP_202_ACCEPTED)
 
 
 @extend_schema_view(
