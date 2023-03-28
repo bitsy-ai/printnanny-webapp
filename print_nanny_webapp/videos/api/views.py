@@ -19,6 +19,7 @@ from print_nanny_webapp.videos.models import VideoRecording, VideoRecordingPart
 from print_nanny_webapp.videos.api.serializers import (
     VideoRecordingSerializer,
     VideoRecordingPartSerializer,
+    VideoRecordingFinalizeSerializer,
 )
 from print_nanny_webapp.utils.api.views import (
     generic_get_errors,
@@ -109,20 +110,27 @@ class VideoRecordingViewSet(
     @extend_schema(
         operation_id="video_recordings_finalize",
         tags=["videos"],
+        request=VideoRecordingFinalizeSerializer,
         responses={
             202: VideoRecordingSerializer,
         },
     )
     @action(methods=["post"], detail=True, url_path="finalize")
     def finalize(self, request, id=None):
+        request_serializer = VideoRecordingFinalizeSerializer(data=request.data)
+        request_serializer.is_valid(raise_exception=True)
+        recording_end = request_serializer.validated_data["recording_end"]
         video_recording = get_object_or_404(
             VideoRecording.objects.filter(id=id, user=request.user)
         )
+        video_recording.recording_end = recording_end
+        video_recording.cloud_sync_done = True
+
         task = finalize_video_recording_task.delay(video_recording.id)
         video_recording.finalize_task_id = task.id
         video_recording.save()
-        serializer = self.get_serializer(video_recording)
-        return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        response_serializer = self.get_serializer(video_recording)
+        return Response(response_serializer.data, status=status.HTTP_202_ACCEPTED)
 
 
 @extend_schema_view(
