@@ -87,3 +87,6 @@ class VideoRecordingPart(SafeDeleteModel):
             except google.api_core.exceptions.NotFound:
                 return 0
         return 0
+
+    def mp4_parts_path(self) -> str:
+        return self.video_recording.mp4_parts_path()
