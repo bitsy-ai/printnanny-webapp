@@ -14,7 +14,7 @@ RUN apt-get update \
   # Translations dependencies
   && apt-get install -y gettext \
   && apt-get install -y postgresql \
-  && apt-get -y install wget xvfb xauth poppler-utils \
+  && apt-get -y install wget xvfb xauth poppler-utils curl \
   # required for ssh-keygen and signing
   && apt-get install -y openssh-server \
   && apt-get install -y apt-transport-https ca-certificates gnupg \
