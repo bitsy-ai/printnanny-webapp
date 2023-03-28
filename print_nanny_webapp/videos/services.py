@@ -1,6 +1,7 @@
 from tempfile import TemporaryDirectory, NamedTemporaryFile
 import logging
 import subprocess
+from uuid import UUID
 
 from django.apps import apps
 from django.conf import settings
@@ -10,9 +11,7 @@ logger = logging.getLogger(__name__)
 VideoRecording = apps.get_model("videos", "VideoRecording")
 
 
-def gsutil_download_paths(
-    video_recording: VideoRecording, tmpdir: TemporaryDirectory
-) -> str:
+def gsutil_download_paths(video_recording, tmpdir: str) -> str:
     # -m flag performs paallel multi-threaded copy
     # -r recursively downloads
     cmd = [
@@ -20,26 +19,26 @@ def gsutil_download_paths(
         "-m",
         "-r",
         f"gs://{settings.GS_BUCKET_NAME}/{video_recording.gsutil_pattern()}",
-        tmpdir.name,
+        tmpdir,
     ]
     logger.info("Running command: %s", cmd)
     subprocess.run(cmd, capture_output=True, encoding="utf8", check=True)
-    return tmpdir.name
+    return tmpdir
 
 
-def gst_combine_mp4_parts(src: TemporaryDirectory, dest: NamedTemporaryFile):
+def gst_combine_mp4_parts(src: TemporaryDirectory, dest: str):
     cmd = [
         "gst-launch-1.0",
         "playbin",
         f'uri="splitmux://{src.name}/*.mp4"',
         "!",
         "filesink",
-        f"location={dest.name}",
+        f"location={dest}",
     ]
     subprocess.run(cmd, capture_output=True, encoding="utf8", check=True)
 
 
-def finalize_video_recording(video_recording_id: int):
+def finalize_video_recording(video_recording_id: UUID):
     finalize_start = timezone.now()
     video_recording = VideoRecording.get(id=video_recording_id)
     video_recording.finalize_start = finalize_start
@@ -53,10 +52,10 @@ def finalize_video_recording(video_recording_id: int):
         video_recording.video_recording_parts_set.count(),
         tmpdir,
     )
-    gsutil_download_paths(video_recording, tmpdir)
-    gst_combine_mp4_parts(tmpdir, tmpfile)
+    gsutil_download_paths(video_recording, tmpdir.name)
+    gst_combine_mp4_parts(tmpdir, tmpfile.name)
 
-    if video_recording.mp4_file is not None:
+    if video_recording.mp4_file.exists():
         raise FileExistsError(
             f"VideoRecording id={video_recording_id} already has mp4_file={video_recording.mp4_file}",
         )
