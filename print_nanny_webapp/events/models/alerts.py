@@ -1,3 +1,5 @@
+from typing import Dict
+
 from django.contrib.auth import get_user_model
 from django.db import models
 from print_nanny_webapp.utils.fields import ChoiceArrayField
@@ -46,6 +48,8 @@ class PrintJobAlert(models.Model):
     User-facing print job notification alerts
     """
 
+    EMAIL_TEMPLATE_ID = "print-job-alert"
+
     class Meta:
         ordering = ["-created_dt"]
         index_together = [
@@ -65,4 +69,37 @@ class PrintJobAlert(models.Model):
 
     # unique identifier from email message provider, used to build associations on send status
     email_message_id = models.CharField(max_length=255, null=True)
+    # unique identifier associated with celery task
+    celery_task_id = models.CharField(max_length=255, null=True)
     image = models.FileField(upload_to=print_job_alert_filepath, null=True)
+
+    def email_subject(self) -> str:
+        if self.event_type == AlertEventType.PRINT_PROGRESS:
+            completion = self.payload.get("completion")
+            if completion is None:
+                raise ValueError(
+                    "PrintJobAlert.payload missing completion field for PRINT_PROGRESS"
+                )
+            return f"[PrintNanny] 🎉 Your print job is {completion}% complete"
+        elif self.event_type == AlertEventType.PRINT_STARTED:
+            return "[PrintNanny] 🏁 Your print job was started"
+        elif self.event_type == AlertEventType.PRINT_DONE:
+            return "[PrintNanny] 🏁 Your print job is finished"
+        elif self.event_type == AlertEventType.PRINT_PAUSED:
+            return "[PrintNanny] ⏸️ Your print job was paused"
+        elif self.event_type == AlertEventType.PRINT_CANCELLED:
+            return "[PrintNanny] ⏸️ Your print job was cancelled"
+        raise ValueError(f"No email_subject configured for {self.event_type}")
+
+    def email_alert_header(self) -> str:
+        pass
+
+    def email_alert_body(self) -> str:
+        pass
+
+    def email_merge_data(self) -> Dict[str, str]:
+        return {
+            "alertHeader": self.email_alert_header(),
+            "alertBody": self.email_alert_body(),
+            "alertImageUrl": self.image.url,
+        }
