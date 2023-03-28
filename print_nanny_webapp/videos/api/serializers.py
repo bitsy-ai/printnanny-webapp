@@ -4,6 +4,10 @@ from rest_framework import serializers
 from print_nanny_webapp.videos.models import VideoRecording, VideoRecordingPart
 
 
+class VideoRecordingFinalizeSerializer(serializers.Serializer):
+    recording_end = serializers.DateTimeField()
+
+
 class VideoRecordingSerializer(serializers.ModelSerializer):
     mp4_upload_url = serializers.SerializerMethodField()
 
