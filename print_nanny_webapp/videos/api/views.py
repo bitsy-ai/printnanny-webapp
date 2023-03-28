@@ -1,6 +1,7 @@
 import logging
 
 from drf_spectacular.utils import extend_schema_view, extend_schema
+from django.shortcuts import get_object_or_404
 
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -13,7 +14,7 @@ from rest_framework.mixins import (
 )
 from rest_framework import status, parsers
 
-
+from print_nanny_webapp.videos.tasks import finalize_video_recording_task
 from print_nanny_webapp.videos.models import VideoRecording, VideoRecordingPart
 from print_nanny_webapp.videos.api.serializers import (
     VideoRecordingSerializer,
@@ -104,6 +105,24 @@ class VideoRecordingViewSet(
         if created:
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
         return Response(response_serializer.data, status=status.HTTP_200_OK)
+
+    @extend_schema(
+        operation_id="video_recordings_finalize",
+        tags=["videos"],
+        responses={
+            202: VideoRecordingSerializer,
+        },
+    )
+    @action(methods=["post"], detail=True, url_path="finalize")
+    def finalize(self, request, id=None):
+        video_recording = get_object_or_404(
+            VideoRecording.objects.filter(id=id, user=request.user)
+        )
+        task = finalize_video_recording_task.delay(video_recording.id)
+        video_recording.finalize_task_id = task.id
+        video_recording.save()
+        serializer = self.get_serializer(video_recording)
+        return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
 
 @extend_schema_view(

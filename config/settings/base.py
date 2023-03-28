@@ -806,7 +806,7 @@ REST_AUTH = {
 
 # django-nats-nkeys
 # https://github.com/bitsy-ai/django-nats-nkeys
-# ------------------------------------------------------------------------------
+# -------------------------------------------------------p-----------------------
 INSTALLED_APPS += ["organizations", "django_nats_nkeys"]
 NATS_APP_MODEL = "devices.PiNatsApp"
 NATS_SERVER_URI = env("NATS_SERVER_URI", default="nats://nats:4222")

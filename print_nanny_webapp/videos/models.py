@@ -14,13 +14,11 @@ User = get_user_model()
 
 
 def final_mp4_filepath(instance, filename):
-    path = timezone.now().strftime("uploads/video_recordings/mp4/%Y/%m/%d")
-    return f"{path}/{instance.id}/final.mp4"
+    return f"uploads/video_recordings/{instance.video_recording.id}/final.mp4"
 
 
 def part_mp4_filepath(instance, filename):
-    path = timezone.now().strftime("uploads/video_recordings/mp4/%Y/%m/%d")
-    return f"{path}/{instance.video_recording.id}/{instance.buffer_index}.mp4"
+    return f"{instance.mp4_parts_path()}{instance.buffer_index}.mp4"
 
 
 class VideoRecording(SafeDeleteModel):
@@ -33,6 +31,7 @@ class VideoRecording(SafeDeleteModel):
 
     finalize_start = models.DateTimeField(null=True)
     finalize_end = models.DateTimeField(null=True)
+    finalize_task_id = models.CharField(max_length=255, null=True)
 
     recording_start = models.DateTimeField(null=True)
     recording_end = models.DateTimeField(null=True)
@@ -41,6 +40,12 @@ class VideoRecording(SafeDeleteModel):
 
     gcode_file_name = models.CharField(max_length=255, null=True)
     mp4_file = models.FileField(upload_to=final_mp4_filepath, null=True)
+
+    def mp4_parts_path(self) -> str:
+        return f"uploads/video_recordings/{self.id}/parts/"
+
+    def gsutil_pattern(self) -> str:
+        return f"uploads/video_recordings/{self.id}/parts/*.mp4"
 
     def mp4_upload_url(self):
         name = final_mp4_filepath(self, None)
@@ -69,7 +74,9 @@ class VideoRecordingPart(SafeDeleteModel):
     sync_start = models.DateTimeField()
     sync_end = models.DateTimeField(auto_now_add=True)
 
-    video_recording = models.ForeignKey(VideoRecording, on_delete=models.CASCADE)
+    video_recording = models.ForeignKey(
+        VideoRecording, on_delete=models.CASCADE, related_name="video_recording_parts"
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def mp4_size(self) -> int:
