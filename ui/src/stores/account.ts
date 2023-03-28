@@ -67,7 +67,7 @@ export const useAccountStore = defineStore({
     },
     async fetchUser() {
       const userData = await this.accountsApi
-        .accountsAuthUserRetrieve()
+        .accountsUserRetrieve()
         .catch((e: any) => {
           console.warn(e);
         });
@@ -88,7 +88,7 @@ export const useAccountStore = defineStore({
      * @param {api.LoginRequest} request
      */
     async login(request: api.LoginRequest) {
-      await this.accountsApi.accountsAuthLoginCreate(request).catch(handleApiError);
+      await this.accountsApi.accountsLoginCreate(request).catch(handleApiError);
       await this.fetchUser();
       await this.$router.push({ name: "devices" });
     },
@@ -101,7 +101,7 @@ export const useAccountStore = defineStore({
         console.warn("logout action called without user set");
         return;
       }
-      await this.accountsApi.accountsAuthLogoutCreate().catch(handleApiError);
+      await this.accountsApi.accountsLogoutCreate().catch(handleApiError);
       this.$reset();
       posthogReset();
       console.info("Successfully logged out");
@@ -114,7 +114,7 @@ export const useAccountStore = defineStore({
         .accountsRegistrationCreate(request)
         .catch(handleApiError);
       await this.accountsApi
-        .accountsAuthLoginCreate({
+        .accountsLoginCreate({
           email: request.email,
           password: request.password1,
         } as api.LoginRequest)
@@ -124,13 +124,13 @@ export const useAccountStore = defineStore({
     },
     async resetPasswordRequest(request: api.PasswordResetRequest) {
       const res = await this.accountsApi
-        .accountsAuthPasswordResetCreate(request)
+        .accountsPasswordResetCreate(request)
         .catch(handleApiError);
       return res;
     },
     async resetPasswordConfirm(request: api.PasswordResetConfirmRequest) {
       const res = await this.accountsApi
-        .accountsAuthPasswordResetConfirmCreate(request)
+        .accountsPasswordResetConfirmCreate(request)
         .catch(handleApiError);
       return res;
     },
