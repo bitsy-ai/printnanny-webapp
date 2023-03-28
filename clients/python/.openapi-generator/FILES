@@ -124,6 +124,7 @@ docs/User.md
 docs/UserRequest.md
 docs/VerifyEmailRequest.md
 docs/VideoRecording.md
+docs/VideoRecordingFinalizeRequest.md
 docs/VideoRecordingPart.md
 docs/VideoRecordingRequest.md
 docs/VideosApi.md
@@ -257,6 +258,7 @@ printnanny_api_client/models/user.py
 printnanny_api_client/models/user_request.py
 printnanny_api_client/models/verify_email_request.py
 printnanny_api_client/models/video_recording.py
+printnanny_api_client/models/video_recording_finalize_request.py
 printnanny_api_client/models/video_recording_part.py
 printnanny_api_client/models/video_recording_request.py
 printnanny_api_client/models/webrtc_stream.py
@@ -388,6 +390,7 @@ test/test_user.py
 test/test_user_request.py
 test/test_verify_email_request.py
 test/test_video_recording.py
+test/test_video_recording_finalize_request.py
 test/test_video_recording_part.py
 test/test_video_recording_request.py
 test/test_videos_api.py

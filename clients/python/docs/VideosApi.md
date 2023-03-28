@@ -403,7 +403,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **video_recordings_finalize**
-> VideoRecording video_recordings_finalize(id, video_recording_request=video_recording_request)
+> VideoRecording video_recordings_finalize(id, video_recording_finalize_request)
 
 
 
@@ -443,10 +443,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.VideosApi(api_client)
     id = 'id_example' # str | A UUID string identifying this video recording.
-video_recording_request = printnanny_api_client.VideoRecordingRequest() # VideoRecordingRequest |  (optional)
+video_recording_finalize_request = printnanny_api_client.VideoRecordingFinalizeRequest() # VideoRecordingFinalizeRequest | 
 
     try:
-        api_response = api_instance.video_recordings_finalize(id, video_recording_request=video_recording_request)
+        api_response = api_instance.video_recordings_finalize(id, video_recording_finalize_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling VideosApi->video_recordings_finalize: %s\n" % e)
@@ -486,10 +486,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.VideosApi(api_client)
     id = 'id_example' # str | A UUID string identifying this video recording.
-video_recording_request = printnanny_api_client.VideoRecordingRequest() # VideoRecordingRequest |  (optional)
+video_recording_finalize_request = printnanny_api_client.VideoRecordingFinalizeRequest() # VideoRecordingFinalizeRequest | 
 
     try:
-        api_response = api_instance.video_recordings_finalize(id, video_recording_request=video_recording_request)
+        api_response = api_instance.video_recordings_finalize(id, video_recording_finalize_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling VideosApi->video_recordings_finalize: %s\n" % e)
@@ -500,7 +500,7 @@ video_recording_request = printnanny_api_client.VideoRecordingRequest() # VideoR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| A UUID string identifying this video recording. | 
- **video_recording_request** | [**VideoRecordingRequest**](VideoRecordingRequest.md)|  | [optional] 
+ **video_recording_finalize_request** | [**VideoRecordingFinalizeRequest**](VideoRecordingFinalizeRequest.md)|  | 
 
 ### Return type
 

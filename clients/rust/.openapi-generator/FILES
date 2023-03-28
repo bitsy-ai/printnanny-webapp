@@ -123,6 +123,7 @@ docs/User.md
 docs/UserRequest.md
 docs/VerifyEmailRequest.md
 docs/VideoRecording.md
+docs/VideoRecordingFinalizeRequest.md
 docs/VideoRecordingPart.md
 docs/VideoRecordingRequest.md
 docs/VideosApi.md
@@ -254,6 +255,7 @@ src/models/user.rs
 src/models/user_request.rs
 src/models/verify_email_request.rs
 src/models/video_recording.rs
+src/models/video_recording_finalize_request.rs
 src/models/video_recording_part.rs
 src/models/video_recording_request.rs
 src/models/webrtc_stream.rs

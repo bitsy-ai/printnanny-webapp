@@ -110,7 +110,7 @@ Name | Type | Description  | Required | Notes
 
 ## video_recordings_finalize
 
-> crate::models::VideoRecording video_recordings_finalize(id, video_recording_request)
+> crate::models::VideoRecording video_recordings_finalize(id, video_recording_finalize_request)
 
 
 ### Parameters
@@ -119,7 +119,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | A UUID string identifying this video recording. | [required] |
-**video_recording_request** | Option<[**VideoRecordingRequest**](VideoRecordingRequest.md)> |  |  |
+**video_recording_finalize_request** | [**VideoRecordingFinalizeRequest**](VideoRecordingFinalizeRequest.md) |  | [required] |
 
 ### Return type
 

@@ -216,6 +216,8 @@ pub mod verify_email_request;
 pub use self::verify_email_request::VerifyEmailRequest;
 pub mod video_recording;
 pub use self::video_recording::VideoRecording;
+pub mod video_recording_finalize_request;
+pub use self::video_recording_finalize_request::VideoRecordingFinalizeRequest;
 pub mod video_recording_part;
 pub use self::video_recording_part::VideoRecordingPart;
 pub mod video_recording_request;
