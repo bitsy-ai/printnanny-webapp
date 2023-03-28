@@ -44,6 +44,8 @@ celery==5.2.7
     # via
     #   -r requirements/local.in
     #   django-celery-beat
+celery-types==0.14.0
+    # via -r requirements/local.in
 certifi==2022.12.7
     # via requests
 cffi==1.15.1
@@ -458,6 +460,7 @@ types-pyyaml==6.0.12.9
     # via django-stubs
 typing-extensions==4.5.0
     # via
+    #   celery-types
     #   django-stubs
     #   django-stubs-ext
     #   mypy

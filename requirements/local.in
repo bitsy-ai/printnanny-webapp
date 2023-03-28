@@ -1,6 +1,7 @@
 aiohttp
 argon2-cffi
 celery
+celery-types
 channels
 channels-redis
 coolname
