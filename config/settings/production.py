@@ -72,10 +72,9 @@ CSRF_COOKIE_SECURE = True
 # https://docs.djangoproject.com/en/3.2/ref/settings/#csrf-cookie-domain
 CSRF_COOKIE_DOMAIN = env("DJANGO_CSRF_COOKIE_DOMAIN", default=".printnanny.ai")
 CSRF_TRUSTED_ORIGINS = [
-    "api.printnanny.ai",
-    ".printnanny.ai",
-    "printnanny.ai",
-    "www.printnanny.ai",
+    "https://api.printnanny.ai",
+    "https://printnanny.ai",
+    "https://www.printnanny.ai",
 ]
 SESSION_COOKIE_DOMAIN = env("DJANGO_SESSION_COOKIE_DOMAIN", default=".printnanny.ai")
 
