@@ -31,6 +31,7 @@ class VideoRecording(SafeDeleteModel):
 
     finalize_start = models.DateTimeField(null=True)
     finalize_end = models.DateTimeField(null=True)
+    finalize_task_id = models.CharField(max_length=255, null=True)
 
     recording_start = models.DateTimeField(null=True)
     recording_end = models.DateTimeField(null=True)
