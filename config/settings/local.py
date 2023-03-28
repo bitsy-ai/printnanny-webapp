@@ -163,3 +163,9 @@ ANYMAIL_DEBUG_API_REQUESTS = True
 # posthog
 # ------------------------------------------------------------------------------
 posthog.debug = True
+
+
+# Celery
+# ------------------------------------------------------------------------------
+CELERY_TASK_ALWAYS_EAGER = True
+CELERY_TASK_EAGER_PROPAGATES = True

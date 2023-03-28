@@ -1,5 +1,7 @@
 aiohttp
 argon2-cffi
+celery
+celery-types
 channels
 channels-redis
 coolname
@@ -7,6 +9,7 @@ dj-rest-auth
 dj-stripe
 django-allauth
 django-anymail[mailgun]
+django-celery-beat
 django-compressor
 django-cors-headers
 django-coverage-plugin
@@ -19,7 +22,7 @@ django-flags
 django-health-check
 django-loginas
 django-model-utils
-django-nats-nkeys[drf]
+django-nats-nkeys[drf]>=0.10.1
 django-oauth-toolkit
 django-polymorphic
 django-prometheus

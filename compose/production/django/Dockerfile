@@ -35,6 +35,10 @@ RUN pip install --upgrade pip setuptools==60.10.0 wheel
 RUN pip install --no-cache-dir -r /requirements/production.txt \
   && rm -rf /requirements
 
+COPY ./compose/production/django/celery/start-celerybeat.sh /start-celerybeat
+COPY ./compose/production/django/celery/start-celeryflower.sh /start-celeryflower
+COPY ./compose/production/django/celery/start-celeryworker.sh /start-celeryworker
+
 COPY ./compose/production/django/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
 RUN chmod +x /entrypoint
