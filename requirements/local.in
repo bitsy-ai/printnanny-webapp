@@ -21,7 +21,7 @@ django-flags
 django-health-check
 django-loginas
 django-model-utils
-django-nats-nkeys[drf]
+django-nats-nkeys[drf]>=0.10.1
 django-oauth-toolkit
 django-polymorphic
 django-prometheus

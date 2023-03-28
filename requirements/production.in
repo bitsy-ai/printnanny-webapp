@@ -23,7 +23,7 @@ django-extensions
 django-filter
 django-flags
 django-ghost
-django-nats-nkeys[drf]
+django-nats-nkeys[drf]>=0.10.1
 django-health-check
 django-model-utils
 django-nats-nkeys
