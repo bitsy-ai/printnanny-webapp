@@ -14,9 +14,12 @@ RUN apt-get update \
   # Translations dependencies
   && apt-get install -y gettext \
   && apt-get install -y postgresql \
-  && apt-get -y install wget xvfb xauth poppler-utils \
+  && apt-get -y install wget xvfb xauth poppler-utils curl \
   # required for ssh-keygen and signing
   && apt-get install -y openssh-server \
+  && apt-get install -y apt-transport-https ca-certificates gnupg \
+  # gstreamer
+  && apt-get install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
@@ -27,6 +30,14 @@ RUN addgroup --system django \
 # install nsc command-line tool
 RUN wget https://github.com/nats-io/nsc/releases/download/2.7.2/nsc-linux-amd64.zip -O nsc-linux-amd64.zip
 RUN unzip nsc-linux-amd64.zip -d /usr/local/bin
+
+# install gsutil
+RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+RUN apt-get update \
+  && apt-get install -y google-cloud-cli \
+  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+  && rm -rf /var/lib/apt/lists/*
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements /requirements
