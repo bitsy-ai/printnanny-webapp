@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **event_type** | [**crate::models::EventTypeEnum**](EventTypeEnum.md) |  | 
 **event_source** | [**crate::models::EventSourceEnum**](EventSourceEnum.md) |  | 
 **payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
-**email_message_id** | Option<**String**> |  | [optional]
-**celery_task_id** | Option<**String**> |  | [optional]
+**email_message_id** | Option<**String**> |  | [readonly]
+**celery_task_id** | Option<**String**> |  | [readonly]
 **image** | Option<**String**> |  | [optional]
 **user** | **i32** |  | [readonly]
 **pi** | **i32** |  | 

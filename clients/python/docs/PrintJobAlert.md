@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **event_type** | [**EventTypeEnum**](EventTypeEnum.md) |  | 
 **event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | 
 **payload** | **dict(str, object)** |  | [optional] 
-**email_message_id** | **str** |  | [optional] 
-**celery_task_id** | **str** |  | [optional] 
+**email_message_id** | **str** |  | [readonly] 
+**celery_task_id** | **str** |  | [readonly] 
 **image** | **str** |  | [optional] 
 **user** | **int** |  | [readonly] 
 **pi** | **int** |  | 

@@ -632,7 +632,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **alerts_print_job_create**
-> PrintJobAlert alerts_print_job_create(event_type, event_source, pi, email_message_id=email_message_id, celery_task_id=celery_task_id, image=image)
+> PrintJobAlert alerts_print_job_create(event_type, event_source, pi, image=image)
 
 
 
@@ -674,12 +674,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum | 
 event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum | 
 pi = 56 # int | 
-email_message_id = 'email_message_id_example' # str |  (optional)
-celery_task_id = 'celery_task_id_example' # str |  (optional)
 image = '/path/to/file' # file |  (optional)
 
     try:
-        api_response = api_instance.alerts_print_job_create(event_type, event_source, pi, email_message_id=email_message_id, celery_task_id=celery_task_id, image=image)
+        api_response = api_instance.alerts_print_job_create(event_type, event_source, pi, image=image)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_print_job_create: %s\n" % e)
@@ -721,12 +719,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum | 
 event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum | 
 pi = 56 # int | 
-email_message_id = 'email_message_id_example' # str |  (optional)
-celery_task_id = 'celery_task_id_example' # str |  (optional)
 image = '/path/to/file' # file |  (optional)
 
     try:
-        api_response = api_instance.alerts_print_job_create(event_type, event_source, pi, email_message_id=email_message_id, celery_task_id=celery_task_id, image=image)
+        api_response = api_instance.alerts_print_job_create(event_type, event_source, pi, image=image)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_print_job_create: %s\n" % e)
@@ -739,8 +735,6 @@ Name | Type | Description  | Notes
  **event_type** | [**EventTypeEnum**](EventTypeEnum.md)|  | 
  **event_source** | [**EventSourceEnum**](EventSourceEnum.md)|  | 
  **pi** | **int**|  | 
- **email_message_id** | **str**|  | [optional] 
- **celery_task_id** | **str**|  | [optional] 
  **image** | **file**|  | [optional] 
 
 ### Return type
@@ -890,7 +884,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **alerts_print_job_partial_update**
-> PrintJobAlert alerts_print_job_partial_update(id, event_type=event_type, event_source=event_source, email_message_id=email_message_id, celery_task_id=celery_task_id, image=image, pi=pi)
+> PrintJobAlert alerts_print_job_partial_update(id, event_type=event_type, event_source=event_source, image=image, pi=pi)
 
 
 
@@ -932,13 +926,11 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     id = 'id_example' # str | A UUID string identifying this print job alert.
 event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum |  (optional)
 event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum |  (optional)
-email_message_id = 'email_message_id_example' # str |  (optional)
-celery_task_id = 'celery_task_id_example' # str |  (optional)
 image = '/path/to/file' # file |  (optional)
 pi = 56 # int |  (optional)
 
     try:
-        api_response = api_instance.alerts_print_job_partial_update(id, event_type=event_type, event_source=event_source, email_message_id=email_message_id, celery_task_id=celery_task_id, image=image, pi=pi)
+        api_response = api_instance.alerts_print_job_partial_update(id, event_type=event_type, event_source=event_source, image=image, pi=pi)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_print_job_partial_update: %s\n" % e)
@@ -980,13 +972,11 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     id = 'id_example' # str | A UUID string identifying this print job alert.
 event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum |  (optional)
 event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum |  (optional)
-email_message_id = 'email_message_id_example' # str |  (optional)
-celery_task_id = 'celery_task_id_example' # str |  (optional)
 image = '/path/to/file' # file |  (optional)
 pi = 56 # int |  (optional)
 
     try:
-        api_response = api_instance.alerts_print_job_partial_update(id, event_type=event_type, event_source=event_source, email_message_id=email_message_id, celery_task_id=celery_task_id, image=image, pi=pi)
+        api_response = api_instance.alerts_print_job_partial_update(id, event_type=event_type, event_source=event_source, image=image, pi=pi)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_print_job_partial_update: %s\n" % e)
@@ -999,8 +989,6 @@ Name | Type | Description  | Notes
  **id** | **str**| A UUID string identifying this print job alert. | 
  **event_type** | [**EventTypeEnum**](EventTypeEnum.md)|  | [optional] 
  **event_source** | [**EventSourceEnum**](EventSourceEnum.md)|  | [optional] 
- **email_message_id** | **str**|  | [optional] 
- **celery_task_id** | **str**|  | [optional] 
  **image** | **file**|  | [optional] 
  **pi** | **int**|  | [optional] 
 
@@ -1152,7 +1140,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **alerts_print_job_update**
-> PrintJobAlert alerts_print_job_update(id, event_type, event_source, pi, email_message_id=email_message_id, celery_task_id=celery_task_id, image=image)
+> PrintJobAlert alerts_print_job_update(id, event_type, event_source, pi, image=image)
 
 
 
@@ -1195,12 +1183,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum | 
 event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum | 
 pi = 56 # int | 
-email_message_id = 'email_message_id_example' # str |  (optional)
-celery_task_id = 'celery_task_id_example' # str |  (optional)
 image = '/path/to/file' # file |  (optional)
 
     try:
-        api_response = api_instance.alerts_print_job_update(id, event_type, event_source, pi, email_message_id=email_message_id, celery_task_id=celery_task_id, image=image)
+        api_response = api_instance.alerts_print_job_update(id, event_type, event_source, pi, image=image)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_print_job_update: %s\n" % e)
@@ -1243,12 +1229,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum | 
 event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum | 
 pi = 56 # int | 
-email_message_id = 'email_message_id_example' # str |  (optional)
-celery_task_id = 'celery_task_id_example' # str |  (optional)
 image = '/path/to/file' # file |  (optional)
 
     try:
-        api_response = api_instance.alerts_print_job_update(id, event_type, event_source, pi, email_message_id=email_message_id, celery_task_id=celery_task_id, image=image)
+        api_response = api_instance.alerts_print_job_update(id, event_type, event_source, pi, image=image)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_print_job_update: %s\n" % e)
@@ -1262,8 +1246,6 @@ Name | Type | Description  | Notes
  **event_type** | [**EventTypeEnum**](EventTypeEnum.md)|  | 
  **event_source** | [**EventSourceEnum**](EventSourceEnum.md)|  | 
  **pi** | **int**|  | 
- **email_message_id** | **str**|  | [optional] 
- **celery_task_id** | **str**|  | [optional] 
  **image** | **file**|  | [optional] 
 
 ### Return type

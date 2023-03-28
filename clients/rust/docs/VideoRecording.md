@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **cloud_sync_done** | Option<**bool**> |  | [optional]
 **finalize_start** | Option<**String**> |  | [optional]
 **finalize_end** | Option<**String**> |  | [optional]
-**finalize_task_id** | Option<**String**> |  | [optional]
+**finalize_task_id** | Option<**String**> |  | [readonly]
 **recording_start** | Option<**String**> |  | [optional]
 **recording_end** | Option<**String**> |  | [optional]
 **gcode_file_name** | Option<**String**> |  | [optional]

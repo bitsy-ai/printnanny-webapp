@@ -161,7 +161,7 @@ Name | Type | Description  | Required | Notes
 
 ## alerts_print_job_create
 
-> crate::models::PrintJobAlert alerts_print_job_create(event_type, event_source, pi, email_message_id, celery_task_id, image)
+> crate::models::PrintJobAlert alerts_print_job_create(event_type, event_source, pi, image)
 
 
 ### Parameters
@@ -172,8 +172,6 @@ Name | Type | Description  | Required | Notes
 **event_type** | [**crate::models::EventTypeEnum**](EventTypeEnum.md) |  | [required] |
 **event_source** | [**crate::models::EventSourceEnum**](EventSourceEnum.md) |  | [required] |
 **pi** | **i32** |  | [required] |
-**email_message_id** | Option<**String**> |  |  |
-**celery_task_id** | Option<**String**> |  |  |
 **image** | Option<**std::path::PathBuf**> |  |  |
 
 ### Return type
@@ -222,7 +220,7 @@ Name | Type | Description  | Required | Notes
 
 ## alerts_print_job_partial_update
 
-> crate::models::PrintJobAlert alerts_print_job_partial_update(id, event_type, event_source, email_message_id, celery_task_id, image, pi)
+> crate::models::PrintJobAlert alerts_print_job_partial_update(id, event_type, event_source, image, pi)
 
 
 ### Parameters
@@ -233,8 +231,6 @@ Name | Type | Description  | Required | Notes
 **id** | **String** | A UUID string identifying this print job alert. | [required] |
 **event_type** | Option<[**crate::models::EventTypeEnum**](EventTypeEnum.md)> |  |  |
 **event_source** | Option<[**crate::models::EventSourceEnum**](EventSourceEnum.md)> |  |  |
-**email_message_id** | Option<**String**> |  |  |
-**celery_task_id** | Option<**String**> |  |  |
 **image** | Option<**std::path::PathBuf**> |  |  |
 **pi** | Option<**i32**> |  |  |
 
@@ -284,7 +280,7 @@ Name | Type | Description  | Required | Notes
 
 ## alerts_print_job_update
 
-> crate::models::PrintJobAlert alerts_print_job_update(id, event_type, event_source, pi, email_message_id, celery_task_id, image)
+> crate::models::PrintJobAlert alerts_print_job_update(id, event_type, event_source, pi, image)
 
 
 ### Parameters
@@ -296,8 +292,6 @@ Name | Type | Description  | Required | Notes
 **event_type** | [**crate::models::EventTypeEnum**](EventTypeEnum.md) |  | [required] |
 **event_source** | [**crate::models::EventSourceEnum**](EventSourceEnum.md) |  | [required] |
 **pi** | **i32** |  | [required] |
-**email_message_id** | Option<**String**> |  |  |
-**celery_task_id** | Option<**String**> |  |  |
 **image** | Option<**std::path::PathBuf**> |  |  |
 
 ### Return type
