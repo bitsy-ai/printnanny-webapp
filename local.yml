@@ -100,7 +100,7 @@ services:
 
   flower:
     <<: *django
-    image: printnanny_webapp}_local_flower
+    image: printnanny_webapp_local_flower
     container_name: printnanny_webapp_local_flower
     ports:
       - "5555:5555"
