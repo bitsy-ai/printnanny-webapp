@@ -35,6 +35,10 @@ RUN pip install --upgrade pip setuptools==60.10.0 wheel
 RUN pip install -r /requirements/local.txt
 RUN pip install -r /requirements/test.txt
 
+COPY ./compose/local/django/celery/start-celerybeat.sh /start-celerybeat
+COPY ./compose/local/django/celery/start-celeryflower.sh /start-celeryflower
+COPY ./compose/local/django/celery/start-celeryworker.sh /start-celeryworker
+
 COPY ./compose/production/django/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
 RUN chmod +x /entrypoint
