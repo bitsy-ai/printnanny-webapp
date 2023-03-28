@@ -14,7 +14,7 @@ User = get_user_model()
 
 
 def final_mp4_filepath(instance, filename):
-    return f"uploads/video_recordings/{instance.video_recording.id}/final.mp4"
+    return f"uploads/video_recordings/{instance.id}/final.mp4"
 
 
 def part_mp4_filepath(instance, filename):
