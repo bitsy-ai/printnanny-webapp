@@ -40,7 +40,7 @@ def gst_combine_mp4_parts(src: TemporaryDirectory, dest: str):
 
 def finalize_video_recording(video_recording_id: UUID):
     finalize_start = timezone.now()
-    video_recording = VideoRecording.get(id=video_recording_id)
+    video_recording = VideoRecording.objects.get(id=video_recording_id)
     video_recording.finalize_start = finalize_start
     video_recording.save()
 
