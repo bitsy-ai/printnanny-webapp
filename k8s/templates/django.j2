@@ -40,9 +40,9 @@ spec:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
         whenUnsatisfiable: DoNotSchedule
-        labelSelector:
-          matchLabels:
-            app: django    
+        matchLabelKeys:
+          - app
+          - pod-template-hash
       volumes:
       - name: django-operator-nkeys
         secret:
