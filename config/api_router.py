@@ -54,7 +54,6 @@ router.register("moonraker", MoonrakerServerViewSet, "moonraker")
 
 
 # octoprint endpoints (PrintNanny os data model)
-
 other_urls = [
     path("shop/orders", OrderCheckoutView.as_view()),
     path(
@@ -63,6 +62,7 @@ other_urls = [
         name="shop-checkout-success",
     ),
     path("accounts/user/nkey", UserNkeyView.as_view()),
+    # network settings is a singualar GET, so manually provide viewsets
     path(
         "network-settings/",
         NetworkSettingsViewSet.as_view(
@@ -75,6 +75,25 @@ other_urls = [
     path(
         "network-settings/<int:id>",
         NetworkSettingsViewSet.as_view(
+            {
+                "put": "update",
+                "patch": "partial_update",
+            }
+        ),
+    ),
+    # email alert settings is a singular GET, so manually provide viewsets here
+    path(
+        "email-alert-settings/",
+        EmailAlertSettingsViewSet.as_view(
+            {
+                "get": "retrieve",
+                "post": "create",
+            }
+        ),
+    ),
+    path(
+        "email-alert-settings//<int:id>",
+        EmailAlertSettingsViewSet.as_view(
             {
                 "put": "update",
                 "patch": "partial_update",
@@ -131,12 +150,6 @@ router.register(
     r"octoprint/settings",
     OctoPrintSettingsViewSet,
     basename="octoprint-settings",
-)
-
-router.register(
-    r"alert-settings/email",
-    EmailAlertSettingsViewSet,
-    basename="email-alert-settings",
 )
 
 router.register(
