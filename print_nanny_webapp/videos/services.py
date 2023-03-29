@@ -49,7 +49,7 @@ def finalize_video_recording(video_recording_id: UUID):
     logger.info(
         "Preparing to finalize VideoRecording id=%s count_parts=%s, downloading parts to %s",
         video_recording.id,
-        video_recording.video_recording_parts_set.count(),
+        video_recording.video_recording_parts.count(),
         tmpdir,
     )
     gsutil_download_paths(video_recording, tmpdir.name)
