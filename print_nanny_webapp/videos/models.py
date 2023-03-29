@@ -47,10 +47,6 @@ class VideoRecording(SafeDeleteModel):
     def gsutil_pattern(self) -> str:
         return f"uploads/video_recordings/{self.id}/parts/*.mp4"
 
-    def mp4_upload_url(self):
-        name = final_mp4_filepath(self, None)
-        return self.mp4_file.storage.upload_url(name)
-
     def mp4_size(self) -> int:
         if self.mp4_file is not None:
             name = final_mp4_filepath(self, None)

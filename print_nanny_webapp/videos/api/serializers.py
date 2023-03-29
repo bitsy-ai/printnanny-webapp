@@ -9,11 +9,6 @@ class VideoRecordingFinalizeSerializer(serializers.Serializer):
 
 
 class VideoRecordingSerializer(serializers.ModelSerializer):
-    mp4_upload_url = serializers.SerializerMethodField()
-
-    def get_mp4_upload_url(self, obj) -> str:
-        return obj.mp4_upload_url()
-
     mp4_size = serializers.SerializerMethodField()
 
     def get_mp4_size(self, obj) -> Optional[int]:
@@ -23,7 +18,6 @@ class VideoRecordingSerializer(serializers.ModelSerializer):
         model = VideoRecording
         exclude = ("deleted", "deleted_by_cascade")
         read_only_fields = (
-            "mp4_upload_url",
             "user",
             "mp4_size",
             "mp4_file",
