@@ -29,7 +29,7 @@ export const useAlertStore = defineStore({
       this.$patch({ loading: true });
       if (this.emailAlertSettings) {
         const alertsSettingsData = await account.settingsApi
-          .alertSettingsEmailUpdate(this.emailAlertSettings.id, req)
+          .emailAlertSettingsUpdate(this.emailAlertSettings.id, req)
           .catch(handleApiError);
         if (alertsSettingsData) {
           this.$patch({
@@ -44,10 +44,10 @@ export const useAlertStore = defineStore({
 
       this.$patch({ loading: true });
       const alertsSettingsData = await account.settingsApi
-        .alertSettingsEmailList()
+        .emailAlertSettingsRetrieve()
         .catch(handleApiError);
-      if (alertsSettingsData && alertsSettingsData.data.results) {
-        const emailAlertSettings = alertsSettingsData.data.results[0];
+      if (alertsSettingsData && alertsSettingsData.data) {
+        const emailAlertSettings = alertsSettingsData.data;
         console.log("Setting emailAlertSettings", emailAlertSettings);
         this.$patch({
           emailAlertSettings: emailAlertSettings,
