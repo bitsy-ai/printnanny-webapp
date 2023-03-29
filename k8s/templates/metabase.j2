@@ -19,9 +19,9 @@ spec:
       containers:
       - name: cloud-sql-proxy
         image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.1.2
-        command:
-          - "/cloud_sql_proxy"
-          - "-instances=print-nanny:us-central1:print-nanny=tcp:5432"
+        args:
+          - "print-nanny:us-central1:print-nanny?port=5432"
+          - "--max-sigterm-delay=30s"
         securityContext:
           runAsNonRoot: true
         ports:
