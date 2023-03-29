@@ -17,8 +17,9 @@ def gsutil_download_paths(video_recording, tmpdir: str) -> str:
     cmd = [
         "gsutil",
         "-m",
+        "cp",
         "-r",
-        f"gs://{settings.GS_BUCKET_NAME}/{video_recording.gsutil_pattern()}",
+        f"gs://{settings.GS_BUCKET_NAME}/media/{video_recording.gsutil_pattern()}",
         tmpdir,
     ]
     logger.info("Running command: %s", cmd)
