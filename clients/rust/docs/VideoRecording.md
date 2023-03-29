@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | Option<**String**> |  | [optional]
-**mp4_upload_url** | **String** |  | [readonly]
 **mp4_size** | Option<**i32**> |  | [readonly]
 **cloud_sync_done** | Option<**bool**> |  | [optional]
 **finalize_start** | Option<**String**> |  | [optional]
