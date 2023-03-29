@@ -26,7 +26,7 @@ metadata:
   namespace: {{ PRINTNANNY_NAMESPACE }}
   name: django
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: django
@@ -36,6 +36,13 @@ spec:
         app: django
     spec:
       serviceAccountName: webapp
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app: django    
       volumes:
       - name: django-operator-nkeys
         secret:
