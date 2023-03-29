@@ -60,7 +60,6 @@ docs/OrderStatus.md
 docs/OrderStatusType.md
 docs/PaginatedAchievementList.md
 docs/PaginatedCrashReportList.md
-docs/PaginatedEmailAlertSettingsList.md
 docs/PaginatedGcodeFileList.md
 docs/PaginatedMoonrakerServerList.md
 docs/PaginatedOctoPrintBackupList.md
@@ -197,7 +196,6 @@ printnanny_api_client/models/order_status.py
 printnanny_api_client/models/order_status_type.py
 printnanny_api_client/models/paginated_achievement_list.py
 printnanny_api_client/models/paginated_crash_report_list.py
-printnanny_api_client/models/paginated_email_alert_settings_list.py
 printnanny_api_client/models/paginated_gcode_file_list.py
 printnanny_api_client/models/paginated_moonraker_server_list.py
 printnanny_api_client/models/paginated_octo_print_backup_list.py
@@ -326,7 +324,6 @@ test/test_order_status.py
 test/test_order_status_type.py
 test/test_paginated_achievement_list.py
 test/test_paginated_crash_report_list.py
-test/test_paginated_email_alert_settings_list.py
 test/test_paginated_gcode_file_list.py
 test/test_paginated_moonraker_server_list.py
 test/test_paginated_octo_print_backup_list.py

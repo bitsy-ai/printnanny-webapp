@@ -94,8 +94,6 @@ pub mod paginated_achievement_list;
 pub use self::paginated_achievement_list::PaginatedAchievementList;
 pub mod paginated_crash_report_list;
 pub use self::paginated_crash_report_list::PaginatedCrashReportList;
-pub mod paginated_email_alert_settings_list;
-pub use self::paginated_email_alert_settings_list::PaginatedEmailAlertSettingsList;
 pub mod paginated_gcode_file_list;
 pub use self::paginated_gcode_file_list::PaginatedGcodeFileList;
 pub mod paginated_moonraker_server_list;

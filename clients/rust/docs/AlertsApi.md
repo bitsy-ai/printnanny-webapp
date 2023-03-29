@@ -4,159 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**alert_settings_email_create**](AlertsApi.md#alert_settings_email_create) | **POST** /api/alert-settings/email/ | 
-[**alert_settings_email_list**](AlertsApi.md#alert_settings_email_list) | **GET** /api/alert-settings/email/ | 
-[**alert_settings_email_partial_update**](AlertsApi.md#alert_settings_email_partial_update) | **PATCH** /api/alert-settings/email/{id}/ | 
-[**alert_settings_email_retrieve**](AlertsApi.md#alert_settings_email_retrieve) | **GET** /api/alert-settings/email/{id}/ | 
-[**alert_settings_email_update**](AlertsApi.md#alert_settings_email_update) | **PUT** /api/alert-settings/email/{id}/ | 
 [**alerts_print_job_create**](AlertsApi.md#alerts_print_job_create) | **POST** /api/alerts/print-job/ | 
 [**alerts_print_job_list**](AlertsApi.md#alerts_print_job_list) | **GET** /api/alerts/print-job/ | 
 [**alerts_print_job_partial_update**](AlertsApi.md#alerts_print_job_partial_update) | **PATCH** /api/alerts/print-job/{id}/ | 
 [**alerts_print_job_retrieve**](AlertsApi.md#alerts_print_job_retrieve) | **GET** /api/alerts/print-job/{id}/ | 
 [**alerts_print_job_update**](AlertsApi.md#alerts_print_job_update) | **PUT** /api/alerts/print-job/{id}/ | 
+[**email_alert_settings_create**](AlertsApi.md#email_alert_settings_create) | **POST** /api/email-alert-settings/ | 
+[**email_alert_settings_partial_update**](AlertsApi.md#email_alert_settings_partial_update) | **PATCH** /api/email-alert-settings//{id} | 
+[**email_alert_settings_retrieve**](AlertsApi.md#email_alert_settings_retrieve) | **GET** /api/email-alert-settings/ | 
+[**email_alert_settings_update**](AlertsApi.md#email_alert_settings_update) | **PUT** /api/email-alert-settings//{id} | 
 
-
-
-## alert_settings_email_create
-
-> crate::models::EmailAlertSettings alert_settings_email_create(email_alert_settings_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**email_alert_settings_request** | Option<[**EmailAlertSettingsRequest**](EmailAlertSettingsRequest.md)> |  |  |
-
-### Return type
-
-[**crate::models::EmailAlertSettings**](EmailAlertSettings.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## alert_settings_email_list
-
-> crate::models::PaginatedEmailAlertSettingsList alert_settings_email_list(page)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**page** | Option<**i32**> | A page number within the paginated result set. |  |
-
-### Return type
-
-[**crate::models::PaginatedEmailAlertSettingsList**](PaginatedEmailAlertSettingsList.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## alert_settings_email_partial_update
-
-> crate::models::EmailAlertSettings alert_settings_email_partial_update(id, patched_email_alert_settings_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this email alert settings. | [required] |
-**patched_email_alert_settings_request** | Option<[**PatchedEmailAlertSettingsRequest**](PatchedEmailAlertSettingsRequest.md)> |  |  |
-
-### Return type
-
-[**crate::models::EmailAlertSettings**](EmailAlertSettings.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## alert_settings_email_retrieve
-
-> crate::models::EmailAlertSettings alert_settings_email_retrieve(id)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this email alert settings. | [required] |
-
-### Return type
-
-[**crate::models::EmailAlertSettings**](EmailAlertSettings.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## alert_settings_email_update
-
-> crate::models::EmailAlertSettings alert_settings_email_update(id, email_alert_settings_request)
-
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | **i32** | A unique integer value identifying this email alert settings. | [required] |
-**email_alert_settings_request** | Option<[**EmailAlertSettingsRequest**](EmailAlertSettingsRequest.md)> |  |  |
-
-### Return type
-
-[**crate::models::EmailAlertSettings**](EmailAlertSettings.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## alerts_print_job_create
@@ -305,6 +162,117 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## email_alert_settings_create
+
+> crate::models::EmailAlertSettings email_alert_settings_create(email_alert_settings_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**email_alert_settings_request** | Option<[**EmailAlertSettingsRequest**](EmailAlertSettingsRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::EmailAlertSettings**](EmailAlertSettings.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## email_alert_settings_partial_update
+
+> crate::models::EmailAlertSettings email_alert_settings_partial_update(id, patched_email_alert_settings_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** |  | [required] |
+**patched_email_alert_settings_request** | Option<[**PatchedEmailAlertSettingsRequest**](PatchedEmailAlertSettingsRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::EmailAlertSettings**](EmailAlertSettings.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## email_alert_settings_retrieve
+
+> crate::models::EmailAlertSettings email_alert_settings_retrieve()
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**crate::models::EmailAlertSettings**](EmailAlertSettings.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## email_alert_settings_update
+
+> crate::models::EmailAlertSettings email_alert_settings_update(id, email_alert_settings_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i32** |  | [required] |
+**email_alert_settings_request** | Option<[**EmailAlertSettingsRequest**](EmailAlertSettingsRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::EmailAlertSettings**](EmailAlertSettings.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
