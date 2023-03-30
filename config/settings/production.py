@@ -250,7 +250,7 @@ STRIPE_PORTAL_URL = env(
     "STRIPE_PORTAL_URL",
     default="https://billing.stripe.com/p/login/00g4gC9wu9fu9O07ss",
 )
-DJSTRIPE_WEBHOOK_VALIDATION = "retrieve_event"
+DJSTRIPE_WEBHOOK_VALIDATION = "verify_signature"
 
 
 # CORS
