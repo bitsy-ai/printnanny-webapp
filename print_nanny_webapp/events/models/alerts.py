@@ -1,4 +1,5 @@
 from typing import Dict
+from uuid import uuid4
 
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -57,7 +58,7 @@ class PrintJobAlert(models.Model):
             ["id", "email_message_id"],
         ]
 
-    id = models.UUIDField(primary_key=True, editable=False)
+    id = models.UUIDField(primary_key=True, editable=False, default=uuid4)
     created_dt = models.DateTimeField(auto_now_add=True)
     event_type = models.CharField(choices=AlertEventType.choices, max_length=32)
     event_source = models.CharField(choices=EventSource.choices, max_length=32)
