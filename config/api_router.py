@@ -32,6 +32,7 @@ from print_nanny_webapp.octoprint.api.views import (
 )
 from print_nanny_webapp.users.api.views import EmailWaitlistViewSet, UserNkeyView
 from print_nanny_webapp.videos.api.views import (
+    CameraSnapshotViewSet,
     VideoRecordingViewSet,
     VideoRecordingPartViewSet,
 )
@@ -103,6 +104,11 @@ other_urls = [
 ]
 
 pi_router = NestedSimpleRouter(router, r"pis", lookup="pi")
+
+pi_router.register(
+    "camera-snapshots", CameraSnapshotViewSet, basename="camera-snapshots"
+)
+
 
 pi_router.register("license", PiLicenseZipViewset, basename="license-zip")
 pi_router.register(r"webrtc-streams", WebrtcStreamViewSet, basename="janus-streams")

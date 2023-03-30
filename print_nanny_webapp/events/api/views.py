@@ -33,6 +33,13 @@ logger = logging.getLogger(__name__)
         tags=["settings", "alerts"],
         responses={200: EmailAlertSettingsSerializer(many=False)} | generic_get_errors,
     ),
+    list=extend_schema(
+        tags=["settings", "alerts"],
+        responses={
+            200: EmailAlertSettingsSerializer(many=True),
+        }
+        | generic_list_errors,
+    ),
     update=extend_schema(
         tags=["settings", "alerts"],
         request=EmailAlertSettingsSerializer,
@@ -57,6 +64,7 @@ logger = logging.getLogger(__name__)
 )
 class EmailAlertSettingsViewSet(
     GenericViewSet,
+    ListModelMixin,
     RetrieveModelMixin,
     CreateModelMixin,
     UpdateModelMixin,
@@ -65,12 +73,13 @@ class EmailAlertSettingsViewSet(
     queryset = EmailAlertSettings.objects.all()
     lookup_field = "id"
 
-    def get_object(self):
+    # get email alert settings for user
+    def get_queryset(self, *args, **kwargs):
         result = self.queryset.filter(user_id=self.request.user.id).first()
         # if result is empty, initialize model
         if result is None and self.request.user.is_authenticated:
             EmailAlertSettings.objects.create(user=self.request.user)
-        return self.queryset.filter(user_id=self.request.user.id).first()
+        return self.queryset.filter(user_id=self.request.user.id)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -120,9 +129,6 @@ class PrintJobAlertViewSet(
     serializer_class = PrintJobAlertSerializer
     queryset = PrintJobAlert.objects.all()
     lookup_field = "id"
-    parser_classes = [
-        parsers.MultiPartParser,
-    ]
 
     def get_queryset(self, *args, **kwargs):
         result = self.queryset.filter(user_id=self.request.user.id)

@@ -1,6 +1,6 @@
 import logging
 
-from drf_spectacular.utils import extend_schema_view, extend_schema
+from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiParameter
 from django.shortcuts import get_object_or_404
 
 from rest_framework.response import Response
@@ -15,8 +15,13 @@ from rest_framework.mixins import (
 from rest_framework import status, parsers
 
 from print_nanny_webapp.videos.tasks import finalize_video_recording_task
-from print_nanny_webapp.videos.models import VideoRecording, VideoRecordingPart
+from print_nanny_webapp.videos.models import (
+    CameraSnapshot,
+    VideoRecording,
+    VideoRecordingPart,
+)
 from print_nanny_webapp.videos.api.serializers import (
+    CameraSnapshotSerializer,
     VideoRecordingSerializer,
     VideoRecordingPartSerializer,
     VideoRecordingFinalizeSerializer,
@@ -167,6 +172,53 @@ class VideoRecordingPartViewSet(
     parser_classes = [
         parsers.MultiPartParser,
     ]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
+@extend_schema_view(
+    retrieve=extend_schema(
+        tags=["videos"],
+        parameters=[
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses={200: CameraSnapshotSerializer(many=False)} | generic_get_errors,
+    ),
+    list=extend_schema(
+        tags=["videos"],
+        parameters=[
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        responses={
+            200: CameraSnapshotSerializer(many=True),
+        }
+        | generic_list_errors,
+    ),
+    create=extend_schema(
+        tags=["videos"],
+        parameters=[
+            OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH)
+        ],
+        request=CameraSnapshotSerializer,
+        responses={201: CameraSnapshotSerializer} | generic_create_errors,
+    ),
+)
+class CameraSnapshotViewSet(
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    CreateModelMixin,
+):
+    serializer_class = CameraSnapshotSerializer
+    queryset = CameraSnapshot.objects.all()
+    lookup_field = "id"
+
+    parser_classes = [parsers.MultiPartParser]
+
+    def get_queryset(self, *args, **kwargs):
+        result = self.queryset.filter(user_id=self.request.user.id)
+        return result
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

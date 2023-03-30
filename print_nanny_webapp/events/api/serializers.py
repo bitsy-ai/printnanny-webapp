@@ -27,4 +27,4 @@ class PrintJobAlertSerializer(serializers.ModelSerializer):
     class Meta:
         model = PrintJobAlert
         fields = "__all__"
-        read_only_fields = ("user", "email_message_id", "celery_task_id")
+        read_only_fields = ("user", "email_message_id", "celery_task_id", "id")

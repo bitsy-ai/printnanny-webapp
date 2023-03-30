@@ -1,4 +1,5 @@
 from typing import Dict
+from uuid import uuid4
 
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -8,6 +9,11 @@ from django.utils import timezone
 from .enum import AlertEventType, EventSource
 
 User = get_user_model()
+
+
+def print_job_alert_filepath(instance, filename):
+    path = timezone.now().strftime("uploads/print_job_alerts/%Y/%m/%d")
+    return f"{path}/{instance.id}.jpg"
 
 
 class BaseAlertSettings(models.Model):
@@ -38,11 +44,6 @@ class EmailAlertSettings(BaseAlertSettings):
     pass
 
 
-def print_job_alert_filepath(instance, filename):
-    path = timezone.now().strftime("uploads/print_job_alerts/%Y/%m/%d")
-    return f"{path}/{instance.id}.jpg"
-
-
 class PrintJobAlert(models.Model):
     """
     User-facing print job notification alerts
@@ -57,7 +58,7 @@ class PrintJobAlert(models.Model):
             ["id", "email_message_id"],
         ]
 
-    id = models.UUIDField(primary_key=True, editable=False)
+    id = models.UUIDField(primary_key=True, editable=False, default=uuid4)
     created_dt = models.DateTimeField(auto_now_add=True)
     event_type = models.CharField(choices=AlertEventType.choices, max_length=32)
     event_source = models.CharField(choices=EventSource.choices, max_length=32)
@@ -71,7 +72,6 @@ class PrintJobAlert(models.Model):
     email_message_id = models.CharField(max_length=255, null=True)
     # unique identifier associated with celery task
     celery_task_id = models.CharField(max_length=255, null=True)
-    image = models.FileField(upload_to=print_job_alert_filepath, null=True)
 
     def email_subject(self) -> str:
         if self.event_type == AlertEventType.PRINT_PROGRESS:
@@ -101,5 +101,5 @@ class PrintJobAlert(models.Model):
         return {
             "alertHeader": self.email_alert_header(),
             "alertBody": self.email_alert_body(),
-            "alertImageUrl": self.image.url,
+            "alertImageUrl": self.pi.latest_camera_snapshot(),
         }

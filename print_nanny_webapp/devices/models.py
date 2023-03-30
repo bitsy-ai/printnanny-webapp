@@ -194,6 +194,9 @@ class Pi(SafeDeleteModel):
     def cloudiot_name(self):
         return f"pi-id-{self.id}"
 
+    def latest_camera_snapshot(self):
+        return self.camera_snapshots.first()
+
 
 class PiNatsAppManager(SafeDeleteManager, NatsOrganizationAppManager):
     def create(self, **kwargs):
