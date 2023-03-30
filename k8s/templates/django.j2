@@ -170,7 +170,7 @@ spec:
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!
         image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.1.2
-        args
+        args:
           - "{{ GCP_PROJECT }}:{{ GCP_REGION }}:{{ CLOUD_SQL_POSTGRES_INSTANCE }}?port={{ POSTGRES_PORT }}"
           - "--max-sigterm-delay=30s"
           # If connecting from a VPC-native GKE cluster, you can use the
