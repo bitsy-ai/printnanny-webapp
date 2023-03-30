@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 
 # **pis_camera_snapshots_create**
-> CameraSnapshot pis_camera_snapshots_create(pi_id, image, pi, id=id)
+> CameraSnapshot pis_camera_snapshots_create(pi_id, image, pi)
 
 
 
@@ -62,10 +62,9 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     pi_id = 56 # int | 
 image = '/path/to/file' # file | 
 pi = 56 # int | 
-id = 'id_example' # str |  (optional)
 
     try:
-        api_response = api_instance.pis_camera_snapshots_create(pi_id, image, pi, id=id)
+        api_response = api_instance.pis_camera_snapshots_create(pi_id, image, pi)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling VideosApi->pis_camera_snapshots_create: %s\n" % e)
@@ -107,10 +106,9 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     pi_id = 56 # int | 
 image = '/path/to/file' # file | 
 pi = 56 # int | 
-id = 'id_example' # str |  (optional)
 
     try:
-        api_response = api_instance.pis_camera_snapshots_create(pi_id, image, pi, id=id)
+        api_response = api_instance.pis_camera_snapshots_create(pi_id, image, pi)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling VideosApi->pis_camera_snapshots_create: %s\n" % e)
@@ -123,7 +121,6 @@ Name | Type | Description  | Notes
  **pi_id** | **int**|  | 
  **image** | **file**|  | 
  **pi** | **int**|  | 
- **id** | **str**|  | [optional] 
 
 ### Return type
 

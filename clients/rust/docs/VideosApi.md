@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ## pis_camera_snapshots_create
 
-> crate::models::CameraSnapshot pis_camera_snapshots_create(pi_id, image, pi, id)
+> crate::models::CameraSnapshot pis_camera_snapshots_create(pi_id, image, pi)
 
 
 ### Parameters
@@ -33,7 +33,6 @@ Name | Type | Description  | Required | Notes
 **pi_id** | **i32** |  | [required] |
 **image** | **std::path::PathBuf** |  | [required] |
 **pi** | **i32** |  | [required] |
-**id** | Option<**String**> |  |  |
 
 ### Return type
 

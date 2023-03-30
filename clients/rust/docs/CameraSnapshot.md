@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | Option<**String**> |  | [optional]
+**id** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **image** | **String** |  | 
 **pi** | **i32** |  | 

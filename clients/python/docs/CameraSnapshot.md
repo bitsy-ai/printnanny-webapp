@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] 
+**id** | **str** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **image** | **str** |  | 
 **pi** | **int** |  | 
