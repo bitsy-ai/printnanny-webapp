@@ -60,4 +60,4 @@ class CameraSnapshotSerializer(serializers.ModelSerializer):
     class Meta:
         model = CameraSnapshot
         fields = "__all__"
-        read_only = ("id", "created_dt")
+        read_only_fields = ("id", "created_dt")
