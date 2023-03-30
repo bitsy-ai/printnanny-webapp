@@ -36,7 +36,16 @@ def gst_combine_mp4_parts(src: TemporaryDirectory, dest: str):
         "filesink",
         f"location={dest}",
     ]
-    subprocess.run(cmd, capture_output=True, encoding="utf8", check=True)
+    try:
+        subprocess.run(cmd, capture_output=True, encoding="utf8", check=True)
+    except subprocess.CalledProcessError as e:
+        logger.error(
+            "cmd=%s failed with code=%s stdout=%s stderr=%s",
+            e.cmd,
+            e.returncode,
+            e.stdout,
+            e.stderr,
+        )
 
 
 def finalize_video_recording(video_recording_id: UUID):
