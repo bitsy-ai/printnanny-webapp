@@ -217,8 +217,8 @@ class CameraSnapshotViewSet(
     parser_classes = [parsers.MultiPartParser]
 
     def get_queryset(self, *args, **kwargs):
-        result = self.queryset.filter(user_id=self.request.user.id)
+        result = self.queryset.filter(pi__user_id=self.request.user.id)
         return result
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        serializer.save(pi__user=self.request.user)
