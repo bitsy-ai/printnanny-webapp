@@ -219,6 +219,3 @@ class CameraSnapshotViewSet(
     def get_queryset(self, *args, **kwargs):
         result = self.queryset.filter(pi__user_id=self.request.user.id)
         return result
-
-    def perform_create(self, serializer):
-        serializer.save(pi__user=self.request.user)
