@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## alerts_print_job_create
 
-> crate::models::PrintJobAlert alerts_print_job_create(event_type, event_source, pi, image)
+> crate::models::PrintJobAlert alerts_print_job_create(print_job_alert_request)
 
 
 ### Parameters
@@ -26,10 +26,7 @@ Method | HTTP request | Description
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**event_type** | [**crate::models::EventTypeEnum**](EventTypeEnum.md) |  | [required] |
-**event_source** | [**crate::models::EventSourceEnum**](EventSourceEnum.md) |  | [required] |
-**pi** | **i32** |  | [required] |
-**image** | Option<**std::path::PathBuf**> |  |  |
+**print_job_alert_request** | [**PrintJobAlertRequest**](PrintJobAlertRequest.md) |  | [required] |
 
 ### Return type
 
@@ -41,7 +38,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: multipart/form-data
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -77,7 +74,7 @@ Name | Type | Description  | Required | Notes
 
 ## alerts_print_job_partial_update
 
-> crate::models::PrintJobAlert alerts_print_job_partial_update(id, event_type, event_source, image, pi)
+> crate::models::PrintJobAlert alerts_print_job_partial_update(id, patched_print_job_alert_request)
 
 
 ### Parameters
@@ -86,10 +83,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | A UUID string identifying this print job alert. | [required] |
-**event_type** | Option<[**crate::models::EventTypeEnum**](EventTypeEnum.md)> |  |  |
-**event_source** | Option<[**crate::models::EventSourceEnum**](EventSourceEnum.md)> |  |  |
-**image** | Option<**std::path::PathBuf**> |  |  |
-**pi** | Option<**i32**> |  |  |
+**patched_print_job_alert_request** | Option<[**PatchedPrintJobAlertRequest**](PatchedPrintJobAlertRequest.md)> |  |  |
 
 ### Return type
 
@@ -101,7 +95,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: multipart/form-data
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -137,7 +131,7 @@ Name | Type | Description  | Required | Notes
 
 ## alerts_print_job_update
 
-> crate::models::PrintJobAlert alerts_print_job_update(id, event_type, event_source, pi, image)
+> crate::models::PrintJobAlert alerts_print_job_update(id, print_job_alert_request)
 
 
 ### Parameters
@@ -146,10 +140,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | A UUID string identifying this print job alert. | [required] |
-**event_type** | [**crate::models::EventTypeEnum**](EventTypeEnum.md) |  | [required] |
-**event_source** | [**crate::models::EventSourceEnum**](EventSourceEnum.md) |  | [required] |
-**pi** | **i32** |  | [required] |
-**image** | Option<**std::path::PathBuf**> |  |  |
+**print_job_alert_request** | [**PrintJobAlertRequest**](PrintJobAlertRequest.md) |  | [required] |
 
 ### Return type
 
@@ -161,7 +152,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: multipart/form-data
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

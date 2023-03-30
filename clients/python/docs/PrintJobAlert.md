@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **payload** | **dict(str, object)** |  | [optional] 
 **email_message_id** | **str** |  | [readonly] 
 **celery_task_id** | **str** |  | [readonly] 
-**image** | **str** |  | [optional] 
 **user** | **int** |  | [readonly] 
 **pi** | **int** |  | 
 

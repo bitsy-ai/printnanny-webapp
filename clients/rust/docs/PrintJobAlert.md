@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **payload** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **email_message_id** | Option<**String**> |  | [readonly]
 **celery_task_id** | Option<**String**> |  | [readonly]
-**image** | Option<**String**> |  | [optional]
 **user** | **i32** |  | [readonly]
 **pi** | **i32** |  | 
 

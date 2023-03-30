@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 
 # **alerts_print_job_create**
-> PrintJobAlert alerts_print_job_create(event_type, event_source, pi, image=image)
+> PrintJobAlert alerts_print_job_create(print_job_alert_request)
 
 
 
@@ -55,13 +55,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.AlertsApi(api_client)
-    event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum | 
-event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum | 
-pi = 56 # int | 
-image = '/path/to/file' # file |  (optional)
+    print_job_alert_request = printnanny_api_client.PrintJobAlertRequest() # PrintJobAlertRequest | 
 
     try:
-        api_response = api_instance.alerts_print_job_create(event_type, event_source, pi, image=image)
+        api_response = api_instance.alerts_print_job_create(print_job_alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_print_job_create: %s\n" % e)
@@ -100,13 +97,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.AlertsApi(api_client)
-    event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum | 
-event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum | 
-pi = 56 # int | 
-image = '/path/to/file' # file |  (optional)
+    print_job_alert_request = printnanny_api_client.PrintJobAlertRequest() # PrintJobAlertRequest | 
 
     try:
-        api_response = api_instance.alerts_print_job_create(event_type, event_source, pi, image=image)
+        api_response = api_instance.alerts_print_job_create(print_job_alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_print_job_create: %s\n" % e)
@@ -116,10 +110,7 @@ image = '/path/to/file' # file |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **event_type** | [**EventTypeEnum**](EventTypeEnum.md)|  | 
- **event_source** | [**EventSourceEnum**](EventSourceEnum.md)|  | 
- **pi** | **int**|  | 
- **image** | **file**|  | [optional] 
+ **print_job_alert_request** | [**PrintJobAlertRequest**](PrintJobAlertRequest.md)|  | 
 
 ### Return type
 
@@ -131,7 +122,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -268,7 +259,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **alerts_print_job_partial_update**
-> PrintJobAlert alerts_print_job_partial_update(id, event_type=event_type, event_source=event_source, image=image, pi=pi)
+> PrintJobAlert alerts_print_job_partial_update(id, patched_print_job_alert_request=patched_print_job_alert_request)
 
 
 
@@ -308,13 +299,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.AlertsApi(api_client)
     id = 'id_example' # str | A UUID string identifying this print job alert.
-event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum |  (optional)
-event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum |  (optional)
-image = '/path/to/file' # file |  (optional)
-pi = 56 # int |  (optional)
+patched_print_job_alert_request = printnanny_api_client.PatchedPrintJobAlertRequest() # PatchedPrintJobAlertRequest |  (optional)
 
     try:
-        api_response = api_instance.alerts_print_job_partial_update(id, event_type=event_type, event_source=event_source, image=image, pi=pi)
+        api_response = api_instance.alerts_print_job_partial_update(id, patched_print_job_alert_request=patched_print_job_alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_print_job_partial_update: %s\n" % e)
@@ -354,13 +342,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.AlertsApi(api_client)
     id = 'id_example' # str | A UUID string identifying this print job alert.
-event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum |  (optional)
-event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum |  (optional)
-image = '/path/to/file' # file |  (optional)
-pi = 56 # int |  (optional)
+patched_print_job_alert_request = printnanny_api_client.PatchedPrintJobAlertRequest() # PatchedPrintJobAlertRequest |  (optional)
 
     try:
-        api_response = api_instance.alerts_print_job_partial_update(id, event_type=event_type, event_source=event_source, image=image, pi=pi)
+        api_response = api_instance.alerts_print_job_partial_update(id, patched_print_job_alert_request=patched_print_job_alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_print_job_partial_update: %s\n" % e)
@@ -371,10 +356,7 @@ pi = 56 # int |  (optional)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| A UUID string identifying this print job alert. | 
- **event_type** | [**EventTypeEnum**](EventTypeEnum.md)|  | [optional] 
- **event_source** | [**EventSourceEnum**](EventSourceEnum.md)|  | [optional] 
- **image** | **file**|  | [optional] 
- **pi** | **int**|  | [optional] 
+ **patched_print_job_alert_request** | [**PatchedPrintJobAlertRequest**](PatchedPrintJobAlertRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -386,7 +368,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -524,7 +506,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **alerts_print_job_update**
-> PrintJobAlert alerts_print_job_update(id, event_type, event_source, pi, image=image)
+> PrintJobAlert alerts_print_job_update(id, print_job_alert_request)
 
 
 
@@ -564,13 +546,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.AlertsApi(api_client)
     id = 'id_example' # str | A UUID string identifying this print job alert.
-event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum | 
-event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum | 
-pi = 56 # int | 
-image = '/path/to/file' # file |  (optional)
+print_job_alert_request = printnanny_api_client.PrintJobAlertRequest() # PrintJobAlertRequest | 
 
     try:
-        api_response = api_instance.alerts_print_job_update(id, event_type, event_source, pi, image=image)
+        api_response = api_instance.alerts_print_job_update(id, print_job_alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_print_job_update: %s\n" % e)
@@ -610,13 +589,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.AlertsApi(api_client)
     id = 'id_example' # str | A UUID string identifying this print job alert.
-event_type = printnanny_api_client.EventTypeEnum() # EventTypeEnum | 
-event_source = printnanny_api_client.EventSourceEnum() # EventSourceEnum | 
-pi = 56 # int | 
-image = '/path/to/file' # file |  (optional)
+print_job_alert_request = printnanny_api_client.PrintJobAlertRequest() # PrintJobAlertRequest | 
 
     try:
-        api_response = api_instance.alerts_print_job_update(id, event_type, event_source, pi, image=image)
+        api_response = api_instance.alerts_print_job_update(id, print_job_alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_print_job_update: %s\n" % e)
@@ -627,10 +603,7 @@ image = '/path/to/file' # file |  (optional)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| A UUID string identifying this print job alert. | 
- **event_type** | [**EventTypeEnum**](EventTypeEnum.md)|  | 
- **event_source** | [**EventSourceEnum**](EventSourceEnum.md)|  | 
- **pi** | **int**|  | 
- **image** | **file**|  | [optional] 
+ **print_job_alert_request** | [**PrintJobAlertRequest**](PrintJobAlertRequest.md)|  | 
 
 ### Return type
 
@@ -642,7 +615,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details

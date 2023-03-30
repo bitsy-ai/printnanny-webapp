@@ -4,6 +4,9 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**pis_camera_snapshots_create**](VideosApi.md#pis_camera_snapshots_create) | **POST** /api/pis/{pi_id}/camera-snapshots/ | 
+[**pis_camera_snapshots_list**](VideosApi.md#pis_camera_snapshots_list) | **GET** /api/pis/{pi_id}/camera-snapshots/ | 
+[**pis_camera_snapshots_retrieve**](VideosApi.md#pis_camera_snapshots_retrieve) | **GET** /api/pis/{pi_id}/camera-snapshots/{id}/ | 
 [**video_parts_create**](VideosApi.md#video_parts_create) | **POST** /api/video-parts/ | 
 [**video_parts_list**](VideosApi.md#video_parts_list) | **GET** /api/video-parts/ | 
 [**video_parts_retrieve**](VideosApi.md#video_parts_retrieve) | **GET** /api/video-parts/{id}/ | 
@@ -15,6 +18,95 @@ Method | HTTP request | Description
 [**videos_retrieve**](VideosApi.md#videos_retrieve) | **GET** /api/videos/{id}/ | 
 [**videos_update**](VideosApi.md#videos_update) | **PUT** /api/videos/{id}/ | 
 
+
+
+## pis_camera_snapshots_create
+
+> crate::models::CameraSnapshot pis_camera_snapshots_create(pi_id, image, pi, id)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**pi_id** | **i32** |  | [required] |
+**image** | **std::path::PathBuf** |  | [required] |
+**pi** | **i32** |  | [required] |
+**id** | Option<**String**> |  |  |
+
+### Return type
+
+[**crate::models::CameraSnapshot**](CameraSnapshot.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## pis_camera_snapshots_list
+
+> crate::models::PaginatedCameraSnapshotList pis_camera_snapshots_list(pi_id, page)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**pi_id** | **i32** |  | [required] |
+**page** | Option<**i32**> | A page number within the paginated result set. |  |
+
+### Return type
+
+[**crate::models::PaginatedCameraSnapshotList**](PaginatedCameraSnapshotList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## pis_camera_snapshots_retrieve
+
+> crate::models::CameraSnapshot pis_camera_snapshots_retrieve(id, pi_id)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **String** | A UUID string identifying this camera snapshot. | [required] |
+**pi_id** | **i32** |  | [required] |
+
+### Return type
+
+[**crate::models::CameraSnapshot**](CameraSnapshot.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## video_parts_create
