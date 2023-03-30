@@ -21,6 +21,24 @@ def part_mp4_filepath(instance, filename):
     return f"{instance.mp4_parts_path()}{instance.buffer_index}.mp4"
 
 
+def snapshot_filepath(instance, filename):
+    path = timezone.now().strftime("uploads/camera_snapshots/%Y/%m/%d")
+    return f"{path}/{instance.id}.jpg"
+
+
+class CameraSnapshot(models.Model):
+    class Meta:
+        ordering = ["-created_dt"]
+        index_together = [["id", "pi", "created_dt"]]
+
+    id = models.UUIDField(primary_key=True, default=uuid4)
+    pi = models.ForeignKey(
+        "devices.Pi", on_delete=models.CASCADE, related_name="camera_snapshots"
+    )
+    created_dt = models.DateTimeField(auto_now_add=True)
+    image = models.FileField(upload_to=snapshot_filepath)
+
+
 class VideoRecording(SafeDeleteModel):
     """
     A video recording
