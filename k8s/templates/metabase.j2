@@ -22,6 +22,7 @@ spec:
         args:
           - "print-nanny:us-central1:print-nanny?port=5432"
           - "--max-sigterm-delay=30s"
+          - "--quiet"
         securityContext:
           runAsNonRoot: true
         ports:
@@ -33,6 +34,13 @@ spec:
               name: webapp
           - configMapRef:
               name: metabase
+        resources:
+          requests:
+            memory: "1GB"
+            cpu: "1"
+          limits:
+            memory: "4G"
+            cpu: "2.5"
         livenessProbe:
           httpGet:
             path: /

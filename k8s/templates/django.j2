@@ -75,6 +75,13 @@ spec:
           mountPath: "/etc/django-operator-nkeys"
         - name: nsc
           mountPath: "/var/lib/nats/nsc"
+        resources:
+          requests:
+            memory: "256M"
+            cpu: "0.5"
+          limits:
+            memory: "2GB"
+            cpu: "1"
 
       - name: celery-beat
         image: {{ PRINTNANNY_DJANGO_IMAGE }}
@@ -126,11 +133,11 @@ spec:
           failureThreshold: 3
         resources:
           requests:
-            memory: "256M"
-            cpu: "500m"
+            memory: "1GB"
+            cpu: "1"
           limits:
-            memory: "1G"
-            cpu: "1200m"
+            memory: "4G"
+            cpu: "2.5"
         command:
           - /start
         envFrom:
@@ -173,6 +180,7 @@ spec:
         args:
           - "{{ GCP_PROJECT }}:{{ GCP_REGION }}:{{ CLOUD_SQL_POSTGRES_INSTANCE }}?port={{ POSTGRES_PORT }}"
           - "--max-sigterm-delay=30s"
+          - "--quiet"
           # If connecting from a VPC-native GKE cluster, you can use the
           # following flag to have the proxy connect over private IP
           # - "-ip_address_types=PRIVATE"
