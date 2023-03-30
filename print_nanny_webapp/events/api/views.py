@@ -73,6 +73,9 @@ class EmailAlertSettingsViewSet(
     queryset = EmailAlertSettings.objects.all()
     lookup_field = "id"
 
+    def get_object(self):
+        return self.get_queryset()
+
     # get email alert settings for user
     def get_queryset(self, *args, **kwargs):
         result = self.queryset.filter(user_id=self.request.user.id).first()

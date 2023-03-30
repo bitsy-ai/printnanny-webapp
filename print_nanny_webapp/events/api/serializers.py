@@ -17,6 +17,7 @@ class EmailAlertSettingsSerializer(serializers.ModelSerializer):
         model = EmailAlertSettings
         fields = "__all__"
         read_only_fields = (
+            "id",
             "created_dt",
             "updated_dt",
             "user",
