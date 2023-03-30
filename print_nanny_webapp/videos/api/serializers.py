@@ -1,7 +1,11 @@
 from typing import Tuple, Optional
 from rest_framework import serializers
 
-from print_nanny_webapp.videos.models import VideoRecording, VideoRecordingPart
+from print_nanny_webapp.videos.models import (
+    CameraSnapshot,
+    VideoRecording,
+    VideoRecordingPart,
+)
 
 
 class VideoRecordingFinalizeSerializer(serializers.Serializer):
@@ -50,3 +54,10 @@ class VideoRecordingPartSerializer(serializers.ModelSerializer):
         model = VideoRecordingPart
         exclude = ("deleted",)
         read_only_fields = ("mp4_size", "user", "sync_end")
+
+
+class CameraSnapshotSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CameraSnapshot
+        fields = "__all__"
+        read_only = ("id", "created_dt")
