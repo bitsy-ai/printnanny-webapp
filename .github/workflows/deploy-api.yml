@@ -161,12 +161,9 @@ jobs:
         run: |
           make ui
 
-      - name: Deploy to stable cluster
-        id: deploy
+      - name: Push Docker image
         run: |
           docker buildx create --use --driver=docker-container
-
-
           sudo apt-get install apt-transport-https ca-certificates gnupg
           echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
           curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
@@ -174,6 +171,17 @@ jobs:
           gcloud auth activate-service-account $GCP_SERVICE_ACCOUNT --key-file=key.json --project $GCP_PROJECT
           gcloud container clusters get-credentials $CLUSTER --region=$GCP_ZONE --project $GCP_PROJECT
           gcloud auth configure-docker
+
+          make gh-namespace-image-ci \
+          CLUSTER="$CLUSTER" \
+          GCP_PROJECT="print-nanny" \
+          PRINT_NANNY_USER="${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}" \
+          PRINT_NANNY_URL="$DJANGO_BASE_URL" \
+          DJANGO_SUPERUSER_EMAIL="$DJANGO_SUPERUSER_EMAIL"
+
+      - name: Deploy to live cluster
+        id: deploy
+        run: |
 
           make gh-namespace-deploy-ci \
           CLUSTER="$CLUSTER" \

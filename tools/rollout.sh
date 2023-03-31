@@ -14,7 +14,3 @@ until $ROLLOUT_STATUS_CMD || [ $ATTEMPTS -eq $MAX_ATTEMPTS ]; do
   echo "Waiting $SLEEP sec for $DEPLOYMENT rollout to complete"
   sleep $SLEEP
 done
-
-docker tag "print_nanny_webapp:${GIT_SHA}" \
-    "us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:latest"
-docker push "us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:latest"
