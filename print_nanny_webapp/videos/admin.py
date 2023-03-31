@@ -1,5 +1,9 @@
 from django.contrib import admin
-from print_nanny_webapp.videos.models import VideoRecording, VideoRecordingPart
+from print_nanny_webapp.videos.models import (
+    VideoRecording,
+    VideoRecordingPart,
+    CameraSnapshot,
+)
 
 
 # Register your models here.
@@ -25,3 +29,14 @@ class VideoRecordingPartAdmin(admin.ModelAdmin):
         "sync_end",
     )
     model = VideoRecordingPart
+
+
+@admin.register(CameraSnapshot)
+class CameraSnapshotAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "pi",
+        "created_dt",
+        "image",
+    )
+    model = CameraSnapshot
