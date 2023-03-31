@@ -125,7 +125,7 @@ jobs:
       NATS_WS_URI: wss://nats.live.printnanny.ai:8443
       POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
       POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
-      PRINTNANNY_DJANGO_IMAGE: us.gcr.io/print-nanny/print_nanny_webapp:latest
+      PRINTNANNY_DJANGO_IMAGE: us.gcr.io/print-nanny/print_nanny_webapp:${{ GITHUB_SHA }}
       PRINTNANNY_NAMESPACE: live
       REDIS_URL: ${{ secrets.REDIS_URL }}
       STRIPE_LIVE_MODE: True

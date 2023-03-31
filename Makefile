@@ -315,7 +315,7 @@ ns-rollout:
 	PRINTNANNY_NAMESPACE=$(PRINTNANNY_NAMESPACE) \
 		./tools/rollout.sh
 
-namespace-deploy: clean-dist dist/k8s cluster-config build ns-apply ns-rollout
+namespace-deploy: clean-dist dist/k8s cluster-config build ns-rollout ns-apply
 
 namespace-apply: clean-dist dist/k8s cluster-config ns-apply
 
