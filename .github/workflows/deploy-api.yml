@@ -161,7 +161,7 @@ jobs:
         run: |
           make ui
 
-      - name: Push Docker image
+      - name: Configure Docker registry credentials
         run: |
           docker buildx create --use --driver=docker-container
           sudo apt-get install apt-transport-https ca-certificates gnupg
@@ -172,12 +172,15 @@ jobs:
           gcloud container clusters get-credentials $CLUSTER --region=$GCP_ZONE --project $GCP_PROJECT
           gcloud auth configure-docker
 
-          make gh-namespace-image-ci \
-          CLUSTER="$CLUSTER" \
-          GCP_PROJECT="print-nanny" \
-          PRINT_NANNY_USER="${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}" \
-          PRINT_NANNY_URL="$DJANGO_BASE_URL" \
-          DJANGO_SUPERUSER_EMAIL="$DJANGO_SUPERUSER_EMAIL"
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: "us.gcr.io/${env.GCP_PROJECT}/print_nanny_webapp:${env.GITHUB_SHA}"
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          file: compose/production/django/Dockerfile
 
       - name: Deploy to live cluster
         id: deploy
