@@ -15,7 +15,7 @@ def send_print_job_alert_email(print_job_alert_id: UUID):
     alert = PrintJobAlert.objects.get(id=print_job_alert_id)
 
     msg = AnymailMessage(
-        subject=alert.subject(),
+        subject=alert.email_subject(),
         tags=(
             "model:PrintJobAlert",
             f"event_source:{alert.event_source}",

@@ -10,6 +10,6 @@ from print_nanny_webapp.events.tasks import send_print_job_alert_email_task
 def create_print_job_alert_email_task(sender, instance, created, **kwargs):
     # only send when report is created for the first time
     if created:
-        task = send_print_job_alert_email_task(instance.id)
+        task = send_print_job_alert_email_task.delay(instance.id)
         instance.celery_task_id = task.id
         instance.save()
