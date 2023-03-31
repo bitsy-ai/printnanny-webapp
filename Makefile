@@ -135,7 +135,7 @@ docker-image:
 	.
 
 docker-image-ci:
-	docker buildx bake -f compose/production/django/Dockerfile --set *.cache-to="type=gha,mode=max" --set *.cache-from="type=gha" --load
+	docker buildx bake -f production.yml --set *.cache-to="type=gha,mode=max" --set *.cache-from="type=gha" --load
 
 
 build: vue docker-image
