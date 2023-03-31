@@ -2,9 +2,6 @@
 
 set -euo pipefail
 
-docker tag "print_nanny_webapp:${GIT_SHA}" \
-    "us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}"
-
 docker push "us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}"
 
 kubectl  -n "$PRINTNANNY_NAMESPACE" set image deployment/django "django=us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}" "celery-worker=us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}" "celery-beat=us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}" --record
