@@ -138,7 +138,8 @@ docker-image-ci:
 	mkdir -p .envs/.production/
 	touch .envs/.production/.django
 	touch .envs/.production/.postgres
-	docker buildx bake -f production.yml --push --set *.cache-to="type=gha,mode=max" --set *.cache-from="type=gha" --load
+	docker buildx bake -f production.yml --set *.cache-to="type=gha,mode=max" --set *.cache-from="type=gha" --load
+	docker buildx bake -f production.yml --push --set *.cache-to="type=gha,mode=max" --set *.cache-from="type=gha"
 
 
 build: vue docker-image
@@ -356,7 +357,7 @@ gh-namespace-deploy:
 	PRINTNANNY_NAMESPACE=$(PRINTNANNY_NAMESPACE) \
 		./tools/rollout.sh
 
-gh-namespace-deploy-ci: clean-dist dist/k8s docker-image-ci cluster-config
+gh-namespace-deploy-ci:
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 		./k8s/templates/render.sh
