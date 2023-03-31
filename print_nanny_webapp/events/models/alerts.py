@@ -1,5 +1,6 @@
 from typing import Dict
 from uuid import uuid4
+import datetime
 
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -94,19 +95,27 @@ class PrintJobAlert(models.Model):
     def email_alert_header(self) -> str:
         if self.event_type == AlertEventType.PRINT_PROGRESS:
             completion = self.payload.get("progress", {}).get("completion")
+
             if completion is None:
                 raise ValueError(
                     "PrintJobAlert.email_alert_header missing progress.completion field for PRINT_PROGRESS"
                 )
-            return f"[PrintNanny] 🎉 Your print job is {completion}% complete"
+            print_time_left = self.payload.get("progress", {}).get("printTimeLeft")
+
+            if print_time_left is None:
+                print_time_left_str = ""
+            else:
+                print_time_left_str = str(datetime.timedelta(seconds=print_time_left))
+
+            return f"Your print job is {completion}% complete. {print_time_left_str}"
         elif self.event_type == AlertEventType.PRINT_STARTED:
-            return "[PrintNanny] 🏁 Your print job was started"
+            return "🏁 Your print job was started."
         elif self.event_type == AlertEventType.PRINT_DONE:
-            return "[PrintNanny] 🏁 Your print job is finished"
+            return "🏁 Your print job is finished."
         elif self.event_type == AlertEventType.PRINT_PAUSED:
-            return "[PrintNanny] ⏸️ Your print job was paused"
+            return "⏸️ Your print job was paused."
         elif self.event_type == AlertEventType.PRINT_CANCELLED:
-            return "[PrintNanny] ⏸️ Your print job was cancelled"
+            return "⏸️ Your print job was cancelled."
         raise ValueError(f"No email_subject configured for {self.event_type}")
 
     def email_alert_body(self) -> str:
