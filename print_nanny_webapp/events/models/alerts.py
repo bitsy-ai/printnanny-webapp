@@ -75,10 +75,10 @@ class PrintJobAlert(models.Model):
 
     def email_subject(self) -> str:
         if self.event_type == AlertEventType.PRINT_PROGRESS:
-            completion = self.payload.get("completion")
+            completion = self.payload.get("progress", {}).get("completion")
             if completion is None:
                 raise ValueError(
-                    "PrintJobAlert.payload missing completion field for PRINT_PROGRESS"
+                    "PrintJobAlert.payload missing progress.completion field for PRINT_PROGRESS"
                 )
             return f"[PrintNanny] 🎉 Your print job is {completion}% complete"
         elif self.event_type == AlertEventType.PRINT_STARTED:
