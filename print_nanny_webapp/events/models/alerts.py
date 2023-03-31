@@ -92,10 +92,25 @@ class PrintJobAlert(models.Model):
         raise ValueError(f"No email_subject configured for {self.event_type}")
 
     def email_alert_header(self) -> str:
-        pass
+        if self.event_type == AlertEventType.PRINT_PROGRESS:
+            completion = self.payload.get("progress", {}).get("completion")
+            if completion is None:
+                raise ValueError(
+                    "PrintJobAlert.email_alert_header missing progress.completion field for PRINT_PROGRESS"
+                )
+            return f"[PrintNanny] 🎉 Your print job is {completion}% complete"
+        elif self.event_type == AlertEventType.PRINT_STARTED:
+            return "[PrintNanny] 🏁 Your print job was started"
+        elif self.event_type == AlertEventType.PRINT_DONE:
+            return "[PrintNanny] 🏁 Your print job is finished"
+        elif self.event_type == AlertEventType.PRINT_PAUSED:
+            return "[PrintNanny] ⏸️ Your print job was paused"
+        elif self.event_type == AlertEventType.PRINT_CANCELLED:
+            return "[PrintNanny] ⏸️ Your print job was cancelled"
+        raise ValueError(f"No email_subject configured for {self.event_type}")
 
     def email_alert_body(self) -> str:
-        pass
+        return "Log into PrintNanny Cloud to manage your 3D printer."
 
     def email_merge_data(self) -> Dict[str, str]:
         if self.pi.latest_camera_snapshot():
