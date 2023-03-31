@@ -135,6 +135,9 @@ docker-image:
 	.
 
 docker-image-ci:
+	mkdir -p .envs/.production/
+	touch .envs/.production/.django
+	touch .envs/.production/.postgres
 	docker buildx bake -f production.yml --set *.cache-to="type=gha,mode=max" --set *.cache-from="type=gha" --load
 
 
