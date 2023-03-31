@@ -9,7 +9,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
-    image: "us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}"
+    image: "us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GITHUB_SHA}"
     ports:
       - 8000:8000
     command: /start
