@@ -133,6 +133,11 @@ docker-image:
 	-f compose/production/django/Dockerfile \
 	-t print_nanny_webapp:$(GIT_SHA) \
 	.
+
+docker-image-ci:
+	docker buildx bake -f compose/production/django/Dockerfile --set *.cache-to="type=gha,mode=max" --set *.cache-from="type=gha" --load
+
+
 build: vue docker-image
 
 local-clean:
@@ -333,6 +338,20 @@ beta-deploy: PRINTNANNY_NAMESPACE:=beta
 beta-deploy: namespace-deploy
 
 gh-namespace-deploy: clean-dist dist/k8s build cluster-config
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+		./k8s/templates/render.sh
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+		./k8s/templates/apply.sh
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+	PROJECT=$(GCP_PROJECT) \
+	CLUSTER=$(CLUSTER) \
+	PRINTNANNY_NAMESPACE=$(PRINTNANNY_NAMESPACE) \
+		./tools/rollout.sh
+
+gh-namespace-deploy-ci: clean-dist dist/k8s docker-image-ci cluster-config
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 		./k8s/templates/render.sh

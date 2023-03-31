@@ -147,6 +147,10 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get install makepasswd
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@master
+
       - uses: actions/setup-node@v2
         with:
           node-version: "16"
@@ -156,9 +160,12 @@ jobs:
         id: ui
         run: |
           make ui
+
       - name: Deploy to stable cluster
         id: deploy
         run: |
+          docker buildx create --use --driver=docker-container
+
 
           sudo apt-get install apt-transport-https ca-certificates gnupg
           echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
@@ -168,7 +175,7 @@ jobs:
           gcloud container clusters get-credentials $CLUSTER --region=$GCP_ZONE --project $GCP_PROJECT
           gcloud auth configure-docker
 
-          make gh-namespace-deploy \
+          make gh-namespace-deploy-ci \
           CLUSTER="$CLUSTER" \
           GCP_PROJECT="print-nanny" \
           PRINT_NANNY_USER="${{ secrets.PROD_DJANGO_SUPERUSER_USERNAME }}" \
