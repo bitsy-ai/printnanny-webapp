@@ -24,7 +24,7 @@ def send_print_job_alert_email(print_job_alert_id: UUID):
         from_email="PrintNanny <no-reply@mail.printnanny.ai>",
         template_id=PrintJobAlert.EMAIL_TEMPLATE_ID,
         to=[alert.user.email],
-        merge_metadata={alert.user.email: alert.email_merge_data()},
+        merge_global_data=alert.email_merge_data(),
     )
     msg.send(fail_silently=False)
     recipient = msg.anymail_status.recipients[alert.user.email]
