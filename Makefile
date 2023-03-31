@@ -341,8 +341,6 @@ live-deploy: namespace-deploy
 beta-deploy: PRINTNANNY_NAMESPACE:=beta
 beta-deploy: namespace-deploy
 
-gh-namespace-image-ci: clean-dist dist/k8s docker-image-ci cluster-config
-
 gh-namespace-deploy:
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
@@ -357,7 +355,7 @@ gh-namespace-deploy:
 	PRINTNANNY_NAMESPACE=$(PRINTNANNY_NAMESPACE) \
 		./tools/rollout.sh
 
-gh-namespace-deploy-ci:
+gh-namespace-deploy-ci: clean-dist dist/k8s cluster-config
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 		./k8s/templates/render.sh
