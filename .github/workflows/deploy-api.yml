@@ -177,7 +177,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: "us.gcr.io/${env.GCP_PROJECT}/print_nanny_webapp:${env.GITHUB_SHA}"
+          tags: "us.gcr.io/${{env.GCP_PROJECT}}/print_nanny_webapp:${{env.GITHUB_SHA}}"
           cache-from: type=gha
           cache-to: type=gha,mode=max
           file: compose/production/django/Dockerfile
