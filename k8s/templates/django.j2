@@ -155,24 +155,24 @@ spec:
           mountPath: "/etc/django-operator-nkeys"
         - name: nsc
           mountPath: "/var/lib/nats/nsc"
-      - name: firehose
-        image: {{ PRINTNANNY_DJANGO_IMAGE }}
-        command:
-          - python
-          - -m
-          - print_nanny_webapp.events.streams.firehose
-        envFrom:
-          - configMapRef:
-              name: webapp
-        volumeMounts:
-        - name: django-operator-nkeys
-          readOnly: true
-          mountPath: "/etc/django-operator-nkeys"
-        - name: nsc
-          mountPath: "/var/lib/nats/nsc"
-        - name: firehose-nkey
-          mountPath: /app/.envs/.production/.firehose
-          readOnly: true
+      # - name: firehose
+      #   image: {{ PRINTNANNY_DJANGO_IMAGE }}
+      #   command:
+      #     - python
+      #     - -m
+      #     - print_nanny_webapp.events.streams.firehose
+      #   envFrom:
+      #     - configMapRef:
+      #         name: webapp
+      #   volumeMounts:
+      #   - name: django-operator-nkeys
+      #     readOnly: true
+      #     mountPath: "/etc/django-operator-nkeys"
+      #   - name: nsc
+      #     mountPath: "/var/lib/nats/nsc"
+      #   - name: firehose-nkey
+      #     mountPath: /app/.envs/.production/.firehose
+      #     readOnly: true
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!
