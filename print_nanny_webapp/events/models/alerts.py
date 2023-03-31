@@ -98,8 +98,14 @@ class PrintJobAlert(models.Model):
         pass
 
     def email_merge_data(self) -> Dict[str, str]:
+        if self.pi.latest_camera_snapshot():
+            return {
+                "alertHeader": self.email_alert_header(),
+                "alertBody": self.email_alert_body(),
+                "alertImageUrl": self.pi.latest_camera_snapshot().image.url,
+            }
         return {
             "alertHeader": self.email_alert_header(),
             "alertBody": self.email_alert_body(),
-            "alertImageUrl": self.pi.latest_camera_snapshot(),
+            "alertImageUrl": None,
         }
