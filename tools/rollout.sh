@@ -2,8 +2,6 @@
 
 set -euo pipefail
 
-docker push "us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}"
-
 kubectl  -n "$PRINTNANNY_NAMESPACE" set image deployment/django "django=us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}" "celery-worker=us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}" "celery-beat=us.gcr.io/${GCP_PROJECT}/print_nanny_webapp:${GIT_SHA}" --record
 ATTEMPTS=0
 MAX_ATTEMPTS=300
