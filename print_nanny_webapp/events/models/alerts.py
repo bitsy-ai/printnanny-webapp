@@ -100,14 +100,8 @@ class PrintJobAlert(models.Model):
                 raise ValueError(
                     "PrintJobAlert.email_alert_header missing progress.completion field for PRINT_PROGRESS"
                 )
-            print_time_left = self.payload.get("progress", {}).get("printTimeLeft")
 
-            if print_time_left is None:
-                print_time_left_str = ""
-            else:
-                print_time_left_str = str(datetime.timedelta(seconds=print_time_left))
-
-            return f"Your print job is {completion}% complete. {print_time_left_str}"
+            return f"Your print job is {completion}% complete."
         elif self.event_type == AlertEventType.PRINT_STARTED:
             return "🏁 Your print job was started."
         elif self.event_type == AlertEventType.PRINT_DONE:
@@ -119,7 +113,21 @@ class PrintJobAlert(models.Model):
         raise ValueError(f"No email_subject configured for {self.event_type}")
 
     def email_alert_body(self) -> str:
-        return "Log into PrintNanny Cloud to manage your 3D printer."
+        if self.event_type == AlertEventType.PRINT_PROGRESS:
+            completion = self.payload.get("progress", {}).get("completion")
+            if completion == 100:
+                return "Log into PrintNanny Cloud to manage your 3D printer."
+
+            print_time_left = self.payload.get("progress", {}).get("printTimeLeft")
+
+            if print_time_left is None:
+                return "Log into PrintNanny Cloud to manage your 3D printer."
+            else:
+                print_time_left_str = str(datetime.timedelta(seconds=print_time_left))
+                return f"Time remaining (approximate): {print_time_left_str}"
+
+        else:
+            return "Log into PrintNanny Cloud to manage your 3D printer."
 
     def email_merge_data(self) -> Dict[str, str]:
         if self.pi.latest_camera_snapshot():
