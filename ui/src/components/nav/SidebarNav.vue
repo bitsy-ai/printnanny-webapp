@@ -172,12 +172,12 @@ const app_nav = [
     icon: HomeIcon,
     current: () => router.currentRoute.value.name == "devices",
   },
-  {
-    name: "Videos",
-    link: { name: "videos" },
-    icon: VideoCameraIcon,
-    current: () => router.currentRoute.value.name == "videos",
-  },
+  // {
+  //   name: "Videos",
+  //   link: { name: "videos" },
+  //   icon: VideoCameraIcon,
+  //   current: () => router.currentRoute.value.name == "videos",
+  // },
   {
     name: "Settings",
     link: { name: "networkSettings" },
