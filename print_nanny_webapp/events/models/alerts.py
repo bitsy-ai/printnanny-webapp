@@ -101,7 +101,7 @@ class PrintJobAlert(models.Model):
                     "PrintJobAlert.email_alert_header missing progress.completion field for PRINT_PROGRESS"
                 )
 
-            return f"Your print job is {completion}% complete."
+            return f"Your print job is {int(completion)}% complete."
         elif self.event_type == AlertEventType.PRINT_STARTED:
             return "🏁 Your print job was started."
         elif self.event_type == AlertEventType.PRINT_DONE:
