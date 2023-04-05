@@ -1,11 +1,7 @@
 <template>
-  <Form
-    class="sm:max-w-xl sm:mx-auto lg:mx-0"
-    :validation-schema="schema"
-    @submit="onSubmit"
-  >
+  <Form class="lg:mx-52" :validation-schema="schema" @submit="onSubmit">
     <div class="sm:flex">
-      <div class="min-w-0 flex-1">
+      <div class="flex-1">
         <label for="email" class="sr-only">Email address</label>
         <Field
           id="email"
@@ -24,7 +20,7 @@
           type="submit"
           class="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
         >
-          Join the Waitlist
+          Subscribe
         </button>
       </div>
     </div>

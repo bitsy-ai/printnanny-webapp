@@ -69,10 +69,6 @@
           appear
         >
           <div>
-            <img
-              src="@/assets/logo/logo-rect-light.svg"
-              class="m-auto h-36 py-2"
-            />
             <h2
               class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8"
             >
@@ -92,18 +88,24 @@
         <div class="mt-12">
           <DemoQualityAlert></DemoQualityAlert>
         </div>
-        <router-link id="hero-pricing" :to="{ name: 'pricing' }">
-          <button
-            class="w-36 m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-          >
-            Get Started
-          </button>
-        </router-link>
+      </div>
+    </div>
+
+    <div id="waitlist" class="relative bg-gray-200 pt-6 lg:pt-12 pb-12">
+      <div
+        class="grid grid-cols-1 space-y-7 w-full md:w-3/4 lg:w-1/2 m-auto p-2"
+      >
+        <img src="@/assets/logo/logo-rect-light.svg" class="m-auto h-36" />
+        <p class="max-w-prose mx-auto text-xl text-gray-500 text-center">
+          Get the latest development updates via email.
+        </p>
+
+        <WaitlistForm></WaitlistForm>
       </div>
     </div>
 
     <!-- Feature section with toggle -->
-    <div id="quality-control" class="relative bg-gray-50 pt-6 lg:pt-12">
+    <div id="quality-control" class="relative bg-white pt-6 lg:pt-12">
       <div
         class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl"
       >
@@ -147,7 +149,7 @@
     </div>
 
     <!-- OTA updates -->
-    <div id="printnanny-os" class="relative bg-white p-6 lg:py-12">
+    <div id="printnanny-os" class="relative bg-gray-50 p-6 lg:py-12">
       <div
         class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
       >
