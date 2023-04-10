@@ -1,5 +1,5 @@
 <template>
-  <Form class="lg:mx-52" :validation-schema="schema" @submit="onSubmit">
+  <Form class="lg:mx-24" :validation-schema="schema" @submit="onSubmit">
     <div class="sm:flex">
       <div class="flex-1">
         <label for="email" class="sr-only">Email address</label>
