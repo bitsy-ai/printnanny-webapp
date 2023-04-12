@@ -1,10 +1,6 @@
-
 FROM python:3.10-slim-bullseye
 
 ENV PYTHONUNBUFFERED 1
-
-ENV JUPYTER_DATA_DIR /app/data
-ENV JUPYTER_CONFIG_DIR /app/data
 
 RUN apt-get update \
   # dependencies for building Python packages
