@@ -69,7 +69,7 @@ Name | Type | Description  | Required | Notes
 
 ## shop_orders_create
 
-> crate::models::OrderCheckout shop_orders_create(order_checkout_request)
+> crate::models::Order shop_orders_create(order_checkout_request_request)
 
 
 ### Parameters
@@ -77,11 +77,11 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**order_checkout_request** | [**OrderCheckoutRequest**](OrderCheckoutRequest.md) |  | [required] |
+**order_checkout_request_request** | [**OrderCheckoutRequestRequest**](OrderCheckoutRequestRequest.md) |  | [required] |
 
 ### Return type
 
-[**crate::models::OrderCheckout**](OrderCheckout.md)
+[**crate::models::Order**](Order.md)
 
 ### Authorization
 

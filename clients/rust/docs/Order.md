@@ -15,7 +15,6 @@ Name | Type | Description | Notes
 **last_status** | [**crate::models::OrderStatus**](OrderStatus.md) |  | 
 **products** | [**Vec<crate::models::Product>**](Product.md) |  | [readonly]
 **status_history** | [**Vec<crate::models::OrderStatus>**](OrderStatus.md) |  | 
-**stripe_checkout_redirect_url** | **String** |  | [readonly]
 **stripe_checkout_session_data** | [**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) |  | [readonly]
 **user** | Option<[**crate::models::User**](User.md)> |  | [optional]
 **receipt_url** | Option<**String**> |  | [readonly]

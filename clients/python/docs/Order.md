@@ -16,7 +16,6 @@ Name | Type | Description | Notes
 **last_status** | [**OrderStatus**](OrderStatus.md) |  | 
 **products** | [**list[Product]**](Product.md) |  | [readonly] 
 **status_history** | [**list[OrderStatus]**](OrderStatus.md) |  | 
-**stripe_checkout_redirect_url** | **str** |  | [readonly] 
 **stripe_checkout_session_data** | **dict(str, object)** |  | [readonly] 
 **user** | [**User**](User.md) |  | [optional] 
 **receipt_url** | **str** |  | [readonly] 
