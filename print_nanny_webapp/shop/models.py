@@ -1,12 +1,16 @@
 import logging
 from uuid import uuid4
-from typing import Optional, List
+from typing import Optional, List, Dict, Any
 
 from django.db import models
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.postgres.fields import ArrayField
+
+from djstripe.settings import djstripe_settings
 from djstripe.models import Product as DjstripeProduct
+import stripe
+
 from safedelete.models import SafeDeleteModel, SafeDeleteManager, SOFT_DELETE
 from print_nanny_webapp.shop.enum import OrderStatusType
 
@@ -174,6 +178,19 @@ class Order(SafeDeleteModel):
     )
     # will be null if order is created while not logged in, but can be reconciled
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def stipe_checkout_session_data(self) -> Dict[Any, Any]:
+        stripe.api_key = djstripe_settings.STRIPE_SECRET_KEY
+        return stripe.checkout.Session.retrieve(
+            self.djstripe_checkout_session.id,
+            expand=[
+                "customer",
+                "payment_intent",
+                "line_items",
+                "subscription",
+                "subscription.default_payment_method",
+            ],
+        )
 
     @property
     def last_status(self) -> Optional[OrderStatus]:
