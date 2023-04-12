@@ -1,4 +1,4 @@
-# OrderCheckoutRequestRequest
+# OrderCheckoutRequest
 
 
 ## Properties

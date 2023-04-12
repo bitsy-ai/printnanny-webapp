@@ -255,7 +255,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **shop_orders_create**
-> Order shop_orders_create(order_checkout_request_request)
+> Order shop_orders_create(order_checkout_request)
 
 
 
@@ -294,10 +294,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.ShopApi(api_client)
-    order_checkout_request_request = printnanny_api_client.OrderCheckoutRequestRequest() # OrderCheckoutRequestRequest | 
+    order_checkout_request = printnanny_api_client.OrderCheckoutRequest() # OrderCheckoutRequest | 
 
     try:
-        api_response = api_instance.shop_orders_create(order_checkout_request_request)
+        api_response = api_instance.shop_orders_create(order_checkout_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling ShopApi->shop_orders_create: %s\n" % e)
@@ -336,10 +336,10 @@ configuration = printnanny_api_client.Configuration(
 with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.ShopApi(api_client)
-    order_checkout_request_request = printnanny_api_client.OrderCheckoutRequestRequest() # OrderCheckoutRequestRequest | 
+    order_checkout_request = printnanny_api_client.OrderCheckoutRequest() # OrderCheckoutRequest | 
 
     try:
-        api_response = api_instance.shop_orders_create(order_checkout_request_request)
+        api_response = api_instance.shop_orders_create(order_checkout_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling ShopApi->shop_orders_create: %s\n" % e)
@@ -349,7 +349,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_checkout_request_request** | [**OrderCheckoutRequestRequest**](OrderCheckoutRequestRequest.md)|  | 
+ **order_checkout_request** | [**OrderCheckoutRequest**](OrderCheckoutRequest.md)|  | 
 
 ### Return type
 
