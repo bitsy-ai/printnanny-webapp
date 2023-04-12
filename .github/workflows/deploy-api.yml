@@ -133,6 +133,9 @@ jobs:
       STRIPE_LIVE_SECRET_KEY: ${{ secrets.STRIPE_LIVE_SECRET_KEY }}
       STRIPE_PORTAL_URL: ${{ secrets.STRIPE_PORTAL_URL }}
       PGBOUNCER_PORT: 6432
+      PGBOUNCER_MAX_DB_CONNECTIONS: 50
+      PGBOUNCER_DEFAULT_POOL_SIZE: 30
+      PGBOUNCER_MAX_CLIENT_CONN: 500
 
     needs: [lint, shellcheck, mypy]
     runs-on: ubuntu-latest
