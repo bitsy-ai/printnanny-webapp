@@ -198,7 +198,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted } from "vue";
 import { useShopStore } from "@/stores/shop";
 import * as yup from "yup";
 import type * as api from "printnanny-api-client";

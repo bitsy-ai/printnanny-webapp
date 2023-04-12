@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import * as api from "printnanny-api-client";
 import * as yup from "yup";
 import { Form, Field } from "vee-validate";
 import type { UiAlert } from "@/types";
-import FadeOutIn from "@/components/transitions/FadeOutIn.vue";
 import { useDeviceStore } from "@/stores/devices";
 import { useAlertStore } from "@/stores/alerts";
 import TextSpinner from "@/components/util/TextSpinner.vue";

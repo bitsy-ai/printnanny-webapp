@@ -4,7 +4,6 @@ import * as api from "printnanny-api-client";
 import { useAlertStore } from "./alerts";
 import { handleApiError } from "@/utils/api";
 import { posthogIdentify, posthogReset } from "@/utils/posthog";
-import { handleError } from "vue";
 
 export const useAccountStore = defineStore({
   id: "accounts",

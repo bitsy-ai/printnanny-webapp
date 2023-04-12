@@ -1,4 +1,3 @@
-import * as api from "printnanny-api-client";
 import axios from "axios";
 import type { AxiosError } from "axios";
 import { useAlertStore } from "@/stores/alerts";

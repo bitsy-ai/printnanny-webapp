@@ -122,15 +122,6 @@ import type { PropType } from "vue";
 
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/20/solid";
-import {
-  ChartBarIcon,
-  CheckCircleIcon,
-  CursorArrowRaysIcon,
-  PhoneIcon,
-  PlayIcon,
-  ShieldCheckIcon,
-  Squares2X2Icon,
-} from "@heroicons/vue/24/outline";
 import type {
   FullWidthFlyoutMenuLink,
   FullWidthFlyoutMenuFooterLink,

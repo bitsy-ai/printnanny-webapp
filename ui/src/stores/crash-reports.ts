@@ -1,5 +1,4 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
-import type * as api from "printnanny-api-client";
 import type { CrashReport } from "printnanny-api-client";
 import { handleApiError } from "@/utils/api";
 import { useAccountStore } from "./account";
