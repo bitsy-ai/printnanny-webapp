@@ -3,8 +3,11 @@ FROM python:3.10-slim-bullseye
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
+ENV JUPYTER_DATA_DIR /data
+ENV JUPYTER_CONFIG_DIR /data
+
 RUN apt-get update \
-  # dependPdencies for building Python packages
+  # dependencies for building Python packages
   && apt-get install -y build-essential unzip \
   # psycopg2 dependencies
   && apt-get install -y libpq-dev \
