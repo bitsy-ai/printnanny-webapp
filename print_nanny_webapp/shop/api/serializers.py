@@ -93,11 +93,10 @@ class OrderItemSerializer(serializers.Serializer):
     price = serializers.CharField()
 
 
-class OrderCheckoutSerializer(serializers.ModelSerializer):
+class OrderCheckoutRequestSerializer(serializers.ModelSerializer):
     # provided by client to initialize Stripe checkout session
     email = serializers.EmailField()
     items = OrderItemSerializer(many=True)
-    stripe_checkout_redirect_url = serializers.CharField(read_only=True)
     stripe_checkout_session_id = serializers.CharField(read_only=True)
 
     class Meta:
@@ -105,7 +104,6 @@ class OrderCheckoutSerializer(serializers.ModelSerializer):
         fields = (
             "items",
             "email",
-            "stripe_checkout_redirect_url",
             "stripe_checkout_session_id",
         )
 
@@ -147,8 +145,6 @@ class OrderSerializer(serializers.ModelSerializer):
     last_status = OrderStatusSerializer()
     status_history = OrderStatusSerializer(many=True)
 
-    stripe_checkout_redirect_url = serializers.CharField(read_only=True, required=False)
-
     stripe_checkout_session_data = serializers.SerializerMethodField()
     user = UserSerializer(required=False)
 
@@ -185,7 +181,6 @@ class OrderSerializer(serializers.ModelSerializer):
             "last_status",
             "products",
             "status_history",
-            "stripe_checkout_redirect_url",
             "stripe_checkout_session_data",
             "user",
             "receipt_url",

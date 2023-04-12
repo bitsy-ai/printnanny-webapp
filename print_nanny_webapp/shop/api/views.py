@@ -16,7 +16,7 @@ from django.conf import settings
 from print_nanny_webapp.shop.api.serializers import (
     ProductSerializer,
     OrderSerializer,
-    OrderCheckoutSerializer,
+    OrderCheckoutRequestSerializer,
 )
 from print_nanny_webapp.shop.enum import OrderStatusType
 from print_nanny_webapp.shop.models import Product, OrderStatus
@@ -64,8 +64,8 @@ class ProductsViewSet(GenericViewSet, ListModelMixin):
 @extend_schema_view(
     post=extend_schema(
         tags=["shop"],
-        request=OrderCheckoutSerializer,
-        responses={200: OrderCheckoutSerializer(many=False)} | generic_create_errors,
+        request=OrderCheckoutRequestSerializer,
+        responses={200: OrderSerializer(many=False)} | generic_create_errors,
     ),
 )
 class OrderCheckoutView(APIView):
@@ -73,7 +73,7 @@ class OrderCheckoutView(APIView):
     permission_classes = (AllowAny,)
 
     def post(self, request):
-        serializer = OrderCheckoutSerializer(
+        serializer = OrderCheckoutRequestSerializer(
             data=request.data, context={"request": request}
         )
         if serializer.is_valid():

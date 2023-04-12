@@ -58,10 +58,12 @@ export const useShopStore = defineStore({
       const res = await account.shopApi
         .shopOrdersCreate(req)
         .catch(handleApiError);
+      debugger;
       if (res) {
         this.$patch({ loading: false });
         console.debug(`Got checkout data`, res.data);
-        window.location.href = res.data.stripe_checkout_redirect_url;
+        const redirect =
+          window.location.href = res.data.stripe_checkout_session_data.url;;
       }
     },
     async fetchCheckoutSession(sessionId: string) {

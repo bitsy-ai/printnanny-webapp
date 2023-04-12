@@ -15,7 +15,9 @@ describe("Checkout v2, Cloud starter Monthly", () => {
   const cvc = "123";
   const phoneNumber = "8888675309";
 
-  const promotionCode = "FOUNDING10";
+  const promotionCode1 = "FOUNDING10";
+  const promotionCode2 = "SUPERBLOOM2023";
+
 
   it("Should redirect to Stripe Checkout session for monthly Cloud starter plan", () => {
     cy.visit("/pricing");
@@ -39,7 +41,8 @@ describe("Checkout v2, Cloud starter Monthly", () => {
           cardNumber,
           cvc,
           exp,
-          promotionCode,
+          promotionCode1,
+          promotionCode2,
           phoneNumber,
           price,
         };
@@ -61,7 +64,8 @@ describe("Checkout v2, Cloud starter Monthly", () => {
             cardNumber,
             cvc,
             exp,
-            promotionCode,
+            promotionCode1,
+            promotionCode2,
             phoneNumber,
             price,
           }) => {
