@@ -283,7 +283,7 @@ async function onClick(values: any) {
   if (values && values.email !== undefined && productData !== undefined) {
     await shop.createCheckoutSession(values.email, [
       { product: productData.id, price: priceData?.id },
-    ] as Array<api.OrderItem>);
+    ] as Array<api.OrderItemRequest>);
   }
 }
 </script>

@@ -47,7 +47,7 @@ export const useShopStore = defineStore({
         return res.data.results;
       }
     },
-    async createCheckoutSession(email: string, items: Array<api.OrderItem>) {
+    async createCheckoutSession(email: string, items: Array<api.OrderItemRequest>) {
       const account = useAccountStore();
       this.$patch({ loading: true });
       const req = {
