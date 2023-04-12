@@ -146,3 +146,14 @@ def send_fn_founding_member_feb_2023_offer(
         limit=limit,
         tags=("marketing", "founding_member", "2023-02"),
     )
+
+
+def send_fn_spring_2023_sale(
+    campaign: Campaign, filter_fn=filter_email_waitlist_not_subscribed, limit=10
+):
+    return send_fn_founding_member_offer(
+        campaign,
+        filter_fn=filter_fn,
+        limit=limit,
+        tags=("marketing", "subscription", "2023-04", "v0.6.x"),
+    )
