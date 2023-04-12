@@ -173,6 +173,14 @@ spec:
       #   - name: firehose-nkey
       #     mountPath: /app/.envs/.production/.firehose
       #     readOnly: true
+      - name: pgbouncer
+        # pgbouncer implements connection pooling for PostgreSQL
+        image: bitnami/pgbouncer:1.18.0
+        envFrom:
+          - configMapRef:
+              name: pgbouncer
+        ports:
+          - containerPort: {{ PGBOUNCER_PORT }}
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!
