@@ -1,14 +1,10 @@
-LABEL org.opencontainers.image.source=https://github.com/bitsy-ai/printnanny-webapp
-LABEL org.opencontainers.image.description="PrintNanny Webapp"
-LABEL org.opencontainers.image.licenses="AGPL-3.0-or-later"
-
 FROM python:3.10-slim-bullseye
 
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
 RUN apt-get update \
-  # dependencies for building Python packages
+  # dependPdencies for building Python packages
   && apt-get install -y build-essential unzip \
   # psycopg2 dependencies
   && apt-get install -y libpq-dev \
