@@ -18,7 +18,6 @@ describe("Checkout v2, Cloud starter Monthly", () => {
   const promotionCode1 = "FOUNDING10";
   const promotionCode2 = "SUPERBLOOM2023";
 
-
   it("Should redirect to Stripe Checkout session for monthly Cloud starter plan", () => {
     cy.visit("/pricing");
 

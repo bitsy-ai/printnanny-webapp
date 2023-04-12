@@ -93,7 +93,7 @@ class OrderItemSerializer(serializers.Serializer):
     price = serializers.CharField()
 
 
-class OrderCheckoutRequestSerializer(serializers.ModelSerializer):
+class OrderCheckoutSerializer(serializers.ModelSerializer):
     # provided by client to initialize Stripe checkout session
     email = serializers.EmailField()
     items = OrderItemSerializer(many=True)

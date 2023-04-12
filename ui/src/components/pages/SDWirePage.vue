@@ -273,16 +273,11 @@
 
 <script setup lang="ts">
 import * as yup from "yup";
-import { Field, ErrorMessage, Form } from "vee-validate";
-
-import CustomSpinner from "@/components/util/CustomSpinner.vue";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/vue";
 import { useShopStore } from "@/stores/shop";
-import { useAccountStore } from "@/stores/account";
 import { useAlertStore } from "@/stores/alerts";
 import type { UiAlert, AlertAction } from "@/types/alerts";
 
-const accountStore = useAccountStore();
 const alertStore = useAlertStore();
 const shopStore = useShopStore();
 

@@ -1,4 +1,3 @@
-import { ref, h } from "vue";
 import { defineStore, acceptHMRUpdate } from "pinia";
 import type * as api from "printnanny-api-client";
 import type { Pi } from "printnanny-api-client";
