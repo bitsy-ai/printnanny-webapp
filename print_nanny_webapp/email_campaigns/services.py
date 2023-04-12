@@ -156,4 +156,5 @@ def send_fn_spring_2023_sale(
         filter_fn=filter_fn,
         limit=limit,
         tags=("marketing", "subscription", "2023-04", "v0.6.x"),
+        from_email="PrintNanny <noreply@mail.printnanny.ai>",
     )
