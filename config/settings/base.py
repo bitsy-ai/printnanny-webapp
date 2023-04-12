@@ -47,7 +47,7 @@ USE_TZ = True
 LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 
 # externally-managed CDN (Google Storage CDN)
-CDN_BASE_URL = "https://cdn.print-nanny.com"
+CDN_BASE_URL = "https://cdn.printnanny.ai"
 
 # DATABASES
 # ------------------------------------------------------------------------------
