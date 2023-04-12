@@ -18,6 +18,13 @@ ALLOWED_HOSTS = env.list(
     ],
 )
 
+# DATABASES
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#databases
+# disable server-side cursors for compatibility with pgbouncer connection pooling
+# ref: https://docs.djangoproject.com/en/4.2/ref/databases/#transaction-pooling-server-side-cursors
+DATABASES["default"]["DISABLE_SERVER_SIDE_CURSORS"] = True
+
 # Anymail
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 ANYMAIL = {
