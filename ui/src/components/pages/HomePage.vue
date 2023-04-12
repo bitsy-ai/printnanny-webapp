@@ -97,7 +97,7 @@
       >
         <img src="@/assets/logo/logo-rect-light.svg" class="m-auto h-36" />
         <p class="max-w-prose mx-auto text-xl text-gray-500 text-center">
-          Get the latest development updates via email.
+          📧 Get the latest development updates via email.
         </p>
 
         <WaitlistForm></WaitlistForm>
