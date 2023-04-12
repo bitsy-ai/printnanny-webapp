@@ -16,6 +16,12 @@ env:
   NSC_HOME: /var/lib/nats/nsc
   NSC_STORE: /var/lib/nats/nsc/stores
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT }}
+  GCP_PROJECT: ${{ secrets.GCP_PROJECT }}
+  GCP_REGION: ${{ secrets.GCP_REGION }}
+  GCP_ZONE: us-central1-c
+  GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT_KEY  }}
+  GCP_SERVICE_ACCOUNT: ${{ secrets.PROD_GCP_SERVICE_ACCOUNT }}
   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
   CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
   STRIPE_TEST_PUBLIC_KEY: ${{ secrets.STRIPE_TEST_PUBLIC_KEY }}
