@@ -18,13 +18,6 @@ ALLOWED_HOSTS = env.list(
     ],
 )
 
-# DATABASES
-# ------------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/dev/ref/settings/#databases
-# disable server-side cursors for compatibility with pgbouncer connection pooling
-# ref: https://docs.djangoproject.com/en/4.2/ref/databases/#transaction-pooling-server-side-cursors
-DATABASES["default"]["DISABLE_SERVER_SIDE_CURSORS"] = True
-
 # Anymail
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 ANYMAIL = {
@@ -45,11 +38,16 @@ POSTHOG_API_KEY = env("POSTHOG_API_KEY", default=None)
 posthog.project_api_key = POSTHOG_API_KEY
 posthog.debug = False
 posthog.disabled = False
+
 # DATABASES
 # ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES["default"] = env.db("DATABASE_URL")  # noqa F405
 DATABASES["default"]["ATOMIC_REQUESTS"] = True  # noqa F405
-DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)  # noqa F405
+DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=0)  # noqa F405
+# disable server-side cursors for compatibility with pgbouncer connection pooling
+# ref: https://docs.djangoproject.com/en/4.2/ref/databases/#transaction-pooling-server-side-cursors
+DATABASES["default"]["DISABLE_SERVER_SIDE_CURSORS"] = True
 
 # CACHES
 # ------------------------------------------------------------------------------
