@@ -37,4 +37,4 @@ then
 fi
 set -u
 
-uvicorn config.asgi:application --host 0.0.0.0 
+uvicorn config.asgi:application --host 0.0.0.0
