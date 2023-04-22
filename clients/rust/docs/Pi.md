@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **system_info** | Option<[**crate::models::SystemInfo**](SystemInfo.md)> |  | [readonly]
 **webrtc_edge** | Option<[**crate::models::WebrtcStream**](WebrtcStream.md)> |  | [readonly]
 **webrtc_cloud** | Option<[**crate::models::WebrtcStream**](WebrtcStream.md)> |  | [readonly]
+**latest_camera_snapshot_url** | Option<**String**> |  | [readonly]
 **octoprint_server** | Option<[**crate::models::OctoPrintServer**](OctoPrintServer.md)> |  | [readonly]
 **hostname** | **String** |  | 
 **favorite** | **bool** |  | 

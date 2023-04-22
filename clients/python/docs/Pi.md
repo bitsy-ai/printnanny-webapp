@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **system_info** | [**SystemInfo**](SystemInfo.md) |  | [readonly] 
 **webrtc_edge** | [**WebrtcStream**](WebrtcStream.md) |  | [readonly] 
 **webrtc_cloud** | [**WebrtcStream**](WebrtcStream.md) |  | [readonly] 
+**latest_camera_snapshot_url** | **str** |  | [readonly] 
 **octoprint_server** | [**OctoPrintServer**](OctoPrintServer.md) |  | [readonly] 
 **hostname** | **str** |  | 
 **favorite** | **bool** |  | 
