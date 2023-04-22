@@ -1,4 +1,5 @@
 import logging
+from typing import Optional
 from rest_framework import serializers
 from drf_spectacular.utils import extend_schema_field
 from drf_spectacular.types import OpenApiTypes
@@ -184,6 +185,14 @@ class PiSerializer(serializers.ModelSerializer):
     system_info = SystemInfoSerializer(read_only=True)
     webrtc_edge = WebrtcStreamSerializer(read_only=True)
     webrtc_cloud = WebrtcStreamSerializer(read_only=True)
+
+    latest_camera_snapshot_url = serializers.SerializerMethodField(read_only=True)
+
+    def get_latest_camera_snapshot_url(self, obj) -> Optional[str]:
+        snapshot = obj.latest_camera_snapshot()
+        if snapshot is None:
+            return None
+        return snapshot.image.url
 
     octoprint_server = OctoPrintServerSerializer(
         read_only=True,
