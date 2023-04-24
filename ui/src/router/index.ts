@@ -32,7 +32,7 @@ router.afterEach((to, from) => {
   // see: https://github.com/vuejs/vue-router/issues/914#issuecomment-384477609
   // ref: https://stackoverflow.com/questions/51639850/how-to-change-page-titles-when-using-vue-router
   Vue.nextTick(() => {
-    document.title = to.meta.title || DEFAULT_TITLE;
+    document.title = (to.meta.title as string || DEFAULT_TITLE);
   });
 });
 
