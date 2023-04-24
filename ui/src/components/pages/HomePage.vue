@@ -69,13 +69,13 @@
           appear
         >
           <div>
-            <h2
+            <h1
               class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8"
             >
               <span class="text-gray-900"
                 >Quality Control that Never Sleeps</span
               >
-            </h2>
+            </h1>
             <p class="pt-6 max-w-prose mx-auto text-xl text-gray-500">
               Get notified or <strong>automatically pause</strong> if print job
               doesn't pass quality control.
@@ -90,31 +90,19 @@
         </div>
       </div>
     </div>
-
-    <div id="waitlist" class="relative bg-gray-200 pt-6 lg:pt-12 pb-12">
-      <div
-        class="grid grid-cols-1 space-y-7 w-full md:w-3/4 lg:w-1/2 m-auto p-2"
-      >
-        <img src="@/assets/logo/logo-rect-light.svg" class="m-auto h-36" />
-        <p class="max-w-prose mx-auto text-xl text-gray-500 text-center">
-          📧 Get the latest development updates via email.
-        </p>
-
-        <WaitlistForm></WaitlistForm>
-      </div>
-    </div>
-
     <!-- Feature section with toggle -->
     <div id="quality-control" class="relative bg-white pt-6 lg:pt-12">
       <div
         class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl"
       >
         <div>
-          <h2
-            class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
+          <h1
+            class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8"
           >
-            Mix & Match Your Favorite Software
-          </h2>
+            <span class="text-gray-900">
+              Mix & Match Your Favorite Software
+            </span>
+          </h1>
           <p
             class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-2"
           >
@@ -153,22 +141,46 @@
       <div
         class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
       >
-        <div class="flex-1">
-          <h2
-            class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
-          >
-            Over-the-air Updates
-          </h2>
-          <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-            <strong>Are you tired of re-imaging SD cards?</strong>
-          </p>
-          <p
-            class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
-          >
-            Seamless A/B System Updates
-          </p>
+        <div class="grid md:grid-cols-4 md:gap-4">
+          <div class="col-span-2">
+            <h1
+              class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8"
+            >
+              <span class="text-gray-900">Over-the-air Updates</span>
+            </h1>
+            <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+              <strong>Are you tired of re-imaging SD cards?</strong>
+            </p>
+            <p
+              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
+            >
+              Over-the-air Updates Included with PrintNanny OS
+            </p>
+            <p
+              class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
+            >
+              Custom packages available for enterprise
+            </p>
+            <router-link id="hero-pricing" :to="{ name: 'pricing-enterprise' }">
+              <button
+                class="w-full md:w-3/4 m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+              >
+                Get Started for $9.99/month
+              </button>
+            </router-link>
+            <router-link id="hero-pricing" :to="{ name: 'pricing-enterprise' }">
+              <button
+                class="w-full md:w-3/4 m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+              >
+                Get a Quote for Enterprise OTA
+              </button>
+            </router-link>
+          </div>
+          <img
+            src="@/assets/images/swupdate-messages.png"
+            class="drop-shadow-xl w-full m-auto py-2 col-span-2"
+          />
         </div>
-
         <div
           class="mt-12 mx-auto max-w-md px-4 grid grid-cols-1 gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-4 lg:max-w-7xl"
         >
@@ -206,12 +218,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="relative bg-white p-2 lg:py-6">
-      <img
-        src="@/assets/images/swupdate-messages.png"
-        class="drop-shadow-xl w-full md:w-3/4 lg:w-1/2 m-auto py-6"
-      />
     </div>
     <!-- Feature section with grid -->
     <div id="printnanny-os" class="relative bg-white py-4 sm:py-8">
@@ -265,23 +271,13 @@
 
     <!-- founding member offer section -->
     <!-- end founding member offer section -->
-
     <!-- Blog section -->
-    <div class="relative bg-gray-50 py-16 sm:py-24 lg:py-32">
+    <div class="relative bg-gray-50 py-16">
       <div class="relative">
         <div
           class="text-center mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
         >
-          <h2
-            class="text-base font-semibold tracking-wider text-indigo-600 uppercase"
-          >
-            Join the Community
-          </h2>
-          <p
-            class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
-          >
-            Learn More
-          </p>
+          <img src="@/assets/logo/logo-rect-light.svg" class="m-auto h-36" />
           <p class="mt-5 mb-5 mx-auto max-w-prose text-xl text-gray-500">
             Join an amazing community of entrepreneurs and makers.
           </p>
@@ -301,16 +297,24 @@
           </a>
         </div>
 
-        <h2
-          class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl text-center mt-24"
-        >
-          Development Blog
-        </h2>
-        <h2
-          class="text-base font-semibold tracking-wider text-indigo-600 uppercase text-center mt-2"
-        >
-          Deep dive into the nitty-gritty of how PrintNanny works.
-        </h2>
+        <div id="waitlist" class="relative bg-gray-200 pt-6 lg:pt-12 pb-12">
+          <div
+            class="grid grid-cols-1 space-y-7 w-full md:w-3/4 lg:w-1/2 m-auto p-2"
+          >
+            <h2
+              class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl text-center"
+            >
+              Development Blog
+            </h2>
+            <h2
+              class="text-base font-semibold tracking-wider text-indigo-600 uppercase text-center mt-2"
+            >
+              Deep dive into the nitty-gritty of how PrintNanny works.
+            </h2>
+            <WaitlistForm></WaitlistForm>
+          </div>
+        </div>
+
         <div
           class="mt-12 mx-auto max-w-md px-4 grid gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-3 lg:max-w-7xl"
         >
