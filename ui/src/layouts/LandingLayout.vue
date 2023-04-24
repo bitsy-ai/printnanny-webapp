@@ -44,7 +44,7 @@
                     id="products-flyout"
                     :links="productLinks"
                     :footer="productFooterLinks"
-                    menu-text="Products"
+                    menu-text="Products & Pricing"
                   />
                   <SimpleFlyoutMenu
                     id="learn-more-flyout"
@@ -164,12 +164,12 @@ const productFooterLinks = [
   },
   {
     name: "Custom Software for OEM & Enterprise",
-    href: "/pricing",
+    href: "/pricing/enterprise",
     icon: WrenchScrewdriverIcon,
   },
   {
     name: "K-12 & Higher Education",
-    href: "/pricing",
+    href: "/pricing/enterprise",
     icon: AcademicCapIcon,
   },
 ] as Array<FullWidthFlyoutMenuFooterLink>;

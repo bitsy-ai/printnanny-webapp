@@ -16,7 +16,7 @@ export default [
         components: {
           default: HomePage,
         },
-        meta: { title: "Stop Babysitting Your 3D Printer" },
+        meta: { title: "PrintNanny: Stop Babysitting Your 3D Printer" },
       },
       {
         path: "register",
@@ -31,6 +31,15 @@ export default [
         components: {
           default: () => import("@/components/shop/PriceTable.vue"),
         },
+        meta: { title: "PrintNanny: Plans & Pricing" },
+      },
+      {
+        path: "pricing/enterprise",
+        name: "pricing-enterprise",
+        components: {
+          default: () => import("@/components/shop/PriceTableEnterprise.vue"),
+        },
+        meta: { title: "PrintNanny: Enterprise, Education, OEM Plans" },
       },
       {
         path: "account-verify-email",
