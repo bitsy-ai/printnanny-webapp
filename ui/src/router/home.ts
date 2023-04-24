@@ -37,7 +37,7 @@ export default [
         path: "pricing/enterprise",
         name: "pricing-enterprise",
         components: {
-          default: () => import("@/components/shop/PriceTable.vue"),
+          default: () => import("@/components/shop/PriceTableEnterprise.vue"),
         },
         meta: { title: "PrintNanny: Enterprise, Education, OEM Plans" },
       },

@@ -670,7 +670,7 @@ import { ref, computed, onMounted } from "vue";
 import { CheckIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 import { useShopStore } from "@/stores/shop";
 
-const showBilling = ref("yearly");
+const showBilling = ref("monthly");
 const shop = useShopStore();
 
 onMounted(async () => {
