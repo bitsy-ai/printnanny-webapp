@@ -1,3 +1,4 @@
+import * as Vue from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import { useAccountStore } from "@/stores/account";
 import { posthogPageview } from "@/utils/posthog";
@@ -21,6 +22,18 @@ const router = createRouter({
     ...shopRoutes,
     ...videoRoutes,
   ],
+});
+
+// set page title
+const DEFAULT_TITLE =
+  "PrintNanny: monitoring + workflow automation for 3D printers";
+router.afterEach((to, from) => {
+  // Use next tick to handle router history correctly
+  // see: https://github.com/vuejs/vue-router/issues/914#issuecomment-384477609
+  // ref: https://stackoverflow.com/questions/51639850/how-to-change-page-titles-when-using-vue-router
+  Vue.nextTick(() => {
+    document.title = to.meta.title || DEFAULT_TITLE;
+  });
 });
 
 // capture posthog events

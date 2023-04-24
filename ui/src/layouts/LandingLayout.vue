@@ -44,7 +44,7 @@
                     id="products-flyout"
                     :links="productLinks"
                     :footer="productFooterLinks"
-                    menu-text="Products"
+                    menu-text="Products & Pricing"
                   />
                   <SimpleFlyoutMenu
                     id="learn-more-flyout"
