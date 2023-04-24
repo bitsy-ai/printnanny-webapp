@@ -174,12 +174,12 @@
     <h1
       class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl text-center my-8"
     >
-      <span class="block lg:inline">Want to get started now?</span>
+      <span class="block lg:inline">Itching to get started today?</span>
       <router-link id="enterprise-to-basic-pricing" :to="{ name: 'pricing' }">
         <button
           class="w-full md:w-1/3 m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
         >
-          Try PrintNanny for $9.99/month
+          Try Starter Plan for $9.99/month
         </button>
       </router-link>
     </h1>

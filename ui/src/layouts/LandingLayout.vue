@@ -164,12 +164,12 @@ const productFooterLinks = [
   },
   {
     name: "Custom Software for OEM & Enterprise",
-    href: "/pricing",
+    href: "/pricing/enterprise",
     icon: WrenchScrewdriverIcon,
   },
   {
     name: "K-12 & Higher Education",
-    href: "/pricing",
+    href: "/pricing/enterprise",
     icon: AcademicCapIcon,
   },
 ] as Array<FullWidthFlyoutMenuFooterLink>;
