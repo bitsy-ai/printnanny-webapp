@@ -32,6 +32,7 @@ docs/EventSourceEnum.md
 docs/EventTypeEnum.md
 docs/EventTypesEnum.md
 docs/GcodeFile.md
+docs/InterestEnum.md
 docs/JanusApi.md
 docs/JanusConfigType.md
 docs/LoginRequest.md
@@ -170,6 +171,7 @@ src/models/event_source_enum.rs
 src/models/event_type_enum.rs
 src/models/event_types_enum.rs
 src/models/gcode_file.rs
+src/models/interest_enum.rs
 src/models/janus_config_type.rs
 src/models/login_request.rs
 src/models/mod.rs

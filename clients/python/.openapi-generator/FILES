@@ -33,6 +33,7 @@ docs/EventSourceEnum.md
 docs/EventTypeEnum.md
 docs/EventTypesEnum.md
 docs/GcodeFile.md
+docs/InterestEnum.md
 docs/JanusApi.md
 docs/JanusConfigType.md
 docs/LoginRequest.md
@@ -174,6 +175,7 @@ printnanny_api_client/models/event_source_enum.py
 printnanny_api_client/models/event_type_enum.py
 printnanny_api_client/models/event_types_enum.py
 printnanny_api_client/models/gcode_file.py
+printnanny_api_client/models/interest_enum.py
 printnanny_api_client/models/janus_config_type.py
 printnanny_api_client/models/login_request.py
 printnanny_api_client/models/moonraker_server.py
@@ -301,6 +303,7 @@ test/test_event_source_enum.py
 test/test_event_type_enum.py
 test/test_event_types_enum.py
 test/test_gcode_file.py
+test/test_interest_enum.py
 test/test_janus_api.py
 test/test_janus_config_type.py
 test/test_login_request.py

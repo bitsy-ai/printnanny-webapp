@@ -46,6 +46,8 @@ pub mod event_types_enum;
 pub use self::event_types_enum::EventTypesEnum;
 pub mod gcode_file;
 pub use self::gcode_file::GcodeFile;
+pub mod interest_enum;
+pub use self::interest_enum::InterestEnum;
 pub mod janus_config_type;
 pub use self::janus_config_type::JanusConfigType;
 pub mod login_request;
