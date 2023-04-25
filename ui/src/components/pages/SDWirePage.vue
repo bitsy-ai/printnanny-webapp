@@ -69,6 +69,7 @@
             <WaitlistForm
               class="p-4 my-4 bg-gray-100 rounded w-full"
               button-text="Notify Me"
+              :interest="api.InterestEnum.Sdwire"
             >
               <p class="mb-2 text-gray-500">
                 Get notified when SDWire is available:
@@ -278,6 +279,7 @@
 
 <script setup lang="ts">
 import * as yup from "yup";
+import type * as api from "printnanny-api-client";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/vue";
 import { useShopStore } from "@/stores/shop";
 import { useAlertStore } from "@/stores/alerts";

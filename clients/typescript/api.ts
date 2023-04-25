@@ -1470,6 +1470,12 @@ export interface EmailWaitlist {
      * @memberof EmailWaitlist
      */
     'email': string;
+    /**
+     * 
+     * @type {InterestEnum}
+     * @memberof EmailWaitlist
+     */
+    'interest'?: InterestEnum;
 }
 /**
  * 
@@ -1483,6 +1489,12 @@ export interface EmailWaitlistRequest {
      * @memberof EmailWaitlistRequest
      */
     'email': string;
+    /**
+     * 
+     * @type {InterestEnum}
+     * @memberof EmailWaitlistRequest
+     */
+    'interest'?: InterestEnum;
 }
 /**
  * 
@@ -1598,6 +1610,20 @@ export interface GcodeFile {
      */
     'user': number;
 }
+/**
+ * * `printnanny` - Subscribe to PrintNanny news and development updates * `sdwire` - Get notified when SDWire is back in stock
+ * @export
+ * @enum {string}
+ */
+
+export const InterestEnum = {
+    Printnanny: 'printnanny',
+    Sdwire: 'sdwire'
+} as const;
+
+export type InterestEnum = typeof InterestEnum[keyof typeof InterestEnum];
+
+
 /**
  * * `cloud` - Cloud WebRTC Gateway * `edge` - Edge WebRTC Gateway
  * @export
