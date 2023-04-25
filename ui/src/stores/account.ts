@@ -37,17 +37,17 @@ export const useAccountStore = defineStore({
     videosApi: (state) => api.VideosApiFactory(state.apiConfig),
   },
   actions: {
-    async submitEmailWaitlist(email: string) {
+    async submitEmailWaitlist(email: string, interest: api.InterestEnum) {
       const alerts = useAlertStore();
-      const req: api.EmailWaitlistRequest = { email };
+      const req: api.EmailWaitlistRequest = { email, interest };
       const res = await this.accountsApi
         .accountsEmailWaitlistCreate(req)
         .catch(handleApiError);
       console.debug("accountsEmailWaitlistCreate response", res);
       const alert: UiAlert = {
-        header: "Thanks for signing up!",
+        header: "Thanks you!",
         error: undefined,
-        message: `When beta spots open, we'll send an email to: ${email}`,
+        message: `When ${interest} is available, we'll send an email to: ${email}`,
         actions: [],
       };
       alerts.push(alert);

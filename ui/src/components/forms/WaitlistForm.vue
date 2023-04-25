@@ -32,8 +32,8 @@
   </Form>
 </template>
 <script setup lang="ts">
-import { ref, reactive, defineProps, } from "vue";
-import type { PropType } from 'vue';
+import { ref, reactive, defineProps } from "vue";
+import type { PropType } from "vue";
 
 import * as yup from "yup";
 import { Field, ErrorMessage, Form } from "vee-validate";
@@ -42,14 +42,14 @@ import type * as api from "printnanny-api-client";
 
 const accountStore = useAccountStore();
 
-defineProps({
+const props = defineProps({
   buttonText: {
     default: "Subscribe",
   },
   interest: {
     default: api.InterestEnum.Printnanny,
-    type: String as PropType<api.InterestEnum.Printnanny>
-  }
+    type: String as PropType<api.InterestEnum.Printnanny>,
+  },
 });
 
 // define a validation schema
@@ -64,7 +64,7 @@ const state = reactive({
 });
 async function onSubmit(values: any) {
   state.loading = true;
-  await accountStore.submitEmailWaitlist(values.email);
+  await accountStore.submitEmailWaitlist(values.email, props.interest);
   state.loading = false;
 }
 </script>
