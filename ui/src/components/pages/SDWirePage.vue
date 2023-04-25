@@ -41,11 +41,7 @@
                 Product information
               </h2>
               <p class="mt-2 text-sm text-gray-500">
-                Version {{ product.version.name }} (Updated
-                <time :datetime="product.version.datetime">{{
-                  product.version.date
-                }}</time
-                >)
+                Version {{ product.version.name }}
               </p>
             </div>
             <!-- TODO reviews
@@ -60,7 +56,7 @@
           </div>
 
           <p class="mt-6 text-gray-500">{{ product.description }}</p>
-          <div class="mt-10">
+          <div class="mt-10 grid grid-cols-1">
             <button
               type="button"
               disabled
@@ -69,6 +65,16 @@
             >
               Sold Out
             </button>
+
+            <WaitlistForm
+              class="p-4 my-4 bg-gray-100 rounded w-full"
+              button-text="Notify Me"
+              :interest="api.InterestEnum.Sdwire"
+            >
+              <p class="mb-2 text-gray-500">
+                Get notified when SDWire is available:
+              </p>
+            </WaitlistForm>
           </div>
           <!-- prompt for email address if user is not logged in -->
           <!-- DISABLED SDWIRE, SOLD OUT
@@ -273,10 +279,12 @@
 
 <script setup lang="ts">
 import * as yup from "yup";
+import * as api from "printnanny-api-client";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/vue";
 import { useShopStore } from "@/stores/shop";
 import { useAlertStore } from "@/stores/alerts";
 import type { UiAlert, AlertAction } from "@/types/alerts";
+import WaitlistForm from "@/components/forms/WaitlistForm.vue";
 
 const alertStore = useAlertStore();
 const shopStore = useShopStore();

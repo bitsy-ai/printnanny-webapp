@@ -11,14 +11,18 @@ from rest_framework import serializers
 
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
-
-
 from print_nanny_webapp.users.managers import CustomUserManager
+from print_nanny_webapp.users.enum import EmailListInterest
 
 
 class EmailWaitlist(models.Model):
     created_dt = models.DateTimeField(auto_now_add=True)
     email = models.EmailField(unique=True)
+    interest = models.CharField(
+        choices=EmailListInterest.choices,
+        default=EmailListInterest.PRINTNANNY,
+        max_length=32,
+    )
 
 
 class InviteRequest(models.Model):
