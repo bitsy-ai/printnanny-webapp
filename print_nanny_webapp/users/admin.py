@@ -130,5 +130,6 @@ class EmailWaitlistAdmin(admin.ModelAdmin):
 
     list_display = (
         "email",
+        "interest",
         "created_dt",
     )

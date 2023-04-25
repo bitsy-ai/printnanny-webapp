@@ -279,7 +279,7 @@
 
 <script setup lang="ts">
 import * as yup from "yup";
-import type * as api from "printnanny-api-client";
+import * as api from "printnanny-api-client";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/vue";
 import { useShopStore } from "@/stores/shop";
 import { useAlertStore } from "@/stores/alerts";

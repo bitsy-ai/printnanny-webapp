@@ -38,7 +38,7 @@ import type { PropType } from "vue";
 import * as yup from "yup";
 import { Field, ErrorMessage, Form } from "vee-validate";
 import { useAccountStore } from "@/stores/account";
-import type * as api from "printnanny-api-client";
+import * as api from "printnanny-api-client";
 
 const accountStore = useAccountStore();
 
