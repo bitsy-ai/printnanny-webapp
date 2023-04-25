@@ -48,7 +48,7 @@ const props = defineProps({
   },
   interest: {
     default: api.InterestEnum.Printnanny,
-    type: String as PropType<api.InterestEnum.Printnanny>,
+    type: String as PropType<api.InterestEnum>,
   },
 });
 
