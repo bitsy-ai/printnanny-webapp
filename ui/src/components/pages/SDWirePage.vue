@@ -41,11 +41,7 @@
                 Product information
               </h2>
               <p class="mt-2 text-sm text-gray-500">
-                Version {{ product.version.name }} (Updated
-                <time :datetime="product.version.datetime">{{
-                  product.version.date
-                }}</time
-                >)
+                Version {{ product.version.name }}
               </p>
             </div>
             <!-- TODO reviews
@@ -277,6 +273,7 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/vue";
 import { useShopStore } from "@/stores/shop";
 import { useAlertStore } from "@/stores/alerts";
 import type { UiAlert, AlertAction } from "@/types/alerts";
+import WaitlistForm from "@/components/forms/WaitlistForm.vue";
 
 const alertStore = useAlertStore();
 const shopStore = useShopStore();
