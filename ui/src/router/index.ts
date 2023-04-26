@@ -70,6 +70,7 @@ router.beforeEach(async (to, _from) => {
     to.name !== "shop-products-list" &&
     to.name !== "shop-founding-membership" &&
     to.name !== "shop-sdwire" &&
+    to.name !== "shop-rpi4kit" &&
     to.name !== "shop-checkout" &&
     to.name !== "shop-checkout-success" &&
     to.name !== "pricing" &&
