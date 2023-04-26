@@ -11,7 +11,7 @@
             class="aspect-w-4 aspect-h-3 overflow-hidden rounded-lg bg-gray-100"
           >
             <img
-              src="/images/sdwire/SDWire-3D-front-v1.4-r1.jpg"
+              :src="product.imageSrc"
               :alt="product.imageAlt"
               class="object-cover object-center"
             />
@@ -318,7 +318,7 @@ const product = {
     "Gold-finished contacts",
     "48.4mm x 21.6mm x 0.8mm",
   ],
-  imageSrc: "@/assets/images/sdwire/SDWire-3D-front-v1.4-r1.jpg",
+  imageSrc: "/ui/images/sdwire/SDWire-3D-front-v1.4-r1.jpg",
   imageAlt: "3D rendering of PrintNanny SDWire board (front view)",
 };
 

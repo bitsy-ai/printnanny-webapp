@@ -1611,14 +1611,15 @@ export interface GcodeFile {
     'user': number;
 }
 /**
- * * `printnanny` - Subscribe to PrintNanny news and development updates * `sdwire` - Get notified when SDWire is back in stock
+ * * `printnanny` - Subscribe to PrintNanny news and development updates * `sdwire` - Get notified when SDWire is back in stock * `rpi4_kit` - Get notified when Raspberry Pi 4 kits are available
  * @export
  * @enum {string}
  */
 
 export const InterestEnum = {
     Printnanny: 'printnanny',
-    Sdwire: 'sdwire'
+    Sdwire: 'sdwire',
+    Rpi4Kit: 'rpi4_kit'
 } as const;
 
 export type InterestEnum = typeof InterestEnum[keyof typeof InterestEnum];

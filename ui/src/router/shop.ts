@@ -16,7 +16,7 @@ export default [
         components: {
           default: ShopProductsListPage,
         },
-        meta: { title: "Shop" },
+        meta: { title: "PrintNanny: Shop" },
       },
       {
         path: "checkout/:sku/:price",
@@ -25,24 +25,30 @@ export default [
           default: () =>
             import("@/components/shop/PriceTableCheckoutSession.vue"),
         },
-        meta: { title: "Checkout" },
+        meta: { title: "PrintNanny: Checkout" },
         props: { default: true },
-      },
-      {
-        path: "founding-membership",
-        name: "shop-founding-membership",
-        components: {
-          default: FoundingMembershipPage,
-        },
-        meta: { title: "25% off launch price" },
       },
       {
         path: "sdwire",
         name: "shop-sdwire",
         components: {
-          default: SDWirePage,
+          default: () => import("@/components/pages/SDWirePage.vue"),
         },
-        meta: { title: "Pre-order SDWire" },
+        meta: {
+          title:
+            "PrintNanny SDWire: 10x faster gcode transfer to SD cards. Compatible with OctoPrint-SDWire plugin.",
+        },
+      },
+      {
+        path: "raspberry-pi-4-kit",
+        name: "shop-rpi4kit",
+        components: {
+          default: () => import("@/components/pages/Rpi4KitPage.vue"),
+        },
+        meta: {
+          title:
+            "PrintNanny Raspberry Pi 4 kit: everything you need to get started.",
+        },
       },
       {
         path: "thank-you/:sessionId",
@@ -51,7 +57,7 @@ export default [
           default: CheckoutSuccessPage,
         },
         props: { default: true },
-        meta: { title: "Thank you!" },
+        meta: { title: "PrintNanny: Thank you!" },
       },
     ],
   },
