@@ -86,7 +86,7 @@
               <WaitlistForm
                 class="p-4 my-4 bg-gray-100 rounded w-full"
                 button-text="Notify Me"
-                :interest="api.InterestEnum.Sdwire"
+                :interest="api.InterestEnum.Rpi4Kit"
               >
                 <p class="mb-2 text-gray-500">
                   Get notified when kits become available:
