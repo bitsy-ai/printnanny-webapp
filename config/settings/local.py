@@ -119,7 +119,11 @@ BETA_NOTIFY_EMAIL = ["leigh+testing@bitsy.ai"]
 
 # CORS
 # ------------------------------------------------------------------------------
-CORS_ORIGIN_WHITELIST = ["http://localhost:8080", "http://localhost:3000"]
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8080",
+    "http://localhost:3000",
+    "http://localhost:5173",
+]
 
 # LOGGING
 # ------------------------------------------------------------------------------

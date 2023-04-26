@@ -689,6 +689,7 @@ if POSTHOG_API_KEY:
 INSTALLED_APPS += ["corsheaders"]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
     "http://localhost:3000",
     "http://localhost:3001",
     "http://localhost:8080",
@@ -696,6 +697,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     f"http://{socket.gethostname()}:8080",
     f"http://{socket.gethostname()}:3000",
+    f"http://{socket.gethostname()}:5173",
 ]
 
 # Janus Cloud defaults
@@ -824,7 +826,7 @@ NATS_NSC_RETRY_MODE = "IDEMPOTENT"
 DJANGO_VITE_STATIC_URL_PREFIX = ""
 INSTALLED_APPS += ["django_vite"]
 DJANGO_VITE_ASSETS_PATH = str(ROOT_DIR / "ui")
-
+DJANGO_VITE_DEV_SERVER_PORT = env("DJANGO_VITE_DEV_SERVER_PORT", default=5173)
 # ref: https://github.com/MrBin99/django-vite#notes
 # Vite generates files with 8 hash digits
 # http://whitenoise.evans.io/en/stable/django.html#WHITENOISE_IMMUTABLE_FILE_TEST

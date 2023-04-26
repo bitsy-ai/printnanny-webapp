@@ -133,9 +133,19 @@ const productLinks = [
     name: "PrintNanny Cloud",
     id: "nav-cloud-pricing-flyout",
     href: "/pricing",
-    description: "Flexible plans with no hidden costs.",
+    description:
+      "Manage your 3D printer from anywhere. \n Live monitoring and email alerts. \n Flexible plans with no hidden costs.",
     cta: "Get started",
     icon: CloudIcon,
+  } as FullWidthFlyoutMenuLink,
+  {
+    name: "Raspberry Pi 4 Kit",
+    id: "nav-os-flyout",
+    href: "/shop/raspberry-pi-4-kit",
+    description:
+      "Everything you need to get started: \n Raspberry Pi 4, power supply, camera, and pre-loaded SD card.",
+    cta: "Learn more",
+    icon: CpuChipIcon,
   } as FullWidthFlyoutMenuLink,
   {
     name: "PrintNanny SDWire",
@@ -145,14 +155,6 @@ const productLinks = [
       "10x faster gcode transfer to SD cards. \n Compatible with OctoPrint-SDWire plugin.",
     cta: "Learn more",
     icon: BoltIcon,
-  } as FullWidthFlyoutMenuLink,
-  {
-    name: "PrintNanny OS",
-    id: "nav-os-flyout",
-    href: "https://printnanny.ai/docs/category/release-history/",
-    description: "Quick install for Raspberry Pi.",
-    cta: "Release history",
-    icon: CpuChipIcon,
   } as FullWidthFlyoutMenuLink,
 ];
 
