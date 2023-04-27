@@ -69,10 +69,10 @@
             />
 
             <p class="space-y-6 text-gray-500 text-sm">
-               Please allow 3-4 weeks lead time.
+              Please allow 3-4 weeks lead time.
             </p>
             <p class="space-y-6 text-gray-500 text-sm">
-               Shipping available to United States & U.S. territories.
+              Shipping available to United States & U.S. territories.
             </p>
             <Form
               class="mt-6 flex flex-col justify-evenly space-y-6"
@@ -80,7 +80,9 @@
               @submit="onClick"
             >
               <div class="w-full">
-                <label for="email" class="text-sm font-medium">Enter your email address to begin:</label>
+                <label for="email" class="text-sm font-medium"
+                  >Enter your email address to begin:</label
+                >
                 <Field
                   id="email"
                   name="email"
@@ -249,7 +251,7 @@ const product = {
         "Official Raspberry Pi 15W Power Supply, US",
         "Aluminum heatsinks (3-pack)",
         "32 GB SD Card pre-loaded with PrintNanny OS",
-        "6 months of PrintNanny Cloud ($60 value, included for FREE)"
+        "6 months of PrintNanny Cloud ($60 value, included for FREE)",
       ],
     },
     {
@@ -260,7 +262,7 @@ const product = {
         "Mainsail / Moonraker / Klipper",
         "Syncthing (like having a personal Dropbox server)",
         "Tailscale VPN (easy remote access)",
-        "Compatible with Marlin and Klipper firmware"
+        "Compatible with Marlin and Klipper firmware",
       ],
     },
     {
@@ -276,21 +278,15 @@ const product = {
 };
 
 async function onClick(values: any) {
-  const productData = shop.getProductBySku(props.sku);
+  const productData = await shop.getProductBySku(sku);
   if (productData === undefined) {
     new Error("Failed to fetch Stripe product data");
   }
-  const priceData = shop.getCloudPlanPriceByFreq(
-    productData as api.Product,
-    props.price
-  );
-
   // get the price matching selecting billing frequency (monthly or annual)
   console.log("form submitted", values, productData);
-
   if (values && values.email !== undefined && productData !== undefined) {
     await shop.createCheckoutSession(values.email, [
-      { product: productData.id, price: priceData?.id },
+      { product: productData.id, price: productData.prices[0].id },
     ] as Array<api.OrderItemRequest>);
   }
 }

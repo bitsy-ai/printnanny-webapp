@@ -20,6 +20,14 @@ export const useShopStore = defineStore({
     },
   },
   actions: {
+    async getProductBySku(sku: string) {
+      const account = useAccountStore();
+      const res = await account.shopApi.shopProductsRetrieve(sku);
+      if (res.data) {
+        this.$patch({ products: [res.data] });
+        return res.data;
+      }
+    },
     getCloudPlanBySku(sku: string) {
       return this.cloudPlans.find((v) => v.sku === sku);
     },
