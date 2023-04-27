@@ -69,7 +69,7 @@
             />
 
             <p class="space-y-6 text-gray-500 text-sm">
-              Please allow 3-4 weeks lead time.
+              Please allow up to 4 weeks lead time.
             </p>
             <p class="space-y-6 text-gray-500 text-sm">
               Shipping available to United States & U.S. territories.
