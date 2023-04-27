@@ -267,7 +267,7 @@ const product = {
     },
     {
       name: "Shipping, Returns & Refunds",
-      defaultOpen: false,
+      defaultOpen: true,
       items: [
         "Flat-rate shipping to all U.S. states and territories.",
         "International shipping available for bulk (10+) orders, please email support@printnanny.ai for details.",
