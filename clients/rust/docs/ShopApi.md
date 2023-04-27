@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**shop_checkout_success_retrieve**](ShopApi.md#shop_checkout_success_retrieve) | **GET** /api/shop/checkout/success/{stripe_checkout_session_id} | 
 [**shop_orders_create**](ShopApi.md#shop_orders_create) | **POST** /api/shop/orders | 
 [**shop_products_list**](ShopApi.md#shop_products_list) | **GET** /api/shop/products/ | 
+[**shop_products_retrieve**](ShopApi.md#shop_products_retrieve) | **GET** /api/shop/products/{sku} | 
 
 
 
@@ -110,6 +111,34 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::PaginatedProductList**](PaginatedProductList.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## shop_products_retrieve
+
+> crate::models::Product shop_products_retrieve(sku)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**sku** | **String** |  | [required] |
+
+### Return type
+
+[**crate::models::Product**](Product.md)
 
 ### Authorization
 
