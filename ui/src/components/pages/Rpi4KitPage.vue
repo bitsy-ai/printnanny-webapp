@@ -155,7 +155,7 @@
                 </h3>
                 <DisclosurePanel as="div" class="prose prose-sm pb-6">
                   <ul role="list">
-                    <li v-for="item in detail.items" :key="item">{{ item }}</li>
+                    <li v-for="item in detail.items" :key="item" v-html="item"></li>
                   </ul>
                 </DisclosurePanel>
               </Disclosure>
@@ -251,7 +251,7 @@ const product = {
         "Official Raspberry Pi 15W Power Supply, US",
         "Aluminum heatsinks (3-pack)",
         "32 GB SD Card pre-loaded with PrintNanny OS",
-        "6 months of PrintNanny Cloud ($60 value, included for FREE)",
+        "3 months of <a href='https://printnanny.ai/shop/checkout/cloud-scaler-plan/monthly' class='text-indigo-500'>Cloud Scaler</a> plan ($60 value, included for FREE)",
       ],
     },
     {
