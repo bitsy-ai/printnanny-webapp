@@ -20,6 +20,7 @@ from print_nanny_webapp.shop.api.views import (
     ProductsViewSet,
     OrderCheckoutView,
     OrderByStripeCheckoutSessionIdView,
+    ProductsSkuView,
 )
 
 from print_nanny_webapp.octoprint.api.views import (
@@ -57,6 +58,9 @@ router.register("moonraker", MoonrakerServerViewSet, "moonraker")
 # octoprint endpoints (PrintNanny os data model)
 other_urls = [
     path("shop/orders", OrderCheckoutView.as_view()),
+    path(
+        "shop/products/<str:sku>", ProductsSkuView.as_view(), name="shop-product-by-sku"
+    ),
     path(
         "shop/checkout/success/<str:stripe_checkout_session_id>",
         OrderByStripeCheckoutSessionIdView.as_view(),

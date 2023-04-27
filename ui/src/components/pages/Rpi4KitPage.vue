@@ -1,18 +1,3 @@
-<!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/typography'),
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
--->
 <template>
   <div class="bg-white">
     <div
@@ -82,27 +67,54 @@
               class="space-y-6 text-base text-gray-700"
               v-html="product.description"
             />
-            <div class="mt-10 grid grid-cols-1">
-              <WaitlistForm
-                class="p-4 my-4 bg-gray-100 rounded w-full"
-                button-text="Notify Me"
-                :interest="api.InterestEnum.Rpi4Kit"
-              >
-                <p class="mb-2 text-gray-500">
-                  Get notified when kits become available:
-                </p>
-              </WaitlistForm>
 
-              <p class="text-sm">
-                Already have all the hardware? Follow the
-                <a
-                  href="https://printnanny.ai/docs/category/quick-start/"
-                  class="text-indigo-500 hover:text-indigo-700"
-                  >quick start</a
+            <p class="space-y-6 text-gray-500 text-sm">
+              Please allow 3-4 weeks lead time.
+            </p>
+            <p class="space-y-6 text-gray-500 text-sm">
+              Shipping available to United States & U.S. territories.
+            </p>
+            <Form
+              class="mt-6 flex flex-col justify-evenly space-y-6"
+              :validation-schema="schema"
+              @submit="onClick"
+            >
+              <div class="w-full">
+                <label for="email" class="text-sm font-medium"
+                  >Enter your email address to begin:</label
                 >
-                to install PrintNanny OS.
-              </p>
-            </div>
+                <Field
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  class="border block w-full px-4 py-3 rounded-md text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                  placeholder="Email address"
+                  rules="required"
+                />
+                <error-message
+                  class="text-red-500 text-sm font-medium"
+                  name="email"
+                ></error-message>
+              </div>
+              <div class="w-full">
+                <button
+                  id="checkout-submit"
+                  type="submit"
+                  class="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white text-2xl font-bold tracking-tight text-white text-center hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                >
+                  <CustomSpinner
+                    v-if="shop.loading"
+                    color="indigo"
+                    class="mr-2"
+                  ></CustomSpinner>
+                  <span v-if="!shop.loading"> Checkout with Stripe </span>
+                  <span v-if="shop.loading">
+                    Redirecting to Stripe Checkout
+                  </span>
+                </button>
+              </div>
+            </Form>
           </div>
 
           <section aria-labelledby="details-heading" class="mt-12">
@@ -178,8 +190,12 @@ import {
   PlusIcon,
   StarIcon,
 } from "@heroicons/vue/24/outline";
+import CustomSpinner from "@/components/util/CustomSpinner.vue";
+import { Field, ErrorMessage, Form } from "vee-validate";
 
-const imgUrl = new URL("./img.png", import.meta.url).href;
+const sku = "rpi4b-4gb-kit";
+
+const shop = useShopStore();
 
 const alertStore = useAlertStore();
 const shopStore = useShopStore();
@@ -198,12 +214,6 @@ const product = {
   name: "Raspberry Pi 4 Kit (4GB)",
   price: "$199",
   description: "Can't find a Raspberry Pi 4 in stock? We've got you covered.",
-  highlights: [
-    "Raspberry Pi 4 (4GB)",
-    "Raspberry Pi Camera Module 3",
-    "Official Raspberry Pi 15W Power Supply, US",
-    "Aluminum heatsinks (3-pack)",
-  ],
   images: [
     {
       id: 1,
@@ -233,7 +243,7 @@ const product = {
   ],
   details: [
     {
-      name: "What's included? (hardware)",
+      name: "What's included?",
       defaultOpen: true,
       items: [
         "Raspberry Pi 4B (4GB)",
@@ -241,16 +251,18 @@ const product = {
         "Official Raspberry Pi 15W Power Supply, US",
         "Aluminum heatsinks (3-pack)",
         "32 GB SD Card pre-loaded with PrintNanny OS",
+        "6 months of PrintNanny Cloud ($60 value, included for FREE)",
       ],
     },
     {
-      name: "What's included? (software)",
+      name: "What comes pre-installed?",
       defaultOpen: true,
       items: [
         "OctoPrint",
-        "Mainsail / Moonraker / Klipper toolchain",
+        "Mainsail / Moonraker / Klipper",
         "Syncthing (like having a personal Dropbox server)",
         "Tailscale VPN (easy remote access)",
+        "Compatible with Marlin and Klipper firmware",
       ],
     },
     {
@@ -266,37 +278,16 @@ const product = {
 };
 
 async function onClick(values: any) {
-  if (productData == undefined) {
-    const actions = [
-      {
-        color: "red",
-        text: "Refresh",
-        onClick: () => {
-          window.location.reload();
-        },
-      },
-    ] as Array<AlertAction>;
-    const alert: UiAlert = {
-      header: "Oops, something went wrong",
-      message: "Failed to get product information from Stripe.",
-      actions: actions,
-      error: "Failed to get product information from Stripe.",
-    };
-    alertStore.push(alert);
+  const productData = await shop.getProductBySku(sku);
+  if (productData === undefined) {
+    new Error("Failed to fetch Stripe product data");
   }
-  new Error("SDWire checkout is not implemetned for checkout system v2");
-  // if (values && values.email !== undefined && productData !== undefined) {
-  //   await shopStore.createCheckoutSession(values.email, [
-  //     productData.id,
-  //   ] as Array<string>);
-  // } else if (
-  //   accountStore.isAuthenticated &&
-  //   accountStore.user !== undefined &&
-  //   productData !== undefined
-  // ) {
-  //   await shopStore.createCheckoutSession(accountStore.user?.email, [
-  //     productData.id,
-  //   ] as Array<string>);
-  // }
+  // get the price matching selecting billing frequency (monthly or annual)
+  console.log("form submitted", values, productData);
+  if (values && values.email !== undefined && productData !== undefined) {
+    await shop.createCheckoutSession(values.email, [
+      { product: productData.id, price: productData.prices[0].id },
+    ] as Array<api.OrderItemRequest>);
+  }
 }
 </script>

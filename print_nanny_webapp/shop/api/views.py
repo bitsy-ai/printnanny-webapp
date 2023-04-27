@@ -1,4 +1,6 @@
 from django_filters.rest_framework import DjangoFilterBackend
+from django.shortcuts import get_object_or_404
+
 from drf_spectacular.utils import extend_schema_view, extend_schema
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -44,7 +46,7 @@ class ProductsViewSet(GenericViewSet, ListModelMixin):
         responses={200: ProductSerializer(many=True)} | generic_get_errors,
     )
     @action(methods=["get"], detail=False, url_path="cloud-plans")
-    def cloud_plans(self, request, pi_id=None):
+    def cloud_plans(self, request):
         queryset = Product.objects.filter(
             stripe_product_id__in=[
                 settings.STRIPE_STARTER_PRODUCT_ID,
@@ -59,6 +61,22 @@ class ProductsViewSet(GenericViewSet, ListModelMixin):
 
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
+
+@extend_schema_view(
+    get=extend_schema(
+        tags=["shop"],
+        responses={200: ProductSerializer(many=False)} | generic_get_errors,
+    ),
+)
+class ProductsSkuView(APIView):
+    # allows products to be retrieved from anonymous session
+    permission_classes = (AllowAny,)
+
+    def get(self, request, sku=None):
+        product = get_object_or_404(Product, sku=sku)
+        serializer = ProductSerializer(instance=product)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @extend_schema_view(
