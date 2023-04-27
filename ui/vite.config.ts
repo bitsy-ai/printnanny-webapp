@@ -38,6 +38,7 @@ export default defineConfig(({ _command, mode }) => {
         allow: ["../clients/typescript", "src", "node_modules/nats/lib"],
       },
       host: "0.0.0.0",
+      port: 5173,
       // cors: false,
       proxy: {
         "/api": {

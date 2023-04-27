@@ -138,7 +138,6 @@ def build_stripe_checkout_session_kwargs_v1(
             shipping_address_collection=dict(
                 allowed_countries=[
                     "US",
-                    "CA",
                 ]
             ),
             automatic_tax={
