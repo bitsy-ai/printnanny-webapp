@@ -169,7 +169,7 @@
 
 <script setup lang="ts">
 import * as yup from "yup";
-import * as api from "printnanny-api-client";
+import type * as api from "printnanny-api-client";
 import {
   Tab,
   TabGroup,
