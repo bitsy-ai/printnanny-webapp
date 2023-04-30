@@ -46,6 +46,12 @@
                     :footer="productFooterLinks"
                     menu-text="Products & Pricing"
                   />
+                  <FullWidthFlyoutMenu
+                    id="services-flyout"
+                    :links="serviceLinks"
+                    :footer="productFooterLinks"
+                    menu-text="Services"
+                  />
                   <SimpleFlyoutMenu
                     id="learn-more-flyout"
                     :links="learnMoreLinks"
@@ -63,6 +69,7 @@
           </div>
           <MobileLoginNav
             :product-links="productLinks"
+            :service-links="serviceLinks"
             :product-footer-links="productFooterLinks"
             :community-links="communityLinks"
             :learn-more-links="learnMoreLinks"
@@ -113,6 +120,7 @@ import {
   FaceSmileIcon,
   WrenchScrewdriverIcon,
   AcademicCapIcon,
+  CubeTransparentIcon,
 } from "@heroicons/vue/24/outline";
 import LoginNav from "@/components/nav/LoginNav.vue";
 import { Popover, PopoverButton } from "@headlessui/vue";
@@ -155,6 +163,36 @@ const productLinks = [
       "10x faster gcode transfer to SD cards. \n Compatible with OctoPrint-SDWire plugin.",
     cta: "Learn more",
     icon: BoltIcon,
+  } as FullWidthFlyoutMenuLink,
+];
+
+const serviceLinks = [
+  {
+    name: "OEM",
+    id: "nav-custom-oem-solutions",
+    href: import.meta.env.VITE_OEM_QUOTE_FORM,
+    description:
+      "Custom development and hardware kit services for original 3D printer equipment manufacturers.",
+    cta: "Request a quote",
+    icon: CubeTransparentIcon,
+  } as FullWidthFlyoutMenuLink,
+  {
+    name: "On-demand Manufacturing",
+    id: "nav-custom-on-demand-solutions",
+    href: import.meta.env.VITE_ENTERPRISE_CLOUD_QUOTE_FORM,
+    description:
+      "Custom development and solutions for your on-demand manufacturing operation.",
+    cta: "Request a quote",
+    icon: WrenchScrewdriverIcon,
+  } as FullWidthFlyoutMenuLink,
+  {
+    name: "K-12 & Higher Education",
+    id: "nav-custom-edu-solutions",
+    href: import.meta.env.VITE_EDU_QUOTE_FORM,
+    description:
+      "Custom solutions for schools, libraries, research lkabs, and makerspaces.",
+    cta: "Request a quote",
+    icon: AcademicCapIcon,
   } as FullWidthFlyoutMenuLink,
 ];
 

@@ -34,7 +34,13 @@
             id="products-flyout"
             :links="productLinks"
             :footer="productFooterLinks"
-            menu-text="Products"
+            menu-text="Products & Pricing"
+          />
+          <FullWidthFlyoutMenu
+            id="services-flyout"
+            :links="serviceLinks"
+            :footer="productFooterLinks"
+            menu-text="Services"
           />
           <SimpleFlyoutMenu
             id="learn-more-flyout"
@@ -78,6 +84,10 @@ import SimpleFlyoutMenu from "@/components/nav/SimpleFlyoutMenu.vue";
 
 defineProps({
   productLinks: {
+    type: Object as PropType<Array<FullWidthFlyoutMenuLink>>,
+    required: true,
+  },
+  serviceLinks: {
     type: Object as PropType<Array<FullWidthFlyoutMenuLink>>,
     required: true,
   },

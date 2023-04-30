@@ -155,7 +155,11 @@
                 </h3>
                 <DisclosurePanel as="div" class="prose prose-sm pb-6">
                   <ul role="list">
-                    <li v-for="item in detail.items" :key="item" v-html="item"></li>
+                    <li
+                      v-for="item in detail.items"
+                      :key="item"
+                      v-html="item"
+                    ></li>
                   </ul>
                 </DisclosurePanel>
               </Disclosure>
