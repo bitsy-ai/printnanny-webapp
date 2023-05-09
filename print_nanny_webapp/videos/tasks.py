@@ -33,9 +33,13 @@ def demo_task(challenge_id: UUID):
 
     entry.submission.open()
     img = Image.open(entry.submission)
+
+    # remove alpha channel (PNG)
+    if img.mode == ("RGBA"):
+        img = img.convert("RGB")
     img_arr = np.array(img)
     tensors = tf.image.resize(
-        img_arr,
+        [img_arr],
         [320, 320],
         preserve_aspect_ratio=False,
         antialias=False,
@@ -47,12 +51,11 @@ def demo_task(challenge_id: UUID):
         256,
         tf.quint8,
     )
-    batched = tf.expand_dims(quantized, axis=0)
     interpreter = tf.lite.Interpreter(model_path=settings.TFLITE_MODEL)
     input_details = interpreter.get_input_details()
     output_details = interpreter.get_output_details()
     interpreter.allocate_tensors()
-    interpreter.set_tensor(input_details[0]["index"], batched)
+    interpreter.set_tensor(input_details[0]["index"], quantized)
     interpreter.invoke()
 
     boxes = interpreter.get_tensor(output_details[0]["index"])

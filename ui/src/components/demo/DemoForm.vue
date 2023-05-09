@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import { RouterLink, useRouter } from "vue-router";
 import { LockClosedIcon, ArrowPathIcon } from "@heroicons/vue/24/solid";
-import { useAccountStore } from "@/stores/account";
 import { Field, ErrorMessage, Form } from "vee-validate";
 import { ref, reactive } from "vue";
 import * as yup from "yup";
 import type * as apiTypes from "printnanny-api-client";
+import { useDemoStore } from "@/stores/demo";
+import { error } from "@/stores/alerts"
 
 const router = useRouter();
 const loading = ref(false);
 const submitted = ref(false);
 
 const file = ref(undefined as undefined | string);
+const store = useDemoStore();
 
 const state = reactive({
   loading,
@@ -22,10 +24,12 @@ const schema = yup.object({
   email: yup.string().required().email(),
 });
 
-const account = useAccountStore();
 async function onSubmit(values: any) {
   state.loading = true;
-  // TODO submit
+  if (file.value === undefined){
+    return error("Select a PNG or JPEG photo", "You must select a photo to try PrintNanny. Use the 'Choose File' button to select a file, then submit your test. PrintNanny will email you when your results are available.")
+  }
+  await store.submit(values.email, file.value as string);
   state.loading = false;
 }
 
@@ -50,7 +54,8 @@ function onChangeFile(e: any) {
         Can you stump the AI?
       </h2>
       <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500 text-center">
-        Upload your gnarliest print failures.
+        Upload your gnarliest 3D print failures to test PrintNanny's detection
+        system.
       </p>
       <hr class="w-64 h-px my-8 mx-auto bg-gray-200 border-0" />
 
@@ -99,18 +104,13 @@ function onChangeFile(e: any) {
             class="group mt-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-25"
           >
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-              <LockClosedIcon
-                v-if="!state.loading"
-                class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                aria-hidden="true"
-              />
               <ArrowPathIcon
                 v-if="state.loading"
-                class="animate-spin h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                class="animate-spin h-5 w-5 text-white"
                 aria-hidden="true"
               />
             </span>
-            Submit
+            Get Results
           </button>
         </Form>
       </transition>

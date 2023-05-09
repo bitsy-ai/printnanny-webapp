@@ -3,6 +3,7 @@ import { handleApiError } from "@/utils/api";
 import type { UiAlert } from "@/types";
 import { useAccountStore } from "./account";
 import type * as api from "printnanny-api-client";
+import { success } from "./alerts";
 
 export const useDemoStore = defineStore({
   id: "demo",
@@ -21,6 +22,18 @@ export const useDemoStore = defineStore({
       if (res) {
         this.$patch({ demo: res.data });
         return res.data;
+      }
+    },
+    async submit(email: string, filename: string) {
+      const account = useAccountStore();
+      const res = await account.demosApi
+        .demosCreate(email, filename)
+        .catch(handleApiError);
+      if (res) {
+        success(
+          "Success! Your submission is queued",
+          `We'll email you at ${email} when your results are ready.`
+        );
       }
     },
     async handleFeedback(

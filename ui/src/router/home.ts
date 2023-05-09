@@ -94,7 +94,6 @@ export default [
           default: () => import("@/components/demo/DemoForm.vue"),
         },
         meta: { title: "PrintNanny: Try Risk-free" },
-
       },
       {
         path: "demo/:demoId",
