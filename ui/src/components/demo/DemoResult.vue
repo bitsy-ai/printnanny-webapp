@@ -42,6 +42,8 @@ console.debug("Loaded demo", toRaw(store.demo));
       <h2 class="my-6 text-center text-3xl font-extrabold text-gray-900">
         Your results are in! 🔮
       </h2>
+      <img v-if="store.demo" :src="store.demo.result" class="m-auto" />
+
       <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500 text-center">
         How'd we do? <br />
         Your feedback helps PrintNanny learn. 🧠
@@ -56,10 +58,11 @@ console.debug("Loaded demo", toRaw(store.demo));
         leave-to-class="transform opacity-0"
       >
         <div>
+          <!-- nozzle feedback -->
           <dl class="mt-12 text-sm font-medium flex grid grid-cols-2 mb-6">
             <dt class="text-gray-800">
-              <strong class="text-indigo-500">Nozzle</strong> <br />Was your
-              hotend nozzle detected?
+              <strong class="text-indigo-500">Hotend Nozzle</strong> <br />Was
+              your hotend nozzle detected?
             </dt>
             <dd class="mt-2 text-indigo-600 flex grid grid-cols-3 gap-2">
               <button
@@ -118,6 +121,262 @@ console.debug("Loaded demo", toRaw(store.demo));
               </button>
             </dd>
           </dl>
+          <!-- print feedback -->
+          <dl class="mt-12 text-sm font-medium flex grid grid-cols-2 mb-6">
+            <dt class="text-gray-800">
+              <strong class="text-indigo-500">3D-Printed Object(s)</strong>
+              <br />Was each 3D-printed object detected?
+            </dt>
+            <dd class="mt-2 text-indigo-600 flex grid grid-cols-3 gap-2">
+              <button
+                :class="[
+                  store.demo.feedback_print == api.DemoFeedbackEnum.Pass
+                    ? 'bg-indigo-300 hover:bg-indigo-400'
+                    : 'bg-gray-300 hover:bg-gray-400',
+                  'h-12 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
+                ]"
+                @click="
+                  store.handleFeedback(
+                    props.demoId,
+                    'print',
+                    api.DemoFeedbackEnum.Pass
+                  )
+                "
+              >
+                <ThumbUpIconOutline class="w-6 h-6 mr-2" />
+                <span>Yes</span>
+              </button>
+              <button
+                :class="[
+                  store.demo.feedback_print == api.DemoFeedbackEnum.Fail
+                    ? 'bg-indigo-300 hover:bg-indigo-400'
+                    : 'bg-gray-300 hover:bg-gray-400',
+                  'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
+                ]"
+                @click="
+                  store.handleFeedback(
+                    props.demoId,
+                    'print',
+                    api.DemoFeedbackEnum.Fail
+                  )
+                "
+              >
+                <ThumbDownIconOutline class="w-6 h-6 mr-2" />
+                <span>No</span>
+              </button>
+              <button
+                :class="[
+                  store.demo.feedback_print == api.DemoFeedbackEnum.Na
+                    ? 'bg-indigo-300 hover:bg-indigo-400'
+                    : 'bg-gray-300 hover:bg-gray-400',
+                  'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
+                ]"
+                @click="
+                  store.handleFeedback(
+                    props.demoId,
+                    'print',
+                    api.DemoFeedbackEnum.Na
+                  )
+                "
+              >
+                <XIconOutline class="w-6 h-6 mr-2" />
+                <span>N/A</span>
+              </button>
+            </dd>
+          </dl>
+          <!-- raft feedback -->
+          <dl class="mt-12 text-sm font-medium flex grid grid-cols-2 mb-6">
+            <dt class="text-gray-800">
+              <strong class="text-indigo-500">Raft & Skirt</strong> <br />If
+              there's a raft or skirt, did we detect it?
+            </dt>
+            <dd class="mt-2 text-indigo-600 flex grid grid-cols-3 gap-2">
+              <button
+                :class="[
+                  store.demo.feedback_raft == api.DemoFeedbackEnum.Pass
+                    ? 'bg-indigo-300 hover:bg-indigo-400'
+                    : 'bg-gray-300 hover:bg-gray-400',
+                  'h-12 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
+                ]"
+                @click="
+                  store.handleFeedback(
+                    props.demoId,
+                    'raft',
+                    api.DemoFeedbackEnum.Pass
+                  )
+                "
+              >
+                <ThumbUpIconOutline class="w-6 h-6 mr-2" />
+                <span>Yes</span>
+              </button>
+              <button
+                :class="[
+                  store.demo.feedback_raft == api.DemoFeedbackEnum.Fail
+                    ? 'bg-indigo-300 hover:bg-indigo-400'
+                    : 'bg-gray-300 hover:bg-gray-400',
+                  'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
+                ]"
+                @click="
+                  store.handleFeedback(
+                    props.demoId,
+                    'raft',
+                    api.DemoFeedbackEnum.Fail
+                  )
+                "
+              >
+                <ThumbDownIconOutline class="w-6 h-6 mr-2" />
+                <span>No</span>
+              </button>
+              <button
+                :class="[
+                  store.demo.feedback_raft == api.DemoFeedbackEnum.Na
+                    ? 'bg-indigo-300 hover:bg-indigo-400'
+                    : 'bg-gray-300 hover:bg-gray-400',
+                  'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
+                ]"
+                @click="
+                  store.handleFeedback(
+                    props.demoId,
+                    'raft',
+                    api.DemoFeedbackEnum.Na
+                  )
+                "
+              >
+                <XIconOutline class="w-6 h-6 mr-2" />
+                <span>N/A</span>
+              </button>
+            </dd>
+          </dl>
+
+          <!-- spaghetti feedback -->
+          <dl class="mt-12 text-sm font-medium flex grid grid-cols-2 mb-6">
+            <dt class="text-gray-800">
+              <strong class="text-red-500">Defect: Spaghetti</strong> <br />If
+              there's filament spaghetti, did we detect it?
+            </dt>
+            <dd class="mt-2 text-indigo-600 flex grid grid-cols-3 gap-2">
+              <button
+                :class="[
+                  store.demo.feedback_spaghetti == api.DemoFeedbackEnum.Pass
+                    ? 'bg-indigo-300 hover:bg-indigo-400'
+                    : 'bg-gray-300 hover:bg-gray-400',
+                  'h-12 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
+                ]"
+                @click="
+                  store.handleFeedback(
+                    props.demoId,
+                    'spaghetti',
+                    api.DemoFeedbackEnum.Pass
+                  )
+                "
+              >
+                <ThumbUpIconOutline class="w-6 h-6 mr-2" />
+                <span>Yes</span>
+              </button>
+              <button
+                :class="[
+                  store.demo.feedback_spaghetti == api.DemoFeedbackEnum.Fail
+                    ? 'bg-indigo-300 hover:bg-indigo-400'
+                    : 'bg-gray-300 hover:bg-gray-400',
+                  'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
+                ]"
+                @click="
+                  store.handleFeedback(
+                    props.demoId,
+                    'spaghetti',
+                    api.DemoFeedbackEnum.Fail
+                  )
+                "
+              >
+                <ThumbDownIconOutline class="w-6 h-6 mr-2" />
+                <span>No</span>
+              </button>
+              <button
+                :class="[
+                  store.demo.feedback_spaghetti == api.DemoFeedbackEnum.Na
+                    ? 'bg-indigo-300 hover:bg-indigo-400'
+                    : 'bg-gray-300 hover:bg-gray-400',
+                  'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
+                ]"
+                @click="
+                  store.handleFeedback(
+                    props.demoId,
+                    'spaghetti',
+                    api.DemoFeedbackEnum.Na
+                  )
+                "
+              >
+                <XIconOutline class="w-6 h-6 mr-2" />
+                <span>N/A</span>
+              </button>
+            </dd>
+          </dl>
+
+          <!-- adhesion feedback -->
+          <dl class="mt-12 text-sm font-medium flex grid grid-cols-2 mb-6">
+            <dt class="text-gray-800">
+              <strong class="text-red-500"
+                >Defect: Bed Adhesion & Warping</strong
+              >
+              <br />If the print warped or moved, did we detect it?
+            </dt>
+            <dd class="mt-2 text-indigo-600 flex grid grid-cols-3 gap-2">
+              <button
+                :class="[
+                  store.demo.feedback_adhesion == api.DemoFeedbackEnum.Pass
+                    ? 'bg-indigo-300 hover:bg-indigo-400'
+                    : 'bg-gray-300 hover:bg-gray-400',
+                  'h-12 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
+                ]"
+                @click="
+                  store.handleFeedback(
+                    props.demoId,
+                    'adhesion',
+                    api.DemoFeedbackEnum.Pass
+                  )
+                "
+              >
+                <ThumbUpIconOutline class="w-6 h-6 mr-2" />
+                <span>Yes</span>
+              </button>
+              <button
+                :class="[
+                  store.demo.feedback_adhesion == api.DemoFeedbackEnum.Fail
+                    ? 'bg-indigo-300 hover:bg-indigo-400'
+                    : 'bg-gray-300 hover:bg-gray-400',
+                  'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
+                ]"
+                @click="
+                  store.handleFeedback(
+                    props.demoId,
+                    'adhesion',
+                    api.DemoFeedbackEnum.Fail
+                  )
+                "
+              >
+                <ThumbDownIconOutline class="w-6 h-6 mr-2" />
+                <span>No</span>
+              </button>
+              <button
+                :class="[
+                  store.demo.feedback_adhesion == api.DemoFeedbackEnum.Na
+                    ? 'bg-indigo-300 hover:bg-indigo-400'
+                    : 'bg-gray-300 hover:bg-gray-400',
+                  'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
+                ]"
+                @click="
+                  store.handleFeedback(
+                    props.demoId,
+                    'adhesion',
+                    api.DemoFeedbackEnum.Na
+                  )
+                "
+              >
+                <XIconOutline class="w-6 h-6 mr-2" />
+                <span>N/A</span>
+              </button>
+            </dd>
+          </dl>
           <transition
             enter-active-class="duration-1000 ease-out"
             enter-from-class="transform opacity-0"
@@ -139,8 +398,6 @@ console.debug("Loaded demo", toRaw(store.demo));
             />
           </transition>
           <hr class="w-64 h-px my-8 mx-auto bg-gray-200 border-0" />
-
-          <img v-if="store.demo" :src="store.demo.result" class="m-auto" />
         </div>
       </transition>
     </div>
