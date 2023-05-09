@@ -89,9 +89,17 @@ export default [
       },
       {
         path: "demo",
-        name: "demo",
+        name: "demo-submit",
         components: {
-          default: () => import("@/components/forms/DemoForm.vue"),
+          default: () => import("@/components/demo/DemoForm.vue"),
+        },
+      },
+      {
+        path: "demo/:demoId",
+        name: "demo-resultt",
+        props: { default: true },
+        components: {
+          default: () => import("@/components/demo/DemoResult.vue"),
         },
       },
     ],

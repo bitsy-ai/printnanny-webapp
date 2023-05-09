@@ -2,6 +2,7 @@ import logging
 
 from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiParameter
 from django.shortcuts import get_object_or_404
+from django_filters.rest_framework import DjangoFilterBackend
 
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -231,14 +232,13 @@ class CameraSnapshotViewSet(
         responses={201: DemoSubmissionSerializer} | generic_create_errors,
     ),
 )
-class DemoSubmissionViewSet(
-    GenericViewSet,
-    CreateModelMixin,
-):
+class DemoSubmissionViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin):
     serializer_class = DemoSubmissionSerializer
     queryset = DemoSubmission.objects.all()
     parser_classes = [parsers.MultiPartParser]
     permission_classes = (AllowAny,)
+    # omit OwnerOrUserFilterBackend, which is a DEFAULT_FILTER_BACKENDS
+    filter_backends = [DjangoFilterBackend]
 
     def perform_create(self, serializer):
         obj = serializer.save()

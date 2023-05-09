@@ -8739,6 +8739,130 @@ export class CrashReportsApi extends BaseAPI implements CrashReportsApiInterface
 
 
 /**
+ * DemosApi - axios parameter creator
+ * @export
+ */
+export const DemosApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} id A UUID string identifying this demo submission.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        demosRetrieve: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('demosRetrieve', 'id', id)
+            const localVarPath = `/api/demos/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * DemosApi - functional programming interface
+ * @export
+ */
+export const DemosApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = DemosApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {string} id A UUID string identifying this demo submission.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async demosRetrieve(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DemoSubmission>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.demosRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * DemosApi - factory interface
+ * @export
+ */
+export const DemosApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = DemosApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {string} id A UUID string identifying this demo submission.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        demosRetrieve(id: string, options?: any): AxiosPromise<DemoSubmission> {
+            return localVarFp.demosRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * DemosApi - interface
+ * @export
+ * @interface DemosApi
+ */
+export interface DemosApiInterface {
+    /**
+     * 
+     * @param {string} id A UUID string identifying this demo submission.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DemosApiInterface
+     */
+    demosRetrieve(id: string, options?: AxiosRequestConfig): AxiosPromise<DemoSubmission>;
+
+}
+
+/**
+ * DemosApi - object-oriented interface
+ * @export
+ * @class DemosApi
+ * @extends {BaseAPI}
+ */
+export class DemosApi extends BaseAPI implements DemosApiInterface {
+    /**
+     * 
+     * @param {string} id A UUID string identifying this demo submission.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DemosApi
+     */
+    public demosRetrieve(id: string, options?: AxiosRequestConfig) {
+        return DemosApiFp(this.configuration).demosRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
  * DevicesApi - axios parameter creator
  * @export
  */
