@@ -100,7 +100,7 @@
             class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8"
           >
             <span class="text-gray-900">
-              Mix & Match Your Favorite Software
+              The Operating System for 3D Printing
             </span>
           </h1>
           <p
@@ -109,57 +109,91 @@
             Simple Install for Raspberry Pi
           </p>
           <p class="py-6 max-w-prose mx-auto text-xl text-gray-500">
-            PrintNanny OS makes it easy to install your favorite 3D printing
-            tools.
+            Mix & match your favorite 3D printing tools:
           </p>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 w-1/2 m-auto py-6">
-          <img src="@/assets/images/addons/octoprint/octoprint_512x512.png" />
-          <img src="@/assets/images/addons/mainsail/mainsail_512x512.png" />
-          <img src="@/assets/images/addons/klipper/klipper_512x512.png" />
-          <img src="@/assets/images/addons/moonraker/moonraker_512x256.png" />
-          <img src="@/assets/images/addons/syncthing/syncthing_512x256.png" />
-          <img src="@/assets/images/addons/tailscale/tailscale_512x256.png" />
+          <img
+            src="@/assets/images/addons/octoprint/octoprint_512x512.png"
+            alt="OctoPrint"
+          />
+          <img
+            src="@/assets/images/addons/mainsail/mainsail_512x512.png"
+            alt="Mainsail"
+          />
+          <img
+            src="@/assets/images/addons/klipper/klipper_512x512.png"
+            alt="Klipper"
+          />
+          <img
+            src="@/assets/images/addons/moonraker/moonraker_512x256.png"
+            alt="Moonraker"
+          />
+          <img
+            src="@/assets/images/addons/syncthing/syncthing_512x256.png"
+            alt="Syncthing"
+          />
+          <img
+            src="@/assets/images/addons/tailscale/tailscale_512x256.png"
+            alt="Tailscale"
+          />
         </div>
         <div class="mt-12">
           <div class="grid grid-cols-1">
-            <img
-              src="@/assets/images/toggle-mainsail-octoprint.gif"
-              class="md:w-3/4 w-full m-auto"
-            />
             <p class="pb-6 max-w-prose mx-auto text-xl text-gray-500">
               Toggle between <strong>OctoPrint</strong> and
               <strong>Mainsail</strong> without re-imaging your SD card.
             </p>
+            <img
+              src="@/assets/images/toggle-mainsail-octoprint.gif"
+              class="md:w-3/4 w-full m-auto"
+            />
           </div>
         </div>
       </div>
     </div>
 
     <!-- OTA updates -->
-    <div id="printnanny-os" class="relative bg-gray-50 p-6 lg:py-12">
+    <div id="ota-updates" class="relative bg-gray-50 p-6 lg:py-12">
       <div
         class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
       >
-        <div class="grid md:grid-cols-4 md:gap-4">
-          <div class="col-span-2">
-            <h1
-              class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8"
-            >
-              <span class="text-gray-900">Over-the-air Updates</span>
-            </h1>
-            <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-              <strong>Are you tired of re-imaging SD cards?</strong>
-            </p>
+        <h1
+          class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8"
+        >
+          <span class="text-gray-900">Over-the-air Updates</span>
+        </h1>
+        <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500 pb-8">
+          <strong>Are you tired of re-imaging SD cards?</strong>
+        </p>
+        <div class="grid md:grid-cols-3 md:gap-4">
+          <div class="col-span-2 space-y-6">
+            <hr
+              class="w-64 h-px my-8 mx-auto bg-gray-200 border-0 dark:bg-gray-700"
+            />
             <p
               class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
             >
-              Over-the-air Updates Included with PrintNanny OS
+              Deploy rolling updates
             </p>
+            <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+              Upgrade a PrintNanny OS fleet from any browser.
+            </p>
+            <button
+              class="w-full md:w-3/4 m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+            >
+              Get Started for $9.99/month
+            </button>
+            <hr
+              class="w-64 h-px my-8 mx-auto bg-gray-200 border-0 dark:bg-gray-700"
+            />
             <p
               class="text-base font-semibold tracking-wider text-indigo-600 uppercase mt-5 mb-5"
             >
               Custom packages available for enterprise
+            </p>
+            <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+              Distribute your own software packages and gcode macros.
             </p>
             <router-link id="hero-pricing" :to="{ name: 'pricing-enterprise' }">
               <button
@@ -170,10 +204,44 @@
             </router-link>
           </div>
           <img
-            src="@/assets/images/swupdate-messages.png"
-            class="drop-shadow-xl w-full m-auto py-2 col-span-2"
+            :src="OTA_FEATURE_IMAGE"
+            class="drop-shadow-xl w-full m-auto py-2 col-span-1 rounded-md"
           />
         </div>
+      </div>
+    </div>
+
+    <!-- past releases -->
+    <div id="printnanny-os-releases" class="relative bg-white p-6 lg:py-12">
+      <div
+        class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
+      >
+        <h1
+          class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8"
+        >
+          <span class="text-gray-900">Past Releases</span>
+        </h1>
+        <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+          <strong>Constantly shipping, based on YOUR feedback.</strong>
+        </p>
+        <p class="mb-5 mx-auto max-w-prose text-xl text-gray-500">
+          Join an amazing community of entrepreneurs and makers.
+        </p>
+        <a
+          href="https://discord.gg/sf23bk2hPr"
+          target="_blank"
+          class="w-full md:w-1/3 m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+        >
+          Join Discord
+        </a>
+        <p class="mt-5 mb-5 mx-auto max-w-prose text-xl text-gray-500">
+          <a href="https://discord.gg/sf23bk2hPr" target="_blank" class="py-2">
+            <img
+              src="https://img.shields.io/discord/773452324692688956?color=%236366f1&label=discord&style=for-the-badge"
+              class="m-auto"
+            />
+          </a>
+        </p>
         <div
           class="mt-12 mx-auto max-w-md px-4 grid grid-cols-1 gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-4 lg:max-w-7xl"
         >
@@ -210,87 +278,14 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- Feature section with grid -->
-    <div id="printnanny-os" class="relative bg-white py-4 sm:py-8">
-      <div
-        class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
-      >
-        <h2
-          class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl"
-        >
-          Scale your 3D Printer Farm
-        </h2>
-        <router-link id="hero-pricing" :to="{ name: 'pricing' }">
-          <button
-            class="w-full md:w-1/3 m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-          >
-            Get Started for $9.99/month
-          </button>
-        </router-link>
 
-        <div class="mt-12">
-          <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <div v-for="feature in features" :key="feature.name" class="pt-6">
-              <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8">
-                <div class="-mt-6">
-                  <div>
-                    <span
-                      class="inline-flex items-center justify-center p-3 bg-gradient-to-r from-indigo-500 to-violet-600 rounded-md shadow-lg"
-                    >
-                      <component
-                        :is="feature.icon"
-                        class="h-6 w-6 text-white"
-                        aria-hidden="true"
-                      />
-                    </span>
-                  </div>
-                  <h3
-                    class="mt-8 text-lg font-medium text-gray-900 tracking-tight"
-                  >
-                    {{ feature.name }}
-                  </h3>
-                  <p class="mt-5 text-base text-gray-500">
-                    {{ feature.description }}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <img src="@/assets/logo/logo-rect-light.svg" class="m-auto h-36 mt-6" />
       </div>
     </div>
 
-    <!-- founding member offer section -->
-    <!-- end founding member offer section -->
-    <!-- Blog section -->
-    <div class="relative bg-gray-50 py-16">
+    <div class="relative bg-gray-200 py-16">
       <div class="relative">
-        <div
-          class="text-center mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
-        >
-          <img src="@/assets/logo/logo-rect-light.svg" class="m-auto h-36" />
-          <p class="mt-5 mb-5 mx-auto max-w-prose text-xl text-gray-500">
-            Join an amazing community of entrepreneurs and makers.
-          </p>
-
-          <a href="https://discord.gg/sf23bk2hPr" target="_blank">
-            <img
-              src="https://img.shields.io/discord/773452324692688956?color=%236366f1&label=discord&style=for-the-badge"
-              class="m-auto"
-            />
-          </a>
-          <a
-            href="https://discord.gg/sf23bk2hPr"
-            target="_blank"
-            class="my-12 text-white text-3xl font-extrabold tracking-tight sm:text-4xl bg-indigo-500 w-full m-auto md:w-1/2 block hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300"
-          >
-            Join Discord
-          </a>
-        </div>
-
-        <div id="waitlist" class="relative bg-gray-200 pt-6 lg:pt-12 pb-12">
+        <div id="waitlist" class="relative bg-gray-200 pb-12">
           <div
             class="grid grid-cols-1 space-y-7 w-full md:w-3/4 lg:w-1/2 m-auto p-2"
           >
@@ -371,7 +366,16 @@ onMounted(() => {
   el.play();
 });
 
+const OTA_FEATURE_IMAGE = "/ui/images/landing/swupdate-messages-mobile.png";
+
 const releases = [
+  {
+    date: "8 May, 2023",
+    description: "Raspberry Pi Camera V3 Module.",
+    name: "v0.7.0 (Garnet)",
+    href: "https://printnanny.ai/docs/release-history/0.7.x-garnet-mickledore/",
+    linkText: "Release Notes &rarr;",
+  },
   {
     date: "23 Jan, 2023",
     description:
@@ -395,26 +399,25 @@ const releases = [
     name: "v0.4.0 (Dunite)",
     href: "https://printnanny.ai/docs/release-history/0.4.x-dunite-langdale/",
   },
-  {
-    date: "28 Aug, 2022",
-    description:
-      "PrintNanny Cam available from mobile/cellular network. Swagger and Redoc API docs. Cloud UI theme",
-    name: "v0.3.0 (Cinnabar)",
-    href: "https://printnanny.ai/docs/release-history/0.3.x-cinnabar-kirkstone/",
-  },
+  // {
+  //   date: "28 Aug, 2022",
+  //   description:
+  //     "PrintNanny Cam available from mobile/cellular network. Swagger and Redoc API docs. Cloud UI theme",
+  //   name: "v0.3.0 (Cinnabar)",
+  //   href: "https://printnanny.ai/docs/release-history/0.3.x-cinnabar-kirkstone/",
+  // },
 ];
 
 const features = [
   {
-    name: "Raspberry Pi",
+    name: "Easy Install",
     description:
-      "Raspberry Pi 4 is fully supported, with Orange Pi and Rock Pi in development.",
+      "Get started by installing PrintNanny OS to a Raspberry Pi in less than 5 minutes.",
     icon: ComputerDesktopIcon,
   },
   {
     name: "Cloud File Sync",
-    description:
-      "Like DropBox, but focused on taming model revisions, slicer settings, and gcode macros. Powered by SyncThing.",
+    description: "Sync gcode and 3D model files across your 3D printer fleet",
     icon: FolderOpenIcon,
   },
   // TODO
