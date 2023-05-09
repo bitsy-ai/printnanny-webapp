@@ -319,34 +319,34 @@ export interface DemoSubmission {
     'result': string;
     /**
      * 
-     * @type {DemoFeedbackEnum | NullEnum}
+     * @type {DemoFeedbackEnum}
      * @memberof DemoSubmission
      */
-    'feedback_nozzle': DemoFeedbackEnum | NullEnum | null;
+    'feedback_nozzle': DemoFeedbackEnum | null;
     /**
      * 
-     * @type {DemoFeedbackEnum | NullEnum}
+     * @type {DemoFeedbackEnum}
      * @memberof DemoSubmission
      */
-    'feedback_adhesion': DemoFeedbackEnum | NullEnum | null;
+    'feedback_adhesion': DemoFeedbackEnum | null;
     /**
      * 
-     * @type {DemoFeedbackEnum | NullEnum}
+     * @type {DemoFeedbackEnum}
      * @memberof DemoSubmission
      */
-    'feedback_spaghetti': DemoFeedbackEnum | NullEnum | null;
+    'feedback_spaghetti': DemoFeedbackEnum | null;
     /**
      * 
-     * @type {DemoFeedbackEnum | NullEnum}
+     * @type {DemoFeedbackEnum}
      * @memberof DemoSubmission
      */
-    'feedback_print': DemoFeedbackEnum | NullEnum | null;
+    'feedback_print': DemoFeedbackEnum | null;
     /**
      * 
-     * @type {DemoFeedbackEnum | NullEnum}
+     * @type {DemoFeedbackEnum}
      * @memberof DemoSubmission
      */
-    'feedback_raft': DemoFeedbackEnum | NullEnum | null;
+    'feedback_raft': DemoFeedbackEnum | null;
 }
 /**
  * 
@@ -356,34 +356,34 @@ export interface DemoSubmission {
 export interface DemoSubmissionFeedbackRequest {
     /**
      * 
-     * @type {DemoFeedbackEnum | NullEnum}
+     * @type {DemoFeedbackEnum}
      * @memberof DemoSubmissionFeedbackRequest
      */
-    'feedback_nozzle'?: DemoFeedbackEnum | NullEnum | null;
+    'feedback_nozzle'?: DemoFeedbackEnum | null;
     /**
      * 
-     * @type {DemoFeedbackEnum | NullEnum}
+     * @type {DemoFeedbackEnum}
      * @memberof DemoSubmissionFeedbackRequest
      */
-    'feedback_adhesion'?: DemoFeedbackEnum | NullEnum | null;
+    'feedback_adhesion'?: DemoFeedbackEnum | null;
     /**
      * 
-     * @type {DemoFeedbackEnum | NullEnum}
+     * @type {DemoFeedbackEnum}
      * @memberof DemoSubmissionFeedbackRequest
      */
-    'feedback_spaghetti'?: DemoFeedbackEnum | NullEnum | null;
+    'feedback_spaghetti'?: DemoFeedbackEnum | null;
     /**
      * 
-     * @type {DemoFeedbackEnum | NullEnum}
+     * @type {DemoFeedbackEnum}
      * @memberof DemoSubmissionFeedbackRequest
      */
-    'feedback_print'?: DemoFeedbackEnum | NullEnum | null;
+    'feedback_print'?: DemoFeedbackEnum | null;
     /**
      * 
-     * @type {DemoFeedbackEnum | NullEnum}
+     * @type {DemoFeedbackEnum}
      * @memberof DemoSubmissionFeedbackRequest
      */
-    'feedback_raft'?: DemoFeedbackEnum | NullEnum | null;
+    'feedback_raft'?: DemoFeedbackEnum | null;
 }
 /**
  * 
@@ -2172,19 +2172,6 @@ export interface NetworkSettingsRequest {
 /**
  * 
  * @export
- * @enum {string}
- */
-
-export const NullEnum = {
-    Null: 'null'
-} as const;
-
-export type NullEnum = typeof NullEnum[keyof typeof NullEnum];
-
-
-/**
- * 
- * @export
  * @interface OctoPrintBackup
  */
 export interface OctoPrintBackup {
@@ -3592,34 +3579,34 @@ export interface PasswordResetRequest {
 export interface PatchedDemoSubmissionFeedbackRequest {
     /**
      * 
-     * @type {DemoFeedbackEnum | NullEnum}
+     * @type {DemoFeedbackEnum}
      * @memberof PatchedDemoSubmissionFeedbackRequest
      */
-    'feedback_nozzle'?: DemoFeedbackEnum | NullEnum | null;
+    'feedback_nozzle'?: DemoFeedbackEnum | null;
     /**
      * 
-     * @type {DemoFeedbackEnum | NullEnum}
+     * @type {DemoFeedbackEnum}
      * @memberof PatchedDemoSubmissionFeedbackRequest
      */
-    'feedback_adhesion'?: DemoFeedbackEnum | NullEnum | null;
+    'feedback_adhesion'?: DemoFeedbackEnum | null;
     /**
      * 
-     * @type {DemoFeedbackEnum | NullEnum}
+     * @type {DemoFeedbackEnum}
      * @memberof PatchedDemoSubmissionFeedbackRequest
      */
-    'feedback_spaghetti'?: DemoFeedbackEnum | NullEnum | null;
+    'feedback_spaghetti'?: DemoFeedbackEnum | null;
     /**
      * 
-     * @type {DemoFeedbackEnum | NullEnum}
+     * @type {DemoFeedbackEnum}
      * @memberof PatchedDemoSubmissionFeedbackRequest
      */
-    'feedback_print'?: DemoFeedbackEnum | NullEnum | null;
+    'feedback_print'?: DemoFeedbackEnum | null;
     /**
      * 
-     * @type {DemoFeedbackEnum | NullEnum}
+     * @type {DemoFeedbackEnum}
      * @memberof PatchedDemoSubmissionFeedbackRequest
      */
-    'feedback_raft'?: DemoFeedbackEnum | NullEnum | null;
+    'feedback_raft'?: DemoFeedbackEnum | null;
 }
 /**
  * 

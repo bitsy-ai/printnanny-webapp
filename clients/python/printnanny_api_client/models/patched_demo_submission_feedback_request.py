@@ -37,11 +37,11 @@ class PatchedDemoSubmissionFeedbackRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'feedback_nozzle': 'OneOfDemoFeedbackEnumNullEnum',
-        'feedback_adhesion': 'OneOfDemoFeedbackEnumNullEnum',
-        'feedback_spaghetti': 'OneOfDemoFeedbackEnumNullEnum',
-        'feedback_print': 'OneOfDemoFeedbackEnumNullEnum',
-        'feedback_raft': 'OneOfDemoFeedbackEnumNullEnum'
+        'feedback_nozzle': 'DemoFeedbackEnum',
+        'feedback_adhesion': 'DemoFeedbackEnum',
+        'feedback_spaghetti': 'DemoFeedbackEnum',
+        'feedback_print': 'DemoFeedbackEnum',
+        'feedback_raft': 'DemoFeedbackEnum'
     }
 
     attribute_map = {
@@ -77,7 +77,7 @@ class PatchedDemoSubmissionFeedbackRequest(object):
 
 
         :return: The feedback_nozzle of this PatchedDemoSubmissionFeedbackRequest.  # noqa: E501
-        :rtype: OneOfDemoFeedbackEnumNullEnum
+        :rtype: DemoFeedbackEnum
         """
         return self._feedback_nozzle
 
@@ -87,7 +87,7 @@ class PatchedDemoSubmissionFeedbackRequest(object):
 
 
         :param feedback_nozzle: The feedback_nozzle of this PatchedDemoSubmissionFeedbackRequest.  # noqa: E501
-        :type feedback_nozzle: OneOfDemoFeedbackEnumNullEnum
+        :type feedback_nozzle: DemoFeedbackEnum
         """
 
         self._feedback_nozzle = feedback_nozzle
@@ -98,7 +98,7 @@ class PatchedDemoSubmissionFeedbackRequest(object):
 
 
         :return: The feedback_adhesion of this PatchedDemoSubmissionFeedbackRequest.  # noqa: E501
-        :rtype: OneOfDemoFeedbackEnumNullEnum
+        :rtype: DemoFeedbackEnum
         """
         return self._feedback_adhesion
 
@@ -108,7 +108,7 @@ class PatchedDemoSubmissionFeedbackRequest(object):
 
 
         :param feedback_adhesion: The feedback_adhesion of this PatchedDemoSubmissionFeedbackRequest.  # noqa: E501
-        :type feedback_adhesion: OneOfDemoFeedbackEnumNullEnum
+        :type feedback_adhesion: DemoFeedbackEnum
         """
 
         self._feedback_adhesion = feedback_adhesion
@@ -119,7 +119,7 @@ class PatchedDemoSubmissionFeedbackRequest(object):
 
 
         :return: The feedback_spaghetti of this PatchedDemoSubmissionFeedbackRequest.  # noqa: E501
-        :rtype: OneOfDemoFeedbackEnumNullEnum
+        :rtype: DemoFeedbackEnum
         """
         return self._feedback_spaghetti
 
@@ -129,7 +129,7 @@ class PatchedDemoSubmissionFeedbackRequest(object):
 
 
         :param feedback_spaghetti: The feedback_spaghetti of this PatchedDemoSubmissionFeedbackRequest.  # noqa: E501
-        :type feedback_spaghetti: OneOfDemoFeedbackEnumNullEnum
+        :type feedback_spaghetti: DemoFeedbackEnum
         """
 
         self._feedback_spaghetti = feedback_spaghetti
@@ -140,7 +140,7 @@ class PatchedDemoSubmissionFeedbackRequest(object):
 
 
         :return: The feedback_print of this PatchedDemoSubmissionFeedbackRequest.  # noqa: E501
-        :rtype: OneOfDemoFeedbackEnumNullEnum
+        :rtype: DemoFeedbackEnum
         """
         return self._feedback_print
 
@@ -150,7 +150,7 @@ class PatchedDemoSubmissionFeedbackRequest(object):
 
 
         :param feedback_print: The feedback_print of this PatchedDemoSubmissionFeedbackRequest.  # noqa: E501
-        :type feedback_print: OneOfDemoFeedbackEnumNullEnum
+        :type feedback_print: DemoFeedbackEnum
         """
 
         self._feedback_print = feedback_print
@@ -161,7 +161,7 @@ class PatchedDemoSubmissionFeedbackRequest(object):
 
 
         :return: The feedback_raft of this PatchedDemoSubmissionFeedbackRequest.  # noqa: E501
-        :rtype: OneOfDemoFeedbackEnumNullEnum
+        :rtype: DemoFeedbackEnum
         """
         return self._feedback_raft
 
@@ -171,7 +171,7 @@ class PatchedDemoSubmissionFeedbackRequest(object):
 
 
         :param feedback_raft: The feedback_raft of this PatchedDemoSubmissionFeedbackRequest.  # noqa: E501
-        :type feedback_raft: OneOfDemoFeedbackEnumNullEnum
+        :type feedback_raft: DemoFeedbackEnum
         """
 
         self._feedback_raft = feedback_raft

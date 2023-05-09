@@ -49,7 +49,6 @@ docs/NatsOrganizationRequest.md
 docs/NatsOrganizationUser.md
 docs/NetworkSettings.md
 docs/NetworkSettingsRequest.md
-docs/NullEnum.md
 docs/OctoPrintBackup.md
 docs/OctoPrintServer.md
 docs/OctoPrintServerRequest.md
@@ -195,7 +194,6 @@ printnanny_api_client/models/nats_organization_request.py
 printnanny_api_client/models/nats_organization_user.py
 printnanny_api_client/models/network_settings.py
 printnanny_api_client/models/network_settings_request.py
-printnanny_api_client/models/null_enum.py
 printnanny_api_client/models/octo_print_backup.py
 printnanny_api_client/models/octo_print_server.py
 printnanny_api_client/models/octo_print_server_request.py
@@ -331,7 +329,6 @@ test/test_nats_organization_request.py
 test/test_nats_organization_user.py
 test/test_network_settings.py
 test/test_network_settings_request.py
-test/test_null_enum.py
 test/test_octo_print_backup.py
 test/test_octo_print_server.py
 test/test_octo_print_server_request.py

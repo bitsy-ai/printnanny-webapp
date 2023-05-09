@@ -254,7 +254,6 @@ Class | Method | HTTP request | Description
  - [NatsOrganizationUser](docs/NatsOrganizationUser.md)
  - [NetworkSettings](docs/NetworkSettings.md)
  - [NetworkSettingsRequest](docs/NetworkSettingsRequest.md)
- - [NullEnum](docs/NullEnum.md)
  - [OctoPrintBackup](docs/OctoPrintBackup.md)
  - [OctoPrintServer](docs/OctoPrintServer.md)
  - [OctoPrintServerRequest](docs/OctoPrintServerRequest.md)
