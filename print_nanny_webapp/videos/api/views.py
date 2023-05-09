@@ -252,7 +252,7 @@ class DemoSubmissionViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin
 
         # attach callback to transaction commit, so task is queued only after database row is saved
         # otherwise, the celery task can begin before the transaction is committed (when Celery eager results = False and ATOMIC_REQUESTS = True)
-        transaction.on_commit(partial(demo_task.delay(obj.id)))
+        transaction.on_commit(partial(demo_task.delay, obj.id))
 
 
 @extend_schema_view(
