@@ -9,7 +9,7 @@
   >
     <PopoverPanel
       focus
-      class="z-20 absolute top-0 inset-x-0 transition transform origin-top md:hidden"
+      class="z-20 absolute top-0 inset-x-0 transition transform origin-top lg:hidden"
     >
       <div
         class="h-screen p-4 rounded-lg shadow-md bg-gray-900 ring-1 ring-black ring-opacity-5 overflow-hidden"
