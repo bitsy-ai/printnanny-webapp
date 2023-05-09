@@ -50,12 +50,14 @@ honeycomb-beeline
 imageio
 imageio-ffmpeg
 nats-py[nkeys]
+numpy
 pandas
 plotly
 posthog
 psycopg2
 pyarrow
 qrcode[pil]
+tensorflow
 twisted[http2,tls]
 uvicorn[standard]
 whitenoise
