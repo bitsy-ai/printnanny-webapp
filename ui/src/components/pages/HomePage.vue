@@ -219,7 +219,7 @@
         <h1
           class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8"
         >
-          <span class="text-gray-900">Past Releases</span>
+          <span class="text-gray-900">PrintNanny OS Releases</span>
         </h1>
         <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
           <strong>Constantly shipping, based on YOUR feedback.</strong>
