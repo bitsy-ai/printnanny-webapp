@@ -50,7 +50,8 @@ function onChangeFile(e: any) {
         Can you stump the AI?
       </h2>
       <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500 text-center">
-        Upload your gnarliest 3D print failures to test PrintNanny's detection system.
+        Upload your gnarliest 3D print failures to test PrintNanny's detection
+        system.
       </p>
       <hr class="w-64 h-px my-8 mx-auto bg-gray-200 border-0" />
 
