@@ -6,6 +6,7 @@ import { ref, reactive } from "vue";
 import * as yup from "yup";
 import type * as apiTypes from "printnanny-api-client";
 import { useDemoStore } from "@/stores/demo";
+import { error } from "@/stores/alerts"
 
 const router = useRouter();
 const loading = ref(false);
@@ -25,7 +26,10 @@ const schema = yup.object({
 
 async function onSubmit(values: any) {
   state.loading = true;
-  await store.submit(values.email, file.value);
+  if (file.value === undefined){
+    return error("Select a PNG or JPEG photo", "You must select a photo to try PrintNanny. Use the 'Choose File' button to select a file, then submit your test. PrintNanny will email you when your results are available.")
+  }
+  await store.submit(values.email, file.value as string);
   state.loading = false;
 }
 
