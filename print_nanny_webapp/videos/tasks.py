@@ -14,7 +14,7 @@ from config import celery_app
 
 logger = logging.getLogger(__name__)
 
-ChallengeCampaignLead = apps.get_model("videos", "ChallengeCampaignLead")
+DemoSubmission = apps.get_model("videos", "DemoSubmission")
 
 
 @celery_app.task()
@@ -23,8 +23,8 @@ def finalize_video_recording_task(video_recording_id: UUID):
 
 
 @celery_app.task()
-def printnanny_challenge_task(challenge_id: int):
-    entry = ChallengeCampaignLead.objects.get(id=challenge_id)
+def demo_task(challenge_id: int):
+    entry = DemoSubmission.objects.get(id=challenge_id)
     logger.info("Processing ChallengeCampaignLead id=%s", entry.id)
 
     entry.submission.open()
