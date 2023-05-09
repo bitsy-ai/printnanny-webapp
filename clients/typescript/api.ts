@@ -302,6 +302,36 @@ export interface DemoSubmission {
      * @memberof DemoSubmission
      */
     'result': string;
+    /**
+     * 
+     * @type {FeedbackRaftEnum | NullEnum}
+     * @memberof DemoSubmission
+     */
+    'feedback_nozzle'?: FeedbackRaftEnum | NullEnum | null;
+    /**
+     * 
+     * @type {FeedbackRaftEnum | NullEnum}
+     * @memberof DemoSubmission
+     */
+    'feedback_adhesion'?: FeedbackRaftEnum | NullEnum | null;
+    /**
+     * 
+     * @type {FeedbackRaftEnum | NullEnum}
+     * @memberof DemoSubmission
+     */
+    'feedback_spaghetti'?: FeedbackRaftEnum | NullEnum | null;
+    /**
+     * 
+     * @type {FeedbackRaftEnum | NullEnum}
+     * @memberof DemoSubmission
+     */
+    'feedback_print'?: FeedbackRaftEnum | NullEnum | null;
+    /**
+     * 
+     * @type {FeedbackRaftEnum | NullEnum}
+     * @memberof DemoSubmission
+     */
+    'feedback_raft'?: FeedbackRaftEnum | NullEnum | null;
 }
 /**
  * 
@@ -1605,6 +1635,21 @@ export type EventTypesEnum = typeof EventTypesEnum[keyof typeof EventTypesEnum];
 
 
 /**
+ * * `pass` - Submission received positive (thumbs up) feedback * `fail` - Submission received negative (thumbs down) feedback * `na` - Submission received N/A (not applicable)
+ * @export
+ * @enum {string}
+ */
+
+export const FeedbackRaftEnum = {
+    Pass: 'pass',
+    Fail: 'fail',
+    Na: 'na'
+} as const;
+
+export type FeedbackRaftEnum = typeof FeedbackRaftEnum[keyof typeof FeedbackRaftEnum];
+
+
+/**
  * 
  * @export
  * @interface GcodeFile
@@ -2087,6 +2132,19 @@ export interface NetworkSettingsRequest {
      */
     'user': number;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const NullEnum = {
+    Null: 'null'
+} as const;
+
+export type NullEnum = typeof NullEnum[keyof typeof NullEnum];
+
+
 /**
  * 
  * @export
@@ -14920,10 +14978,15 @@ export const VideosApiAxiosParamCreator = function (configuration?: Configuratio
          * 
          * @param {string} email 
          * @param {any} submission 
+         * @param {FeedbackRaftEnum | NullEnum} [feedbackNozzle] 
+         * @param {FeedbackRaftEnum | NullEnum} [feedbackAdhesion] 
+         * @param {FeedbackRaftEnum | NullEnum} [feedbackSpaghetti] 
+         * @param {FeedbackRaftEnum | NullEnum} [feedbackPrint] 
+         * @param {FeedbackRaftEnum | NullEnum} [feedbackRaft] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        demosCreate: async (email: string, submission: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        demosCreate: async (email: string, submission: any, feedbackNozzle?: FeedbackRaftEnum | NullEnum, feedbackAdhesion?: FeedbackRaftEnum | NullEnum, feedbackSpaghetti?: FeedbackRaftEnum | NullEnum, feedbackPrint?: FeedbackRaftEnum | NullEnum, feedbackRaft?: FeedbackRaftEnum | NullEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'email' is not null or undefined
             assertParamExists('demosCreate', 'email', email)
             // verify required parameter 'submission' is not null or undefined
@@ -14954,6 +15017,26 @@ export const VideosApiAxiosParamCreator = function (configuration?: Configuratio
     
             if (submission !== undefined) { 
                 localVarFormParams.append('submission', submission as any);
+            }
+    
+            if (feedbackNozzle !== undefined) { 
+                localVarFormParams.append('feedback_nozzle', new Blob([JSON.stringify(feedbackNozzle)], { type: "application/json", }));
+            }
+    
+            if (feedbackAdhesion !== undefined) { 
+                localVarFormParams.append('feedback_adhesion', new Blob([JSON.stringify(feedbackAdhesion)], { type: "application/json", }));
+            }
+    
+            if (feedbackSpaghetti !== undefined) { 
+                localVarFormParams.append('feedback_spaghetti', new Blob([JSON.stringify(feedbackSpaghetti)], { type: "application/json", }));
+            }
+    
+            if (feedbackPrint !== undefined) { 
+                localVarFormParams.append('feedback_print', new Blob([JSON.stringify(feedbackPrint)], { type: "application/json", }));
+            }
+    
+            if (feedbackRaft !== undefined) { 
+                localVarFormParams.append('feedback_raft', new Blob([JSON.stringify(feedbackRaft)], { type: "application/json", }));
             }
     
     
@@ -15593,11 +15676,16 @@ export const VideosApiFp = function(configuration?: Configuration) {
          * 
          * @param {string} email 
          * @param {any} submission 
+         * @param {FeedbackRaftEnum | NullEnum} [feedbackNozzle] 
+         * @param {FeedbackRaftEnum | NullEnum} [feedbackAdhesion] 
+         * @param {FeedbackRaftEnum | NullEnum} [feedbackSpaghetti] 
+         * @param {FeedbackRaftEnum | NullEnum} [feedbackPrint] 
+         * @param {FeedbackRaftEnum | NullEnum} [feedbackRaft] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async demosCreate(email: string, submission: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DemoSubmission>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.demosCreate(email, submission, options);
+        async demosCreate(email: string, submission: any, feedbackNozzle?: FeedbackRaftEnum | NullEnum, feedbackAdhesion?: FeedbackRaftEnum | NullEnum, feedbackSpaghetti?: FeedbackRaftEnum | NullEnum, feedbackPrint?: FeedbackRaftEnum | NullEnum, feedbackRaft?: FeedbackRaftEnum | NullEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DemoSubmission>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.demosCreate(email, submission, feedbackNozzle, feedbackAdhesion, feedbackSpaghetti, feedbackPrint, feedbackRaft, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -15759,11 +15847,16 @@ export const VideosApiFactory = function (configuration?: Configuration, basePat
          * 
          * @param {string} email 
          * @param {any} submission 
+         * @param {FeedbackRaftEnum | NullEnum} [feedbackNozzle] 
+         * @param {FeedbackRaftEnum | NullEnum} [feedbackAdhesion] 
+         * @param {FeedbackRaftEnum | NullEnum} [feedbackSpaghetti] 
+         * @param {FeedbackRaftEnum | NullEnum} [feedbackPrint] 
+         * @param {FeedbackRaftEnum | NullEnum} [feedbackRaft] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        demosCreate(email: string, submission: any, options?: any): AxiosPromise<DemoSubmission> {
-            return localVarFp.demosCreate(email, submission, options).then((request) => request(axios, basePath));
+        demosCreate(email: string, submission: any, feedbackNozzle?: FeedbackRaftEnum | NullEnum, feedbackAdhesion?: FeedbackRaftEnum | NullEnum, feedbackSpaghetti?: FeedbackRaftEnum | NullEnum, feedbackPrint?: FeedbackRaftEnum | NullEnum, feedbackRaft?: FeedbackRaftEnum | NullEnum, options?: any): AxiosPromise<DemoSubmission> {
+            return localVarFp.demosCreate(email, submission, feedbackNozzle, feedbackAdhesion, feedbackSpaghetti, feedbackPrint, feedbackRaft, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -15910,11 +16003,16 @@ export interface VideosApiInterface {
      * 
      * @param {string} email 
      * @param {any} submission 
+     * @param {FeedbackRaftEnum | NullEnum} [feedbackNozzle] 
+     * @param {FeedbackRaftEnum | NullEnum} [feedbackAdhesion] 
+     * @param {FeedbackRaftEnum | NullEnum} [feedbackSpaghetti] 
+     * @param {FeedbackRaftEnum | NullEnum} [feedbackPrint] 
+     * @param {FeedbackRaftEnum | NullEnum} [feedbackRaft] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VideosApiInterface
      */
-    demosCreate(email: string, submission: any, options?: AxiosRequestConfig): AxiosPromise<DemoSubmission>;
+    demosCreate(email: string, submission: any, feedbackNozzle?: FeedbackRaftEnum | NullEnum, feedbackAdhesion?: FeedbackRaftEnum | NullEnum, feedbackSpaghetti?: FeedbackRaftEnum | NullEnum, feedbackPrint?: FeedbackRaftEnum | NullEnum, feedbackRaft?: FeedbackRaftEnum | NullEnum, options?: AxiosRequestConfig): AxiosPromise<DemoSubmission>;
 
     /**
      * 
@@ -16061,12 +16159,17 @@ export class VideosApi extends BaseAPI implements VideosApiInterface {
      * 
      * @param {string} email 
      * @param {any} submission 
+     * @param {FeedbackRaftEnum | NullEnum} [feedbackNozzle] 
+     * @param {FeedbackRaftEnum | NullEnum} [feedbackAdhesion] 
+     * @param {FeedbackRaftEnum | NullEnum} [feedbackSpaghetti] 
+     * @param {FeedbackRaftEnum | NullEnum} [feedbackPrint] 
+     * @param {FeedbackRaftEnum | NullEnum} [feedbackRaft] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VideosApi
      */
-    public demosCreate(email: string, submission: any, options?: AxiosRequestConfig) {
-        return VideosApiFp(this.configuration).demosCreate(email, submission, options).then((request) => request(this.axios, this.basePath));
+    public demosCreate(email: string, submission: any, feedbackNozzle?: FeedbackRaftEnum | NullEnum, feedbackAdhesion?: FeedbackRaftEnum | NullEnum, feedbackSpaghetti?: FeedbackRaftEnum | NullEnum, feedbackPrint?: FeedbackRaftEnum | NullEnum, feedbackRaft?: FeedbackRaftEnum | NullEnum, options?: AxiosRequestConfig) {
+        return VideosApiFp(this.configuration).demosCreate(email, submission, feedbackNozzle, feedbackAdhesion, feedbackSpaghetti, feedbackPrint, feedbackRaft, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

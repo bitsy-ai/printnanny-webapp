@@ -6,7 +6,7 @@ import google.api_core.exceptions
 
 from safedelete.models import SafeDeleteModel
 from uuid import uuid4
-from .enum import VideoRecordingStatus
+from .enum import VideoRecordingStatus, DemoSubmissionFeedbackEnum
 
 # Create your models here.
 
@@ -51,11 +51,21 @@ class DemoSubmission(models.Model):
     submission = models.FileField(upload_to=demo_submission_filepath, max_length=255)
     result = models.FileField(upload_to=demo_result_filepath, max_length=255)
 
-    feedback_nozzle = models.BooleanField(null=True)
-    feedback_adhesion = models.BooleanField(null=True)
-    feedback_spaghetti = models.BooleanField(null=True)
-    feedback_print = models.BooleanField(null=True)
-    feedback_raft = models.BooleanField(null=True)
+    feedback_nozzle = models.CharField(
+        null=True, choices=DemoSubmissionFeedbackEnum.choices, max_length=25
+    )
+    feedback_adhesion = models.CharField(
+        null=True, choices=DemoSubmissionFeedbackEnum.choices, max_length=25
+    )
+    feedback_spaghetti = models.CharField(
+        null=True, choices=DemoSubmissionFeedbackEnum.choices, max_length=25
+    )
+    feedback_print = models.CharField(
+        null=True, choices=DemoSubmissionFeedbackEnum.choices, max_length=25
+    )
+    feedback_raft = models.CharField(
+        null=True, choices=DemoSubmissionFeedbackEnum.choices, max_length=25
+    )
 
 
 class CameraSnapshot(models.Model):
