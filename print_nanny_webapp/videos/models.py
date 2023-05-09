@@ -28,12 +28,12 @@ def snapshot_filepath(instance, filename):
 
 def demo_submission_filepath(instance, filename):
     path = timezone.now().strftime("uploads/demo_submission/%Y/%m/%d")
-    return f"{path}/{filename}.jpg"
+    return f"{path}/{instance.id}_{filename}"
 
 
 def demo_result_filepath(instance, filename):
     path = timezone.now().strftime("uploads/demo_result/%Y/%m/%d")
-    return f"{path}/{filename}.jpg"
+    return f"{path}/{instance.id}_{filename}"
 
 
 class DemoSubmission(models.Model):
@@ -48,8 +48,8 @@ class DemoSubmission(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4)
     created_dt = models.DateTimeField(auto_now_add=True)
     email = models.EmailField()
-    submission = models.FileField(upload_to=demo_submission_filepath)
-    result = models.FileField(upload_to=demo_result_filepath)
+    submission = models.FileField(upload_to=demo_submission_filepath, max_length=255)
+    result = models.FileField(upload_to=demo_result_filepath, max_length=255)
 
 
 class CameraSnapshot(models.Model):

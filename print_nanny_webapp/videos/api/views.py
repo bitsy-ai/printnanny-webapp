@@ -15,7 +15,7 @@ from rest_framework.mixins import (
 from rest_framework.permissions import AllowAny
 from rest_framework import status, parsers
 
-from print_nanny_webapp.videos.tasks import finalize_video_recording_task
+from print_nanny_webapp.videos.tasks import finalize_video_recording_task, demo_task
 from print_nanny_webapp.videos.models import (
     CameraSnapshot,
     VideoRecording,
@@ -239,3 +239,8 @@ class DemoSubmissionViewSet(
     queryset = DemoSubmission.objects.all()
     parser_classes = [parsers.MultiPartParser]
     permission_classes = (AllowAny,)
+
+    def perform_create(self, serializer):
+        obj = serializer.save()
+        task = demo_task.delay(obj.id)
+        logger.info("DemoSubmissionViewSet created demo_task %s", task)

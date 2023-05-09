@@ -3,10 +3,24 @@ from print_nanny_webapp.videos.models import (
     VideoRecording,
     VideoRecordingPart,
     CameraSnapshot,
+    DemoSubmission,
 )
 
 
 # Register your models here.
+
+
+@admin.register(DemoSubmission)
+class VideoRecordingAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "email",
+        "created_dt",
+        "result",
+    )
+    model = DemoSubmission
+
+
 @admin.register(VideoRecording)
 class VideoRecordingAdmin(admin.ModelAdmin):
     list_display = (

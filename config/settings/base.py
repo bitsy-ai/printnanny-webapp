@@ -915,3 +915,10 @@ CELERY_TASK_SEND_SENT_EVENT = True
 TFLITE_MODEL = "/app/data/model.tflite"
 TFLITE_LABELS = "/app/data/labels.txt"
 TFLITE_METADATA = "/app/data/tflite_metadata.json"
+TFLITE_CATEGORY_INDEX = {
+    0: {"name": "OK: nozzle"},
+    1: {"name": "WARN: adhesion"},
+    2: {"name": "WARN: spaghetti"},
+    3: {"name": "OK: print"},
+    4: {"name": "OK: raft"},
+}
