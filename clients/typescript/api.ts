@@ -267,6 +267,125 @@ export type CrashReportStatusEnum = typeof CrashReportStatusEnum[keyof typeof Cr
 
 
 /**
+ * * `pass` - Submission received positive (thumbs up) feedback * `fail` - Submission received negative (thumbs down) feedback * `na` - Submission received N/A (not applicable)
+ * @export
+ * @enum {string}
+ */
+
+export const DemoFeedbackEnum = {
+    Pass: 'pass',
+    Fail: 'fail',
+    Na: 'na'
+} as const;
+
+export type DemoFeedbackEnum = typeof DemoFeedbackEnum[keyof typeof DemoFeedbackEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface DemoSubmission
+ */
+export interface DemoSubmission {
+    /**
+     * 
+     * @type {string}
+     * @memberof DemoSubmission
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DemoSubmission
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DemoSubmission
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DemoSubmission
+     */
+    'submission': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DemoSubmission
+     */
+    'result': string;
+    /**
+     * 
+     * @type {DemoFeedbackEnum | NullEnum}
+     * @memberof DemoSubmission
+     */
+    'feedback_nozzle'?: DemoFeedbackEnum | NullEnum | null;
+    /**
+     * 
+     * @type {DemoFeedbackEnum | NullEnum}
+     * @memberof DemoSubmission
+     */
+    'feedback_adhesion'?: DemoFeedbackEnum | NullEnum | null;
+    /**
+     * 
+     * @type {DemoFeedbackEnum | NullEnum}
+     * @memberof DemoSubmission
+     */
+    'feedback_spaghetti'?: DemoFeedbackEnum | NullEnum | null;
+    /**
+     * 
+     * @type {DemoFeedbackEnum | NullEnum}
+     * @memberof DemoSubmission
+     */
+    'feedback_print'?: DemoFeedbackEnum | NullEnum | null;
+    /**
+     * 
+     * @type {DemoFeedbackEnum | NullEnum}
+     * @memberof DemoSubmission
+     */
+    'feedback_raft'?: DemoFeedbackEnum | NullEnum | null;
+}
+/**
+ * 
+ * @export
+ * @interface DemoSubmissionFeedbackRequest
+ */
+export interface DemoSubmissionFeedbackRequest {
+    /**
+     * 
+     * @type {DemoFeedbackEnum | NullEnum}
+     * @memberof DemoSubmissionFeedbackRequest
+     */
+    'feedback_nozzle'?: DemoFeedbackEnum | NullEnum | null;
+    /**
+     * 
+     * @type {DemoFeedbackEnum | NullEnum}
+     * @memberof DemoSubmissionFeedbackRequest
+     */
+    'feedback_adhesion'?: DemoFeedbackEnum | NullEnum | null;
+    /**
+     * 
+     * @type {DemoFeedbackEnum | NullEnum}
+     * @memberof DemoSubmissionFeedbackRequest
+     */
+    'feedback_spaghetti'?: DemoFeedbackEnum | NullEnum | null;
+    /**
+     * 
+     * @type {DemoFeedbackEnum | NullEnum}
+     * @memberof DemoSubmissionFeedbackRequest
+     */
+    'feedback_print'?: DemoFeedbackEnum | NullEnum | null;
+    /**
+     * 
+     * @type {DemoFeedbackEnum | NullEnum}
+     * @memberof DemoSubmissionFeedbackRequest
+     */
+    'feedback_raft'?: DemoFeedbackEnum | NullEnum | null;
+}
+/**
  * 
  * @export
  * @interface DjStripeCharge
@@ -1611,7 +1730,7 @@ export interface GcodeFile {
     'user': number;
 }
 /**
- * * `printnanny` - Subscribe to PrintNanny news and development updates * `sdwire` - Get notified when SDWire is back in stock * `rpi4_kit` - Get notified when Raspberry Pi 4 kits are available
+ * * `printnanny` - Subscribe to PrintNanny news and development updates * `sdwire` - Get notified when SDWire is back in stock * `rpi4_kit` - Get notified when Raspberry Pi 4 kits are available * `printnanny_demo` - Uploaded image to PrintNanny challenge/demo marketing campaign
  * @export
  * @enum {string}
  */
@@ -1619,7 +1738,8 @@ export interface GcodeFile {
 export const InterestEnum = {
     Printnanny: 'printnanny',
     Sdwire: 'sdwire',
-    Rpi4Kit: 'rpi4_kit'
+    Rpi4Kit: 'rpi4_kit',
+    PrintnannyDemo: 'printnanny_demo'
 } as const;
 
 export type InterestEnum = typeof InterestEnum[keyof typeof InterestEnum];
@@ -2049,6 +2169,19 @@ export interface NetworkSettingsRequest {
      */
     'user': number;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const NullEnum = {
+    Null: 'null'
+} as const;
+
+export type NullEnum = typeof NullEnum[keyof typeof NullEnum];
+
+
 /**
  * 
  * @export
@@ -3450,6 +3583,43 @@ export interface PasswordResetRequest {
      * @memberof PasswordResetRequest
      */
     'email': string;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedDemoSubmissionFeedbackRequest
+ */
+export interface PatchedDemoSubmissionFeedbackRequest {
+    /**
+     * 
+     * @type {DemoFeedbackEnum | NullEnum}
+     * @memberof PatchedDemoSubmissionFeedbackRequest
+     */
+    'feedback_nozzle'?: DemoFeedbackEnum | NullEnum | null;
+    /**
+     * 
+     * @type {DemoFeedbackEnum | NullEnum}
+     * @memberof PatchedDemoSubmissionFeedbackRequest
+     */
+    'feedback_adhesion'?: DemoFeedbackEnum | NullEnum | null;
+    /**
+     * 
+     * @type {DemoFeedbackEnum | NullEnum}
+     * @memberof PatchedDemoSubmissionFeedbackRequest
+     */
+    'feedback_spaghetti'?: DemoFeedbackEnum | NullEnum | null;
+    /**
+     * 
+     * @type {DemoFeedbackEnum | NullEnum}
+     * @memberof PatchedDemoSubmissionFeedbackRequest
+     */
+    'feedback_print'?: DemoFeedbackEnum | NullEnum | null;
+    /**
+     * 
+     * @type {DemoFeedbackEnum | NullEnum}
+     * @memberof PatchedDemoSubmissionFeedbackRequest
+     */
+    'feedback_raft'?: DemoFeedbackEnum | NullEnum | null;
 }
 /**
  * 
@@ -8696,6 +8866,521 @@ export class CrashReportsApi extends BaseAPI implements CrashReportsApiInterface
      */
     public crashReportsUpdate(id: string, description?: string, email?: string, osVersion?: string, osLogs?: any, browserVersion?: string, browserLogs?: any, serial?: string, posthogSession?: string, status?: CrashReportStatusEnum, supportComment?: string, pi?: number, options?: AxiosRequestConfig) {
         return CrashReportsApiFp(this.configuration).crashReportsUpdate(id, description, email, osVersion, osLogs, browserVersion, browserLogs, serial, posthogSession, status, supportComment, pi, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * DemosApi - axios parameter creator
+ * @export
+ */
+export const DemosApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} email 
+         * @param {any} submission 
+         * @param {DemoFeedbackEnum | NullEnum} [feedbackNozzle] 
+         * @param {DemoFeedbackEnum | NullEnum} [feedbackAdhesion] 
+         * @param {DemoFeedbackEnum | NullEnum} [feedbackSpaghetti] 
+         * @param {DemoFeedbackEnum | NullEnum} [feedbackPrint] 
+         * @param {DemoFeedbackEnum | NullEnum} [feedbackRaft] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        demosCreate: async (email: string, submission: any, feedbackNozzle?: DemoFeedbackEnum | NullEnum, feedbackAdhesion?: DemoFeedbackEnum | NullEnum, feedbackSpaghetti?: DemoFeedbackEnum | NullEnum, feedbackPrint?: DemoFeedbackEnum | NullEnum, feedbackRaft?: DemoFeedbackEnum | NullEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'email' is not null or undefined
+            assertParamExists('demosCreate', 'email', email)
+            // verify required parameter 'submission' is not null or undefined
+            assertParamExists('demosCreate', 'submission', submission)
+            const localVarPath = `/api/demos/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+            if (email !== undefined) { 
+                localVarFormParams.append('email', email as any);
+            }
+    
+            if (submission !== undefined) { 
+                localVarFormParams.append('submission', submission as any);
+            }
+    
+            if (feedbackNozzle !== undefined) { 
+                localVarFormParams.append('feedback_nozzle', new Blob([JSON.stringify(feedbackNozzle)], { type: "application/json", }));
+            }
+    
+            if (feedbackAdhesion !== undefined) { 
+                localVarFormParams.append('feedback_adhesion', new Blob([JSON.stringify(feedbackAdhesion)], { type: "application/json", }));
+            }
+    
+            if (feedbackSpaghetti !== undefined) { 
+                localVarFormParams.append('feedback_spaghetti', new Blob([JSON.stringify(feedbackSpaghetti)], { type: "application/json", }));
+            }
+    
+            if (feedbackPrint !== undefined) { 
+                localVarFormParams.append('feedback_print', new Blob([JSON.stringify(feedbackPrint)], { type: "application/json", }));
+            }
+    
+            if (feedbackRaft !== undefined) { 
+                localVarFormParams.append('feedback_raft', new Blob([JSON.stringify(feedbackRaft)], { type: "application/json", }));
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this demo submission.
+         * @param {PatchedDemoSubmissionFeedbackRequest} [patchedDemoSubmissionFeedbackRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        demosFeedbackPartialUpdate: async (id: string, patchedDemoSubmissionFeedbackRequest?: PatchedDemoSubmissionFeedbackRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('demosFeedbackPartialUpdate', 'id', id)
+            const localVarPath = `/api/demos/feedback/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedDemoSubmissionFeedbackRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this demo submission.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        demosFeedbackRetrieve: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('demosFeedbackRetrieve', 'id', id)
+            const localVarPath = `/api/demos/feedback/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this demo submission.
+         * @param {DemoSubmissionFeedbackRequest} [demoSubmissionFeedbackRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        demosFeedbackUpdate: async (id: string, demoSubmissionFeedbackRequest?: DemoSubmissionFeedbackRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('demosFeedbackUpdate', 'id', id)
+            const localVarPath = `/api/demos/feedback/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(demoSubmissionFeedbackRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this demo submission.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        demosRetrieve: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('demosRetrieve', 'id', id)
+            const localVarPath = `/api/demos/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * DemosApi - functional programming interface
+ * @export
+ */
+export const DemosApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = DemosApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {string} email 
+         * @param {any} submission 
+         * @param {DemoFeedbackEnum | NullEnum} [feedbackNozzle] 
+         * @param {DemoFeedbackEnum | NullEnum} [feedbackAdhesion] 
+         * @param {DemoFeedbackEnum | NullEnum} [feedbackSpaghetti] 
+         * @param {DemoFeedbackEnum | NullEnum} [feedbackPrint] 
+         * @param {DemoFeedbackEnum | NullEnum} [feedbackRaft] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async demosCreate(email: string, submission: any, feedbackNozzle?: DemoFeedbackEnum | NullEnum, feedbackAdhesion?: DemoFeedbackEnum | NullEnum, feedbackSpaghetti?: DemoFeedbackEnum | NullEnum, feedbackPrint?: DemoFeedbackEnum | NullEnum, feedbackRaft?: DemoFeedbackEnum | NullEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DemoSubmission>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.demosCreate(email, submission, feedbackNozzle, feedbackAdhesion, feedbackSpaghetti, feedbackPrint, feedbackRaft, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this demo submission.
+         * @param {PatchedDemoSubmissionFeedbackRequest} [patchedDemoSubmissionFeedbackRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async demosFeedbackPartialUpdate(id: string, patchedDemoSubmissionFeedbackRequest?: PatchedDemoSubmissionFeedbackRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DemoSubmission>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.demosFeedbackPartialUpdate(id, patchedDemoSubmissionFeedbackRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this demo submission.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async demosFeedbackRetrieve(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DemoSubmission>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.demosFeedbackRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this demo submission.
+         * @param {DemoSubmissionFeedbackRequest} [demoSubmissionFeedbackRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async demosFeedbackUpdate(id: string, demoSubmissionFeedbackRequest?: DemoSubmissionFeedbackRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DemoSubmission>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.demosFeedbackUpdate(id, demoSubmissionFeedbackRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this demo submission.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async demosRetrieve(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DemoSubmission>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.demosRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * DemosApi - factory interface
+ * @export
+ */
+export const DemosApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = DemosApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {string} email 
+         * @param {any} submission 
+         * @param {DemoFeedbackEnum | NullEnum} [feedbackNozzle] 
+         * @param {DemoFeedbackEnum | NullEnum} [feedbackAdhesion] 
+         * @param {DemoFeedbackEnum | NullEnum} [feedbackSpaghetti] 
+         * @param {DemoFeedbackEnum | NullEnum} [feedbackPrint] 
+         * @param {DemoFeedbackEnum | NullEnum} [feedbackRaft] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        demosCreate(email: string, submission: any, feedbackNozzle?: DemoFeedbackEnum | NullEnum, feedbackAdhesion?: DemoFeedbackEnum | NullEnum, feedbackSpaghetti?: DemoFeedbackEnum | NullEnum, feedbackPrint?: DemoFeedbackEnum | NullEnum, feedbackRaft?: DemoFeedbackEnum | NullEnum, options?: any): AxiosPromise<DemoSubmission> {
+            return localVarFp.demosCreate(email, submission, feedbackNozzle, feedbackAdhesion, feedbackSpaghetti, feedbackPrint, feedbackRaft, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this demo submission.
+         * @param {PatchedDemoSubmissionFeedbackRequest} [patchedDemoSubmissionFeedbackRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        demosFeedbackPartialUpdate(id: string, patchedDemoSubmissionFeedbackRequest?: PatchedDemoSubmissionFeedbackRequest, options?: any): AxiosPromise<DemoSubmission> {
+            return localVarFp.demosFeedbackPartialUpdate(id, patchedDemoSubmissionFeedbackRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this demo submission.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        demosFeedbackRetrieve(id: string, options?: any): AxiosPromise<DemoSubmission> {
+            return localVarFp.demosFeedbackRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this demo submission.
+         * @param {DemoSubmissionFeedbackRequest} [demoSubmissionFeedbackRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        demosFeedbackUpdate(id: string, demoSubmissionFeedbackRequest?: DemoSubmissionFeedbackRequest, options?: any): AxiosPromise<DemoSubmission> {
+            return localVarFp.demosFeedbackUpdate(id, demoSubmissionFeedbackRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id A UUID string identifying this demo submission.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        demosRetrieve(id: string, options?: any): AxiosPromise<DemoSubmission> {
+            return localVarFp.demosRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * DemosApi - interface
+ * @export
+ * @interface DemosApi
+ */
+export interface DemosApiInterface {
+    /**
+     * 
+     * @param {string} email 
+     * @param {any} submission 
+     * @param {DemoFeedbackEnum | NullEnum} [feedbackNozzle] 
+     * @param {DemoFeedbackEnum | NullEnum} [feedbackAdhesion] 
+     * @param {DemoFeedbackEnum | NullEnum} [feedbackSpaghetti] 
+     * @param {DemoFeedbackEnum | NullEnum} [feedbackPrint] 
+     * @param {DemoFeedbackEnum | NullEnum} [feedbackRaft] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DemosApiInterface
+     */
+    demosCreate(email: string, submission: any, feedbackNozzle?: DemoFeedbackEnum | NullEnum, feedbackAdhesion?: DemoFeedbackEnum | NullEnum, feedbackSpaghetti?: DemoFeedbackEnum | NullEnum, feedbackPrint?: DemoFeedbackEnum | NullEnum, feedbackRaft?: DemoFeedbackEnum | NullEnum, options?: AxiosRequestConfig): AxiosPromise<DemoSubmission>;
+
+    /**
+     * 
+     * @param {string} id A UUID string identifying this demo submission.
+     * @param {PatchedDemoSubmissionFeedbackRequest} [patchedDemoSubmissionFeedbackRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DemosApiInterface
+     */
+    demosFeedbackPartialUpdate(id: string, patchedDemoSubmissionFeedbackRequest?: PatchedDemoSubmissionFeedbackRequest, options?: AxiosRequestConfig): AxiosPromise<DemoSubmission>;
+
+    /**
+     * 
+     * @param {string} id A UUID string identifying this demo submission.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DemosApiInterface
+     */
+    demosFeedbackRetrieve(id: string, options?: AxiosRequestConfig): AxiosPromise<DemoSubmission>;
+
+    /**
+     * 
+     * @param {string} id A UUID string identifying this demo submission.
+     * @param {DemoSubmissionFeedbackRequest} [demoSubmissionFeedbackRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DemosApiInterface
+     */
+    demosFeedbackUpdate(id: string, demoSubmissionFeedbackRequest?: DemoSubmissionFeedbackRequest, options?: AxiosRequestConfig): AxiosPromise<DemoSubmission>;
+
+    /**
+     * 
+     * @param {string} id A UUID string identifying this demo submission.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DemosApiInterface
+     */
+    demosRetrieve(id: string, options?: AxiosRequestConfig): AxiosPromise<DemoSubmission>;
+
+}
+
+/**
+ * DemosApi - object-oriented interface
+ * @export
+ * @class DemosApi
+ * @extends {BaseAPI}
+ */
+export class DemosApi extends BaseAPI implements DemosApiInterface {
+    /**
+     * 
+     * @param {string} email 
+     * @param {any} submission 
+     * @param {DemoFeedbackEnum | NullEnum} [feedbackNozzle] 
+     * @param {DemoFeedbackEnum | NullEnum} [feedbackAdhesion] 
+     * @param {DemoFeedbackEnum | NullEnum} [feedbackSpaghetti] 
+     * @param {DemoFeedbackEnum | NullEnum} [feedbackPrint] 
+     * @param {DemoFeedbackEnum | NullEnum} [feedbackRaft] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DemosApi
+     */
+    public demosCreate(email: string, submission: any, feedbackNozzle?: DemoFeedbackEnum | NullEnum, feedbackAdhesion?: DemoFeedbackEnum | NullEnum, feedbackSpaghetti?: DemoFeedbackEnum | NullEnum, feedbackPrint?: DemoFeedbackEnum | NullEnum, feedbackRaft?: DemoFeedbackEnum | NullEnum, options?: AxiosRequestConfig) {
+        return DemosApiFp(this.configuration).demosCreate(email, submission, feedbackNozzle, feedbackAdhesion, feedbackSpaghetti, feedbackPrint, feedbackRaft, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A UUID string identifying this demo submission.
+     * @param {PatchedDemoSubmissionFeedbackRequest} [patchedDemoSubmissionFeedbackRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DemosApi
+     */
+    public demosFeedbackPartialUpdate(id: string, patchedDemoSubmissionFeedbackRequest?: PatchedDemoSubmissionFeedbackRequest, options?: AxiosRequestConfig) {
+        return DemosApiFp(this.configuration).demosFeedbackPartialUpdate(id, patchedDemoSubmissionFeedbackRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A UUID string identifying this demo submission.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DemosApi
+     */
+    public demosFeedbackRetrieve(id: string, options?: AxiosRequestConfig) {
+        return DemosApiFp(this.configuration).demosFeedbackRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A UUID string identifying this demo submission.
+     * @param {DemoSubmissionFeedbackRequest} [demoSubmissionFeedbackRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DemosApi
+     */
+    public demosFeedbackUpdate(id: string, demoSubmissionFeedbackRequest?: DemoSubmissionFeedbackRequest, options?: AxiosRequestConfig) {
+        return DemosApiFp(this.configuration).demosFeedbackUpdate(id, demoSubmissionFeedbackRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id A UUID string identifying this demo submission.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DemosApi
+     */
+    public demosRetrieve(id: string, options?: AxiosRequestConfig) {
+        return DemosApiFp(this.configuration).demosRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

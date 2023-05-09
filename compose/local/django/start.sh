@@ -9,7 +9,9 @@ python manage.py migrate
 # initialize nsc operator and robot account(s)
 python manage.py nsc_init --name=PrintNannyDjangoOperator || echo "DjangoOperator already created"
 
+
 # initialize stripe product/shop models
+python manage.py shell < /app/compose/local/django/start.py
 python manage.py djstripe_sync_models Product
 python manage.py djstripe_sync_models Price
 python manage.py loaddata print_nanny_webapp/shop/fixtures/test_product.json --app shop.Product

@@ -2,6 +2,7 @@ import logging
 
 from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiParameter
 from django.shortcuts import get_object_or_404
+from django_filters.rest_framework import DjangoFilterBackend
 
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -12,19 +13,23 @@ from rest_framework.mixins import (
     UpdateModelMixin,
     CreateModelMixin,
 )
+from rest_framework.permissions import AllowAny
 from rest_framework import status, parsers
 
-from print_nanny_webapp.videos.tasks import finalize_video_recording_task
+from print_nanny_webapp.videos.tasks import finalize_video_recording_task, demo_task
 from print_nanny_webapp.videos.models import (
     CameraSnapshot,
     VideoRecording,
     VideoRecordingPart,
+    DemoSubmission,
 )
 from print_nanny_webapp.videos.api.serializers import (
     CameraSnapshotSerializer,
     VideoRecordingSerializer,
     VideoRecordingPartSerializer,
     VideoRecordingFinalizeSerializer,
+    DemoSubmissionSerializer,
+    DemoSubmissionFeedbackSerializer,
 )
 from print_nanny_webapp.utils.api.views import (
     generic_get_errors,
@@ -219,3 +224,50 @@ class CameraSnapshotViewSet(
     def get_queryset(self, *args, **kwargs):
         result = self.queryset.filter(pi__user_id=self.request.user.id)
         return result
+
+
+@extend_schema_view(
+    create=extend_schema(
+        tags=["demos"],
+        request=DemoSubmissionSerializer,
+        responses={201: DemoSubmissionSerializer} | generic_create_errors,
+    ),
+    retrieve=extend_schema(
+        tags=["demos"],
+        responses={200: DemoSubmissionSerializer} | generic_get_errors,
+    ),
+)
+class DemoSubmissionViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin):
+    serializer_class = DemoSubmissionSerializer
+    queryset = DemoSubmission.objects.all()
+    parser_classes = [parsers.MultiPartParser]
+    permission_classes = (AllowAny,)
+    # omit OwnerOrUserFilterBackend, which is a DEFAULT_FILTER_BACKENDS
+    filter_backends = [DjangoFilterBackend]
+
+    def perform_create(self, serializer):
+        obj = serializer.save()
+        task = demo_task.delay(obj.id)
+        logger.info("DemoSubmissionViewSet created demo_task %s", task)
+
+
+@extend_schema_view(
+    update=extend_schema(
+        tags=["demos"],
+        request=DemoSubmissionFeedbackSerializer,
+        responses={202: DemoSubmissionSerializer} | generic_update_errors,
+    ),
+    partial_update=extend_schema(
+        tags=["demos"],
+        request=DemoSubmissionFeedbackSerializer,
+        responses={202: DemoSubmissionSerializer} | generic_update_errors,
+    ),
+)
+class DemoSubmissionFeedbackViewSet(
+    GenericViewSet, RetrieveModelMixin, UpdateModelMixin
+):
+    serializer_class = DemoSubmissionSerializer
+    queryset = DemoSubmission.objects.all()
+    permission_classes = (AllowAny,)
+    # omit OwnerOrUserFilterBackend, which is a DEFAULT_FILTER_BACKENDS
+    filter_backends = [DjangoFilterBackend]

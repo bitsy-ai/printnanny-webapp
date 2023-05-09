@@ -45,7 +45,9 @@ google-cloud-storage
 honeycomb-beeline
 imageio
 imageio-ffmpeg
+matplotlib
 nats-py[nkeys]
+numpy
 pandas
 plotly
 posthog
@@ -53,6 +55,7 @@ psycopg2
 pyarrow
 pydantic==1.10.2 # required by django-qr-code until https://github.com/dprog-philippe-docourt/django-qr-code/pull/44 is merged
 qrcode[pil]
+tensorflow
 twisted[http2,tls]
 uvicorn[standard]
 websockets

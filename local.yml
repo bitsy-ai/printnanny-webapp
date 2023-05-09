@@ -148,18 +148,18 @@ services:
     ports:
       - "5432:5432"
 
-  postgres14:
-    hostname: postgres14
-    image: postgres:14.6
-    container_name: printnanny_webapp_postgres14
-    volumes:
-      - ./compose/local/windmill/init-db-as-superuser.sql:/docker-entrypoint-initdb.d/init-db-as-superuser.sql
-      - local_postgres14_data:/var/lib/postgresql/data:z
-      - local_postgres14_data_backups:/backups:z
-    env_file:
-      - ./.envs/.local/.windmill
-    ports:
-      - "5433:5432"
+  # postgres14:
+  #   hostname: postgres14
+  #   image: postgres:14.6
+  #   container_name: printnanny_webapp_postgres14
+  #   volumes:
+  #     - ./compose/local/windmill/init-db-as-superuser.sql:/docker-entrypoint-initdb.d/init-db-as-superuser.sql
+  #     - local_postgres14_data:/var/lib/postgresql/data:z
+  #     - local_postgres14_data_backups:/backups:z
+  #   env_file:
+  #     - ./.envs/.local/.windmill
+  #   ports:
+  #     - "5433:5432"
 
   redis:
     hostname: redis
@@ -197,46 +197,46 @@ services:
       - "8443:8443"
       - "1883:1883"
 
-  windmill_server:
-    image: ghcr.io/windmill-labs/windmill:main
-    deploy:
-      replicas: 1
-    restart: unless-stopped
-    ports:
-      - 8000:8000
-    env_file:
-      - ./.envs/.local/.windmill
-    environment:
-      - RUST_LOG=debug
-      ## You can set the number of workers to > 0 and not need any separate worker service
-      - NUM_WORKERS=1
-      - DISABLE_SERVER=false
-      - METRICS_ADDR=false
-    depends_on:
-      - postgres14
-      - django
-    volumes:
-      - ./compose/local/windmill/oauth.json/:/usr/src/app/oauth.json
+  # windmill_server:
+  #   image: ghcr.io/windmill-labs/windmill:main
+  #   deploy:
+  #     replicas: 1
+  #   restart: unless-stopped
+  #   ports:
+  #     - 8000:8000
+  #   env_file:
+  #     - ./.envs/.local/.windmill
+  #   environment:
+  #     - RUST_LOG=debug
+  #     ## You can set the number of workers to > 0 and not need any separate worker service
+  #     - NUM_WORKERS=1
+  #     - DISABLE_SERVER=false
+  #     - METRICS_ADDR=false
+  #   depends_on:
+  #     - postgres14
+  #     - django
+  #   volumes:
+  #     - ./compose/local/windmill/oauth.json/:/usr/src/app/oauth.json
 
-  windmill_worker:
-    image: ghcr.io/windmill-labs/windmill:main
-    deploy:
-      replicas: 1
-    restart: unless-stopped
-    env_file:
-      - ./.envs/.local/.windmill
-    environment:
-      - RUST_LOG=debug
-      - NUM_WORKERS=1
-      - DISABLE_SERVER=true
-      - KEEP_JOB_DIR=true
-      - DENO_PATH=/usr/bin/deno
-      - PYTHON_PATH=/usr/local/bin/python3
-      - METRICS_ADDR=false
-    depends_on:
-      - postgres14
-      - django
+  # windmill_worker:
+  #   image: ghcr.io/windmill-labs/windmill:main
+  #   deploy:
+  #     replicas: 1
+  #   restart: unless-stopped
+  #   env_file:
+  #     - ./.envs/.local/.windmill
+  #   environment:
+  #     - RUST_LOG=debug
+  #     - NUM_WORKERS=1
+  #     - DISABLE_SERVER=true
+  #     - KEEP_JOB_DIR=true
+  #     - DENO_PATH=/usr/bin/deno
+  #     - PYTHON_PATH=/usr/local/bin/python3
+  #     - METRICS_ADDR=false
+  #   depends_on:
+  #     - postgres14
+  #     - django
 
-    volumes:
-      - local_windmill_worker_dependency_cache:/tmp/windmill/cache
-      - ./compose/local/windmill/oauth.json/:/usr/src/app/oauth.json
+  #   volumes:
+  #     - local_windmill_worker_dependency_cache:/tmp/windmill/cache
+  #     - ./compose/local/windmill/oauth.json/:/usr/src/app/oauth.json

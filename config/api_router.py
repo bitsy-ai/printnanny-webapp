@@ -36,6 +36,8 @@ from print_nanny_webapp.videos.api.views import (
     CameraSnapshotViewSet,
     VideoRecordingViewSet,
     VideoRecordingPartViewSet,
+    DemoSubmissionViewSet,
+    DemoSubmissionFeedbackViewSet,
 )
 from print_nanny_webapp.moonraker.api.views import (
     MoonrakerServerViewSet,
@@ -49,6 +51,9 @@ router.register("accounts/email-waitlist", EmailWaitlistViewSet, "email-waitlist
 router.register("pis", PiViewSet)
 
 router.register("crash-reports", CrashReportViewSet, "crash-reports")
+router.register("demos", DemoSubmissionViewSet, "demos-submission")
+router.register("demos/feedback", DemoSubmissionFeedbackViewSet, "demos-feedback")
+
 router.register("videos", VideoRecordingViewSet, "videos")
 router.register("video-parts", VideoRecordingPartViewSet, "video-parts")
 

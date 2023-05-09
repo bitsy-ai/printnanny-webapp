@@ -6,7 +6,7 @@ import google.api_core.exceptions
 
 from safedelete.models import SafeDeleteModel
 from uuid import uuid4
-from .enum import VideoRecordingStatus
+from .enum import VideoRecordingStatus, DemoSubmissionFeedbackEnum
 
 # Create your models here.
 
@@ -24,6 +24,48 @@ def part_mp4_filepath(instance, filename):
 def snapshot_filepath(instance, filename):
     path = timezone.now().strftime("uploads/camera_snapshots/%Y/%m/%d")
     return f"{path}/{instance.id}.jpg"
+
+
+def demo_submission_filepath(instance, filename):
+    path = timezone.now().strftime("uploads/demo_submission/%Y/%m/%d")
+    return f"{path}/{instance.id}_{filename}"
+
+
+def demo_result_filepath(instance, filename):
+    path = timezone.now().strftime("uploads/demo_result/%Y/%m/%d")
+    return f"{path}/{instance.id}_{filename}"
+
+
+class DemoSubmission(models.Model):
+    """
+    Uploaded an image to "PrintNanny challenge" demo marketing campaign
+    """
+
+    class Meta:
+        ordering = ["-created_dt"]
+        index_together = [["id", "created_dt", "email"]]
+
+    id = models.UUIDField(primary_key=True, default=uuid4)
+    created_dt = models.DateTimeField(auto_now_add=True)
+    email = models.EmailField()
+    submission = models.FileField(upload_to=demo_submission_filepath, max_length=255)
+    result = models.FileField(upload_to=demo_result_filepath, max_length=255)
+
+    feedback_nozzle = models.CharField(
+        null=True, choices=DemoSubmissionFeedbackEnum.choices, max_length=25
+    )
+    feedback_adhesion = models.CharField(
+        null=True, choices=DemoSubmissionFeedbackEnum.choices, max_length=25
+    )
+    feedback_spaghetti = models.CharField(
+        null=True, choices=DemoSubmissionFeedbackEnum.choices, max_length=25
+    )
+    feedback_print = models.CharField(
+        null=True, choices=DemoSubmissionFeedbackEnum.choices, max_length=25
+    )
+    feedback_raft = models.CharField(
+        null=True, choices=DemoSubmissionFeedbackEnum.choices, max_length=25
+    )
 
 
 class CameraSnapshot(models.Model):

@@ -92,7 +92,7 @@ def send_fn_founding_member_offer(
     filter_fn=filter_email_waitlist_not_subscribed,
     limit=10,
     tags=("marketing", "founding_member"),
-    from_email="PrintNanny <beta@mail.printnanny.ai>",
+    from_email="PrintNanny <noreply@mail.printnanny.ai>",
 ) -> AnymailMessage:
     emails = list(filter_fn(campaign, limit=limit))
 

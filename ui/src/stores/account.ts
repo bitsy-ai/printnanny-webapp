@@ -35,6 +35,7 @@ export const useAccountStore = defineStore({
     settingsApi: (state) => api.SettingsApiFactory(state.apiConfig),
     shopApi: (state) => api.ShopApiFactory(state.apiConfig),
     videosApi: (state) => api.VideosApiFactory(state.apiConfig),
+    demosApi: (state) => api.DemosApiFactory(state.apiConfig),
   },
   actions: {
     async submitEmailWaitlist(email: string, interest: api.InterestEnum) {

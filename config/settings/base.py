@@ -514,6 +514,7 @@ SPECTACULAR_SETTINGS = {
         "StripeUsageAction": "djstripe.enums.UsageAction.choices",
         "StripeWebhookEndpointStatus": "djstripe.enums.WebhookEndpointStatus.choices",
         "DjstripePaymentMethodType": "djstripe.enums.DjstripePaymentMethodType.choices",
+        "DemoFeedbackEnum": "print_nanny_webapp.videos.enum.DemoSubmissionFeedbackEnum.choices",
         # end djstripe types
     },
     "TITLE": "printnanny-api-client",
@@ -911,3 +912,14 @@ CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 CELERY_WORKER_SEND_TASK_EVENTS = True
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std-setting-task_send_sent_event
 CELERY_TASK_SEND_SENT_EVENT = True
+
+TFLITE_MODEL = "/app/data/model.tflite"
+TFLITE_LABELS = "/app/data/labels.txt"
+TFLITE_METADATA = "/app/data/tflite_metadata.json"
+TFLITE_CATEGORY_INDEX = {
+    0: {"name": "OK: nozzle"},
+    1: {"name": "WARN: adhesion"},
+    2: {"name": "WARN: spaghetti"},
+    3: {"name": "OK: print"},
+    4: {"name": "OK: raft"},
+}
