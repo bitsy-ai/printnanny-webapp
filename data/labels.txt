@@ -1,0 +1,5 @@
+nozzle
+adhesion
+spaghetti
+print
+raft
