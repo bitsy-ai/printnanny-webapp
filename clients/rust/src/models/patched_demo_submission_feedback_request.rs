@@ -14,15 +14,15 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PatchedDemoSubmissionFeedbackRequest {
     #[serde(rename = "feedback_nozzle", skip_serializing_if = "Option::is_none")]
-    pub feedback_nozzle: Option<Box<crate::models::OneOfDemoFeedbackEnumNullEnum>>,
+    pub feedback_nozzle: Option<Box<crate::models::DemoFeedbackEnum>>,
     #[serde(rename = "feedback_adhesion", skip_serializing_if = "Option::is_none")]
-    pub feedback_adhesion: Option<Box<crate::models::OneOfDemoFeedbackEnumNullEnum>>,
+    pub feedback_adhesion: Option<Box<crate::models::DemoFeedbackEnum>>,
     #[serde(rename = "feedback_spaghetti", skip_serializing_if = "Option::is_none")]
-    pub feedback_spaghetti: Option<Box<crate::models::OneOfDemoFeedbackEnumNullEnum>>,
+    pub feedback_spaghetti: Option<Box<crate::models::DemoFeedbackEnum>>,
     #[serde(rename = "feedback_print", skip_serializing_if = "Option::is_none")]
-    pub feedback_print: Option<Box<crate::models::OneOfDemoFeedbackEnumNullEnum>>,
+    pub feedback_print: Option<Box<crate::models::DemoFeedbackEnum>>,
     #[serde(rename = "feedback_raft", skip_serializing_if = "Option::is_none")]
-    pub feedback_raft: Option<Box<crate::models::OneOfDemoFeedbackEnumNullEnum>>,
+    pub feedback_raft: Option<Box<crate::models::DemoFeedbackEnum>>,
 }
 
 impl PatchedDemoSubmissionFeedbackRequest {

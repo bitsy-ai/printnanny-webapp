@@ -24,19 +24,19 @@ pub struct DemoSubmission {
     #[serde(rename = "result")]
     pub result: String,
     #[serde(rename = "feedback_nozzle")]
-    pub feedback_nozzle: Option<Box<crate::models::OneOfDemoFeedbackEnumNullEnum>>,
+    pub feedback_nozzle: Option<Box<crate::models::DemoFeedbackEnum>>,
     #[serde(rename = "feedback_adhesion")]
-    pub feedback_adhesion: Option<Box<crate::models::OneOfDemoFeedbackEnumNullEnum>>,
+    pub feedback_adhesion: Option<Box<crate::models::DemoFeedbackEnum>>,
     #[serde(rename = "feedback_spaghetti")]
-    pub feedback_spaghetti: Option<Box<crate::models::OneOfDemoFeedbackEnumNullEnum>>,
+    pub feedback_spaghetti: Option<Box<crate::models::DemoFeedbackEnum>>,
     #[serde(rename = "feedback_print")]
-    pub feedback_print: Option<Box<crate::models::OneOfDemoFeedbackEnumNullEnum>>,
+    pub feedback_print: Option<Box<crate::models::DemoFeedbackEnum>>,
     #[serde(rename = "feedback_raft")]
-    pub feedback_raft: Option<Box<crate::models::OneOfDemoFeedbackEnumNullEnum>>,
+    pub feedback_raft: Option<Box<crate::models::DemoFeedbackEnum>>,
 }
 
 impl DemoSubmission {
-    pub fn new(id: String, created_dt: String, email: String, submission: String, result: String, feedback_nozzle: Option<crate::models::OneOfDemoFeedbackEnumNullEnum>, feedback_adhesion: Option<crate::models::OneOfDemoFeedbackEnumNullEnum>, feedback_spaghetti: Option<crate::models::OneOfDemoFeedbackEnumNullEnum>, feedback_print: Option<crate::models::OneOfDemoFeedbackEnumNullEnum>, feedback_raft: Option<crate::models::OneOfDemoFeedbackEnumNullEnum>) -> DemoSubmission {
+    pub fn new(id: String, created_dt: String, email: String, submission: String, result: String, feedback_nozzle: Option<crate::models::DemoFeedbackEnum>, feedback_adhesion: Option<crate::models::DemoFeedbackEnum>, feedback_spaghetti: Option<crate::models::DemoFeedbackEnum>, feedback_print: Option<crate::models::DemoFeedbackEnum>, feedback_raft: Option<crate::models::DemoFeedbackEnum>) -> DemoSubmission {
         DemoSubmission {
             id,
             created_dt,
