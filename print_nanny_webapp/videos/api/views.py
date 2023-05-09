@@ -12,6 +12,7 @@ from rest_framework.mixins import (
     UpdateModelMixin,
     CreateModelMixin,
 )
+from rest_framework.permissions import AllowAny
 from rest_framework import status, parsers
 
 from print_nanny_webapp.videos.tasks import finalize_video_recording_task
@@ -19,12 +20,14 @@ from print_nanny_webapp.videos.models import (
     CameraSnapshot,
     VideoRecording,
     VideoRecordingPart,
+    DemoSubmission,
 )
 from print_nanny_webapp.videos.api.serializers import (
     CameraSnapshotSerializer,
     VideoRecordingSerializer,
     VideoRecordingPartSerializer,
     VideoRecordingFinalizeSerializer,
+    DemoSubmissionSerializer,
 )
 from print_nanny_webapp.utils.api.views import (
     generic_get_errors,
@@ -219,3 +222,20 @@ class CameraSnapshotViewSet(
     def get_queryset(self, *args, **kwargs):
         result = self.queryset.filter(pi__user_id=self.request.user.id)
         return result
+
+
+@extend_schema_view(
+    create=extend_schema(
+        tags=["videos"],
+        request=DemoSubmissionSerializer,
+        responses={201: DemoSubmissionSerializer} | generic_create_errors,
+    ),
+)
+class DemoSubmissionViewSet(
+    GenericViewSet,
+    CreateModelMixin,
+):
+    serializer_class = DemoSubmissionSerializer
+    queryset = DemoSubmission.objects.all()
+    parser_classes = [parsers.MultiPartParser]
+    permission_classes = (AllowAny,)

@@ -5,7 +5,15 @@ from print_nanny_webapp.videos.models import (
     CameraSnapshot,
     VideoRecording,
     VideoRecordingPart,
+    DemoSubmission,
 )
+
+
+class DemoSubmissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DemoSubmission
+        fields = "__all__"
+        read_only_fields = ("id", "created_dt", "result")
 
 
 class VideoRecordingFinalizeSerializer(serializers.Serializer):
