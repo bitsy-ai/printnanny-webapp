@@ -29,7 +29,7 @@ async function onSubmit(values: any) {
   state.loading = false;
 }
 
-function onChangeFile(e) {
+function onChangeFile(e: any) {
   console.log("Selected file", e);
   const files = e.target.files || e.dataTransfer.files;
   if (!files.length) return;

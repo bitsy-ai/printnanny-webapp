@@ -67,7 +67,7 @@ console.debug("Loaded demo", toRaw(store.demo));
             <dd class="mt-2 text-indigo-600 flex grid grid-cols-3 gap-2">
               <button
                 :class="[
-                  store.demo.feedback_nozzle == api.DemoFeedbackEnum.Pass
+                  store.demo?.feedback_nozzle == api.DemoFeedbackEnum.Pass
                     ? 'bg-indigo-300 hover:bg-indigo-400'
                     : 'bg-gray-300 hover:bg-gray-400',
                   'h-12 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
@@ -85,7 +85,7 @@ console.debug("Loaded demo", toRaw(store.demo));
               </button>
               <button
                 :class="[
-                  store.demo.feedback_nozzle == api.DemoFeedbackEnum.Fail
+                  store.demo?.feedback_nozzle == api.DemoFeedbackEnum.Fail
                     ? 'bg-indigo-300 hover:bg-indigo-400'
                     : 'bg-gray-300 hover:bg-gray-400',
                   'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
@@ -103,7 +103,7 @@ console.debug("Loaded demo", toRaw(store.demo));
               </button>
               <button
                 :class="[
-                  store.demo.feedback_nozzle == api.DemoFeedbackEnum.Na
+                  store.demo?.feedback_nozzle == api.DemoFeedbackEnum.Na
                     ? 'bg-indigo-300 hover:bg-indigo-400'
                     : 'bg-gray-300 hover:bg-gray-400',
                   'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
@@ -130,7 +130,7 @@ console.debug("Loaded demo", toRaw(store.demo));
             <dd class="mt-2 text-indigo-600 flex grid grid-cols-3 gap-2">
               <button
                 :class="[
-                  store.demo.feedback_print == api.DemoFeedbackEnum.Pass
+                  store.demo?.feedback_print == api.DemoFeedbackEnum.Pass
                     ? 'bg-indigo-300 hover:bg-indigo-400'
                     : 'bg-gray-300 hover:bg-gray-400',
                   'h-12 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
@@ -148,7 +148,7 @@ console.debug("Loaded demo", toRaw(store.demo));
               </button>
               <button
                 :class="[
-                  store.demo.feedback_print == api.DemoFeedbackEnum.Fail
+                  store.demo?.feedback_print == api.DemoFeedbackEnum.Fail
                     ? 'bg-indigo-300 hover:bg-indigo-400'
                     : 'bg-gray-300 hover:bg-gray-400',
                   'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
@@ -166,7 +166,7 @@ console.debug("Loaded demo", toRaw(store.demo));
               </button>
               <button
                 :class="[
-                  store.demo.feedback_print == api.DemoFeedbackEnum.Na
+                  store.demo?.feedback_print == api.DemoFeedbackEnum.Na
                     ? 'bg-indigo-300 hover:bg-indigo-400'
                     : 'bg-gray-300 hover:bg-gray-400',
                   'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
@@ -193,7 +193,7 @@ console.debug("Loaded demo", toRaw(store.demo));
             <dd class="mt-2 text-indigo-600 flex grid grid-cols-3 gap-2">
               <button
                 :class="[
-                  store.demo.feedback_raft == api.DemoFeedbackEnum.Pass
+                  store.demo?.feedback_raft == api.DemoFeedbackEnum.Pass
                     ? 'bg-indigo-300 hover:bg-indigo-400'
                     : 'bg-gray-300 hover:bg-gray-400',
                   'h-12 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
@@ -211,7 +211,7 @@ console.debug("Loaded demo", toRaw(store.demo));
               </button>
               <button
                 :class="[
-                  store.demo.feedback_raft == api.DemoFeedbackEnum.Fail
+                  store.demo?.feedback_raft == api.DemoFeedbackEnum.Fail
                     ? 'bg-indigo-300 hover:bg-indigo-400'
                     : 'bg-gray-300 hover:bg-gray-400',
                   'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
@@ -229,7 +229,7 @@ console.debug("Loaded demo", toRaw(store.demo));
               </button>
               <button
                 :class="[
-                  store.demo.feedback_raft == api.DemoFeedbackEnum.Na
+                  store.demo?.feedback_raft == api.DemoFeedbackEnum.Na
                     ? 'bg-indigo-300 hover:bg-indigo-400'
                     : 'bg-gray-300 hover:bg-gray-400',
                   'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
@@ -257,7 +257,7 @@ console.debug("Loaded demo", toRaw(store.demo));
             <dd class="mt-2 text-indigo-600 flex grid grid-cols-3 gap-2">
               <button
                 :class="[
-                  store.demo.feedback_spaghetti == api.DemoFeedbackEnum.Pass
+                  store.demo?.feedback_spaghetti == api.DemoFeedbackEnum.Pass
                     ? 'bg-indigo-300 hover:bg-indigo-400'
                     : 'bg-gray-300 hover:bg-gray-400',
                   'h-12 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
@@ -275,7 +275,7 @@ console.debug("Loaded demo", toRaw(store.demo));
               </button>
               <button
                 :class="[
-                  store.demo.feedback_spaghetti == api.DemoFeedbackEnum.Fail
+                  store.demo?.feedback_spaghetti == api.DemoFeedbackEnum.Fail
                     ? 'bg-indigo-300 hover:bg-indigo-400'
                     : 'bg-gray-300 hover:bg-gray-400',
                   'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
@@ -293,7 +293,7 @@ console.debug("Loaded demo", toRaw(store.demo));
               </button>
               <button
                 :class="[
-                  store.demo.feedback_spaghetti == api.DemoFeedbackEnum.Na
+                  store.demo?.feedback_spaghetti == api.DemoFeedbackEnum.Na
                     ? 'bg-indigo-300 hover:bg-indigo-400'
                     : 'bg-gray-300 hover:bg-gray-400',
                   'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
@@ -323,7 +323,7 @@ console.debug("Loaded demo", toRaw(store.demo));
             <dd class="mt-2 text-indigo-600 flex grid grid-cols-3 gap-2">
               <button
                 :class="[
-                  store.demo.feedback_adhesion == api.DemoFeedbackEnum.Pass
+                  store.demo?.feedback_adhesion == api.DemoFeedbackEnum.Pass
                     ? 'bg-indigo-300 hover:bg-indigo-400'
                     : 'bg-gray-300 hover:bg-gray-400',
                   'h-12 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
@@ -341,7 +341,7 @@ console.debug("Loaded demo", toRaw(store.demo));
               </button>
               <button
                 :class="[
-                  store.demo.feedback_adhesion == api.DemoFeedbackEnum.Fail
+                  store.demo?.feedback_adhesion == api.DemoFeedbackEnum.Fail
                     ? 'bg-indigo-300 hover:bg-indigo-400'
                     : 'bg-gray-300 hover:bg-gray-400',
                   'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
@@ -359,7 +359,7 @@ console.debug("Loaded demo", toRaw(store.demo));
               </button>
               <button
                 :class="[
-                  store.demo.feedback_adhesion == api.DemoFeedbackEnum.Na
+                  store.demo?.feedback_adhesion == api.DemoFeedbackEnum.Na
                     ? 'bg-indigo-300 hover:bg-indigo-400'
                     : 'bg-gray-300 hover:bg-gray-400',
                   'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',

@@ -2,7 +2,7 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import { handleApiError } from "@/utils/api";
 import type { UiAlert } from "@/types";
 import { useAccountStore } from "./account";
-import * as api from "printnanny-api-client";
+import type * as api from "printnanny-api-client";
 
 export const useDemoStore = defineStore({
   id: "demo",
