@@ -48,7 +48,6 @@ docs/NatsOrganizationRequest.md
 docs/NatsOrganizationUser.md
 docs/NetworkSettings.md
 docs/NetworkSettingsRequest.md
-docs/NullEnum.md
 docs/OctoPrintBackup.md
 docs/OctoPrintServer.md
 docs/OctoPrintServerRequest.md
@@ -192,7 +191,6 @@ src/models/nats_organization_request.rs
 src/models/nats_organization_user.rs
 src/models/network_settings.rs
 src/models/network_settings_request.rs
-src/models/null_enum.rs
 src/models/octo_print_backup.rs
 src/models/octo_print_server.rs
 src/models/octo_print_server_request.rs

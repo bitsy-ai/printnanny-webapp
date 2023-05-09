@@ -418,7 +418,7 @@ SPECTACULAR_SETTINGS = {
     "SCHEMA_PATH_PREFIX": "/api",
     # 'COMPONENT_NO_READ_ONLY_REQUIRED': True,
     "COMPONENT_SPLIT_REQUEST": True,
-    "ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE": True,
+    "ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE": False,
     "SCHEMA_COERCE_PATH_PK_SUFFIX": True,
     "ENUM_NAME_OVERRIDES": {
         # TODO refactor event apps+namespaces for clarity before adding mainsail

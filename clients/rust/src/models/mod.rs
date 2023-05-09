@@ -72,8 +72,6 @@ pub mod network_settings;
 pub use self::network_settings::NetworkSettings;
 pub mod network_settings_request;
 pub use self::network_settings_request::NetworkSettingsRequest;
-pub mod null_enum;
-pub use self::null_enum::NullEnum;
 pub mod octo_print_backup;
 pub use self::octo_print_backup::OctoPrintBackup;
 pub mod octo_print_server;

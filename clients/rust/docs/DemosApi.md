@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## demos_create
 
-> crate::models::DemoSubmission demos_create(email, submission, feedback_nozzle, feedback_adhesion, feedback_spaghetti, feedback_print, feedback_raft)
+> crate::models::DemoSubmission demos_create(email, submission)
 
 
 ### Parameters
@@ -24,11 +24,6 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **email** | **String** |  | [required] |
 **submission** | **std::path::PathBuf** |  | [required] |
-**feedback_nozzle** | Option<[**crate::models::OneOfDemoFeedbackEnumNullEnum**](oneOf<DemoFeedbackEnum,NullEnum>.md)> |  |  |
-**feedback_adhesion** | Option<[**crate::models::OneOfDemoFeedbackEnumNullEnum**](oneOf<DemoFeedbackEnum,NullEnum>.md)> |  |  |
-**feedback_spaghetti** | Option<[**crate::models::OneOfDemoFeedbackEnumNullEnum**](oneOf<DemoFeedbackEnum,NullEnum>.md)> |  |  |
-**feedback_print** | Option<[**crate::models::OneOfDemoFeedbackEnumNullEnum**](oneOf<DemoFeedbackEnum,NullEnum>.md)> |  |  |
-**feedback_raft** | Option<[**crate::models::OneOfDemoFeedbackEnumNullEnum**](oneOf<DemoFeedbackEnum,NullEnum>.md)> |  |  |
 
 ### Return type
 

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **demos_create**
-> DemoSubmission demos_create(email, submission, feedback_nozzle=feedback_nozzle, feedback_adhesion=feedback_adhesion, feedback_spaghetti=feedback_spaghetti, feedback_print=feedback_print, feedback_raft=feedback_raft)
+> DemoSubmission demos_create(email, submission)
 
 
 
@@ -53,14 +53,9 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.DemosApi(api_client)
     email = 'email_example' # str | 
 submission = '/path/to/file' # file | 
-feedback_nozzle = printnanny_api_client.OneOfDemoFeedbackEnumNullEnum() # OneOfDemoFeedbackEnumNullEnum |  (optional)
-feedback_adhesion = printnanny_api_client.OneOfDemoFeedbackEnumNullEnum() # OneOfDemoFeedbackEnumNullEnum |  (optional)
-feedback_spaghetti = printnanny_api_client.OneOfDemoFeedbackEnumNullEnum() # OneOfDemoFeedbackEnumNullEnum |  (optional)
-feedback_print = printnanny_api_client.OneOfDemoFeedbackEnumNullEnum() # OneOfDemoFeedbackEnumNullEnum |  (optional)
-feedback_raft = printnanny_api_client.OneOfDemoFeedbackEnumNullEnum() # OneOfDemoFeedbackEnumNullEnum |  (optional)
 
     try:
-        api_response = api_instance.demos_create(email, submission, feedback_nozzle=feedback_nozzle, feedback_adhesion=feedback_adhesion, feedback_spaghetti=feedback_spaghetti, feedback_print=feedback_print, feedback_raft=feedback_raft)
+        api_response = api_instance.demos_create(email, submission)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DemosApi->demos_create: %s\n" % e)
@@ -101,14 +96,9 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     api_instance = printnanny_api_client.DemosApi(api_client)
     email = 'email_example' # str | 
 submission = '/path/to/file' # file | 
-feedback_nozzle = printnanny_api_client.OneOfDemoFeedbackEnumNullEnum() # OneOfDemoFeedbackEnumNullEnum |  (optional)
-feedback_adhesion = printnanny_api_client.OneOfDemoFeedbackEnumNullEnum() # OneOfDemoFeedbackEnumNullEnum |  (optional)
-feedback_spaghetti = printnanny_api_client.OneOfDemoFeedbackEnumNullEnum() # OneOfDemoFeedbackEnumNullEnum |  (optional)
-feedback_print = printnanny_api_client.OneOfDemoFeedbackEnumNullEnum() # OneOfDemoFeedbackEnumNullEnum |  (optional)
-feedback_raft = printnanny_api_client.OneOfDemoFeedbackEnumNullEnum() # OneOfDemoFeedbackEnumNullEnum |  (optional)
 
     try:
-        api_response = api_instance.demos_create(email, submission, feedback_nozzle=feedback_nozzle, feedback_adhesion=feedback_adhesion, feedback_spaghetti=feedback_spaghetti, feedback_print=feedback_print, feedback_raft=feedback_raft)
+        api_response = api_instance.demos_create(email, submission)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DemosApi->demos_create: %s\n" % e)
@@ -120,11 +110,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **email** | **str**|  | 
  **submission** | **file**|  | 
- **feedback_nozzle** | [**OneOfDemoFeedbackEnumNullEnum**](OneOfDemoFeedbackEnumNullEnum.md)|  | [optional] 
- **feedback_adhesion** | [**OneOfDemoFeedbackEnumNullEnum**](OneOfDemoFeedbackEnumNullEnum.md)|  | [optional] 
- **feedback_spaghetti** | [**OneOfDemoFeedbackEnumNullEnum**](OneOfDemoFeedbackEnumNullEnum.md)|  | [optional] 
- **feedback_print** | [**OneOfDemoFeedbackEnumNullEnum**](OneOfDemoFeedbackEnumNullEnum.md)|  | [optional] 
- **feedback_raft** | [**OneOfDemoFeedbackEnumNullEnum**](OneOfDemoFeedbackEnumNullEnum.md)|  | [optional] 
 
 ### Return type
 
