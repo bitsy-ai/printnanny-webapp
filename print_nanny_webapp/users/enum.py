@@ -8,7 +8,7 @@ class EmailListInterest(models.TextChoices):
     )
     SDWIRE = "sdwire", "Get notified when SDWire is back in stock"
     RPI4_KIT = "rpi4_kit", "Get notified when Raspberry Pi 4 kits are available"
-    PRINTNANNY_CHALLENGE = (
-        "printnanny_challenge",
-        "Uploaded image to PrintNanny challenge marketing campaign",
+    PRINTNANNY_DEMO = (
+        "printnanny_demo",
+        "Uploaded image to PrintNanny challenge/demo marketing campaign",
     )

@@ -87,6 +87,13 @@ export default [
             import("@/components/forms/PasswordResetConfirmForm.vue"),
         },
       },
+      {
+        path: "demo",
+        name: "demo",
+        components: {
+          default: () => import("@/components/forms/DemoForm.vue"),
+        },
+      },
     ],
   },
   {
