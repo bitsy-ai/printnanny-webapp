@@ -51,7 +51,6 @@ router.beforeEach(async (to, _from) => {
     return;
   }
   const account = useAccountStore();
-  await account.fetchUser();
   if (
     // make sure the user is authenticated
     !account.isAuthenticated &&
