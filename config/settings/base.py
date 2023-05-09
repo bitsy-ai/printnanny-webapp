@@ -655,6 +655,7 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 # links
 # ------------------------------------------------------------------------------
 DISCORD_URL = "https://discord.gg/sf23bk2hPr"
+DISCORD_TRY_PRINTNANNY_URL = "https://discord.gg/EfBn9zc4p8"
 ABOUT_URL = "https://blog.print-nanny.com/about"
 GITHUB_ISSUE_URL = "https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/new"
 
