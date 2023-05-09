@@ -40,13 +40,13 @@ console.debug("Loaded demo", toRaw(store.demo));
         alt="PrintNanny"
       />
       <h2 class="my-6 text-center text-3xl font-extrabold text-gray-900">
-        Your results are in! 🔮
+        🔮 Your results are in:
       </h2>
       <img v-if="store.demo" :src="store.demo.result" class="m-auto" />
 
       <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500 text-center">
         How'd we do? <br />
-        Your feedback helps PrintNanny learn. 🧠
+        Your feedback helps PrintNanny learn 🧠
       </p>
       <hr class="w-64 h-px my-8 mx-auto bg-gray-200 border-0" />
       <transition
