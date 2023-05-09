@@ -15,6 +15,10 @@ docs/CameraSnapshot.md
 docs/CrashReport.md
 docs/CrashReportStatusEnum.md
 docs/CrashReportsApi.md
+docs/DemoFeedbackEnum.md
+docs/DemoSubmission.md
+docs/DemoSubmissionFeedbackRequest.md
+docs/DemosApi.md
 docs/DevicesApi.md
 docs/DjStripeCharge.md
 docs/DjStripeCheckoutSession.md
@@ -45,6 +49,7 @@ docs/NatsOrganizationRequest.md
 docs/NatsOrganizationUser.md
 docs/NetworkSettings.md
 docs/NetworkSettingsRequest.md
+docs/NullEnum.md
 docs/OctoPrintBackup.md
 docs/OctoPrintServer.md
 docs/OctoPrintServerRequest.md
@@ -77,6 +82,7 @@ docs/PaginatedWebrtcStreamList.md
 docs/PasswordChangeRequest.md
 docs/PasswordResetConfirmRequest.md
 docs/PasswordResetRequest.md
+docs/PatchedDemoSubmissionFeedbackRequest.md
 docs/PatchedEmailAlertSettingsRequest.md
 docs/PatchedMoonrakerServerRequest.md
 docs/PatchedNetworkSettingsRequest.md
@@ -139,6 +145,7 @@ printnanny_api_client/api/accounts_api.py
 printnanny_api_client/api/achievements_api.py
 printnanny_api_client/api/alerts_api.py
 printnanny_api_client/api/crash_reports_api.py
+printnanny_api_client/api/demos_api.py
 printnanny_api_client/api/devices_api.py
 printnanny_api_client/api/janus_api.py
 printnanny_api_client/api/moonraker_api.py
@@ -158,6 +165,9 @@ printnanny_api_client/models/callback_token_auth_request.py
 printnanny_api_client/models/camera_snapshot.py
 printnanny_api_client/models/crash_report.py
 printnanny_api_client/models/crash_report_status_enum.py
+printnanny_api_client/models/demo_feedback_enum.py
+printnanny_api_client/models/demo_submission.py
+printnanny_api_client/models/demo_submission_feedback_request.py
 printnanny_api_client/models/dj_stripe_charge.py
 printnanny_api_client/models/dj_stripe_checkout_session.py
 printnanny_api_client/models/dj_stripe_customer.py
@@ -185,6 +195,7 @@ printnanny_api_client/models/nats_organization_request.py
 printnanny_api_client/models/nats_organization_user.py
 printnanny_api_client/models/network_settings.py
 printnanny_api_client/models/network_settings_request.py
+printnanny_api_client/models/null_enum.py
 printnanny_api_client/models/octo_print_backup.py
 printnanny_api_client/models/octo_print_server.py
 printnanny_api_client/models/octo_print_server_request.py
@@ -216,6 +227,7 @@ printnanny_api_client/models/paginated_webrtc_stream_list.py
 printnanny_api_client/models/password_change_request.py
 printnanny_api_client/models/password_reset_confirm_request.py
 printnanny_api_client/models/password_reset_request.py
+printnanny_api_client/models/patched_demo_submission_feedback_request.py
 printnanny_api_client/models/patched_email_alert_settings_request.py
 printnanny_api_client/models/patched_moonraker_server_request.py
 printnanny_api_client/models/patched_network_settings_request.py
@@ -285,6 +297,10 @@ test/test_camera_snapshot.py
 test/test_crash_report.py
 test/test_crash_report_status_enum.py
 test/test_crash_reports_api.py
+test/test_demo_feedback_enum.py
+test/test_demo_submission.py
+test/test_demo_submission_feedback_request.py
+test/test_demos_api.py
 test/test_devices_api.py
 test/test_dj_stripe_charge.py
 test/test_dj_stripe_checkout_session.py
@@ -315,6 +331,7 @@ test/test_nats_organization_request.py
 test/test_nats_organization_user.py
 test/test_network_settings.py
 test/test_network_settings_request.py
+test/test_null_enum.py
 test/test_octo_print_backup.py
 test/test_octo_print_server.py
 test/test_octo_print_server_request.py
@@ -347,6 +364,7 @@ test/test_paginated_webrtc_stream_list.py
 test/test_password_change_request.py
 test/test_password_reset_confirm_request.py
 test/test_password_reset_request.py
+test/test_patched_demo_submission_feedback_request.py
 test/test_patched_email_alert_settings_request.py
 test/test_patched_moonraker_server_request.py
 test/test_patched_network_settings_request.py

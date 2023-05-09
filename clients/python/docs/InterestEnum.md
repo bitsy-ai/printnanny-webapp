@@ -1,6 +1,6 @@
 # InterestEnum
 
-* `printnanny` - Subscribe to PrintNanny news and development updates * `sdwire` - Get notified when SDWire is back in stock * `rpi4_kit` - Get notified when Raspberry Pi 4 kits are available
+* `printnanny` - Subscribe to PrintNanny news and development updates * `sdwire` - Get notified when SDWire is back in stock * `rpi4_kit` - Get notified when Raspberry Pi 4 kits are available * `printnanny_demo` - Uploaded image to PrintNanny challenge/demo marketing campaign
 
 ## Properties
 Name | Type | Description | Notes
