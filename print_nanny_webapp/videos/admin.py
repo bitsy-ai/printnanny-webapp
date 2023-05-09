@@ -11,7 +11,7 @@ from print_nanny_webapp.videos.models import (
 
 
 @admin.register(DemoSubmission)
-class VideoRecordingAdmin(admin.ModelAdmin):
+class DemoSubmissionAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "email",

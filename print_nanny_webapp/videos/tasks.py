@@ -80,7 +80,7 @@ def demo_task(challenge_id: UUID):
         to=[entry.email],
         reply_to=["Support <support@printnanny.ai>"],
     )
-    msg.metadata = {"tflite_model_version": "20201101015829"}
-    msg.tags = ["marketing", "demo"]
-    msg.track_clicks = True
+    msg.metadata = {"tflite_model_version": "20201101015829"}  # type: ignore[attr-defined]
+    msg.tags = ["marketing", "demo"]  # type: ignore[attr-defined]
+    msg.track_clicks = True  # type: ignore[attr-defined]
     msg.send()
