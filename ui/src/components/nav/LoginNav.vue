@@ -1,6 +1,6 @@
 <!-- show login / request access to anonymous user, or dashboard button if logged in -->
 <template>
-  <div class="hidden md:flex md:items-center md:space-x-6">
+  <div class="hidden lg:flex md:items-center md:space-x-6">
     <a
       v-if="!account.isAuthenticated"
       id="nav-login"
