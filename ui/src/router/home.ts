@@ -96,7 +96,7 @@ export default [
       },
       {
         path: "demo/:demoId",
-        name: "demo-resultt",
+        name: "demo-result",
         props: { default: true },
         components: {
           default: () => import("@/components/demo/DemoResult.vue"),
