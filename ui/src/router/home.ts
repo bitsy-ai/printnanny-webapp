@@ -93,6 +93,8 @@ export default [
         components: {
           default: () => import("@/components/demo/DemoForm.vue"),
         },
+        meta: { title: "PrintNanny: Try Risk-free" },
+
       },
       {
         path: "demo/:demoId",
@@ -101,6 +103,7 @@ export default [
         components: {
           default: () => import("@/components/demo/DemoResult.vue"),
         },
+        meta: { title: "PrintNanny: Your Results" },
       },
     ],
   },
