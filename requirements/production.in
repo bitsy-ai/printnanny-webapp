@@ -49,6 +49,7 @@ google-cloud-storage
 honeycomb-beeline
 imageio
 imageio-ffmpeg
+matplotlib
 nats-py[nkeys]
 numpy
 pandas

@@ -83,6 +83,8 @@ click-repl==0.2.0
     # via celery
 constantly==15.1.0
     # via twisted
+contourpy==1.0.7
+    # via matplotlib
 coolname==2.2.0
     # via
     #   -r requirements/local.in
@@ -97,6 +99,8 @@ cryptography==40.0.1
     #   pyjwt
     #   pyopenssl
     #   service-identity
+cycler==0.11.0
+    # via matplotlib
 defusedxml==0.7.1
     # via python3-openid
 deprecated==1.2.13
@@ -225,6 +229,8 @@ flatbuffers==23.3.3
     # via
     #   -r requirements/local.in
     #   tensorflow
+fonttools==4.39.3
+    # via matplotlib
 frozenlist==1.3.3
     # via
     #   aiohttp
@@ -314,6 +320,8 @@ jwcrypto==1.4.2
     # via django-oauth-toolkit
 keras==2.12.0
     # via tensorflow
+kiwisolver==1.4.4
+    # via matplotlib
 kombu==5.2.4
     # via celery
 libclang==16.0.0
@@ -324,6 +332,8 @@ markdown==3.4.3
     # via tensorboard
 markupsafe==2.1.2
     # via werkzeug
+matplotlib==3.7.1
+    # via -r requirements/local.in
 ml-dtypes==0.1.0
     # via jax
 monotonic==1.6
@@ -347,9 +357,11 @@ nkeys==0.1.0
 numpy==1.23.5
     # via
     #   -r requirements/local.in
+    #   contourpy
     #   h5py
     #   imageio
     #   jax
+    #   matplotlib
     #   ml-dtypes
     #   opt-einsum
     #   pandas
@@ -366,12 +378,15 @@ opt-einsum==3.3.0
     #   jax
     #   tensorflow
 packaging==23.1
-    # via tensorflow
+    # via
+    #   matplotlib
+    #   tensorflow
 pandas==1.5.3
     # via -r requirements/local.in
 pillow==9.4.0
     # via
     #   imageio
+    #   matplotlib
     #   qrcode
 plotly==5.13.1
     # via -r requirements/local.in
@@ -419,6 +434,8 @@ pyjwt[crypto]==2.6.0
     # via django-allauth
 pyopenssl==23.1.0
     # via twisted
+pyparsing==3.0.9
+    # via matplotlib
 pypng==0.20220715.0
     # via qrcode
 pyrsistent==0.19.3
@@ -427,6 +444,7 @@ python-crontab==2.7.1
     # via django-celery-beat
 python-dateutil==2.8.2
     # via
+    #   matplotlib
     #   pandas
     #   posthog
     #   python-crontab
