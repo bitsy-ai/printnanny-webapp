@@ -13,7 +13,16 @@ class DemoSubmissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = DemoSubmission
         fields = "__all__"
-        read_only_fields = ("id", "created_dt", "result")
+        read_only_fields = (
+            "id",
+            "created_dt",
+            "result",
+            "feedback_nozzle",
+            "feedback_spaghetti",
+            "feedback_adhesion",
+            "feedback_print",
+            "feedback_raft",
+        )
 
 
 class DemoSubmissionFeedbackSerializer(serializers.ModelSerializer):

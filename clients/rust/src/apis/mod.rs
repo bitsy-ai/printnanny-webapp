@@ -65,6 +65,7 @@ pub mod accounts_api;
 pub mod achievements_api;
 pub mod alerts_api;
 pub mod crash_reports_api;
+pub mod demos_api;
 pub mod devices_api;
 pub mod janus_api;
 pub mod moonraker_api;

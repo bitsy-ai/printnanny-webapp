@@ -14,6 +14,10 @@ docs/CameraSnapshot.md
 docs/CrashReport.md
 docs/CrashReportStatusEnum.md
 docs/CrashReportsApi.md
+docs/DemoFeedbackEnum.md
+docs/DemoSubmission.md
+docs/DemoSubmissionFeedbackRequest.md
+docs/DemosApi.md
 docs/DevicesApi.md
 docs/DjStripeCharge.md
 docs/DjStripeCheckoutSession.md
@@ -44,6 +48,7 @@ docs/NatsOrganizationRequest.md
 docs/NatsOrganizationUser.md
 docs/NetworkSettings.md
 docs/NetworkSettingsRequest.md
+docs/NullEnum.md
 docs/OctoPrintBackup.md
 docs/OctoPrintServer.md
 docs/OctoPrintServerRequest.md
@@ -76,6 +81,7 @@ docs/PaginatedWebrtcStreamList.md
 docs/PasswordChangeRequest.md
 docs/PasswordResetConfirmRequest.md
 docs/PasswordResetRequest.md
+docs/PatchedDemoSubmissionFeedbackRequest.md
 docs/PatchedEmailAlertSettingsRequest.md
 docs/PatchedMoonrakerServerRequest.md
 docs/PatchedNetworkSettingsRequest.md
@@ -137,6 +143,7 @@ src/apis/achievements_api.rs
 src/apis/alerts_api.rs
 src/apis/configuration.rs
 src/apis/crash_reports_api.rs
+src/apis/demos_api.rs
 src/apis/devices_api.rs
 src/apis/janus_api.rs
 src/apis/mod.rs
@@ -154,6 +161,9 @@ src/models/callback_token_auth_request.rs
 src/models/camera_snapshot.rs
 src/models/crash_report.rs
 src/models/crash_report_status_enum.rs
+src/models/demo_feedback_enum.rs
+src/models/demo_submission.rs
+src/models/demo_submission_feedback_request.rs
 src/models/dj_stripe_charge.rs
 src/models/dj_stripe_checkout_session.rs
 src/models/dj_stripe_customer.rs
@@ -182,6 +192,7 @@ src/models/nats_organization_request.rs
 src/models/nats_organization_user.rs
 src/models/network_settings.rs
 src/models/network_settings_request.rs
+src/models/null_enum.rs
 src/models/octo_print_backup.rs
 src/models/octo_print_server.rs
 src/models/octo_print_server_request.rs
@@ -213,6 +224,7 @@ src/models/paginated_webrtc_stream_list.rs
 src/models/password_change_request.rs
 src/models/password_reset_confirm_request.rs
 src/models/password_reset_request.rs
+src/models/patched_demo_submission_feedback_request.rs
 src/models/patched_email_alert_settings_request.rs
 src/models/patched_moonraker_server_request.rs
 src/models/patched_network_settings_request.rs
