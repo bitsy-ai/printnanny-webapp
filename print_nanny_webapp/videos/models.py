@@ -41,6 +41,10 @@ class ChallengeCampaignLead(models.Model):
     Uploaded an image to "PrintNanny challenge" marketing campaign
     """
 
+    class Meta:
+        ordering = ["-created_dt"]
+        index_together = [["id", "created_dt", "email"]]
+
     created_dt = models.DateTimeField(auto_now_add=True)
     email = models.EmailField()
     submission = models.FileField(upload_to=challenge_campaign_submission_filepath)
