@@ -25,7 +25,7 @@ const result = await account.demosApi.demosRetrieve(props.demoId);
         alt="PrintNanny"
       />
       <h2 class="my-6 text-center text-3xl font-extrabold text-gray-900">
-        Can you stump the AI?
+        Your results are in! 🔮
       </h2>
       <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500 text-center">
         Upload your gnarliest print failures.

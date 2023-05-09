@@ -51,6 +51,12 @@ class DemoSubmission(models.Model):
     submission = models.FileField(upload_to=demo_submission_filepath, max_length=255)
     result = models.FileField(upload_to=demo_result_filepath, max_length=255)
 
+    feedback_nozzle = models.BooleanField(null=True)
+    feedback_adhesion = models.BooleanField(null=True)
+    feedback_spaghetti = models.BooleanField(null=True)
+    feedback_print = models.BooleanField(null=True)
+    feedback_raft = models.BooleanField(null=True)
+
 
 class CameraSnapshot(models.Model):
     class Meta:
