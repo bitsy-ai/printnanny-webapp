@@ -26,6 +26,27 @@ def snapshot_filepath(instance, filename):
     return f"{path}/{instance.id}.jpg"
 
 
+def challenge_campaign_submission_filepath(instance, filename):
+    path = timezone.now().strftime("uploads/challenge_campaign_submission/%Y/%m/%d")
+    return f"{path}/{filename}.jpg"
+
+
+def challenge_campaign_result_filepath(instance, filename):
+    path = timezone.now().strftime("uploads/challenge_campaign_result/%Y/%m/%d")
+    return f"{path}/{filename}.jpg"
+
+
+class ChallengeCampaignLead(models.Model):
+    """
+    Uploaded an image to "PrintNanny challenge" marketing campaign
+    """
+
+    created_dt = models.DateTimeField(auto_now_add=True)
+    email = models.EmailField()
+    submission = models.FileField(upload_to=challenge_campaign_submission_filepath)
+    result = models.FileField(upload_to=challenge_campaign_result_filepath)
+
+
 class CameraSnapshot(models.Model):
     class Meta:
         ordering = ["-created_dt"]
