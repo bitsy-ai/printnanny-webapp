@@ -1,8 +1,10 @@
 import logging
+from functools import partial
 
 from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiParameter
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
+from django.db import transaction
 
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -247,8 +249,10 @@ class DemoSubmissionViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin
 
     def perform_create(self, serializer):
         obj = serializer.save()
-        task = demo_task.delay(obj.id)
-        logger.info("DemoSubmissionViewSet created demo_task %s", task)
+
+        # attach callback to transaction commit, so task is queued only after database row is saved
+        # otherwise, the celery task can begin before the transaction is committed (when Celery eager results = False and ATOMIC_REQUESTS = True)
+        transaction.on_commit(partial(demo_task.delay(obj.id)))
 
 
 @extend_schema_view(

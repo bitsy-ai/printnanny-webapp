@@ -28,8 +28,8 @@ def finalize_video_recording_task(video_recording_id: UUID):
 
 @celery_app.task()
 def demo_task(challenge_id: UUID):
+    logger.info("Processing ChallengeCampaignLead id=%s", challenge_id)
     entry = DemoSubmission.objects.get(id=challenge_id)
-    logger.info("Processing ChallengeCampaignLead id=%s", entry.id)
 
     entry.submission.open()
     img = Image.open(entry.submission)
