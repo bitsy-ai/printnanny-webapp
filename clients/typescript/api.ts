@@ -269,6 +269,43 @@ export type CrashReportStatusEnum = typeof CrashReportStatusEnum[keyof typeof Cr
 /**
  * 
  * @export
+ * @interface DemoSubmission
+ */
+export interface DemoSubmission {
+    /**
+     * 
+     * @type {string}
+     * @memberof DemoSubmission
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DemoSubmission
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DemoSubmission
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DemoSubmission
+     */
+    'submission': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DemoSubmission
+     */
+    'result': string;
+}
+/**
+ * 
+ * @export
  * @interface DjStripeCharge
  */
 export interface DjStripeCharge {
@@ -1611,7 +1648,7 @@ export interface GcodeFile {
     'user': number;
 }
 /**
- * * `printnanny` - Subscribe to PrintNanny news and development updates * `sdwire` - Get notified when SDWire is back in stock * `rpi4_kit` - Get notified when Raspberry Pi 4 kits are available
+ * * `printnanny` - Subscribe to PrintNanny news and development updates * `sdwire` - Get notified when SDWire is back in stock * `rpi4_kit` - Get notified when Raspberry Pi 4 kits are available * `printnanny_demo` - Uploaded image to PrintNanny challenge/demo marketing campaign
  * @export
  * @enum {string}
  */
@@ -1619,7 +1656,8 @@ export interface GcodeFile {
 export const InterestEnum = {
     Printnanny: 'printnanny',
     Sdwire: 'sdwire',
-    Rpi4Kit: 'rpi4_kit'
+    Rpi4Kit: 'rpi4_kit',
+    PrintnannyDemo: 'printnanny_demo'
 } as const;
 
 export type InterestEnum = typeof InterestEnum[keyof typeof InterestEnum];
@@ -14756,6 +14794,59 @@ export const VideosApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * 
+         * @param {string} email 
+         * @param {any} submission 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        demosCreate: async (email: string, submission: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'email' is not null or undefined
+            assertParamExists('demosCreate', 'email', email)
+            // verify required parameter 'submission' is not null or undefined
+            assertParamExists('demosCreate', 'submission', submission)
+            const localVarPath = `/api/demos/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+            if (email !== undefined) { 
+                localVarFormParams.append('email', email as any);
+            }
+    
+            if (submission !== undefined) { 
+                localVarFormParams.append('submission', submission as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} piId 
          * @param {any} image 
          * @param {number} pi 
@@ -15376,6 +15467,17 @@ export const VideosApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} email 
+         * @param {any} submission 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async demosCreate(email: string, submission: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DemoSubmission>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.demosCreate(email, submission, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {number} piId 
          * @param {any} image 
          * @param {number} pi 
@@ -15531,6 +15633,16 @@ export const VideosApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * 
+         * @param {string} email 
+         * @param {any} submission 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        demosCreate(email: string, submission: any, options?: any): AxiosPromise<DemoSubmission> {
+            return localVarFp.demosCreate(email, submission, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} piId 
          * @param {any} image 
          * @param {number} pi 
@@ -15672,6 +15784,16 @@ export const VideosApiFactory = function (configuration?: Configuration, basePat
 export interface VideosApiInterface {
     /**
      * 
+     * @param {string} email 
+     * @param {any} submission 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof VideosApiInterface
+     */
+    demosCreate(email: string, submission: any, options?: AxiosRequestConfig): AxiosPromise<DemoSubmission>;
+
+    /**
+     * 
      * @param {number} piId 
      * @param {any} image 
      * @param {number} pi 
@@ -15811,6 +15933,18 @@ export interface VideosApiInterface {
  * @extends {BaseAPI}
  */
 export class VideosApi extends BaseAPI implements VideosApiInterface {
+    /**
+     * 
+     * @param {string} email 
+     * @param {any} submission 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof VideosApi
+     */
+    public demosCreate(email: string, submission: any, options?: AxiosRequestConfig) {
+        return VideosApiFp(this.configuration).demosCreate(email, submission, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {number} piId 
