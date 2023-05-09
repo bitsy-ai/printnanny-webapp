@@ -1,21 +1,33 @@
 <script setup lang="ts">
+import { ref, toRaw } from "vue";
 import { RouterLink, useRouter } from "vue-router";
+import * as api from "printnanny-api-client";
+
+import { useDemoStore } from "@/stores/demo";
 import { useAccountStore } from "@/stores/account";
 import { handleApiError } from "@//utils/api";
-import { HandThumbUpIcon as ThumbUpIconSolid, HandThumbDownIcon as ThumbDownIconSolid, XMarkIcon as XIconSolid } from "@heroicons/vue/24/solid";
-import { HandThumbUpIcon as ThumbUpIconOutline, HandThumbDownIcon as ThumbDownIconOutline, XMarkIcon as XIconOutline } from "@heroicons/vue/24/outline";
+import {
+  HandThumbUpIcon as ThumbUpIconSolid,
+  HandThumbDownIcon as ThumbDownIconSolid,
+  XMarkIcon as XIconSolid,
+} from "@heroicons/vue/24/solid";
+import {
+  HandThumbUpIcon as ThumbUpIconOutline,
+  HandThumbDownIcon as ThumbDownIconOutline,
+  XMarkIcon as XIconOutline,
+} from "@heroicons/vue/24/outline";
+import TextSpinner from "@/components/util/TextSpinner.vue";
 
-const account = useAccountStore();
+const store = useDemoStore();
 const props = defineProps({
-    demoId: {
-        type: String,
-        required: true
-    }
+  demoId: {
+    type: String,
+    required: true,
+  },
 });
 
-const demo = (await account.demosApi.demosRetrieve(props.demoId).catch(handleApiError)).data;
-console.log("Loaded demo", demo)
-
+await store.load(props.demoId);
+console.debug("Loaded demo", toRaw(store.demo));
 </script>
 <template>
   <div
@@ -23,7 +35,7 @@ console.log("Loaded demo", demo)
   >
     <div class="max-w-2xl w-full space-y-8">
       <img
-        class="mx-auto h-30 w-auto"
+        class="mx-auto h-24 w-auto"
         src="@/assets/logo/logo-rect-light.svg"
         alt="PrintNanny"
       />
@@ -31,46 +43,104 @@ console.log("Loaded demo", demo)
         Your results are in! 🔮
       </h2>
       <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500 text-center">
-        How'd we do? <br> Your feedback helps PrintNanny learn.
+        How'd we do? <br />
+        Your feedback helps PrintNanny learn. 🧠
       </p>
       <hr class="w-64 h-px my-8 mx-auto bg-gray-200 border-0" />
-
       <transition
-        enter-active-class="transition ease-out duration-100"
-        enter-from-class="transform opacity-0 scale-95"
-        enter-to-class="transform opacity-100 scale-100"
-        leave-active-class="transition ease-in duration-75"
-        leave-from-class="transform opacity-100 scale-100"
-        leave-to-class="transform opacity-0 scale-95"
+        enter-active-class="duration-300 ease-out"
+        enter-from-class="transform opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="duration-200 ease-in"
+        leave-from-class="opacity-100"
+        leave-to-class="transform opacity-0"
       >
-      <div>
-        <dl class="mt-12 text-sm font-medium flex grid grid-cols-3">
-            <dt class="text-gray-900"><strong>Nozzle</strong> <br>Was your hotend nozzle detected?</dt>
-            <dd class="mt-2 text-indigo-600 flex grid grid-cols-3 gap-2 col-span-2">
-                <button 
-                  :class="[
-                    demo.feedback_nozzle === true ? 'bg-indigo-500' : '',
-                    'bg-gray-300 h-12 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center']">
-                    <ThumbUpIconOutline class="w-6 h-6 mr-2" />
-                    <span>Yes</span>
-                    </button>
-                <button :class="[
-                    demo.feedback_nozzle === false ? 'bg-indigo-500' : '',
-                    'bg-gray-300 h-12 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center']">
-                    <ThumbDownIconOutline class="w-6 h-6 mr-2" />
-                    <span>No</span>
-                </button>
-                <button :class="[
-                    demo.feedback_nozzle === null ? 'bg-indigo-500' : '',
-                    'bg-gray-300 h-12 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center']">
-                    <XIconOutline class="w-6 h-6 mr-2"/>
-                    <span>N/A</span>
-                </button>
+        <div>
+          <dl class="mt-12 text-sm font-medium flex grid grid-cols-2 mb-6">
+            <dt class="text-gray-800">
+              <strong class="text-indigo-500">Nozzle</strong> <br />Was your
+              hotend nozzle detected?
+            </dt>
+            <dd class="mt-2 text-indigo-600 flex grid grid-cols-3 gap-2">
+              <button
+                :class="[
+                  store.demo.feedback_nozzle == api.DemoFeedbackEnum.Pass
+                    ? 'bg-indigo-300 hover:bg-indigo-400'
+                    : 'bg-gray-300 hover:bg-gray-400',
+                  'h-12 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
+                ]"
+                @click="
+                  store.handleFeedback(
+                    props.demoId,
+                    'nozzle',
+                    api.DemoFeedbackEnum.Pass
+                  )
+                "
+              >
+                <ThumbUpIconOutline class="w-6 h-6 mr-2" />
+                <span>Yes</span>
+              </button>
+              <button
+                :class="[
+                  store.demo.feedback_nozzle == api.DemoFeedbackEnum.Fail
+                    ? 'bg-indigo-300 hover:bg-indigo-400'
+                    : 'bg-gray-300 hover:bg-gray-400',
+                  'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
+                ]"
+                @click="
+                  store.handleFeedback(
+                    props.demoId,
+                    'nozzle',
+                    api.DemoFeedbackEnum.Fail
+                  )
+                "
+              >
+                <ThumbDownIconOutline class="w-6 h-6 mr-2" />
+                <span>No</span>
+              </button>
+              <button
+                :class="[
+                  store.demo.feedback_nozzle == api.DemoFeedbackEnum.Na
+                    ? 'bg-indigo-300 hover:bg-indigo-400'
+                    : 'bg-gray-300 hover:bg-gray-400',
+                  'h-12 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center justify-center',
+                ]"
+                @click="
+                  store.handleFeedback(
+                    props.demoId,
+                    'nozzle',
+                    api.DemoFeedbackEnum.Na
+                  )
+                "
+              >
+                <XIconOutline class="w-6 h-6 mr-2" />
+                <span>N/A</span>
+              </button>
             </dd>
-        </dl>
-        <hr class="w-64 h-px my-8 mx-auto bg-gray-200 border-0" />
+          </dl>
+          <transition
+            enter-active-class="duration-1000 ease-out"
+            enter-from-class="transform opacity-0"
+            enter-to-class="opacity-100"
+            leave-active-class="duration-700 ease-in"
+            leave-from-class="opacity-100"
+            leave-to-class="transform opacity-0"
+          >
+            <p
+              v-if="store.saved"
+              class="text-center m-auto text-sm text-gray-600 flex-start w-1/2"
+            >
+              ✔️ Saved
+            </p>
+            <TextSpinner
+              v-else-if="store.loading"
+              class="m-auto text-sm text-gray-800 justify-center flex-end"
+              text="Saving..."
+            />
+          </transition>
+          <hr class="w-64 h-px my-8 mx-auto bg-gray-200 border-0" />
 
-        <img :src="demo.result" v-if="demo" class="m-auto"/>
+          <img v-if="store.demo" :src="store.demo.result" class="m-auto" />
         </div>
       </transition>
     </div>

@@ -29,6 +29,7 @@ from print_nanny_webapp.videos.api.serializers import (
     VideoRecordingPartSerializer,
     VideoRecordingFinalizeSerializer,
     DemoSubmissionSerializer,
+    DemoSubmissionFeedbackSerializer,
 )
 from print_nanny_webapp.utils.api.views import (
     generic_get_errors,
@@ -227,9 +228,13 @@ class CameraSnapshotViewSet(
 
 @extend_schema_view(
     create=extend_schema(
-        tags=["videos"],
+        tags=["demos"],
         request=DemoSubmissionSerializer,
         responses={201: DemoSubmissionSerializer} | generic_create_errors,
+    ),
+    retrieve=extend_schema(
+        tags=["demos"],
+        responses={200: DemoSubmissionSerializer} | generic_get_errors,
     ),
 )
 class DemoSubmissionViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin):
@@ -244,3 +249,25 @@ class DemoSubmissionViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin
         obj = serializer.save()
         task = demo_task.delay(obj.id)
         logger.info("DemoSubmissionViewSet created demo_task %s", task)
+
+
+@extend_schema_view(
+    update=extend_schema(
+        tags=["demos"],
+        request=DemoSubmissionFeedbackSerializer,
+        responses={202: DemoSubmissionSerializer} | generic_update_errors,
+    ),
+    partial_update=extend_schema(
+        tags=["demos"],
+        request=DemoSubmissionFeedbackSerializer,
+        responses={202: DemoSubmissionSerializer} | generic_update_errors,
+    ),
+)
+class DemoSubmissionFeedbackViewSet(
+    GenericViewSet, RetrieveModelMixin, UpdateModelMixin
+):
+    serializer_class = DemoSubmissionSerializer
+    queryset = DemoSubmission.objects.all()
+    permission_classes = (AllowAny,)
+    # omit OwnerOrUserFilterBackend, which is a DEFAULT_FILTER_BACKENDS
+    filter_backends = [DjangoFilterBackend]

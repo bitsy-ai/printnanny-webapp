@@ -514,6 +514,7 @@ SPECTACULAR_SETTINGS = {
         "StripeUsageAction": "djstripe.enums.UsageAction.choices",
         "StripeWebhookEndpointStatus": "djstripe.enums.WebhookEndpointStatus.choices",
         "DjstripePaymentMethodType": "djstripe.enums.DjstripePaymentMethodType.choices",
+        "DemoFeedbackEnum": "print_nanny_webapp.videos.enum.DemoSubmissionFeedbackEnum.choices",
         # end djstripe types
     },
     "TITLE": "printnanny-api-client",

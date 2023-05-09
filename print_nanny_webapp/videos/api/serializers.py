@@ -16,6 +16,13 @@ class DemoSubmissionSerializer(serializers.ModelSerializer):
         read_only_fields = ("id", "created_dt", "result")
 
 
+class DemoSubmissionFeedbackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DemoSubmission
+        fields = "__all__"
+        read_only_fields = ("id", "created_dt", "result", "submission", "email")
+
+
 class VideoRecordingFinalizeSerializer(serializers.Serializer):
     recording_end = serializers.DateTimeField()
 
