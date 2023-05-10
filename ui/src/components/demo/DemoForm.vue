@@ -1,12 +1,14 @@
 <script setup lang="ts">
+import { ref, reactive } from "vue";
 import { RouterLink, useRouter } from "vue-router";
 import { LockClosedIcon, ArrowPathIcon } from "@heroicons/vue/24/solid";
 import { Field, ErrorMessage, Form } from "vee-validate";
-import { ref, reactive } from "vue";
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
+import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/vue/24/outline";
 import * as yup from "yup";
 import type * as apiTypes from "printnanny-api-client";
 import { useDemoStore } from "@/stores/demo";
-import { error } from "@/stores/alerts"
+import { error } from "@/stores/alerts";
 
 const router = useRouter();
 const loading = ref(false);
@@ -26,8 +28,11 @@ const schema = yup.object({
 
 async function onSubmit(values: any) {
   state.loading = true;
-  if (file.value === undefined){
-    return error("Select a PNG or JPEG photo", "You must select a photo to try PrintNanny. Use the 'Choose File' button to select a file, then submit your test. PrintNanny will email you when your results are available.")
+  if (file.value === undefined) {
+    return error(
+      "Select a PNG or JPEG photo",
+      "You must select a photo to try PrintNanny. Use the 'Choose File' button to select a file, then submit your test. PrintNanny will email you when your results are available."
+    );
   }
   await store.submit(values.email, file.value as string);
   state.loading = false;
@@ -39,24 +44,56 @@ function onChangeFile(e: any) {
   if (!files.length) return;
   file.value = files[0];
 }
+
+const faqs = [
+  {
+    question: "Hows PrintNanny work?",
+    answer:
+      "PrintNanny watches a camera feed, continuously scanning for 3D printed objects, a variety of defects, and 3D printer components (like the hotend nozzle). ",
+    defaultOpen: true,
+  },
+  {
+    question: "What kinds of defects can PrintNanny detect?",
+    answer:
+      "We currently detect filament spaghetti, bed adhesion issues, and layer warping.",
+    defaultOpen: true,
+  },
+  {
+    question: "Should I test other kinds of defects?",
+    answer:
+      "Yes, please do! PrintNanny is constantly learning. With your help, we'll be able to spot a wider variety of issues in the future.",
+    defaultOpen: true,
+  },
+  {
+    question: "What kind of 3D printers are supported?",
+    answer:
+      "Any desktop FDM/FFA printer should work with PrintNanny. Prusa and Ender are the most popular brands we see.",
+    defaultOpen: true,
+  },
+  {
+    question: "I have another question",
+    answer:
+      "Join our Discord server or email support@printnanny.ai. We're happy to chat more!",
+    defaultOpen: true,
+  },
+];
 </script>
 <template>
-  <div
-    class="flex-1 flex items-center justify-center p-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 md:w-1/2 m:0 md:mx-auto rounded bg-white shadow-md"
-  >
-    <div class="max-w-md w-full space-y-8">
+  <div class="grid grid-cols-1 lg:grid-cols-4 p-12 md:p-24">
+    <div class="col-span-2 max-w-md m-auto w-full space-y-8">
       <img
-        class="mx-auto h-30 w-auto"
+        class="mx-auto h-30 w-auto mt-8"
         src="@/assets/logo/logo-rect-light.svg"
         alt="PrintNanny"
       />
-      <h2 class="my-6 text-center text-3xl font-extrabold text-gray-900">
-        Can you stump the AI?
+      <h2 class="my-6 text-center text-4xl font-extrabold text-gray-900">
+        Try PrintNanny Risk-free
       </h2>
       <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500 text-center">
-        Upload your gnarliest 3D print failures to test PrintNanny's detection
+        Upload your gnarliest FDM/FFA 3D print failures to test our detection
         system.
       </p>
+
       <hr class="w-64 h-px my-8 mx-auto bg-gray-200 border-0" />
 
       <transition
@@ -73,7 +110,7 @@ function onChangeFile(e: any) {
           >
           <input
             id="file_input"
-            class="p-1 mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-400 focus:outline-none"
+            class="p-1 mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-200 focus:outline-none"
             aria-describedby="file_input_help"
             type="file"
             accept="image/png, image/jpeg"
@@ -81,7 +118,7 @@ function onChangeFile(e: any) {
           />
           <hr class="w-64 h-px my-8 mx-auto bg-gray-200 border-0" />
           <label for="email" class="block text-sm text-gray-900"
-            >We'll email your results:</label
+            >We'll email your test results:</label
           >
           <Field
             id="email"
@@ -114,6 +151,51 @@ function onChangeFile(e: any) {
           </button>
         </Form>
       </transition>
+    </div>
+    <div class="col-span-2 w-3/4 mx-auto px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
+      <div class="mx-auto divide-y divide-gray-900/10">
+        <h2 class="text-4xl font-extrabold text-gray-900">
+          Frequently asked questions
+        </h2>
+        <dl class="mt-10 space-y-6 divide-y divide-gray-900/10">
+          <Disclosure
+            v-for="faq in faqs"
+            :key="faq.question"
+            v-slot="{ open }"
+            as="div"
+            class="pt-6"
+            :default-open="faq.defaultOpen"
+          >
+            <dt>
+              <DisclosureButton
+                class="flex w-full items-start justify-between text-left text-gray-900"
+              >
+                <span class="text-base font-semibold leading-7">{{
+                  faq.question
+                }}</span>
+                <span class="ml-6 flex h-7 items-center">
+                  <PlusSmallIcon
+                    v-if="!open"
+                    class="h-6 w-6"
+                    aria-hidden="true"
+                  />
+                  <MinusSmallIcon v-else class="h-6 w-6" aria-hidden="true" />
+                </span>
+              </DisclosureButton>
+            </dt>
+            <DisclosurePanel as="dd" class="mt-2 pr-12">
+              <p class="text-base leading-7 text-gray-600">{{ faq.answer }}</p>
+            </DisclosurePanel>
+          </Disclosure>
+        </dl>
+      </div>
+      <a
+        href="https://discord.gg/sf23bk2hPr"
+        target="_blank"
+        class="text-center w-full m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+      >
+        Join Discord
+      </a>
     </div>
   </div>
 </template>
