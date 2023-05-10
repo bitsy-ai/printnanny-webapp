@@ -24,7 +24,10 @@ export const useDemoStore = defineStore({
         return res.data;
       }
     },
-    async submit(email: string, filename: string) {
+    async submit(
+      email: string,
+      filename: string
+    ): Promise<undefined | api.DemoSubmission> {
       const account = useAccountStore();
       const res = await account.demosApi
         .demosCreate(email, filename)
@@ -34,6 +37,7 @@ export const useDemoStore = defineStore({
           "Success! Your submission is queued",
           `We'll email you at ${email} when your results are ready.`
         );
+        return res.data;
       }
     },
     async handleFeedback(

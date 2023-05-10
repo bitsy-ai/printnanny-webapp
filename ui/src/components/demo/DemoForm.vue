@@ -34,8 +34,14 @@ async function onSubmit(values: any) {
       "You must select a photo to try PrintNanny. Use the 'Choose File' button to select a file, then submit your test. PrintNanny will email you when your results are available."
     );
   }
-  await store.submit(values.email, file.value as string);
+  const res = await store.submit(values.email, file.value as string);
   state.loading = false;
+  if (res !== undefined) {
+    router.push({
+      name: "demo-result",
+      params: { demoId: res.id },
+    });
+  }
 }
 
 function onChangeFile(e: any) {
