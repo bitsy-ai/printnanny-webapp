@@ -82,10 +82,10 @@ const examples = [
   {
     header: "Example #1: spaghetti detected in Ultimaker 2+",
     description: [
-    "The Ultimaker 2+ is a machine popular with educators, labs, and businesses looking for a solution that 'just works' in the $2,500 - $3,000 price range.",
-    "Like any FDM/FFA 3D printer, the Ultimaker 2+ can produce defective prints.",
-    "In this example, PrintNanny initially detects a healthy 3D-print object with a skirt/raft.",
-    "Later on, the print object collapses and shifts outside of the skirt/raft. When subsequent layers fail to adhere to the 3D-printed object, PrintNanny sees filament spaghetti."
+      "The Ultimaker 2+ is a machine popular with educators, labs, and businesses looking for a solution that 'just works' in the $2,500 - $3,000 price range.",
+      "Like any FDM/FFA 3D printer, the Ultimaker 2+ can produce defective prints.",
+      "In this example, PrintNanny initially detects a healthy 3D-print object with a skirt/raft.",
+      "Later on, the print object collapses and shifts outside of the skirt/raft. When subsequent layers fail to adhere to the 3D-printed object, PrintNanny sees filament spaghetti.",
     ],
     images: [
       "/ui/images/demo/printnanny-ultimaker-healthy-1.png",
@@ -96,9 +96,9 @@ const examples = [
   {
     header: "Example #2: adhesion issues leading to spaghetti",
     description: [
-    "Common sense tells us 'where there's smoke, there's fire!' The same holds true in 3D printing: subtle ealy adhesion issues inevitably lead to catastrophic failures later on.",
-    "As a first line of defense, PrintNanny monitors for bed and layer adhesion problems. That's why we taught PrintNanny how to spot a raft/skirt.",
-    "As a result, PrintNanny can spot subtle shifts in orientation relative to the raft."
+      "Common sense tells us 'where there's smoke, there's fire!' The same holds true in 3D printing: subtle ealy adhesion issues inevitably lead to catastrophic failures later on.",
+      "As a first line of defense, PrintNanny monitors for bed and layer adhesion problems. That's why we taught PrintNanny how to spot a raft/skirt.",
+      "As a result, PrintNanny can spot subtle shifts in orientation relative to the raft.",
     ],
     images: [
       "/ui/images/demo/printnanny-skull-ok.png",
@@ -110,13 +110,12 @@ const examples = [
   {
     header: "Example #3: first layer adhesion issues in Ultimaker 2+",
     description: [
-    "In this example, PrintNanny is monitoring from a top-down view. Our goal is to provide best-in-class quality control from any angle, under any lighting conditions, on any FDM/FFA machine.",
-    "PrintNanny detects that early layers have failed to adhere, dooming the print job to failure."
+      "In this example, PrintNanny is monitoring from a top-down view. Our goal is to provide best-in-class quality control from any angle, under any lighting conditions, on any FDM/FFA machine.",
+      "PrintNanny detects that early layers have failed to adhere, dooming the print job to failure.",
     ],
     images: [
       "/ui/images/demo/printnanny-ultimaker-fail-2.png",
       "/ui/images/demo/printnanny-ultimaker-fail-3.png",
-
     ],
     defaultOpen: true,
   },
@@ -279,11 +278,25 @@ const examples = [
               </DisclosureButton>
             </dt>
             <DisclosurePanel as="dd" class="mt-2 pr-12 space-y-2">
-              <p class="text-base leading-7 text-gray-600" v-for="description in example.description" :key="description">
+              <p
+                v-for="description in example.description"
+                :key="description"
+                class="text-base leading-7 text-gray-600"
+              >
                 {{ description }}
               </p>
-              <div :class="['grid gap-4', `grid-cols-1 lg:grid-cols-${example.images.length}`]">
-                <img v-for="img in example.images" :src="img" :key="img" class="w-full h-auto"/>
+              <div
+                :class="[
+                  'grid gap-4',
+                  `grid-cols-1 lg:grid-cols-${example.images.length}`,
+                ]"
+              >
+                <img
+                  v-for="img in example.images"
+                  :key="img"
+                  :src="img"
+                  class="w-full h-auto"
+                />
               </div>
             </DisclosurePanel>
           </Disclosure>
