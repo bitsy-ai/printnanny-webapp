@@ -23,11 +23,11 @@
               <p class="pt-6 max-w-prose mx-auto text-xl text-white">
                 AI-powered monitoring and automation for 3D printers.
               </p>
-              <router-link id="hero-pricing" :to="{ name: 'pricing' }">
+              <router-link id="hero-pricing" :to="{ name: 'demo-submit' }">
                 <button
                   class="transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                 >
-                  Get Started for $9.99/month
+                  Try a Risk-Free Demo
                 </button>
               </router-link>
             </div>
@@ -88,6 +88,13 @@
         <div class="mt-12">
           <DemoQualityAlert></DemoQualityAlert>
         </div>
+        <router-link id="hero-pricing" :to="{ name: 'demo-submit' }">
+          <button
+            class="m-auto w-1/2 mb-2 transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+          >
+            Try a Risk-Free Demo
+          </button>
+        </router-link>
       </div>
     </div>
     <!-- Feature section with toggle -->
@@ -109,7 +116,7 @@
             Simple Install for Raspberry Pi
           </p>
           <p class="py-6 max-w-prose mx-auto text-xl text-gray-500">
-            Mix & match your favorite 3D printing tools:
+            Mix & match your favorite 3D printing tools with PrintNanny OS:
           </p>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 w-1/2 m-auto py-6">
@@ -163,8 +170,11 @@
         >
           <span class="text-gray-900">Over-the-air Updates</span>
         </h1>
-        <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500 pb-8">
+        <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
           <strong>Are you tired of re-imaging SD cards?</strong>
+        </p>
+        <p class="max-w-prose mx-auto text-xl text-gray-500 mb-8">
+          PrintNanny OS keeps all your favorite tools up-to-date.
         </p>
         <div class="grid md:grid-cols-3 md:gap-4">
           <div class="col-span-2 space-y-6">
