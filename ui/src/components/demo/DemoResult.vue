@@ -33,17 +33,21 @@ console.debug("Loaded demo", toRaw(store.demo));
   <div
     class="flex-1 flex items-center justify-center p-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 md:w-3/4 m:0 md:mx-auto rounded bg-white shadow-md"
   >
-    <div class="max-w-2xl w-full space-y-8">
+    <div class="max-w-2xl w-full space-y-6">
       <img
         class="mx-auto h-24 w-auto"
         src="@/assets/logo/logo-rect-light.svg"
         alt="PrintNanny"
       />
-      <h2 class="my-6 text-center text-3xl font-extrabold text-gray-900">
-        🔮 Your results are in:
+      <h2 class="text-center text-3xl font-extrabold text-gray-900">
+        🔮 Your results are in!
       </h2>
-      <img v-if="store.demo" :src="store.demo.result" class="m-auto" />
-
+      <a v-if="store.demo" :href="store.demo.result" target="_blank"
+        ><img v-if="store.demo" :src="store.demo.result" class="m-auto"
+      /></a>
+      <p class="max-w-prose mx-auto text-sm text-gray-500 text-center">
+        Tap/click the image to see full-size version.
+      </p>
       <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500 text-center">
         How'd we do? <br />
         Your feedback helps PrintNanny learn 🧠
