@@ -28,17 +28,15 @@ const props = defineProps({
 });
 
 const res = await store.load(props.demoId);
-if (res){
+if (res) {
   ready.value = store.demo?.result !== undefined;
 }
-
-
 </script>
 <template>
   <div
     class="flex-1 flex items-center justify-center p-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 md:w-3/4 m:0 md:mx-auto rounded bg-white shadow-md"
   >
-    <div class="max-w-2xl w-full space-y-6" v-if="ready">
+    <div v-if="ready" class="max-w-2xl w-full space-y-6">
       <img
         class="mx-auto h-24 w-auto"
         src="@/assets/logo/logo-rect-light.svg"
@@ -417,11 +415,36 @@ if (res){
           >
             Join Discord
           </a>
+          <hr class="w-64 h-px my-8 mx-auto bg-gray-200 border-0" />
+          <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500 text-center">
+            Ready to get started?
+          </p>
+          <router-link id="demo-rpi4-kit-cta" :to="{ name: 'shop-rpi4kit' }">
+            <button
+              class="md:w-3/4 m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+            >
+              Get the PrintNanny Kit
+            </button>
+          </router-link>
+          <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500 text-center">
+            90-day money-back guarantee.
+          </p>
+          <hr class="w-64 h-px my-8 mx-auto bg-gray-200 border-0" />
+          <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500 text-center">
+            Already have a Raspberry Pi?
+          </p>
+          <router-link id="demo-starter-plan-cta" :to="{ name: 'pricing' }">
+            <button
+              class="md:w-3/4 m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+            >
+              Try PrintNanny for $9.99/month
+            </button>
+          </router-link>
         </div>
       </transition>
     </div>
-    <div class="max-w-2xl w-full space-y-6" v-else>
-    <img
+    <div v-else class="max-w-2xl w-full space-y-6">
+      <img
         class="mx-auto h-24 w-auto"
         src="@/assets/logo/logo-rect-light.svg"
         alt="PrintNanny"
@@ -429,18 +452,18 @@ if (res){
       <h2 class="text-center text-3xl font-extrabold text-gray-900">
         🔮 Processing your submission
       </h2>
-      <p class="max-w-prose mx-auto text-lg text-gray-500 text-center">
-        We'll send you an email when your results are are ready. 
+      <p class="max-w-prose mx-auto text-xl text-gray-500 text-center">
+        We'll send you an email when your results are are ready.
       </p>
       <p class="max-w-prose mx-auto text-lg text-gray-500 text-center">
         In the meantime, you're welcome to join our Discord server:
         <a
-        href="https://discord.gg/sf23bk2hPr"
-        target="_blank"
-        class="text-center w-full m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-      >
-        Join Discord
-      </a>
+          href="https://discord.gg/sf23bk2hPr"
+          target="_blank"
+          class="text-center w-full m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+        >
+          Join Discord
+        </a>
       </p>
     </div>
   </div>

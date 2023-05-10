@@ -36,10 +36,11 @@ async function onSubmit(values: any) {
   }
   const res = await store.submit(values.email, file.value as string);
   state.loading = false;
-  if (res !== undefined){
+  if (res !== undefined) {
     router.push({
-      name: "demo-result", params: { demoId: res.id}
-    })
+      name: "demo-result",
+      params: { demoId: res.id },
+    });
   }
 }
 
