@@ -32,6 +32,10 @@ data:
           location / {
             rewrite {{ DISCORD_INVITE_URL }} redirect;
           }
+          location /healthz {
+            return 200 'ok';
+            add_header Content-Type text/plain;
+          }
       }
     }
 ---
@@ -61,6 +65,24 @@ spec:
               name:  discord-redirect
             - mountPath: /var/log/nginx
               name: log
+          livenessProbe:
+            httpGet:
+              path: /healthz/
+              port: 8000
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /healthz/
+              port: 8000
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
       volumes:
         - name: discord-redirect
           configMap:
