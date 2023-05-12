@@ -128,8 +128,8 @@ const examples = [
 ];
 </script>
 <template>
-  <div class="grid grid-cols-1 lg:grid-cols-4 md:p-24">
-    <div class="lg:col-span-2 max-w-md m-auto w-full space-y-8">
+  <div class="grid grid-cols-1 lg:grid-cols-4">
+    <div class="lg:col-span-2 max-w-md m-auto w-full space-y-8 p-8">
       <img
         class="mx-auto h-30 w-auto mt-8"
         src="@/assets/logo/logo-rect-light.svg"
@@ -201,7 +201,7 @@ const examples = [
         </Form>
       </transition>
     </div>
-    <div class="lg:col-span-2 w-full md:w-3/4 mx-auto px-4 py-4">
+    <div class="lg:col-span-2 w-full md:w-3/4 mx-auto px-4 p-8">
       <hr class="lg:hidden w-64 h-px my-8 mx-auto bg-gray-200 border-0" />
 
       <div class="mx-auto divide-y divide-gray-900/10">
@@ -248,7 +248,7 @@ const examples = [
         Join Discord
       </a>
     </div>
-    <div class="lg:col-span-4 mx-auto px-6 py-6 lg:py-0 lg:px-8">
+    <div class="lg:col-span-4 mx-auto px-8 lg:px-24 py-8 lg:pt-0">
       <hr class="w-64 h-px my-8 mx-auto bg-gray-200 border-0" />
 
       <h2 class="my-6 text-center text-4xl font-extrabold text-gray-900">
