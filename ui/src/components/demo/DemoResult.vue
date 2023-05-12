@@ -19,7 +19,6 @@ import {
 import TextSpinner from "@/components/util/TextSpinner.vue";
 
 const store = useDemoStore();
-const ready = ref(false);
 const props = defineProps({
   demoId: {
     type: String,
@@ -27,16 +26,13 @@ const props = defineProps({
   },
 });
 
-const res = await store.load(props.demoId);
-if (res) {
-  ready.value = store.demo?.result !== undefined;
-}
+await store.load(props.demoId);
 </script>
 <template>
   <div
     class="flex-1 flex items-center justify-center p-12 px-4 sm:px-6 lg:px-8 bg-indigo-20 md:w-3/4 m:0 md:mx-auto rounded bg-white shadow-md"
   >
-    <div v-if="ready" class="max-w-2xl w-full space-y-6">
+    <div v-if="store.demo?.result" class="max-w-2xl w-full space-y-6">
       <img
         class="mx-auto h-24 w-auto"
         src="@/assets/logo/logo-rect-light.svg"
