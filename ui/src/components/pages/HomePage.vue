@@ -45,6 +45,7 @@
                 preload="metadata"
                 autoplay="true"
                 class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none drop-shadow-2xl"
+                :poster="'/ui/images/placeholders/demo-video-placeholder-2.png'"
               >
                 <source
                   src="https://cdn.printnanny.ai/www/demo-video-2.mp4"
@@ -161,7 +162,7 @@
     </div>
 
     <!-- OTA updates -->
-    <div id="ota-updates" class="relative bg-gray-50 p-6 lg:py-12">
+    <div id="ota-updates" class="relative bg-gray-50 p-2 lg:py-12">
       <div
         class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
       >
@@ -176,7 +177,7 @@
         <p class="max-w-prose mx-auto text-xl text-gray-500 mb-8">
           PrintNanny OS keeps all your favorite tools up-to-date.
         </p>
-        <div class="grid md:grid-cols-3 md:gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 md:gap-4">
           <div class="col-span-2 space-y-6">
             <hr
               class="w-64 h-px my-8 mx-auto bg-gray-200 border-0 dark:bg-gray-700"
@@ -189,11 +190,13 @@
             <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
               Upgrade a PrintNanny OS fleet from any browser.
             </p>
-            <button
-              class="w-full md:w-3/4 m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-            >
-              Get Started for $9.99/month
-            </button>
+            <router-link id="ota-pricing-starter" :to="{ name: 'pricing' }">
+              <button
+                class="w-full md:w-3/4 m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+              >
+                Get Started for $9.99/month
+              </button>
+            </router-link>
             <hr
               class="w-64 h-px my-8 mx-auto bg-gray-200 border-0 dark:bg-gray-700"
             />
@@ -205,7 +208,10 @@
             <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
               Distribute your own software packages and gcode macros.
             </p>
-            <router-link id="hero-pricing" :to="{ name: 'pricing-enterprise' }">
+            <router-link
+              id="hero-enterprise-quote"
+              :to="{ name: 'pricing-enterprise' }"
+            >
               <button
                 class="w-full md:w-3/4 m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
               >
@@ -215,21 +221,52 @@
           </div>
           <img
             :src="OTA_FEATURE_IMAGE"
-            class="drop-shadow-xl w-full m-auto py-2 col-span-1 rounded-md"
+            class="drop-shadow-xl w-full m-auto pt-6 md:pt-0 py-2 md:col-span-1 rounded-md"
           />
         </div>
       </div>
     </div>
 
-    <!-- past releases -->
-    <div id="printnanny-os-releases" class="relative bg-white p-6 lg:py-12">
+    <!-- vcs settings -->
+    <div id="vcs-settings" class="relative bg-white p-6 lg:py-12">
       <div
         class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
       >
         <h1
           class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8"
         >
-          <span class="text-gray-900">PrintNanny OS Releases</span>
+          <span class="text-gray-900">Settings & Macro Editor</span>
+        </h1>
+        <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+          <strong>Tweak your settings without opening an SSH terminal.</strong>
+        </p>
+        <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+          <strong>Easy sync for gcode macros.</strong>
+        </p>
+        <router-link id="settings-pricing-starter" :to="{ name: 'pricing' }">
+          <button
+            class="w-full md:w-1/3 m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+          >
+            Get Started for $9.99/month
+          </button>
+        </router-link>
+        <img
+          :src="'/ui/images/demo/browser-edit-settings.png'"
+          class="w-full rounded-md p-6"
+        />
+      </div>
+    </div>
+
+    <!-- past releases -->
+    <div id="printnanny-os-releases" class="relative bg-gray-50 p-6 lg:py-12">
+      <div
+        class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
+      >
+        <img src="@/assets/logo/logo-rect-light.svg" class="m-auto h-36 mt-6" />
+        <h1
+          class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8"
+        >
+          <span class="text-gray-900">Past Releases</span>
         </h1>
         <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
           <strong>Constantly shipping, based on YOUR feedback.</strong>
@@ -288,8 +325,6 @@
             </div>
           </div>
         </div>
-
-        <img src="@/assets/logo/logo-rect-light.svg" class="m-auto h-36 mt-6" />
       </div>
     </div>
 

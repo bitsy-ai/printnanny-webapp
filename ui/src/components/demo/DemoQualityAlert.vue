@@ -56,6 +56,7 @@ onMounted(() => {
           controls="true"
           class="w-full"
           preload="metadata"
+          :poster="'/ui/images/placeholders/demo-video-placeholder-1.png'"
         >
           <source
             src="https://cdn.printnanny.ai/www/demo-video-1.mp4"
@@ -108,6 +109,7 @@ onMounted(() => {
           controls="true"
           class="w-full"
           preload="metadata"
+          :poster="'/ui/images/placeholders/demo-video-placeholder-3.png'"
         >
           <source
             src="https://cdn.printnanny.ai/www/demo-video-3.mp4"
