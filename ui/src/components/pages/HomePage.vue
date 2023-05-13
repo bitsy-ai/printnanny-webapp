@@ -45,6 +45,7 @@
                 preload="metadata"
                 autoplay="true"
                 class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none drop-shadow-2xl"
+                :poster="'/ui/images/placeholders/demo-video-placeholder-2.png'"
               >
                 <source
                   src="https://cdn.printnanny.ai/www/demo-video-2.mp4"
