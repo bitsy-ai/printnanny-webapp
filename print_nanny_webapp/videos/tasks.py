@@ -1,6 +1,7 @@
 import logging
 import io
 
+import requests
 from uuid import UUID
 import tensorflow as tf
 from PIL import Image
@@ -87,3 +88,7 @@ def demo_task(challenge_id: UUID):
     msg.tags = ["marketing", "demo"]  # type: ignore[attr-defined]
     msg.track_clicks = True  # type: ignore[attr-defined]
     msg.send()
+
+    if settings.DISCORD_NEW_SIGNUP_WEBHOOK is not None and settings.DEBUG is not True:
+        body = {"content": f"{entry.email} submitted demo image: {entry.result.url}"}
+        requests.post(settings.DISCORD_NEW_SIGNUP_WEBHOOK, json=body, timeout=300)
