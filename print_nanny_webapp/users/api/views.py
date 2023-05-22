@@ -70,14 +70,20 @@ class UserNkeyView(APIView):
 
 
 @extend_schema_view(
-    create=extend_schema(tags=["workspaces"]),
+    create=extend_schema(
+        tags=["workspaces"],
+        responses={201: WorkspaceSerializer} | generic_create_errors,
+    ),
     update=extend_schema(tags=["workspaces"]),
     list=extend_schema(
         tags=["workspaces"],
         responses={200: WorkspaceSerializer(many=True)} | generic_list_errors,
     ),
     partial_update=extend_schema(tags=["workspaces"]),
-    retrieve=extend_schema(tags=["workspaces"]),
+    retrieve=extend_schema(
+        tags=["workspaces"],
+        responses={200: WorkspaceSerializer} | generic_get_errors,
+    ),
 )
 class WorkspaceViewset(
     GenericViewSet,
