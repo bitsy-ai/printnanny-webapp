@@ -2,9 +2,10 @@
 import BillingFormV2 from "@/components/forms/BillingFormV2.vue";
 import AlertSettingsForm from "@/components/forms/AlertSettingsForm.vue";
 import NetworkSettingsForm from "@/components/forms/NetworkSettingsForm.vue";
+import WorkspaceAccountForm from "@/components/forms/WorkspaceAccountForm.vue";
 import { RouterLink, useRouter } from "vue-router";
 
-import { CreditCardIcon, BellIcon, WifiIcon } from "@heroicons/vue/24/outline";
+import { CreditCardIcon, BellIcon, WifiIcon, UserPlusIcon } from "@heroicons/vue/24/outline";
 const router = useRouter();
 
 const navigation = [
@@ -21,6 +22,13 @@ const navigation = [
     icon: BellIcon,
     key: "alertSettings",
     component: AlertSettingsForm,
+  },
+  {
+    name: "User Accounts",
+    link: { name: "accountSettings" },
+    icon: UserPlusIcon,
+    key: "accountSettings",
+    component: WorkspaceAccountForm,
   },
   {
     name: "Subscription & Billing",

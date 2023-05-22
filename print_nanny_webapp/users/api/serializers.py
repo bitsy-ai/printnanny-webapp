@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 
 from django_nats_nkeys.services import nsc_generate_creds
 from django_nats_nkeys.models import NatsOrganizationUser
-from print_nanny_webapp.users.models import EmailWaitlist
+from print_nanny_webapp.users.models import EmailWaitlist, Workspace, WorkspaceUser
 
 
 User = get_user_model()
@@ -37,3 +37,18 @@ class NatsOrganizationUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = NatsOrganizationUser
         fields = ("id", "app_name", "organization", "creds", "json")
+
+
+class WorkspaceUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WorkspaceUser
+        fields = "__all__"
+
+
+class WorkspaceSerializer(serializers.ModelSerializer):
+    workspace_users = WorkspaceUserSerializer(many=True)
+    owner = WorkspaceUserSerializer()
+
+    class Meta:
+        model = Workspace
+        fields = "__all__"

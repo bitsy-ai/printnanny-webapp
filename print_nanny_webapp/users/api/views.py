@@ -1,12 +1,17 @@
 import logging
-from rest_framework.mixins import (
-    CreateModelMixin,
-)
-from rest_framework.viewsets import GenericViewSet
+from django.db.models.query import QuerySet
+
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.viewsets import GenericViewSet
+from rest_framework.mixins import (
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    CreateModelMixin,
+)
 
 from drf_spectacular.utils import extend_schema_view, extend_schema
 from django_nats_nkeys.models import NatsOrganizationUser, _default_name
@@ -16,8 +21,15 @@ from print_nanny_webapp.utils.views import AuthenticatedHttpRequest
 from print_nanny_webapp.users.api.serializers import (
     EmailWaitlistSerializer,
     NatsOrganizationUserSerializer,
+    WorkspaceSerializer,
 )
-from print_nanny_webapp.users.models import EmailWaitlist
+from print_nanny_webapp.utils.api.views import (
+    generic_create_errors,
+    generic_list_errors,
+    generic_get_errors,
+    generic_update_errors,
+)
+from print_nanny_webapp.users.models import EmailWaitlist, Workspace, WorkspaceUser
 
 logger = logging.getLogger(__name__)
 
@@ -55,3 +67,29 @@ class UserNkeyView(APIView):
             org_user = NatsOrganizationUser.objects.get(user=request.user)
         serializer = NatsOrganizationUserSerializer(instance=org_user)
         return Response(serializer.data, status.HTTP_200_OK)
+
+
+@extend_schema_view(
+    create=extend_schema(tags=["workspaces"]),
+    update=extend_schema(tags=["workspaces"]),
+    list=extend_schema(
+        tags=["workspaces"],
+        responses={200: WorkspaceSerializer(many=True)} | generic_list_errors,
+    ),
+    partial_update=extend_schema(tags=["workspaces"]),
+    retrieve=extend_schema(tags=["workspaces"]),
+)
+class WorkspaceViewset(
+    GenericViewSet,
+    CreateModelMixin,
+    UpdateModelMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+):
+    serializer_class = WorkspaceSerializer
+    lookup_field = "id"
+
+    def get_queryset(self) -> QuerySet:
+        if self.request.user.is_authenticated:
+            return Workspace.objects.filter(owner__email=self.request.user.email)
+        return None

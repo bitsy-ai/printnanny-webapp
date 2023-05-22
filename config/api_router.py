@@ -31,7 +31,11 @@ from print_nanny_webapp.octoprint.api.views import (
     OctoPrinterProfileViewSet,
     OctoPrintServerByDeviceViewSet,
 )
-from print_nanny_webapp.users.api.views import EmailWaitlistViewSet, UserNkeyView
+from print_nanny_webapp.users.api.views import (
+    EmailWaitlistViewSet,
+    UserNkeyView,
+    WorkspaceViewset,
+)
 from print_nanny_webapp.videos.api.views import (
     CameraSnapshotViewSet,
     VideoRecordingViewSet,
@@ -172,6 +176,8 @@ router.register(
     PrintJobAlertViewSet,
     basename="print-job-alerts",
 )
+
+router.register("workspaces", WorkspaceViewset, basename="workspaces")
 
 app_name = "api"
 
