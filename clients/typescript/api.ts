@@ -3511,6 +3511,37 @@ export interface PaginatedWebrtcStreamList {
 /**
  * 
  * @export
+ * @interface PaginatedWorkspaceList
+ */
+export interface PaginatedWorkspaceList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedWorkspaceList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedWorkspaceList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedWorkspaceList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<Workspace>}
+     * @memberof PaginatedWorkspaceList
+     */
+    'results'?: Array<Workspace>;
+}
+/**
+ * 
+ * @export
  * @interface PasswordChangeRequest
  */
 export interface PasswordChangeRequest {
@@ -4219,6 +4250,31 @@ export interface PatchedWebrtcStreamRequest {
      * @memberof PatchedWebrtcStreamRequest
      */
     'config_type'?: JanusConfigType;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedWorkspaceRequest
+ */
+export interface PatchedWorkspaceRequest {
+    /**
+     * The name of the organization
+     * @type {string}
+     * @memberof PatchedWorkspaceRequest
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedWorkspaceRequest
+     */
+    'is_active'?: boolean;
+    /**
+     * The name in all lowercase, suitable for URL identification
+     * @type {string}
+     * @memberof PatchedWorkspaceRequest
+     */
+    'slug'?: string;
 }
 /**
  * 
@@ -5921,6 +5977,216 @@ export interface WebrtcStreamRequest {
      * @memberof WebrtcStreamRequest
      */
     'config_type'?: JanusConfigType;
+}
+/**
+ * 
+ * @export
+ * @interface Workspace
+ */
+export interface Workspace {
+    /**
+     * 
+     * @type {number}
+     * @memberof Workspace
+     */
+    'id': number;
+    /**
+     * 
+     * @type {Array<WorkspaceUser>}
+     * @memberof Workspace
+     */
+    'workspace_users': Array<WorkspaceUser>;
+    /**
+     * 
+     * @type {WorkspaceOwner}
+     * @memberof Workspace
+     */
+    'owner': WorkspaceOwner;
+    /**
+     * The name of the organization
+     * @type {string}
+     * @memberof Workspace
+     */
+    'name': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Workspace
+     */
+    'is_active'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Workspace
+     */
+    'created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Workspace
+     */
+    'modified': string;
+    /**
+     * The name in all lowercase, suitable for URL identification
+     * @type {string}
+     * @memberof Workspace
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof Workspace
+     */
+    'users': Array<number>;
+}
+/**
+ * 
+ * @export
+ * @interface WorkspaceOwner
+ */
+export interface WorkspaceOwner {
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceOwner
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkspaceOwner
+     */
+    'created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkspaceOwner
+     */
+    'modified': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceOwner
+     */
+    'organization_user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceOwner
+     */
+    'organization': number;
+}
+/**
+ * 
+ * @export
+ * @interface WorkspaceOwnerRequest
+ */
+export interface WorkspaceOwnerRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceOwnerRequest
+     */
+    'organization_user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceOwnerRequest
+     */
+    'organization': number;
+}
+/**
+ * 
+ * @export
+ * @interface WorkspaceRequest
+ */
+export interface WorkspaceRequest {
+    /**
+     * The name of the organization
+     * @type {string}
+     * @memberof WorkspaceRequest
+     */
+    'name': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WorkspaceRequest
+     */
+    'is_active'?: boolean;
+    /**
+     * The name in all lowercase, suitable for URL identification
+     * @type {string}
+     * @memberof WorkspaceRequest
+     */
+    'slug': string;
+}
+/**
+ * 
+ * @export
+ * @interface WorkspaceUser
+ */
+export interface WorkspaceUser {
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceUser
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkspaceUser
+     */
+    'created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkspaceUser
+     */
+    'modified': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WorkspaceUser
+     */
+    'is_admin'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceUser
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceUser
+     */
+    'organization': number;
+}
+/**
+ * 
+ * @export
+ * @interface WorkspaceUserRequest
+ */
+export interface WorkspaceUserRequest {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WorkspaceUserRequest
+     */
+    'is_admin'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceUserRequest
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceUserRequest
+     */
+    'organization': number;
 }
 
 /**
@@ -16594,6 +16860,463 @@ export class VideosApi extends BaseAPI implements VideosApiInterface {
      */
     public videosUpdate(id: string, videoRecordingRequest?: VideoRecordingRequest, options?: AxiosRequestConfig) {
         return VideosApiFp(this.configuration).videosUpdate(id, videoRecordingRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * WorkspacesApi - axios parameter creator
+ * @export
+ */
+export const WorkspacesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {WorkspaceRequest} workspaceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        workspacesCreate: async (workspaceRequest: WorkspaceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'workspaceRequest' is not null or undefined
+            assertParamExists('workspacesCreate', 'workspaceRequest', workspaceRequest)
+            const localVarPath = `/api/workspaces/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(workspaceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        workspacesList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/workspaces/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {PatchedWorkspaceRequest} [patchedWorkspaceRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        workspacesPartialUpdate: async (id: string, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('workspacesPartialUpdate', 'id', id)
+            const localVarPath = `/api/workspaces/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedWorkspaceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        workspacesRetrieve: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('workspacesRetrieve', 'id', id)
+            const localVarPath = `/api/workspaces/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {WorkspaceRequest} workspaceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        workspacesUpdate: async (id: string, workspaceRequest: WorkspaceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('workspacesUpdate', 'id', id)
+            // verify required parameter 'workspaceRequest' is not null or undefined
+            assertParamExists('workspacesUpdate', 'workspaceRequest', workspaceRequest)
+            const localVarPath = `/api/workspaces/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(workspaceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * WorkspacesApi - functional programming interface
+ * @export
+ */
+export const WorkspacesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = WorkspacesApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {WorkspaceRequest} workspaceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async workspacesCreate(workspaceRequest: WorkspaceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workspace>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.workspacesCreate(workspaceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async workspacesList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedWorkspaceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.workspacesList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {PatchedWorkspaceRequest} [patchedWorkspaceRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async workspacesPartialUpdate(id: string, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workspace>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.workspacesPartialUpdate(id, patchedWorkspaceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async workspacesRetrieve(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workspace>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.workspacesRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {WorkspaceRequest} workspaceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async workspacesUpdate(id: string, workspaceRequest: WorkspaceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workspace>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.workspacesUpdate(id, workspaceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * WorkspacesApi - factory interface
+ * @export
+ */
+export const WorkspacesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = WorkspacesApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {WorkspaceRequest} workspaceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        workspacesCreate(workspaceRequest: WorkspaceRequest, options?: any): AxiosPromise<Workspace> {
+            return localVarFp.workspacesCreate(workspaceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        workspacesList(page?: number, options?: any): AxiosPromise<PaginatedWorkspaceList> {
+            return localVarFp.workspacesList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {PatchedWorkspaceRequest} [patchedWorkspaceRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        workspacesPartialUpdate(id: string, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options?: any): AxiosPromise<Workspace> {
+            return localVarFp.workspacesPartialUpdate(id, patchedWorkspaceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        workspacesRetrieve(id: string, options?: any): AxiosPromise<Workspace> {
+            return localVarFp.workspacesRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {WorkspaceRequest} workspaceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        workspacesUpdate(id: string, workspaceRequest: WorkspaceRequest, options?: any): AxiosPromise<Workspace> {
+            return localVarFp.workspacesUpdate(id, workspaceRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * WorkspacesApi - interface
+ * @export
+ * @interface WorkspacesApi
+ */
+export interface WorkspacesApiInterface {
+    /**
+     * 
+     * @param {WorkspaceRequest} workspaceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApiInterface
+     */
+    workspacesCreate(workspaceRequest: WorkspaceRequest, options?: AxiosRequestConfig): AxiosPromise<Workspace>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApiInterface
+     */
+    workspacesList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedWorkspaceList>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {PatchedWorkspaceRequest} [patchedWorkspaceRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApiInterface
+     */
+    workspacesPartialUpdate(id: string, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options?: AxiosRequestConfig): AxiosPromise<Workspace>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApiInterface
+     */
+    workspacesRetrieve(id: string, options?: AxiosRequestConfig): AxiosPromise<Workspace>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {WorkspaceRequest} workspaceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApiInterface
+     */
+    workspacesUpdate(id: string, workspaceRequest: WorkspaceRequest, options?: AxiosRequestConfig): AxiosPromise<Workspace>;
+
+}
+
+/**
+ * WorkspacesApi - object-oriented interface
+ * @export
+ * @class WorkspacesApi
+ * @extends {BaseAPI}
+ */
+export class WorkspacesApi extends BaseAPI implements WorkspacesApiInterface {
+    /**
+     * 
+     * @param {WorkspaceRequest} workspaceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApi
+     */
+    public workspacesCreate(workspaceRequest: WorkspaceRequest, options?: AxiosRequestConfig) {
+        return WorkspacesApiFp(this.configuration).workspacesCreate(workspaceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApi
+     */
+    public workspacesList(page?: number, options?: AxiosRequestConfig) {
+        return WorkspacesApiFp(this.configuration).workspacesList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {PatchedWorkspaceRequest} [patchedWorkspaceRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApi
+     */
+    public workspacesPartialUpdate(id: string, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options?: AxiosRequestConfig) {
+        return WorkspacesApiFp(this.configuration).workspacesPartialUpdate(id, patchedWorkspaceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApi
+     */
+    public workspacesRetrieve(id: string, options?: AxiosRequestConfig) {
+        return WorkspacesApiFp(this.configuration).workspacesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {WorkspaceRequest} workspaceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApi
+     */
+    public workspacesUpdate(id: string, workspaceRequest: WorkspaceRequest, options?: AxiosRequestConfig) {
+        return WorkspacesApiFp(this.configuration).workspacesUpdate(id, workspaceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
