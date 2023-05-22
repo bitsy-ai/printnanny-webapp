@@ -19,9 +19,10 @@ class WorkspaceOwnerSerializer(serializers.ModelSerializer):
 
 
 class WorkspaceSerializer(serializers.ModelSerializer):
-    workspace_users = WorkspaceUserSerializer(many=True)
-    owner = WorkspaceOwnerSerializer()
+    workspace_users = WorkspaceUserSerializer(many=True, read_only=True)
+    owner = WorkspaceOwnerSerializer(read_only=True)
 
     class Meta:
         model = Workspace
         fields = "__all__"
+        read_only_fields = ("workspace_users", "owner")
