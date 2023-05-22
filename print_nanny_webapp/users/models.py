@@ -9,29 +9,9 @@ from django.utils import timezone
 from django.db import models
 
 from rest_framework import serializers
-from organizations.models import Organization, OrganizationUser
-
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 from print_nanny_webapp.users.managers import CustomUserManager
 from print_nanny_webapp.users.enum import EmailListInterest
-
-
-class Workspace(Organization):
-    """
-    A workspace is a multi-user organization
-    """
-
-    class Meta:
-        proxy = True
-
-
-class WorkspaceUser(OrganizationUser):
-    """
-    Mapping from user -> workspace
-    """
-
-    class Meta:
-        proxy = True
 
 
 class EmailWaitlist(models.Model):

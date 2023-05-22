@@ -102,6 +102,7 @@ LOCAL_APPS = [
     "print_nanny_webapp.moonraker.apps.MoonrakerConfig",
     "print_nanny_webapp.shop.apps.ShopConfig",
     "print_nanny_webapp.videos.apps.VideosConfig",
+    "print_nanny_webapp.workspaces.apps.WorkspacesConfig",
     "print_nanny_webapp.events.apps.EventsConfig",  # Gated at the bottom
     # Your stuff: custom apps go here
 ]

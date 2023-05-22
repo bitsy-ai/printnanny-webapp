@@ -34,7 +34,6 @@ from print_nanny_webapp.octoprint.api.views import (
 from print_nanny_webapp.users.api.views import (
     EmailWaitlistViewSet,
     UserNkeyView,
-    WorkspaceViewset,
 )
 from print_nanny_webapp.videos.api.views import (
     CameraSnapshotViewSet,
@@ -47,7 +46,7 @@ from print_nanny_webapp.moonraker.api.views import (
     MoonrakerServerViewSet,
     MoonrakerServerByDeviceViewSet,
 )
-
+from print_nanny_webapp.workspaces.api.views import WorkspaceViewSet
 
 router = DefaultRouter()
 
@@ -177,7 +176,7 @@ router.register(
     basename="print-job-alerts",
 )
 
-router.register("workspaces", WorkspaceViewset, basename="workspaces")
+router.register("workspaces", WorkspaceViewSet, basename="workspaces")
 
 app_name = "api"
 
