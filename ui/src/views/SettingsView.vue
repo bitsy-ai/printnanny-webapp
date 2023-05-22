@@ -5,7 +5,12 @@ import NetworkSettingsForm from "@/components/forms/NetworkSettingsForm.vue";
 import WorkspaceAccountForm from "@/components/forms/WorkspaceAccountForm.vue";
 import { RouterLink, useRouter } from "vue-router";
 
-import { CreditCardIcon, BellIcon, WifiIcon, UserPlusIcon } from "@heroicons/vue/24/outline";
+import {
+  CreditCardIcon,
+  BellIcon,
+  WifiIcon,
+  UserPlusIcon,
+} from "@heroicons/vue/24/outline";
 const router = useRouter();
 
 const navigation = [
@@ -24,7 +29,7 @@ const navigation = [
     component: AlertSettingsForm,
   },
   {
-    name: "User Accounts",
+    name: "Team Members",
     link: { name: "accountSettings" },
     icon: UserPlusIcon,
     key: "accountSettings",

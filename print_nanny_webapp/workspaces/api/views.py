@@ -5,7 +5,11 @@ from rest_framework.mixins import (
     UpdateModelMixin,
     CreateModelMixin,
 )
+from rest_framework.response import Response
+from rest_framework.decorators import action
 from rest_framework.viewsets import GenericViewSet
+from rest_framework import status, parsers
+
 from drf_spectacular.utils import extend_schema_view, extend_schema
 
 from print_nanny_webapp.workspaces.api.serializers import WorkspaceSerializer
@@ -20,10 +24,6 @@ from print_nanny_webapp.utils.api.views import (
 
 
 @extend_schema_view(
-    create=extend_schema(
-        tags=["workspaces"],
-        responses={201: WorkspaceSerializer} | generic_create_errors,
-    ),
     update=extend_schema(tags=["workspaces"]),
     list=extend_schema(
         tags=["workspaces"],
@@ -37,7 +37,6 @@ from print_nanny_webapp.utils.api.views import (
 )
 class WorkspaceViewSet(
     GenericViewSet,
-    CreateModelMixin,
     UpdateModelMixin,
     ListModelMixin,
     RetrieveModelMixin,
