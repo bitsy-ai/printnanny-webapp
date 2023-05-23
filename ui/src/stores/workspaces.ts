@@ -10,7 +10,8 @@ export const useWorkspaceStore = defineStore({
   actions: {
     async fetchWorkspaces(): Promise<Array<api.Workspace>> {
       const account = useAccountStore();
-      const res = account.workspaceApi.workspacesList();
+      const res = await account.workspaceApi.workspacesList();
+      console.log("workspaceList", res);
       if (res && res.data && res.data.results) {
         this.$patch({ workspaces: res.data.results });
         return res.data.results;

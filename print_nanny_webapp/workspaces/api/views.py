@@ -1,4 +1,6 @@
 from django.db.models.query import QuerySet
+from django_filters.rest_framework import DjangoFilterBackend
+
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
@@ -12,8 +14,10 @@ from rest_framework import status, parsers
 
 from drf_spectacular.utils import extend_schema_view, extend_schema
 
+
 from print_nanny_webapp.workspaces.api.serializers import WorkspaceSerializer
 from print_nanny_webapp.workspaces.models import Workspace
+from print_nanny_webapp.workspaces.services import get_workspaces_by_auth_user
 
 from print_nanny_webapp.utils.api.views import (
     generic_create_errors,
@@ -43,8 +47,10 @@ class WorkspaceViewSet(
 ):
     serializer_class = WorkspaceSerializer
     lookup_field = "id"
+    # omit OwnerOrUserFilterBackend, which is a DEFAULT_FILTER_BACKENDS
+    filter_backends = [DjangoFilterBackend]
 
     def get_queryset(self) -> QuerySet:
         if self.request.user.is_authenticated:
-            return Workspace.objects.filter(owner__email=self.request.user.email)
+            return get_workspaces_by_auth_user(self.request.user)
         return None

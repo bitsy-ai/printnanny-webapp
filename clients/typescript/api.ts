@@ -5992,10 +5992,10 @@ export interface Workspace {
     'id': number;
     /**
      * 
-     * @type {Array<WorkspaceUser>}
+     * @type {Array<User>}
      * @memberof Workspace
      */
-    'workspace_users': Array<WorkspaceUser>;
+    'users': Array<User>;
     /**
      * 
      * @type {WorkspaceOwner}
@@ -6032,12 +6032,6 @@ export interface Workspace {
      * @memberof Workspace
      */
     'slug': string;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof Workspace
-     */
-    'users': Array<number>;
 }
 /**
  * 
@@ -6051,6 +6045,12 @@ export interface WorkspaceOwner {
      * @memberof WorkspaceOwner
      */
     'id': number;
+    /**
+     * 
+     * @type {WorkspaceUser}
+     * @memberof WorkspaceOwner
+     */
+    'organization_user': WorkspaceUser;
     /**
      * 
      * @type {string}
@@ -6068,12 +6068,6 @@ export interface WorkspaceOwner {
      * @type {number}
      * @memberof WorkspaceOwner
      */
-    'organization_user': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof WorkspaceOwner
-     */
     'organization': number;
 }
 /**
@@ -6084,10 +6078,10 @@ export interface WorkspaceOwner {
 export interface WorkspaceOwnerRequest {
     /**
      * 
-     * @type {number}
+     * @type {WorkspaceUserRequest}
      * @memberof WorkspaceOwnerRequest
      */
-    'organization_user': number;
+    'organization_user': WorkspaceUserRequest;
     /**
      * 
      * @type {number}
@@ -6134,6 +6128,12 @@ export interface WorkspaceUser {
     'id': number;
     /**
      * 
+     * @type {User}
+     * @memberof WorkspaceUser
+     */
+    'user': User;
+    /**
+     * 
      * @type {string}
      * @memberof WorkspaceUser
      */
@@ -6155,12 +6155,6 @@ export interface WorkspaceUser {
      * @type {number}
      * @memberof WorkspaceUser
      */
-    'user': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof WorkspaceUser
-     */
     'organization': number;
 }
 /**
@@ -6171,16 +6165,16 @@ export interface WorkspaceUser {
 export interface WorkspaceUserRequest {
     /**
      * 
+     * @type {UserRequest}
+     * @memberof WorkspaceUserRequest
+     */
+    'user': UserRequest;
+    /**
+     * 
      * @type {boolean}
      * @memberof WorkspaceUserRequest
      */
     'is_admin'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof WorkspaceUserRequest
-     */
-    'user': number;
     /**
      * 
      * @type {number}
