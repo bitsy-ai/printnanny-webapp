@@ -9,14 +9,14 @@
   >
     <div v-if="store.workspaces.length > 0" class="w-full space-y-6">
       <!-- workspaces table -->
-      <div class="p-4 sm:p-6 lg:p-8 bg-gray-50">
+      <div class="p-4 sm:p-6 lg:p-8 bg-gray-50 rounded-md">
         <div class="sm:flex sm:items-center">
           <div class="sm:flex-auto">
             <h1 class="text-base font-semibold leading-6 text-gray-900">
               Team Members
             </h1>
             <p class="mt-2 text-sm text-gray-700">
-              Manage the people with access to your workspace.
+              Invite a team member to give them access to devices in your PrintNanny workspace.
             </p>
           </div>
           <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -93,34 +93,26 @@
       </div>
     </div>
     <div v-else class="w-full space-y-4">
-      <h2 class="text-4xl font-extrabold text-gray-900 text-center">
-        Request Access to Add Team Members
-      </h2>
-      <p class="text-center">Your account is limited to one member.</p>
-      <p class="text-center">
-        To request access for additional team members, please fill out the form
-        below.
-      </p>
-      <a :href="formUrl" target="_blank">
+      <table-empty :icon="UserPlusIcon" header="No shared workspaces found" body="Create a shared workspace to get started">
+        <a href="https://printnanny.ai/docs/category/quick-start/">
         <button
-          class="m-auto w-1/2 mb-2 transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+          type="button"
+          class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          Request Access
+          <UserPlusIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+          Create Shared Workspace
         </button>
       </a>
-      <p class="text-center text-gray-900">
-        This feature is currently in alpha.
-      </p>
-      <p class="text-center text-gray-900">
-        Please email <strong>support@printnanny.ai</strong> to report issues or
-        provide feedback.
-      </p>
+      </table-empty>
     </div>
   </transition>
 </template>
 <script setup lang="ts">
+import { RouterLink } from "vue-router";
 import { useWorkspaceStore } from "@/stores/workspaces";
+import TableEmpty from "@/components/devices/TableEmpty.vue";
 import type * as api from "printnanny-api-client";
+import { UserPlusIcon, PlusIcon } from "@heroicons/vue/24/solid";
 
 const formUrl = import.meta.env.VITE_WORKSPACE_ALPHA_FORM;
 

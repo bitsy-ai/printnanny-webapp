@@ -10,6 +10,7 @@ import settingsRoutes from "./settings";
 import homeRoutes from "./home";
 import shopRoutes from "./shop";
 import videoRoutes from "./videos";
+import workspaceRoutes from "./workspaces";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -21,6 +22,7 @@ const router = createRouter({
     ...settingsRoutes,
     ...shopRoutes,
     ...videoRoutes,
+    ...workspaceRoutes
   ],
 });
 

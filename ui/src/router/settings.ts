@@ -28,10 +28,10 @@ export default [
         meta: { title: "Network" },
       },
       {
-        path: "accounts/",
-        name: "accountSettings",
+        path: "workspace/",
+        name: "workspaceSettings",
         component: SettingsView,
-        meta: { title: "Accounts & Workspace" },
+        meta: { title: "Workspace & Team Members" },
       },
     ],
   },
