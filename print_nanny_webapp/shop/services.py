@@ -66,6 +66,7 @@ def build_stripe_checkout_session_kwargs_v1(
             django_order_id=order_id,
         ),
         allow_promotion_codes=True,
+        consent_collection={"promotions": "auto"},
     )
     # set success / cancel urls
     extra_kwargs["success_url"] = request.build_absolute_uri("/shop/thank-you/")
@@ -135,11 +136,7 @@ def build_stripe_checkout_session_kwargs_v1(
             ],
             mode="payment",
             billing_address_collection="required",
-            shipping_address_collection=dict(
-                allowed_countries=[
-                    "US",
-                ]
-            ),
+            shipping_address_collection=dict(allowed_countries=["US", "CA"]),
             automatic_tax={
                 "enabled": True,
             },
@@ -154,7 +151,21 @@ def build_stripe_checkout_session_kwargs_v1(
                             "amount": 999,
                             "currency": "usd",
                         },
-                        "display_name": "USPS Ground",
+                        "display_name": "USPS Ground (US-only)",
+                        # Stripe will automatically determine if shipping is a taxable (varies by state/country), then calculate correct tax
+                        # See: https://stripe.com/docs/payments/checkout/shipping#shipping-rate-with-tax-code
+                        "tax_code": "txcd_92010001",
+                        "tax_behavior": "exclusive",
+                    }
+                },
+                {
+                    "shipping_rate_data": {
+                        "type": "fixed_amount",
+                        "fixed_amount": {
+                            "amount": 6599,
+                            "currency": "usd",
+                        },
+                        "display_name": "UPS International Express",
                         # Stripe will automatically determine if shipping is a taxable (varies by state/country), then calculate correct tax
                         # See: https://stripe.com/docs/payments/checkout/shipping#shipping-rate-with-tax-code
                         "tax_code": "txcd_92010001",
