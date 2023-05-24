@@ -22,6 +22,11 @@ export const useWorkspaceStore = defineStore({
       return [];
     },
 
+    async fetchWorkspaceBySlug(slug: string): Promise<undefined | api.Workspace> {
+      await this.fetchWorkspaces();
+      return this.workspaces.find((w: api.Workspace) => w.slug === slug)
+    },
+
     async createWorkspace(name: string): Promise<undefined | api.Workspace> {
       const account = useAccountStore();
       const req = {

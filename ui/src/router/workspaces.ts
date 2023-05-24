@@ -31,14 +31,15 @@ export default [
         meta: { title: "Create a Shared Workspace" },
       },
       {
-        path: "invite/",
+        path: "invite/:slug",
         name: "workspaceInvite",
         components: {
           default: () =>
             import("@/components/workspaces/WorkspaceInviteForm.vue"),
           TopBar: () => import("@/components/nav/PageTitle.vue"),
         },
-        meta: { title: "Invite Team Member" },
+        props: { default: true },
+        meta: { title: "Invite Team Members" },
       },
     ],
   },

@@ -17,12 +17,14 @@
             </h1>
           </div>
           <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+            <router-link :to="{ name: 'workspaceInvite',  params: { slug: workspace.slug }}">
             <button
               type="button"
               class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Invite Team Member
             </button>
+            </router-link>
           </div>
         </div>
         <div class="mt-8 flow-root">
@@ -132,7 +134,7 @@
         header="No shared workspaces found"
         body="Create a shared workspace to get started"
       >
-        <router-link :to="{ name: 'workspaceCreate' }">
+        <router-link :to="{ name: 'workspaceCreate'}">
           <button
             type="button"
             class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
