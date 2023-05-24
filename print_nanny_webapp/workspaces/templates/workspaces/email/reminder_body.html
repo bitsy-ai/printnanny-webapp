@@ -1,6 +1,7 @@
-You've been invited to join {{ organization|safe }} on {{ domain.name }} by {{ sender.first_name|safe }} {{
-sender.last_name|safe }}.
+You've been added to a shared workspace {{ organization|safe }} on {{ domain.name }}.
 
-Follow this link to create your account:
+You can now manage PrintNanny devices on behalf of {{ organization|safe }}.
 
-https://{{ domain.domain }}{% url "invitations_register" user.pk token %}
+Follow the link below to view this organization.
+
+http://{{ domain.domain }}{% url "organization_detail" organization.pk %}

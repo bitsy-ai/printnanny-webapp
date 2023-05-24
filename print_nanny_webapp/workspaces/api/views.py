@@ -66,6 +66,18 @@ class WorkspaceViewSet(
             return get_workspaces_by_auth_user(self.request.user)
         return None
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        # create organizational user and assign owner
+        serializer.instance.get_or_add_user(request.user)
+
+        headers = self.get_success_headers(serializer.data)
+        return Response(
+            serializer.data, status=status.HTTP_201_CREATED, headers=headers
+        )
+
     @extend_schema(
         tags=["workspaces"],
         operation_id="workspaces_invite",

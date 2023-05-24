@@ -1,1 +1,1 @@
-{% spaceless %}[PrintNanny] You've been invited to a workspace{% endspaceless %}
+[PrintNanny] You're invited to a shared workspace

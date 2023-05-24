@@ -1,0 +1,5 @@
+You've been invited to join {{ organization|safe }} on {{ domain.name }} by {{ sender.email|safe }}.
+
+Follow this link to create your account:
+
+https://{{ domain.domain }}{% url "invitations_register" user.pk token %}
