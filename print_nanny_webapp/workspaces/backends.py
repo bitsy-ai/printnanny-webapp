@@ -1,3 +1,5 @@
+from django.contrib.sites.models import Site
+
 from organizations.backends.modeled import ModelInvitation
 
 from print_nanny_webapp.workspaces.models import Workspace
@@ -26,10 +28,12 @@ class WorkspaceInvitationBackend(ModelInvitation):
         Returns:
 
         """
+        current_site = Site.objects.get_current()
         return self.email_message(
             invitation.invitee_identifier,
             self.invitation_subject,
             self.invitation_body,
             sender=invitation.invited_by,
             invitation=invitation,
+            site=current_site,
         ).send()
