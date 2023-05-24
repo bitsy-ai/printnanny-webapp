@@ -10,6 +10,7 @@ class WorkspaceInvitationBackend(ModelInvitation):
     notification_body = "workspaces/email/notification_body.html"
     invitation_subject = "workspaces/email/invitation_subject.txt"
     invitation_body = "workspaces/email/invitation_body.html"
+    invitation_join_template = "workspaces/invitation_join.html"
 
     def __init__(self, org_model=Workspace, namespace=None):
         super().__init__(org_model=org_model, namespace=namespace)

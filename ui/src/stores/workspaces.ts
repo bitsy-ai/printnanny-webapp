@@ -27,12 +27,12 @@ export const useWorkspaceStore = defineStore({
       return this.workspaces.find((w: api.Workspace) => w.slug === slug)
     },
 
-    async createWorkspace(name: string): Promise<undefined | api.Workspace> {
+    async createWorkspace(name: string, slug: string): Promise<undefined | api.Workspace> {
       const account = useAccountStore();
       const req = {
         name,
-        is_active: "true",
-        slug: name.match(/[a-zA-Z]|\d|-|_+/g)?.join(""),
+        slug,
+        is_active: true,
       };
       const res = await account.workspaceApi
         .workspacesCreate(req)
