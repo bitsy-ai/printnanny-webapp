@@ -27,12 +27,6 @@ export default [
         component: SettingsView,
         meta: { title: "Network" },
       },
-      {
-        path: "workspace/",
-        name: "workspaceSettings",
-        component: SettingsView,
-        meta: { title: "Workspace & Team Members" },
-      },
     ],
   },
 ] as Array<RouteRecordRaw>;

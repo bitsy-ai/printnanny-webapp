@@ -7,12 +7,6 @@ from organizations.abstract import (
 )
 
 
-class Workspace(AbstractOrganization):
-    """Core workspace organization model"""
-
-    pass
-
-
 class WorkspaceUser(AbstractOrganizationUser):
     """Links a user to the workspace organization"""
 
@@ -29,3 +23,9 @@ class WorkspaceInvitation(AbstractOrganizationInvitation):
     """Stores invitations for adding users to workspace organizations"""
 
     pass
+
+
+class Workspace(AbstractOrganization):
+    """Core workspace organization model"""
+
+    invitation_model = WorkspaceInvitation

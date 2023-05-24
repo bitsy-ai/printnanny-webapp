@@ -14,8 +14,11 @@ from rest_framework import status, parsers
 
 from drf_spectacular.utils import extend_schema_view, extend_schema
 
-
-from print_nanny_webapp.workspaces.api.serializers import WorkspaceSerializer
+from print_nanny_webapp.workspaces.api.serializers import (
+    WorkspaceSerializer,
+    WorkspaceInviteSerializer,
+    WorkspaceInviteCreateSerializer,
+)
 from print_nanny_webapp.workspaces.models import Workspace
 from print_nanny_webapp.workspaces.services import get_workspaces_by_auth_user
 
@@ -62,3 +65,21 @@ class WorkspaceViewSet(
         if self.request.user.is_authenticated:
             return get_workspaces_by_auth_user(self.request.user)
         return None
+
+    @extend_schema(
+        tags=["workspaces"],
+        operation_id="workspaces_invite",
+        request=WorkspaceInviteCreateSerializer,
+        responses={201: WorkspaceInviteSerializer},
+    )
+    @action(methods=["post"], detail=False, url_path="invite")
+    def invite(self, request):
+        req_serializer = WorkspaceInviteCreateSerializer(data=request.data)
+        if req_serializer.is_valid():
+            invitation = req_serializer.create(
+                req_serializer.validated_data, request.user
+            )
+            res_serializer = WorkspaceInviteSerializer(invitation)
+
+            return Response(res_serializer.data, status=status.HTTP_201_CREATED)
+        return Response(req_serializer.errors, status=status.HTTP_201_CREATED)

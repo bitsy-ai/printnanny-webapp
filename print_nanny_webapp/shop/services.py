@@ -286,9 +286,6 @@ def sync_stripe_order(stripe_checkout_session_id) -> Order:
         stripe_customer_data = stripe.Customer.search(
             query=f"email:'{session.customer_email}'", limit=1
         )
-        # import pdb
-
-        # pdb.set_trace()
         if (
             len(stripe_customer_data.data) == 1
             and stripe_customer_data.data[0].get("id") is not None

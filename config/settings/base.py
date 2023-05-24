@@ -812,6 +812,7 @@ REST_AUTH = {
 # django-organizations
 # https://django-organizations.readthedocs.io/en/latest/getting_started.html
 INSTALLED_APPS += ["organizations"]
+INVITATION_BACKEND = "print_nanny_webapp.workspaces.backends.WorkspaceInvitationBackend"
 
 
 # django-nats-nkeys

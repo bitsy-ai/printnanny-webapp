@@ -24,11 +24,30 @@ export const useWorkspaceStore = defineStore({
 
     async createWorkspace(name: string): Promise<undefined | api.Workspace> {
       const account = useAccountStore();
-      const req = { name, is_active: "true", slug: name };
+      const req = {
+        name,
+        is_active: "true",
+        slug: name.match(/[a-zA-Z]|\d|-|_+/g)?.join(""),
+      };
       const res = await account.workspaceApi
         .workspacesCreate(req)
         .catch(handleApiError);
       if (res) {
+        console.log("Created workspace", res.data);
+        return res.data;
+      }
+    },
+    async inviteToWorkspace(
+      email: string,
+      workspace: api.Workspace
+    ): Promise<undefined | api.Workspace> {
+      const account = useAccountStore();
+      const req = { email, workspace };
+      const res = await account.workspaceApi
+        .workspacesInvite(req)
+        .catch(handleApiError);
+      if (res) {
+        console.log("Sent invite", res.data);
         return res.data;
       }
     },

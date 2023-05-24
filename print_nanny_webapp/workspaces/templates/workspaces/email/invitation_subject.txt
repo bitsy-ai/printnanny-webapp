@@ -1,0 +1,1 @@
+{% spaceless %}[PrintNanny] You've been invited to a workspace{% endspaceless %}

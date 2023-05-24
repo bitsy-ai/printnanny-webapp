@@ -6036,6 +6036,80 @@ export interface Workspace {
 /**
  * 
  * @export
+ * @interface WorkspaceInvite
+ */
+export interface WorkspaceInvite {
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceInvite
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkspaceInvite
+     */
+    'guid': string;
+    /**
+     * The contact identifier for the invitee, email, phone number, social media handle, etc.
+     * @type {string}
+     * @memberof WorkspaceInvite
+     */
+    'invitee_identifier': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkspaceInvite
+     */
+    'created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkspaceInvite
+     */
+    'modified': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceInvite
+     */
+    'invited_by': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceInvite
+     */
+    'invitee'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceInvite
+     */
+    'organization': number;
+}
+/**
+ * 
+ * @export
+ * @interface WorkspaceInviteCreateRequest
+ */
+export interface WorkspaceInviteCreateRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkspaceInviteCreateRequest
+     */
+    'email': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceInviteCreateRequest
+     */
+    'workspace': number;
+}
+/**
+ * 
+ * @export
  * @interface WorkspaceOwner
  */
 export interface WorkspaceOwner {
@@ -16907,6 +16981,47 @@ export const WorkspacesApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @param {WorkspaceInviteCreateRequest} workspaceInviteCreateRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        workspacesInvite: async (workspaceInviteCreateRequest: WorkspaceInviteCreateRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'workspaceInviteCreateRequest' is not null or undefined
+            assertParamExists('workspacesInvite', 'workspaceInviteCreateRequest', workspaceInviteCreateRequest)
+            const localVarPath = `/api/workspaces/invite/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(workspaceInviteCreateRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17099,6 +17214,16 @@ export const WorkspacesApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {WorkspaceInviteCreateRequest} workspaceInviteCreateRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async workspacesInvite(workspaceInviteCreateRequest: WorkspaceInviteCreateRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkspaceInvite>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.workspacesInvite(workspaceInviteCreateRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17161,6 +17286,15 @@ export const WorkspacesApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
+         * @param {WorkspaceInviteCreateRequest} workspaceInviteCreateRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        workspacesInvite(workspaceInviteCreateRequest: WorkspaceInviteCreateRequest, options?: any): AxiosPromise<WorkspaceInvite> {
+            return localVarFp.workspacesInvite(workspaceInviteCreateRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17215,6 +17349,15 @@ export interface WorkspacesApiInterface {
      * @memberof WorkspacesApiInterface
      */
     workspacesCreate(workspaceRequest: WorkspaceRequest, options?: AxiosRequestConfig): AxiosPromise<Workspace>;
+
+    /**
+     * 
+     * @param {WorkspaceInviteCreateRequest} workspaceInviteCreateRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApiInterface
+     */
+    workspacesInvite(workspaceInviteCreateRequest: WorkspaceInviteCreateRequest, options?: AxiosRequestConfig): AxiosPromise<WorkspaceInvite>;
 
     /**
      * 
@@ -17273,6 +17416,17 @@ export class WorkspacesApi extends BaseAPI implements WorkspacesApiInterface {
      */
     public workspacesCreate(workspaceRequest: WorkspaceRequest, options?: AxiosRequestConfig) {
         return WorkspacesApiFp(this.configuration).workspacesCreate(workspaceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {WorkspaceInviteCreateRequest} workspaceInviteCreateRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApi
+     */
+    public workspacesInvite(workspaceInviteCreateRequest: WorkspaceInviteCreateRequest, options?: AxiosRequestConfig) {
+        return WorkspacesApiFp(this.configuration).workspacesInvite(workspaceInviteCreateRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

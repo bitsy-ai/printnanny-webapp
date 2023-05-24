@@ -4,40 +4,38 @@
     :initial-values="initialValues"
     @submit="onSubmit"
   >
-    <div class="space-y-12 p-6">
-      <div
-        class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3"
-      >
-        <div>
-          <h2 class="text-base font-semibold leading-7 text-gray-900"></h2>
-          <p class="mt-1 text-sm leading-6 text-gray-600">
-            This information will be displayed when you invite a team member to
-            your workspace.
-          </p>
-        </div>
+    <div
+      class="space-y-12 p-6 grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3"
+    >
+      <div>
+        <h2 class="text-base font-semibold leading-7 text-gray-900"></h2>
+        <p class="mt-1 text-sm leading-6 text-gray-600">
+          This information will be displayed when you invite a team member to
+          your workspace.
+        </p>
+      </div>
 
-        <div
-          class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2"
-        >
-          <div class="sm:col-span-4">
-            <div class="sm:col-span-3">
-              <label
-                for="name"
-                class="block text-sm font-medium leading-6 text-gray-900"
-                >Workspace Name</label
-              >
-              <div class="mt-2">
-                <Field
-                  id="name"
-                  type="text"
-                  name="name"
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-                <error-message
-                  class-name="text-red-500"
-                  name="name"
-                ></error-message>
-              </div>
+      <div
+        class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2"
+      >
+        <div class="md:col-span-4">
+          <div class="sm:col-span-3">
+            <label
+              for="name"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Workspace Name</label
+            >
+            <div class="mt-2">
+              <Field
+                id="name"
+                type="text"
+                name="name"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+              <error-message
+                class-name="text-red-500"
+                name="name"
+              ></error-message>
             </div>
           </div>
 
@@ -48,12 +46,15 @@
               >Invite Team Members</label
             >
             <div class="mt-2">
-              <textarea
-                id="invites"
-                name="invites"
-                rows="3"
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+              <Field v-slot="{ field, errors }" name="invites">
+                <textarea
+                  id="invites"
+                  v-bind="field"
+                  name="invites"
+                  rows="3"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </Field>
             </div>
             <p class="mt-3 text-sm leading-6 text-gray-600">
               Email addresses of team members you'd like to invite, one per
@@ -84,10 +85,14 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import * as yup from "yup";
+import { useRouter } from "vue-router";
 import { Field, ErrorMessage, Form } from "vee-validate";
 import { useAccountStore } from "@/stores/account";
 import TextSpinner from "../util/TextSpinner.vue";
 import { useWorkspaceStore } from "@/stores/workspaces";
+import { success } from "@/stores/alerts";
+
+const router = useRouter();
 
 const loading = ref(false);
 const account = useAccountStore();
@@ -125,8 +130,21 @@ const schema = yup.object({
 async function onSubmit(values: any) {
   loading.value = true;
   const name = values.name;
-  const invites = values.invite;
+  const invites = values.invites.trim().split("\n");
 
-  const created = await store.createWorkspace(name);
+  const workspace = await store.createWorkspace(name);
+
+  if (workspace) {
+    for (const email of invites) {
+      const result = await store.inviteToWorkspace(email, workspace.id);
+      success(
+        `Sent invitation to ${result.invitee_identifier}`,
+        `${result.invitee_identifier} was invited to your shared workspace: ${workspace.name}`
+      );
+    }
+  }
+
+  loading.value = false;
+  router.push({ name: "workspaceList" });
 }
 </script>
