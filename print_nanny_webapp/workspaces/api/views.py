@@ -18,6 +18,7 @@ from print_nanny_webapp.workspaces.api.serializers import (
     WorkspaceSerializer,
     WorkspaceInviteSerializer,
     WorkspaceInviteCreateSerializer,
+    WorkspaceInviteRemindSerializer,
 )
 from print_nanny_webapp.workspaces.models import Workspace
 from print_nanny_webapp.workspaces.services import get_workspaces_by_auth_user
@@ -80,9 +81,9 @@ class WorkspaceViewSet(
 
     @extend_schema(
         tags=["workspaces"],
-        operation_id="workspaces_invite",
+        operation_id="workspaces_create_invite",
         request=WorkspaceInviteCreateSerializer,
-        responses={201: WorkspaceInviteSerializer},
+        responses={201: WorkspaceInviteSerializer} | generic_create_errors,
     )
     @action(methods=["post"], detail=False, url_path="invite")
     def invite(self, request):
@@ -94,4 +95,22 @@ class WorkspaceViewSet(
             res_serializer = WorkspaceInviteSerializer(invitation)
 
             return Response(res_serializer.data, status=status.HTTP_201_CREATED)
-        return Response(req_serializer.errors, status=status.HTTP_201_CREATED)
+        return Response(req_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @extend_schema(
+        tags=["workspaces"],
+        operation_id="workspaces_remind_invite",
+        request=WorkspaceInviteRemindSerializer,
+        responses={200: WorkspaceInviteSerializer} | generic_create_errors,
+    )
+    @action(methods=["post"], detail=False, url_path="remind")
+    def remind(self, request):
+        req_serializer = WorkspaceInviteRemindSerializer(data=request.data)
+        if req_serializer.is_valid():
+            invitation = req_serializer.create(
+                req_serializer.validated_data, request.user
+            )
+            res_serializer = WorkspaceInviteSerializer(invitation)
+
+            return Response(res_serializer.data, status=status.HTTP_200_OK)
+        return Response(req_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

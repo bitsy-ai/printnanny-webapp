@@ -1,6 +1,7 @@
 import logging
 from typing import Any
 from rest_framework import serializers
+from rest_framework.exceptions import PermissionDenied
 from organizations.backends import invitation_backend
 
 from print_nanny_webapp.users.api.serializers import UserSerializer
@@ -20,6 +21,30 @@ class WorkspaceInviteSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class WorkspaceInviteRemindSerializer(serializers.Serializer):
+    workspace_invite = serializers.PrimaryKeyRelatedField(
+        queryset=WorkspaceInvitation.objects.all()
+    )
+
+    def create(
+        self,
+        validated_data: Any,
+        user,
+    ) -> WorkspaceInvitation:
+        workspace_invite = validated_data.get("workspace_invite")
+        # assert user is member of workspace
+        if workspace_invite.organization.is_member(user) is False:
+            raise PermissionDenied(
+                detail="You are not authorized to manage users in this workspace"
+            )
+        backend = invitation_backend()
+        backend.send_invitation(workspace_invite)
+        return workspace_invite
+
+    def update(self, instance: Any, validated_data: Any) -> Any:
+        raise NotImplementedError
+
+
 class WorkspaceInviteCreateSerializer(serializers.Serializer):
     email = serializers.EmailField()
     workspace = serializers.PrimaryKeyRelatedField(queryset=Workspace.objects.all())
@@ -35,7 +60,7 @@ class WorkspaceInviteCreateSerializer(serializers.Serializer):
         return backend.invite_by_email(email, user, workspace)
 
     def update(self, instance: Any, validated_data: Any) -> Any:
-        raise NotImplemented
+        raise NotImplementedError
 
 
 class WorkspaceUserSerializer(serializers.ModelSerializer):

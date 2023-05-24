@@ -136,11 +136,7 @@ async function onSubmit(values: any) {
 
   if (workspace) {
     for (const email of invites) {
-      const result = await store.inviteToWorkspace(email, workspace.id);
-      success(
-        `Sent invitation to ${result.invitee_identifier}`,
-        `${result.invitee_identifier} was invited to your shared workspace: ${workspace.name}`
-      );
+      await store.inviteToWorkspace(email, workspace.id);
     }
   }
 

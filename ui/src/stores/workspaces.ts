@@ -40,17 +40,33 @@ export const useWorkspaceStore = defineStore({
     async inviteToWorkspace(
       email: string,
       workspace: api.Workspace
-    ): Promise<undefined | api.Workspace> {
+    ): Promise<undefined | api.WorkspaceInvite> {
       const account = useAccountStore();
-      const req = { email, workspace };
+      const req = { email, workspace: workspace.id } as api.WorkspaceInviteCreateRequest;
       const res = await account.workspaceApi
-        .workspacesInvite(req)
+        .workspacesCreateInvite(req)
         .catch(handleApiError);
       if (res) {
         console.log("Sent invite", res.data);
-        return res.data;
+        const invite = res.data as api.WorkspaceInvite;
+        success(
+          `Sent invitation to ${invite.invitee_identifier}`,
+          `${invite.invitee_identifier} was invited to your shared workspace: ${workspace.name}`
+        );
+        return invite;
       }
     },
+    async resendInvite(workspace_invite: number): Promise<undefined | api.WorkspaceInvite> {
+      const account = useAccountStore();
+      const req = { workspace_invite } as api.WorkspaceInviteRemindRequest;
+      const res = await account.workspaceApi.workspacesRemindInvite(req).catch(handleApiError);
+      if (res) {
+        console.log("Send invite reminder", res.data);
+        const invite = res.data as api.WorkspaceInvite;
+        success(`Sent reminder to ${invite.invitee_identifier}`, "Let your team-mate know they should double-check their spam inbox if they're not receiving emails.")
+        return invite;
+      }
+    }
   },
 });
 

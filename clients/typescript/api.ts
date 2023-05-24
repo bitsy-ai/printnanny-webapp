@@ -6116,6 +6116,19 @@ export interface WorkspaceInviteCreateRequest {
 /**
  * 
  * @export
+ * @interface WorkspaceInviteRemindRequest
+ */
+export interface WorkspaceInviteRemindRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceInviteRemindRequest
+     */
+    'workspace_invite': number;
+}
+/**
+ * 
+ * @export
  * @interface WorkspaceInviteRequest
  */
 export interface WorkspaceInviteRequest {
@@ -17022,9 +17035,9 @@ export const WorkspacesApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        workspacesInvite: async (workspaceInviteCreateRequest: WorkspaceInviteCreateRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        workspacesCreateInvite: async (workspaceInviteCreateRequest: WorkspaceInviteCreateRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'workspaceInviteCreateRequest' is not null or undefined
-            assertParamExists('workspacesInvite', 'workspaceInviteCreateRequest', workspaceInviteCreateRequest)
+            assertParamExists('workspacesCreateInvite', 'workspaceInviteCreateRequest', workspaceInviteCreateRequest)
             const localVarPath = `/api/workspaces/invite/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -17147,6 +17160,47 @@ export const WorkspacesApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @param {WorkspaceInviteRemindRequest} workspaceInviteRemindRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        workspacesRemindInvite: async (workspaceInviteRemindRequest: WorkspaceInviteRemindRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'workspaceInviteRemindRequest' is not null or undefined
+            assertParamExists('workspacesRemindInvite', 'workspaceInviteRemindRequest', workspaceInviteRemindRequest)
+            const localVarPath = `/api/workspaces/remind/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(workspaceInviteRemindRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17255,8 +17309,8 @@ export const WorkspacesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async workspacesInvite(workspaceInviteCreateRequest: WorkspaceInviteCreateRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkspaceInvite>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.workspacesInvite(workspaceInviteCreateRequest, options);
+        async workspacesCreateInvite(workspaceInviteCreateRequest: WorkspaceInviteCreateRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkspaceInvite>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.workspacesCreateInvite(workspaceInviteCreateRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -17279,6 +17333,16 @@ export const WorkspacesApiFp = function(configuration?: Configuration) {
          */
         async workspacesPartialUpdate(id: string, page?: number, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedWorkspaceList>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.workspacesPartialUpdate(id, page, patchedWorkspaceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {WorkspaceInviteRemindRequest} workspaceInviteRemindRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async workspacesRemindInvite(workspaceInviteRemindRequest: WorkspaceInviteRemindRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkspaceInvite>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.workspacesRemindInvite(workspaceInviteRemindRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -17327,8 +17391,8 @@ export const WorkspacesApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        workspacesInvite(workspaceInviteCreateRequest: WorkspaceInviteCreateRequest, options?: any): AxiosPromise<WorkspaceInvite> {
-            return localVarFp.workspacesInvite(workspaceInviteCreateRequest, options).then((request) => request(axios, basePath));
+        workspacesCreateInvite(workspaceInviteCreateRequest: WorkspaceInviteCreateRequest, options?: any): AxiosPromise<WorkspaceInvite> {
+            return localVarFp.workspacesCreateInvite(workspaceInviteCreateRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -17349,6 +17413,15 @@ export const WorkspacesApiFactory = function (configuration?: Configuration, bas
          */
         workspacesPartialUpdate(id: string, page?: number, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options?: any): AxiosPromise<PaginatedWorkspaceList> {
             return localVarFp.workspacesPartialUpdate(id, page, patchedWorkspaceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {WorkspaceInviteRemindRequest} workspaceInviteRemindRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        workspacesRemindInvite(workspaceInviteRemindRequest: WorkspaceInviteRemindRequest, options?: any): AxiosPromise<WorkspaceInvite> {
+            return localVarFp.workspacesRemindInvite(workspaceInviteRemindRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -17394,7 +17467,7 @@ export interface WorkspacesApiInterface {
      * @throws {RequiredError}
      * @memberof WorkspacesApiInterface
      */
-    workspacesInvite(workspaceInviteCreateRequest: WorkspaceInviteCreateRequest, options?: AxiosRequestConfig): AxiosPromise<WorkspaceInvite>;
+    workspacesCreateInvite(workspaceInviteCreateRequest: WorkspaceInviteCreateRequest, options?: AxiosRequestConfig): AxiosPromise<WorkspaceInvite>;
 
     /**
      * 
@@ -17415,6 +17488,15 @@ export interface WorkspacesApiInterface {
      * @memberof WorkspacesApiInterface
      */
     workspacesPartialUpdate(id: string, page?: number, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options?: AxiosRequestConfig): AxiosPromise<PaginatedWorkspaceList>;
+
+    /**
+     * 
+     * @param {WorkspaceInviteRemindRequest} workspaceInviteRemindRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApiInterface
+     */
+    workspacesRemindInvite(workspaceInviteRemindRequest: WorkspaceInviteRemindRequest, options?: AxiosRequestConfig): AxiosPromise<WorkspaceInvite>;
 
     /**
      * 
@@ -17462,8 +17544,8 @@ export class WorkspacesApi extends BaseAPI implements WorkspacesApiInterface {
      * @throws {RequiredError}
      * @memberof WorkspacesApi
      */
-    public workspacesInvite(workspaceInviteCreateRequest: WorkspaceInviteCreateRequest, options?: AxiosRequestConfig) {
-        return WorkspacesApiFp(this.configuration).workspacesInvite(workspaceInviteCreateRequest, options).then((request) => request(this.axios, this.basePath));
+    public workspacesCreateInvite(workspaceInviteCreateRequest: WorkspaceInviteCreateRequest, options?: AxiosRequestConfig) {
+        return WorkspacesApiFp(this.configuration).workspacesCreateInvite(workspaceInviteCreateRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -17488,6 +17570,17 @@ export class WorkspacesApi extends BaseAPI implements WorkspacesApiInterface {
      */
     public workspacesPartialUpdate(id: string, page?: number, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options?: AxiosRequestConfig) {
         return WorkspacesApiFp(this.configuration).workspacesPartialUpdate(id, page, patchedWorkspaceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {WorkspaceInviteRemindRequest} workspaceInviteRemindRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApi
+     */
+    public workspacesRemindInvite(workspaceInviteRemindRequest: WorkspaceInviteRemindRequest, options?: AxiosRequestConfig) {
+        return WorkspacesApiFp(this.configuration).workspacesRemindInvite(workspaceInviteRemindRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
