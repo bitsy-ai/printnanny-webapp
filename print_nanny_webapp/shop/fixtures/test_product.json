@@ -90,5 +90,28 @@
 			"stripe_product_id": "prod_NIXYlyaLbcpYxB",
 			"djstripe_product": 1
 		}
+	},
+	{
+		"model": "shop.product",
+		"pk": "553e907b-4660-4af6-8cd2-21cca2328353",
+		"fields": {
+			"deleted": null,
+			"created_dt": "2023-05-24T01:56:20.194Z",
+			"updated_dt": "2023-05-24T01:57:31.489Z",
+			"sku": "rpi4b-4gb-kit",
+			"slug": "raspberry-pi-4-kit",
+			"unit_label": "kit",
+			"name": "Raspberry Pi 4 Kit",
+			"description": "Everything you need to get started: Raspberry Pi 4, power supply, camera, and pre-loaded SD card.",
+			"statement_descriptor": "Raspberry Pi 4B (4GB) kit",
+			"images": "[\"https://printnanny.ai/ui/images/rpi4-kit/rpi4.svg\"]",
+			"is_active": true,
+			"is_shippable": true,
+			"is_preorder": true,
+			"is_subscription": true,
+			"stripe_price_lookup_key": "price_1N0tx7LhchOaJShcypLZV0MQ",
+			"stripe_product_id": "prod_NmSsq03sCKUtwD",
+			"djstripe_product": 1
+		}
 	}
 ]
