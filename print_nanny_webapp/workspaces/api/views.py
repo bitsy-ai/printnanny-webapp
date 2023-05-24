@@ -29,11 +29,18 @@ from print_nanny_webapp.utils.api.views import (
 
 @extend_schema_view(
     update=extend_schema(tags=["workspaces"]),
+    create=extend_schema(
+        tags=["workspaces"],
+        responses={201: WorkspaceSerializer} | generic_create_errors,
+    ),
     list=extend_schema(
         tags=["workspaces"],
         responses={200: WorkspaceSerializer(many=True)} | generic_list_errors,
     ),
-    partial_update=extend_schema(tags=["workspaces"]),
+    partial_update=extend_schema(
+        tags=["workspaces"],
+        responses={200: WorkspaceSerializer(many=True)} | generic_update_errors,
+    ),
     retrieve=extend_schema(
         tags=["workspaces"],
         responses={200: WorkspaceSerializer} | generic_get_errors,
@@ -44,6 +51,7 @@ class WorkspaceViewSet(
     UpdateModelMixin,
     ListModelMixin,
     RetrieveModelMixin,
+    CreateModelMixin,
 ):
     serializer_class = WorkspaceSerializer
     lookup_field = "id"

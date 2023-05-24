@@ -22,7 +22,7 @@ const router = createRouter({
     ...settingsRoutes,
     ...shopRoutes,
     ...videoRoutes,
-    ...workspaceRoutes
+    ...workspaceRoutes,
   ],
 });
 

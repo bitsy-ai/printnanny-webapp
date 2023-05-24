@@ -16,7 +16,8 @@
               Team Members
             </h1>
             <p class="mt-2 text-sm text-gray-700">
-              Invite a team member to give them access to devices in your PrintNanny workspace.
+              Invite a team member to give them access to devices in your
+              PrintNanny workspace.
             </p>
           </div>
           <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -93,16 +94,20 @@
       </div>
     </div>
     <div v-else class="w-full space-y-4">
-      <table-empty :icon="UserPlusIcon" header="No shared workspaces found" body="Create a shared workspace to get started">
-        <a href="https://printnanny.ai/docs/category/quick-start/">
-        <button
-          type="button"
-          class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-          <UserPlusIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
-          Create Shared Workspace
-        </button>
-      </a>
+      <table-empty
+        :icon="UserPlusIcon"
+        header="No shared workspaces found"
+        body="Create a shared workspace to get started"
+      >
+        <router-link :to="{ name: 'workspaceCreate' }">
+          <button
+            type="button"
+            class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            <UserPlusIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+            Create Shared Workspace
+          </button>
+        </router-link>
       </table-empty>
     </div>
   </transition>

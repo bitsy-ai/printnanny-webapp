@@ -1,7 +1,6 @@
 import DashboardLayout from "@/layouts/DashboardLayout.vue";
 import PageTitle from "@/components/nav/PageTitle.vue";
 
-
 export default [
   {
     path: "/workspace/",
@@ -14,18 +13,32 @@ export default [
         path: "",
         name: "workspaceList",
         components: {
-          default: () => import("@/components/workspaces/WorkspaceListView.vue"),
+          default: () =>
+            import("@/components/workspaces/WorkspaceListView.vue"),
           TopBar: PageTitle,
-
         },
         meta: { title: "Workspace & Team Members" },
       },
-      // {
-      //   path: "workspace/invite/",
-      //   name: "workspaceInvite",
-      //   component: SettingsView,
-      //   meta: { title: "Invite Team Member" },
-      // }
-    ]
-  }
-]
+      {
+        path: "new/",
+        name: "workspaceCreate",
+        components: {
+          default: () =>
+            import("@/components/workspaces/WorkspaceCreateForm.vue"),
+          TopBar: PageTitle,
+        },
+        meta: { title: "Create Shared Workspace" },
+      },
+      {
+        path: "invite/",
+        name: "workspaceInvite",
+        components: {
+          default: () =>
+            import("@/components/workspaces/WorkspaceInviteForm.vue"),
+          TopBar: PageTitle,
+        },
+        meta: { title: "Invite Team Member" },
+      },
+    ],
+  },
+];

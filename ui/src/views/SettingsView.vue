@@ -9,7 +9,7 @@ const router = useRouter();
 
 const navigation = [
   {
-  name: "Network",
+    name: "Network",
     link: { name: "networkSettings" },
     icon: WifiIcon,
     key: "networkSettings",

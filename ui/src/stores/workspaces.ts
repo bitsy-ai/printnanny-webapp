@@ -1,6 +1,9 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import { useAccountStore } from "./account";
 import type * as api from "printnanny-api-client";
+import { handleApiError } from "@/utils/api";
+
+import { success } from "./alerts";
 
 export const useWorkspaceStore = defineStore({
   id: "workspaces",
@@ -17,6 +20,17 @@ export const useWorkspaceStore = defineStore({
         return res.data.results;
       }
       return [];
+    },
+
+    async createWorkspace(name: string): Promise<undefined | api.Workspace> {
+      const account = useAccountStore();
+      const req = { name, is_active: "true", slug: name };
+      const res = await account.workspaceApi
+        .workspacesCreate(req)
+        .catch(handleApiError);
+      if (res) {
+        return res.data;
+      }
     },
   },
 });
