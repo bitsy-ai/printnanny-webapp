@@ -57,6 +57,7 @@ class WorkspaceOwnerSerializer(serializers.ModelSerializer):
 class WorkspaceSerializer(serializers.ModelSerializer):
     users = UserSerializer(many=True, read_only=True)
     owner = WorkspaceOwnerSerializer(read_only=True)
+    pending_invites = WorkspaceInviteSerializer(read_only=True, many=True)
 
     class Meta:
         model = Workspace

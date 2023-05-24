@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models import QuerySet
+
 from organizations.abstract import (
     AbstractOrganization,
     AbstractOrganizationUser,
@@ -29,3 +31,12 @@ class Workspace(AbstractOrganization):
     """Core workspace organization model"""
 
     invitation_model = WorkspaceInvitation
+
+    @property
+    def pending_invites(self) -> QuerySet[WorkspaceInvitation]:
+        """
+        Return all invitations with incomplete registration
+        """
+        return self.invitation_model.objects.filter(
+            organization=self, invitee=None
+        ).all()

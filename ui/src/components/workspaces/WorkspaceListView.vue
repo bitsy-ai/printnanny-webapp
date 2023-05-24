@@ -7,18 +7,14 @@
     leave-from-class="opacity-100"
     leave-to-class="opacity-0"
   >
-    <div v-if="store.workspaces.length > 0" class="w-full space-y-6">
+    <div v-if="store.workspaces.length > 0" class="space-y-6 mt-2 mx-2 md:mt-6 md:mx-6">
       <!-- workspaces table -->
-      <div class="p-4 sm:p-6 lg:p-8 bg-gray-50 rounded-md">
+      <div class="p-4 sm:p-6 lg:p-8 bg-gray-50 rounded-md" v-for="workspace in store.workspaces" :key="workspace.id">
         <div class="sm:flex sm:items-center">
           <div class="sm:flex-auto">
-            <h1 class="text-base font-semibold leading-6 text-gray-900">
-              Team Members
+            <h1 class="font-semibold text-2xl text-gray-900">
+              {{ workspace.name }}
             </h1>
-            <p class="mt-2 text-sm text-gray-700">
-              Invite a team member to give them access to devices in your
-              PrintNanny workspace.
-            </p>
           </div>
           <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
             <button
@@ -30,6 +26,12 @@
           </div>
         </div>
         <div class="mt-8 flow-root">
+          <h2 class="font-semibold text-md text-gray-900">
+              Workspace Members
+          </h2>
+          <p class="mt-2 text-sm text-gray-700">
+              Invite a team member to give them access to <strong>{{ workspace.name }}</strong> workspace.
+          </p>
           <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div
               class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8"
@@ -47,7 +49,7 @@
                       scope="col"
                       class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                      Roles
+                      Info
                     </th>
                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
                       <span class="sr-only">Remove</span>
@@ -56,7 +58,7 @@
                 </thead>
                 <tbody class="divide-y divide-gray-200">
                   <tr
-                    v-for="person in store.workspaces[0].users"
+                    v-for="person in workspace.users"
                     :key="person.email"
                   >
                     <td
@@ -68,7 +70,7 @@
                       class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
                     >
                       <span
-                        v-if="isOwner(person, store.workspaces[0])"
+                        v-if="isOwner(person, workspace)"
                         class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20"
                         >Owner</span
                       >
@@ -77,7 +79,7 @@
                       class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0"
                     >
                       <a
-                        v-if="!isOwner(person, store.workspaces[0])"
+                        v-if="!isOwner(person, workspace)"
                         href="#"
                         class="text-indigo-600 hover:text-indigo-900"
                         >Remove<span class="sr-only"
@@ -86,11 +88,42 @@
                       >
                     </td>
                   </tr>
+                  <tr
+                    v-for="person in workspace.pending_invites"
+                    :key="person.invitee_identifier"
+                  >
+                    <td
+                      class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
+                    >
+                      {{ person.invitee_identifier }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
+                    >
+                      <span
+                        class="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20"
+                        >Pending</span
+                      >
+                    </td>
+                    <td
+                      class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0"
+                    >
+                      <a
+                        @click="store.resendInvite(person.id)"
+                        class="text-indigo-600 hover:text-indigo-900"
+                        >Resend<span class="sr-only"
+                          ></span
+                        ></a
+                      >
+                    </td>
+                  </tr>
+        
                 </tbody>
               </table>
             </div>
           </div>
         </div>
+
       </div>
     </div>
     <div v-else class="w-full space-y-4">

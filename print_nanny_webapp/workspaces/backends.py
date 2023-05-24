@@ -13,6 +13,25 @@ class WorkspaceInvitationBackend(ModelInvitation):
 
     def __init__(self, org_model=Workspace, namespace=None):
         super().__init__(org_model=org_model, namespace=namespace)
-        self.invitation_model = (
-            self.org_model.invitation_model
-        )  # type: OrganizationInvitationBase
+        self.invitation_model = self.org_model.invitation_model
+
+    def send_invitation(self, invitation, **kwargs):
+        """
+        Sends an invitation message for a specific invitation.
+
+        This could be overridden to do other things, such as sending a confirmation
+        email to the sender.
+
+        Args:
+            invitation:
+
+        Returns:
+
+        """
+        return self.email_message(
+            invitation.invitee_identifier,
+            self.invitation_subject,
+            self.invitation_body,
+            sender=invitation.invited_by,
+            invitation=invitation,
+        ).send()

@@ -6003,6 +6003,12 @@ export interface Workspace {
      */
     'owner': WorkspaceOwner;
     /**
+     * 
+     * @type {Array<WorkspaceInvite>}
+     * @memberof Workspace
+     */
+    'pending_invites': Array<WorkspaceInvite>;
+    /**
      * The name of the organization
      * @type {string}
      * @memberof Workspace
@@ -6106,6 +6112,37 @@ export interface WorkspaceInviteCreateRequest {
      * @memberof WorkspaceInviteCreateRequest
      */
     'workspace': number;
+}
+/**
+ * 
+ * @export
+ * @interface WorkspaceInviteRequest
+ */
+export interface WorkspaceInviteRequest {
+    /**
+     * The contact identifier for the invitee, email, phone number, social media handle, etc.
+     * @type {string}
+     * @memberof WorkspaceInviteRequest
+     */
+    'invitee_identifier': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceInviteRequest
+     */
+    'invited_by': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceInviteRequest
+     */
+    'invitee'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkspaceInviteRequest
+     */
+    'organization': number;
 }
 /**
  * 

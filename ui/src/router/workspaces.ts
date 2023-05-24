@@ -15,9 +15,10 @@ export default [
         components: {
           default: () =>
             import("@/components/workspaces/WorkspaceListView.vue"),
-          TopBar: PageTitle,
+          TopBar: () => import("@/components/nav/PageTitle.vue"),
+          TopRight: () => import("@/components/workspaces/NewWorkspaceButton.vue")
         },
-        meta: { title: "Workspace & Team Members" },
+        meta: { title: "Workspaces & Team Members" },
       },
       {
         path: "new/",
@@ -25,9 +26,9 @@ export default [
         components: {
           default: () =>
             import("@/components/workspaces/WorkspaceCreateForm.vue"),
-          TopBar: PageTitle,
+          TopBar: () => import("@/components/nav/PageTitle.vue"),
         },
-        meta: { title: "Create Shared Workspace" },
+        meta: { title: "Create a Shared Workspace" },
       },
       {
         path: "invite/",
@@ -35,7 +36,7 @@ export default [
         components: {
           default: () =>
             import("@/components/workspaces/WorkspaceInviteForm.vue"),
-          TopBar: PageTitle,
+          TopBar: () => import("@/components/nav/PageTitle.vue"),
         },
         meta: { title: "Invite Team Member" },
       },
