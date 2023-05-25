@@ -6160,6 +6160,25 @@ export interface WorkspaceInviteRequest {
 /**
  * 
  * @export
+ * @interface WorkspaceInviteVerifyRequest
+ */
+export interface WorkspaceInviteVerifyRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkspaceInviteVerifyRequest
+     */
+    'token': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkspaceInviteVerifyRequest
+     */
+    'email': string;
+}
+/**
+ * 
+ * @export
  * @interface WorkspaceOwner
  */
 export interface WorkspaceOwner {
@@ -7989,7 +8008,7 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         emailAlertSettingsPartialUpdate: async (id: number, patchedEmailAlertSettingsRequest?: PatchedEmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('emailAlertSettingsPartialUpdate', 'id', id)
-            const localVarPath = `/api/email-alert-settings//{id}`
+            const localVarPath = `/api/email-alert-settings/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8067,7 +8086,7 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         emailAlertSettingsUpdate: async (id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('emailAlertSettingsUpdate', 'id', id)
-            const localVarPath = `/api/email-alert-settings//{id}`
+            const localVarPath = `/api/email-alert-settings/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -15008,7 +15027,7 @@ export const SettingsApiAxiosParamCreator = function (configuration?: Configurat
         emailAlertSettingsPartialUpdate: async (id: number, patchedEmailAlertSettingsRequest?: PatchedEmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('emailAlertSettingsPartialUpdate', 'id', id)
-            const localVarPath = `/api/email-alert-settings//{id}`
+            const localVarPath = `/api/email-alert-settings/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -15086,7 +15105,7 @@ export const SettingsApiAxiosParamCreator = function (configuration?: Configurat
         emailAlertSettingsUpdate: async (id: number, emailAlertSettingsRequest?: EmailAlertSettingsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('emailAlertSettingsUpdate', 'id', id)
-            const localVarPath = `/api/email-alert-settings//{id}`
+            const localVarPath = `/api/email-alert-settings/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -17283,6 +17302,47 @@ export const WorkspacesApiAxiosParamCreator = function (configuration?: Configur
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {WorkspaceInviteVerifyRequest} workspaceInviteVerifyRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        workspacesVerifyInvite: async (workspaceInviteVerifyRequest: WorkspaceInviteVerifyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'workspaceInviteVerifyRequest' is not null or undefined
+            assertParamExists('workspacesVerifyInvite', 'workspaceInviteVerifyRequest', workspaceInviteVerifyRequest)
+            const localVarPath = `/api/workspace-invites/verify/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(workspaceInviteVerifyRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -17366,6 +17426,16 @@ export const WorkspacesApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.workspacesUpdate(id, workspaceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * 
+         * @param {WorkspaceInviteVerifyRequest} workspaceInviteVerifyRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async workspacesVerifyInvite(workspaceInviteVerifyRequest: WorkspaceInviteVerifyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkspaceInvite>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.workspacesVerifyInvite(workspaceInviteVerifyRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -17442,6 +17512,15 @@ export const WorkspacesApiFactory = function (configuration?: Configuration, bas
         workspacesUpdate(id: string, workspaceRequest: WorkspaceRequest, options?: any): AxiosPromise<Workspace> {
             return localVarFp.workspacesUpdate(id, workspaceRequest, options).then((request) => request(axios, basePath));
         },
+        /**
+         * 
+         * @param {WorkspaceInviteVerifyRequest} workspaceInviteVerifyRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        workspacesVerifyInvite(workspaceInviteVerifyRequest: WorkspaceInviteVerifyRequest, options?: any): AxiosPromise<WorkspaceInvite> {
+            return localVarFp.workspacesVerifyInvite(workspaceInviteVerifyRequest, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -17516,6 +17595,15 @@ export interface WorkspacesApiInterface {
      * @memberof WorkspacesApiInterface
      */
     workspacesUpdate(id: string, workspaceRequest: WorkspaceRequest, options?: AxiosRequestConfig): AxiosPromise<Workspace>;
+
+    /**
+     * 
+     * @param {WorkspaceInviteVerifyRequest} workspaceInviteVerifyRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApiInterface
+     */
+    workspacesVerifyInvite(workspaceInviteVerifyRequest: WorkspaceInviteVerifyRequest, options?: AxiosRequestConfig): AxiosPromise<WorkspaceInvite>;
 
 }
 
@@ -17604,6 +17692,17 @@ export class WorkspacesApi extends BaseAPI implements WorkspacesApiInterface {
      */
     public workspacesUpdate(id: string, workspaceRequest: WorkspaceRequest, options?: AxiosRequestConfig) {
         return WorkspacesApiFp(this.configuration).workspacesUpdate(id, workspaceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {WorkspaceInviteVerifyRequest} workspaceInviteVerifyRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApi
+     */
+    public workspacesVerifyInvite(workspaceInviteVerifyRequest: WorkspaceInviteVerifyRequest, options?: AxiosRequestConfig) {
+        return WorkspacesApiFp(this.configuration).workspacesVerifyInvite(workspaceInviteVerifyRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

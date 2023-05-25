@@ -9,49 +9,74 @@
           src="@/assets/logo/logo-rect-light.svg"
           alt="PrintNanny"
         />
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 class="mt-6 text-center text-2xl font-medium text-gray-900">
           Create your account
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
-          Or
-          {{ " " }}
-          <a
-            id="join-waitlist"
-            href="/request-invite"
-            class="font-medium text-indigo-600 hover:text-indigo-500"
-          >
-            join the waitlist.</a
-          >
-        </p>
       </div>
-      <Form v-slot="{ meta }" :validation-schema="schema" @submit="onSubmit" :initialValues="initialValues">
-        <label for="email" class="sr-only">Email address</label>
-        <error-message class-name="text-red-500" name="email"></error-message>
-        <Field
-          id="email"
-          name="email"
-          type="email"
-          autocomplete="email"
-          disabled
-          class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-          placeholder="Email address"
-          rules="required"
-        />
-        <label for="password" class="sr-only">Password</label>
+      <Form v-slot="{ meta }" :validation-schema="schema" @submit="onSubmit" :initialValues="initialValues" class="space-y-4">
+
+        <div>
+            <label
+              for="firstName"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >First Name</label
+            >
+              <Field
+                id="firstName"
+                type="text"
+                name="firstName"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+              <error-message
+                class="text-red-500 text-sm"
+                name="firstName"
+              ></error-message>
+      </div>
+
+        <div>
+            <label
+              for="lastName"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Last Name</label
+            >
+              <Field
+                id="lastName"
+                type="text"
+                name="lastName"
+                class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+              <error-message
+                class="text-red-500 text-sm"
+                name="lastName"
+              ></error-message>
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
         <Field
           id="password"
           name="password"
           type="password"
-          autocomplete="current-password"
-          class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
           placeholder="Password"
-          rules="required"
+        />
+        <label for="password" class="sr-only">Password</label>
+        <Field
+          id="confirmPassword"
+          name="confirmPassword"
+          type="password"
+          class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          placeholder="Confirm Password"
         />
         <error-message
-          class-name="text-red-500"
+          class="text-red-500 text-sm"
           name="password"
         ></error-message>
-
+        <error-message
+          class="text-red-500 text-sm"
+          name="confirmPassword"
+        ></error-message>
+      </div>
         <button
           id="email-submit"
           :disabled="state.loading || !meta.valid"
@@ -73,16 +98,6 @@
           Sign in
         </button>
       </Form>
-
-      <p class="text-center my-2 text-sm text-gray-900">Trouble signing in?</p>
-      <p class="text-center my-2 text-sm">
-        <RouterLink
-          :to="{ name: 'reset-password' }"
-          class="font-medium text-indigo-600 hover:text-indigo-500"
-        >
-          Reset Password
-        </RouterLink>
-      </p>
     </div>
   </div>
 </template>

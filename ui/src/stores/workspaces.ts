@@ -71,6 +71,16 @@ export const useWorkspaceStore = defineStore({
         success(`Sent reminder to ${invite.invitee_identifier}`, "Let your team-mate know they should double-check their spam inbox if they're not receiving emails.")
         return invite;
       }
+    },
+    async verifyInvite(token: string, email: string): Promise<boolean> {
+      const account = useAccountStore();
+      const req = { token, email } as api.WorkspaceInviteVerifyRequest;
+      const res = await account.workspaceApi.workspacesVerifyInvite(req).catch(handleApiError);
+      if (res) {
+        console.log("Verified invite", res.data);
+        return true
+      }
+      return false
     }
   },
 });
