@@ -72,15 +72,14 @@ export const useWorkspaceStore = defineStore({
         return invite;
       }
     },
-    async verifyInvite(token: string, email: string): Promise<boolean> {
+    async verifyInvite(req: api.WorkspaceInviteVerifyRequest) {
       const account = useAccountStore();
-      const req = { token, email } as api.WorkspaceInviteVerifyRequest;
       const res = await account.workspaceApi.workspacesVerifyInvite(req).catch(handleApiError);
       if (res) {
         console.log("Verified invite", res.data);
-        return true
+        const loginReq = { email: req.email, password: req.password };
+        await account.login(loginReq);
       }
-      return false
     }
   },
 });

@@ -62,8 +62,8 @@
         />
         <label for="password" class="sr-only">Password</label>
         <Field
-          id="confirmPassword"
-          name="confirmPassword"
+          id="passwordConfirmation"
+          name="passwordConfirmation"
           type="password"
           class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
           placeholder="Confirm Password"
@@ -74,7 +74,7 @@
         ></error-message>
         <error-message
           class="text-red-500 text-sm"
-          name="confirmPassword"
+          name="passwordConfirmation"
         ></error-message>
       </div>
         <button
@@ -108,6 +108,7 @@ import * as yup from "yup";
 import { useAccountStore } from "@/stores/account";
 import { LockClosedIcon, ArrowPathIcon } from "@heroicons/vue/24/solid";
 import { Field, ErrorMessage, Form } from "vee-validate";
+import { useWorkspaceStore } from "@/components/stores/workspaces";
 
 const props = defineProps({
     token: {
@@ -122,7 +123,7 @@ const state = reactive({
 });
 
 const router = useRouter();
-const initialValues = { email: router.currentRoute.value.query.email }
+const store = useWorkspaceStore();
 
 // define a validation schema
 const schema = yup.object({
@@ -130,15 +131,21 @@ const schema = yup.object({
   lastName: yup.string().required('Last name is required'),
   password: yup.string().required('Password is required'),
   passwordConfirmation: yup.string()
-     .oneOf([yup.ref('password'), null], 'Passwords must match')
+     .oneOf([yup.ref('password'), null], 'Passwords must match').required()
 });
 
 const account = useAccountStore();
 
 async function onSubmit(values: any) {
   state.loading = true;
-  const res = await account.login(values as apiTypes.LoginRequest);
-  console.log("Got Response", res);
+  const req = { 
+    email: router.currentRoute.value.query.email,
+    first_name: values.firstName,
+    last_name: values.lastName,
+    password: values.password,
+    token: props.token,
+  };
+  await store.verifyInvite(req);
   state.loading = false;
 }
 </script>

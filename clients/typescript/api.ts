@@ -6175,6 +6175,24 @@ export interface WorkspaceInviteVerifyRequest {
      * @memberof WorkspaceInviteVerifyRequest
      */
     'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkspaceInviteVerifyRequest
+     */
+    'password': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkspaceInviteVerifyRequest
+     */
+    'first_name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkspaceInviteVerifyRequest
+     */
+    'last_name': string;
 }
 /**
  * 

@@ -1,5 +1,7 @@
 import logging
-from typing import Any
+from typing import Any, Tuple
+
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_framework.exceptions import PermissionDenied
 from organizations.backends import invitation_backend
@@ -11,19 +13,57 @@ from print_nanny_webapp.workspaces.models import (
     WorkspaceOwner,
     WorkspaceInvitation,
 )
+from print_nanny_webapp.workspaces.services import verify_workspace_invite
 
 logger = logging.getLogger(__name__)
+
+User = get_user_model()
 
 
 class WorkspaceInviteVerifySerializer(serializers.Serializer):
     token = serializers.UUIDField(format="hex_verbose")
     email = serializers.EmailField()
+    password = serializers.CharField()
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()
 
-    def create(self, validated_data: Any) -> Any:
-        raise NotImplementedError
+    def update_or_create(self, validated_data: Any) -> Tuple[WorkspaceInvitation, bool]:
+        token = validated_data["token"]
+        email = validated_data["email"]
+        invite = verify_workspace_invite(token, email)
+        try:
+            user = User.objects.get(email=email)
+            return self.update(invite, user, validated_data)
+        except User.DoesNotExist:
+            return self.create(invite, validated_data), True
 
-    def update(self, instance: Any, validated_data: Any) -> Any:
-        raise NotImplementedError
+    def create(
+        self, instance: WorkspaceInvitation, validated_data: Any
+    ) -> WorkspaceInvitation:
+        user = User.objects.create(
+            email=validated_data["email"],
+            first_name=validated_data["first_name"],
+            last_name=validated_data["last_name"],
+            is_active=True,
+        )
+        user.set_password(validated_data["password"])
+
+        instance.organization.add_user(user)
+        instance.invitee = user
+        instance.save()
+        return instance
+
+    def update(
+        self, instance: WorkspaceInvitation, user: User, validated_data: Any
+    ) -> Tuple[WorkspaceInvitation, bool]:
+        user.first_name = validated_data["first_name"]
+        user.last_name = validated_data["last_name"]
+        user.save()
+        user.set_password(validated_data["password"])
+        _, created = instance.organization.get_or_add_user(user)
+        instance.invitee = user
+        instance.save()
+        return instance, created
 
 
 class WorkspaceInviteSerializer(serializers.ModelSerializer):
