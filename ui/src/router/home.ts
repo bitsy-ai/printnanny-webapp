@@ -108,7 +108,8 @@ export default [
         path: "workspaces/register/:token/",
         name: "workspace-register",
         components: {
-          default: () => import("@/components/workspaces/WorkspaceRegistrationForm.vue")
+          default: () =>
+            import("@/components/workspaces/WorkspaceRegistrationForm.vue"),
         },
         props: { default: true },
         meta: { title: "Create your account" },

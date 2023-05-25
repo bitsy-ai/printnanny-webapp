@@ -1,8 +1,5 @@
 <template>
-  <Form
-    :validation-schema="schema"
-    @submit="onSubmit"
-  >
+  <Form :validation-schema="schema" @submit="onSubmit">
     <div
       class="space-y-12 p-6 grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3"
     >
@@ -14,7 +11,7 @@
             <label
               for="invites"
               class="block text-sm font-medium leading-6 text-gray-900"
-              >Invite Team Members to {{slug}}</label
+              >Invite Team Members to {{ slug }}</label
             >
             <div class="mt-2">
               <Field v-slot="{ field, errors }" name="invites">
@@ -66,8 +63,8 @@ import { success } from "@/stores/alerts";
 const props = defineProps({
   slug: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
 const loading = ref(false);
@@ -87,7 +84,10 @@ async function onSubmit(values: any) {
       await store.inviteToWorkspace(email, workspace.id);
     }
   } else {
-    error(`You are not authorized to manage: ${props.slug}`, "Please get in contact with your workspace administrator to request access.")
+    error(
+      `You are not authorized to manage: ${props.slug}`,
+      "Please get in contact with your workspace administrator to request access."
+    );
   }
   loading.value = false;
   router.push({ name: "workspaceList" });

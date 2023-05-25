@@ -1,18 +1,20 @@
 <template>
   <Form
+    v-slot="{ meta }"
     :validation-schema="schema"
     :initial-values="initialValues"
     @submit="onSubmit"
-     v-slot="{ meta }"
   >
     <div
       class="space-y-6 p-6 grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3"
     >
       <div>
-        <h2 class="text-base font-semibold leading-7 text-gray-900">Workspace Information</h2>
+        <h2 class="text-base font-semibold leading-7 text-gray-900">
+          Workspace Information
+        </h2>
         <p class="mt-1 text-sm leading-6 text-gray-600">
-          This will be displayed when you invite a team member to
-          your workspace.
+          This will be displayed when you invite a team member to your
+          workspace.
         </p>
       </div>
 
@@ -59,7 +61,10 @@
                 name="slug"
               ></error-message>
               <p class="my-3 text-xs text-gray-400">
-                Your workspace will be available at:<br> https://printnanny.ai/workspace/<span class="text-indigo-500">your-url-here</span>. 
+                Your workspace will be available at:<br />
+                https://printnanny.ai/workspace/<span class="text-indigo-500"
+                  >your-url-here</span
+                >.
               </p>
             </div>
           </div>
@@ -88,21 +93,21 @@
           </div>
         </div>
       </div>
-              <div class="col-span-2 flex items-center justify-end">
-          <TextSpinner
-            v-if="loading"
-            height="h-6"
-            width="w-6"
-            text="Saving..."
-          ></TextSpinner>
-          <button
-            type="submit"
-            :disabled="loading || !meta.valid"
-            class="ml-3 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm disabled:opacity-25 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Save
-          </button>
-        </div>
+      <div class="col-span-2 flex items-center justify-end">
+        <TextSpinner
+          v-if="loading"
+          height="h-6"
+          width="w-6"
+          text="Saving..."
+        ></TextSpinner>
+        <button
+          type="submit"
+          :disabled="loading || !meta.valid"
+          class="ml-3 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm disabled:opacity-25 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          Save
+        </button>
+      </div>
     </div>
   </Form>
 </template>
@@ -121,7 +126,6 @@ const router = useRouter();
 const loading = ref(false);
 const account = useAccountStore();
 const store = useWorkspaceStore();
-
 
 function defaultWorkspaceName(email: undefined | string) {
   if (email === undefined) {
@@ -143,13 +147,16 @@ function defaultWorkspaceName(email: undefined | string) {
   }
 }
 
-function defaultWorkspaceSlug(email: undefined | string){
+function defaultWorkspaceSlug(email: undefined | string) {
   const domain = defaultWorkspaceName(email);
   // replace all non letter/number characters
-  return domain.replace(/[^a-zA-Z0-9/-]+/, '-');
+  return domain.replace(/[^a-zA-Z0-9/-]+/, "-");
 }
 
-const initialValues = { name: defaultWorkspaceName(account.user?.email), slug: defaultWorkspaceSlug(account.user?.email) };
+const initialValues = {
+  name: defaultWorkspaceName(account.user?.email),
+  slug: defaultWorkspaceSlug(account.user?.email),
+};
 
 const schema = yup.object({
   name: yup
@@ -158,7 +165,10 @@ const schema = yup.object({
     .default(defaultWorkspaceName(account.user?.email)),
   slug: yup
     .string()
-    .matches(/^[A-Za-z0-9\-\_]+$/, "Should contain only letters, numbers, hypens, and underscores.")
+    .matches(
+      /^[A-Za-z0-9\-\_]+$/,
+      "Should contain only letters, numbers, hypens, and underscores."
+    )
     .required("Your must provide a url for your workspace"),
   invites: yup.string(),
 });

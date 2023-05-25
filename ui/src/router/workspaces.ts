@@ -16,7 +16,8 @@ export default [
           default: () =>
             import("@/components/workspaces/WorkspaceListView.vue"),
           TopBar: () => import("@/components/nav/PageTitle.vue"),
-          TopRight: () => import("@/components/workspaces/NewWorkspaceButton.vue")
+          TopRight: () =>
+            import("@/components/workspaces/NewWorkspaceButton.vue"),
         },
         meta: { title: "Workspaces & Team Members" },
       },
@@ -42,6 +43,5 @@ export default [
         meta: { title: "Invite Team Members" },
       },
     ],
-
   },
 ];

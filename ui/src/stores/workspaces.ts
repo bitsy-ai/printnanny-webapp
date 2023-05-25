@@ -22,12 +22,17 @@ export const useWorkspaceStore = defineStore({
       return [];
     },
 
-    async fetchWorkspaceBySlug(slug: string): Promise<undefined | api.Workspace> {
+    async fetchWorkspaceBySlug(
+      slug: string
+    ): Promise<undefined | api.Workspace> {
       await this.fetchWorkspaces();
-      return this.workspaces.find((w: api.Workspace) => w.slug === slug)
+      return this.workspaces.find((w: api.Workspace) => w.slug === slug);
     },
 
-    async createWorkspace(name: string, slug: string): Promise<undefined | api.Workspace> {
+    async createWorkspace(
+      name: string,
+      slug: string
+    ): Promise<undefined | api.Workspace> {
       const account = useAccountStore();
       const req = {
         name,
@@ -47,7 +52,10 @@ export const useWorkspaceStore = defineStore({
       workspace: api.Workspace
     ): Promise<undefined | api.WorkspaceInvite> {
       const account = useAccountStore();
-      const req = { email, workspace: workspace.id } as api.WorkspaceInviteCreateRequest;
+      const req = {
+        email,
+        workspace: workspace.id,
+      } as api.WorkspaceInviteCreateRequest;
       const res = await account.workspaceApi
         .workspacesCreateInvite(req)
         .catch(handleApiError);
@@ -61,26 +69,35 @@ export const useWorkspaceStore = defineStore({
         return invite;
       }
     },
-    async resendInvite(workspace_invite: number): Promise<undefined | api.WorkspaceInvite> {
+    async resendInvite(
+      workspace_invite: number
+    ): Promise<undefined | api.WorkspaceInvite> {
       const account = useAccountStore();
       const req = { workspace_invite } as api.WorkspaceInviteRemindRequest;
-      const res = await account.workspaceApi.workspacesRemindInvite(req).catch(handleApiError);
+      const res = await account.workspaceApi
+        .workspacesRemindInvite(req)
+        .catch(handleApiError);
       if (res) {
         console.log("Send invite reminder", res.data);
         const invite = res.data as api.WorkspaceInvite;
-        success(`Sent reminder to ${invite.invitee_identifier}`, "Let your team-mate know they should double-check their spam inbox if they're not receiving emails.")
+        success(
+          `Sent reminder to ${invite.invitee_identifier}`,
+          "Let your team-mate know they should double-check their spam inbox if they're not receiving emails."
+        );
         return invite;
       }
     },
     async verifyInvite(req: api.WorkspaceInviteVerifyRequest) {
       const account = useAccountStore();
-      const res = await account.workspaceApi.workspacesVerifyInvite(req).catch(handleApiError);
+      const res = await account.workspaceApi
+        .workspacesVerifyInvite(req)
+        .catch(handleApiError);
       if (res) {
         console.log("Verified invite", res.data);
         const loginReq = { email: req.email, password: req.password };
         await account.login(loginReq);
       }
-    }
+    },
   },
 });
 

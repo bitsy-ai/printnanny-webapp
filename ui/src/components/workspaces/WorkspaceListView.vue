@@ -7,9 +7,16 @@
     leave-from-class="opacity-100"
     leave-to-class="opacity-0"
   >
-    <div v-if="store.workspaces.length > 0" class="space-y-6 mt-2 mx-2 md:mt-6 md:mx-6">
+    <div
+      v-if="store.workspaces.length > 0"
+      class="space-y-6 mt-2 mx-2 md:mt-6 md:mx-6"
+    >
       <!-- workspaces table -->
-      <div class="p-4 sm:p-6 lg:p-8 bg-gray-50 rounded-md" v-for="workspace in store.workspaces" :key="workspace.id">
+      <div
+        v-for="workspace in store.workspaces"
+        :key="workspace.id"
+        class="p-4 sm:p-6 lg:p-8 bg-gray-50 rounded-md"
+      >
         <div class="sm:flex sm:items-center">
           <div class="sm:flex-auto">
             <h1 class="font-semibold text-2xl text-gray-900">
@@ -17,22 +24,26 @@
             </h1>
           </div>
           <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-            <router-link :to="{ name: 'workspaceInvite',  params: { slug: workspace.slug }}">
-            <button
-              type="button"
-              class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            <router-link
+              :to="{
+                name: 'workspaceInvite',
+                params: { slug: workspace.slug },
+              }"
             >
-              Invite Team Member
-            </button>
+              <button
+                type="button"
+                class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Invite Team Member
+              </button>
             </router-link>
           </div>
         </div>
         <div class="mt-8 flow-root">
-          <h2 class="font-semibold text-md text-gray-900">
-              Workspace Members
-          </h2>
+          <h2 class="font-semibold text-md text-gray-900">Workspace Members</h2>
           <p class="mt-2 text-sm text-gray-700">
-              Invite a team member to give them access to <strong>{{ workspace.name }}</strong> workspace.
+            Invite a team member to give them access to
+            <strong>{{ workspace.name }}</strong> workspace.
           </p>
           <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div
@@ -59,10 +70,7 @@
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
-                  <tr
-                    v-for="person in workspace.users"
-                    :key="person.email"
-                  >
+                  <tr v-for="person in workspace.users" :key="person.email">
                     <td
                       class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
                     >
@@ -111,21 +119,17 @@
                       class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0"
                     >
                       <a
-                        @click="store.resendInvite(person.id)"
                         class="text-indigo-600 hover:text-indigo-900"
-                        >Resend<span class="sr-only"
-                          ></span
-                        ></a
-                      >
+                        @click="store.resendInvite(person.id)"
+                        >Resend<span class="sr-only"></span
+                      ></a>
                     </td>
                   </tr>
-        
                 </tbody>
               </table>
             </div>
           </div>
         </div>
-
       </div>
     </div>
     <div v-else class="w-full space-y-4">
@@ -134,7 +138,7 @@
         header="No shared workspaces found"
         body="Create a shared workspace to get started"
       >
-        <router-link :to="{ name: 'workspaceCreate'}">
+        <router-link :to="{ name: 'workspaceCreate' }">
           <button
             type="button"
             class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
