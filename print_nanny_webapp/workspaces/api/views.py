@@ -132,10 +132,11 @@ class WorkspaceViewSet(
 def workspace_invite_verify_view(request, format=None):
     req_serializer = WorkspaceInviteVerifySerializer(data=request.data)
     if req_serializer.is_valid():
-        token = req_serializer.validated_data["token"]
-        email = req_serializer.validated_data["email"]
-        invitation = verify_workspace_invite(token, email)
-        res_serializer = WorkspaceInviteSerializer(invitation)
-
+        instance, created = req_serializer.update_or_create(
+            req_serializer.validated_data
+        )
+        res_serializer = WorkspaceInviteSerializer(instance=instance)
+        if created is True:
+            return Response(res_serializer.data, status=status.HTTP_201_CREATED)
         return Response(res_serializer.data, status=status.HTTP_200_OK)
     return Response(req_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

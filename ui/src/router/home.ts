@@ -105,7 +105,7 @@ export default [
         meta: { title: "PrintNanny: Your Results" },
       },
       {
-        path: "workspaces/register/:token/",
+        path: "workspaces/register/:token/:email",
         name: "workspace-register",
         components: {
           default: () =>

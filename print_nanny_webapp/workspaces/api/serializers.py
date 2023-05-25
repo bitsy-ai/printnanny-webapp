@@ -47,6 +47,7 @@ class WorkspaceInviteVerifySerializer(serializers.Serializer):
             is_active=True,
         )
         user.set_password(validated_data["password"])
+        user.save()
 
         instance.organization.add_user(user)
         instance.invitee = user
@@ -58,8 +59,8 @@ class WorkspaceInviteVerifySerializer(serializers.Serializer):
     ) -> Tuple[WorkspaceInvitation, bool]:
         user.first_name = validated_data["first_name"]
         user.last_name = validated_data["last_name"]
-        user.save()
         user.set_password(validated_data["password"])
+        user.save()
         _, created = instance.organization.get_or_add_user(user)
         instance.invitee = user
         instance.save()

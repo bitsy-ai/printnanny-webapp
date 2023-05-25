@@ -10,13 +10,12 @@
           alt="PrintNanny"
         />
         <h2 class="mt-6 text-center text-2xl font-medium text-gray-900">
-          Create your account
+          Finish registration for {{ decodeURIComponent(email) }}
         </h2>
       </div>
       <Form
         v-slot="{ meta }"
         :validation-schema="schema"
-        :initial-values="initialValues"
         class="space-y-4"
         @submit="onSubmit"
       >
@@ -117,13 +116,17 @@ import * as yup from "yup";
 import { useAccountStore } from "@/stores/account";
 import { LockClosedIcon, ArrowPathIcon } from "@heroicons/vue/24/solid";
 import { Field, ErrorMessage, Form } from "vee-validate";
-import { useWorkspaceStore } from "@/components/stores/workspaces";
+import { useWorkspaceStore } from "@/stores/workspaces";
 
 const props = defineProps({
   token: {
     type: String,
     required: true,
   },
+  email: {
+    type: String,
+    required: true
+  }
 });
 
 const loading = ref(false);
@@ -150,7 +153,7 @@ const account = useAccountStore();
 async function onSubmit(values: any) {
   state.loading = true;
   const req = {
-    email: router.currentRoute.value.query.email,
+    email: decodeURIComponent(props.email),
     first_name: values.firstName,
     last_name: values.lastName,
     password: values.password,

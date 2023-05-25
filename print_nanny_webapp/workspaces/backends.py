@@ -1,4 +1,8 @@
 from django.contrib.sites.models import Site
+from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
+
+from django.urls import path
 
 from organizations.backends.modeled import ModelInvitation
 
@@ -40,3 +44,24 @@ class WorkspaceInvitationBackend(ModelInvitation):
             site=current_site,
             email=invitation.invitee_identifier,
         ).send()
+
+    def get_urls(self):
+        # type: () -> List[path]
+        return [
+            path(
+                "<uuid:guid>/<str:email>/",
+                view=self.activation_router,
+                name="invitations_register",
+            )
+        ]
+
+    def activation_router(self, request, guid, email):
+        """"""
+        invitation = get_object_or_404(self.get_invitation_queryset(), guid=guid)
+        if invitation.invitee:
+            return redirect(self.get_invitation_accepted_url())
+
+        if request.user.is_authenticated:
+            return self.activate_existing_user_view(request, invitation)
+        else:
+            return self.activate_new_user_view(request, invitation)
