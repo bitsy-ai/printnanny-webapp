@@ -8,7 +8,8 @@ from rest_framework.mixins import (
     CreateModelMixin,
 )
 from rest_framework.response import Response
-from rest_framework.decorators import action
+from rest_framework.decorators import api_view, permission_classes, action
+from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import GenericViewSet
 from rest_framework import status, parsers
 
@@ -19,9 +20,13 @@ from print_nanny_webapp.workspaces.api.serializers import (
     WorkspaceInviteSerializer,
     WorkspaceInviteCreateSerializer,
     WorkspaceInviteRemindSerializer,
+    WorkspaceInviteVerifySerializer,
 )
 from print_nanny_webapp.workspaces.models import Workspace
-from print_nanny_webapp.workspaces.services import get_workspaces_by_auth_user
+from print_nanny_webapp.workspaces.services import (
+    get_workspaces_by_auth_user,
+    verify_workspace_invite,
+)
 
 from print_nanny_webapp.utils.api.views import (
     generic_create_errors,
@@ -114,3 +119,23 @@ class WorkspaceViewSet(
 
             return Response(res_serializer.data, status=status.HTTP_200_OK)
         return Response(req_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@extend_schema(
+    tags=["workspaces"],
+    operation_id="workspaces_verify_invite",
+    request=WorkspaceInviteVerifySerializer,
+    responses={200: WorkspaceInviteSerializer} | generic_create_errors,
+)
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def workspace_invite_verify_view(request, format=None):
+    req_serializer = WorkspaceInviteVerifySerializer(data=request.data)
+    if req_serializer.is_valid():
+        token = req_serializer.validated_data["token"]
+        email = req_serializer.validated_data["email"]
+        invitation = verify_workspace_invite(token, email)
+        res_serializer = WorkspaceInviteSerializer(invitation)
+
+        return Response(res_serializer.data, status=status.HTTP_200_OK)
+    return Response(req_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

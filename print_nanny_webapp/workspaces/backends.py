@@ -10,7 +10,8 @@ class WorkspaceInvitationBackend(ModelInvitation):
     notification_body = "workspaces/email/notification_body.html"
     invitation_subject = "workspaces/email/invitation_subject.txt"
     invitation_body = "workspaces/email/invitation_body.html"
-    invitation_join_template = "workspaces/invitation_join.html"
+    invitation_join_template = "index.j2"
+    registration_form_template = "index.j2"
 
     def __init__(self, org_model=Workspace, namespace=None):
         super().__init__(org_model=org_model, namespace=namespace)
@@ -37,4 +38,5 @@ class WorkspaceInvitationBackend(ModelInvitation):
             sender=invitation.invited_by,
             invitation=invitation,
             site=current_site,
+            email=invitation.invitee_identifier,
         ).send()

@@ -31,7 +31,7 @@ urlpatterns = [
     path("accounts/allauth", include("allauth.urls")),
     path("", include("qr_code.urls", namespace="qr_code")),
     # django-invitations
-    re_path(r"^invitations/", include(invitation_backend().get_urls())),
+    re_path(r"^workspaces/register/", include(invitation_backend().get_urls())),
     # djstripe
     path("stripe/", include("djstripe.urls", namespace="djstripe")),
 ]

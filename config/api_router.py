@@ -46,7 +46,10 @@ from print_nanny_webapp.moonraker.api.views import (
     MoonrakerServerViewSet,
     MoonrakerServerByDeviceViewSet,
 )
-from print_nanny_webapp.workspaces.api.views import WorkspaceViewSet
+from print_nanny_webapp.workspaces.api.views import (
+    WorkspaceViewSet,
+    workspace_invite_verify_view,
+)
 
 router = DefaultRouter()
 
@@ -105,7 +108,7 @@ other_urls = [
         ),
     ),
     path(
-        "email-alert-settings//<int:id>",
+        "email-alert-settings/<int:id>",
         EmailAlertSettingsViewSet.as_view(
             {
                 "put": "update",
@@ -113,6 +116,7 @@ other_urls = [
             }
         ),
     ),
+    path("workspace-invites/verify/", workspace_invite_verify_view),
 ]
 
 pi_router = NestedSimpleRouter(router, r"pis", lookup="pi")

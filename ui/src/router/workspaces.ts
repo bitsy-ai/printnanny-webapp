@@ -3,7 +3,7 @@ import PageTitle from "@/components/nav/PageTitle.vue";
 
 export default [
   {
-    path: "/workspace/",
+    path: "/workspaces/",
     components: {
       default: DashboardLayout,
       TopBar: PageTitle,
@@ -42,5 +42,6 @@ export default [
         meta: { title: "Invite Team Members" },
       },
     ],
+
   },
 ];

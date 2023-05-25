@@ -104,6 +104,15 @@ export default [
         },
         meta: { title: "PrintNanny: Your Results" },
       },
+      {
+        path: "workspaces/register/:token/",
+        name: "workspace-register",
+        components: {
+          default: () => import("@/components/workspaces/WorkspaceRegistrationForm.vue")
+        },
+        props: { default: true },
+        meta: { title: "Create your account" },
+      },
     ],
   },
   {

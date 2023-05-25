@@ -15,6 +15,17 @@ from print_nanny_webapp.workspaces.models import (
 logger = logging.getLogger(__name__)
 
 
+class WorkspaceInviteVerifySerializer(serializers.Serializer):
+    token = serializers.UUIDField(format="hex_verbose")
+    email = serializers.EmailField()
+
+    def create(self, validated_data: Any) -> Any:
+        raise NotImplementedError
+
+    def update(self, instance: Any, validated_data: Any) -> Any:
+        raise NotImplementedError
+
+
 class WorkspaceInviteSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkspaceInvitation

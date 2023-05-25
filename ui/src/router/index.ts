@@ -78,7 +78,8 @@ router.beforeEach(async (to, _from) => {
     to.name !== "pricing-enterprise" &&
     to.name !== "checkout-v2" &&
     to.name !== "demo-submit" &&
-    to.name !== "demo-result"
+    to.name !== "demo-result" &&
+    to.name !== "workspace-register"
   ) {
     // redirect the user to the login page
     return { name: "login" };
