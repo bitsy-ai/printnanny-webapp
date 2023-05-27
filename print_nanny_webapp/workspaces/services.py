@@ -10,6 +10,7 @@ from print_nanny_webapp.workspaces.models import (
     WorkspaceInvitation,
 )
 from print_nanny_webapp.users.models import User
+from print_nanny_webapp.devices.models import Pi
 
 
 def send_workspace_invite_initial(
@@ -70,3 +71,16 @@ def create_personal_workspace(user) -> Workspace:
     )
     workspace.get_or_add_user(user)
     return workspace
+
+
+def assign_pi_to_workspace(pi_id: int, workspace_id: int, user) -> Pi:
+    # get pi
+    pi = Pi.objects.get(id=pi_id)
+    # get workspace
+    workspace = Workspace.objects.get(id=workspace_id)
+    if workspace.is_member(user) is False:
+        raise PermissionDenied
+    # assign workspace
+    pi.workspace = workspace
+    pi.save()
+    return pi

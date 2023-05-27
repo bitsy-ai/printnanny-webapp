@@ -20,6 +20,7 @@ from print_nanny_webapp.users.api.serializers import UserSerializer
 from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
 from print_nanny_webapp.octoprint.api.serializers import OctoPrintServerSerializer
 from print_nanny_webapp.workspaces.api.serializers import WorkspaceSerializer
+from print_nanny_webapp.workspaces.models import Workspace
 
 User = get_user_model()
 

@@ -12,7 +12,7 @@ from django.db.utils import IntegrityError
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 from rest_framework import status
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
@@ -34,7 +34,6 @@ from print_nanny_webapp.utils.api.views import (
     generic_get_errors,
     generic_update_errors,
 )
-
 
 from print_nanny_webapp.devices.api.serializers import (
     SystemInfoSerializer,

@@ -11,9 +11,9 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import GenericViewSet
-from rest_framework import status, parsers
+from rest_framework import status
 
-from drf_spectacular.utils import extend_schema_view, extend_schema
+from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiParameter
 
 from print_nanny_webapp.workspaces.api.serializers import (
     WorkspaceSerializer,
@@ -25,10 +25,11 @@ from print_nanny_webapp.workspaces.api.serializers import (
 from print_nanny_webapp.workspaces.models import Workspace
 from print_nanny_webapp.workspaces.services import (
     get_workspaces_by_auth_user,
-    verify_workspace_invite,
     send_workspace_invite_initial,
     send_workspace_invite_reminder,
+    assign_pi_to_workspace,
 )
+from print_nanny_webapp.devices.api.serializers import PiSerializer
 
 from print_nanny_webapp.utils.api.views import (
     generic_create_errors,
@@ -144,3 +145,19 @@ def workspace_invite_verify_view(request, format=None):
             return Response(res_serializer.data, status=status.HTTP_201_CREATED)
         return Response(res_serializer.data, status=status.HTTP_200_OK)
     return Response(req_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@extend_schema(
+    tags=["devices", "workspaces"],
+    operation_id="assign_pi_to_workspace",
+    responses={202: PiSerializer} | generic_update_errors,
+    parameters=[
+        OpenApiParameter(name="pi_id", type=int, location=OpenApiParameter.PATH),
+        OpenApiParameter(name="workspace_id", type=int, location=OpenApiParameter.PATH),
+    ],
+)
+@api_view(["POST"])
+def assign_pi_to_workspace_view(request, format=None, pi_id=None, workspace_id=None):
+    instance = assign_pi_to_workspace(pi_id, workspace_id, request.user)
+    serializer = PiSerializer(instance=instance)
+    return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
