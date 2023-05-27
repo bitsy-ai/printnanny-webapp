@@ -16,4 +16,16 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         # get all users who are not owners of a personal workspace
 
-        O.objects.filter()
+        users = User.objects.all()
+        total = users.count()
+        done = 0
+        for user in users:
+            workspace = create_personal_workspace(user)
+            done += 1
+            logger.info(
+                "Created workspace=%s for user=%s, progress: %i/%i",
+                workspace,
+                user,
+                done,
+                total,
+            )
