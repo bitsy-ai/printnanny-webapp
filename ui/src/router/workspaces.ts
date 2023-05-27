@@ -1,14 +1,11 @@
 import type { RouteRecordRaw } from "vue-router";
 
-import DashboardLayout from "@/layouts/DashboardLayout.vue";
-import PageTitle from "@/components/nav/PageTitle.vue";
-
 export default [
   {
     path: "/workspaces/",
     components: {
-      default: DashboardLayout,
-      TopBar: PageTitle,
+      default: () => import("@/layouts/DashboardLayout.vue"),
+      TopBar: () => import("@/components/nav/PageTitle.vue"),
     },
     children: [
       {

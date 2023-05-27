@@ -4275,6 +4275,12 @@ export interface PatchedWorkspaceRequest {
      * @memberof PatchedWorkspaceRequest
      */
     'slug'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedWorkspaceRequest
+     */
+    'description'?: string;
 }
 /**
  * 
@@ -4330,6 +4336,12 @@ export interface Pi {
      * @memberof Pi
      */
     'latest_camera_snapshot_url': string | null;
+    /**
+     * 
+     * @type {Workspace}
+     * @memberof Pi
+     */
+    'workspace': Workspace;
     /**
      * 
      * @type {OctoPrintServer}
@@ -6038,6 +6050,12 @@ export interface Workspace {
      * @memberof Workspace
      */
     'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Workspace
+     */
+    'description': string;
 }
 /**
  * 
@@ -6274,6 +6292,12 @@ export interface WorkspaceRequest {
      * @memberof WorkspaceRequest
      */
     'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkspaceRequest
+     */
+    'description': string;
 }
 /**
  * 
@@ -9756,6 +9780,49 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
+         * @param {number} piId 
+         * @param {number} workspaceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        assignPiToWorkspace: async (piId: number, workspaceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('assignPiToWorkspace', 'piId', piId)
+            // verify required parameter 'workspaceId' is not null or undefined
+            assertParamExists('assignPiToWorkspace', 'workspaceId', workspaceId)
+            const localVarPath = `/api/devices/{pi_id}/assign-workspace/{workspace_id}/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)))
+                .replace(`{${"workspace_id"}}`, encodeURIComponent(String(workspaceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {NetworkSettingsRequest} networkSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10797,6 +10864,17 @@ export const DevicesApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {number} piId 
+         * @param {number} workspaceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async assignPiToWorkspace(piId: number, workspaceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Pi>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.assignPiToWorkspace(piId, workspaceId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {NetworkSettingsRequest} networkSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -11066,6 +11144,16 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
+         * @param {number} piId 
+         * @param {number} workspaceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        assignPiToWorkspace(piId: number, workspaceId: number, options?: any): AxiosPromise<Pi> {
+            return localVarFp.assignPiToWorkspace(piId, workspaceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {NetworkSettingsRequest} networkSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -11310,6 +11398,16 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
 export interface DevicesApiInterface {
     /**
      * 
+     * @param {number} piId 
+     * @param {number} workspaceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    assignPiToWorkspace(piId: number, workspaceId: number, options?: AxiosRequestConfig): AxiosPromise<Pi>;
+
+    /**
+     * 
      * @param {NetworkSettingsRequest} networkSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -11552,6 +11650,18 @@ export interface DevicesApiInterface {
  * @extends {BaseAPI}
  */
 export class DevicesApi extends BaseAPI implements DevicesApiInterface {
+    /**
+     * 
+     * @param {number} piId 
+     * @param {number} workspaceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public assignPiToWorkspace(piId: number, workspaceId: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).assignPiToWorkspace(piId, workspaceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {NetworkSettingsRequest} networkSettingsRequest 
@@ -17027,6 +17137,49 @@ export const WorkspacesApiAxiosParamCreator = function (configuration?: Configur
     return {
         /**
          * 
+         * @param {number} piId 
+         * @param {number} workspaceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        assignPiToWorkspace: async (piId: number, workspaceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('assignPiToWorkspace', 'piId', piId)
+            // verify required parameter 'workspaceId' is not null or undefined
+            assertParamExists('assignPiToWorkspace', 'workspaceId', workspaceId)
+            const localVarPath = `/api/devices/{pi_id}/assign-workspace/{workspace_id}/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)))
+                .replace(`{${"workspace_id"}}`, encodeURIComponent(String(workspaceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {WorkspaceRequest} workspaceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17149,13 +17302,13 @@ export const WorkspacesApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @param {string} id 
+         * @param {number} id A unique integer value identifying this organization.
          * @param {number} [page] A page number within the paginated result set.
          * @param {PatchedWorkspaceRequest} [patchedWorkspaceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        workspacesPartialUpdate: async (id: string, page?: number, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        workspacesPartialUpdate: async (id: number, page?: number, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('workspacesPartialUpdate', 'id', id)
             const localVarPath = `/api/workspaces/{id}/`
@@ -17238,11 +17391,11 @@ export const WorkspacesApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @param {string} id 
+         * @param {number} id A unique integer value identifying this organization.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        workspacesRetrieve: async (id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        workspacesRetrieve: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('workspacesRetrieve', 'id', id)
             const localVarPath = `/api/workspaces/{id}/`
@@ -17277,12 +17430,12 @@ export const WorkspacesApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @param {string} id 
+         * @param {number} id A unique integer value identifying this organization.
          * @param {WorkspaceRequest} workspaceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        workspacesUpdate: async (id: string, workspaceRequest: WorkspaceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        workspacesUpdate: async (id: number, workspaceRequest: WorkspaceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('workspacesUpdate', 'id', id)
             // verify required parameter 'workspaceRequest' is not null or undefined
@@ -17373,6 +17526,17 @@ export const WorkspacesApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {number} piId 
+         * @param {number} workspaceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async assignPiToWorkspace(piId: number, workspaceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Pi>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.assignPiToWorkspace(piId, workspaceId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {WorkspaceRequest} workspaceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17403,13 +17567,13 @@ export const WorkspacesApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} id 
+         * @param {number} id A unique integer value identifying this organization.
          * @param {number} [page] A page number within the paginated result set.
          * @param {PatchedWorkspaceRequest} [patchedWorkspaceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async workspacesPartialUpdate(id: string, page?: number, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedWorkspaceList>> {
+        async workspacesPartialUpdate(id: number, page?: number, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedWorkspaceList>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.workspacesPartialUpdate(id, page, patchedWorkspaceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -17425,22 +17589,22 @@ export const WorkspacesApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} id 
+         * @param {number} id A unique integer value identifying this organization.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async workspacesRetrieve(id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workspace>> {
+        async workspacesRetrieve(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workspace>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.workspacesRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {string} id 
+         * @param {number} id A unique integer value identifying this organization.
          * @param {WorkspaceRequest} workspaceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async workspacesUpdate(id: string, workspaceRequest: WorkspaceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workspace>> {
+        async workspacesUpdate(id: number, workspaceRequest: WorkspaceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workspace>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.workspacesUpdate(id, workspaceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -17464,6 +17628,16 @@ export const WorkspacesApiFp = function(configuration?: Configuration) {
 export const WorkspacesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = WorkspacesApiFp(configuration)
     return {
+        /**
+         * 
+         * @param {number} piId 
+         * @param {number} workspaceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        assignPiToWorkspace(piId: number, workspaceId: number, options?: any): AxiosPromise<Pi> {
+            return localVarFp.assignPiToWorkspace(piId, workspaceId, options).then((request) => request(axios, basePath));
+        },
         /**
          * 
          * @param {WorkspaceRequest} workspaceRequest 
@@ -17493,13 +17667,13 @@ export const WorkspacesApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @param {string} id 
+         * @param {number} id A unique integer value identifying this organization.
          * @param {number} [page] A page number within the paginated result set.
          * @param {PatchedWorkspaceRequest} [patchedWorkspaceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        workspacesPartialUpdate(id: string, page?: number, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options?: any): AxiosPromise<PaginatedWorkspaceList> {
+        workspacesPartialUpdate(id: number, page?: number, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options?: any): AxiosPromise<PaginatedWorkspaceList> {
             return localVarFp.workspacesPartialUpdate(id, page, patchedWorkspaceRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -17513,21 +17687,21 @@ export const WorkspacesApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @param {string} id 
+         * @param {number} id A unique integer value identifying this organization.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        workspacesRetrieve(id: string, options?: any): AxiosPromise<Workspace> {
+        workspacesRetrieve(id: number, options?: any): AxiosPromise<Workspace> {
             return localVarFp.workspacesRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {string} id 
+         * @param {number} id A unique integer value identifying this organization.
          * @param {WorkspaceRequest} workspaceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        workspacesUpdate(id: string, workspaceRequest: WorkspaceRequest, options?: any): AxiosPromise<Workspace> {
+        workspacesUpdate(id: number, workspaceRequest: WorkspaceRequest, options?: any): AxiosPromise<Workspace> {
             return localVarFp.workspacesUpdate(id, workspaceRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -17548,6 +17722,16 @@ export const WorkspacesApiFactory = function (configuration?: Configuration, bas
  * @interface WorkspacesApi
  */
 export interface WorkspacesApiInterface {
+    /**
+     * 
+     * @param {number} piId 
+     * @param {number} workspaceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApiInterface
+     */
+    assignPiToWorkspace(piId: number, workspaceId: number, options?: AxiosRequestConfig): AxiosPromise<Pi>;
+
     /**
      * 
      * @param {WorkspaceRequest} workspaceRequest 
@@ -17577,14 +17761,14 @@ export interface WorkspacesApiInterface {
 
     /**
      * 
-     * @param {string} id 
+     * @param {number} id A unique integer value identifying this organization.
      * @param {number} [page] A page number within the paginated result set.
      * @param {PatchedWorkspaceRequest} [patchedWorkspaceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkspacesApiInterface
      */
-    workspacesPartialUpdate(id: string, page?: number, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options?: AxiosRequestConfig): AxiosPromise<PaginatedWorkspaceList>;
+    workspacesPartialUpdate(id: number, page?: number, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options?: AxiosRequestConfig): AxiosPromise<PaginatedWorkspaceList>;
 
     /**
      * 
@@ -17597,22 +17781,22 @@ export interface WorkspacesApiInterface {
 
     /**
      * 
-     * @param {string} id 
+     * @param {number} id A unique integer value identifying this organization.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkspacesApiInterface
      */
-    workspacesRetrieve(id: string, options?: AxiosRequestConfig): AxiosPromise<Workspace>;
+    workspacesRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<Workspace>;
 
     /**
      * 
-     * @param {string} id 
+     * @param {number} id A unique integer value identifying this organization.
      * @param {WorkspaceRequest} workspaceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkspacesApiInterface
      */
-    workspacesUpdate(id: string, workspaceRequest: WorkspaceRequest, options?: AxiosRequestConfig): AxiosPromise<Workspace>;
+    workspacesUpdate(id: number, workspaceRequest: WorkspaceRequest, options?: AxiosRequestConfig): AxiosPromise<Workspace>;
 
     /**
      * 
@@ -17632,6 +17816,18 @@ export interface WorkspacesApiInterface {
  * @extends {BaseAPI}
  */
 export class WorkspacesApi extends BaseAPI implements WorkspacesApiInterface {
+    /**
+     * 
+     * @param {number} piId 
+     * @param {number} workspaceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApi
+     */
+    public assignPiToWorkspace(piId: number, workspaceId: number, options?: AxiosRequestConfig) {
+        return WorkspacesApiFp(this.configuration).assignPiToWorkspace(piId, workspaceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {WorkspaceRequest} workspaceRequest 
@@ -17667,14 +17863,14 @@ export class WorkspacesApi extends BaseAPI implements WorkspacesApiInterface {
 
     /**
      * 
-     * @param {string} id 
+     * @param {number} id A unique integer value identifying this organization.
      * @param {number} [page] A page number within the paginated result set.
      * @param {PatchedWorkspaceRequest} [patchedWorkspaceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkspacesApi
      */
-    public workspacesPartialUpdate(id: string, page?: number, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options?: AxiosRequestConfig) {
+    public workspacesPartialUpdate(id: number, page?: number, patchedWorkspaceRequest?: PatchedWorkspaceRequest, options?: AxiosRequestConfig) {
         return WorkspacesApiFp(this.configuration).workspacesPartialUpdate(id, page, patchedWorkspaceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -17691,24 +17887,24 @@ export class WorkspacesApi extends BaseAPI implements WorkspacesApiInterface {
 
     /**
      * 
-     * @param {string} id 
+     * @param {number} id A unique integer value identifying this organization.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkspacesApi
      */
-    public workspacesRetrieve(id: string, options?: AxiosRequestConfig) {
+    public workspacesRetrieve(id: number, options?: AxiosRequestConfig) {
         return WorkspacesApiFp(this.configuration).workspacesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {string} id 
+     * @param {number} id A unique integer value identifying this organization.
      * @param {WorkspaceRequest} workspaceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkspacesApi
      */
-    public workspacesUpdate(id: string, workspaceRequest: WorkspaceRequest, options?: AxiosRequestConfig) {
+    public workspacesUpdate(id: number, workspaceRequest: WorkspaceRequest, options?: AxiosRequestConfig) {
         return WorkspacesApiFp(this.configuration).workspacesUpdate(id, workspaceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 

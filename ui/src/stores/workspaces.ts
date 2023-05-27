@@ -11,6 +11,19 @@ export const useWorkspaceStore = defineStore({
     workspaces: [] as Array<api.Workspace>,
   }),
   actions: {
+    async assignPiToWorkspace(
+      pi: number,
+      workspace: number
+    ): Promise<undefined | api.Pi> {
+      const account = useAccountStore();
+      const res = account.workspaceApi
+        .assignPiToWorkspace(pi, workspace)
+        .catch(handleApiError);
+      if (res) {
+        return res.result;
+      }
+    },
+
     async fetchWorkspaces(): Promise<Array<api.Workspace>> {
       const account = useAccountStore();
       const res = await account.workspaceApi.workspacesList();
@@ -31,12 +44,14 @@ export const useWorkspaceStore = defineStore({
 
     async createWorkspace(
       name: string,
-      slug: string
+      slug: string,
+      description: string
     ): Promise<undefined | api.Workspace> {
       const account = useAccountStore();
       const req = {
         name,
         slug,
+        description,
         is_active: true,
       };
       const res = await account.workspaceApi

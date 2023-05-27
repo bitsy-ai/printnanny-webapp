@@ -12,7 +12,7 @@ from django.db.utils import IntegrityError
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 from rest_framework import status
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,

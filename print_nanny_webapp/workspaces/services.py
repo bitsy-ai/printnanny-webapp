@@ -10,6 +10,7 @@ from print_nanny_webapp.workspaces.models import (
     WorkspaceInvitation,
 )
 from print_nanny_webapp.users.models import User
+from print_nanny_webapp.devices.models import Pi
 
 
 def send_workspace_invite_initial(
@@ -45,7 +46,10 @@ def default_workspace_name(user) -> str:
 
 
 def get_workspaces_by_auth_user(user) -> QuerySet[Workspace]:
-    return WorkspaceUser.objects.filter(user=user).select("organization")
+    workspace_ids = WorkspaceUser.objects.filter(user=user).values_list(
+        "organization", flat=True
+    )
+    return Workspace.objects.filter(id__in=workspace_ids)
 
 
 def verify_workspace_invite(token: str, email: str):
@@ -58,8 +62,25 @@ def verify_workspace_invite(token: str, email: str):
 def create_personal_workspace(user) -> Workspace:
     workspace_name = default_workspace_name(user)
     workspace_slug = slugify(workspace_name)
+    description = f"A shared workspace"
     workspace = Workspace.objects.create(
-        slug=workspace_slug, name=workspace_name, is_active=True
+        slug=workspace_slug,
+        name=workspace_name,
+        is_active=True,
+        description=description,
     )
     workspace.get_or_add_user(user)
     return workspace
+
+
+def assign_pi_to_workspace(pi_id: int, workspace_id: int, user) -> Pi:
+    # get pi
+    pi = Pi.objects.get(id=pi_id)
+    # get workspace
+    workspace = Workspace.objects.get(id=workspace_id)
+    if workspace.is_member(user) is False:
+        raise PermissionDenied
+    # assign workspace
+    pi.workspace = workspace
+    pi.save()
+    return pi

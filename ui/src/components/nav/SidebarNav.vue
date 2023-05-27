@@ -174,7 +174,7 @@ const app_nav = [
     current: () => router.currentRoute.value.name == "devices",
   },
   {
-    name: "Team Members",
+    name: "Workspace & Team",
     link: { name: "workspaceList" },
     icon: UserPlusIcon,
     current: () => router.currentRoute.value.name == "workspaceList",
