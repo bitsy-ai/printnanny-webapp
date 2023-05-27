@@ -49,7 +49,11 @@
       </transition>
     </Menu>
     <span v-if="loading" class="inline-block ml-4">
-      <TextSpinner text="Saving..." text-size="sm" spinner-size="4"></TextSpinner>
+      <TextSpinner
+        text="Saving..."
+        text-size="sm"
+        spinner-size="4"
+      ></TextSpinner>
     </span>
     <span v-else-if="pi.workspace" class="text-left inline-block ml-4">
       {{ pi.workspace.name }}
@@ -96,7 +100,7 @@ const props = defineProps({
 });
 
 async function onClick(pi_id: number, workspace_id: number) {
-    console.log(`Assigning pi=${pi_id} to ${workspace_id}`)
+  console.log(`Assigning pi=${pi_id} to ${workspace_id}`);
   loading.value = true;
   const res = await store.assignPiToWorkspace(pi_id, workspace_id);
   await deviceStore.fetchDevices();
@@ -105,9 +109,7 @@ async function onClick(pi_id: number, workspace_id: number) {
 
 onMounted(async () => {
   if (store.workspaces.length === 0) {
-    const result = await store.fetchWorkspaces();
-    if (result) {
-    }
+    await store.fetchWorkspaces();
   }
 });
 </script>

@@ -1,5 +1,9 @@
 <template>
-  <span :aria-label="text" role="status" class="flex items-center justify-center space-x-2">
+  <span
+    :aria-label="text"
+    role="status"
+    class="flex items-center justify-center space-x-2"
+  >
     <svg
       class="h-6 w-6 animate-spin stroke-gray-500"
       viewBox="0 0 256 256"
