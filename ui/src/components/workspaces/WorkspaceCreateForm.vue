@@ -183,8 +183,9 @@ async function onSubmit(values: any) {
   loading.value = true;
   const name = values.name;
   const slug = values.slug;
+  const description = values.description
 
-  const workspace = await store.createWorkspace(name, slug);
+  const workspace = await store.createWorkspace(name, slug, description);
 
   if (workspace && values.invites) {
     const invites = values.invites.trim().split("\n");
@@ -194,6 +195,9 @@ async function onSubmit(values: any) {
   }
 
   loading.value = false;
-  router.push({ name: "workspaceList" });
+  if (workspace){
+    router.push({ name: "workspaceList" });
+
+  }
 }
 </script>
