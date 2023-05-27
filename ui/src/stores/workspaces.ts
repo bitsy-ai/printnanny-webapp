@@ -31,12 +31,14 @@ export const useWorkspaceStore = defineStore({
 
     async createWorkspace(
       name: string,
-      slug: string
+      slug: string,
+      description: string
     ): Promise<undefined | api.Workspace> {
       const account = useAccountStore();
       const req = {
         name,
         slug,
+        description,
         is_active: true,
       };
       const res = await account.workspaceApi

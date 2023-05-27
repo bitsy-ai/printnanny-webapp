@@ -45,7 +45,10 @@ def default_workspace_name(user) -> str:
 
 
 def get_workspaces_by_auth_user(user) -> QuerySet[Workspace]:
-    return WorkspaceUser.objects.filter(user=user).select("organization")
+    workspace_ids = WorkspaceUser.objects.filter(user=user).values_list(
+        "organization", flat=True
+    )
+    return Workspace.objects.filter(id__in=workspace_ids)
 
 
 def verify_workspace_invite(token: str, email: str):
@@ -58,8 +61,12 @@ def verify_workspace_invite(token: str, email: str):
 def create_personal_workspace(user) -> Workspace:
     workspace_name = default_workspace_name(user)
     workspace_slug = slugify(workspace_name)
+    description = f"A shared workspace"
     workspace = Workspace.objects.create(
-        slug=workspace_slug, name=workspace_name, is_active=True
+        slug=workspace_slug,
+        name=workspace_name,
+        is_active=True,
+        description=description,
     )
     workspace.get_or_add_user(user)
     return workspace
