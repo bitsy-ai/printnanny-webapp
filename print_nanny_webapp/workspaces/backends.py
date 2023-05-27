@@ -1,3 +1,4 @@
+from typing import List, Any
 from django.contrib.sites.models import Site
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
@@ -45,8 +46,7 @@ class WorkspaceInvitationBackend(ModelInvitation):
             email=invitation.invitee_identifier,
         ).send()
 
-    def get_urls(self):
-        # type: () -> List[path]
+    def get_urls(self) -> List[Any]:
         return [
             path(
                 "<uuid:guid>/<str:email>/",

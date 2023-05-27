@@ -3,6 +3,7 @@ from typing import Dict, Union, List
 import djstripe
 from djstripe.sync import sync_subscriber
 
+from django.db.models import QuerySet
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
@@ -12,6 +13,11 @@ from rest_framework import serializers
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 from print_nanny_webapp.users.managers import CustomUserManager
 from print_nanny_webapp.users.enum import EmailListInterest
+from print_nanny_webapp.workspaces.models import (
+    WorkspaceUser,
+    WorkspaceInvitation,
+    Workspace,
+)
 
 
 class EmailWaitlist(models.Model):
@@ -117,6 +123,12 @@ class InviteRequestSerializer(serializers.ModelSerializer):
 
 
 class User(AbstractUser):
+    # type annotations
+    workspaces_workspaceuser: "QuerySet[WorkspaceUser]"
+    workspaces_workspaceinvitation_sent_invitations: "QuerySet[WorkspaceInvitation]"
+    workspaces_workspaceinvitation_invitations: "QuerySet[WorkspaceInvitation]"
+    workspaces_workspace: "QuerySet[Workspace]"
+
     username = None  # type: ignore
     is_serviceuser = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)

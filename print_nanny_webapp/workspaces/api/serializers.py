@@ -14,10 +14,9 @@ from print_nanny_webapp.workspaces.models import (
     WorkspaceInvitation,
 )
 from print_nanny_webapp.workspaces.services import verify_workspace_invite
+from print_nanny_webapp.users.models import User
 
 logger = logging.getLogger(__name__)
-
-User = get_user_model()
 
 
 class WorkspaceInviteVerifySerializer(serializers.Serializer):
@@ -30,41 +29,41 @@ class WorkspaceInviteVerifySerializer(serializers.Serializer):
     def update_or_create(self, validated_data: Any) -> Tuple[WorkspaceInvitation, bool]:
         token = validated_data["token"]
         email = validated_data["email"]
-        invite = verify_workspace_invite(token, email)
+        instance = verify_workspace_invite(token, email)
         try:
             user = User.objects.get(email=email)
-            return self.update(invite, user, validated_data)
+            user.first_name = validated_data["first_name"]
+            user.last_name = validated_data["last_name"]
+            user.set_password(validated_data["password"])
+            user.save()
+            _, created = instance.organization.get_or_add_user(user)
+            instance.invitee = user
+            instance.save()
+            return instance, created
         except User.DoesNotExist:
-            return self.create(invite, validated_data), True
+            user = User.objects.create(
+                email=validated_data["email"],
+                first_name=validated_data["first_name"],
+                last_name=validated_data["last_name"],
+                is_active=True,
+            )
+            user.set_password(validated_data["password"])
+            user.save()
 
-    def create(
-        self, instance: WorkspaceInvitation, validated_data: Any
-    ) -> WorkspaceInvitation:
-        user = User.objects.create(
-            email=validated_data["email"],
-            first_name=validated_data["first_name"],
-            last_name=validated_data["last_name"],
-            is_active=True,
-        )
-        user.set_password(validated_data["password"])
-        user.save()
+            instance.organization.add_user(user)
+            instance.invitee = user
+            instance.save()
+            return instance, True
 
-        instance.organization.add_user(user)
-        instance.invitee = user
-        instance.save()
-        return instance
+    def create(self, instance: WorkspaceInvitation) -> WorkspaceInvitation:
+        raise NotImplementedError
 
     def update(
-        self, instance: WorkspaceInvitation, user: User, validated_data: Any
-    ) -> Tuple[WorkspaceInvitation, bool]:
-        user.first_name = validated_data["first_name"]
-        user.last_name = validated_data["last_name"]
-        user.set_password(validated_data["password"])
-        user.save()
-        _, created = instance.organization.get_or_add_user(user)
-        instance.invitee = user
-        instance.save()
-        return instance, created
+        self,
+        instance: WorkspaceInvitation,
+        validated_data: Any,
+    ) -> WorkspaceInvitation:
+        raise NotImplementedError
 
 
 class WorkspaceInviteSerializer(serializers.ModelSerializer):
@@ -74,24 +73,12 @@ class WorkspaceInviteSerializer(serializers.ModelSerializer):
 
 
 class WorkspaceInviteRemindSerializer(serializers.Serializer):
-    workspace_invite = serializers.PrimaryKeyRelatedField(
+    workspace_invite = serializers.PrimaryKeyRelatedField(  # type: ignore[var-annotated]
         queryset=WorkspaceInvitation.objects.all()
     )
 
-    def create(
-        self,
-        validated_data: Any,
-        user,
-    ) -> WorkspaceInvitation:
-        workspace_invite = validated_data.get("workspace_invite")
-        # assert user is member of workspace
-        if workspace_invite.organization.is_member(user) is False:
-            raise PermissionDenied(
-                detail="You are not authorized to manage users in this workspace"
-            )
-        backend = invitation_backend()
-        backend.send_invitation(workspace_invite)
-        return workspace_invite
+    def create(self, validated_data: Any) -> Any:
+        raise NotImplementedError
 
     def update(self, instance: Any, validated_data: Any) -> Any:
         raise NotImplementedError
@@ -99,17 +86,13 @@ class WorkspaceInviteRemindSerializer(serializers.Serializer):
 
 class WorkspaceInviteCreateSerializer(serializers.Serializer):
     email = serializers.EmailField()
-    workspace = serializers.PrimaryKeyRelatedField(queryset=Workspace.objects.all())
+    workspace = serializers.PrimaryKeyRelatedField(queryset=Workspace.objects.all())  # type: ignore[var-annotated]
 
     def create(
         self,
         validated_data: Any,
-        user,
     ) -> WorkspaceInvitation:
-        email = validated_data.get("email")
-        workspace = validated_data.get("workspace")
-        backend = invitation_backend()
-        return backend.invite_by_email(email, user, workspace)
+        raise NotImplementedError
 
     def update(self, instance: Any, validated_data: Any) -> Any:
         raise NotImplementedError

@@ -1,12 +1,35 @@
+from typing import List
 from django.db.models.query import QuerySet
 from django.utils.text import slugify
 from rest_framework.exceptions import PermissionDenied
+from organizations.backends import invitation_backend
 
 from print_nanny_webapp.workspaces.models import (
     Workspace,
     WorkspaceUser,
     WorkspaceInvitation,
 )
+from print_nanny_webapp.users.models import User
+
+
+def send_workspace_invite_initial(
+    email: str, user: User, workspace: Workspace
+) -> WorkspaceInvitation:
+    backend = invitation_backend()
+    return backend.invite_by_email(email, user, workspace)
+
+
+def send_workspace_invite_reminder(
+    workspace_invite: WorkspaceInvitation, user: User
+) -> WorkspaceInvitation:
+    # assert user is member of workspace
+    if workspace_invite.organization.is_member(user) is False:
+        raise PermissionDenied(
+            detail="You are not authorized to manage users in this workspace"
+        )
+    backend = invitation_backend()
+    backend.send_invitation(workspace_invite)
+    return workspace_invite
 
 
 def default_workspace_name(user) -> str:
@@ -22,8 +45,7 @@ def default_workspace_name(user) -> str:
 
 
 def get_workspaces_by_auth_user(user) -> QuerySet[Workspace]:
-    workspace_users = WorkspaceUser.objects.filter(user=user)
-    return [u.organization for u in workspace_users]
+    return WorkspaceUser.objects.filter(user=user).select("organization")
 
 
 def verify_workspace_invite(token: str, email: str):
