@@ -4281,6 +4281,12 @@ export interface PatchedWorkspaceRequest {
      * @memberof PatchedWorkspaceRequest
      */
     'description'?: string;
+    /**
+     * 
+     * @type {any}
+     * @memberof PatchedWorkspaceRequest
+     */
+    'icon'?: any | null;
 }
 /**
  * 
@@ -6056,6 +6062,12 @@ export interface Workspace {
      * @memberof Workspace
      */
     'description': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Workspace
+     */
+    'icon'?: string | null;
 }
 /**
  * 
@@ -6298,6 +6310,12 @@ export interface WorkspaceRequest {
      * @memberof WorkspaceRequest
      */
     'description': string;
+    /**
+     * 
+     * @type {any}
+     * @memberof WorkspaceRequest
+     */
+    'icon'?: any | null;
 }
 /**
  * 

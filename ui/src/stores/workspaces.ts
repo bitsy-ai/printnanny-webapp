@@ -9,7 +9,11 @@ export const useWorkspaceStore = defineStore({
   id: "workspaces",
   state: () => ({
     workspaces: [] as Array<api.Workspace>,
+    selectedWorkspace: undefined as undefined | api.Workspace
   }),
+  persist: {
+    storage: localStorage
+  },
   actions: {
     async assignPiToWorkspace(
       pi: number,
@@ -30,6 +34,9 @@ export const useWorkspaceStore = defineStore({
       console.log("workspaceList", res);
       if (res && res.data && res.data.results) {
         this.$patch({ workspaces: res.data.results });
+        if (this.selectedWorkspace === undefined && res.data.results.length > 0) {
+          this.$patch({ selectedWorkspace: res.data.results[0] })
+        }
         return res.data.results;
       }
       return [];
