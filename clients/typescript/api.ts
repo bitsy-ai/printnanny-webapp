@@ -9780,6 +9780,49 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
+         * @param {number} piId 
+         * @param {number} workspaceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        assignPiToWorkspace: async (piId: number, workspaceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('assignPiToWorkspace', 'piId', piId)
+            // verify required parameter 'workspaceId' is not null or undefined
+            assertParamExists('assignPiToWorkspace', 'workspaceId', workspaceId)
+            const localVarPath = `/api/devices/{pi_id}/assign-workspace/{workspace_id}/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)))
+                .replace(`{${"workspace_id"}}`, encodeURIComponent(String(workspaceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {NetworkSettingsRequest} networkSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -10821,6 +10864,17 @@ export const DevicesApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {number} piId 
+         * @param {number} workspaceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async assignPiToWorkspace(piId: number, workspaceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Pi>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.assignPiToWorkspace(piId, workspaceId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {NetworkSettingsRequest} networkSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -11090,6 +11144,16 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
+         * @param {number} piId 
+         * @param {number} workspaceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        assignPiToWorkspace(piId: number, workspaceId: number, options?: any): AxiosPromise<Pi> {
+            return localVarFp.assignPiToWorkspace(piId, workspaceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {NetworkSettingsRequest} networkSettingsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -11334,6 +11398,16 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
 export interface DevicesApiInterface {
     /**
      * 
+     * @param {number} piId 
+     * @param {number} workspaceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    assignPiToWorkspace(piId: number, workspaceId: number, options?: AxiosRequestConfig): AxiosPromise<Pi>;
+
+    /**
+     * 
      * @param {NetworkSettingsRequest} networkSettingsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -11576,6 +11650,18 @@ export interface DevicesApiInterface {
  * @extends {BaseAPI}
  */
 export class DevicesApi extends BaseAPI implements DevicesApiInterface {
+    /**
+     * 
+     * @param {number} piId 
+     * @param {number} workspaceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public assignPiToWorkspace(piId: number, workspaceId: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).assignPiToWorkspace(piId, workspaceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {NetworkSettingsRequest} networkSettingsRequest 
@@ -17051,6 +17137,49 @@ export const WorkspacesApiAxiosParamCreator = function (configuration?: Configur
     return {
         /**
          * 
+         * @param {number} piId 
+         * @param {number} workspaceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        assignPiToWorkspace: async (piId: number, workspaceId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'piId' is not null or undefined
+            assertParamExists('assignPiToWorkspace', 'piId', piId)
+            // verify required parameter 'workspaceId' is not null or undefined
+            assertParamExists('assignPiToWorkspace', 'workspaceId', workspaceId)
+            const localVarPath = `/api/devices/{pi_id}/assign-workspace/{workspace_id}/`
+                .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)))
+                .replace(`{${"workspace_id"}}`, encodeURIComponent(String(workspaceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {WorkspaceRequest} workspaceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17397,6 +17526,17 @@ export const WorkspacesApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {number} piId 
+         * @param {number} workspaceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async assignPiToWorkspace(piId: number, workspaceId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Pi>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.assignPiToWorkspace(piId, workspaceId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {WorkspaceRequest} workspaceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17490,6 +17630,16 @@ export const WorkspacesApiFactory = function (configuration?: Configuration, bas
     return {
         /**
          * 
+         * @param {number} piId 
+         * @param {number} workspaceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        assignPiToWorkspace(piId: number, workspaceId: number, options?: any): AxiosPromise<Pi> {
+            return localVarFp.assignPiToWorkspace(piId, workspaceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {WorkspaceRequest} workspaceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17574,6 +17724,16 @@ export const WorkspacesApiFactory = function (configuration?: Configuration, bas
 export interface WorkspacesApiInterface {
     /**
      * 
+     * @param {number} piId 
+     * @param {number} workspaceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApiInterface
+     */
+    assignPiToWorkspace(piId: number, workspaceId: number, options?: AxiosRequestConfig): AxiosPromise<Pi>;
+
+    /**
+     * 
      * @param {WorkspaceRequest} workspaceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -17656,6 +17816,18 @@ export interface WorkspacesApiInterface {
  * @extends {BaseAPI}
  */
 export class WorkspacesApi extends BaseAPI implements WorkspacesApiInterface {
+    /**
+     * 
+     * @param {number} piId 
+     * @param {number} workspaceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkspacesApi
+     */
+    public assignPiToWorkspace(piId: number, workspaceId: number, options?: AxiosRequestConfig) {
+        return WorkspacesApiFp(this.configuration).assignPiToWorkspace(piId, workspaceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {WorkspaceRequest} workspaceRequest 

@@ -7,7 +7,7 @@
           class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
         >
           <span v-if="pi.workspace"> Change workspace </span>
-          <span> Assign to workspace </span>
+          <span v-else> Assign to workspace </span>
           <ChevronDownIcon class="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
         </MenuButton>
       </div>
@@ -98,8 +98,9 @@ const props = defineProps({
 async function onClick(pi_id: number, workspace_id: number) {
     console.log(`Assigning pi=${pi_id} to ${workspace_id}`)
   loading.value = true;
-  await store.assignPiToWorkspace(pi_id, workspace_id);
-//   loading.value = false;
+  const res = await store.assignPiToWorkspace(pi_id, workspace_id);
+  await deviceStore.fetchDevices();
+  loading.value = false;
 }
 
 onMounted(async () => {
