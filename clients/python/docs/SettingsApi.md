@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**email_alert_settings_create**](SettingsApi.md#email_alert_settings_create) | **POST** /api/email-alert-settings/ | 
-[**email_alert_settings_partial_update**](SettingsApi.md#email_alert_settings_partial_update) | **PATCH** /api/email-alert-settings//{id} | 
+[**email_alert_settings_partial_update**](SettingsApi.md#email_alert_settings_partial_update) | **PATCH** /api/email-alert-settings/{id} | 
 [**email_alert_settings_retrieve**](SettingsApi.md#email_alert_settings_retrieve) | **GET** /api/email-alert-settings/ | 
-[**email_alert_settings_update**](SettingsApi.md#email_alert_settings_update) | **PUT** /api/email-alert-settings//{id} | 
+[**email_alert_settings_update**](SettingsApi.md#email_alert_settings_update) | **PUT** /api/email-alert-settings/{id} | 
 
 
 # **email_alert_settings_create**

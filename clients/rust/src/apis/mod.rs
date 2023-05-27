@@ -74,5 +74,6 @@ pub mod schema_api;
 pub mod settings_api;
 pub mod shop_api;
 pub mod videos_api;
+pub mod workspaces_api;
 
 pub mod configuration;

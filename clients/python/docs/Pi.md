@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **webrtc_edge** | [**WebrtcStream**](WebrtcStream.md) |  | [readonly] 
 **webrtc_cloud** | [**WebrtcStream**](WebrtcStream.md) |  | [readonly] 
 **latest_camera_snapshot_url** | **str** |  | [readonly] 
+**workspace** | [**Workspace**](Workspace.md) |  | [readonly] 
 **octoprint_server** | [**OctoPrintServer**](OctoPrintServer.md) |  | [readonly] 
 **hostname** | **str** |  | 
 **favorite** | **bool** |  | 

@@ -10,9 +10,9 @@ Method | HTTP request | Description
 [**alerts_print_job_retrieve**](AlertsApi.md#alerts_print_job_retrieve) | **GET** /api/alerts/print-job/{id}/ | 
 [**alerts_print_job_update**](AlertsApi.md#alerts_print_job_update) | **PUT** /api/alerts/print-job/{id}/ | 
 [**email_alert_settings_create**](AlertsApi.md#email_alert_settings_create) | **POST** /api/email-alert-settings/ | 
-[**email_alert_settings_partial_update**](AlertsApi.md#email_alert_settings_partial_update) | **PATCH** /api/email-alert-settings//{id} | 
+[**email_alert_settings_partial_update**](AlertsApi.md#email_alert_settings_partial_update) | **PATCH** /api/email-alert-settings/{id} | 
 [**email_alert_settings_retrieve**](AlertsApi.md#email_alert_settings_retrieve) | **GET** /api/email-alert-settings/ | 
-[**email_alert_settings_update**](AlertsApi.md#email_alert_settings_update) | **PUT** /api/email-alert-settings//{id} | 
+[**email_alert_settings_update**](AlertsApi.md#email_alert_settings_update) | **PUT** /api/email-alert-settings/{id} | 
 
 
 # **alerts_print_job_create**

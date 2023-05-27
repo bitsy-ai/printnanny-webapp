@@ -77,6 +77,7 @@ docs/PaginatedSystemInfoList.md
 docs/PaginatedVideoRecordingList.md
 docs/PaginatedVideoRecordingPartList.md
 docs/PaginatedWebrtcStreamList.md
+docs/PaginatedWorkspaceList.md
 docs/PasswordChangeRequest.md
 docs/PasswordResetConfirmRequest.md
 docs/PasswordResetRequest.md
@@ -93,6 +94,7 @@ docs/PatchedSystemInfoRequest.md
 docs/PatchedUserRequest.md
 docs/PatchedVideoRecordingRequest.md
 docs/PatchedWebrtcStreamRequest.md
+docs/PatchedWorkspaceRequest.md
 docs/Pi.md
 docs/PiNatsApp.md
 docs/PiNatsAppRequest.md
@@ -136,6 +138,18 @@ docs/VideoRecordingRequest.md
 docs/VideosApi.md
 docs/WebrtcStream.md
 docs/WebrtcStreamRequest.md
+docs/Workspace.md
+docs/WorkspaceInvite.md
+docs/WorkspaceInviteCreateRequest.md
+docs/WorkspaceInviteRemindRequest.md
+docs/WorkspaceInviteRequest.md
+docs/WorkspaceInviteVerifyRequest.md
+docs/WorkspaceOwner.md
+docs/WorkspaceOwnerRequest.md
+docs/WorkspaceRequest.md
+docs/WorkspaceUser.md
+docs/WorkspaceUserRequest.md
+docs/WorkspacesApi.md
 git_push.sh
 src/apis/accounts_api.rs
 src/apis/achievements_api.rs
@@ -152,6 +166,7 @@ src/apis/schema_api.rs
 src/apis/settings_api.rs
 src/apis/shop_api.rs
 src/apis/videos_api.rs
+src/apis/workspaces_api.rs
 src/lib.rs
 src/models/achievement.rs
 src/models/achievement_type_enum.rs
@@ -219,6 +234,7 @@ src/models/paginated_system_info_list.rs
 src/models/paginated_video_recording_list.rs
 src/models/paginated_video_recording_part_list.rs
 src/models/paginated_webrtc_stream_list.rs
+src/models/paginated_workspace_list.rs
 src/models/password_change_request.rs
 src/models/password_reset_confirm_request.rs
 src/models/password_reset_request.rs
@@ -235,6 +251,7 @@ src/models/patched_system_info_request.rs
 src/models/patched_user_request.rs
 src/models/patched_video_recording_request.rs
 src/models/patched_webrtc_stream_request.rs
+src/models/patched_workspace_request.rs
 src/models/pi.rs
 src/models/pi_nats_app.rs
 src/models/pi_nats_app_request.rs
@@ -274,3 +291,14 @@ src/models/video_recording_part.rs
 src/models/video_recording_request.rs
 src/models/webrtc_stream.rs
 src/models/webrtc_stream_request.rs
+src/models/workspace.rs
+src/models/workspace_invite.rs
+src/models/workspace_invite_create_request.rs
+src/models/workspace_invite_remind_request.rs
+src/models/workspace_invite_request.rs
+src/models/workspace_invite_verify_request.rs
+src/models/workspace_owner.rs
+src/models/workspace_owner_request.rs
+src/models/workspace_request.rs
+src/models/workspace_user.rs
+src/models/workspace_user_request.rs

@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**assign_pi_to_workspace**](DevicesApi.md#assign_pi_to_workspace) | **POST** /api/devices/{pi_id}/assign-workspace/{workspace_id}/ | 
 [**network_settings_create**](DevicesApi.md#network_settings_create) | **POST** /api/network-settings/ | 
 [**network_settings_partial_update**](DevicesApi.md#network_settings_partial_update) | **PATCH** /api/network-settings/{id} | 
 [**network_settings_retrieve**](DevicesApi.md#network_settings_retrieve) | **GET** /api/network-settings/ | 
@@ -29,6 +30,35 @@ Method | HTTP request | Description
 [**system_info_update_or_create**](DevicesApi.md#system_info_update_or_create) | **POST** /api/pis/{pi_id}/system-info/update-or-create/ | 
 [**webrtc_stream_update_or_create**](DevicesApi.md#webrtc_stream_update_or_create) | **POST** /api/pis/{pi_id}/webrtc-streams/update-or-create/ | 
 
+
+
+## assign_pi_to_workspace
+
+> crate::models::Pi assign_pi_to_workspace(pi_id, workspace_id)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**pi_id** | **i32** |  | [required] |
+**workspace_id** | **i32** |  | [required] |
+
+### Return type
+
+[**crate::models::Pi**](Pi.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## network_settings_create
