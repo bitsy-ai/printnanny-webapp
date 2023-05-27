@@ -40,9 +40,9 @@ def default_workspace_name(user) -> str:
         or user.first_name == ""
         or user.last_name == ""
     ):
-        return f"{user.email}'s Workspace"
+        return user.email.split("@")[0]
     else:
-        return f"{user.first_name} {user.last_name}'s Workspace"
+        return f"{user.first_name} {user.last_name}'s PrintNanny"
 
 
 def get_workspaces_by_auth_user(user) -> QuerySet[Workspace]:
@@ -62,7 +62,7 @@ def verify_workspace_invite(token: str, email: str):
 def create_personal_workspace(user) -> Workspace:
     workspace_name = default_workspace_name(user)
     workspace_slug = slugify(workspace_name)
-    description = f"A shared workspace"
+    description = f"A shared PrintNanny workspace owned by {user.email}"
     workspace = Workspace.objects.create(
         slug=workspace_slug,
         name=workspace_name,
