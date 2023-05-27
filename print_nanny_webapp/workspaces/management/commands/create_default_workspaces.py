@@ -4,6 +4,7 @@ import logging
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 
+from print_nanny_webapp.devices.models import Pi
 from print_nanny_webapp.workspaces.services import create_personal_workspace
 
 
@@ -29,3 +30,15 @@ class Command(BaseCommand):
                 done,
                 total,
             )
+
+            pis = Pi.objects.filter(user=user)
+            for pi in pis:
+                pi.workspace = workspace
+                pi.save()
+                logger.info(
+                    "Assigned pi=%s to workspace=%s %i/%i",
+                    pi,
+                    workspace,
+                    done,
+                    total,
+                )
