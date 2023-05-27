@@ -31,6 +31,7 @@ class Workspace(AbstractOrganization):
     """Core workspace organization model"""
 
     invitation_model = WorkspaceInvitation
+    description = models.CharField(max_length=255)
 
     @property
     def pending_invites(self) -> QuerySet[WorkspaceInvitation]:
