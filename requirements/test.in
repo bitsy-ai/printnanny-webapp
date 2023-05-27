@@ -12,8 +12,8 @@ django-coverage-plugin
 factory_boy
 
 # mypy
-mypy
-django-stubs
+mypy<1.3
+django-stubs[compatible-mypy]
 djangorestframework-stubs
 mypy-protobuf
 types-requests

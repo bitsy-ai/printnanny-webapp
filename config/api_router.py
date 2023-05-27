@@ -31,7 +31,10 @@ from print_nanny_webapp.octoprint.api.views import (
     OctoPrinterProfileViewSet,
     OctoPrintServerByDeviceViewSet,
 )
-from print_nanny_webapp.users.api.views import EmailWaitlistViewSet, UserNkeyView
+from print_nanny_webapp.users.api.views import (
+    EmailWaitlistViewSet,
+    UserNkeyView,
+)
 from print_nanny_webapp.videos.api.views import (
     CameraSnapshotViewSet,
     VideoRecordingViewSet,
@@ -43,7 +46,10 @@ from print_nanny_webapp.moonraker.api.views import (
     MoonrakerServerViewSet,
     MoonrakerServerByDeviceViewSet,
 )
-
+from print_nanny_webapp.workspaces.api.views import (
+    WorkspaceViewSet,
+    workspace_invite_verify_view,
+)
 
 router = DefaultRouter()
 
@@ -102,7 +108,7 @@ other_urls = [
         ),
     ),
     path(
-        "email-alert-settings//<int:id>",
+        "email-alert-settings/<int:id>",
         EmailAlertSettingsViewSet.as_view(
             {
                 "put": "update",
@@ -110,6 +116,7 @@ other_urls = [
             }
         ),
     ),
+    path("workspace-invites/verify/", workspace_invite_verify_view),
 ]
 
 pi_router = NestedSimpleRouter(router, r"pis", lookup="pi")
@@ -172,6 +179,8 @@ router.register(
     PrintJobAlertViewSet,
     basename="print-job-alerts",
 )
+
+router.register("workspaces", WorkspaceViewSet, basename="workspaces")
 
 app_name = "api"
 

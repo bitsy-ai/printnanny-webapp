@@ -1,0 +1,5 @@
+You've been invited to join a shared workspace {{ organization|safe }} on {{ domain.name }} by {{ sender.email|safe }}.
+
+Follow this link to create your account:
+
+https://{{ site.domain }}{% url "invitations_register" guid=invitation.guid email=email|urlencode %}

@@ -12,6 +12,7 @@ from drf_spectacular.views import (
     SpectacularRedocView,
     SpectacularSwaggerView,
 )
+from organizations.backends import invitation_backend
 
 from anymail.webhooks.mailgun import (
     MailgunTrackingWebhookView,
@@ -29,13 +30,17 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     path("accounts/allauth", include("allauth.urls")),
     path("", include("qr_code.urls", namespace="qr_code")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-urlpatterns += (path("stripe/", include("djstripe.urls", namespace="djstripe")),)
+    # django-invitations
+    re_path(r"^workspaces/register/", include(invitation_backend().get_urls())),
+    # djstripe
+    path("stripe/", include("djstripe.urls", namespace="djstripe")),
+]
 
 urlpatterns += [
     path("o/", include("oauth2_provider.urls", namespace="oauth2_provider")),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 if settings.DEBUG:

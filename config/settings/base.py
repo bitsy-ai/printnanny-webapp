@@ -102,6 +102,7 @@ LOCAL_APPS = [
     "print_nanny_webapp.moonraker.apps.MoonrakerConfig",
     "print_nanny_webapp.shop.apps.ShopConfig",
     "print_nanny_webapp.videos.apps.VideosConfig",
+    "print_nanny_webapp.workspaces.apps.WorkspacesConfig",
     "print_nanny_webapp.events.apps.EventsConfig",  # Gated at the bottom
     # Your stuff: custom apps go here
 ]
@@ -808,10 +809,16 @@ REST_AUTH = {
     "REGISTER_SERIALIZER": "print_nanny_webapp.dj_rest_auth.serializers.RegisterSerializer",
 }
 
+# django-organizations
+# https://django-organizations.readthedocs.io/en/latest/getting_started.html
+INSTALLED_APPS += ["organizations"]
+INVITATION_BACKEND = "print_nanny_webapp.workspaces.backends.WorkspaceInvitationBackend"
+
+
 # django-nats-nkeys
 # https://github.com/bitsy-ai/django-nats-nkeys
 # -------------------------------------------------------p-----------------------
-INSTALLED_APPS += ["organizations", "django_nats_nkeys"]
+INSTALLED_APPS += ["django_nats_nkeys"]
 NATS_APP_MODEL = "devices.PiNatsApp"
 NATS_SERVER_URI = env("NATS_SERVER_URI", default="nats://nats:4222")
 NATS_MQTT_BROKER_HOST = env("NATS_MQTT_BROKER_HOST", default="nats")

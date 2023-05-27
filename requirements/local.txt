@@ -136,8 +136,6 @@ django==4.1.7
     #   django-rest-polymorphic
     #   django-safedelete
     #   django-storages
-    #   django-stubs
-    #   django-stubs-ext
     #   django-vite
     #   djangorestframework
     #   drf-nested-routers
@@ -200,10 +198,6 @@ django-safedelete==1.3.1
     # via -r requirements/local.in
 django-storages[google]==1.13.2
     # via -r requirements/local.in
-django-stubs[compatible-mypy]==1.16.0
-    # via -r requirements/local.in
-django-stubs-ext==0.8.0
-    # via django-stubs
 django-timezone-field==5.0
     # via django-celery-beat
 django-vite==2.0.2
@@ -344,10 +338,6 @@ multidict==6.0.4
     # via
     #   aiohttp
     #   yarl
-mypy==1.1.1
-    # via django-stubs
-mypy-extensions==1.0.0
-    # via mypy
 nats-py[nkeys]==2.2.0
     # via
     #   -r requirements/local.in
@@ -534,22 +524,11 @@ tensorflow-io-gcs-filesystem==0.32.0
     # via tensorflow
 termcolor==2.3.0
     # via tensorflow
-tomli==2.0.1
-    # via
-    #   django-stubs
-    #   mypy
 twisted[http2,tls]==22.10.0
     # via -r requirements/local.in
-types-pytz==2023.2.0.1
-    # via django-stubs
-types-pyyaml==6.0.12.9
-    # via django-stubs
 typing-extensions==4.5.0
     # via
     #   celery-types
-    #   django-stubs
-    #   django-stubs-ext
-    #   mypy
     #   pydantic
     #   qrcode
     #   tensorflow

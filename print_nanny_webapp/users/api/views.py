@@ -1,12 +1,13 @@
 import logging
-from rest_framework.mixins import (
-    CreateModelMixin,
-)
-from rest_framework.viewsets import GenericViewSet
+
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.viewsets import GenericViewSet
+from rest_framework.mixins import (
+    CreateModelMixin,
+)
 
 from drf_spectacular.utils import extend_schema_view, extend_schema
 from django_nats_nkeys.models import NatsOrganizationUser, _default_name
@@ -17,6 +18,7 @@ from print_nanny_webapp.users.api.serializers import (
     EmailWaitlistSerializer,
     NatsOrganizationUserSerializer,
 )
+
 from print_nanny_webapp.users.models import EmailWaitlist
 
 logger = logging.getLogger(__name__)

@@ -156,6 +156,7 @@ import {
   SparklesIcon,
   CommandLineIcon,
   LifebuoyIcon,
+  UserPlusIcon,
 } from "@heroicons/vue/24/outline";
 import { useAchievementsStore } from "@/stores/achievements";
 import { VideoCameraIcon } from "@heroicons/vue/24/solid";
@@ -171,6 +172,12 @@ const app_nav = [
     link: { name: "devices" },
     icon: HomeIcon,
     current: () => router.currentRoute.value.name == "devices",
+  },
+  {
+    name: "Team Members",
+    link: { name: "workspaceList" },
+    icon: UserPlusIcon,
+    current: () => router.currentRoute.value.name == "workspaceList",
   },
   // {
   //   name: "Videos",
