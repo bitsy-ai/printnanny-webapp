@@ -74,4 +74,5 @@ class WorkspacesSignalTestCase(TestCase):
         workspace.get_or_add_user(user)
         # should succeeed, user is now owner of workspace
         result = assign_pi_to_workspace(pi.id, workspace.id, user)
+        assert result.workspace is not None
         assert result.workspace.id == workspace.id

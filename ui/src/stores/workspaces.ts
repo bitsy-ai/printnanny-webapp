@@ -16,11 +16,11 @@ export const useWorkspaceStore = defineStore({
       workspace: number
     ): Promise<undefined | api.Pi> {
       const account = useAccountStore();
-      const res = account.workspaceApi
+      const res = await account.workspaceApi
         .assignPiToWorkspace(pi, workspace)
         .catch(handleApiError);
       if (res) {
-        return res.result;
+        return res.data;
       }
     },
 
