@@ -13,7 +13,7 @@ factory_boy
 
 # mypy
 mypy
-django-stubs
+django-stubs[compatible-mypy]
 djangorestframework-stubs
 mypy-protobuf
 types-requests

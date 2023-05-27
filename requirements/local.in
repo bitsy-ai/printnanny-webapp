@@ -31,7 +31,6 @@ django-redis
 django-rest-polymorphic
 django-safedelete
 django-storages[google]
-django-stubs[compatible-mypy]
 django
 djangorestframework
 django_vite

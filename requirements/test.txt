@@ -35,11 +35,11 @@ django==4.1.7
     #   django-stubs-ext
 django-coverage-plugin==3.0.0
     # via -r requirements/test.in
-django-stubs==1.16.0
+django-stubs[compatible-mypy]==4.2.0
     # via
     #   -r requirements/test.in
     #   djangorestframework-stubs
-django-stubs-ext==0.8.0
+django-stubs-ext==4.2.0
     # via django-stubs
 djangorestframework-stubs==1.10.0
     # via -r requirements/test.in
