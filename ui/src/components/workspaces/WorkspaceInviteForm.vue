@@ -14,14 +14,13 @@
               >Invite Team Members to {{ slug }}</label
             >
             <div class="mt-2">
-              <Field v-slot="{ field, errors }" name="invites">
-                <textarea
-                  id="invites"
-                  v-bind="field"
-                  name="invites"
-                  rows="3"
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
+              <Field
+                id="invites"
+                as="textarea"
+                name="invites"
+                rows="3"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              >
               </Field>
             </div>
             <p class="mt-3 text-sm leading-6 text-gray-600">
@@ -58,7 +57,7 @@ import { Field, ErrorMessage, Form } from "vee-validate";
 import { useAccountStore } from "@/stores/account";
 import TextSpinner from "../util/TextSpinner.vue";
 import { useWorkspaceStore } from "@/stores/workspaces";
-import { success } from "@/stores/alerts";
+import { success, error } from "@/stores/alerts";
 
 const props = defineProps({
   slug: {
@@ -70,6 +69,7 @@ const props = defineProps({
 const loading = ref(false);
 const account = useAccountStore();
 const store = useWorkspaceStore();
+const router = useRouter();
 
 const schema = yup.object({
   invites: yup.string().required(),
@@ -81,7 +81,7 @@ async function onSubmit(values: any) {
   const workspace = await store.fetchWorkspaceBySlug(props.slug);
   if (workspace) {
     for (const email of invites) {
-      await store.inviteToWorkspace(email, workspace.id);
+      await store.inviteToWorkspace(email, workspace);
     }
   } else {
     error(

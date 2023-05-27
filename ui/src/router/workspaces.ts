@@ -1,3 +1,5 @@
+import type { RouteRecordRaw } from "vue-router";
+
 import DashboardLayout from "@/layouts/DashboardLayout.vue";
 import PageTitle from "@/components/nav/PageTitle.vue";
 
@@ -44,4 +46,4 @@ export default [
       },
     ],
   },
-];
+] as Array<RouteRecordRaw>;
