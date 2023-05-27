@@ -11,6 +11,8 @@ export const useWorkspaceStore = defineStore({
     workspaces: [] as Array<api.Workspace>,
   }),
   actions: {
+    async assignPiToWorkspace(pi_id: number, workspace_id: number) {},
+
     async fetchWorkspaces(): Promise<Array<api.Workspace>> {
       const account = useAccountStore();
       const res = await account.workspaceApi.workspacesList();

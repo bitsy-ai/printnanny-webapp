@@ -13,6 +13,7 @@ import DeviceActionMenu from "./DeviceActionMenu.vue";
 import DeviceFavorites from "./DeviceFavorites.vue";
 import { ExclamationTriangleIcon } from "@heroicons/vue/24/outline";
 import type { Pi, PatchedPiRequest } from "printnanny-api-client";
+import DeviceWorkspaceMenu from "@/components/devices/DeviceWorkspaceMenu.vue";
 
 const deviceStore = useDeviceStore();
 const pis = await deviceStore.fetchDevices();
@@ -78,6 +79,12 @@ const pis = await deviceStore.fetchDevices();
                 scope="col"
               >
                 Actions & Quick Links
+              </th>
+              <th
+                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                scope="col"
+              >
+                Workspace
               </th>
             </tr>
           </thead>
@@ -161,9 +168,14 @@ const pis = await deviceStore.fetchDevices();
                 }}
               </td>
               <td
-                class="px-6 py-3 whitespace-nowrap text-sm font-medium text-right"
+                class="px-6 py-3 whitespace-nowrap text-sm font-medium text-left"
               >
                 <DeviceActionMenu :pi="pi" :index="index" />
+              </td>
+              <td
+                class="px-6 py-3 whitespace-nowrap text-sm font-medium text-left"
+              >
+                <DeviceWorkspaceMenu :pi="pi" :index="index" />
               </td>
             </tr>
           </tbody>

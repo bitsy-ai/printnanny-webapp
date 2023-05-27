@@ -75,6 +75,10 @@ class Pi(SafeDeleteModel):
     favorite = models.BooleanField(default=True)
     setup_finished = models.BooleanField(default=False)
 
+    workspace = models.ForeignKey(
+        "workspaces.Workspace", related_name="pis", on_delete=models.SET_NULL, null=True
+    )
+
     @property
     def mdns_hostname(self):
         return f"{self.hostname}.local"

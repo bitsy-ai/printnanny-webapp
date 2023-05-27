@@ -19,6 +19,7 @@ from print_nanny_webapp.devices.enum import JanusConfigType, SingleBoardComputer
 from print_nanny_webapp.users.api.serializers import UserSerializer
 from print_nanny_webapp.utils.api.serializers import PrintNannyApiConfigSerializer
 from print_nanny_webapp.octoprint.api.serializers import OctoPrintServerSerializer
+from print_nanny_webapp.workspaces.api.serializers import WorkspaceSerializer
 
 User = get_user_model()
 
@@ -187,6 +188,8 @@ class PiSerializer(serializers.ModelSerializer):
     webrtc_cloud = WebrtcStreamSerializer(read_only=True)
 
     latest_camera_snapshot_url = serializers.SerializerMethodField(read_only=True)
+
+    workspace = WorkspaceSerializer(read_only=True)
 
     def get_latest_camera_snapshot_url(self, obj) -> Optional[str]:
         snapshot = obj.latest_camera_snapshot()

@@ -4338,6 +4338,12 @@ export interface Pi {
     'latest_camera_snapshot_url': string | null;
     /**
      * 
+     * @type {Workspace}
+     * @memberof Pi
+     */
+    'workspace': Workspace;
+    /**
+     * 
      * @type {OctoPrintServer}
      * @memberof Pi
      */

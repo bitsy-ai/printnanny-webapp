@@ -35,6 +35,7 @@ from print_nanny_webapp.utils.api.views import (
     generic_update_errors,
 )
 
+
 from print_nanny_webapp.devices.api.serializers import (
     SystemInfoSerializer,
     PiSerializer,
