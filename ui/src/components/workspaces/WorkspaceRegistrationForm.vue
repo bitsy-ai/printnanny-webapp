@@ -125,8 +125,8 @@ const props = defineProps({
   },
   email: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
 const loading = ref(false);
