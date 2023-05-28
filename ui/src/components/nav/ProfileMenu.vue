@@ -41,6 +41,7 @@
       >
         <!-- menuItems Array -->
         <div class="py-1">
+          <span class="px-4 py-2 text-xs flex text-gray-500 font-medium">Logged in as: {{  account.user?.email }}</span>
           <MenuItem v-for="item in workspaces.workspaces" :key="item.name">
             <button
               @click="selectWorkspace(item)"
@@ -73,13 +74,13 @@
             v-slot="{ active }"
             :key="item.name"
           >
-            <a
-              :href="item.href"
+            <router-link
+              :to="item.to"
               :class="[
                 active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                 'block px-4 py-2 text-sm',
               ]"
-              >{{ item.name }}</a
+              >{{ item.name }}</router-link
             >
           </MenuItem>
         </div>
@@ -92,7 +93,7 @@
                   active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                   'block px-4 py-2 text-sm',
                 ]"
-                >Logout</a
+                >Log out</a
               >
             </router-link>
           </MenuItem>
@@ -137,12 +138,12 @@ function selectWorkspace(workspace: api.Workspace){
 // external links or hrefs
 const linkItems = [
   {
-    name: "Documentation",
-    href: "https://printnanny.ai/docs/category/quick-start/",
+    name: "Create a Workspace",
+    to: { name: "workspaceCreate"}
   },
   {
-    name: "Report Issue",
-    href: "https://github.com/bitsy-ai/printnanny-os/issues",
+    name: "Manage Workspaces & Teams",
+    to: { name: "workspaceList"}
   },
 ];
 
