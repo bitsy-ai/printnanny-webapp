@@ -119,7 +119,7 @@ other_urls = [
     ),
     path("workspace-invites/verify/", workspace_invite_verify_view),
     path(
-        "devices/<int:pi_id>/assign-workspace/<int:workspace_id>/",
+        "pis/<int:pi_id>/assign-workspace/<int:workspace_id>/",
         assign_pi_to_workspace_view,
         name="assign-pi-to-workspace",
     ),

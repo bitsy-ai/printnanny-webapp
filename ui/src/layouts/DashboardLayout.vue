@@ -73,15 +73,8 @@
           <div
             class="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 lg:border-r lg:border-gray-200 lg:pt-1 lg:pb-4 lg:bg-gray-100"
           >
-            <div class="flex items-center flex-shrink-0 px-6">
-              <img
-                class="h-auto w-full"
-                src="@/assets/logo/logo-rect-light.svg"
-                alt="PrintNanny"
-              />
-            </div>
             <!-- Sidebar component, swap this element with another sidebar if you like -->
-            <div class="pt-6 h-0 flex-1 flex flex-col overflow-y-auto">
+            <div class="pt-6 h-0 flex-1 flex flex-col overflow-visible">
               <!-- User account dropdown -->
               <ProfileMenu />
               <!-- TODO Sidebar Search -->
@@ -89,9 +82,17 @@
               <!-- Sidebar Navigation -->
               <SidebarNav />
             </div>
+
+            <div class="flex items-center flex-shrink-0 px-6">
+              <img
+                class="h-auto w-full"
+                src="@/assets/logo/logo-rect-light.svg"
+                alt="PrintNanny"
+              />
+            </div>
           </div>
           <!-- Main column -->
-          <div class="lg:pl-64 flex flex-col justify-between">
+          <div class="lg:pl-64 flex flex-col justify-between z-2">
             <!-- Search header -->
             <div
               class="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white border-b border-gray-200 lg:hidden"

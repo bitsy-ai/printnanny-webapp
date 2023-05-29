@@ -30,7 +30,11 @@ class WorkspacesSignalTestCase(TestCase):
         first_name = "Dora"
         last_name = "Stone"
         user = User.objects.create(
-            email=email, is_superuser=False, first_name=first_name, last_name=last_name
+            email=email,
+            is_superuser=False,
+            first_name=first_name,
+            last_name=last_name,
+            is_active=True,
         )
 
         workspace_user = WorkspaceUser.objects.get(user=user)
@@ -39,7 +43,7 @@ class WorkspacesSignalTestCase(TestCase):
 
     def test_personal_workspace_created_by_email(self):
         email = "brock.stone@rapidmanufacturingexample.com"
-        user = User.objects.create(email=email, is_superuser=False)
+        user = User.objects.create(email=email, is_superuser=False, is_active=True)
 
         workspace_user = WorkspaceUser.objects.get(user=user)
 
@@ -54,7 +58,11 @@ class WorkspacesSignalTestCase(TestCase):
         first_name = "Dora"
         last_name = "Stone"
         user = User.objects.create(
-            email=email, is_superuser=False, first_name=first_name, last_name=last_name
+            email=email,
+            is_superuser=False,
+            first_name=first_name,
+            last_name=last_name,
+            is_active=True,
         )
 
         pi = Pi.objects.create(

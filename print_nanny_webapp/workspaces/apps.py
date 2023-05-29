@@ -11,6 +11,7 @@ class WorkspacesConfig(AppConfig):
     def ready(self):
         try:
             import print_nanny_webapp.workspaces.signals  # noqa F401
+            import print_nanny_webapp.utils.api.filters
 
             logging.info(
                 "Registered print_nanny_webapp.shop.signals %s",
