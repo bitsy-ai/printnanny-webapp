@@ -22,7 +22,10 @@ class TestSystemInfoDiskUsage(TestCase):
     def setUpClass(cls) -> None:
         super().setUpClass()
         cls.user = User.objects.create(
-            email="admin@test.com", password="testing1234", is_superuser=False
+            email="admin@test.com",
+            password="testing1234",
+            is_superuser=False,
+            is_active=True,
         )
 
         cls.pi = Pi.objects.create(

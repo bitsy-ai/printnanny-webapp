@@ -10,7 +10,7 @@
       <li
         v-for="(pi, index) in deviceStore.favorites"
         :key="pi.id"
-        class="relative col-span-2 flex shadow-sm rounded-md"
+        class="flex col-span-2 flex shadow-sm rounded-md"
       >
         <div
           :class="[

@@ -37,7 +37,7 @@
       leave-to-class="transform opacity-0 scale-95"
     >
       <MenuItems
-        class="z-10 w-[20rem] mx-3 origin-top absolute right-0 left-0 mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none"
+        class="z-55 w-[20rem] mx-3 origin-top absolute right-0 left-0 mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none"
       >
         <!-- menuItems Array -->
         <div class="py-1">
@@ -47,7 +47,7 @@
               @click="selectWorkspace(item)"
               :class="[
                 workspaces.selectedWorkspace?.id == item.id ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                'block px-4 py-2 text-sm flex',
+                'block px-4 py-2 text-sm flex w-full',
               ]"
               :alt="item.name"
               >
@@ -78,7 +78,7 @@
               :to="item.to"
               :class="[
                 active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                'block px-4 py-2 text-sm',
+                'block px-4 py-2 text-sm w-full',
               ]"
               >{{ item.name }}</router-link
             >
@@ -91,7 +91,7 @@
                 href="#"
                 :class="[
                   active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                  'block px-4 py-2 text-sm',
+                  'block px-4 py-2 text-sm w-full',
                 ]"
                 >Log out</a
               >
@@ -110,6 +110,7 @@ import { ChevronUpDownIcon } from "@heroicons/vue/20/solid";
 import { CreditCardIcon, BellIcon } from "@heroicons/vue/24/solid";
 import { useWorkspaceStore } from "@/stores/workspaces";
 import { useAccountStore } from "@/stores/account";
+import { useDeviceStore } from "@/stores/devices";
 import type * as api from "printnanny-api-client";
 
 const workspaces = useWorkspaceStore();
@@ -131,8 +132,10 @@ const menuItems = [
   },
 ];
 
-function selectWorkspace(workspace: api.Workspace){
+async function selectWorkspace(workspace: api.Workspace){
+  const devices = useDeviceStore();
   workspaces.$patch({ selectedWorkspace: workspace});
+  await devices.fetchDevices()
 }
 
 // external links or hrefs

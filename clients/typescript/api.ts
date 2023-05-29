@@ -9808,7 +9808,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             assertParamExists('assignPiToWorkspace', 'piId', piId)
             // verify required parameter 'workspaceId' is not null or undefined
             assertParamExists('assignPiToWorkspace', 'workspaceId', workspaceId)
-            const localVarPath = `/api/devices/{pi_id}/assign-workspace/{workspace_id}/`
+            const localVarPath = `/api/pis/{pi_id}/assign-workspace/{workspace_id}/`
                 .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)))
                 .replace(`{${"workspace_id"}}`, encodeURIComponent(String(workspaceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -10166,10 +10166,11 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} [page] A page number within the paginated result set.
+         * @param {number} [workspace] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pisList: async (page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        pisList: async (page?: number, workspace?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/pis/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10190,6 +10191,10 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
+            }
+
+            if (workspace !== undefined) {
+                localVarQueryParameter['workspace'] = workspace;
             }
 
 
@@ -10975,11 +10980,12 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} [page] A page number within the paginated result set.
+         * @param {number} [workspace] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async pisList(page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPiList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.pisList(page, options);
+        async pisList(page?: number, workspace?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPiList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pisList(page, workspace, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -11246,11 +11252,12 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * A device (Raspberry Pi) running Print Nanny OS
          * @param {number} [page] A page number within the paginated result set.
+         * @param {number} [workspace] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pisList(page?: number, options?: any): AxiosPromise<PaginatedPiList> {
-            return localVarFp.pisList(page, options).then((request) => request(axios, basePath));
+        pisList(page?: number, workspace?: number, options?: any): AxiosPromise<PaginatedPiList> {
+            return localVarFp.pisList(page, workspace, options).then((request) => request(axios, basePath));
         },
         /**
          * A device (Raspberry Pi) running Print Nanny OS
@@ -11500,11 +11507,12 @@ export interface DevicesApiInterface {
     /**
      * A device (Raspberry Pi) running Print Nanny OS
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [workspace] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    pisList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPiList>;
+    pisList(page?: number, workspace?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPiList>;
 
     /**
      * A device (Raspberry Pi) running Print Nanny OS
@@ -11772,12 +11780,13 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * A device (Raspberry Pi) running Print Nanny OS
      * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [workspace] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public pisList(page?: number, options?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).pisList(page, options).then((request) => request(this.axios, this.basePath));
+    public pisList(page?: number, workspace?: number, options?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).pisList(page, workspace, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -17165,7 +17174,7 @@ export const WorkspacesApiAxiosParamCreator = function (configuration?: Configur
             assertParamExists('assignPiToWorkspace', 'piId', piId)
             // verify required parameter 'workspaceId' is not null or undefined
             assertParamExists('assignPiToWorkspace', 'workspaceId', workspaceId)
-            const localVarPath = `/api/devices/{pi_id}/assign-workspace/{workspace_id}/`
+            const localVarPath = `/api/pis/{pi_id}/assign-workspace/{workspace_id}/`
                 .replace(`{${"pi_id"}}`, encodeURIComponent(String(piId)))
                 .replace(`{${"workspace_id"}}`, encodeURIComponent(String(workspaceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.

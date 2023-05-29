@@ -1,6 +1,7 @@
 import logging
 
 from typing import Any
+from django.db.models.query import QuerySet
 
 from drf_spectacular.utils import (
     extend_schema,
@@ -20,6 +21,8 @@ from rest_framework.mixins import (
     CreateModelMixin,
     DestroyModelMixin,
 )
+
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
@@ -34,6 +37,7 @@ from print_nanny_webapp.utils.api.views import (
     generic_get_errors,
     generic_update_errors,
 )
+from print_nanny_webapp.utils.api.filters import WorkspaceFilterBackend
 
 from print_nanny_webapp.devices.api.serializers import (
     SystemInfoSerializer,
@@ -107,6 +111,12 @@ class PiViewSet(
     serializer_class = PiSerializer
     queryset = Pi.objects.all()
     lookup_field = "id"
+    filterset_fields = ("workspace",)
+    filter_backends = [DjangoFilterBackend, WorkspaceFilterBackend]
+
+    def get_queryset(self) -> QuerySet:
+        # prevent queryset filters from returning duplicate results
+        return super().get_queryset().distinct("id")
 
     def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         hostname = request.data.get("hostname")

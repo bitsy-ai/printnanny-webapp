@@ -5,6 +5,7 @@ import { handleApiError } from "@/utils/api";
 import { useAccountStore } from "./account";
 import type { TableActionLink } from "@/types";
 import { ArrowTopRightOnSquareIcon, TrashIcon } from "@heroicons/vue/24/solid";
+import { useWorkspaceStore } from "./workspaces";
 
 export function buildDeviceActions(
   pi: Pi,
@@ -92,9 +93,11 @@ export const useDeviceStore = defineStore({
       console.debug("piPartialUpdate response", res);
     },
     async fetchDevices(): Promise<Array<Pi> | undefined> {
+      const workspace = useWorkspaceStore();
+
       this.$patch({ loading: true });
       const accountStore = useAccountStore();
-      const res = await accountStore.devicesApi.pisList().catch(handleApiError);
+      const res = await accountStore.devicesApi.pisList(undefined, workspace.selectedWorkspace?.id).catch(handleApiError);
       console.debug("pisList response ", res);
       if (res?.data?.results) {
         this.$patch({
