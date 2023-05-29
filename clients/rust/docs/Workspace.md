@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **modified** | **String** |  | [readonly]
 **slug** | **String** | The name in all lowercase, suitable for URL identification | 
 **description** | **String** |  | 
+**icon** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

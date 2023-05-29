@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**assign_pi_to_workspace**](WorkspacesApi.md#assign_pi_to_workspace) | **POST** /api/devices/{pi_id}/assign-workspace/{workspace_id}/ | 
+[**assign_pi_to_workspace**](WorkspacesApi.md#assign_pi_to_workspace) | **POST** /api/pis/{pi_id}/assign-workspace/{workspace_id}/ | 
 [**workspaces_create**](WorkspacesApi.md#workspaces_create) | **POST** /api/workspaces/ | 
 [**workspaces_create_invite**](WorkspacesApi.md#workspaces_create_invite) | **POST** /api/workspaces/invite/ | 
 [**workspaces_list**](WorkspacesApi.md#workspaces_list) | **GET** /api/workspaces/ | 

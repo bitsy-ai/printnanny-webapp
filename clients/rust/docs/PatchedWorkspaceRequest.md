@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **is_active** | Option<**bool**> |  | [optional]
 **slug** | Option<**String**> | The name in all lowercase, suitable for URL identification | [optional]
 **description** | Option<**String**> |  | [optional]
+**icon** | Option<[**std::path::PathBuf**](std::path::PathBuf.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**assign_pi_to_workspace**](DevicesApi.md#assign_pi_to_workspace) | **POST** /api/devices/{pi_id}/assign-workspace/{workspace_id}/ | 
+[**assign_pi_to_workspace**](DevicesApi.md#assign_pi_to_workspace) | **POST** /api/pis/{pi_id}/assign-workspace/{workspace_id}/ | 
 [**network_settings_create**](DevicesApi.md#network_settings_create) | **POST** /api/network-settings/ | 
 [**network_settings_partial_update**](DevicesApi.md#network_settings_partial_update) | **PATCH** /api/network-settings/{id} | 
 [**network_settings_retrieve**](DevicesApi.md#network_settings_retrieve) | **GET** /api/network-settings/ | 
@@ -292,7 +292,7 @@ Name | Type | Description  | Required | Notes
 
 ## pis_list
 
-> crate::models::PaginatedPiList pis_list(page)
+> crate::models::PaginatedPiList pis_list(page, workspace)
 
 
 A device (Raspberry Pi) running Print Nanny OS
@@ -303,6 +303,7 @@ A device (Raspberry Pi) running Print Nanny OS
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **page** | Option<**i32**> | A page number within the paginated result set. |  |
+**workspace** | Option<**String**> | workspace |  |
 
 ### Return type
 

@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**assign_pi_to_workspace**](DevicesApi.md#assign_pi_to_workspace) | **POST** /api/devices/{pi_id}/assign-workspace/{workspace_id}/ | 
+[**assign_pi_to_workspace**](DevicesApi.md#assign_pi_to_workspace) | **POST** /api/pis/{pi_id}/assign-workspace/{workspace_id}/ | 
 [**network_settings_create**](DevicesApi.md#network_settings_create) | **POST** /api/network-settings/ | 
 [**network_settings_partial_update**](DevicesApi.md#network_settings_partial_update) | **PATCH** /api/network-settings/{id} | 
 [**network_settings_retrieve**](DevicesApi.md#network_settings_retrieve) | **GET** /api/network-settings/ | 
@@ -1125,7 +1125,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pis_list**
-> PaginatedPiList pis_list(page=page)
+> PaginatedPiList pis_list(page=page, workspace=workspace)
 
 
 
@@ -1167,9 +1167,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     page = 56 # int | A page number within the paginated result set. (optional)
+workspace = 'workspace_example' # str | workspace (optional)
 
     try:
-        api_response = api_instance.pis_list(page=page)
+        api_response = api_instance.pis_list(page=page, workspace=workspace)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->pis_list: %s\n" % e)
@@ -1209,9 +1210,10 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = printnanny_api_client.DevicesApi(api_client)
     page = 56 # int | A page number within the paginated result set. (optional)
+workspace = 'workspace_example' # str | workspace (optional)
 
     try:
-        api_response = api_instance.pis_list(page=page)
+        api_response = api_instance.pis_list(page=page, workspace=workspace)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling DevicesApi->pis_list: %s\n" % e)
@@ -1222,6 +1224,7 @@ with printnanny_api_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **int**| A page number within the paginated result set. | [optional] 
+ **workspace** | **str**| workspace | [optional] 
 
 ### Return type
 
