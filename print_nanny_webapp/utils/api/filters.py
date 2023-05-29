@@ -1,4 +1,5 @@
 from functools import reduce
+from typing import Optional
 from django.db.models import Q
 from django_filters import rest_framework as filters
 from drf_spectacular.contrib.django_filters import DjangoFilterExtension
@@ -11,6 +12,12 @@ class WorkspaceFilterBackend(filters.DjangoFilterBackend):
             if getattr(queryset.model, "workspace", None):
                 return queryset.filter(workspace__users=request.user)
         return queryset
+
+
+def reduce_queries(a: Optional[Q], b: Q):
+    if a is None:
+        return b
+    return a | b
 
 
 class OwnerOrUserFilterBackend(filters.DjangoFilterBackend):
@@ -27,7 +34,7 @@ class OwnerOrUserFilterBackend(filters.DjangoFilterBackend):
             if getattr(queryset.model, "owner", None):
                 queries.append(Q(owner=request.user))
 
-            filterset = reduce(lambda a, b: b if a is None else a | b, queries, None)
+            filterset = reduce(reduce_queries, queries, None)
 
             return queryset.filter(filterset)
         return result
