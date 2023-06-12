@@ -3,17 +3,19 @@
   <!-- User account dropdown -->
   <Menu as="div" class="px-3 relative inline-block text-left">
     <div class="flex">
-
       <MenuButton
         class="group w-full bg-gray-100 rounded-md px-3.5 py-2 text-sm text-left font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-purple-500"
       >
         <span class="flex w-full justify-between items-center">
           <span class="flex min-w-0 items-center justify-between space-x-3">
-            <div v-if="workspaces.selectedWorkspace?.icon">
-        
-            </div>
-            <div v-else-if="workspaces.selectedWorkspace?.name" class="px-3.5 py-2 text-lg text-left font-medium bg-gray-300 rounded-md text-gray-900">
-              <span>{{ workspaces.selectedWorkspace?.name.charAt(0).toUpperCase() }}</span>
+            <div v-if="workspaces.selectedWorkspace?.icon"></div>
+            <div
+              v-else-if="workspaces.selectedWorkspace?.name"
+              class="px-3.5 py-2 text-lg text-left font-medium bg-gray-300 rounded-md text-gray-900"
+            >
+              <span>{{
+                workspaces.selectedWorkspace?.name.charAt(0).toUpperCase()
+              }}</span>
             </div>
             <span class="flex-1 flex flex-col min-w-0">
               <span class="text-gray-500 text-sm truncate">{{
@@ -41,21 +43,26 @@
       >
         <!-- menuItems Array -->
         <div class="py-1">
-          <span class="px-4 py-2 text-xs flex text-gray-500 font-medium">Logged in as: {{  account.user?.email }}</span>
+          <span class="px-4 py-2 text-xs flex text-gray-500 font-medium"
+            >Logged in as: {{ account.user?.email }}</span
+          >
           <MenuItem v-for="item in workspaces.workspaces" :key="item.name">
             <button
-              @click="selectWorkspace(item)"
               :class="[
-                workspaces.selectedWorkspace?.id == item.id ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                workspaces.selectedWorkspace?.id == item.id
+                  ? 'bg-gray-100 text-gray-900'
+                  : 'text-gray-700',
                 'block px-4 py-2 text-sm flex w-full',
               ]"
               :alt="item.name"
-              >
+              @click="selectWorkspace(item)"
+            >
               <span class="flex min-w-0 items-center justify-between space-x-3">
-              <div v-if="item.icon">
-        
-              </div>
-                <div v-else class="px-3.5 py-2 text-lg text-left font-medium bg-gray-300 rounded-md text-gray-900">
+                <div v-if="item.icon"></div>
+                <div
+                  v-else
+                  class="px-3.5 py-2 text-lg text-left font-medium bg-gray-300 rounded-md text-gray-900"
+                >
                   <span>{{ item.name.charAt(0).toUpperCase() }}</span>
                 </div>
                 <span class="flex-1 flex flex-col min-w-0">
@@ -132,26 +139,25 @@ const menuItems = [
   },
 ];
 
-async function selectWorkspace(workspace: api.Workspace){
+async function selectWorkspace(workspace: api.Workspace) {
   const devices = useDeviceStore();
-  workspaces.$patch({ selectedWorkspace: workspace});
-  await devices.fetchDevices()
+  workspaces.$patch({ selectedWorkspace: workspace });
+  await devices.fetchDevices();
 }
 
 // external links or hrefs
 const linkItems = [
   {
     name: "Create a Workspace",
-    to: { name: "workspaceCreate"}
+    to: { name: "workspaceCreate" },
   },
   {
     name: "Manage Workspaces & Teams",
-    to: { name: "workspaceList"}
+    to: { name: "workspaceList" },
   },
 ];
 
 onMounted(async () => {
   await workspaces.fetchWorkspaces();
-})
-
+});
 </script>

@@ -97,7 +97,12 @@ export const useDeviceStore = defineStore({
 
       this.$patch({ loading: true });
       const accountStore = useAccountStore();
-      const res = await accountStore.devicesApi.pisList(undefined, workspace.selectedWorkspace?.id as undefined | string).catch(handleApiError);
+      const res = await accountStore.devicesApi
+        .pisList(
+          undefined,
+          workspace.selectedWorkspace?.id as undefined | string
+        )
+        .catch(handleApiError);
       console.debug("pisList response ", res);
       if (res?.data?.results) {
         this.$patch({
