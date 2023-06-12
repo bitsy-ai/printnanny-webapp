@@ -10,9 +10,12 @@ class IsAdminOrIsSelf(permissions.BasePermission):
         return obj.user == request.user or request.user.is_superuser
 
 
-class IsObjectOwner(permissions.BasePermission):
+class IsObjectOwnerOrSharedWorkspace(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
-        return obj.user == request.user
+        if getattr(obj, "user", None):
+            return obj.user == request.user
+        elif getattr(obj, "owner", None):
+            return obj.owner == request.user
 
 
 class HasActiveSubscription(permissions.BasePermission):
