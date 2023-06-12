@@ -564,7 +564,7 @@ const blogPosts = [
     date: "Nov 2, 2020",
     datetime: "2020-11-02",
     category: {
-      name: "PrintNanny Blog",
+      name: "Bitsy.ai Blog",
       href: "https://bitsy.ai/tag/printnanny/",
     },
     imageUrl:
@@ -575,18 +575,18 @@ const blogPosts = [
   },
   {
     id: 5,
-    title: "Automate Image Annotation",
+    title: "Real-time object tracking",
     href: "https://bitsy.ai/real-time-object-tracking-with-tensorflow--raspberry-pi--and-pan-tilt-hat/",
     date: "Nov 2, 2020",
     datetime: "2020-11-02",
     category: {
-      name: "PrintNanny Blog",
+      name: "Bitsy.ai Blog",
       href: "https://bitsy.ai/tag/printnanny/",
     },
     imageUrl:
       "https://bitsy.ai/content/images/2021/05/1-xAs0SJR4gvvgcuuySdfmAw.jpeg",
     preview:
-      "etect and track an object in real-time using a Raspberry Pi, Pan-Tilt HAT, and TensorFlow. Perfect for hobbyists curious about computer vision & machine learning.",
+      "Detect and track an object in real-time using a Raspberry Pi, Pan-Tilt HAT, and TensorFlow. Perfect for hobbyists curious about computer vision & machine learning.",
     readingLength: "12 min",
   },
 ];

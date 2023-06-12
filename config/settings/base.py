@@ -394,7 +394,7 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.IsAuthenticated",
-        "print_nanny_webapp.utils.api.permissions.IsObjectOwner",
+        "print_nanny_webapp.utils.api.permissions.IsObjectOwnerOrSharedWorkspace",
     ),
     "DEFAULT_FILTER_BACKENDS": [
         "django_filters.rest_framework.DjangoFilterBackend",
