@@ -258,19 +258,20 @@
     </div>
 
     <!-- past releases -->
-    <div id="printnanny-os-releases" class="relative bg-gray-50 p-6 lg:py-12">
+    <div id="releases" class="relative bg-gray-200 p-6 lg:py-12">
       <div
         class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
       >
-        <img src="@/assets/logo/logo-rect-light.svg" class="m-auto h-36 mt-6" />
         <h2
           class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8"
         >
           <span class="text-gray-900">Past Releases</span>
         </h2>
-        <p class="my-5 mx-auto max-w-prose text-xl text-gray-500">
-          Get development updates delivered to your inbox:
-        </p>
+        <h2
+          class="text-base font-semibold tracking-wider text-indigo-600 uppercase text-center my-2"
+        >
+          Development updates delivered to your inbox
+        </h2>
         <WaitlistForm class="w-full md:w-1/2 m-auto"></WaitlistForm>
         <div
           class="mt-12 mx-auto max-w-md px-4 grid grid-cols-1 gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-4 lg:max-w-7xl"
@@ -311,178 +312,155 @@
       </div>
     </div>
 
-    <div class="relative bg-gray-200 py-16">
-      <div class="relative">
-        <div id="waitlist" class="relative bg-gray-200">
-          <div
-            class="grid grid-cols-1 space-y-7 w-full md:w-3/4 lg:w-1/2 m-auto p-2 text-center"
-          >
-            <h2
-              class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8"
-            >
-              <span class="text-gray-900">Join the Community</span>
-            </h2>
-            <h2
-              class="text-base font-semibold tracking-wider text-indigo-600 uppercase text-center mt-2"
-            >
-              Meetups, development updates, and cool Maker projects.
-            </h2>
+    <!-- community -->
+    <div id="community" class="relative bg-gray-50 p-6 lg:py-12">
+      <div
+        class="grid grid-cols-1 space-y-7 w-full md:w-3/4 lg:w-1/2 m-auto p-2 text-center"
+      >
+        <h2
+          class="tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8"
+        >
+          <span class="text-gray-900">Join the Community</span>
+        </h2>
+        <h2
+          class="text-base font-semibold tracking-wider text-indigo-600 uppercase text-center mt-2"
+        >
+          Meetups, development updates, and cool Maker projects.
+        </h2>
 
-            <a
-              href="https://discord.gg/sf23bk2hPr"
-              target="_blank"
-              class="w-full md:w-1/2 text-center m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-            >
-              Join Discord
-            </a>
-            <p class="mt-5 mb-5 mx-auto max-w-prose text-xl text-gray-500">
-              <a
-                href="https://discord.gg/sf23bk2hPr"
-                target="_blank"
-                class="py-2"
-              >
-                <img
-                  src="https://img.shields.io/discord/773452324692688956?color=%236366f1&label=discord&style=for-the-badge"
-                  class="m-auto"
-                />
+        <a
+          href="https://discord.gg/sf23bk2hPr"
+          target="_blank"
+          class="w-full md:w-1/2 text-center m-auto transform md-shadow hover:scale-110 ease-in-out delay-150 duration-300 mt-6 block w-full sm:text-xl lg:text-lg xl:text-xl py-3 px-4 rounded-md shadow bg-gradient-to-r rounded-md shadow bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-medium hover:from-indigo-600 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+        >
+          Join Discord
+        </a>
+        <p class="mt-5 mb-5 mx-auto max-w-prose text-xl text-gray-500">
+          <a href="https://discord.gg/sf23bk2hPr" target="_blank" class="py-2">
+            <img
+              src="https://img.shields.io/discord/773452324692688956?color=%236366f1&label=discord&style=for-the-badge"
+              class="m-auto"
+            />
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="mt-12 mx-auto max-w-md px-4 grid gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-3 lg:max-w-7xl"
+    >
+      <div class="lg:col-span-3 grid space-y-7">
+        <img src="@/assets/logo/logo-rect-light.svg" class="m-auto h-36" />
+        <h2
+          class="text-center tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8 text-gray-900"
+        >
+          Events & Meetups
+        </h2>
+        <h2
+          class="text-base font-semibold tracking-wider text-indigo-600 uppercase text-center mt-2"
+        >
+          We proudly to sponsor Women in 3D Printing (WI3DP) Events
+        </h2>
+      </div>
+      <div
+        v-for="(post, idx) in eventPosts"
+        :key="idx"
+        :class="[
+          post.upcoming
+            ? 'border-t-8 border-indigo-700'
+            : 'border-t-8 border-gray-300',
+          'flex flex-col rounded-lg shadow-lg overflow-hidden',
+        ]"
+      >
+        <div class="flex-shrink-0">
+          <img class="h-48 w-full object-cover" :src="post.imageUrl" alt="" />
+        </div>
+        <div class="flex-1 bg-white p-6 flex flex-col justify-between">
+          <div class="flex-1">
+            <p class="text-sm font-medium text-cyan-600">
+              <a :href="post.category.href" class="hover:underline">
+                {{ post.category.name }}
               </a>
             </p>
+            <p class="text-sm font-medium text-gray-600">
+              {{ post.date }}
+              <span
+                v-if="post.upcoming"
+                class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300"
+                >Upcoming</span
+              >
+            </p>
+            <a :href="post.href" class="block mt-2">
+              <p class="text-xl font-semibold text-gray-900">
+                {{ post.name }}
+              </p>
+              <button
+                v-if="post.upcoming"
+                type="button"
+                class="mt-2 text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-xl font-semibold px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                RSVP
+                <svg
+                  aria-hidden="true"
+                  class="w-5 h-5 ml-2 -mr-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+            </a>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div
-          class="mt-12 mx-auto max-w-md px-4 grid gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-3 lg:max-w-7xl"
-        >
-          <div class="lg:col-span-3 grid space-y-7">
-            <h3
-              class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl text-center"
-            >
-              Events & Meetups
-            </h3>
-            <h2
-              class="text-base font-semibold tracking-wider text-indigo-600 uppercase text-center mt-2"
-            >
-              Subscribe to 3D printing events & meetups in your area
-            </h2>
-            <WaitlistForm
-              class="w-full md:w-1/2 m-auto"
-              button-text="Subscribe"
-            ></WaitlistForm>
-
-            <h2
-              class="text-base font-semibold tracking-wider text-indigo-600 uppercase text-center mt-2"
-            >
-              We proudly to sponsor Women in 3D Printing (WI3DP) Events
-            </h2>
-          </div>
-          <div
-            v-for="(post, idx) in eventPosts"
-            :key="idx"
-            :class="[
-              post.upcoming
-                ? 'border-t-8 border-indigo-700'
-                : 'border-t-8 border-gray-300',
-              'flex flex-col rounded-lg shadow-lg overflow-hidden',
-            ]"
+    <div id="blog" class="relative bg-gray-300 p-6 lg:py-12">
+      <div
+        class="mt-12 mx-auto max-w-md px-4 grid gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-3 lg:max-w-7xl"
+      >
+        <div class="lg:col-span-3 grid space-y-7">
+          <h2
+            class="text-center tracking-tight font-extrabold text-white text-4xl xl:text-6xl pt-8 text-gray-900"
           >
-            <div class="flex-shrink-0">
-              <img
-                class="h-48 w-full object-cover"
-                :src="post.imageUrl"
-                alt=""
-              />
-            </div>
-            <div class="flex-1 bg-white p-6 flex flex-col justify-between">
-              <div class="flex-1">
-                <p class="text-sm font-medium text-cyan-600">
-                  <a :href="post.category.href" class="hover:underline">
-                    {{ post.category.name }}
-                  </a>
-                </p>
-                <p class="text-sm font-medium text-gray-600">
-                  {{ post.date }}
-                  <span
-                    v-if="post.upcoming"
-                    class="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300"
-                    >Upcoming</span
-                  >
-                </p>
-                <a :href="post.href" class="block mt-2">
-                  <p class="text-xl font-semibold text-gray-900">
-                    {{ post.name }}
-                  </p>
-                  <button
-                    v-if="post.upcoming"
-                    type="button"
-                    class="mt-2 text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-xl font-semibold px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                    RSVP
-                    <svg
-                      aria-hidden="true"
-                      class="w-5 h-5 ml-2 -mr-1"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </button>
-                </a>
-              </div>
-            </div>
-          </div>
+            Development Blog
+          </h2>
+
+          <h2
+            class="text-base font-semibold tracking-wider text-indigo-600 uppercase text-center mt-2"
+          >
+            Deep dive into the nitty-gritty of how PrintNanny works.
+          </h2>
+          <WaitlistForm class="w-full md:w-1/2 m-auto"></WaitlistForm>
         </div>
         <div
-          class="mt-12 mx-auto max-w-md px-4 grid gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:max-w-7xl"
-        ></div>
-        <div
-          class="mt-12 mx-auto max-w-md px-4 grid gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-3 lg:max-w-7xl"
+          v-for="post in blogPosts"
+          :key="post.id"
+          class="flex flex-col rounded-lg shadow-lg overflow-hidden"
         >
-          <div class="lg:col-span-3 grid space-y-7">
-            <h3
-              class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl text-center"
-            >
-              Development Blog
-            </h3>
-            <h2
-              class="text-base font-semibold tracking-wider text-indigo-600 uppercase text-center mt-2"
-            >
-              Deep dive into the nitty-gritty of how PrintNanny works.
-            </h2>
-            <WaitlistForm class="w-full md:w-1/2 m-auto"></WaitlistForm>
+          <div class="flex-shrink-0">
+            <img class="h-48 w-full object-cover" :src="post.imageUrl" alt="" />
           </div>
-          <div
-            v-for="post in blogPosts"
-            :key="post.id"
-            class="flex flex-col rounded-lg shadow-lg overflow-hidden"
-          >
-            <div class="flex-shrink-0">
-              <img
-                class="h-48 w-full object-cover"
-                :src="post.imageUrl"
-                alt=""
-              />
-            </div>
-            <div class="flex-1 bg-white p-6 flex flex-col justify-between">
-              <div class="flex-1">
-                <p class="text-sm font-medium text-cyan-600">
-                  <a :href="post.category.href" class="hover:underline">
-                    {{ post.category.name }}
-                  </a>
-                </p>
-                <a :href="post.href" class="block mt-2">
-                  <p class="text-xl font-semibold text-gray-900">
-                    {{ post.title }}
-                  </p>
-                  <p class="mt-3 text-base text-gray-500">
-                    {{ post.preview }}
-                  </p>
+          <div class="flex-1 bg-white p-6 flex flex-col justify-between">
+            <div class="flex-1">
+              <p class="text-sm font-medium text-cyan-600">
+                <a :href="post.category.href" class="hover:underline">
+                  {{ post.category.name }}
                 </a>
-              </div>
+              </p>
+              <a :href="post.href" class="block mt-2">
+                <p class="text-xl font-semibold text-gray-900">
+                  {{ post.title }}
+                </p>
+                <p class="mt-3 text-base text-gray-500">
+                  {{ post.preview }}
+                </p>
+              </a>
             </div>
           </div>
         </div>
