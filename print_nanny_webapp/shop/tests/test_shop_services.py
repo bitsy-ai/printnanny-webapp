@@ -174,7 +174,9 @@ class TestShopServices(TestCase):
         email = "john.doe@example.com"
         password = "testing1234"
         # test provided email already associated with an existing stripe customer
-        user = User.objects.create(email=email, password=password, is_superuser=False)
+        user = User.objects.create(
+            email=email, password=password, is_superuser=False, is_active=True
+        )
         request.user = user
         # login user so self.client.session reflects
         # self.client.login sets up self.client.session to be usable
