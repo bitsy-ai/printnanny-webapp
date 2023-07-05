@@ -10,7 +10,7 @@ from print_nanny_webapp.devices.models import Pi, WebrtcStream, PiNatsApp
 
 @admin.register(Pi)
 class PiAdmin(admin.ModelAdmin):
-    list_display = ("hostname", "user", "created_dt")
+    list_display = ("id", "hostname", "user", "created_dt")
     model = Pi
 
 
