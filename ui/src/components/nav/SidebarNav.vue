@@ -69,6 +69,7 @@
         </a>
       </div>
       <!-- milestones/roadmap/other info -->
+      <!--
       <h3
         id="roadmap-headline"
         class="pt-4 px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider"
@@ -95,7 +96,7 @@
           {{ item.name }}
         </a>
       </div>
-
+      -->
       <h3
         id="badges-headline"
         class="pt-4 px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider"
@@ -211,23 +212,23 @@ const help_nav = [
     current: () => router.currentRoute.value.name == "crash-reports",
   },
   {
-    name: "Quick Start",
+    name: "FAQ & Docs",
     href: "https://printnanny.ai/docs/category/quick-start/",
     icon: QuestionMarkCircleIcon,
     current: () => false,
   },
-  {
-    name: "API Docs",
-    href: import.meta.env.VITE_PRINTNANNY_API_REDOCS_URL,
-    icon: CommandLineIcon,
-    current: () => false,
-  },
-  {
-    name: "Report Issue",
-    href: "https://github.com/bitsy-ai/printnanny-os/issues/new/choose",
-    icon: ExclamationTriangleIcon,
-    current: () => false,
-  },
+  // {
+  //   name: "API Docs",
+  //   href: import.meta.env.VITE_PRINTNANNY_API_REDOCS_URL,
+  //   icon: CommandLineIcon,
+  //   current: () => false,
+  // },
+  // {
+  //   name: "Report Issue",
+  //   href: "https://github.com/bitsy-ai/printnanny-os/issues/new/choose",
+  //   icon: ExclamationTriangleIcon,
+  //   current: () => false,
+  // },
   {
     name: "Join Discord",
     href: "https://discord.gg/sf23bk2hPr",
