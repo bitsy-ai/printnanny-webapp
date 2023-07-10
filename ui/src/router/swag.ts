@@ -12,7 +12,7 @@ export default [
         path: "",
         name: "swag",
         component: SwagView,
-        meta: { title: "Founding Member Swag" },
+        meta: { title: "Founding Member Swag", requiresAuth: true },
       },
     ],
   },

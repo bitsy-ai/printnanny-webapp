@@ -22,7 +22,7 @@ export default [
           default: VideoList,
           TopBar: PageTitle,
         },
-        meta: { title: "Timelapse Videos" },
+        meta: { title: "Timelapse Videos", requiresAuth: true },
       },
     ],
   },

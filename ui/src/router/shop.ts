@@ -16,7 +16,7 @@ export default [
         components: {
           default: ShopProductsListPage,
         },
-        meta: { title: "PrintNanny: Shop" },
+        meta: { title: "PrintNanny: Shop", requiresAuth: false },
       },
       {
         path: "checkout/:sku/:price",
@@ -25,7 +25,7 @@ export default [
           default: () =>
             import("@/components/shop/PriceTableCheckoutSession.vue"),
         },
-        meta: { title: "PrintNanny: Checkout" },
+        meta: { title: "PrintNanny: Checkout", requiresAuth: false },
         props: { default: true },
       },
       {
@@ -35,6 +35,7 @@ export default [
           default: () => import("@/components/pages/SDWirePage.vue"),
         },
         meta: {
+          requiresAuth: false,
           title:
             "PrintNanny SDWire: 10x faster gcode transfer to SD cards. Compatible with OctoPrint-SDWire plugin.",
         },
@@ -46,6 +47,7 @@ export default [
           default: () => import("@/components/pages/Rpi4KitPage.vue"),
         },
         meta: {
+          requiresAuth: false,
           title:
             "PrintNanny Raspberry Pi 4 kit: everything you need to get started.",
         },
@@ -57,7 +59,7 @@ export default [
           default: CheckoutSuccessPage,
         },
         props: { default: true },
-        meta: { title: "PrintNanny: Thank you!" },
+        meta: { title: "PrintNanny: Thank you!", requiresAuth: false },
       },
     ],
   },

@@ -52,37 +52,16 @@ router.beforeEach(async (to, _from) => {
   if (to.name == "logout") {
     return;
   }
-  const account = useAccountStore();
-  if (
-    // make sure the user is authenticated
-    !account.isAuthenticated &&
-    // ❗️ Avoid an infinite redirect
-    to.name !== "login-confirm" &&
-    to.name !== "login" &&
-    to.name !== "reset-password" &&
-    to.name !== "reset-password-confirm" &&
-    to.name !== "account-confirm-email" &&
-    to.name !== "account-verify-email" &&
-    to.name !== "register" &&
-    // ❗️ Login is not required for home view, terms, privacy policy, shop, pricing
-    to.name !== "home" &&
-    to.name !== "terms" &&
-    to.name !== "privacy" &&
-    to.name !== "shop-products-list" &&
-    to.name !== "shop-founding-membership" &&
-    to.name !== "shop-sdwire" &&
-    to.name !== "shop-rpi4kit" &&
-    to.name !== "shop-checkout" &&
-    to.name !== "shop-checkout-success" &&
-    to.name !== "pricing" &&
-    to.name !== "pricing-enterprise" &&
-    to.name !== "checkout-v2" &&
-    to.name !== "demo-submit" &&
-    to.name !== "demo-result" &&
-    to.name !== "workspace-register"
-  ) {
-    // redirect the user to the login page
-    return { name: "login" };
+  if (to.meta.requiresAuth === true) {
+    const account = useAccountStore();
+    if (!account.isAuthenticated) {
+      // attempt to refresh login using session cookie, enables django-loginas for debugging
+      await account.fetchUser();
+      if (!account.isAuthenticated) {
+        // redirect the user to the login page
+        return { name: "login" };
+      }
+    }
   }
 });
 
