@@ -32,7 +32,7 @@ class Workspace(AbstractOrganization):
 
     invitation_model = WorkspaceInvitation
     description = models.CharField(max_length=255)
-    icon = models.ImageField(null=True)
+    icon = models.ImageField(null=True, blank=True)
 
     @property
     def pending_invites(self) -> QuerySet[WorkspaceInvitation]:
