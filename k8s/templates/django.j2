@@ -77,8 +77,8 @@ spec:
           mountPath: "/var/lib/nats/nsc"
         resources:
           requests:
-            memory: "256M"
-            cpu: "0.5"
+            memory: "128Mi"
+            cpu: "0.1"
           limits:
             memory: "2G"
             cpu: "1"
@@ -134,7 +134,7 @@ spec:
         resources:
           requests:
             memory: "1G"
-            cpu: "1"
+            cpu: "0.5"
           limits:
             memory: "4G"
             cpu: "2"
