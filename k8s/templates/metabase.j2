@@ -36,11 +36,11 @@ spec:
               name: metabase
         resources:
           requests:
-            memory: "1G"
-            cpu: "1"
+            memory: "0.5G"
+            cpu: "0.05"
           limits:
             memory: "2G"
-            cpu: "1.5"
+            cpu: "1"
         livenessProbe:
           httpGet:
             path: /
