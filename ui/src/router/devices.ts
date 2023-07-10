@@ -24,7 +24,7 @@ export default [
           TopRight: DeviceTopRight,
           TopBar: PageTitle,
         },
-        meta: { title: "Manage Network" },
+        meta: { title: "Manage Network", requiresAuth: true },
       },
       {
         path: "delete/:id/",
@@ -33,7 +33,7 @@ export default [
           default: DeviceDelete,
         },
         props: { default: true },
-        meta: { title: "Delete Connection" },
+        meta: { title: "Delete Connection", requiresAuth: true },
       },
     ],
   },

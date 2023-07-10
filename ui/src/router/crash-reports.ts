@@ -24,7 +24,7 @@ export default [
           TopRight: DeviceTopRight,
           TopBar: PageTitle,
         },
-        meta: { title: "Crash Reports" },
+        meta: { title: "Crash Reports", requiresAuth: true },
       },
     ],
   },

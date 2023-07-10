@@ -18,7 +18,7 @@ export default [
           TopRight: () =>
             import("@/components/workspaces/NewWorkspaceButton.vue"),
         },
-        meta: { title: "Workspaces & Team Members" },
+        meta: { title: "Workspaces & Team Members", requiresAuth: true },
       },
       {
         path: "new/",
@@ -28,7 +28,7 @@ export default [
             import("@/components/workspaces/WorkspaceCreateForm.vue"),
           TopBar: () => import("@/components/nav/PageTitle.vue"),
         },
-        meta: { title: "Create a Shared Workspace" },
+        meta: { title: "Create a Shared Workspace", requiresAuth: true },
       },
       {
         path: "invite/:slug",
@@ -39,7 +39,7 @@ export default [
           TopBar: () => import("@/components/nav/PageTitle.vue"),
         },
         props: { default: true },
-        meta: { title: "Invite Team Members" },
+        meta: { title: "Invite Team Members", requiresAuth: true },
       },
     ],
   },
