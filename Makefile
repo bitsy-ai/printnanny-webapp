@@ -614,8 +614,8 @@ nats-upgrade:
 
 nats-upgrade-values:
 	helm upgrade --namespace nats \
-		--debug \
-		--install \
+		--recreate-pods \
+		--wait \
 		printnanny-nats nats/nats \
 		--values k8s/nats/values.yaml \
 		--set auth.resolver.operator=${NATS_OPERATOR_NKEY} \
