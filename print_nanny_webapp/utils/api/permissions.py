@@ -12,7 +12,12 @@ class IsAdminOrIsSelf(permissions.BasePermission):
 
 class IsObjectOwnerOrSharedWorkspace(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
-        if getattr(obj, "user", None):
+        # requets.user is an admin of shared workspace
+        if getattr(obj, "workspace", None):
+            return obj.workspace.is_admin(request.user)
+        # is object owner
+        elif getattr(obj, "user", None):
+
             return obj.user == request.user
         elif getattr(obj, "owner", None):
             return obj.owner == request.user
