@@ -10,7 +10,9 @@ class WorkspaceFilterBackend(filters.DjangoFilterBackend):
         if request.user.is_authenticated:
             # if there's a workspace field, filter by workspace membership
             if getattr(queryset.model, "workspace", None):
-                return queryset.filter(workspace__users=request.user)
+                return (
+                    queryset.filter(workspace__users=request.user) | queryset
+                ).distinct()
         return queryset
 
 
@@ -20,7 +22,7 @@ def reduce_queries(a: Optional[Q], b: Q):
     return a | b
 
 
-class OwnerOrUserFilterBackend(filters.DjangoFilterBackend):
+class OwnerOrUserOrWorkspaceFilterBackend(filters.DjangoFilterBackend):
     def filter_queryset(self, request, queryset, view):
         result = queryset
         if request.user.is_authenticated:
