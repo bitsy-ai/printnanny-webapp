@@ -22,7 +22,7 @@ def reduce_queries(a: Optional[Q], b: Q):
     return a | b
 
 
-class OwnerOrUserOrWorkspaceFilterBackend(filters.DjangoFilterBackend):
+class OwnerOrUserFilterBackend(filters.DjangoFilterBackend):
     def filter_queryset(self, request, queryset, view):
         result = queryset
         if request.user.is_authenticated:
